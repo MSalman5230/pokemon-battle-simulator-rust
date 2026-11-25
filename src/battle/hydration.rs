@@ -3,6 +3,7 @@
 
 use super::{
     charge::ChargeSpec,
+    support::{FutureMove, Wish},
     tactical::{BOOSTS, TYPES},
     *,
 };
@@ -18,9 +19,26 @@ pub(crate) struct WorldInput {
     pub sides: [WorldSide; 2],
     field: WorldField,
     #[serde(default)]
-    wishes: BTreeMap<String, Value>,
+    wishes: BTreeMap<String, WorldWish>,
     #[serde(default)]
-    future_moves: BTreeMap<String, Value>,
+    future_moves: BTreeMap<String, WorldFutureMove>,
+}
+
+#[derive(Deserialize)]
+struct WorldWish {
+    source: Option<String>,
+    amount: Option<f64>,
+    turns: u32,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct WorldFutureMove {
+    source: String,
+    source_side: String,
+    #[serde(rename = "move")]
+    move_name: String,
+    turns: u32,
 }
 
 #[derive(Deserialize)]
@@ -126,13 +144,11 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
     if input.format != "gen9championsbssregmc" || input.kind != "turn" || input.turn == 0 {
         return Err(unsupported("requires a simultaneous BSS move decision"));
     }
-    if !input.field.extra.is_empty() || !input.wishes.is_empty() || !input.future_moves.is_empty() {
-        return Err(unsupported(
-            "extra field conditions or delayed slot effects",
-        ));
+    if !input.field.extra.is_empty() {
+        return Err(unsupported("extra field conditions"));
     }
     let mut battle = Battle::new(Start {
-        formatid: input.format,
+        formatid: std::mem::take(&mut input.format),
         seed: Some(Seed::Gen5([1, 2, 3, 4])),
         debug: false,
         force_random_chance: None,
@@ -246,6 +262,7 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
         other => return Err(unsupported(format!("terrain {other}"))),
     };
     battle.trick_room = input.field.trickroom;
+    restore_delayed_effects(&mut battle, &input)?;
     battle.possible_unaware = Player::ALL.into_iter().any(|player| {
         battle
             .party(player)
@@ -263,6 +280,61 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
         },
         assumptions,
     ))
+}
+
+fn restore_delayed_effects(battle: &mut Battle, input: &WorldInput) -> Result<(), BattleError> {
+    let player = |key: &str| match key {
+        "me" => Ok(Player::P1),
+        "opp" => Ok(Player::P2),
+        _ => Err(unsupported(format!("delayed effect side {key}"))),
+    };
+    let find = |side: Player, identity: &str| {
+        input.sides[side.index()]
+            .pokemon
+            .iter()
+            .position(|p| p.identity == identity)
+    };
+    let now = battle.overflowed_turn();
+    for (side, wish) in &input.wishes {
+        let side = player(side)?;
+        let source = wish.source.as_deref().and_then(|name| find(side, name));
+        let native = battle.sides[side.index()].as_mut().unwrap();
+        let amount = wish
+            .amount
+            .or_else(|| source.map(|index| f64::from(native.party[index].max_hp.get()) / 2.0));
+        let amount = amount
+            .filter(|&a| a >= 0.0)
+            .ok_or_else(|| unsupported("Wish source HP unavailable"))?;
+        native.wishes[0] = Some(Wish {
+            turn: i64::from(now) + i64::from(wish.turns) - 2,
+            hp: if amount == 0.0 {
+                0
+            } else {
+                amount.max(1.0) as u32
+            },
+            wisher: native.party[source.unwrap_or(0)].roster_index,
+        });
+    }
+    for (target, future) in &input.future_moves {
+        let target = player(target)?;
+        let source_side = player(&future.source_side)?;
+        let source = find(source_side, &future.source)
+            .ok_or_else(|| unsupported("delayed attack source unavailable"))?;
+        let id = to_id(&future.move_name);
+        let data = DEX
+            .moves(battle.format.dex_mod, &id)
+            .filter(|_| matches!(id.as_str(), "doomdesire" | "futuresight"))
+            .ok_or_else(|| unsupported(format!("delayed attack {id}")))?;
+        let roster_index =
+            battle.sides[source_side.index()].as_ref().unwrap().party[source].roster_index;
+        battle.sides[target.index()].as_mut().unwrap().future_moves[0] = Some(FutureMove {
+            ending_turn: now.saturating_add(future.turns).saturating_sub(1),
+            source_side,
+            roster_index,
+            data,
+        });
+    }
+    Ok(())
 }
 
 impl WorldMon {

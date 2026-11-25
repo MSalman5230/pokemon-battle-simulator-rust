@@ -60,6 +60,11 @@ for (const [side, [id, name, pp]] of [['revivalblessing', 'Revival Blessing', 1]
 }
 revival.input.sides[0].pokemon[1].hp = 0;
 revival.input.sides[0].total_fainted = 1;
+const delayed = world([23, 91, 42, 16], [[3, 11, 17, 21]]);
+delayed.input.sides[0].pokemon[0].hp -= 12;
+delayed.input.wishes.me = {source: delayed.input.sides[0].pokemon[0].identity, turns: 1};
+delayed.input.future_moves.opp = {sourceSide: 'me', source: delayed.input.sides[0].pokemon[2].identity,
+    move: 'Future Sight', turns: 1};
 const cases = [
     {name: 'paired pivots and basic attacks', input: {observation, worlds: [pivot, confusion], candidates: [3, 1, 8],
         replies: 2, reply_probabilities: {'move:earthquake': 1}}},
@@ -75,6 +80,8 @@ const cases = [
         worlds: [bound], candidates: [1], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
     {name: 'continue a Revival Blessing request when every legal target has zero HP', input: {observation,
         worlds: [revival], candidates: [0], replies: 1, reply_probabilities: {'move:recover': 1}}},
+    {name: 'restore delayed healing and an attack from a named bench source', input: {observation,
+        worlds: [delayed], candidates: [1], replies: 1, reply_probabilities: {'move:protect': 1}}},
 ];
 for (const c of cases) c.expected = lookahead(c.input, Game, PublicState);
 assert(cases[0].expected.errors.length === 0, JSON.stringify(cases[0].expected.errors));
@@ -86,5 +93,7 @@ assert(cases[3].expected.rows.some(row => row.assumptions.some(a => a.fact === '
 assert(cases[4].expected.rows.some(row => row.observation.faints[0].length > 0));
 assert(cases[5].expected.rows.some(row => row.assumptions.some(a => a.fact === 'partial trap duration')));
 assert(cases[6].expected.rows.some(row => row.continuations === 1), JSON.stringify(cases[6].expected.errors));
+assert(cases[7].expected.rows.length === 1 && !cases[7].expected.errors.length,
+    JSON.stringify(cases[7].expected.errors));
 writeFileSync(new URL('../tests/fixtures/lookahead.json', import.meta.url),
     `{"revision":${JSON.stringify(revision)},"cases":[\n${cases.map(c => JSON.stringify(c)).join(',\n')}\n]}\n`);

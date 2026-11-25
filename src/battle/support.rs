@@ -4,9 +4,9 @@ use super::{turn::Position, *};
 
 #[derive(Clone, Copy)]
 pub(super) struct Wish {
-    turn: u32,
-    hp: u32,
-    wisher: usize,
+    pub(super) turn: i64,
+    pub(super) hp: u32,
+    pub(super) wisher: usize,
 }
 
 #[derive(Clone, Copy)]
@@ -168,7 +168,7 @@ impl Battle {
         }
         let user = self.mon(pos);
         let wish = Wish {
-            turn: self.overflowed_turn(),
+            turn: i64::from(self.overflowed_turn()),
             hp: (user.max_hp.get() / 2).max(1),
             wisher: user.roster_index,
         };
@@ -183,17 +183,17 @@ impl Battle {
     }
 
     pub(super) fn tick_wish(&mut self, pos: Position) {
-        let turn = self.overflowed_turn();
+        let turn = i64::from(self.overflowed_turn());
         let side = self.sides[pos.player.index()].as_mut().unwrap();
         let Some(wish) = side.wishes[pos.slot].filter(|wish| turn > wish.turn) else {
             return;
         };
         side.wishes[pos.slot] = None;
         let mon = &mut side.party[pos.slot];
-        if mon.hp == 0 || mon.hp == mon.max_hp.get() {
+        if wish.hp == 0 || mon.hp == 0 || mon.hp == mon.max_hp.get() {
             return;
         }
-        mon.hp = (mon.hp + wish.hp).min(mon.max_hp.get());
+        mon.hp = mon.hp.saturating_add(wish.hp).min(mon.max_hp.get());
         let wisher = side
             .party
             .iter()
