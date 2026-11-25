@@ -113,7 +113,7 @@ impl Battle {
 
     fn ignores_trapping(&self, pos: Position) -> bool {
         let mon = self.mon(pos);
-        mon.has_type("Ghost") || mon.effective_item() == "shedshell" || mon.ability == "runaway"
+        mon.has_type("Ghost") || mon.effective_item() == "shedshell"
     }
 
     pub(super) fn trap_info(&self, pos: Position) -> Trap {
@@ -124,7 +124,7 @@ impl Battle {
                 possible: true,
             };
         }
-        if mon.fainted || self.ignores_trapping(pos) {
+        if mon.fainted {
             return Trap::default();
         }
         let affected = |ability: &str| match ability {
@@ -136,12 +136,15 @@ impl Battle {
         let foe = self.party(pos.player.foe()).unwrap();
         let active = &foe[..self.format.game_type.active_slots()];
         let live = active.iter().filter(|mon| !mon.fainted);
-        let actual = mon.volatile_ids().contains(&"trapped")
-            || mon.volatile_ids().contains(&"ingrain")
-            || self.is_bound(pos)
-            || self.octolock_source(pos).is_some()
-            || live.clone().any(|foe| affected(&foe.ability));
+        let foe_can_trap = live.clone().any(|foe| affected(&foe.ability));
+        let actual = !self.ignores_trapping(pos)
+            && (mon.volatile_ids().contains(&"trapped")
+                || mon.volatile_ids().contains(&"ingrain")
+                || self.is_bound(pos)
+                || self.octolock_source(pos).is_some()
+                || foe_can_trap);
         let possible = actual
+            || (foe_can_trap && mon.effective_item() != "shedshell")
             || live
                 .flat_map(|foe| {
                     foe.species

@@ -1617,6 +1617,32 @@ fn normal_gem_is_consumed_on_the_hit_and_boosts_damage_to_substitute() {
 }
 
 #[test]
+fn copied_hunger_switch_does_not_change_the_transformed_form() {
+    replay(include_str!("fixtures/bss-imposter-morpeko.json"));
+}
+
+#[test]
+fn friendly_pollen_puff_still_triggers_life_orb() {
+    replay(include_str!("fixtures/vgc-pollen-puff-life-orb.json"));
+}
+
+#[test]
+fn requests_keep_possible_traps_and_hide_disables_for_fainted_slots() {
+    replay(include_str!("fixtures/bss-ghost-maybe-trapped.json"));
+    replay(include_str!("fixtures/vgc-imprison-fainted-request.json"));
+}
+
+#[test]
+fn forced_repeat_hints_follow_direct_faint_messages() {
+    replay(include_str!("fixtures/bss-gigaton-faint-hint.json"));
+}
+
+#[test]
+fn shed_tail_skips_the_pre_switch_update_even_during_a_speed_tie() {
+    replay(include_str!("fixtures/vgc-shed-tail-speed-tie.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

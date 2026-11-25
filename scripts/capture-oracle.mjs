@@ -1326,6 +1326,31 @@ const normalGemRosters = [
     [{...named('Snorlax', ['Tackle']), item:'Normal Gem'}],
     [named('Vaporeon', ['Protect', 'Substitute', 'Recover'])],
 ];
+const imposterMorpekoRosters = [
+    [{...named('Ditto', ['Transform'], 'N'), ability:'Imposter'}],
+    [{...named('Morpeko', ['Recover']), ability:'Hunger Switch'}],
+];
+const pollenOrbRosters = [
+    [{...named('Arboliva', ['Pollen Puff']), item:'Life Orb'}, named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Recover', 'Tackle']), named('Glaceon', ['Recover'])],
+];
+const faintedImprisonRosters = [
+    [named('Vaporeon', ['Recover']), named('Magikarp', ['Explosion'], 'M')],
+    [named('Musharna', ['Imprison', 'Recover']), named('Umbreon', ['Recover'])],
+];
+const ghostTrapRequestRosters = [
+    [{...named('Gengar-Mega', ['Recover']), ability:'Shadow Tag'}],
+    [named('Haunter', ['Recover']), named('Vaporeon', ['Recover'])],
+];
+const consecutiveFaintRosters = [
+    [named('Tinkaton', ['Gigaton Hammer', 'Play Rough'])],
+    [{...named('Whimsicott', ['Encore', 'Recover']), item:'Focus Sash'}, named('Vaporeon', ['Recover'])],
+];
+const shedTailTieRosters = [
+    [named('Orthworm', ['Shed Tail']), named('Arcanine', ['Recover']),
+        named('Vaporeon', ['Recover'])],
+    [named('Glaceon', ['Ice Beam']), named('Tyranitar', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2473,6 +2498,18 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         corrosiveGasRosters, 'vgc-corrosive-gas'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 3']],
         normalGemRosters, 'bss-normal-gem'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        imposterMorpekoRosters, 'bss-imposter-morpeko'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 -2, move 1','move 1, move 1'],
+        ['move 1 -2, move 1','move 2 2, move 1']], pollenOrbRosters, 'vgc-pollen-puff-life-orb'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1']],
+        faintedImprisonRosters, 'vgc-imprison-fainted-request'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','switch 2']],
+        ghostTrapRequestRosters, 'bss-ghost-maybe-trapped'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 2'], ['move 2','move 1']],
+        consecutiveFaintRosters, 'bss-gigaton-faint-hint'],
+    ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1 1, move 1'], ['switch 3, pass',null]],
+        shedTailTieRosters, 'vgc-shed-tail-speed-tie'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

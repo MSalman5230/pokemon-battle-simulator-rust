@@ -318,7 +318,7 @@ impl Battle {
                         }).collect()
                     };
                     let mut request = json!({"moves":moves});
-                    if self.last_active(pos) && self.foe_imprison(pos).next().is_some() && !mon.revealed_all_disables {
+                    if !mon.fainted && self.last_active(pos) && self.foe_imprison(pos).next().is_some() && !mon.revealed_all_disables {
                         request["maybeDisabled"] = json!(true);
                         if mon.revealed_disables == 0 { request["maybeLocked"] = json!(true); }
                     }
@@ -1943,9 +1943,13 @@ impl Battle {
                         continue;
                     }
                     waiting = true;
-                    if self.mon(Position { player, slot }).pivot_move.is_some() {
+                    if self
+                        .mon(Position { player, slot })
+                        .pivot_move
+                        .is_some_and(|pivot| pivot != Pivot::Move("Shed Tail"))
+                    {
                         // BeforeSwitchOut marks this move-driven switch as having
-                        // already run its update, so it happens only once.
+                        // already run its update. Shed Tail skips that event.
                         self.each_event();
                     }
                 }
@@ -2542,7 +2546,7 @@ impl Battle {
                 timers.push((pos, Effect::Hydration, priority(5, 3)));
             }
             if mon.ability == "hungerswitch" {
-                timers.push((pos, Effect::HungerSwitch, priority(29, 2)));
+                timers.push((pos, Effect::HungerSwitch, priority(29, 7)));
             }
             if mon.ability == "healer" {
                 timers.push((pos, Effect::Healer, priority(5, 3)));
@@ -5306,6 +5310,9 @@ impl Battle {
             }
             self.each_event();
             self.each_event();
+            let original_hp = self.mon(source).hp;
+            self.pay_life_orb_recoil(source);
+            self.emergency_exit(source, original_hp);
             return true;
         }
 
@@ -6089,12 +6096,6 @@ impl Battle {
             damage.clear();
             damage.extend(split_darts.into_iter().flatten());
         }
-        let hint_before_faint = consecutive
-            && (self.mon(source).hp == 0
-                || damage.iter().any(|&(target, _)| self.mon(target).hp == 0));
-        if hint_before_faint {
-            self.note_consecutive_move(true, move_data);
-        }
         if sacrifice || final_gambit && self.mon(source).hp == 0 {
             self.mark_fainted(source);
         }
@@ -6215,16 +6216,8 @@ impl Battle {
             self.mark_fainted(source);
         }
         let original_source_hp = self.mon(source).hp;
-        if !suppress_after_move
-            && !delayed
-            && self.drag_flags & source.mask() == 0
-            && self.mon(source).effective_item() == "lifeorb"
-            && self.active_effects(source)
-        {
-            self.indirect_damage(source, 10, "|[from] item: Life Orb");
-            if self.mon(source).hp == 0 {
-                self.mark_fainted(source);
-            }
+        if !suppress_after_move && !delayed {
+            self.pay_life_orb_recoil(source);
         }
         if !suppress_after_move && !delayed && hits_landed > 0 {
             self.magician_after_hit(source, &spread_targets);
@@ -6237,7 +6230,7 @@ impl Battle {
                 }
             }
         }
-        if consecutive && !hint_before_faint {
+        if consecutive {
             self.note_consecutive_move(true, move_data);
         }
         if spread {

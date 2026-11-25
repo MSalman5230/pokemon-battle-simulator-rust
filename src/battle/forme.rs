@@ -61,7 +61,10 @@ impl Battle {
 
     pub(super) fn hunger_switch(&mut self, pos: Position) {
         let mon = self.mon(pos);
-        if mon.hp == 0 || mon.species.base_species != "Morpeko" {
+        if mon.hp == 0
+            || mon.species.base_species != "Morpeko"
+            || self.event_ability(pos) != "hungerswitch"
+        {
             return;
         }
         let id = if mon.species.name == "Morpeko" {

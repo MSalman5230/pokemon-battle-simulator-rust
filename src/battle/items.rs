@@ -351,6 +351,18 @@ impl Battle {
         }
     }
 
+    pub(super) fn pay_life_orb_recoil(&mut self, source: Position) {
+        if self.drag_flags & source.mask() == 0
+            && self.mon(source).effective_item() == "lifeorb"
+            && self.active_effects(source)
+        {
+            self.indirect_damage(source, 10, "|[from] item: Life Orb");
+            if self.mon(source).hp == 0 {
+                self.mark_fainted(source);
+            }
+        }
+    }
+
     pub(super) fn cure_with_berry(&mut self, pos: Position) {
         let mon = self.mon(pos);
         if mon.hp == 0 || self.foe_unnerve(pos) {
