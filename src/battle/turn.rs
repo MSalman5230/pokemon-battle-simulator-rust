@@ -76,6 +76,7 @@ enum MoveInvocation {
 #[derive(Default)]
 struct MoveResult {
     spends_charge: bool,
+    spends_stockpile: bool,
     failed: bool,
 }
 
@@ -1115,6 +1116,9 @@ impl Battle {
                     | "spiritshackle"
                     | "jawlock"
                     | "fling"
+                    | "stockpile"
+                    | "spitup"
+                    | "swallow"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -1681,6 +1685,7 @@ impl Battle {
         party[outgoing.slot].heal_block = 0;
         party[outgoing.slot].octolock = None;
         party[outgoing.slot].fling_pending = false;
+        party[outgoing.slot].stockpile = Default::default();
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -2865,6 +2870,9 @@ impl Battle {
         if result.spends_charge {
             self.use_electric_charge(source);
         }
+        if result.spends_stockpile {
+            self.end_stockpile(source);
+        }
         if !matches!(invocation, MoveInvocation::Future { .. }) && !self.mon(source).fainted {
             self.mon_mut(source).move_failed_this_turn = result.failed || !attempted;
         }
@@ -2994,6 +3002,7 @@ impl Battle {
             "Rage Fist" => 50 + 50 * self.mon(source).times_attacked.min(6) as u16,
             "Return" => self.mon(source).friendship_power(false),
             "Frustration" => self.mon(source).friendship_power(true),
+            "Spit Up" => u16::from(self.mon(source).stockpile.layers) * 100,
             _ => move_data.base_power,
         };
         let (move_type, converted) = if struggle {
@@ -3174,6 +3183,7 @@ impl Battle {
         if !delayed {
             self.stance_change(source, move_data);
         }
+        result.spends_stockpile = own_action && move_data.name == "Spit Up";
         let shell_side_arm = move_data.name == "Shell Side Arm";
         if shell_side_arm && let Some(target) = target {
             move_data = self.shell_side_arm(source, target, move_data);
@@ -3498,6 +3508,15 @@ impl Battle {
             return true;
         }
         if move_data.name == "Belch" && !self.mon(source).ate_berry {
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
+            return true;
+        }
+        if matches!(
+            (move_data.name.as_str(), self.mon(source).stockpile.layers),
+            ("Stockpile", 3) | ("Spit Up" | "Swallow", 0)
+        ) {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             result.failed = true;
@@ -4982,6 +5001,14 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
+                if move_data.name == "Stockpile" {
+                    self.build_stockpile(target);
+                    succeeded = true;
+                }
+                if move_data.name == "Swallow" {
+                    self.swallow_stockpile(target);
+                    succeeded = true;
+                }
                 if move_data.name == "Charge" {
                     self.charge_electric(target, None);
                     succeeded = true;
@@ -6103,6 +6130,7 @@ impl Battle {
         mon.heal_block = 0;
         mon.octolock = None;
         mon.fling_pending = false;
+        mon.stockpile = Default::default();
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();

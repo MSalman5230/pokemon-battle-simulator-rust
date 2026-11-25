@@ -1,6 +1,14 @@
 //! Slot- and side-owned support effects.
 
 use super::{turn::Position, *};
+use crate::mechanics::BoostStat;
+
+#[derive(Clone, Copy, Default)]
+pub(super) struct Stockpile {
+    pub(super) layers: u8,
+    defense: i8,
+    special_defense: i8,
+}
 
 #[derive(Clone, Copy)]
 pub(super) struct Wish {
@@ -41,6 +49,71 @@ impl ReplacementHeal {
 }
 
 impl Battle {
+    pub(super) fn build_stockpile(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        let mut effect = mon.stockpile;
+        effect.layers += 1;
+        let before = mon.boosts;
+        self.add(format!(
+            "|-start|{}|stockpile{}",
+            self.ident(pos),
+            effect.layers
+        ));
+        self.boost(pos, &[(BoostStat::Def, 1), (BoostStat::Spd, 1)], false);
+        let mon = self.mon_mut(pos);
+        effect.defense += i8::from(before.get(BoostStat::Def) != mon.boosts.get(BoostStat::Def));
+        effect.special_defense +=
+            i8::from(before.get(BoostStat::Spd) != mon.boosts.get(BoostStat::Spd));
+        mon.stockpile = effect;
+        mon.track_volatile("stockpile");
+    }
+
+    pub(super) fn end_stockpile(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        if mon.hp == 0 || mon.stockpile.layers == 0 {
+            return;
+        }
+        let effect = std::mem::take(&mut mon.stockpile);
+        mon.untrack_volatile("stockpile");
+        let mut undo = [(BoostStat::Def, 0); 2];
+        let mut count = 0;
+        for (stat, amount) in [
+            (BoostStat::Def, effect.defense),
+            (BoostStat::Spd, effect.special_defense),
+        ] {
+            if amount != 0 {
+                undo[count] = (stat, -amount);
+                count += 1;
+            }
+        }
+        if count != 0 {
+            self.boost(pos, &undo[..count], false);
+        }
+        self.add(format!("|-end|{}|Stockpile", self.ident(pos)));
+        let count = effect.layers as i8;
+        if effect.defense != count || effect.special_defense != count {
+            self.add("|-hint|In Gen 7, Stockpile keeps track of how many times it successfully altered each stat individually.");
+        }
+    }
+
+    pub(super) fn swallow_stockpile(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        let max_hp = mon.max_hp.get();
+        let layers = usize::from(mon.stockpile.layers);
+        if mon.hp == max_hp || mon.heal_block > 0 {
+            self.add(format!("|-fail|{}|heal", self.ident(pos)));
+        } else {
+            let amount = self
+                .stat_rules
+                .truncation
+                .modify(max_hp, [1024, 2048, 4096][layers - 1])
+                .max(1);
+            self.mon_mut(pos).hp = (mon.hp + amount).min(max_hp);
+            self.add_health_line_with("-heal", pos, false, "");
+        }
+        self.end_stockpile(pos);
+    }
+
     pub(super) fn big_root_heal(&self, pos: Position, amount: u32) -> u32 {
         if self.mon(pos).effective_item() == "bigroot" {
             self.stat_rules.truncation.modify(amount, 5324)

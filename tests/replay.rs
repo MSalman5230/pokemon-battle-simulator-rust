@@ -1477,6 +1477,11 @@ fn long_reach_removes_contact_for_damage_protection_and_items() {
 }
 
 #[test]
+fn stockpile_counts_successful_boosts_and_spit_up_and_swallow_consume_it() {
+    replay(include_str!("fixtures/bss-stockpile.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
