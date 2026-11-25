@@ -576,6 +576,7 @@ impl Battle {
             ));
         }
         self.add("|start");
+        self.apply_crowned_forms();
         let mut queue = Vec::new();
         for player in Player::ALL {
             for slot in 0..self.slots() {
@@ -1943,7 +1944,10 @@ impl Battle {
         for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos))
                 && self.mon(pos).hp > 0
-                && self.mon(pos).active_ability() == "unnerve"
+                && matches!(
+                    self.mon(pos).active_ability(),
+                    "unnerve" | "asoneglastrier" | "asonespectrier"
+                )
             {
                 self.start_ability(pos);
             }
@@ -1965,7 +1969,7 @@ impl Battle {
                 match self.mon(pos).active_ability() {
                     "hospitality" => deferred_hospitality |= pos.mask(),
                     "imposter" => self.imposter_on_entry(pos),
-                    "unnerve" | "mimicry" => {}
+                    "unnerve" | "asoneglastrier" | "asonespectrier" | "mimicry" => {}
                     _ => self.start_ability(pos),
                 }
                 self.on_switch_in_item(pos);
@@ -2037,6 +2041,7 @@ impl Battle {
             incoming[0].receive_pass(&active[outgoing.slot], pass == "Shed Tail");
         }
         party[outgoing.slot].reset_forme(rules);
+        party[outgoing.slot].apparent_item_type = None;
         party[outgoing.slot].reset_move_history();
         party[outgoing.slot].protection = None;
         party[outgoing.slot].stall = None;
@@ -2425,6 +2430,22 @@ impl Battle {
                 mon.active_turns += 1;
             }
             self.refresh_observed_disables(pos);
+            if let Some(typing) = self.mon(pos).item_species_type()
+                && !self.mon(pos).fainted
+                && typing != self.mon(pos).apparent_item_type.unwrap_or("Normal")
+            {
+                self.mon_mut(pos).apparent_item_type = Some(typing);
+                self.add(format!(
+                    "|-start|{}|typechange|{typing}|[silent]",
+                    self.ident(pos)
+                ));
+                if let Some(added) = self.mon(pos).added_type {
+                    self.add(format!(
+                        "|-start|{}|typeadd|{added}|[silent]",
+                        self.ident(pos)
+                    ));
+                }
+            }
         }
         self.add(format!("|turn|{}", self.turn));
         self.phase = Phase::Move;
@@ -2500,6 +2521,13 @@ impl Battle {
             return;
         }
         self.possible_boost_copy |= self.mon(pos).ability == "opportunist";
+        self.possible_soul_heart |= self.mon(pos).ability == "soulheart";
+        if matches!(
+            self.mon(pos).ability.as_str(),
+            "asoneglastrier" | "asonespectrier"
+        ) {
+            self.add(format!("|-ability|{}|As One", self.ident(pos)));
+        }
         if let Some(label) = super::ruin::ruin_label(&self.mon(pos).ability) {
             self.possible_ruin = true;
             if !self.ignores_ability_of(pos) {
@@ -2524,7 +2552,7 @@ impl Battle {
             "fairyaura" => Some("Fairy Aura"),
             "darkaura" => Some("Dark Aura"),
             "aurabreak" => Some("Aura Break"),
-            "unnerve" => Some("Unnerve"),
+            "unnerve" | "asoneglastrier" | "asonespectrier" => Some("Unnerve"),
             _ => None,
         } {
             self.add(format!("|-ability|{}|{label}", self.ident(pos)));
@@ -2568,6 +2596,7 @@ impl Battle {
         }
         match self.event_ability(pos) {
             "download" => self.download_boost(pos),
+            "intrepidsword" | "dauntlessshield" => self.legendary_boost_on_entry(pos),
             "anticipation" => self.anticipation(pos),
             "forewarn" => self.forewarn(pos),
             _ => {}
@@ -9202,6 +9231,7 @@ impl Battle {
         side.total_fainted = (side.total_fainted + 1).min(100);
         side.fainted_this_turn = true;
         self.add(format!("|faint|{}", self.ident(target)));
+        self.soul_heart_on_faint(target);
         if self.mon(target).sky_drop_target.is_some() {
             self.finish_sky_drop(target, DropEnd::Interrupt);
         }
@@ -9229,6 +9259,7 @@ impl Battle {
         let rules = self.stat_rules;
         let mon = self.mon_mut(target);
         mon.reset_forme(rules);
+        mon.apparent_item_type = None;
         mon.reset_move_history();
         mon.fainted = true;
         mon.illusion = None;
@@ -9722,6 +9753,14 @@ impl Pokemon {
                 | "swordofruin"
                 | "tabletsofruin"
                 | "vesselofruin"
+                | "intrepidsword"
+                | "dauntlessshield"
+                | "asoneglastrier"
+                | "asonespectrier"
+                | "beastboost"
+                | "chillingneigh"
+                | "grimneigh"
+                | "soulheart"
                 | "runaway"
                 | "drizzle"
                 | "drought"
@@ -10136,7 +10175,12 @@ impl Pokemon {
         {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));
         }
-        if self.species.has_condition {
+        if self.species.has_condition
+            && !matches!(
+                self.species.name.as_str(),
+                "Arceus" | "Silvally" | "Zacian" | "Zamazenta"
+            )
+        {
             return Some(BattleError::Unsupported(format!(
                 "entry effects for {}",
                 self.species.name

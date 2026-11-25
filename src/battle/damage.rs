@@ -516,6 +516,20 @@ impl Battle {
         if electric_charge && self.format.report_exact_hp {
             self.add("|debug|charge boost");
         }
+        if source_active
+            && self.format.report_exact_hp
+            && self.mon(source).ignores_held_item()
+            && DEX
+                .item(self.format.dex_mod, &self.mon(source).item)
+                .is_some_and(|item| {
+                    item.effect
+                        .handlers
+                        .iter()
+                        .any(|hook| hook == "onBasePower")
+                })
+        {
+            self.debug_ignored_item(source, "BasePower");
+        }
         let terrain_power = self.terrain_power_modifier(source, target, move_data, move_type);
         // Showdown's Sky Drop BasePower callback receives the attacker first.
         // Its "midair target" message does not mean Gust doubles against a rider.

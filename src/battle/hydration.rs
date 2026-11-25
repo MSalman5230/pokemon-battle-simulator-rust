@@ -329,6 +329,13 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
                 || super::ruin::ruin_label(&p.base_ability).is_some()
         })
     });
+    battle.possible_soul_heart = Player::ALL.into_iter().any(|player| {
+        battle
+            .party(player)
+            .unwrap()
+            .iter()
+            .any(|p| p.ability == "soulheart" || p.base_ability == "soulheart")
+    });
     battle.update_speed();
     for player in Player::ALL {
         battle.refresh_observed_disables(Position { player, slot: 0 });

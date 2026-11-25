@@ -1,0 +1,1165 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Arceus\",\"moves\":[\"Judgment\",\"Magic Room\"],\"gender\":\"N\",\"name\":\"Arceus\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Multitype\",\"item\":\"Spooky Plate\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Silvally\",\"moves\":[\"Tackle\",\"Multi-Attack\"],\"gender\":\"N\",\"name\":\"Silvally\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"RKS System\",\"item\":\"Fire Memory\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Arceus, L50|",
+          "|poke|p2|Silvally, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Arceus, L50|",
+          "|poke|p2|Silvally, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Arceus, L50|",
+          "|poke|p2|Silvally, L50|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arceus",
+                "details": "Arceus, L50",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 140,
+                  "spa": 140,
+                  "spd": 140,
+                  "spe": 140
+                },
+                "moves": [
+                  "judgment",
+                  "magicroom"
+                ],
+                "baseAbility": "multitype",
+                "item": "spookyplate",
+                "pokeball": "pokeball",
+                "ability": "multitype",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Silvally",
+                "details": "Silvally, L50",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle",
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "firememory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arceus",
+            "species": "Arceus",
+            "details": "Arceus, L50",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 140,
+              "spa": 140,
+              "spd": 140,
+              "spe": 140
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "multitype",
+            "item": "spookyplate",
+            "active": false,
+            "moves": [
+              {
+                "id": "judgment",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "magicroom",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally",
+            "details": "Silvally, L50",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "firememory",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "multiattack",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Arceus|Arceus, L50|195/195",
+          "|switch|p2a: Silvally|Silvally, L50|170/170",
+          "|-start|p1a: Arceus|typechange|Ghost|[silent]",
+          "|-start|p2a: Silvally|typechange|Fire|[silent]",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Arceus|Arceus, L50|195/195",
+          "|switch|p2a: Silvally|Silvally, L50|170/170",
+          "|-start|p1a: Arceus|typechange|Ghost|[silent]",
+          "|-start|p2a: Silvally|typechange|Fire|[silent]",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Arceus|Arceus, L50|195/195",
+          "|switch|p2a: Silvally|Silvally, L50|170/170",
+          "|-start|p1a: Arceus|typechange|Ghost|[silent]",
+          "|-start|p2a: Silvally|typechange|Fire|[silent]",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Judgment",
+                  "id": "judgment",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Magic Room",
+                  "id": "magicroom",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arceus",
+                "details": "Arceus, L50",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 140,
+                  "spa": 140,
+                  "spd": 140,
+                  "spe": 140
+                },
+                "moves": [
+                  "judgment",
+                  "magicroom"
+                ],
+                "baseAbility": "multitype",
+                "item": "spookyplate",
+                "pokeball": "pokeball",
+                "ability": "multitype",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Multi-Attack",
+                  "id": "multiattack",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Silvally",
+                "details": "Silvally, L50",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle",
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "firememory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arceus",
+            "species": "Arceus",
+            "details": "Arceus, L50",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 140,
+              "spa": 140,
+              "spd": 140,
+              "spe": 140
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "multitype",
+            "item": "spookyplate",
+            "active": true,
+            "moves": [
+              {
+                "id": "judgment",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "magicroom",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally",
+            "details": "Silvally, L50",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "firememory",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "multiattack",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Arceus|Judgment|p2a: Silvally",
+          "|-damage|p2a: Silvally|82/170",
+          "|move|p2a: Silvally|Tackle|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Arceus|Judgment|p2a: Silvally",
+          "|-damage|p2a: Silvally|82/170",
+          "|move|p2a: Silvally|Tackle|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Arceus|Judgment|p2a: Silvally",
+          "|-damage|p2a: Silvally|82/170",
+          "|move|p2a: Silvally|Tackle|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Judgment",
+                  "id": "judgment",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Magic Room",
+                  "id": "magicroom",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arceus",
+                "details": "Arceus, L50",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 140,
+                  "spa": 140,
+                  "spd": 140,
+                  "spe": 140
+                },
+                "moves": [
+                  "judgment",
+                  "magicroom"
+                ],
+                "baseAbility": "multitype",
+                "item": "spookyplate",
+                "pokeball": "pokeball",
+                "ability": "multitype",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Multi-Attack",
+                  "id": "multiattack",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Silvally",
+                "details": "Silvally, L50",
+                "condition": "82/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle",
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "firememory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arceus",
+            "species": "Arceus",
+            "details": "Arceus, L50",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 140,
+              "spa": 140,
+              "spd": 140,
+              "spe": 140
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "multitype",
+            "item": "spookyplate",
+            "active": true,
+            "moves": [
+              {
+                "id": "judgment",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "magicroom",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally",
+            "details": "Silvally, L50",
+            "hp": 82,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "firememory",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "multiattack",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Arceus|Magic Room|p1a: Arceus",
+          "|-fieldstart|move: Magic Room|[of] p1a: Arceus",
+          "|debug|End handler suppressed by Embargo, Klutz or Magic Room",
+          "|debug|End handler suppressed by Embargo, Klutz or Magic Room",
+          "|move|p2a: Silvally|Multi-Attack|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Arceus|Magic Room|p1a: Arceus",
+          "|-fieldstart|move: Magic Room|[of] p1a: Arceus",
+          "|debug|End handler suppressed by Embargo, Klutz or Magic Room",
+          "|debug|End handler suppressed by Embargo, Klutz or Magic Room",
+          "|move|p2a: Silvally|Multi-Attack|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Arceus|Magic Room|p1a: Arceus",
+          "|-fieldstart|move: Magic Room|[of] p1a: Arceus",
+          "|debug|End handler suppressed by Embargo, Klutz or Magic Room",
+          "|debug|End handler suppressed by Embargo, Klutz or Magic Room",
+          "|move|p2a: Silvally|Multi-Attack|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Judgment",
+                  "id": "judgment",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Magic Room",
+                  "id": "magicroom",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arceus",
+                "details": "Arceus, L50",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 140,
+                  "spa": 140,
+                  "spd": 140,
+                  "spe": 140
+                },
+                "moves": [
+                  "judgment",
+                  "magicroom"
+                ],
+                "baseAbility": "multitype",
+                "item": "spookyplate",
+                "pokeball": "pokeball",
+                "ability": "multitype",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Multi-Attack",
+                  "id": "multiattack",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Silvally",
+                "details": "Silvally, L50",
+                "condition": "82/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle",
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "firememory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arceus",
+            "species": "Arceus",
+            "details": "Arceus, L50",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 140,
+              "spa": 140,
+              "spd": 140,
+              "spe": 140
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "multitype",
+            "item": "spookyplate",
+            "active": true,
+            "moves": [
+              {
+                "id": "judgment",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "magicroom",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally",
+            "details": "Silvally, L50",
+            "hp": 82,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "firememory",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "multiattack",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Arceus|Judgment|p2a: Silvally",
+          "|debug|BasePower handler suppressed by Embargo, Klutz or Magic Room",
+          "|-damage|p2a: Silvally|32/170",
+          "|move|p2a: Silvally|Tackle|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Arceus|Judgment|p2a: Silvally",
+          "|debug|BasePower handler suppressed by Embargo, Klutz or Magic Room",
+          "|-damage|p2a: Silvally|32/170",
+          "|move|p2a: Silvally|Tackle|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Arceus|Judgment|p2a: Silvally",
+          "|debug|BasePower handler suppressed by Embargo, Klutz or Magic Room",
+          "|-damage|p2a: Silvally|32/170",
+          "|move|p2a: Silvally|Tackle|p1a: Arceus",
+          "|-immune|p1a: Arceus",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Judgment",
+                  "id": "judgment",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Magic Room",
+                  "id": "magicroom",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arceus",
+                "details": "Arceus, L50",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 140,
+                  "spa": 140,
+                  "spd": 140,
+                  "spe": 140
+                },
+                "moves": [
+                  "judgment",
+                  "magicroom"
+                ],
+                "baseAbility": "multitype",
+                "item": "spookyplate",
+                "pokeball": "pokeball",
+                "ability": "multitype",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Multi-Attack",
+                  "id": "multiattack",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Silvally",
+                "details": "Silvally, L50",
+                "condition": "32/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle",
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "firememory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arceus",
+            "species": "Arceus",
+            "details": "Arceus, L50",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 140,
+              "spa": 140,
+              "spd": 140,
+              "spe": 140
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "multitype",
+            "item": "spookyplate",
+            "active": true,
+            "moves": [
+              {
+                "id": "judgment",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "magicroom",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally",
+            "details": "Silvally, L50",
+            "hp": 32,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "firememory",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "multiattack",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

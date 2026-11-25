@@ -103,7 +103,28 @@ impl Pokemon {
         self.base_types().chain(self.added_type)
     }
 
+    pub(super) fn item_species_type(&self) -> Option<&'static str> {
+        if self.base_species.has_condition && self.transformed.is_none() {
+            match (self.base_species.name.as_str(), self.ability.as_str()) {
+                ("Arceus", "multitype") => Some(
+                    DEX.item(crate::dex::Mod::Champions, &self.item)
+                        .and_then(|item| item.plate_type.as_deref())
+                        .unwrap_or("Normal"),
+                ),
+                ("Silvally", "rkssystem") => Some(
+                    DEX.item(crate::dex::Mod::Champions, &self.item)
+                        .and_then(|item| item.memory_type.as_deref())
+                        .unwrap_or("Normal"),
+                ),
+                _ => None,
+            }
+        } else {
+            None
+        }
+    }
+
     fn base_types(&self) -> impl Iterator<Item = &'static str> {
+        let item_type = self.item_species_type();
         let original_types: &'static Vec<String> = if self
             .transformed
             .as_ref()
@@ -113,7 +134,7 @@ impl Pokemon {
         } else {
             &self.species.types
         };
-        let base = if self.temporary_types.is_empty() {
+        let base = if self.temporary_types.is_empty() && item_type.is_none() {
             original_types.as_slice()
         } else {
             &[]
@@ -121,7 +142,12 @@ impl Pokemon {
         let raw = base
             .iter()
             .map(String::as_str)
-            .chain(self.temporary_types.iter());
+            .chain(
+                self.temporary_types
+                    .iter()
+                    .filter(move |_| item_type.is_none()),
+            )
+            .chain(item_type);
         let normal = self.roosted && raw.clone().all(|t| t == "Flying");
         raw.filter(move |&ty| !self.roosted || ty != "Flying")
             .chain(normal.then_some("Normal"))

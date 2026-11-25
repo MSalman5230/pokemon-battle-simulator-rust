@@ -36,6 +36,44 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn apply_crowned_forms(&mut self) {
+        let rules = self.stat_rules;
+        let dex = self.format.dex_mod;
+        let mut changed = 0;
+        for side in self.sides.iter_mut().flatten() {
+            for mon in &mut side.party {
+                let (species, special_move) = match (mon.species.name.as_str(), mon.item.as_str()) {
+                    ("Zacian", "rustedsword") => ("zaciancrowned", "behemothblade"),
+                    ("Zamazenta", "rustedshield") => ("zamazentacrowned", "behemothbash"),
+                    _ => continue,
+                };
+                let species = DEX.species(dex, species).unwrap();
+                mon.set_current_species(species, rules);
+                mon.base_species = species;
+                let end = mon.details.find(',').unwrap_or(mon.details.len());
+                mon.details.replace_range(..end, &species.name);
+                mon.ability = to_id(&species.abilities["0"]);
+                mon.base_ability.clone_from(&mon.ability);
+                changed += 1;
+                if let Some(slot) = mon.moves.iter_mut().find(|slot| slot.id == "ironhead") {
+                    let data = DEX.moves(dex, special_move).unwrap();
+                    let pp = crate::mechanics::max_pp(data.pp, data.no_pp_boosts);
+                    *slot = MoveSlot {
+                        id: special_move.into(),
+                        move_data: data,
+                        pp,
+                        max_pp: pp,
+                    };
+                }
+            }
+        }
+        if self.format.report_exact_hp {
+            for _ in 0..changed {
+                self.add("|debug|Start handler suppressed by Gastro Acid or Neutralizing Gas");
+            }
+        }
+    }
+
     pub(super) fn forecast(&mut self, pos: Position, weather: Option<Weather>) {
         let mon = self.mon(pos);
         if mon.hp == 0

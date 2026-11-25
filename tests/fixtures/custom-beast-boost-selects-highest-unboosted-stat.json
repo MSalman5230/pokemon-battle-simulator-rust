@@ -1,0 +1,1064 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Kartana\",\"moves\":[\"Iron Defense\",\"Leaf Blade\"],\"gender\":\"N\",\"name\":\"Kartana\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Beast Boost\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Magikarp\",\"moves\":[\"Splash\"],\"gender\":\"F\",\"name\":\"Magikarp\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Chansey\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kartana, L50|",
+          "|poke|p2|Magikarp, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kartana, L50|",
+          "|poke|p2|Magikarp, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kartana, L50|",
+          "|poke|p2|Magikarp, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kartana",
+                "details": "Kartana, L50",
+                "condition": "134/134",
+                "active": true,
+                "stats": {
+                  "atk": 201,
+                  "def": 151,
+                  "spa": 79,
+                  "spd": 51,
+                  "spe": 129
+                },
+                "moves": [
+                  "irondefense",
+                  "leafblade"
+                ],
+                "baseAbility": "beastboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "beastboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": false,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kartana",
+            "species": "Kartana",
+            "details": "Kartana, L50",
+            "hp": 134,
+            "maxhp": 134,
+            "status": "",
+            "stats": {
+              "atk": 201,
+              "def": 151,
+              "spa": 79,
+              "spd": 51,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "beastboost",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "leafblade",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Kartana|Kartana, L50|134/134",
+          "|switch|p2a: Magikarp|Magikarp, L50, F|95/95",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Kartana|Kartana, L50|134/134",
+          "|switch|p2a: Magikarp|Magikarp, L50, F|95/95",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Kartana|Kartana, L50|134/134",
+          "|switch|p2a: Magikarp|Magikarp, L50, F|95/95",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Leaf Blade",
+                  "id": "leafblade",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kartana",
+                "details": "Kartana, L50",
+                "condition": "134/134",
+                "active": true,
+                "stats": {
+                  "atk": 201,
+                  "def": 151,
+                  "spa": 79,
+                  "spd": 51,
+                  "spe": 129
+                },
+                "moves": [
+                  "irondefense",
+                  "leafblade"
+                ],
+                "baseAbility": "beastboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "beastboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": false,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kartana",
+            "species": "Kartana",
+            "details": "Kartana, L50",
+            "hp": 134,
+            "maxhp": 134,
+            "status": "",
+            "stats": {
+              "atk": 201,
+              "def": 151,
+              "spa": 79,
+              "spd": 51,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "beastboost",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "leafblade",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Kartana|Iron Defense|p1a: Kartana",
+          "|-boost|p1a: Kartana|def|2",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Kartana|Iron Defense|p1a: Kartana",
+          "|-boost|p1a: Kartana|def|2",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Kartana|Iron Defense|p1a: Kartana",
+          "|-boost|p1a: Kartana|def|2",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Leaf Blade",
+                  "id": "leafblade",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kartana",
+                "details": "Kartana, L50",
+                "condition": "134/134",
+                "active": true,
+                "stats": {
+                  "atk": 201,
+                  "def": 151,
+                  "spa": 79,
+                  "spd": 51,
+                  "spe": 129
+                },
+                "moves": [
+                  "irondefense",
+                  "leafblade"
+                ],
+                "baseAbility": "beastboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "beastboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": false,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kartana",
+            "species": "Kartana",
+            "details": "Kartana, L50",
+            "hp": 134,
+            "maxhp": 134,
+            "status": "",
+            "stats": {
+              "atk": 201,
+              "def": 151,
+              "spa": 79,
+              "spd": 51,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "beastboost",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "leafblade",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "switch",
+      "waiting": [
+        true,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Kartana|Leaf Blade|p2a: Magikarp",
+          "|-supereffective|p2a: Magikarp|1",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|-ability|p1a: Kartana|Beast Boost|boost",
+          "|-boost|p1a: Kartana|atk|1",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Kartana|Leaf Blade|p2a: Magikarp",
+          "|-supereffective|p2a: Magikarp|1",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|-ability|p1a: Kartana|Beast Boost|boost",
+          "|-boost|p1a: Kartana|atk|1",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Kartana|Leaf Blade|p2a: Magikarp",
+          "|-supereffective|p2a: Magikarp|1",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|-ability|p1a: Kartana|Beast Boost|boost",
+          "|-boost|p1a: Kartana|atk|1",
+          "|",
+          "|upkeep"
+        ]
+      ],
+      "requests": [
+        {
+          "wait": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kartana",
+                "details": "Kartana, L50",
+                "condition": "134/134",
+                "active": true,
+                "stats": {
+                  "atk": 201,
+                  "def": 151,
+                  "spa": 79,
+                  "spd": 51,
+                  "spe": 129
+                },
+                "moves": [
+                  "irondefense",
+                  "leafblade"
+                ],
+                "baseAbility": "beastboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "beastboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": false,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kartana",
+            "species": "Kartana",
+            "details": "Kartana, L50",
+            "hp": 134,
+            "maxhp": 134,
+            "status": "",
+            "stats": {
+              "atk": 201,
+              "def": 151,
+              "spa": 79,
+              "spd": 51,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "beastboost",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "leafblade",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 0,
+            "maxhp": 95,
+            "status": "fnt",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

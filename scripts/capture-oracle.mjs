@@ -2128,6 +2128,30 @@ const fieldEngineRosters = [
     [{...named('Miraidon', ['Thunder Shock'], 'N'), ability:'Hadron Engine', nature:'Timid'}],
     [{...named('Koraidon', ['Tackle'], 'N'), ability:'Orichalcum Pulse'}],
 ];
+const crownedRosters = [
+    [{...named('Zacian', ['Iron Head', 'Recover'], 'N'), item:'Rusted Sword', ability:'Intrepid Sword'},
+        named('Snorlax', ['Recover'])],
+    [{...named('Zamazenta', ['Iron Head', 'Recover'], 'N'), item:'Rusted Shield', ability:'Dauntless Shield'},
+        named('Umbreon', ['Recover'])],
+];
+const heldTypeRosters = [
+    [{...named('Arceus', ['Judgment', 'Magic Room'], 'N'), item:'Spooky Plate', ability:'Multitype'}],
+    [{...named('Silvally', ['Tackle', 'Multi-Attack'], 'N'), item:'Fire Memory', ability:'RKS System'}],
+];
+const asOneRosters = [
+    [{...named('Calyrex-Shadow', ['Super Fang', 'Psyshock'], 'N'), ability:'As One (Spectrier)'}],
+    [{...named('Blissey', ['Tackle']), item:'Sitrus Berry', ivs:{hp:29}},
+        named('Umbreon', ['Recover'])],
+];
+const beastBoostRosters = [
+    [{...named('Kartana', ['Iron Defense', 'Leaf Blade'], 'N'), ability:'Beast Boost'}],
+    [named('Magikarp', ['Splash']), named('Chansey', ['Recover'])],
+];
+const soulHeartRosters = [
+    [{...named('Magearna', ['Recover'], 'N'), ability:'Soul-Heart'},
+        named('Magikarp', ['Splash']), named('Chansey', ['Recover'])],
+    [named('Nidoking', ['Thunder Punch'], 'M'), named('Shuckle', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3705,6 +3729,17 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         doubleSwordRuinRosters, 'custom-two-swords-of-ruin-do-not-stack'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1']],
         fieldEngineRosters, 'custom-hadron-engine-and-orichalcum-pulse-boost-with-field'],
+    ['customgame', [['team 12','team 12'], ['move 1','move 1'], ['switch 2','switch 2'],
+        ['switch 2','switch 2'], ['move 1','move 1']],
+        crownedRosters, 'custom-crowned-forms-and-once-per-battle-entry-boosts'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 1']],
+        heldTypeRosters, 'custom-plate-and-memory-species-type-conditions'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1']],
+        asOneRosters, 'custom-as-one-blocks-berries-and-uses-grim-neigh-after-knockout'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1']],
+        beastBoostRosters, 'custom-beast-boost-selects-highest-unboosted-stat'],
+    ['doublescustomgame', [['team 123','team 12'], ['move 1, move 1','move 1 2, move 1']],
+        soulHeartRosters, 'custom-soul-heart-triggers-on-ally-faint'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

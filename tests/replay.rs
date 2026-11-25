@@ -2290,6 +2290,25 @@ fn field_stat_abilities_use_the_correct_stat_and_ruin_does_not_stack() {
 }
 
 #[test]
+fn legendary_entry_and_faint_events_keep_native_forms_and_boost_history() {
+    replay(include_str!(
+        "fixtures/custom-crowned-forms-and-once-per-battle-entry-boosts.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-plate-and-memory-species-type-conditions.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-as-one-blocks-berries-and-uses-grim-neigh-after-knockout.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-beast-boost-selects-highest-unboosted-stat.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-soul-heart-triggers-on-ally-faint.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

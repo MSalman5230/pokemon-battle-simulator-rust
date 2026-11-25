@@ -1,0 +1,1067 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Calyrex-Shadow\",\"moves\":[\"Super Fang\",\"Psyshock\"],\"gender\":\"N\",\"name\":\"Calyrex-Shadow\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"As One (Spectrier)\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Blissey\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Blissey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Sitrus Berry\",\"ivs\":{\"hp\":29}},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Calyrex-Shadow, L50|",
+          "|poke|p2|Blissey, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Calyrex-Shadow, L50|",
+          "|poke|p2|Blissey, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Calyrex-Shadow, L50|",
+          "|poke|p2|Blissey, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Calyrex",
+                "details": "Calyrex-Shadow, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 100,
+                  "spa": 185,
+                  "spd": 120,
+                  "spe": 170
+                },
+                "moves": [
+                  "superfang",
+                  "psyshock"
+                ],
+                "baseAbility": "asonespectrier",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "asonespectrier",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "330/330",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Calyrex",
+            "species": "Calyrex-Shadow",
+            "details": "Calyrex-Shadow, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 100,
+              "spa": 185,
+              "spd": 120,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "asonespectrier",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "psyshock",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 330,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Calyrex|Calyrex-Shadow, L50|175/175",
+          "|switch|p2a: Blissey|Blissey, L50, F|330/330",
+          "|-ability|p1a: Calyrex|As One",
+          "|-ability|p1a: Calyrex|Unnerve",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Calyrex|Calyrex-Shadow, L50|175/175",
+          "|switch|p2a: Blissey|Blissey, L50, F|330/330",
+          "|-ability|p1a: Calyrex|As One",
+          "|-ability|p1a: Calyrex|Unnerve",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Calyrex|Calyrex-Shadow, L50|175/175",
+          "|switch|p2a: Blissey|Blissey, L50, F|330/330",
+          "|-ability|p1a: Calyrex|As One",
+          "|-ability|p1a: Calyrex|Unnerve",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Psyshock",
+                  "id": "psyshock",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Calyrex",
+                "details": "Calyrex-Shadow, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 100,
+                  "spa": 185,
+                  "spd": 120,
+                  "spe": 170
+                },
+                "moves": [
+                  "superfang",
+                  "psyshock"
+                ],
+                "baseAbility": "asonespectrier",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "asonespectrier",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "330/330",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Calyrex",
+            "species": "Calyrex-Shadow",
+            "details": "Calyrex-Shadow, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 100,
+              "spa": 185,
+              "spd": 120,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "asonespectrier",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "psyshock",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 330,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Calyrex|Super Fang|p2a: Blissey",
+          "|-damage|p2a: Blissey|165/330",
+          "|move|p2a: Blissey|Tackle|p1a: Calyrex",
+          "|-immune|p1a: Calyrex",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Calyrex|Super Fang|p2a: Blissey",
+          "|-damage|p2a: Blissey|165/330",
+          "|move|p2a: Blissey|Tackle|p1a: Calyrex",
+          "|-immune|p1a: Calyrex",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Calyrex|Super Fang|p2a: Blissey",
+          "|-damage|p2a: Blissey|165/330",
+          "|move|p2a: Blissey|Tackle|p1a: Calyrex",
+          "|-immune|p1a: Calyrex",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Psyshock",
+                  "id": "psyshock",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Calyrex",
+                "details": "Calyrex-Shadow, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 100,
+                  "spa": 185,
+                  "spd": 120,
+                  "spe": 170
+                },
+                "moves": [
+                  "superfang",
+                  "psyshock"
+                ],
+                "baseAbility": "asonespectrier",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "asonespectrier",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "165/330",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Calyrex",
+            "species": "Calyrex-Shadow",
+            "details": "Calyrex-Shadow, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 100,
+              "spa": 185,
+              "spd": 120,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "asonespectrier",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "psyshock",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 165,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "switch",
+      "waiting": [
+        true,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Calyrex|Psyshock|p2a: Blissey",
+          "|-damage|p2a: Blissey|0 fnt",
+          "|faint|p2a: Blissey",
+          "|-ability|p1a: Calyrex|Grim Neigh|boost",
+          "|-boost|p1a: Calyrex|spa|1",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Calyrex|Psyshock|p2a: Blissey",
+          "|-damage|p2a: Blissey|0 fnt",
+          "|faint|p2a: Blissey",
+          "|-ability|p1a: Calyrex|Grim Neigh|boost",
+          "|-boost|p1a: Calyrex|spa|1",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Calyrex|Psyshock|p2a: Blissey",
+          "|-damage|p2a: Blissey|0 fnt",
+          "|faint|p2a: Blissey",
+          "|-ability|p1a: Calyrex|Grim Neigh|boost",
+          "|-boost|p1a: Calyrex|spa|1",
+          "|",
+          "|upkeep"
+        ]
+      ],
+      "requests": [
+        {
+          "wait": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Calyrex",
+                "details": "Calyrex-Shadow, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 100,
+                  "spa": 185,
+                  "spd": 120,
+                  "spe": 170
+                },
+                "moves": [
+                  "superfang",
+                  "psyshock"
+                ],
+                "baseAbility": "asonespectrier",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "asonespectrier",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Calyrex",
+            "species": "Calyrex-Shadow",
+            "details": "Calyrex-Shadow, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 100,
+              "spa": 185,
+              "spd": 120,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "asonespectrier",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "psyshock",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 0,
+            "maxhp": 330,
+            "status": "fnt",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

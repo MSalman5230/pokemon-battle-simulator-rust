@@ -787,6 +787,16 @@ impl Battle {
 
     pub(super) fn boost_after_knockouts(&mut self, source: Position, count: i8) {
         match self.event_ability(source) {
+            "beastboost" => {
+                let stat = self.mon(source).best_battle_stat(true, false);
+                self.ability_boost(source, "Beast Boost", stat, count, false);
+            }
+            "asonespectrier" | "grimneigh" => {
+                self.ability_boost(source, "Grim Neigh", BoostStat::Spa, count, false);
+            }
+            "asoneglastrier" | "chillingneigh" => {
+                self.ability_boost(source, "Chilling Neigh", BoostStat::Atk, count, false);
+            }
             "battlebond"
                 if self.mon(source).species.name == "Greninja-Bond"
                     && self.mon(source).hp != 0
@@ -1250,7 +1260,56 @@ impl Battle {
         let slots = self.format.game_type.active_slots();
         self.party(pos.player.foe()).unwrap()[..slots]
             .iter()
-            .any(|p| p.hp > 0 && p.active_ability() == "unnerve")
+            .any(|p| {
+                p.hp > 0
+                    && matches!(
+                        p.active_ability(),
+                        "unnerve" | "asoneglastrier" | "asonespectrier"
+                    )
+            })
+    }
+
+    pub(super) fn soul_heart_on_faint(&mut self, fainted: Position) {
+        if !self.possible_soul_heart {
+            return;
+        }
+        let mut holders = [(fainted, 0); 4];
+        let mut count = 0;
+        for pos in self.positions() {
+            if !self.mon(pos).fainted && self.mon(pos).ability == "soulheart" {
+                holders[count] = (pos, self.mon(pos).speed);
+                count += 1;
+            }
+        }
+        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for (pos, _) in holders.into_iter().take(count) {
+            if self.event_ability(pos) != "soulheart" || self.mon(pos).hp == 0 {
+                continue;
+            }
+            if pos.player == fainted.player
+                || self
+                    .party(fainted.player)
+                    .unwrap()
+                    .iter()
+                    .enumerate()
+                    .any(|(slot, mon)| slot != fainted.slot && !mon.fainted)
+            {
+                self.ability_boost(pos, "Soul-Heart", BoostStat::Spa, 1, false);
+            }
+        }
+    }
+
+    pub(super) fn legendary_boost_on_entry(&mut self, pos: Position) {
+        let (bit, label, stat) = match self.event_ability(pos) {
+            "intrepidsword" => (1, "Intrepid Sword", BoostStat::Atk),
+            "dauntlessshield" => (2, "Dauntless Shield", BoostStat::Def),
+            _ => return,
+        };
+        let mon = self.mon_mut(pos);
+        if mon.legendary_entry_boosts & bit == 0 {
+            mon.legendary_entry_boosts |= bit;
+            self.ability_boost(pos, label, stat, 1, false);
+        }
     }
 
     pub(super) fn flower_veil_holder(&mut self, target: Position) -> Option<Position> {
