@@ -966,6 +966,13 @@ fn transform_preserves_the_original_roster_while_copying_live_combat_state() {
 }
 
 #[test]
+fn fainted_imposter_keeps_queued_move_metadata_after_restoring_base_move_slots() {
+    replay(include_str!(
+        "fixtures/vgc-imposter-faints-before-moving.json"
+    ));
+}
+
+#[test]
 fn dragon_darts_splits_when_possible_and_retargets_to_the_eligible_survivor() {
     replay(include_str!("fixtures/bss-dragon-darts.json"));
     replay(include_str!("fixtures/vgc-dragon-darts.json"));

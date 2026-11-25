@@ -148,6 +148,9 @@ enum ActionKind {
 pub(super) struct Action {
     actor: Option<Position>,
     kind: ActionKind,
+    // Use the originally selected move when re-sorting after a faint can
+    // restore the actor's original moveset (Transform/Imposter).
+    move_data: Option<&'static Move>,
     priority: Priority,
     fractional_priority: f64,
     prankster: bool,
@@ -177,6 +180,7 @@ impl Action {
         Self {
             actor,
             kind,
+            move_data: None,
             fractional_priority: 0.0,
             prankster: false,
             priority: Priority {
@@ -1144,7 +1148,9 @@ impl Battle {
                     self.random_target(source, TargetKind::Normal);
                     action.priority.priority = action.fractional_priority;
                 } else {
-                    let data = self.move_data(source, move_slot);
+                    let data = *action
+                        .move_data
+                        .get_or_insert_with(|| self.move_data(source, move_slot));
                     self.resolve_target(source, move_base_target(data, source, target), target);
                     action.prankster = self.prankster_boosts(source, data);
                     action.priority.priority = f64::from(

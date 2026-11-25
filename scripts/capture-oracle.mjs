@@ -872,6 +872,11 @@ const imposterDoublesRosters = [
     [imposterRosters[0][0], named('Vaporeon', ['Recover'])],
     [named('Leafeon', ['Recover']), named('Glaceon', ['Ice Shard', 'Recover'])],
 ];
+const imposterFaintRosters = [
+    [imposterRosters[0][0], named('Vaporeon', ['Recover'])],
+    [{...named('Chandelure', ['Flamethrower']), item:'Choice Scarf', nature:'Modest', evs:{spa:32, spe:32}},
+        named('Leafeon', ['Swords Dance', 'Leaf Blade'])],
+];
 const dartRosters = [
     [named('Dragapult', ['Dragon Darts']), named('Umbreon', ['Recover'])],
     [named('Glaceon', ['Recover', 'Protect', 'Follow Me']), named('Vaporeon', ['Recover']), named('Sylveon', ['Recover'])],
@@ -1575,6 +1580,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         transformRosters, 'bss-transform'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1 1']],
         imposterDoublesRosters, 'vgc-imposter'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 2 1, move 1','move 1 1, move 1']],
+        imposterFaintRosters, 'vgc-imposter-faints-before-moving'],
     ['bssregmc', [['team 12','team 123'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','switch 3']],
         dartRosters, 'bss-dragon-darts'],
     ['vgc2026regmc', [['team 12','team 123'], ['move 1 2, move 1','move 1, move 1'],
