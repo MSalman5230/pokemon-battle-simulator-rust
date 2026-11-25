@@ -80,6 +80,12 @@ enum MoveInvocation {
         priority: i8,
         prankster: bool,
     },
+    Copycat {
+        slot: usize,
+        caller: usize,
+        priority: i8,
+        prankster: bool,
+    },
 }
 
 #[derive(Default)]
@@ -219,6 +225,7 @@ pub(super) struct Action {
 
 const STRUGGLE_SLOT: usize = usize::MAX;
 const RECHARGE_SLOT: usize = usize::MAX - 1;
+const EXTRA_MOVE_SLOT: usize = usize::MAX - 2;
 
 impl Action {
     fn new(actor: Option<Position>, kind: ActionKind) -> Self {
@@ -870,6 +877,7 @@ impl Battle {
                     | "reflecttype"
                     | "gastroacid"
                     | "magicroom"
+                    | "copycat"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1349,6 +1357,8 @@ impl Battle {
     fn move_data(&self, source: Position, slot: usize) -> &'static Move {
         if slot == STRUGGLE_SLOT {
             DEX.moves(self.format.dex_mod, "struggle").unwrap()
+        } else if slot == EXTRA_MOVE_SLOT {
+            self.mon(source).extra_move.as_ref().unwrap().move_data
         } else {
             self.mon(source).moves[slot].move_data
         }
@@ -1738,6 +1748,7 @@ impl Battle {
         party[outgoing.slot].attract = None;
         party[outgoing.slot].disabled_slot = None;
         party[outgoing.slot].last_move_slot = None;
+        party[outgoing.slot].extra_move = None;
         party[outgoing.slot].move_failed_this_turn = false;
         party[outgoing.slot].move_failed_last_turn = false;
         party[outgoing.slot].last_foe_hit = None;
@@ -1925,10 +1936,8 @@ impl Battle {
                     self.residual();
                 }
             }
-            if let Some(name) = self.unsupported_called_move.take() {
-                return Err(BattleError::Unsupported(format!(
-                    "Sleep Talk called {name}"
-                )));
+            if let Some((caller, name)) = self.unsupported_called_move.take() {
+                return Err(BattleError::Unsupported(format!("{caller}: {name}")));
             }
             let drags = if self.drag_flags != 0 {
                 self.apply_drags(&mut queue)
@@ -3176,6 +3185,9 @@ impl Battle {
             MoveInvocation::Future { target, .. } => (None, 0, Some(target), false, false),
             MoveInvocation::SleepTalk {
                 slot, prankster, ..
+            }
+            | MoveInvocation::Copycat {
+                slot, prankster, ..
             } => (Some(slot), 0, None, false, prankster),
         };
         let sleep_talk = match invocation {
@@ -3184,8 +3196,14 @@ impl Battle {
             } => Some((caller, priority)),
             _ => None,
         };
+        let caller = match invocation {
+            MoveInvocation::Copycat {
+                caller, priority, ..
+            } => Some((caller, priority)),
+            _ => sleep_talk,
+        };
         let delayed = matches!(invocation, MoveInvocation::Future { .. });
-        let own_action = !reflected && !delayed && sleep_talk.is_none();
+        let own_action = !reflected && !delayed && caller.is_none();
         if own_action && self.mon(source).glaive_drawback {
             let mon = self.mon_mut(source);
             mon.glaive_drawback = false;
@@ -3209,9 +3227,9 @@ impl Battle {
             return true;
         }
         let mut move_data = match invocation {
-            MoveInvocation::Choice { slot, .. } | MoveInvocation::SleepTalk { slot, .. } => {
-                self.move_data(source, slot)
-            }
+            MoveInvocation::Choice { slot, .. }
+            | MoveInvocation::SleepTalk { slot, .. }
+            | MoveInvocation::Copycat { slot, .. } => self.move_data(source, slot),
             MoveInvocation::Reflected { data, .. } | MoveInvocation::Future { data, .. } => data,
         };
         result.spends_charge =
@@ -3262,6 +3280,8 @@ impl Battle {
             "|[from] ability: Magic Bounce"
         } else if sleep_talk.is_some() {
             "|[from] move: Sleep Talk"
+        } else if caller.is_some() {
+            "|[from] move: Copycat"
         } else if round_followup {
             "|[from] move: Round"
         } else if continuing {
@@ -3381,14 +3401,14 @@ impl Battle {
             ));
             return false;
         }
-        if (reflected || sleep_talk.is_some())
+        if (reflected || caller.is_some())
             && self.mon(source).throat_chop > 0
             && move_data.flags.contains_key("sound")
         {
             self.add(format!("|cant|{source_name}|move: Throat Chop"));
             return false;
         }
-        if sleep_talk.is_some()
+        if caller.is_some()
             && self.mon(source).heal_block > 0
             && move_data.flags.contains_key("heal")
         {
@@ -3465,9 +3485,9 @@ impl Battle {
                 mon.moves[slot].pp -= 1;
                 mon.used_moves |= 1 << slot;
             }
-            mon.last_move_slot = Some(slot);
+            mon.last_move_slot = (slot != EXTRA_MOVE_SLOT).then_some(slot);
             mon.last_move_target = loc;
-            if mon.holds_choice_item() && mon.choice_lock.is_none() {
+            if slot != EXTRA_MOVE_SLOT && mon.holds_choice_item() && mon.choice_lock.is_none() {
                 mon.choice_lock = Some(slot);
                 mon.track_volatile("choicelock");
             }
@@ -3486,7 +3506,7 @@ impl Battle {
         if electrified && self.format.report_exact_hp {
             self.add("|debug|Electrify making move type electric");
         }
-        result.spends_stockpile = own_action && move_data.name == "Spit Up";
+        result.spends_stockpile = !delayed && move_data.name == "Spit Up";
         result.ran_after_move = own_action;
         let shell_side_arm = move_data.name == "Shell Side Arm";
         if shell_side_arm && let Some(target) = target {
@@ -3598,6 +3618,12 @@ impl Battle {
         if weather_ball && self.format.report_exact_hp {
             self.add(format!("|debug|BP: {power}"));
         }
+        let previous = self.last_battle_move;
+        let history_known = self.history_known;
+        if !delayed {
+            self.last_battle_move = Some(move_data);
+            self.history_known = true;
+        }
         if move_data.name == "Body Press" && self.wonder_room > 0 {
             self.add("|-hint|Body Press uses Def boosts when Wonder Room is active.");
         }
@@ -3678,7 +3704,7 @@ impl Battle {
             return true;
         }
 
-        if let Some(slot) = sleep_talk.map(|(caller, _)| caller).or(slot)
+        if let Some(slot) = caller.map(|(caller, _)| caller).or(slot)
             && !struggle
             && !continuing
         {
@@ -3719,7 +3745,7 @@ impl Battle {
             // Its TryMove hook deliberately returns null, not false.
             return true;
         }
-        let priority = sleep_talk.map_or_else(
+        let priority = caller.map_or_else(
             || self.base_move_priority(source, move_data) + i8::from(prankster),
             |(_, priority)| priority,
         );
@@ -3772,7 +3798,7 @@ impl Battle {
             let called_slot = choices[self.rng.below(choices.len() as u32) as usize];
             let called = &self.mon(source).moves[called_slot];
             if !Self::move_supported(called) {
-                self.unsupported_called_move = Some(&called.move_data.name);
+                self.unsupported_called_move = Some(("Sleep Talk called", &called.move_data.name));
                 return true;
             }
             let (_, source) = self.run_move(
@@ -3944,7 +3970,11 @@ impl Battle {
                     self.mon_mut(source).begin_charge(
                         spec,
                         slot.expect("charge moves are not reflectable"),
-                        loc,
+                        if caller.is_some() {
+                            spread_targets[0].loc(source)
+                        } else {
+                            loc
+                        },
                     );
                     self.protean_prepare(source, move_type);
                     return true;
@@ -4898,6 +4928,57 @@ impl Battle {
             let list_all_targets = life_dew || teeter_dance;
             let mut confusion_failed = false;
             for target in spread_targets {
+                if move_data.name == "Copycat" {
+                    if !history_known {
+                        self.unsupported_called_move =
+                            Some(("Copycat", "previous battle move is not observed"));
+                        return true;
+                    }
+                    let Some(called) = previous else {
+                        any_success = true;
+                        continue;
+                    };
+                    if called.flags.contains_key("failcopycat") {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        result.failed = true;
+                        return true;
+                    }
+                    let id = to_id(&called.name);
+                    let extra = MoveSlot {
+                        id,
+                        move_data: called,
+                        pp: 0,
+                        max_pp: 0,
+                    };
+                    if !Self::move_supported(&extra) {
+                        self.unsupported_called_move = Some(("Copycat called", &called.name));
+                        return true;
+                    }
+                    let user = self.mon_mut(source);
+                    let called_slot = user
+                        .moves
+                        .iter()
+                        .position(|m| m.id == extra.id)
+                        .unwrap_or_else(|| {
+                            user.extra_move = Some(Box::new(extra));
+                            EXTRA_MOVE_SLOT
+                        });
+                    let (_, source) = self.run_move(
+                        source,
+                        MoveInvocation::Copycat {
+                            slot: called_slot,
+                            caller: slot.unwrap(),
+                            priority,
+                            prankster,
+                        },
+                        queue,
+                    );
+                    result.failed = self.mon(source).move_failed_this_turn;
+                    self.each_event();
+                    self.each_event();
+                    return true;
+                }
                 if ability_replacement {
                     any_success |= self.replace_ability_from_move(source, target, &move_data.name);
                     continue;
@@ -6807,6 +6888,7 @@ impl Battle {
         mon.attract = None;
         mon.disabled_slot = None;
         mon.last_move_slot = None;
+        mon.extra_move = None;
         mon.move_failed_this_turn = false;
         mon.move_failed_last_turn = false;
         mon.last_foe_hit = None;
@@ -7089,7 +7171,11 @@ impl Pokemon {
                 .map(|state| state.slot)
                 .or_else(|| self.charge.map(|state| state.slot))
                 .or_else(|| self.uproar.map(|state| state.slot))?;
-            let m = &self.moves[slot];
+            let m = if slot == EXTRA_MOVE_SLOT {
+                self.extra_move.as_ref().unwrap()
+            } else {
+                &self.moves[slot]
+            };
             Some((slot, &m.move_data.name, &m.id))
         }
     }

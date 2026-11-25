@@ -211,6 +211,8 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
 
     battle.turn = input.turn;
     battle.log.clear();
+    battle.last_battle_move = None;
+    battle.history_known = false;
     let mut assumptions = Vec::new();
     // Apply all Pokémon snapshots before resolving source-linked effects.
     for (player, side) in Player::ALL.into_iter().zip(&input.sides) {

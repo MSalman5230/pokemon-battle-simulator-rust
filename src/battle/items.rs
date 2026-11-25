@@ -988,9 +988,12 @@ impl Pokemon {
     pub(super) fn disabled_by_choice(&self, slot: usize) -> bool {
         self.holds_choice_item()
             && self.choice_lock.is_some_and(|i| {
-                self.moves
-                    .get(i)
-                    .is_none_or(|locked| locked.id != self.moves[slot].id)
+                self.moves.get(i).is_none_or(|locked| {
+                    self.moves
+                        .get(slot)
+                        .or(self.extra_move.as_deref())
+                        .is_none_or(|selected| locked.id != selected.id)
+                })
             })
     }
 

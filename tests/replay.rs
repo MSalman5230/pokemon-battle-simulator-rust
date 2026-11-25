@@ -1703,6 +1703,16 @@ fn magic_room_suppresses_items_and_keeps_the_original_source_for_expiry() {
 }
 
 #[test]
+fn copycat_uses_the_previous_move_and_charges_pressure_to_the_caller() {
+    replay(include_str!("fixtures/bss-copycat.json"));
+}
+
+#[test]
+fn copycat_can_resolve_a_forced_move_absent_from_the_users_moveset() {
+    replay(include_str!("fixtures/bss-copycat-charge.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

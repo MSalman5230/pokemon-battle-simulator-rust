@@ -180,7 +180,9 @@ pub struct Battle {
     ability_breaker: Option<Position>,
     possible_unaware: bool,
     possible_opportunist: bool,
-    unsupported_called_move: Option<&'static str>,
+    unsupported_called_move: Option<(&'static str, &'static str)>,
+    last_battle_move: Option<&'static Move>,
+    history_known: bool,
     turn_queue_empty: bool,
     pending_actions: [Option<Vec<Action>>; 2],
     drag_flags: u8,
@@ -273,6 +275,7 @@ pub struct Pokemon {
     hidden_power_index: u8,
     fallen_allies: u8,
     pub moves: Vec<MoveSlot>,
+    extra_move: Option<Box<MoveSlot>>,
     pub roster_index: usize,
     illusion: Option<usize>,
     disguise_pending: bool,
@@ -495,6 +498,8 @@ impl Battle {
             possible_unaware: false,
             possible_opportunist: false,
             unsupported_called_move: None,
+            last_battle_move: None,
+            history_known: true,
             turn_queue_empty: true,
             pending_actions: [None, None],
             drag_flags: 0,
@@ -985,6 +990,7 @@ impl Pokemon {
             half_hp_berry_deferred: false,
             fallen_allies: 0,
             moves,
+            extra_move: None,
             pokeball: if pokeball.is_empty() {
                 "pokeball".into()
             } else {
