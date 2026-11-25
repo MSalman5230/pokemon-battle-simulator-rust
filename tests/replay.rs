@@ -580,3 +580,8 @@ fn bss_wish_heals_the_incoming_slot_from_the_original_wishers_hp() {
 fn vgc_tailwind_reorders_pending_moves_and_court_change_transfers_it() {
     replay(include_str!("fixtures/vgc-tailwind.json"));
 }
+
+#[test]
+fn bss_last_respects_counts_faints_and_rage_fist_counts_hits_this_stint() {
+    replay(include_str!("fixtures/bss-hit-count-power.json"));
+}

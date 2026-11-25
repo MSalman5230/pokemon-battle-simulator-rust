@@ -822,6 +822,8 @@ impl Battle {
                     | "dragonenergy"
                     | "wish"
                     | "tailwind"
+                    | "lastrespects"
+                    | "ragefist"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1769,9 +1771,21 @@ impl Battle {
         };
         let weather_ball = move_data.name == "Weather Ball";
         let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
-        let power = match (weather_ball && weather.is_some(), stacked_power) {
-            (true, _) => move_data.base_power * 2,
-            (_, true) => move_data.base_power + self.mon(source).boosts.positive() * 20,
+        let power = match move_data.name.as_str() {
+            "Weather Ball" if weather.is_some() => move_data.base_power * 2,
+            "Stored Power" | "Power Trip" => {
+                move_data.base_power + self.mon(source).boosts.positive() * 20
+            }
+            "Last Respects" => {
+                50 + 50
+                    * u16::from(
+                        self.sides[source.player.index()]
+                            .as_ref()
+                            .unwrap()
+                            .total_fainted,
+                    )
+            }
+            "Rage Fist" => 50 + 50 * self.mon(source).times_attacked.min(6) as u16,
             _ => move_data.base_power,
         };
         let (move_type, converted) = if struggle {
@@ -3207,6 +3221,8 @@ impl Battle {
 
     pub(super) fn mark_fainted(&mut self, target: Position) {
         self.last_faint = Some(target.player);
+        let side = self.sides[target.player.index()].as_mut().unwrap();
+        side.total_fainted = (side.total_fainted + 1).min(100);
         self.add(format!("|faint|{}", self.ident(target)));
         self.weather_ability_changed(target);
         let rules = self.stat_rules;

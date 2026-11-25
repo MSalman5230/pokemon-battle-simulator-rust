@@ -466,6 +466,11 @@ const tailwindRosters = [
     [named('Whimsicott', ['Tailwind', 'Recover']), named('Snorlax', ['Tackle'])],
     [named('Umbreon', ['Tackle']), named('Espeon', ['Recover', 'Court Change'])],
 ];
+const hitCountPowerRosters = [
+    [{...named('Basculegion', ['Rage Fist', 'Last Respects']), ability: 'Adaptability'},
+        named('Shedinja', ['Tackle'], 'N'), named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Bite', 'Recover']), named('Glaceon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -695,6 +700,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12', 'team 12'], ['move 1, move 1 1', 'move 1 2, move 1'],
         ['move 2, move 1 1', 'move 1 2, move 2'], ['move 2, move 1 1', 'move 1 2, move 1'],
         ['move 2, move 1 1', 'move 1 2, move 1']], tailwindRosters, 'vgc-tailwind'],
+    ['bssregmc', [['team 123', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 2'], ['switch 2', 'move 1'],
+        ['switch 2', null], ['move 2', 'move 2'], ['move 1', 'move 2']], hitCountPowerRosters, 'bss-hit-count-power'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
