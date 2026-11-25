@@ -559,7 +559,7 @@ impl Battle {
                     if self.phase == Phase::Move
                         && matches!(action.kind, ActionKind::Move { .. })
                         && let Some(actor) = action.actor
-                        && self.mon(actor).item == "quickclaw"
+                        && self.mon(actor).effective_item() == "quickclaw"
                         && self.rng.chance(1, 5)
                     {
                         action.fractional_priority = 0.1;
@@ -1234,7 +1234,7 @@ impl Battle {
     }
 
     fn zoom_lens_active(&self, source: Position, target: Position, queue: &[Action]) -> bool {
-        self.mon(source).item == "zoomlens"
+        self.mon(source).effective_item() == "zoomlens"
             && self.active_effects(source)
             && Self::queued_move(queue, target).is_none()
     }
@@ -2167,6 +2167,11 @@ impl Battle {
                         mon.untrack_volatile(counter.move_kind.id());
                     }
                 }
+                Effect::Leftovers | Effect::StatusOrb | Effect::WhiteHerb
+                    if mon.ignores_held_item() =>
+                {
+                    self.debug_ignored_item(pos, "Residual");
+                }
                 Effect::Leftovers => {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
@@ -2825,7 +2830,7 @@ impl Battle {
                     self.boost(source, &[(stat, 1)], false);
                 }
                 let weather_skip = spec.instant.is_some() && spec.instant == weather;
-                let herb_skip = !weather_skip && self.mon(source).item == "powerherb";
+                let herb_skip = !weather_skip && self.mon(source).effective_item() == "powerherb";
                 self.move_still(base);
                 if weather_skip || herb_skip {
                     if herb_skip {
@@ -3261,7 +3266,7 @@ impl Battle {
             } else if source != mut_pos
                 && move_data.flags.contains_key("powder")
                 && !self.mon(mut_pos).has_type("Grass")
-                && self.mon(mut_pos).item == "safetygoggles"
+                && self.mon(mut_pos).effective_item() == "safetygoggles"
             {
                 self.add(format!(
                     "|-activate|{}|item: Safety Goggles|{}",
@@ -3341,7 +3346,8 @@ impl Battle {
                 && (self
                     .effectiveness_of(move_data, move_type, pos, false)
                     .is_none()
-                    || (move_data.move_type == "Ground" && self.mon(pos).item == "airballoon")))
+                    || (move_data.move_type == "Ground"
+                        && self.mon(pos).effective_item() == "airballoon")))
                 || (move_data.flags.contains_key("powder")
                     && source != pos
                     && self.status_immune(pos, "powder"))
@@ -3645,7 +3651,7 @@ impl Battle {
                     if let Some(slot) = self.start_encore(target, queued.is_some()) {
                         if let Some(before) = queued
                             && before != slot
-                            && self.mon(target).item != "mentalherb"
+                            && self.mon(target).effective_item() != "mentalherb"
                         {
                             self.replace_queued_move(queue, target, slot);
                         }
@@ -4213,7 +4219,7 @@ impl Battle {
                     break;
                 }
                 let dust = self.event_ability(target) == "shielddust";
-                let cloak = self.mon(target).item == "covertcloak";
+                let cloak = self.mon(target).effective_item() == "covertcloak";
                 if self.format.report_exact_hp {
                     if dust {
                         self.add("|debug|Shield Dust prevent secondary");
@@ -4315,7 +4321,7 @@ impl Battle {
                     }
                 }
                 for &(target, _) in &damage {
-                    if self.mon(target).item == "rockyhelmet" {
+                    if self.mon(target).effective_item() == "rockyhelmet" {
                         self.indirect_damage(
                             source,
                             6,
@@ -4374,7 +4380,7 @@ impl Battle {
                         false,
                     );
                 }
-                if self.mon(target).item == "airballoon" {
+                if self.mon(target).effective_item() == "airballoon" {
                     self.consume(target, "Air Balloon", false);
                 }
             }
@@ -4529,7 +4535,9 @@ impl Battle {
             self.mark_fainted(source);
         }
         let original_source_hp = self.mon(source).hp;
-        if !suppress_after_move && self.mon(source).item == "lifeorb" && self.active_effects(source)
+        if !suppress_after_move
+            && self.mon(source).effective_item() == "lifeorb"
+            && self.active_effects(source)
         {
             self.indirect_damage(source, 10, "|[from] item: Life Orb");
             if self.mon(source).hp == 0 {
@@ -4932,7 +4940,7 @@ impl Pokemon {
         {
             stat *= 2;
         }
-        if self.item == "choicescarf" {
+        if self.effective_item() == "choicescarf" {
             stat = crate::mechanics::Truncation::Cartridge.modify(stat, 6144);
         }
         if self.status == Status::Paralysis {
@@ -5073,6 +5081,7 @@ impl Pokemon {
                 | "electromorphosis"
                 | "windpower"
                 | "zerotohero"
+                | "klutz"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

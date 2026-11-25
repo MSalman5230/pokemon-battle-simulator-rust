@@ -1142,6 +1142,11 @@ fn throat_chop_interrupts_pending_sound_moves_and_disables_them_for_a_turn() {
 }
 
 #[test]
+fn klutz_suppresses_item_effects_without_removing_held_items() {
+    replay(include_str!("fixtures/bss-klutz.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

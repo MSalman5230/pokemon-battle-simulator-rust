@@ -11,7 +11,7 @@ impl Battle {
     pub(super) fn hits(&mut self, source: Position, data: &Move) -> (u8, bool) {
         let user = self.mon(source);
         let skill_link = user.ability == "skilllink";
-        let loaded_dice = user.item == "loadeddice";
+        let loaded_dice = user.effective_item() == "loadeddice";
         let mut count = match data.multihit {
             None => 1,
             Some(HitCount::Fixed(count)) => count,

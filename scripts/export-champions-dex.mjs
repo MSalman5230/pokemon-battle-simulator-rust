@@ -90,7 +90,8 @@ const data = mod => {
                 noSkillSwap: !!e.flags?.failskillswap || undefined})),
         items: table(dex.items.all(), e =>
             ({...props(e, ['name', 'isNonstandard', 'megaStone']),
-                isBerry: e.isBerry || undefined, handlers: handlers(e)})),
+                isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined,
+                handlers: handlers(e)})),
         natures: table(dex.natures.all(), e => props(e, ['plus', 'minus'])),
         types: table(dex.types.all(), e => props(e, ['damageTaken'])),
         aliases: sorted([...Dex.loadAliases()]),

@@ -67,7 +67,7 @@ impl Battle {
         }
         self.terrain = Some((
             terrain,
-            if self.mon(pos).item == "terrainextender" {
+            if self.mon(pos).effective_item() == "terrainextender" {
                 8
             } else {
                 5

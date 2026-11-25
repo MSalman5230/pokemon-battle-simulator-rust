@@ -1049,6 +1049,12 @@ const throatChopRosters = [
     [named('Sylveon', ['Hyper Voice', 'Recover']),
         {...named('Slowbro', ['Hyper Voice', 'Recover']), item:'Covert Cloak'}],
 ];
+const klutzRosters = [
+    [{...named('Lopunny', ['Tackle', 'Quick Attack']), ability:'Klutz', item:'Choice Band'},
+        {...named('Bewear', ['Recover']), ability:'Klutz', item:'Air Balloon'},
+        {...named('Audino', ['Tackle']), ability:'Klutz', item:'Sitrus Berry'}],
+    [named('Umbreon', ['Tackle', 'Earthquake', 'Knock Off', 'Seismic Toss'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1595,6 +1601,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         palafinRosters, 'bss-zero-to-hero'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 1'],
         ['move 1','switch 2'], ['move 3','move 1']], throatChopRosters, 'bss-throat-chop'],
+    ['bssregmc', [['team 123','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['switch 2','move 2'],
+        ['move 1','move 3'], ['switch 3','move 4'], ['move 1','move 4']],
+        klutzRosters, 'bss-klutz'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

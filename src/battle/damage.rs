@@ -10,6 +10,7 @@ use crate::{
 enum Hook {
     Fixed(u32, &'static str),
     Ability(Position, u32, &'static str),
+    HeldItem(u32),
     Berry(&'static str, bool),
     Screens,
 }
@@ -48,11 +49,11 @@ impl Battle {
         } else {
             ""
         } {
-            "lifeorb" => add(user.speed, 8, Hook::Fixed(5324, "")),
+            "lifeorb" => add(user.speed, 8, Hook::HeldItem(5324)),
             "expertbelt" => add(
                 user.speed,
                 8,
-                Hook::Fixed(if effectiveness > 0 { 4915 } else { 4096 }, ""),
+                Hook::HeldItem(if effectiveness > 0 { 4915 } else { 4096 }),
             ),
             _ => {}
         }
@@ -135,6 +136,12 @@ impl Battle {
         for &(_, _, hook) in hooks.iter() {
             let (next, debug) = match hook {
                 Hook::Fixed(value, debug) => (value, debug),
+                Hook::HeldItem(value) => {
+                    if self.debug_ignored_item(source, "ModifyDamage") {
+                        continue;
+                    }
+                    (value, "")
+                }
                 Hook::Ability(holder, value, debug) => {
                     if self.ability_suppressed(holder) {
                         if self.format.report_exact_hp {
@@ -144,6 +151,7 @@ impl Battle {
                     }
                     (value, debug)
                 }
+                Hook::Berry(..) if self.debug_ignored_item(target, "ModifyDamage") => continue,
                 Hook::Berry(name, true) if !self.foe_unnerve(target) => {
                     ripened = self.event_ability(target) == "ripen";
                     self.consume(target, name, true);

@@ -110,7 +110,7 @@ impl Battle {
         if matches!(screen, Screen::AuroraVeil) && self.effective_weather() != Some(Weather::Snow) {
             return false;
         }
-        let turns = if self.mon(source).item == "lightclay" {
+        let turns = if self.mon(source).effective_item() == "lightclay" {
             8
         } else {
             5

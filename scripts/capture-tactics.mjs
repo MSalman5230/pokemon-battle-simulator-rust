@@ -69,6 +69,8 @@ add('fractional stat stage is applied before accuracy callbacks', 'rockslide',
     mon('Durant', 'Hustle', 'Zoom Lens', {boosts:{accuracy:-1}}), normal);
 add('Charge volatile powers the electric attack', 'thundershock',
     mon('Bellibolt', 'Electromorphosis', '', {volatiles:{charge:{}}}), normal);
+add('Klutz suppresses a held damage item without removing it', 'tackle',
+    mon('Lopunny', 'Klutz', 'Choice Band'), normal);
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

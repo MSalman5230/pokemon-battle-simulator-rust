@@ -124,7 +124,7 @@ impl Battle {
         if self.weather() == Some(weather) {
             return false;
         }
-        let duration = if self.mon(pos).item == weather.rock() {
+        let duration = if self.mon(pos).effective_item() == weather.rock() {
             8
         } else {
             5

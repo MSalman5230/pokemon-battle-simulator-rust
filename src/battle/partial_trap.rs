@@ -39,8 +39,12 @@ impl Battle {
         }
         let user = self.mon(source);
         let trapper = user.roster_index;
-        let divisor = if user.item == "bindingband" { 6 } else { 8 };
-        let turns = if user.item == "gripclaw" {
+        let divisor = if user.effective_item() == "bindingband" {
+            6
+        } else {
+            8
+        };
+        let turns = if user.effective_item() == "gripclaw" {
             8
         } else {
             5 + self.rng.below(2) as u8

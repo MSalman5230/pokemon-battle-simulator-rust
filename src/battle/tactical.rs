@@ -386,7 +386,7 @@ impl Battle {
             return Ok(result);
         };
         result.accuracy = self.preview_accuracy(data, weather);
-        let item = &self.mon(TARGET).item;
+        let item = self.mon(TARGET).effective_item();
         let disguise = self.disguise_form(TARGET).is_some();
         result.survive_full = item == "focussash" || self.event_ability(TARGET) == "sturdy";
         result.survive_chance = if item == "focusband" && !disguise {
@@ -493,7 +493,7 @@ impl Battle {
             ACTOR,
             self.weather_evasion(TARGET, weather).0,
             move_data.category,
-            self.mon(ACTOR).item == "zoomlens",
+            self.mon(ACTOR).effective_item() == "zoomlens",
         );
         // The isolated Showdown calculation calls ModifyAccuracy after its
         // stage relay and applies chained modifiers only to integer values.

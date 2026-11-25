@@ -11,7 +11,7 @@ pub(super) struct Trap {
 impl Battle {
     fn ignores_trapping(&self, pos: Position) -> bool {
         let mon = self.mon(pos);
-        mon.has_type("Ghost") || mon.item == "shedshell" || mon.ability == "runaway"
+        mon.has_type("Ghost") || mon.effective_item() == "shedshell" || mon.ability == "runaway"
     }
 
     pub(super) fn trap_info(&self, pos: Position) -> Trap {

@@ -239,6 +239,8 @@ pub struct Item {
     pub mega_stone: Option<Table<String>>,
     #[serde(default)]
     pub is_berry: bool,
+    #[serde(default)]
+    pub ignore_klutz: bool,
 }
 
 #[derive(Debug, Deserialize)]

@@ -102,10 +102,12 @@ impl Pokemon {
         } else {
             4096
         };
-        let item = if self.item == "lightball" && self.base_species.base_species == "Pikachu" {
+        let item = if self.effective_item() == "lightball"
+            && self.base_species.base_species == "Pikachu"
+        {
             8192
         } else if matches!(
-            (self.item.as_str(), category),
+            (self.effective_item(), category),
             ("choiceband", Category::Physical) | ("choicespecs", Category::Special)
         ) {
             6144
@@ -185,7 +187,7 @@ impl Battle {
         {
             return 4;
         }
-        let item = match user.item.as_str() {
+        let item = match user.effective_item() {
             "scopelens" | "razorclaw" => 1,
             "leek"
                 if matches!(
@@ -390,7 +392,7 @@ impl Battle {
         }
         let holder_name = self.ident(holder);
         let source_name = self.ident(fainted);
-        if self.mon(holder).item == "abilityshield" {
+        if self.mon(holder).effective_item() == "abilityshield" {
             self.add(format!("|-ability|{source_name}|{label}"));
             self.add(format!("|-block|{holder_name}|item: Ability Shield"));
             return;
@@ -444,7 +446,7 @@ impl Battle {
 
     pub(super) fn ignores_ability_of(&self, target: Position) -> bool {
         self.ability_breaker.is_some_and(|source| source != target)
-            && self.mon(target).item != "abilityshield"
+            && self.mon(target).effective_item() != "abilityshield"
     }
 
     /// Mold Breaker skips breakable event handlers. It does not change the
@@ -530,7 +532,7 @@ impl Battle {
             return Some(false);
         }
         for pos in [target, source] {
-            if self.mon(pos).item == "abilityshield" {
+            if self.mon(pos).effective_item() == "abilityshield" {
                 self.add(format!("|-block|{}|item: Ability Shield", self.ident(pos)));
                 return None;
             }
@@ -572,7 +574,7 @@ impl Battle {
         if mon.hp == 0 || mon.ability == id || old.is_some_and(|ability| ability.cannot_suppress) {
             return;
         }
-        if mon.item == "abilityshield" {
+        if mon.effective_item() == "abilityshield" {
             self.add(format!("|-ability|{}|{label}", self.ident(holder)));
             self.add(format!(
                 "|-block|{}|item: Ability Shield",

@@ -222,7 +222,7 @@ impl Battle {
             return true;
         }
         (matches!(key, "powder" | "sandstorm")
-            && (mon.item == "safetygoggles" || self.event_ability(pos) == "overcoat"))
+            && (mon.effective_item() == "safetygoggles" || self.event_ability(pos) == "overcoat"))
             || mon.types().filter(|ty| *ty != "???").any(|typing| {
                 DEX.type_data(&to_id(typing)).unwrap().damage_taken.get(key) == Some(&3)
             })
@@ -507,7 +507,7 @@ impl Battle {
 
     pub(super) fn activate_status_orb(&mut self, pos: Position) {
         let mon = self.mon(pos);
-        let (status, id, immunity, item) = match mon.item.as_str() {
+        let (status, id, immunity, item) = match mon.effective_item() {
             "toxicorb" => (Status::Toxic(0), "tox", "psn", "Toxic Orb"),
             "flameorb" => (Status::Burn, "brn", "brn", "Flame Orb"),
             _ => return,

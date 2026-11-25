@@ -120,7 +120,9 @@ impl Battle {
 
     pub(super) fn grounded(&self, pos: Position) -> bool {
         let mon = self.mon(pos);
-        !mon.has_type("Flying") && mon.item != "airballoon" && self.airborne_ability(pos).is_none()
+        !mon.has_type("Flying")
+            && mon.effective_item() != "airballoon"
+            && self.airborne_ability(pos).is_none()
     }
 
     pub(super) fn tidy_hazards(&mut self, pos: Position) -> bool {
@@ -247,7 +249,7 @@ impl Battle {
                 break;
             }
             let grounded = self.grounded(pos);
-            let boots = mon.item == "heavydutyboots";
+            let boots = mon.effective_item() == "heavydutyboots";
             let max_hp = mon.max_hp.get();
             match hazard {
                 Hazard::StealthRock if !boots => {

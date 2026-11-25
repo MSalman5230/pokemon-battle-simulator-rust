@@ -130,7 +130,7 @@ impl Battle {
                 }
             }
         }
-        if self.mon(target).item == "airballoon" {
+        if self.mon(target).effective_item() == "airballoon" {
             if self.format.report_exact_hp {
                 self.add(format!("|debug|effect: {}", to_id(&move_data.name)));
             }

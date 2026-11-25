@@ -6,7 +6,7 @@ impl Battle {
     fn weight(&mut self, pos: Position) -> u32 {
         let mon = self.mon(pos);
         let mut weight = u32::from(mon.species.weighthg);
-        let float = mon.item == "floatstone";
+        let float = mon.effective_item() == "floatstone";
         match self.event_ability(pos) {
             "heavymetal" => weight *= 2,
             "lightmetal" => weight /= 2,

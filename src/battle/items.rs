@@ -73,6 +73,9 @@ impl Battle {
                 self.add("|debug|Zoom Lens boosting accuracy");
             }
         }
+        if matches!(self.mon(source).item.as_str(), "widelens" | "zoomlens") {
+            self.debug_ignored_item(source, "ModifyAccuracy");
+        }
     }
 
     pub(super) fn accuracy_modifier(
@@ -92,7 +95,7 @@ impl Battle {
         }
         if zoom {
             crate::mechanics::chain(modifier, 4915)
-        } else if self.mon(source).item == "widelens" && self.active_effects(source) {
+        } else if self.mon(source).effective_item() == "widelens" && self.active_effects(source) {
             crate::mechanics::chain(modifier, 4505)
         } else {
             modifier
@@ -100,9 +103,21 @@ impl Battle {
     }
 
     pub(super) fn on_switch_in_item(&mut self, pos: Position) {
-        if self.mon(pos).item == "airballoon" {
+        if self.mon(pos).item == "airballoon" && !self.debug_ignored_item(pos, "SwitchIn") {
             self.add(format!("|-item|{}|Air Balloon", self.ident(pos)));
         }
+    }
+
+    pub(super) fn debug_ignored_item(&mut self, pos: Position, event: &str) -> bool {
+        if !self.mon(pos).ignores_held_item() {
+            return false;
+        }
+        if self.format.report_exact_hp {
+            self.add(format!(
+                "|debug|{event} handler suppressed by Embargo, Klutz or Magic Room"
+            ));
+        }
+        true
     }
 
     fn on_gained_item(&mut self, pos: Position) {
@@ -112,7 +127,7 @@ impl Battle {
 
     pub(super) fn white_herb(&mut self, pos: Position) {
         let mon = self.mon_mut(pos);
-        if mon.hp == 0 || mon.item != "whiteherb" || !mon.boosts.clear_negative() {
+        if mon.hp == 0 || mon.effective_item() != "whiteherb" || !mon.boosts.clear_negative() {
             return;
         }
         self.consume(pos, "White Herb", false);
@@ -144,6 +159,9 @@ impl Battle {
     }
 
     pub(super) fn focus_sash(&mut self, pos: Position, damage: u32) -> u32 {
+        if self.mon(pos).item == "focussash" && self.debug_ignored_item(pos, "Damage") {
+            return damage;
+        }
         let mon = self.mon(pos);
         if mon.item == "focussash" && mon.hp == mon.max_hp.get() && damage >= mon.hp {
             let remaining = mon.hp - 1;
@@ -157,14 +175,14 @@ impl Battle {
 
     pub(super) fn on_update_item(&mut self, pos: Position) {
         let mon = self.mon(pos);
-        if mon.hp > 0 && mon.item == "mentalherb" {
+        if mon.hp > 0 && mon.effective_item() == "mentalherb" {
             self.mental_herb(pos);
             return;
         }
         if mon.hp == 0 || self.foe_unnerve(pos) {
             return;
         }
-        if mon.item == "sitrusberry"
+        if mon.effective_item() == "sitrusberry"
             && mon.hp * 2 <= mon.max_hp.get()
             && (mon.ability != "berserk" || !mon.berserk_waits_for_hit)
         {
@@ -182,7 +200,7 @@ impl Battle {
         if mon.hp == 0 || self.foe_unnerve(pos) {
             return;
         }
-        let berry = match (mon.item.as_str(), mon.status) {
+        let berry = match (mon.effective_item(), mon.status) {
             ("lumberry", _) if mon.confusion > 0 => "Lum Berry",
             (_, Status::Healthy | Status::Fainted) => return,
             ("lumberry", _) => "Lum Berry",
@@ -199,7 +217,7 @@ impl Battle {
 
     fn pinch_stat_berry(&mut self, pos: Position) {
         let mon = self.mon(pos);
-        let (name, stat) = match mon.item.as_str() {
+        let (name, stat) = match mon.effective_item() {
             "liechiberry" => ("Liechi Berry", BoostStat::Atk),
             "ganlonberry" => ("Ganlon Berry", BoostStat::Def),
             "salacberry" => ("Salac Berry", BoostStat::Spe),
@@ -487,9 +505,26 @@ impl Battle {
 }
 
 impl Pokemon {
+    pub(super) fn ignores_held_item(&self) -> bool {
+        self.ability == "klutz"
+            && !self.item.is_empty()
+            && !DEX
+                .item(crate::dex::Mod::Champions, &self.item)
+                .is_some_and(|item| item.ignore_klutz)
+    }
+
+    /// The held item remains in inventories even when its effects are ignored.
+    pub(super) fn effective_item(&self) -> &str {
+        if self.ignores_held_item() {
+            ""
+        } else {
+            &self.item
+        }
+    }
+
     pub(super) fn holds_choice_item(&self) -> bool {
         matches!(
-            self.item.as_str(),
+            self.effective_item(),
             "choicescarf" | "choiceband" | "choicespecs"
         )
     }
@@ -510,12 +545,12 @@ impl Pokemon {
     ) -> u32 {
         use crate::dex::Category;
         if matches!(
-            (self.item.as_str(), category),
+            (self.effective_item(), category),
             ("wiseglasses", Category::Special) | ("muscleband", Category::Physical)
         ) {
             4505
         } else if matches!(
-            (self.item.as_str(), move_type),
+            (self.effective_item(), move_type),
             ("mysticwater", "Water")
                 | ("miracleseed", "Grass")
                 | ("charcoal", "Fire")
