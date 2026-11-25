@@ -156,6 +156,10 @@ pub struct Move {
     pub self_boosts: Vec<(BoostStat, i8)>,
     pub self_chance: Option<u8>,
     pub heal: Option<[u16; 2]>,
+    pub drain: Option<[u16; 2]>,
+    pub recoil: Option<[u16; 2]>,
+    #[serde(default)]
+    pub thaws_target: bool,
     pub status: Option<String>,
     #[serde(default)]
     pub ignore_immunity: serde_json::Value,

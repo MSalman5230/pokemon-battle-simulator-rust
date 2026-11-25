@@ -191,3 +191,8 @@ fn bss_no_pp_forces_typeless_struggle_and_recoil() {
 fn bss_choice_lock_intimidate_speed_boost_and_knock_off() {
     replay(include_str!("fixtures/bss-choice-items.json"));
 }
+
+#[test]
+fn bss_roost_body_press_mirror_armor_and_recoil() {
+    replay(include_str!("fixtures/bss-bulky-effects.json"));
+}

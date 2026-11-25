@@ -125,7 +125,16 @@ impl Battle {
                 }
                 Hazard::StickyWeb if grounded && !boots => {
                     self.add(format!("|-activate|{}|move: Sticky Web", self.ident(pos)));
-                    self.boost(pos, &[(BoostStat::Spe, -1)], false);
+                    self.boost_from(
+                        pos,
+                        Position {
+                            player: player.foe(),
+                            slot: 0,
+                        },
+                        &[(BoostStat::Spe, -1)],
+                        false,
+                        false,
+                    );
                 }
                 _ => {}
             }
@@ -144,7 +153,17 @@ impl Battle {
 
 impl Pokemon {
     pub(super) fn has_type(&self, name: &str) -> bool {
-        self.species.types.iter().any(|t| t == name)
+        self.types().any(|t| t == name)
+    }
+
+    pub fn types(&self) -> impl Iterator<Item = &str> {
+        let add_normal = self.roosted && self.species.types.as_slice() == ["Flying"];
+        self.species
+            .types
+            .iter()
+            .map(String::as_str)
+            .filter(|t| !self.roosted || *t != "Flying")
+            .chain(add_normal.then_some("Normal"))
     }
 
     pub(super) fn grounded(&self) -> bool {

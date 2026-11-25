@@ -604,6 +604,42 @@ impl Battle {
                 | "discharge"
                 | "disarmingvoice"
                 | "hypervoice"
+                | "bodypress"
+                | "roost"
+                | "freezedry"
+                | "scald"
+                | "acidarmor"
+                | "bravebird"
+                | "doubleedge"
+                | "gigadrain"
+                | "drainpunch"
+                | "headsmash"
+                | "lightofruin"
+                | "flareblitz"
+                | "wavecrash"
+                | "woodhammer"
+                | "energyball"
+                | "flashcannon"
+                | "firepunch"
+                | "icepunch"
+                | "thunderpunch"
+                | "pyroball"
+                | "extremespeed"
+                | "megakick"
+                | "hydropump"
+                | "lavaplume"
+                | "overheat"
+                | "shadowsneak"
+                | "bittermalice"
+                | "bugbuzz"
+                | "quiverdance"
+                | "shellsmash"
+                | "stoneedge"
+                | "bite"
+                | "mysticalfire"
+                | "liquidation"
+                | "earthpower"
+                | "glare"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -782,6 +818,7 @@ impl Battle {
                     party[outgoing.slot].imprisoned = false;
                     party[outgoing.slot].choice_lock = None;
                     party[outgoing.slot].active_turns = 0;
+                    party[outgoing.slot].roosted = false;
                     if !party[outgoing.slot].fainted {
                         party[outgoing.slot].times_attacked = 0;
                     }
@@ -965,6 +1002,7 @@ impl Battle {
             Leftovers,
             Weather,
             SpeedBoost,
+            Roost,
         }
         self.add("|");
         self.update_speed();
@@ -996,6 +1034,9 @@ impl Battle {
             }
             if mon.ability == "speedboost" {
                 timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
+            }
+            if mon.roosted {
+                timers.push((pos, Effect::Roost, priority(25, 2)));
             }
             if mon.item == "leftovers" {
                 timers.push((pos, Effect::Leftovers, priority(5, 4)));
@@ -1030,6 +1071,10 @@ impl Battle {
                 }
                 Effect::Weather => unreachable!(),
                 Effect::SpeedBoost => self.speed_boost(pos),
+                Effect::Roost => {
+                    mon.roosted = false;
+                    mon.untrack_volatile("roost");
+                }
                 Effect::Protect => {
                     mon.protected = false;
                     mon.untrack_volatile("protect");
@@ -1310,10 +1355,16 @@ impl Battle {
                         (mon.max_hp.get() * u32::from(num) + u32::from(den) / 2) / u32::from(den);
                     mon.hp = (mon.hp + amount).min(mon.max_hp.get());
                     self.add_health_line("-heal", target, false);
+                    if move_data.name == "Roost" {
+                        let mon = self.mon_mut(target);
+                        mon.roosted = true;
+                        mon.track_volatile("roost");
+                        self.add(format!("|-singleturn|{}|move: Roost", self.ident(target)));
+                    }
                     succeeded = true;
                 }
                 if !move_data.boosts.is_empty() {
-                    succeeded |= self.boost(target, &move_data.boosts, false);
+                    succeeded |= self.boost_from(target, source, &move_data.boosts, false, false);
                 }
             }
             if succeeded {
@@ -1340,8 +1391,16 @@ impl Battle {
             let mon = self.mon(target);
             let (atk, atk_stage, def, def_stage) = if move_data.category == Category::Physical {
                 (
-                    user.stats.atk,
-                    user.boosts.get(BoostStat::Atk),
+                    if move_data.name == "Body Press" {
+                        user.stats.def
+                    } else {
+                        user.stats.atk
+                    },
+                    user.boosts.get(if move_data.name == "Body Press" {
+                        BoostStat::Def
+                    } else {
+                        BoostStat::Atk
+                    }),
                     mon.stats.def,
                     mon.boosts.get(BoostStat::Def),
                 )
@@ -1422,11 +1481,29 @@ impl Battle {
             }
             damage.push((target, value));
         }
+        let mut total = 0;
         for &(target, value) in &damage {
             let value = self.focus_sash(target, value);
             let mon = self.mon_mut(target);
-            mon.hp = mon.hp.saturating_sub(value);
+            let landed = value.min(mon.hp);
+            mon.hp -= landed;
+            total += landed;
             self.add_health_line("-damage", target, false);
+            if let Some([a, b]) = move_data.drain
+                && landed > 0
+            {
+                let restored = (landed * u32::from(a) + u32::from(b) / 2) / u32::from(b);
+                let user = self.mon_mut(source);
+                if user.hp > 0 && user.hp < user.max_hp.get() {
+                    user.hp = (user.hp + restored.max(1)).min(user.max_hp.get());
+                    self.add_health_line_with(
+                        "-heal",
+                        source,
+                        false,
+                        &format!("|[from] drain|[of] {}", self.ident(target)),
+                    );
+                }
+            }
         }
         if !move_data.self_boosts.is_empty() {
             let roll = self.rng.below(100);
@@ -1445,7 +1522,7 @@ impl Battle {
                         self.try_status(target, status, source, move_data, false, base);
                     }
                     if !effect.boosts.is_empty() {
-                        self.boost(target, &effect.boosts, true);
+                        self.boost_from(target, source, &effect.boosts, true, false);
                     }
                     if effect.volatile_status.as_deref() == Some("flinch")
                         && self.mon(target).hp > 0
@@ -1457,7 +1534,8 @@ impl Battle {
             }
         }
         for &(target, _) in &damage {
-            if move_data.move_type == "Fire" && matches!(self.mon(target).status, Status::Freeze(_))
+            if (move_data.move_type == "Fire" || move_data.thaws_target)
+                && matches!(self.mon(target).status, Status::Freeze(_))
             {
                 self.cure_status(target, "[msg]");
             }
@@ -1483,6 +1561,9 @@ impl Battle {
             }
         }
         for &(target, _) in &damage {
+            if self.mon(target).ability == "stamina" {
+                self.ability_boost(target, "Stamina", BoostStat::Def, 1, false);
+            }
             if self.mon(target).item == "airballoon" {
                 self.consume(target, "Air Balloon", false);
             }
@@ -1519,11 +1600,29 @@ impl Battle {
             self.mark_fainted(source);
             self.check_win();
         }
-        if struggle && !self.mon(source).fainted {
+        let recoil = if struggle {
+            (self.mon(source).max_hp.get() + 2) / 4
+        } else if let Some([num, den]) = move_data.recoil
+            && total > 0
+            && self.mon(source).ability != "rockhead"
+        {
+            ((total * u32::from(num) + u32::from(den) / 2) / u32::from(den)).max(1)
+        } else {
+            0
+        };
+        if recoil > 0 && !self.mon(source).fainted {
             let mon = self.mon_mut(source);
-            let recoil = ((mon.max_hp.get() + 2) / 4).max(1);
             mon.hp = mon.hp.saturating_sub(recoil);
-            self.add_health_line_with("-damage", source, false, "|[from] recoil");
+            self.add_health_line_with(
+                "-damage",
+                source,
+                false,
+                if struggle {
+                    "|[from] recoil"
+                } else {
+                    "|[from] Recoil"
+                },
+            );
         }
         self.each_event();
         if self.mon(source).hp == 0 && !self.mon(source).fainted {
@@ -1563,6 +1662,7 @@ impl Battle {
         mon.volatile_order.clear();
         mon.imprisoned = false;
         mon.choice_lock = None;
+        mon.roosted = false;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
         self.add(format!("|faint|{}", self.ident(target)));
@@ -1618,7 +1718,11 @@ impl Battle {
             return Some(0);
         }
         let mut modifier = 0;
-        for typing in &self.mon(target).species.types {
+        for typing in self.mon(target).types() {
+            if move_data.name == "Freeze-Dry" && typing == "Water" {
+                modifier += 1;
+                continue;
+            }
             let case = DEX
                 .type_data(&to_id(typing))
                 .unwrap()
@@ -1702,6 +1806,10 @@ impl Pokemon {
                 | "sharpness"
                 | "toughclaws"
                 | "stickyhold"
+                | "rockhead"
+                | "mirrorarmor"
+                | "competitive"
+                | "stamina"
         )
     }
 

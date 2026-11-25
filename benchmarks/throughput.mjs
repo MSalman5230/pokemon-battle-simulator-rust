@@ -2,7 +2,7 @@
 import assert from 'node:assert/strict';
 import {spawn} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {readFileSync} from 'node:fs';
+import {readFileSync, writeFileSync} from 'node:fs';
 import {arch, availableParallelism, cpus, platform} from 'node:os';
 import {join} from 'node:path';
 import {createInterface} from 'node:readline';
@@ -25,6 +25,7 @@ function options(args) {
             help: {type: 'boolean', short: 'h'},
             'teams-file': {type: 'string'},
             'debug-parity': {type: 'boolean'},
+            'capture-replay': {type: 'string'},
             ...Object.fromEntries(Object.entries(defaults).map(
                 ([name, value]) => [name, {type: 'string', default: String(value)}],
             )),
@@ -32,7 +33,7 @@ function options(args) {
     });
     if (values.help) {
         console.log('Usage: node benchmarks/throughput.mjs [--games 32] [--batch-size 16] ' +
-            '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] [--debug-parity] [-- CANDIDATE [ARGS...]]');
+            '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] [--debug-parity] [--capture-replay FILE] [-- CANDIDATE [ARGS...]]');
         return null;
     }
     assert(split < 0 || candidate.length, 'Pass a worker command after --');
@@ -44,7 +45,7 @@ function options(args) {
     }
     assert(settings['batch-size'] <= settings.games, '--batch-size must not exceed --games');
     assert(settings.seed <= 0xffffffff, '--seed must fit in an unsigned 32-bit integer');
-    return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity']};
+    return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity'], capturePath: values['capture-replay']};
 }
 
 function openWorker([command, ...args]) {
@@ -100,7 +101,7 @@ const fingerprint = result => sha256(JSON.stringify(result, (_, value) =>
     value && typeof value === 'object' && !Array.isArray(value) ?
         Object.fromEntries(Object.keys(value).sort().map(key => [key, value[key]])) : value));
 
-async function record(worker, teams, settings, debugParity) {
+async function record(worker, teams, settings, debugParity, captureCoverage) {
     let rng = settings.seed;
     function word() {
         rng ^= rng << 13;
@@ -115,6 +116,23 @@ async function record(worker, teams, settings, debugParity) {
         return pool[word() % pool.length].id;
     }
     const frames = [];
+    const coverage = Object.fromEntries(['moves', 'abilities', 'items', 'species', 'megas'].map(k => [k, new Map()]));
+    function count(type, name) {
+        if (name) coverage[type].set(name, (coverage[type].get(name) ?? 0) + 1);
+    }
+    function choose(view) {
+        const id = action(view);
+        if (captureCoverage) {
+            const choice = view.legal.find(c => c.id === id);
+            const pokemon = view.own.find(mon => mon.active);
+            count('abilities', pokemon?.ability);
+            count('items', pokemon?.item);
+            count('species', pokemon?.species);
+            count('moves', choice?.move);
+            if (choice?.mega) count('megas', pokemon?.species);
+        }
+        return id;
+    }
     let started = 0;
     let ended = 0;
     let truncated = 0;
@@ -143,7 +161,7 @@ async function record(worker, teams, settings, debugParity) {
         const states = await capture({
             op: 'batch',
             requests: slots.map(slot => ({
-                op: 'step', game: String(slot), actions: active.get(slot).views.map(action),
+                op: 'step', game: String(slot), actions: active.get(slot).views.map(choose),
             })),
         }, slots.length);
         for (const [i, slot] of slots.entries()) {
@@ -163,7 +181,7 @@ async function record(worker, teams, settings, debugParity) {
         requests: Array.from({length: settings['batch-size']}, (_, slot) => ({op: 'close', game: String(slot)})),
     });
     assert.equal(ended + truncated, settings.games);
-    return {frames, ended, truncated, iterations: frames.reduce((sum, entry) => sum + entry.steps, 0)};
+    return {frames, ended, truncated, coverage, iterations: frames.reduce((sum, entry) => sum + entry.steps, 0)};
 }
 
 function firstDifference(actual, expected, path = []) {
@@ -219,7 +237,7 @@ function median(values) {
 async function main() {
     const config = options(process.argv.slice(2));
     if (!config) return;
-    const {settings, candidate, teamsPath, debugParity} = config;
+    const {settings, candidate, teamsPath, debugParity, capturePath} = config;
     const lock = readFileSync(join(oracle, 'package-lock.json'));
     const teamsFile = readFileSync(teamsPath ?? join(oracle, 'teams_train.json'));
     const workerPath = join(oracle, 'worker.cjs');
@@ -234,11 +252,20 @@ async function main() {
         ping = await recorder.exchange(frame(0, {op: 'ping'}));
         assert.equal(ping.format, format);
         assert.equal(ping.revision, revision);
-        workload = await record(recorder, teams, settings, debugParity);
+        workload = await record(recorder, teams, settings, debugParity, !!capturePath);
     } finally {
         recorder.close();
     }
 
+    if (capturePath) {
+        assert(!candidate.length, '--capture-replay records the oracle only');
+        const coverage = Object.fromEntries(Object.entries(workload.coverage).map(([key, counts]) =>
+            [key, Object.fromEntries([...counts].sort((a, b) => b[1] - a[1]))]));
+        writeFileSync(capturePath, workload.frames.map(frame => frame.wire).join(''));
+        const digest = sha256(workload.frames.map(frame => frame.wire).join(''));
+        console.log(JSON.stringify({digest, coverage, iterations: workload.iterations}, null, 2));
+        return;
+    }
     const backends = [{name: 'showdown', worker: openWorker(reference), samples: []}];
     if (candidate.length) backends.push({name: 'candidate', worker: openWorker(candidate), samples: []});
     try {

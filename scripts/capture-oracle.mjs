@@ -156,6 +156,12 @@ const choiceRosters = [
         {...named('Incineroar', ['Knock Off', 'Protect']), ability: 'Intimidate', item: 'Leftovers'},
         {...named('Dragonite', ['Tackle']), ability: 'Multiscale'}],
 ];
+const bulkyRosters = [
+    [{...named('Corviknight', ['Iron Defense', 'Roost', 'Body Press', 'Brave Bird']), ability: 'Mirror Armor'},
+        named('Vaporeon', ['Surf']), named('Umbreon', ['Tackle'])],
+    [{...named('Archaludon', ['Icy Wind', 'Body Press', 'Giga Drain', 'Protect']), ability: 'Stamina'},
+        named('Glaceon', ['Freeze-Dry']), named('Jolteon', ['Tackle'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -203,6 +209,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 1'], ['switch 2', 'switch 2'],
         ['move 1', 'move 1'], ['switch 2', 'move 1'], ['move 2', 'switch 3']],
         choiceRosters, 'bss-choice-items'],
+    ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 1'], ['move 2', 'move 2'],
+        ['move 3', 'move 3'], ['move 4', 'switch 2'], ['switch 2', 'move 1']],
+        bulkyRosters, 'bss-bulky-effects'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

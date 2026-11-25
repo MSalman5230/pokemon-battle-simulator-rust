@@ -78,3 +78,14 @@ It is diagnostic and excludes JSON-lines pipe traffic. On a 120-game subset
 sample, the profiler attributed about 34% of CPU time directly to the worker's
 JSON round-trip `clone` helper. The Rust adapter serializes borrowed views
 and avoids copying either player's observation tree for the critic.
+
+To capture the original training workload without timing:
+
+```sh
+node benchmarks/throughput.mjs --capture-replay benchmarks/results/full-workload.jsonl \
+  > benchmarks/results/full-coverage.json
+```
+
+The coverage report counts selected moves and the active species, abilities,
+items, and Mega choices at selection time. A selected move may still fail or
+never execute. This diagnostic keeps the same deterministic workload hash.

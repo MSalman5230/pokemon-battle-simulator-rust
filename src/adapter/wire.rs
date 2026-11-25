@@ -274,7 +274,7 @@ impl Serialize for OwnMon<'_> {
             )?;
             map.serialize_entry("status", p.status.id())?;
             map.serialize_entry("boosts", &BoostTable(p))?;
-            map.serialize_entry("types", &p.species.types)?;
+            map.serialize_entry("types", &p.types().collect::<Vec<_>>())?;
             map.serialize_entry("active", &self.active)?;
             map.serialize_entry("fainted", &(p.hp == 0))?;
             map.serialize_entry("identity_uncertain", &false)?;
