@@ -6,7 +6,7 @@ use super::{
 };
 use crate::{
     choice::to_id,
-    dex::{DEX, Format, Move, Species},
+    dex::{DEX, Effect, Format, Item, Move, Species},
 };
 use serde_json::Value;
 use std::{
@@ -240,6 +240,189 @@ impl TeamValidator {
             .expect("dex and legality names must agree")
     }
 
+    fn named_species(&self, name: &str) -> &'static Species {
+        DEX.species(self.format.dex_mod, &to_id(name))
+            .expect("projected form refers to an existing species")
+    }
+
+    fn validate_forme(
+        &self,
+        original: &'static Species,
+        item: Option<&Item>,
+        ability: &mut &'static Effect,
+        moves: &mut [&'static Move],
+        name: &str,
+        problems: &mut Vec<String>,
+    ) -> &'static Species {
+        let rules = self.species_rules(original);
+        let item_name = item.map_or("", |item| item.effect.name.as_str());
+        let knows = |name: &str| moves.iter().any(|data| data.name == name);
+        let missing_item = rules
+            .required_items
+            .as_ref()
+            .filter(|items| !items.iter().any(|name| name == item_name));
+        let missing_move = rules.required_move.as_deref().filter(|name| !knows(name));
+        let mut species = original;
+        if original.name == "Necrozma-Ultra" {
+            if item_name != "Ultranecrozium Z" {
+                problems
+                    .push("Necrozma-Ultra must start the battle holding Ultranecrozium Z.".into());
+            } else {
+                let start = match (knows("Sunsteel Strike"), knows("Moongeist Beam")) {
+                    (true, false) => Some("Necrozma-Dusk-Mane"),
+                    (false, true) => Some("Necrozma-Dawn-Wings"),
+                    _ => None,
+                };
+                if let Some(start) = start {
+                    species = self.named_species(start);
+                    *ability = DEX.ability("prismarmor").unwrap();
+                } else {
+                    problems.push("Necrozma-Ultra must start the battle as Necrozma-Dusk-Mane or Necrozma-Dawn-Wings holding Ultranecrozium Z. Please specify which Necrozma it should start as.".into());
+                }
+            }
+        } else if original.base_species == "Zygarde" {
+            if matches!(original.name.as_str(), "Zygarde-Complete" | "Zygarde-Mega") {
+                problems.push(format!("{} must start the battle as Zygarde or Zygarde-10% with Power Construct. Please specify which Zygarde it should start as.", original.name));
+            }
+            if item_name == "Zygardite" && ability.name != "Power Construct" {
+                problems.push("Zygarde holding Zygardite can only Mega Evolve with the Power Construct ability.".into());
+            }
+        } else if original.base_species == "Terapagos" {
+            species = self.named_species("Terapagos");
+            *ability = DEX.ability("terashift").unwrap();
+        } else if let Some(battle_only) = &rules.battle_only {
+            if let Some(required) = &rules.required_ability
+                && ability.name != *required
+            {
+                problems.push(format!(
+                    "{} transforms in-battle with {required}, please fix its ability.",
+                    original.name
+                ));
+            }
+            if let Some(items) = missing_item {
+                problems.push(format!(
+                    "{} transforms in-battle with {}, please fix its item.",
+                    original.name,
+                    items.join(" or ")
+                ));
+            }
+            if let Some(required) = missing_move {
+                problems.push(format!(
+                    "{} transforms in-battle with {required}, please fix its moves.",
+                    original.name
+                ));
+            }
+            species = self.named_species(
+                battle_only
+                    .as_str()
+                    .expect("alternative starting forms handled above"),
+            );
+        } else {
+            let original_form = || {
+                self.species_rules(
+                    self.named_species(
+                        rules
+                            .changes_from
+                            .as_deref()
+                            .unwrap_or(&original.base_species),
+                    ),
+                )
+            };
+            if let Some(items) = missing_item {
+                let items = items.join(" or ");
+                if matches!(original.base_species.as_str(), "Arceus" | "Silvally") {
+                    problems.extend([
+                        format!("{name} needs to hold {items}."),
+                        "(It will revert to its Normal forme if you remove the item or give it a different item.)".into(),
+                    ]);
+                } else {
+                    let base = &original_form().base_forme;
+                    let base = if base.is_empty() { "base" } else { base };
+                    problems.extend([
+                        format!("{name} needs to hold {items} to be in its {} forme.", rules.forme),
+                        format!("(It will revert to its {base} forme if you remove the item or give it a different item.)"),
+                    ]);
+                }
+            }
+            if let Some(required) = missing_move {
+                let base = &original_form().base_forme;
+                problems.extend([
+                    format!(
+                        "{name} needs to know the move {required} to be in its {} forme.",
+                        rules.forme
+                    ),
+                    format!("(It will revert to its {base} forme if it forgets the move.)"),
+                ]);
+            }
+            if let Some(forced) = item
+                .and_then(|item| item.forced_forme.as_deref())
+                .map(|form| self.named_species(form))
+                && original.name == forced.base_species
+            {
+                species = forced;
+            }
+        }
+        if original.name == "Keldeo" && knows("Secret Sword") {
+            species = self.named_species("Keldeo-Resolute");
+        }
+        if original.base_species == "Greninja" && ability.name == "Battle Bond" {
+            species = self.named_species("Greninja-Bond");
+        }
+        if original.base_species == "Rockruff" && ability.name == "Own Tempo" {
+            species = self.named_species("Rockruff-Dusk");
+        }
+        if (original.name == "Hoopa" && knows("Hyperspace Fury"))
+            || (original.name == "Hoopa-Unbound" && knows("Hyperspace Hole"))
+        {
+            let (wrong, right) = if original.name == "Hoopa" {
+                ("Hyperspace Fury", "Hyperspace Hole")
+            } else {
+                ("Hyperspace Hole", "Hyperspace Fury")
+            };
+            problems.push(format!("In Generation 9, {} cannot run {wrong} because it gets replaced with {right} upon changing forme.", original.name));
+        }
+        let behemoth = match original.name.as_str() {
+            "Zacian-Crowned" => "Behemoth Blade",
+            "Zamazenta-Crowned" => "Behemoth Bash",
+            _ => return species,
+        };
+        if let Some(data) = moves.iter_mut().find(|data| data.name == behemoth) {
+            *data = DEX.moves(self.format.dex_mod, "ironhead").unwrap();
+        }
+        species
+    }
+
+    fn tier_forme(
+        &self,
+        species: &'static Species,
+        item: Option<&Item>,
+        moves: &[&Move],
+    ) -> &'static Species {
+        if let Some(mega) = item
+            .and_then(|item| item.mega_stone.as_ref())
+            .and_then(|table| table.get(&species.name))
+        {
+            return self.named_species(mega);
+        }
+        match (
+            species.name.as_str(),
+            item.map(|item| item.effect.name.as_str()),
+        ) {
+            ("Groudon", Some("Red Orb")) => self.named_species("Groudon-Primal"),
+            ("Kyogre", Some("Blue Orb")) => self.named_species("Kyogre-Primal"),
+            ("Zacian", Some("Rusted Sword")) => self.named_species("Zacian-Crowned"),
+            ("Zamazenta", Some("Rusted Shield")) => self.named_species("Zamazenta-Crowned"),
+            ("Rayquaza", _)
+                if self.rules.rule_sources.contains_key("+tag:past")
+                    && !self.format.has_rule("megarayquazaclause")
+                    && moves.iter().any(|data| data.name == "Dragon Ascent") =>
+            {
+                self.named_species("Rayquaza-Mega")
+            }
+            _ => species,
+        }
+    }
+
     fn ban_reason(&self, key: &str) -> Option<String> {
         self.rules.rule_sources.get(&format!("-{key}")).map(|rule| {
             if rule.is_empty() {
@@ -255,6 +438,11 @@ impl TeamValidator {
     }
 
     fn species_ban(&self, species: &Species, tier: &Species, display: &str) -> Option<String> {
+        let species = if matches!(tier.name.as_str(), "Zacian-Crowned" | "Zamazenta-Crowned") {
+            tier
+        } else {
+            species
+        };
         for forme in [species, tier] {
             if let Some(reason) = self.ban_reason(&format!("pokemon:{}", to_id(&forme.name))) {
                 return Some(format!("{} is {reason}.", forme.name));
@@ -324,7 +512,7 @@ impl TeamValidator {
         } else {
             &ability_input
         });
-        let Some(ability) = ability else {
+        let Some(mut ability) = ability else {
             return Ok(CheckedSet::invalid(format!(
                 "\"{ability_input}\" is an invalid ability."
             )));
@@ -355,7 +543,6 @@ impl TeamValidator {
                 original.name
             )));
         }
-        let original_rules = self.species_rules(original);
         let mut problems = Vec::new();
         let raw_name = string(set, "name");
         let mut name = nickname(raw_name);
@@ -405,72 +592,15 @@ impl TeamValidator {
                 self.format.max_level
             ));
         }
-        let mut species = original;
-        if let Some(battle_only) = &original_rules.battle_only {
-            let Some(base) = battle_only.as_str() else {
-                return Err(ValidationError(format!(
-                    "alternative starting forms of {}",
-                    original.name
-                )));
-            };
-            if let Some(required) = &original_rules.required_ability
-                && ability.name != *required
-            {
-                problems.push(format!(
-                    "{} transforms in-battle with {required}, please fix its ability.",
-                    original.name
-                ));
-            }
-            if let Some(required) = &original_rules.required_items
-                && !required.iter().any(|name| name == item_label)
-            {
-                problems.push(format!(
-                    "{} transforms in-battle with {}, please fix its item.",
-                    original.name,
-                    required.join(" or ")
-                ));
-            }
-            if let Some(required) = &original_rules.required_move
-                && !moves.iter().any(|data| data.name == *required)
-            {
-                problems.push(format!(
-                    "{} transforms in-battle with {required}, please fix its moves.",
-                    original.name
-                ));
-            }
-            species = DEX
-                .species(dex, &to_id(base))
-                .expect("battle form start species exists");
-        } else if original_rules
-            .required_items
-            .as_ref()
-            .is_some_and(|items| !items.iter().any(|name| name == item_label))
-            || original_rules
-                .required_move
-                .as_ref()
-                .is_some_and(|m| !moves.iter().any(|data| data.name == *m))
-        {
-            return Err(ValidationError(format!(
-                "required item or move for {}",
-                original.name
-            )));
-        }
-        if matches!(
-            species.base_species.as_str(),
-            "Zygarde" | "Terapagos" | "Necrozma" | "Arceus" | "Genesect" | "Giratina" | "Silvally"
-        ) || ability.name == "Battle Bond"
-            || (species.base_species == "Rockruff" && ability.name == "Own Tempo")
-        {
-            return Err(ValidationError(format!(
-                "special form legality for {}",
-                species.name
-            )));
-        }
-        let tier_species = item
-            .and_then(|it| it.mega_stone.as_ref())
-            .and_then(|table| table.get(&species.name))
-            .and_then(|form| DEX.species(dex, &to_id(form)))
-            .unwrap_or(species);
+        let species = self.validate_forme(
+            original,
+            item,
+            &mut ability,
+            &mut moves,
+            &name,
+            &mut problems,
+        );
+        let tier_species = self.tier_forme(species, item, &moves);
         let species_id = to_id(&species.name);
         let nature = to_id(string(set, "nature"));
         let display_species = if name == tier_species.name {
@@ -586,6 +716,13 @@ impl TeamValidator {
                         break;
                     }
                     MoveSources::Conditional | MoveSources::Missing => {
+                        if species.name == "Smeargle"
+                            && (data.flags.contains_key("nosketch") || data.is_z_move)
+                        {
+                            problems
+                                .push(format!("{display}'s move {} can't be Sketched.", data.name));
+                            break;
+                        }
                         return Err(ValidationError(format!(
                             "learnset prerequisites for {} using {}",
                             species.name, data.name
@@ -656,7 +793,12 @@ impl TeamValidator {
             )));
         }
         if let Some(events) = self.event_for(species)? {
-            self.check_modern_events(set, species, &display, level, events, &mut problems)?;
+            let event_display = if name == species.name || name == species.base_species {
+                species.name.clone()
+            } else {
+                format!("{name} ({})", species.name)
+            };
+            self.check_modern_events(set, species, &event_display, level, events, &mut problems)?;
         }
         if let Some(natdex) = self.natdex {
             if self.species_rules(species).tier == "Illegal"
@@ -764,6 +906,7 @@ impl TeamValidator {
             let gender = species
                 .gender
                 .as_deref()
+                .filter(|gender| !gender.is_empty())
                 .or_else(|| Some(string(set, "gender")).filter(|g| matches!(*g, "M" | "F")));
             if let (Some(actual), Some(required)) = (gender, event["gender"].as_str())
                 && actual != required

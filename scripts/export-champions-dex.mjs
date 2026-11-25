@@ -131,7 +131,7 @@ const data = mod => {
                 adamantcrystal: 'Dialga', lustrousglobe: 'Palkia', griseouscore: 'Giratina',
                 rustedsword: 'Zacian', rustedshield: 'Zamazenta',
             }[e.id];
-            return {...props(e, ['name', 'isNonstandard', 'megaStone', 'zMoveType', 'zMoveFrom', 'itemUser']),
+            return {...props(e, ['name', 'isNonstandard', 'megaStone', 'forcedForme', 'zMoveType', 'zMoveFrom', 'itemUser']),
                 isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined, fling: flingData(e),
                 inertHeldItem: inertHeldItem(e) || undefined,
                 zMove: e.zMove || undefined, unremovable: e.onTakeItem === false || undefined,

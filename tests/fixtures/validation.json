@@ -2855,6 +2855,522 @@
       ]
     },
     {
+      "name": "plate determines Arceus forme",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Arceus",
+        "ability": "Multitype",
+        "moves": [
+          "Judgment"
+        ],
+        "item": "Pixie Plate",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Arceus-Fairy held item mismatch",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Arceus-Fairy",
+        "ability": "Multitype",
+        "moves": [
+          "Judgment"
+        ],
+        "item": "Leftovers",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Arceus needs to hold Pixie Plate or Fairium Z.",
+        "(It will revert to its Normal forme if you remove the item or give it a different item.)"
+      ]
+    },
+    {
+      "name": "drive determines Genesect forme",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Genesect",
+        "ability": "Download",
+        "moves": [
+          "Techno Blast"
+        ],
+        "item": "Burn Drive",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "memory determines Silvally forme",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Silvally",
+        "ability": "RKS System",
+        "moves": [
+          "Multi-Attack"
+        ],
+        "item": "Water Memory",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "core permits Levitate on Giratina",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Giratina",
+        "ability": "Levitate",
+        "moves": [
+          "Shadow Force"
+        ],
+        "item": "Griseous Core",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "orb is not the required item for Giratina-Origin",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Giratina-Origin",
+        "ability": "Levitate",
+        "moves": [
+          "Shadow Force"
+        ],
+        "item": "Griseous Orb",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Giratina needs to hold Griseous Core to be in its Origin forme.",
+        "(It will revert to its Altered forme if you remove the item or give it a different item.)"
+      ]
+    },
+    {
+      "name": "crystal chooses Dialga-Origin",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Dialga",
+        "ability": "Pressure",
+        "moves": [
+          "Roar of Time"
+        ],
+        "item": "Adamant Crystal",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "mask permits forme-specific Ogerpon ability",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Ogerpon",
+        "ability": "Water Absorb",
+        "moves": [
+          "Ivy Cudgel"
+        ],
+        "item": "Wellspring Mask",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "borrowed move determines Ultra Necrozma starting forme",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Necrozma-Ultra",
+        "ability": "Neuroforce",
+        "moves": [
+          "Sunsteel Strike"
+        ],
+        "item": "Ultranecrozium Z",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Moongeist Beam chooses Dawn Wings",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Necrozma-Ultra",
+        "ability": "Neuroforce",
+        "moves": [
+          "Moongeist Beam"
+        ],
+        "item": "Ultranecrozium Z",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Ultra Necrozma needs its crystal",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Necrozma-Ultra",
+        "ability": "Neuroforce",
+        "moves": [
+          "Moongeist Beam"
+        ],
+        "item": "Life Orb",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Necrozma-Ultra must start the battle holding Ultranecrozium Z."
+      ]
+    },
+    {
+      "name": "Ultra Necrozma cannot infer either of two forms",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Necrozma-Ultra",
+        "ability": "Neuroforce",
+        "moves": [
+          "Protect"
+        ],
+        "item": "Ultranecrozium Z",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Necrozma-Ultra must start the battle as Necrozma-Dusk-Mane or Necrozma-Dawn-Wings holding Ultranecrozium Z. Please specify which Necrozma it should start as."
+      ]
+    },
+    {
+      "name": "Ultra Necrozma cannot infer a form from both signatures",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Necrozma-Ultra",
+        "ability": "Neuroforce",
+        "moves": [
+          "Moongeist Beam",
+          "Sunsteel Strike"
+        ],
+        "item": "Ultranecrozium Z",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Necrozma-Ultra must start the battle as Necrozma-Dusk-Mane or Necrozma-Dawn-Wings holding Ultranecrozium Z. Please specify which Necrozma it should start as."
+      ]
+    },
+    {
+      "name": "Zygarde-Complete requires an explicit starting form",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Zygarde-Complete",
+        "ability": "Power Construct",
+        "moves": [
+          "Thousand Arrows"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Zygarde-Complete must start the battle as Zygarde or Zygarde-10% with Power Construct. Please specify which Zygarde it should start as."
+      ]
+    },
+    {
+      "name": "Zygardite needs Power Construct",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Zygarde",
+        "ability": "Aura Break",
+        "moves": [
+          "Thousand Arrows"
+        ],
+        "item": "Zygardite",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Zygarde holding Zygardite can only Mega Evolve with the Power Construct ability.",
+        "Zygarde's item Zygardite does not exist in Gen 9.",
+        "Zygarde's item Zygardite does not exist in Gen 9."
+      ]
+    },
+    {
+      "name": "Power Construct in the 10 percent form",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Zygarde-10%",
+        "ability": "Power Construct",
+        "moves": [
+          "Thousand Arrows"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Terapagos changes forme with Tera Shift",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Terapagos-Stellar",
+        "ability": "Teraform Zero",
+        "moves": [
+          "Tera Starstorm"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Battle Bond uses the Greninja-Bond event",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Greninja",
+        "ability": "Battle Bond",
+        "moves": [
+          "Water Shuriken"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Greninja-Bond event excludes shiny",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Greninja",
+        "ability": "Battle Bond",
+        "moves": [
+          "Water Shuriken"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "gender": "F",
+        "shiny": true
+      },
+      "expected": [
+        "Greninja-Bond is only obtainable from an event - it needs to match its event:",
+        "Greninja-Bond must not be shiny to be from its event."
+      ]
+    },
+    {
+      "name": "Rockruff with Own Tempo is legal",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Rockruff",
+        "ability": "Own Tempo",
+        "moves": [
+          "Rock Throw"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Rockruff-Dusk rejects other abilities",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Rockruff-Dusk",
+        "ability": "Vital Spirit",
+        "moves": [
+          "Rock Throw"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Rockruff-Dusk can't have Vital Spirit."
+      ]
+    },
+    {
+      "name": "Secret Sword requires Resolute Keldeo",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Keldeo",
+        "ability": "Justified",
+        "moves": [
+          "Secret Sword"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Keldeo needs Secret Sword to stay Resolute",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Keldeo-Resolute",
+        "ability": "Justified",
+        "moves": [
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Keldeo needs to know the move Secret Sword to be in its Resolute forme.",
+        "(It will revert to its Ordinary forme if it forgets the move.)"
+      ]
+    },
+    {
+      "name": "Hoopa-Unbound cannot keep Hyperspace Hole",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Hoopa-Unbound",
+        "ability": "Magician",
+        "moves": [
+          "Hyperspace Hole"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "In Generation 9, Hoopa-Unbound cannot run Hyperspace Hole because it gets replaced with Hyperspace Fury upon changing forme."
+      ]
+    },
+    {
+      "name": "Hoopa cannot keep Hyperspace Fury",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Hoopa",
+        "ability": "Magician",
+        "moves": [
+          "Hyperspace Fury"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "In Generation 9, Hoopa cannot run Hyperspace Fury because it gets replaced with Hyperspace Hole upon changing forme."
+      ]
+    },
+    {
+      "name": "Relic Song is needed for Meloetta-Pirouette",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Meloetta-Pirouette",
+        "ability": "Serene Grace",
+        "moves": [
+          "Psychic"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Meloetta-Pirouette transforms in-battle with Relic Song, please fix its moves."
+      ]
+    },
+    {
+      "name": "Behemoth Blade is legalized through Iron Head on Zacian-Crowned",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Zacian-Crowned",
+        "ability": "Intrepid Sword",
+        "moves": [
+          "Behemoth Blade"
+        ],
+        "item": "Rusted Sword",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Behemoth Bash is legalized through Iron Head on Zamazenta-Crowned",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Zamazenta-Crowned",
+        "ability": "Dauntless Shield",
+        "moves": [
+          "Behemoth Bash"
+        ],
+        "item": "Rusted Shield",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "holding a Red Orb permits the Primal ability",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Groudon",
+        "ability": "Desolate Land",
+        "moves": [
+          "Precipice Blades"
+        ],
+        "item": "Red Orb",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "holding a Blue Orb permits the Primal ability",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Kyogre",
+        "ability": "Primordial Sea",
+        "moves": [
+          "Origin Pulse"
+        ],
+        "item": "Blue Orb",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Dragon Ascent permits Delta Stream in NatDex",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Rayquaza",
+        "ability": "Delta Stream",
+        "moves": [
+          "Dragon Ascent"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Rayquaza must know Dragon Ascent to Mega Evolve",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Rayquaza-Mega",
+        "ability": "Delta Stream",
+        "moves": [
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Rayquaza-Mega transforms in-battle with Dragon Ascent, please fix its moves.",
+        "Rayquaza-Mega can't have Delta Stream."
+      ]
+    },
+    {
+      "name": "Darkrai learns its signature sleep move",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Darkrai",
+        "ability": "Bad Dreams",
+        "moves": [
+          "Dark Void"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "Smeargle cannot Sketch Dark Void",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Smeargle",
+        "ability": "Own Tempo",
+        "moves": [
+          "Dark Void"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Smeargle's move Dark Void can't be Sketched."
+      ]
+    },
+    {
       "name": "ordinary full roster",
       "format": "gen9championsou",
       "team": [

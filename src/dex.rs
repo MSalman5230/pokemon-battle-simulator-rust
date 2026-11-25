@@ -295,6 +295,7 @@ pub struct Item {
     #[serde(flatten)]
     pub effect: Effect,
     pub mega_stone: Option<Table<String>>,
+    pub forced_forme: Option<String>,
     #[serde(default)]
     pub is_berry: bool,
     #[serde(default)]
