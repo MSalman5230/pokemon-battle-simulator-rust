@@ -94,6 +94,14 @@ impl Battle {
             }
             return false;
         }
+        if self.gravity > 0 && data.flags.contains_key("gravity") {
+            self.add(format!(
+                "|cant|{}|move: Gravity|{}",
+                self.ident(pos),
+                data.name
+            ));
+            return false;
+        }
         if let Some((slot, _)) = self.mon(pos).disabled_slot
             && self
                 .mon(pos)

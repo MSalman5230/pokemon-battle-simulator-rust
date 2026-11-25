@@ -580,7 +580,7 @@ impl Battle {
 
     pub(super) fn airborne_ability(&self, holder: Position) -> Option<&'static str> {
         let mon = self.mon(holder);
-        if mon.effective_item() == "ironball" || mon.volatile_ids().contains(&"ingrain") {
+        if mon.effective_item() == "ironball" || self.forces_grounded(holder) {
             return None;
         }
         let label = match mon.ability.as_str() {

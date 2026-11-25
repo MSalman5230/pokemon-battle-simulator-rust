@@ -1,0 +1,2081 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Flapple\",\"moves\":[\"Gravity\",\"Grav Apple\",\"Earthquake\",\"Recover\"],\"gender\":\"F\",\"name\":\"Flapple\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Charizard\",\"moves\":[\"Fly\",\"Recover\"],\"gender\":\"F\",\"name\":\"Charizard\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flapple, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flapple, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flapple, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flapple",
+                "details": "Flapple, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 115,
+                  "spd": 80,
+                  "spe": 90
+                },
+                "moves": [
+                  "gravity",
+                  "gravapple",
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flapple",
+            "species": "Flapple",
+            "details": "Flapple, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 115,
+              "spd": 80,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "gravapple",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flapple|Flapple, L50, F|100/100",
+          "|switch|p2a: Charizard|Charizard, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flapple|Flapple, L50, F|145/145",
+          "|switch|p2a: Charizard|Charizard, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flapple|Flapple, L50, F|100/100",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Grav Apple",
+                  "id": "gravapple",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flapple",
+                "details": "Flapple, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 115,
+                  "spd": 80,
+                  "spe": 90
+                },
+                "moves": [
+                  "gravity",
+                  "gravapple",
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flapple",
+            "species": "Flapple",
+            "details": "Flapple, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 115,
+              "spd": 80,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "gravapple",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Fly||[still]",
+          "|-prepare|p2a: Charizard|Fly",
+          "|move|p1a: Flapple|Gravity|p1a: Flapple",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p2a: Charizard|move: Gravity",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Fly||[still]",
+          "|-prepare|p2a: Charizard|Fly",
+          "|move|p1a: Flapple|Gravity|p1a: Flapple",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p2a: Charizard|move: Gravity",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Fly||[still]",
+          "|-prepare|p2a: Charizard|Fly",
+          "|move|p1a: Flapple|Gravity|p1a: Flapple",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p2a: Charizard|move: Gravity",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Grav Apple",
+                  "id": "gravapple",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flapple",
+                "details": "Flapple, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 115,
+                  "spd": 80,
+                  "spe": 90
+                },
+                "moves": [
+                  "gravity",
+                  "gravapple",
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": true
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flapple",
+            "species": "Flapple",
+            "details": "Flapple, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 115,
+              "spd": 80,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "gravapple",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Recover||[still]",
+          "|-fail|p2a: Charizard|heal",
+          "|move|p1a: Flapple|Grav Apple|p2a: Charizard",
+          "|-resisted|p2a: Charizard|2",
+          "|-damage|p2a: Charizard|82/100",
+          "|-unboost|p2a: Charizard|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Recover||[still]",
+          "|-fail|p2a: Charizard|heal",
+          "|move|p1a: Flapple|Grav Apple|p2a: Charizard",
+          "|-resisted|p2a: Charizard|2",
+          "|-damage|p2a: Charizard|82/100",
+          "|-unboost|p2a: Charizard|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Recover||[still]",
+          "|-fail|p2a: Charizard|heal",
+          "|move|p1a: Flapple|Grav Apple|p2a: Charizard",
+          "|-resisted|p2a: Charizard|2",
+          "|-damage|p2a: Charizard|126/153",
+          "|-unboost|p2a: Charizard|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Grav Apple",
+                  "id": "gravapple",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flapple",
+                "details": "Flapple, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 115,
+                  "spd": 80,
+                  "spe": 90
+                },
+                "moves": [
+                  "gravity",
+                  "gravapple",
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": true
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "126/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flapple",
+            "species": "Flapple",
+            "details": "Flapple, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 115,
+              "spd": 80,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "gravapple",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 126,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|100/100",
+          "|move|p1a: Flapple|Earthquake|p2a: Charizard",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|1/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|100/100",
+          "|move|p1a: Flapple|Earthquake|p2a: Charizard",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|1/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|153/153",
+          "|move|p1a: Flapple|Earthquake|p2a: Charizard",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|1/153",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Grav Apple",
+                  "id": "gravapple",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flapple",
+                "details": "Flapple, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 115,
+                  "spd": 80,
+                  "spe": 90
+                },
+                "moves": [
+                  "gravity",
+                  "gravapple",
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": true
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "1/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flapple",
+            "species": "Flapple",
+            "details": "Flapple, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 115,
+              "spd": 80,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "gravapple",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 1,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|50/100g",
+          "|move|p1a: Flapple|Gravity||[still]",
+          "|-fail|p1a: Flapple",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|50/100g",
+          "|move|p1a: Flapple|Gravity||[still]",
+          "|-fail|p1a: Flapple",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|78/153",
+          "|move|p1a: Flapple|Gravity||[still]",
+          "|-fail|p1a: Flapple",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Grav Apple",
+                  "id": "gravapple",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flapple",
+                "details": "Flapple, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 115,
+                  "spd": 80,
+                  "spe": 90
+                },
+                "moves": [
+                  "gravity",
+                  "gravapple",
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": true
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "78/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flapple",
+            "species": "Flapple",
+            "details": "Flapple, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 115,
+              "spd": 80,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "gravapple",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 78,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 move 2"
+      ],
+      "turn": 6,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|100/100",
+          "|move|p1a: Flapple|Recover||[still]",
+          "|-fail|p1a: Flapple|heal",
+          "|",
+          "|-fieldend|move: Gravity",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|100/100",
+          "|move|p1a: Flapple|Recover||[still]",
+          "|-fail|p1a: Flapple|heal",
+          "|",
+          "|-fieldend|move: Gravity",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Recover|p2a: Charizard",
+          "|-heal|p2a: Charizard|153/153",
+          "|move|p1a: Flapple|Recover||[still]",
+          "|-fail|p1a: Flapple|heal",
+          "|",
+          "|-fieldend|move: Gravity",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Grav Apple",
+                  "id": "gravapple",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flapple",
+                "details": "Flapple, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 115,
+                  "spd": 80,
+                  "spe": 90
+                },
+                "moves": [
+                  "gravity",
+                  "gravapple",
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flapple",
+            "species": "Flapple",
+            "details": "Flapple, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 115,
+              "spd": 80,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "gravapple",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 7,
+      "seed": "25495,32001,50713,50540",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Fly||[still]",
+          "|-prepare|p2a: Charizard|Fly",
+          "|move|p1a: Flapple|Earthquake|p2a: Charizard|[miss]",
+          "|-miss|p1a: Flapple|p2a: Charizard",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Fly||[still]",
+          "|-prepare|p2a: Charizard|Fly",
+          "|move|p1a: Flapple|Earthquake|p2a: Charizard|[miss]",
+          "|-miss|p1a: Flapple|p2a: Charizard",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Fly||[still]",
+          "|-prepare|p2a: Charizard|Fly",
+          "|move|p1a: Flapple|Earthquake|p2a: Charizard|[miss]",
+          "|-miss|p1a: Flapple|p2a: Charizard",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Grav Apple",
+                  "id": "gravapple",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flapple",
+                "details": "Flapple, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 115,
+                  "spd": 80,
+                  "spe": 90
+                },
+                "moves": [
+                  "gravity",
+                  "gravapple",
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly"
+                }
+              ],
+              "trapped": true
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flapple",
+            "species": "Flapple",
+            "details": "Flapple, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 115,
+              "spd": 80,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "gravapple",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -606,6 +606,9 @@ impl Battle {
         if solar_weak {
             power_modifier = crate::mechanics::chain(2048, power_modifier);
         }
+        if self.gravity > 0 && move_data.name == "Grav Apple" {
+            power_modifier = chain(power_modifier, 6144);
+        }
         if expanded {
             power_modifier = crate::mechanics::chain(6144, power_modifier);
         }

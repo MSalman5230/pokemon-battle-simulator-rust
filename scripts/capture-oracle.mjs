@@ -1168,6 +1168,14 @@ const strengthSapRosters = [
     [{...named('Vileplume', ['Swords Dance', 'Strength Sap']), item:'Big Root'}],
     [named('Metapod', ['Night Shade'])],
 ];
+const gravityRosters = [
+    [named('Flapple', ['Gravity', 'Grav Apple', 'Earthquake', 'Recover'])],
+    [named('Charizard', ['Fly', 'Recover'])],
+];
+const steelRollerRosters = [
+    [named('Copperajah', ['Steel Roller'])],
+    [named('Leafeon', ['Grassy Terrain', 'Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -2123,6 +2131,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ingrainRosters, 'bss-ingrain-big-root'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 2','move 1']],
         strengthSapRosters, 'bss-strength-sap'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 3','move 2'],
+        ['move 1','move 2'], ['move 4','move 2'], ['move 3','move 1']], gravityRosters, 'bss-gravity'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 2'], ['move 1','move 1'], ['move 1','move 2']],
+        steelRollerRosters, 'bss-steel-roller'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

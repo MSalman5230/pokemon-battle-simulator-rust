@@ -127,6 +127,9 @@ impl Battle {
             }
             _ => {}
         }
+        if self.gravity > 0 {
+            modifier = crate::mechanics::chain(modifier, 6840);
+        }
         if self.tangled_feet(target) {
             modifier = crate::mechanics::chain(modifier, 2048);
         }

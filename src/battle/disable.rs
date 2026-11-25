@@ -48,10 +48,14 @@ impl Battle {
             + usize::from(mon.heal_block > 0)
             + usize::from(mon.volatile_ids().contains(&"torment"))
             + usize::from(mon.disabled_slot.is_some());
-        let mut handlers = [mon.speed; 9];
+        let mut handlers = [mon.speed; 10];
         let mut count = own_handlers;
         for foe in self.foe_imprison(pos) {
             handlers[count] = foe.speed;
+            count += 1;
+        }
+        if self.gravity > 0 {
+            handlers[count] = 0; // Field-owned condition has no Pokémon speed.
             count += 1;
         }
         // DisableMove sorts these condition handlers together, even when the
@@ -84,6 +88,7 @@ impl Battle {
                     .last_move_slot
                     .is_some_and(|last| mon.moves[last].id == mon.moves[slot].id))
             || (mon.heal_block > 0 && mon.moves[slot].move_data.flags.contains_key("heal"))
+            || (self.gravity > 0 && mon.moves[slot].move_data.flags.contains_key("gravity"))
             || (mon.throat_chop > 0 && mon.moves[slot].move_data.flags.contains_key("sound"))
             || mon
                 .disabled_slot

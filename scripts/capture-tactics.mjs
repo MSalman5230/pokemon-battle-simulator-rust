@@ -104,6 +104,9 @@ add('Return uses the supplied friendship', 'return', mon('Pidgeot', 'Keen Eye', 
 add('Frustration at maximum friendship retains one base power', 'frustration', normal, fire);
 add('Bright Powder decreases accuracy after the attackers lens modifier', 'thunder',
     {...electric, item:'Wide Lens'}, {...normal, item:'Bright Powder'});
+add('Gravity strengthens Grav Apple and improves numeric accuracy', 'gravapple',
+    mon('Flapple', 'Ripen'), fire, {pseudo:{gravity:{}}});
+add('Gravity grounds a Flying target against Earthquake', 'earthquake', normal, fire, {pseudo:{gravity:{}}});
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

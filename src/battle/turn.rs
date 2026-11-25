@@ -1036,6 +1036,9 @@ impl Battle {
                     | "flatter"
                     | "magicpowder"
                     | "ingrain"
+                    | "gravity"
+                    | "gravapple"
+                    | "steelroller"
                     | "electroshot"
                     | "solarbeam"
                     | "solarblade"
@@ -2170,6 +2173,7 @@ impl Battle {
             Safeguard,
             Tailwind,
             TrickRoom,
+            Gravity,
             Terrain,
             GrassyHeal,
             AquaRing,
@@ -2203,6 +2207,20 @@ impl Battle {
                 Priority {
                     order: 27,
                     sub_order: 1,
+                    ..Priority::default()
+                },
+            ));
+        }
+        if self.gravity > 0 {
+            timers.push((
+                Position {
+                    player: Player::P1,
+                    slot: 0,
+                },
+                Effect::Gravity,
+                Priority {
+                    order: 27,
+                    sub_order: 2,
                     ..Priority::default()
                 },
             ));
@@ -2482,6 +2500,15 @@ impl Battle {
                 }
                 continue;
             }
+            if matches!(effect, Effect::Gravity) {
+                self.gravity -= 1;
+                if self.gravity == 0 {
+                    self.add("|-fieldend|move: Gravity");
+                } else if self.resolve_perish_faints(&mut perish_faints) {
+                    return;
+                }
+                continue;
+            }
             if matches!(effect, Effect::Terrain) {
                 self.tick_terrain();
                 if self.terrain.is_some() && self.resolve_perish_faints(&mut perish_faints) {
@@ -2548,6 +2575,7 @@ impl Battle {
                 | Effect::SideGuard(_)
                 | Effect::Safeguard
                 | Effect::TrickRoom
+                | Effect::Gravity
                 | Effect::Terrain
                 | Effect::Wish
                 | Effect::FutureMove
@@ -2927,6 +2955,13 @@ impl Battle {
         if own_action && !self.before_status_move(source, move_data) {
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
+            return false;
+        }
+        if !own_action && self.gravity > 0 && move_data.flags.contains_key("gravity") {
+            self.add(format!(
+                "|cant|{source_name}|move: Gravity|{}",
+                move_data.name
+            ));
             return false;
         }
         if (reflected || sleep_talk.is_some())
@@ -3512,6 +3547,31 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Gravity" {
+            self.protean_prepare(source, move_type);
+            if self.gravity > 0 {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+            } else {
+                self.gravity = 5;
+                self.add("|-fieldstart|move: Gravity");
+                for target in self.positions() {
+                    if matches!(
+                        self.mon(target).semi_invulnerability(),
+                        Some(super::charge::SemiInvulnerable::Airborne { .. })
+                    ) {
+                        self.mon_mut(target).clear_charge();
+                        queue.retain(|action| {
+                            action.actor != Some(target)
+                                || !matches!(action.kind, ActionKind::Move { .. })
+                        });
+                        self.add(format!("|-activate|{}|move: Gravity", self.ident(target)));
+                    }
+                }
+            }
+            return true;
+        }
         if let Some(weather) = Weather::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !self.set_weather(source, weather, None) {
@@ -3744,6 +3804,12 @@ impl Battle {
                 "|-hint|{} only works on your first turn out.",
                 move_data.name
             ));
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
+            return true;
+        }
+        if move_data.name == "Steel Roller" && self.terrain.is_none() {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             result.failed = true;
@@ -5051,6 +5117,9 @@ impl Battle {
                 if self.behind_substitute(source, target, move_data) {
                     let value = compute(self, target, true);
                     self.strike_substitute(source, target, move_data, value, ohko);
+                    if move_data.name == "Steel Roller" {
+                        self.clear_terrain();
+                    }
                     if shell_side_arm && target.player != source.player {
                         self.add(format!("|-hint|{shell_category} Shell Side Arm"));
                     }
@@ -5135,6 +5204,9 @@ impl Battle {
                 if move_data.name == "Clear Smog" {
                     self.mon_mut(target).boosts = Boosts::default();
                     self.add(format!("|-clearboost|{}", self.ident(target)));
+                }
+                if move_data.name == "Steel Roller" {
+                    self.clear_terrain();
                 }
             }
             for &(target, _) in &damage {
@@ -5932,7 +6004,11 @@ impl Battle {
         ignores_immunity: bool,
     ) -> Option<i8> {
         let mon = self.mon(target);
-        if move_type == "Ground" && mon.effective_item() == "ironball" && mon.has_type("Flying") {
+        if move_type == "Ground"
+            && mon.effective_item() == "ironball"
+            && mon.has_type("Flying")
+            && !self.forces_grounded(target)
+        {
             // The held item neutralizes the entire Ground matchup on a
             // Flying holder, including the contribution of its other type.
             return Some(0);
@@ -5954,7 +6030,7 @@ impl Battle {
                     if !(ignores_immunity
                         || typing == "Flying"
                             && move_type == "Ground"
-                            && mon.volatile_ids().contains(&"ingrain")) =>
+                            && self.forces_grounded(target)) =>
                 {
                     return None;
                 }

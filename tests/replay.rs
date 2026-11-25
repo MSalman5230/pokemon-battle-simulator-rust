@@ -1479,6 +1479,16 @@ fn ingrain_grounds_and_anchors_its_user_and_big_root_boosts_recovery() {
 }
 
 #[test]
+fn gravity_cancels_fly_grounds_targets_boosts_grav_apple_and_expires() {
+    replay(include_str!("fixtures/bss-gravity.json"));
+}
+
+#[test]
+fn steel_roller_requires_and_consumes_terrain() {
+    replay(include_str!("fixtures/bss-steel-roller.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

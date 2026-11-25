@@ -1,0 +1,1099 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Copperajah\",\"moves\":[\"Steel Roller\"],\"gender\":\"F\",\"name\":\"Copperajah\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Leafeon\",\"moves\":[\"Grassy Terrain\",\"Recover\"],\"gender\":\"F\",\"name\":\"Leafeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Copperajah, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Copperajah, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Copperajah, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Copperajah",
+                "details": "Copperajah, L50, F",
+                "condition": "197/197",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 89,
+                  "spa": 100,
+                  "spd": 89,
+                  "spe": 50
+                },
+                "moves": [
+                  "steelroller"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "grassyterrain",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Copperajah",
+            "species": "Copperajah",
+            "details": "Copperajah, L50, F",
+            "hp": 197,
+            "maxhp": 197,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 89,
+              "spa": 100,
+              "spd": 89,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "steelroller",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "grassyterrain",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Copperajah|Copperajah, L50, F|100/100",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Copperajah|Copperajah, L50, F|197/197",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Copperajah|Copperajah, L50, F|100/100",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|140/140",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Steel Roller",
+                  "id": "steelroller",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Copperajah",
+                "details": "Copperajah, L50, F",
+                "condition": "197/197",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 89,
+                  "spa": 100,
+                  "spd": 89,
+                  "spe": 50
+                },
+                "moves": [
+                  "steelroller"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Grassy Terrain",
+                  "id": "grassyterrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "grassyterrain",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Copperajah",
+            "species": "Copperajah",
+            "details": "Copperajah, L50, F",
+            "hp": 197,
+            "maxhp": 197,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 89,
+              "spa": 100,
+              "spd": 89,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "steelroller",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "grassyterrain",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Leafeon|Recover||[still]",
+          "|-fail|p2a: Leafeon|heal",
+          "|move|p1a: Copperajah|Steel Roller||[still]",
+          "|-fail|p1a: Copperajah",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Leafeon|Recover||[still]",
+          "|-fail|p2a: Leafeon|heal",
+          "|move|p1a: Copperajah|Steel Roller||[still]",
+          "|-fail|p1a: Copperajah",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Leafeon|Recover||[still]",
+          "|-fail|p2a: Leafeon|heal",
+          "|move|p1a: Copperajah|Steel Roller||[still]",
+          "|-fail|p1a: Copperajah",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Steel Roller",
+                  "id": "steelroller",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Copperajah",
+                "details": "Copperajah, L50, F",
+                "condition": "197/197",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 89,
+                  "spa": 100,
+                  "spd": 89,
+                  "spe": 50
+                },
+                "moves": [
+                  "steelroller"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Grassy Terrain",
+                  "id": "grassyterrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "grassyterrain",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Copperajah",
+            "species": "Copperajah",
+            "details": "Copperajah, L50, F",
+            "hp": 197,
+            "maxhp": 197,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 89,
+              "spa": 100,
+              "spd": 89,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "steelroller",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "grassyterrain",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Leafeon|Grassy Terrain|p2a: Leafeon",
+          "|-fieldstart|move: Grassy Terrain",
+          "|move|p1a: Copperajah|Steel Roller|p2a: Leafeon",
+          "|-damage|p2a: Leafeon|43/100",
+          "|-fieldend|move: Grassy Terrain",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Leafeon|Grassy Terrain|p2a: Leafeon",
+          "|-fieldstart|move: Grassy Terrain",
+          "|move|p1a: Copperajah|Steel Roller|p2a: Leafeon",
+          "|-damage|p2a: Leafeon|43/100",
+          "|-fieldend|move: Grassy Terrain",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Leafeon|Grassy Terrain|p2a: Leafeon",
+          "|-fieldstart|move: Grassy Terrain",
+          "|move|p1a: Copperajah|Steel Roller|p2a: Leafeon",
+          "|-damage|p2a: Leafeon|61/140",
+          "|-fieldend|move: Grassy Terrain",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Steel Roller",
+                  "id": "steelroller",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Copperajah",
+                "details": "Copperajah, L50, F",
+                "condition": "197/197",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 89,
+                  "spa": 100,
+                  "spd": 89,
+                  "spe": 50
+                },
+                "moves": [
+                  "steelroller"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Grassy Terrain",
+                  "id": "grassyterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "61/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "grassyterrain",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Copperajah",
+            "species": "Copperajah",
+            "details": "Copperajah, L50, F",
+            "hp": 197,
+            "maxhp": 197,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 89,
+              "spa": 100,
+              "spd": 89,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "steelroller",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 61,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "grassyterrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Leafeon|Recover|p2a: Leafeon",
+          "|-heal|p2a: Leafeon|93/100",
+          "|move|p1a: Copperajah|Steel Roller||[still]",
+          "|-fail|p1a: Copperajah",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Leafeon|Recover|p2a: Leafeon",
+          "|-heal|p2a: Leafeon|93/100",
+          "|move|p1a: Copperajah|Steel Roller||[still]",
+          "|-fail|p1a: Copperajah",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Leafeon|Recover|p2a: Leafeon",
+          "|-heal|p2a: Leafeon|131/140",
+          "|move|p1a: Copperajah|Steel Roller||[still]",
+          "|-fail|p1a: Copperajah",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Steel Roller",
+                  "id": "steelroller",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Copperajah",
+                "details": "Copperajah, L50, F",
+                "condition": "197/197",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 89,
+                  "spa": 100,
+                  "spd": 89,
+                  "spe": 50
+                },
+                "moves": [
+                  "steelroller"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Grassy Terrain",
+                  "id": "grassyterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "131/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "grassyterrain",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Copperajah",
+            "species": "Copperajah",
+            "details": "Copperajah, L50, F",
+            "hp": 197,
+            "maxhp": 197,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 89,
+              "spa": 100,
+              "spd": 89,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "steelroller",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 131,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "grassyterrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
