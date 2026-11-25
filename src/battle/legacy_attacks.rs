@@ -1,6 +1,61 @@
 //! Inherited attacks that Champions National Dex Draft can admit.
 
-use super::{turn::Position, *};
+use super::{terrain::Terrain, turn::Position, *};
+use crate::dex::Mod;
+use crate::mechanics::BoostStat;
+use std::sync::LazyLock;
+
+pub(super) fn secret_power(dex_mod: Mod, terrain: Terrain) -> &'static Move {
+    static MOVES: LazyLock<[[Move; 4]; 2]> = LazyLock::new(|| {
+        [Mod::Champions, Mod::RegMb].map(|dex_mod| {
+            let base = DEX
+                .moves(dex_mod, "secretpower")
+                .expect("Secret Power is inherited");
+            [
+                Terrain::Electric,
+                Terrain::Grassy,
+                Terrain::Misty,
+                Terrain::Psychic,
+            ]
+            .map(|terrain| {
+                let mut data = base.clone();
+                let effect = &mut data.secondaries[0];
+                match terrain {
+                    Terrain::Electric => {}
+                    Terrain::Grassy => effect.status = Some("slp".into()),
+                    Terrain::Misty | Terrain::Psychic => {
+                        effect.status = None;
+                        let stat = if terrain == Terrain::Misty {
+                            BoostStat::Spa
+                        } else {
+                            BoostStat::Spe
+                        };
+                        effect.boosts.push((stat, -1));
+                    }
+                }
+                data
+            })
+        })
+    });
+    &MOVES[usize::from(dex_mod == Mod::RegMb)][match terrain {
+        Terrain::Electric => 0,
+        Terrain::Grassy => 1,
+        Terrain::Misty => 2,
+        Terrain::Psychic => 3,
+    }]
+}
+
+pub(super) fn magnitude(roll: u32) -> (u8, u16) {
+    match roll {
+        0..5 => (4, 10),
+        5..15 => (5, 30),
+        15..35 => (6, 50),
+        35..65 => (7, 70),
+        65..85 => (8, 90),
+        85..95 => (9, 110),
+        _ => (10, 150),
+    }
+}
 
 pub(super) fn fixed_damage(move_name: &str, target_hp: u32) -> Option<u32> {
     Some(match move_name {

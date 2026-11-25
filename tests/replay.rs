@@ -1927,6 +1927,16 @@ fn inherited_stage_moves_keep_target_filters_and_hit_costs() {
 }
 
 #[test]
+fn inherited_damage_callbacks_keep_roll_timing_and_current_state() {
+    replay(include_str!("fixtures/custom-magnitude-rolls.json"));
+    replay(include_str!(
+        "fixtures/custom-present-damage-and-healing.json"
+    ));
+    replay(include_str!("fixtures/custom-legacy-power-callbacks.json"));
+    replay(include_str!("fixtures/natdex-secret-power-terrain.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

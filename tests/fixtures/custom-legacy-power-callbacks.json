@@ -1,0 +1,1989 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"Psywave\",\"Punishment\",\"Trump Card\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Own Tempo\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Cresselia\",\"moves\":[\"Calm Mind\",\"Recover\"],\"gender\":\"F\",\"name\":\"Cresselia\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Pressure\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Cresselia, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Cresselia, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Cresselia, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "psywave",
+                  "punishment",
+                  "trumpcard"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Cresselia",
+                "details": "Cresselia, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 130,
+                  "spa": 95,
+                  "spd": 140,
+                  "spe": 105
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "pressure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pressure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "psywave",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "punishment",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "trumpcard",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Cresselia",
+            "species": "Cresselia",
+            "details": "Cresselia, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 130,
+              "spa": 95,
+              "spd": 140,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pressure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Cresselia|Cresselia, L50, F|195/195",
+          "|-ability|p2a: Cresselia|Pressure",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Cresselia|Cresselia, L50, F|195/195",
+          "|-ability|p2a: Cresselia|Pressure",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Cresselia|Cresselia, L50, F|195/195",
+          "|-ability|p2a: Cresselia|Pressure",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Psywave",
+                  "id": "psywave",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Punishment",
+                  "id": "punishment",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trump Card",
+                  "id": "trumpcard",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "psywave",
+                  "punishment",
+                  "trumpcard"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Cresselia",
+                "details": "Cresselia, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 130,
+                  "spa": 95,
+                  "spd": 140,
+                  "spe": 105
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "pressure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pressure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "psywave",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "punishment",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "trumpcard",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Cresselia",
+            "species": "Cresselia",
+            "details": "Cresselia, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 130,
+              "spa": 95,
+              "spd": 140,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pressure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Cresselia|Calm Mind|p2a: Cresselia",
+          "|-boost|p2a: Cresselia|spa|1",
+          "|-boost|p2a: Cresselia|spd|1",
+          "|move|p1a: Smeargle|Psywave|p2a: Cresselia",
+          "|-damage|p2a: Cresselia|126/195",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Calm Mind|p2a: Cresselia",
+          "|-boost|p2a: Cresselia|spa|1",
+          "|-boost|p2a: Cresselia|spd|1",
+          "|move|p1a: Smeargle|Psywave|p2a: Cresselia",
+          "|-damage|p2a: Cresselia|126/195",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Calm Mind|p2a: Cresselia",
+          "|-boost|p2a: Cresselia|spa|1",
+          "|-boost|p2a: Cresselia|spd|1",
+          "|move|p1a: Smeargle|Psywave|p2a: Cresselia",
+          "|-damage|p2a: Cresselia|126/195",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Psywave",
+                  "id": "psywave",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Punishment",
+                  "id": "punishment",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trump Card",
+                  "id": "trumpcard",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "psywave",
+                  "punishment",
+                  "trumpcard"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Cresselia",
+                "details": "Cresselia, L50, F",
+                "condition": "126/195",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 130,
+                  "spa": 95,
+                  "spd": 140,
+                  "spe": 105
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "pressure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pressure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "psywave",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "punishment",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "trumpcard",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Cresselia",
+            "species": "Cresselia",
+            "details": "Cresselia, L50, F",
+            "hp": 126,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 130,
+              "spa": 95,
+              "spd": 140,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pressure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Punishment|p2a: Cresselia",
+          "|debug|BP: 100",
+          "|-supereffective|p2a: Cresselia|1",
+          "|-damage|p2a: Cresselia|169/195",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Punishment|p2a: Cresselia",
+          "|debug|BP: 100",
+          "|-supereffective|p2a: Cresselia|1",
+          "|-damage|p2a: Cresselia|169/195",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Punishment|p2a: Cresselia",
+          "|debug|BP: 100",
+          "|-supereffective|p2a: Cresselia|1",
+          "|-damage|p2a: Cresselia|169/195",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Psywave",
+                  "id": "psywave",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Punishment",
+                  "id": "punishment",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trump Card",
+                  "id": "trumpcard",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "psywave",
+                  "punishment",
+                  "trumpcard"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Cresselia",
+                "details": "Cresselia, L50, F",
+                "condition": "169/195",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 130,
+                  "spa": 95,
+                  "spd": 140,
+                  "spe": 105
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "pressure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pressure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "psywave",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "punishment",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "trumpcard",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Cresselia",
+            "species": "Cresselia",
+            "details": "Cresselia, L50, F",
+            "hp": 169,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 130,
+              "spa": 95,
+              "spd": 140,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pressure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 40",
+          "|-damage|p2a: Cresselia|189/195",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 40",
+          "|-damage|p2a: Cresselia|189/195",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 40",
+          "|-damage|p2a: Cresselia|189/195",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Psywave",
+                  "id": "psywave",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Punishment",
+                  "id": "punishment",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trump Card",
+                  "id": "trumpcard",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "psywave",
+                  "punishment",
+                  "trumpcard"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Cresselia",
+                "details": "Cresselia, L50, F",
+                "condition": "189/195",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 130,
+                  "spa": 95,
+                  "spd": 140,
+                  "spe": 105
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "pressure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pressure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "psywave",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "punishment",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "trumpcard",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Cresselia",
+            "species": "Cresselia",
+            "details": "Cresselia, L50, F",
+            "hp": 189,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 130,
+              "spa": 95,
+              "spd": 140,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pressure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 40",
+          "|-damage|p2a: Cresselia|189/195",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 40",
+          "|-damage|p2a: Cresselia|189/195",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 40",
+          "|-damage|p2a: Cresselia|189/195",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Psywave",
+                  "id": "psywave",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Punishment",
+                  "id": "punishment",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trump Card",
+                  "id": "trumpcard",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "psywave",
+                  "punishment",
+                  "trumpcard"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Cresselia",
+                "details": "Cresselia, L50, F",
+                "condition": "189/195",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 130,
+                  "spa": 95,
+                  "spd": 140,
+                  "spe": 105
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "pressure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pressure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "psywave",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "punishment",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "trumpcard",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Cresselia",
+            "species": "Cresselia",
+            "details": "Cresselia, L50, F",
+            "hp": 189,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 130,
+              "spa": 95,
+              "spd": 140,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pressure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 6,
+      "seed": "7104,42574,9152,10809",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 60",
+          "|-damage|p2a: Cresselia|186/195",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 60",
+          "|-damage|p2a: Cresselia|186/195",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 60",
+          "|-damage|p2a: Cresselia|186/195",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Psywave",
+                  "id": "psywave",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Punishment",
+                  "id": "punishment",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trump Card",
+                  "id": "trumpcard",
+                  "pp": 2,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "psywave",
+                  "punishment",
+                  "trumpcard"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Cresselia",
+                "details": "Cresselia, L50, F",
+                "condition": "186/195",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 130,
+                  "spa": 95,
+                  "spd": 140,
+                  "spe": 105
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "pressure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pressure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "psywave",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "punishment",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "trumpcard",
+                "pp": 2,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Cresselia",
+            "species": "Cresselia",
+            "details": "Cresselia, L50, F",
+            "hp": 186,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 130,
+              "spa": 95,
+              "spd": 140,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pressure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 7,
+      "seed": "4124,63122,38965,57347",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 200",
+          "|-damage|p2a: Cresselia|170/195",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 200",
+          "|-damage|p2a: Cresselia|170/195",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p2a: Cresselia|Recover|p2a: Cresselia",
+          "|-heal|p2a: Cresselia|195/195",
+          "|move|p1a: Smeargle|Trump Card|p2a: Cresselia",
+          "|debug|BP: 200",
+          "|-damage|p2a: Cresselia|170/195",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Psywave",
+                  "id": "psywave",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Punishment",
+                  "id": "punishment",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trump Card",
+                  "id": "trumpcard",
+                  "pp": 0,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": true
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "psywave",
+                  "punishment",
+                  "trumpcard"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Cresselia",
+                "details": "Cresselia, L50, F",
+                "condition": "170/195",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 130,
+                  "spa": 95,
+                  "spd": 140,
+                  "spe": 105
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "pressure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pressure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "psywave",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "punishment",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "trumpcard",
+                "pp": 0,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Cresselia",
+            "species": "Cresselia",
+            "details": "Cresselia, L50, F",
+            "hp": 170,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 130,
+              "spa": 95,
+              "spd": 140,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pressure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

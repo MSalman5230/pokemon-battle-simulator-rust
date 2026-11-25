@@ -391,7 +391,15 @@ impl Battle {
         {
             return false;
         }
-        self.set_status(pos, id, source.player, primary.then_some(&data.name));
+        // Declarative sleep secondaries pass the active move as their cause.
+        // Callback-based inflictions, such as Dire Claw, supply their own effect.
+        let from_move = primary
+            || id == "slp"
+                && data
+                    .secondaries
+                    .iter()
+                    .any(|effect| effect.status.as_deref() == Some(id));
+        self.set_status(pos, id, source.player, from_move.then_some(&data.name));
         if !self.synchronize_status(pos, source, id, move_log) {
             self.cure_with_berry(pos);
         }

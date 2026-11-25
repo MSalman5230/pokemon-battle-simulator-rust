@@ -1720,6 +1720,22 @@ const legacyFilletRosters = [
     [{...named('Veluza', ['Fillet Away', 'Power Shift']), ability:'Mold Breaker'}],
     [named('Vaporeon', ['Tail Whip'])],
 ];
+const legacyMagnitudeRosters = [
+    [{...named('Smeargle', ['Magnitude']), ability:'Own Tempo'}, named('Glaceon', ['Protect'])],
+    [named('Vaporeon', ['Recover']), named('Jolteon', ['Protect', 'Recover'])],
+];
+const legacyPresentRosters = [
+    [{...named('Smeargle', ['Present']), ability:'No Guard'}],
+    [{...named('Chansey', ['Tail Whip', 'Life Dew']), ability:'Natural Cure'}],
+];
+const legacyPowerCallbackRosters = [
+    [{...named('Smeargle', ['Psywave', 'Punishment', 'Trump Card']), ability:'Own Tempo'}],
+    [{...named('Cresselia', ['Calm Mind', 'Recover']), ability:'Pressure'}],
+];
+const legacySecretRosters = [
+    [{...named('Smeargle', ['Secret Power', 'Grassy Terrain', 'Misty Terrain', 'Psychic Terrain']), ability:'Own Tempo'}],
+    [{...named('Chansey', ['Life Dew']), ability:'Natural Cure'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3080,6 +3096,18 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         legacyCaptivateRosters, 'custom-captivate-and-venom-drench'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'],
         ['move 2','move 1'], ['move 2','move 1']], legacyFilletRosters, 'custom-fillet-away-and-power-shift'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'], ['move 1, move 1','move 1, move 2'],
+        ['move 1, move 1','move 1, move 2'], ['move 1, move 1','move 1, move 1']],
+        legacyMagnitudeRosters, 'custom-magnitude-rolls'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['move 1','move 2'], ['move 1','move 2'], ['move 1','move 2'], ['move 1','move 1'], ['move 1','move 2']],
+        legacyPresentRosters, 'custom-present-damage-and-healing'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 3','move 2'],
+        ['move 3','move 2'], ['move 3','move 2'], ['move 3','move 2']],
+        legacyPowerCallbackRosters, 'custom-legacy-power-callbacks'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['move 3','move 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 4','move 1'], ['move 1','move 1'], ['move 1','move 1']],
+        legacySecretRosters, 'natdex-secret-power-terrain'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

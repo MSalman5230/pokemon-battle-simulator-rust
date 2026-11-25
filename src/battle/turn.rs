@@ -1009,6 +1009,12 @@ impl Battle {
                     | "powershift"
                     | "rototiller"
                     | "venomdrench"
+                    | "magnitude"
+                    | "present"
+                    | "psywave"
+                    | "punishment"
+                    | "trumpcard"
+                    | "secretpower"
                     | "round"
                     | "swift"
                     | "surf"
@@ -3622,7 +3628,7 @@ impl Battle {
             None
         };
         let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
-        let power = match move_data.name.as_str() {
+        let mut power = match move_data.name.as_str() {
             "Weather Ball" if ball_weather.is_some() => move_data.base_power * 2,
             "Terrain Pulse" if terrain_pulse.is_some() => move_data.base_power * 2,
             "Stored Power" | "Power Trip" => {
@@ -3833,6 +3839,29 @@ impl Battle {
         } else {
             source_name
         };
+        let magnitude = if move_data.name == "Magnitude" {
+            let (magnitude, value) = super::legacy_attacks::magnitude(self.rng.below(100));
+            power = value;
+            Some(magnitude)
+        } else {
+            None
+        };
+        let present_heal = if move_data.name == "Present" {
+            power = match self.rng.below(10) {
+                0..2 => 0,
+                2..6 => 40,
+                6..9 => 80,
+                _ => 120,
+            };
+            power == 0
+        } else {
+            false
+        };
+        if move_data.name == "Secret Power"
+            && let Some(terrain) = self.terrain()
+        {
+            move_data = super::legacy_attacks::secret_power(self.format.dex_mod, terrain);
+        }
         if !delayed
             && matches!(
                 self.mon(source).active_ability(),
@@ -4163,6 +4192,11 @@ impl Battle {
         }
         if !delayed {
             self.metronome_try_move(source, move_data);
+        }
+        if let Some(magnitude) = magnitude {
+            self.add(format!(
+                "|-activate|{source_name}|move: Magnitude|{magnitude}"
+            ));
         }
         if move_data.name == "Echoed Voice" {
             self.continue_echoed_voice();
@@ -6484,6 +6518,21 @@ impl Battle {
             return true;
         }
 
+        if present_heal {
+            let target = spread_targets[0];
+            let amount = self.mon(target).max_hp.get().div_ceil(4);
+            if self.restore_from_move(target, amount, false) {
+                self.each_event();
+                self.each_event();
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{}|heal", self.ident(target)));
+                self.report_no_move_effect();
+                result.failed = true;
+            }
+            return true;
+        }
+
         if matches!(
             move_data.name.as_str(),
             "Raging Bull" | "Brick Break" | "Psychic Fangs"
@@ -6633,6 +6682,10 @@ impl Battle {
                     "Counter" | "Mirror Coat" => retaliation_hit.map(|hit| (hit.damage * 2).max(1)),
                     "Seismic Toss" | "Night Shade" => Some(u32::from(battle.mon(source).level)),
                     "Endeavor" => Some(battle.mon(target).hp - battle.mon(source).hp),
+                    "Psywave" => Some(
+                        ((50 + battle.rng.below(101)) * u32::from(battle.mon(source).level) / 100)
+                            .max(1),
+                    ),
                     name => super::legacy_attacks::fixed_damage(name, battle.mon(target).hp),
                 };
                 if let Some(value) = fixed_damage {
@@ -6715,6 +6768,27 @@ impl Battle {
                 }
                 let mut power = battle.situational_base_power(source, target, move_data, power);
                 power = battle.inherited_streak_power(source, &move_data.name, hit, power);
+                if matches!(move_data.name.as_str(), "Punishment" | "Trump Card") {
+                    power = if move_data.name == "Punishment" {
+                        (60 + battle.mon(target).boosts.positive() * 20).min(200)
+                    } else {
+                        let pp = caller
+                            .map(|(caller, _)| caller)
+                            .or(slot)
+                            .and_then(|slot| battle.mon(source).moves.get(slot))
+                            .map(|slot| slot.pp);
+                        match pp {
+                            Some(0) => 200,
+                            Some(1) => 80,
+                            Some(2) => 60,
+                            Some(3) => 50,
+                            _ => 40,
+                        }
+                    };
+                    if battle.format.report_exact_hp {
+                        battle.add(format!("|debug|BP: {power}"));
+                    }
+                }
                 if matches!(move_data.name.as_str(), "Hex" | "Infernal Parade")
                     && (battle.mon(target).status != Status::Healthy
                         || battle.event_ability(target) == "comatose")
