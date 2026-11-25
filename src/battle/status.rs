@@ -422,13 +422,25 @@ impl Battle {
         source: Player,
         move_name: Option<&str>,
     ) {
-        let mut status = Status::from_id(id);
-        let reason = if let Status::Sleep(_) = status {
-            status = Status::Sleep(if self.rng.below(3) == 0 { 2 } else { 3 });
+        let reason = if id == "slp" {
             move_name.map_or_else(String::new, |name| format!("|[from] move: {name}"))
         } else {
             String::new()
         };
+        self.set_status_with_suffix(pos, id, source, &reason);
+    }
+
+    pub(super) fn set_status_with_suffix(
+        &mut self,
+        pos: Position,
+        id: &str,
+        source: Player,
+        reason: &str,
+    ) {
+        let mut status = Status::from_id(id);
+        if let Status::Sleep(_) = status {
+            status = Status::Sleep(if self.rng.below(3) == 0 { 2 } else { 3 });
+        }
         let mon = self.mon_mut(pos);
         mon.status = status;
         mon.slept_by_foe = id == "slp" && source != pos.player;

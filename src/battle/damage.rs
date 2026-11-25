@@ -269,6 +269,13 @@ impl Battle {
         if flash_fire && self.format.report_exact_hp {
             self.add("|debug|Flash Fire boost");
         }
+        if move_type == "Fire"
+            && source_active
+            && self.mon(source).ability == "firemane"
+            && self.format.report_exact_hp
+        {
+            self.add("|debug|Fire Mane boost");
+        }
         if purifying_salt && self.format.report_exact_hp {
             self.add("|debug|Purifying Salt weaken");
         }

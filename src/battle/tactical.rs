@@ -356,6 +356,7 @@ impl Battle {
                     | "scald"
                     | "glaiverush"
                     | "facade"
+                    | "flyingpress"
             )
         {
             return Err(unsupported(format!("move {move_id}")));

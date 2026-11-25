@@ -93,6 +93,7 @@ impl Pokemon {
         let ability = if self.ability == "waterbubble" && move_type == "Water" {
             8192
         } else if self.attack_boosts_type(move_type)
+            || (self.ability == "firemane" && move_type == "Fire")
             || (category == Category::Physical
                 && self.ability == "guts"
                 && self.status != Status::Healthy)
@@ -799,12 +800,38 @@ impl Battle {
             "flamebody" => ("brn", "Flame Body"),
             "static" => ("par", "Static"),
             "poisonpoint" => ("psn", "Poison Point"),
+            "effectspore" => {
+                if self.status_immune(attacker, "powder") {
+                    if self.format.report_exact_hp && self.mon(attacker).has_type("Grass") {
+                        self.add("|debug|natural status immunity");
+                    }
+                    return;
+                }
+                let id = match self.rng.below(100) {
+                    0..=10 => "slp",
+                    11..=20 => "par",
+                    21..=29 => "psn",
+                    _ => return,
+                };
+                self.apply_contact_status(holder, attacker, id, "Effect Spore", move_log);
+                return;
+            }
             _ => return,
         };
-        if !self.rng.chance(3, 10)
-            || self.mon(attacker).hp == 0
-            || self.mon(attacker).status != Status::Healthy
-        {
+        if self.rng.chance(3, 10) {
+            self.apply_contact_status(holder, attacker, id, label, move_log);
+        }
+    }
+
+    fn apply_contact_status(
+        &mut self,
+        holder: Position,
+        attacker: Position,
+        id: &str,
+        label: &str,
+        move_log: usize,
+    ) {
+        if self.mon(attacker).hp == 0 || self.mon(attacker).status != Status::Healthy {
             return;
         }
         if self.status_immune(attacker, id) {
@@ -819,12 +846,8 @@ impl Battle {
         if prevented || self.field_blocks_status(attacker, id, holder.player, false) {
             return;
         }
-        self.mon_mut(attacker).status = Status::from_id(id);
-        self.add(format!(
-            "|-status|{}|{id}|[from] ability: {label}|[of] {}",
-            self.ident(attacker),
-            self.ident(holder)
-        ));
+        let suffix = format!("|[from] ability: {label}|[of] {}", self.ident(holder));
+        self.set_status_with_suffix(attacker, id, holder.player, &suffix);
         if !self.synchronize_status(attacker, holder, id, move_log) {
             self.cure_with_berry(attacker);
         }

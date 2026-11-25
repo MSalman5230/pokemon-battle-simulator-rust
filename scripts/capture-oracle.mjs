@@ -1016,6 +1016,19 @@ const hustleZoomRosters = [
     [{...named('Durant', ['Tackle', 'Quick Attack', 'Water Gun']), ability:'Hustle', item:'Zoom Lens'}],
     [named('Espeon', ['Recover']), named('Umbreon', ['Recover'])],
 ];
+const fireManeRosters = [
+    [{...named('Pyroar', ['Flame Charge', 'Flamethrower', 'Tackle']),
+        ability:'Unnerve', item:'Pyroarite'}],
+    [named('Vaporeon', ['Recover'])],
+];
+const flyingPressRosters = [
+    [named('Hawlucha', ['Flying Press'])],
+    [named('Umbreon', ['Recover']), named('Froslass', ['Recover']), named('Vileplume', ['Recover'])],
+];
+const effectSporeRosters = [
+    [{...named('Magikarp', ['Tackle']), item:'Lum Berry'}, named('Leafeon', ['Tackle'])],
+    [{...named('Amoonguss', ['Recover']), ability:'Effect Spore'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1543,6 +1556,15 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['pass, switch 3','pass, switch 3']], perishDoublesRosters, 'vgc-perish-song'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ...Array(3).fill(['move 2','move 1']),
         ['move 3','switch 2'], ['move 1','move 1']], hustleZoomRosters, 'bss-hustle-zoom-lens'],
+    ['bssregmc', [['team 1','team 1'], ['move 1 mega','move 1'], ['move 2','move 1'],
+        ['move 3','move 1']], fireManeRosters, 'bss-fire-mane'],
+    ['bssregmc', [['team 1','team 123'], ['move 1','move 1'], ['move 1','switch 2'],
+        ['move 1','switch 3']], flyingPressRosters, 'bss-flying-press'],
+    ['bssregmc', [['team 12','team 1'], ...Array(7).fill(['move 1','move 1']),
+        ['switch 2','move 1'], ['move 1','move 1']], effectSporeRosters, 'bss-effect-spore'],
+    ['bssregmc', [['team 12','team 1'], ...Array(6).fill(['move 1','move 1'])],
+        [[{...effectSporeRosters[0][0], item:''}, effectSporeRosters[0][1]], effectSporeRosters[1]],
+        'bss-effect-spore-sleep', '1,2,3,8'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -1015,6 +1015,7 @@ impl Battle {
                     | "dig"
                     | "bounce"
                     | "fly"
+                    | "flyingpress"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -4269,7 +4270,7 @@ impl Battle {
                 }
                 if move_data.flags.contains_key("contact") {
                     match self.event_ability(target) {
-                        "flamebody" | "static" | "poisonpoint" => {
+                        "flamebody" | "static" | "poisonpoint" | "effectspore" => {
                             self.contact_status(target, source, base)
                         }
                         "cutecharm" => self.cute_charm(target, source),
@@ -4791,16 +4792,19 @@ impl Battle {
                 modifier += 1;
                 continue;
             }
-            let case = DEX
-                .type_data(&to_id(typing))
-                .unwrap()
-                .damage_taken
-                .get(move_type);
-            match case {
+            let types = &DEX.type_data(&to_id(typing)).unwrap().damage_taken;
+            match types.get(move_type) {
                 Some(1) => modifier += 1,
                 Some(2) => modifier -= 1,
                 Some(3) if !ignores_immunity => return None,
                 _ => {}
+            }
+            if move_data.name == "Flying Press" {
+                match types.get("Flying") {
+                    Some(1) => modifier += 1,
+                    Some(2) => modifier -= 1,
+                    _ => {}
+                }
             }
         }
         Some(modifier)
@@ -5003,6 +5007,8 @@ impl Pokemon {
                 | "galewings"
                 | "rivalry"
                 | "hustle"
+                | "firemane"
+                | "effectspore"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"
