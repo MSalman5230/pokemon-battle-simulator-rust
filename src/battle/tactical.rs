@@ -98,6 +98,8 @@ fn safe_ignored_volatile(id: &str) -> bool {
             | "encore"
             | "disable"
             | "healblock"
+            | "torment"
+            | "octolock"
             | "leechseed"
             | "yawn"
             | "partiallytrapped"

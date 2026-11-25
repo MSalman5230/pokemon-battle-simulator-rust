@@ -46,8 +46,9 @@ impl Battle {
             + usize::from(mon.taunt > 0)
             + usize::from(mon.encore.is_some())
             + usize::from(mon.heal_block > 0)
+            + usize::from(mon.volatile_ids().contains(&"torment"))
             + usize::from(mon.disabled_slot.is_some());
-        let mut handlers = [mon.speed; 8];
+        let mut handlers = [mon.speed; 9];
         let mut count = own_handlers;
         for foe in self.foe_imprison(pos) {
             handlers[count] = foe.speed;
@@ -78,6 +79,10 @@ impl Battle {
     pub(super) fn visible_disable(&self, pos: Position, slot: usize) -> bool {
         let mon = self.mon(pos);
         mon.disabled_by_choice(slot)
+            || (mon.volatile_ids().contains(&"torment")
+                && mon
+                    .last_move_slot
+                    .is_some_and(|last| mon.moves[last].id == mon.moves[slot].id))
             || (mon.heal_block > 0 && mon.moves[slot].move_data.flags.contains_key("heal"))
             || (mon.throat_chop > 0 && mon.moves[slot].move_data.flags.contains_key("sound"))
             || mon
@@ -162,6 +167,15 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn start_torment(&mut self, target: Position) -> bool {
+        if self.mon(target).volatile_ids().contains(&"torment") {
+            return false;
+        }
+        self.mon_mut(target).track_volatile("torment");
+        self.add(format!("|-start|{}|Torment", self.ident(target)));
+        true
+    }
+
     pub(super) fn start_heal_block(&mut self, target: Position, duration: u8) -> bool {
         let mon = self.mon(target);
         if mon.hp == 0 || mon.heal_block > 0 || self.aroma_veil_blocks(target, true) {
@@ -242,14 +256,15 @@ impl Battle {
 
     pub(super) fn mental_herb(&mut self, target: Position) {
         let mon = self.mon(target);
-        let (attract, taunt, encore, disabled, heal_block) = (
+        let (attract, taunt, encore, torment, disabled, heal_block) = (
             mon.attract.is_some(),
             mon.taunt > 0,
             mon.encore.is_some(),
+            mon.volatile_ids().contains(&"torment"),
             mon.disabled_slot.is_some(),
             mon.heal_block > 0,
         );
-        if !(attract || taunt || encore || disabled || heal_block) {
+        if !(attract || taunt || encore || torment || disabled || heal_block) {
             return;
         }
         self.consume(target, "Mental Herb", false);
@@ -269,6 +284,10 @@ impl Battle {
         }
         if encore {
             self.end_encore(target);
+        }
+        if torment {
+            self.mon_mut(target).untrack_volatile("torment");
+            self.add(format!("|-end|{}|Torment", self.ident(target)));
         }
         if disabled {
             self.end_disable(target);

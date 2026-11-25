@@ -1079,6 +1079,8 @@ impl Battle {
                     | "instruct"
                     | "shellsidearm"
                     | "sleeptalk"
+                    | "torment"
+                    | "octolock"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -1599,6 +1601,7 @@ impl Battle {
         party[outgoing.slot].last_foe_hit = None;
         party[outgoing.slot].attackers_this_turn = [0; 2];
         party[outgoing.slot].heal_block = 0;
+        party[outgoing.slot].octolock = None;
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -2138,6 +2141,7 @@ impl Battle {
             Terrain,
             GrassyHeal,
             AquaRing,
+            Octolock,
         }
         self.add("|");
         self.update_speed();
@@ -2242,6 +2246,9 @@ impl Battle {
             }
             if mon.volatile_ids().contains(&"aquaring") {
                 timers.push((pos, Effect::AquaRing, priority(6, 2)));
+            }
+            if mon.octolock.is_some() {
+                timers.push((pos, Effect::Octolock, priority(14, 2)));
             }
             if mon.ability == "speedboost" {
                 timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
@@ -2496,6 +2503,7 @@ impl Battle {
                 }
                 Effect::GrassyHeal => self.grassy_heal(pos),
                 Effect::AquaRing => self.aqua_ring_heal(pos),
+                Effect::Octolock => self.tick_octolock(pos),
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::LeechSeed => {
                     self.tick_leech_seed(pos);
@@ -3891,6 +3899,16 @@ impl Battle {
             }
         });
         smart_target &= spread_targets.len() > 1;
+        if move_data.name == "Octolock" {
+            spread_targets.retain(|&target| {
+                if self.status_immune(target, "trapped") {
+                    self.add(format!("|-immune|{}", self.ident(target)));
+                    false
+                } else {
+                    true
+                }
+            });
+        }
         if prankster && self.event_ability(source) == "prankster" {
             spread_targets.retain(|&pos| {
                 if pos.player == source.player || !self.status_immune(pos, "prankster") {
@@ -4049,8 +4067,10 @@ impl Battle {
                 if spread && life_dew {
                     hit_labels.push(target.label());
                 }
-                if matches!(move_data.name.as_str(), "Taunt" | "Encore" | "Disable")
-                    && self.aroma_veil_blocks(target, true)
+                if matches!(
+                    move_data.name.as_str(),
+                    "Taunt" | "Encore" | "Disable" | "Torment"
+                ) && self.aroma_veil_blocks(target, true)
                 {
                     continue;
                 }
@@ -4108,6 +4128,19 @@ impl Battle {
                         self.mon_mut(target).track_volatile("aquaring");
                         self.add(format!("|-start|{}|Aqua Ring", self.ident(target)));
                         succeeded = true;
+                    }
+                }
+                if move_data.name == "Torment" || move_data.name == "Octolock" {
+                    let started = if move_data.name == "Torment" {
+                        self.start_torment(target)
+                    } else {
+                        self.start_octolock(source, target)
+                    };
+                    if started {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
                     }
                 }
                 if move_data.name == "Instruct" {
@@ -5557,6 +5590,7 @@ impl Battle {
         mon.last_foe_hit = None;
         mon.attackers_this_turn = [0; 2];
         mon.heal_block = 0;
+        mon.octolock = None;
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();

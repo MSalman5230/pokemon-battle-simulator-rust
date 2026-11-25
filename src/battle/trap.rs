@@ -1,6 +1,7 @@
 //! Voluntary switching and private discovery of trapping abilities.
 
 use super::{turn::Position, *};
+use crate::mechanics::BoostStat;
 
 #[derive(Default, Copy, Clone)]
 pub(super) struct Trap {
@@ -9,6 +10,53 @@ pub(super) struct Trap {
 }
 
 impl Battle {
+    pub(super) fn start_octolock(&mut self, source: Position, target: Position) -> bool {
+        if self.mon(target).octolock.is_some() {
+            return false;
+        }
+        let source_id = (source.player, self.mon(source).roster_index);
+        let mon = self.mon_mut(target);
+        mon.octolock = Some(source_id);
+        mon.track_volatile("octolock");
+        self.add(format!(
+            "|-start|{}|move: Octolock|[of] {}",
+            self.ident(target),
+            self.ident(source)
+        ));
+        true
+    }
+
+    fn octolock_source(&self, target: Position) -> Option<Position> {
+        let (player, roster_index) = self.mon(target).octolock?;
+        self.positions().find(|&pos| {
+            pos.player == player
+                && !self.mon(pos).fainted
+                && self.mon(pos).roster_index == roster_index
+        })
+    }
+
+    pub(super) fn tick_octolock(&mut self, target: Position) {
+        if let Some(source) = self.octolock_source(target)
+            && self.mon(source).hp > 0
+            && self.mon(source).active_turns > 0
+        {
+            self.boost_from(
+                target,
+                source,
+                &[(BoostStat::Def, -1), (BoostStat::Spd, -1)],
+                super::abilities::BoostOrigin::Octolock,
+            );
+        } else {
+            let mon = self.mon_mut(target);
+            mon.octolock = None;
+            mon.untrack_volatile("octolock");
+            self.add(format!(
+                "|-end|{}|Octolock|[partiallytrapped]|[silent]",
+                self.ident(target)
+            ));
+        }
+    }
+
     fn ignores_trapping(&self, pos: Position) -> bool {
         let mon = self.mon(pos);
         mon.has_type("Ghost") || mon.effective_item() == "shedshell" || mon.ability == "runaway"
@@ -36,6 +84,7 @@ impl Battle {
         let live = active.iter().filter(|mon| !mon.fainted);
         let actual = mon.volatile_ids().contains(&"trapped")
             || self.is_bound(pos)
+            || self.octolock_source(pos).is_some()
             || live.clone().any(|foe| affected(&foe.ability));
         let possible = actual
             || live
@@ -64,7 +113,9 @@ impl Battle {
     pub fn trapped_in_request(&self, player: Player, slot: usize) -> bool {
         let pos = Position { player, slot };
         let mon = self.mon(pos);
-        let visible_trap = (mon.volatile_ids().contains(&"trapped") || self.is_bound(pos))
+        let visible_trap = (mon.volatile_ids().contains(&"trapped")
+            || self.is_bound(pos)
+            || self.octolock_source(pos).is_some())
             && !self.ignores_trapping(pos);
         mon.hard_locked()
             || mon.revealed_trap

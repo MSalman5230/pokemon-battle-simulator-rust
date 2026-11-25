@@ -29,6 +29,7 @@ pub(super) enum BoostOrigin {
     Intimidate,
     MirrorArmor,
     Hazard,
+    Octolock,
 }
 
 impl BoostOrigin {
@@ -46,6 +47,7 @@ impl BoostOrigin {
         !matches!(
             self,
             Self::Secondary
+                | Self::Octolock
                 | Self::Move {
                     has_secondaries: true
                 }

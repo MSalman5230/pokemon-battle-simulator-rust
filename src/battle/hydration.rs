@@ -445,6 +445,7 @@ impl WorldSide {
                 "typechange" | "stall" | "lightscreen" | "reflect" => {}
                 "curse" => mon.track_volatile("curse"),
                 "aquaring" => mon.track_volatile("aquaring"),
+                "torment" => mon.track_volatile("torment"),
                 "taunt" => {
                     mon.taunt = remaining(3);
                     mon.track_volatile("taunt");
