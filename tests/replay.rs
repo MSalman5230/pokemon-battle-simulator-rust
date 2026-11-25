@@ -674,3 +674,18 @@ fn champions_random_formats_generate_and_play_from_native_seeded_inputs() {
 fn natdex_draft_uses_champions_battle_rules_and_sleep_clause() {
     replay(include_str!("fixtures/natdex-draft-native.json"));
 }
+
+#[test]
+fn bss_soak_changes_typing_until_switch_and_can_be_absorbed() {
+    replay(include_str!("fixtures/bss-soak-type.json"));
+}
+
+#[test]
+fn bss_raging_bull_uses_tauros_forme_and_shatters_screens_before_damage() {
+    replay(include_str!("fixtures/bss-raging-bull-furcoat.json"));
+}
+
+#[test]
+fn bss_corrosion_poisons_steel_and_defiant_reacts_to_each_foe_stat_drop() {
+    replay(include_str!("fixtures/bss-corrosion-defiant.json"));
+}

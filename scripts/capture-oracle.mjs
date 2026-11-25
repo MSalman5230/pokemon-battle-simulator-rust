@@ -537,6 +537,20 @@ const randomLevelRosters = [
         {...named('Flareon', ['Recover']), level: 84}],
     [{...named('Umbreon', ['Tackle']), level: 86}, {...named('Glaceon', ['Recover']), level: 89}],
 ];
+const soakRosters = [
+    [named('Vaporeon', ['Soak', 'Thunderbolt', 'Grass Knot', 'Recover']), named('Glaceon', ['Recover'])],
+    [named('Skarmory', ['Iron Head', 'Recover']), {...named('Bouffalant', ['Recover']), ability: 'Sap Sipper'},
+        {...named('Vaporeon', ['Recover']), ability: 'Water Absorb'}],
+];
+const ragingBullRosters = [
+    [{...named('Tauros-Paldea-Aqua', ['Raging Bull', 'Recover'], 'M'), item: 'Mystic Water'}, named('Glaceon', ['Recover'])],
+    [{...named('Persian-Alola', ['Reflect', 'Body Press', 'Recover']), ability: 'Fur Coat', item: 'Black Belt'},
+        named('Vaporeon', ['Recover'])],
+];
+const corrosionRosters = [
+    [{...named('Salazzle', ['Toxic', 'Parting Shot']), ability: 'Corrosion'}, named('Glaceon', ['Recover'])],
+    [{...named('Kingambit', ['Recover']), ability: 'Defiant'}, named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -806,6 +820,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['50219,19703,3172,32117', '702,13344,30570,22958'], 'random-doubles-native-generated'],
     ['natdexdraft', [['team 12','team 123'], ['move 2','move 1'], ['move 1','switch 2'], ['move 1','switch 3']],
         sleepClauseRosters, 'natdex-draft-native'],
+    ['bssregmc', [['team 12','team 123'], ['move 1','move 1'], ['move 1','move 2'],
+        ['move 3','switch 2'], ['move 1','switch 3'], ['move 1','switch 2'], ['move 2','move 2']],
+        soakRosters, 'bss-soak-type'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2']],
+        ragingBullRosters, 'bss-raging-bull-furcoat'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1'], ['switch 2',null]],
+        corrosionRosters, 'bss-corrosion-defiant'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

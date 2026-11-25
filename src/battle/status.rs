@@ -239,7 +239,8 @@ impl Battle {
             }
             return false;
         }
-        if self.status_immune(pos, if id == "tox" { "psn" } else { id }) {
+        let corrosion = matches!(id, "tox" | "psn") && self.mon(source).ability == "corrosion";
+        if !corrosion && self.status_immune(pos, if id == "tox" { "psn" } else { id }) {
             if primary {
                 self.add(format!("|-immune|{}", self.ident(pos)));
             }

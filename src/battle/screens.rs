@@ -44,6 +44,19 @@ impl Screen {
 }
 
 impl Battle {
+    pub(super) fn break_screens(&mut self, player: Player) {
+        for screen in Screen::ALL {
+            let turns = &mut self.sides[player.index()].as_mut().unwrap().screens[screen.index()];
+            if std::mem::take(turns) != 0 {
+                self.add(format!(
+                    "|-sideend|{}|{}",
+                    self.side_ident(player),
+                    screen.label()
+                ));
+            }
+        }
+    }
+
     pub(super) fn screens_damage_modifier(
         &self,
         source: Position,

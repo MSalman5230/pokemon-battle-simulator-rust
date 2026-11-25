@@ -256,6 +256,13 @@ impl Battle {
             def
         };
         let mut attack_modifier = user.attack_modifier(move_data.category, move_type);
+        let def = if move_data.category == Category::Physical
+            && self.event_ability(target) == "furcoat"
+        {
+            tr.modify(def, 8192)
+        } else {
+            def
+        };
         if stakeout {
             attack_modifier = crate::mechanics::chain(8192, attack_modifier);
         }

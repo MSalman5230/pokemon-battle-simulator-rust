@@ -339,6 +339,17 @@ impl Pokemon {
                 | ("spelltag", "Ghost")
                 | ("softsand", "Ground")
                 | ("magnet", "Electric")
+                | ("blackbelt", "Fighting")
+                | ("blackglasses", "Dark")
+                | ("dragonfang", "Dragon")
+                | ("hardstone", "Rock")
+                | ("metalcoat", "Steel")
+                | ("nevermeltice", "Ice")
+                | ("poisonbarb", "Poison")
+                | ("sharpbeak", "Flying")
+                | ("silkscarf", "Normal")
+                | ("silverpowder", "Bug")
+                | ("twistedspoon", "Psychic")
         ) {
             4915
         } else {

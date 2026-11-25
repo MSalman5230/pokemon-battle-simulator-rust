@@ -833,6 +833,8 @@ impl Battle {
                     | "selfdestruct"
                     | "mistyexplosion"
                     | "mindblown"
+                    | "soak"
+                    | "ragingbull"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1835,7 +1837,18 @@ impl Battle {
         } else if weather_ball {
             (weather.map_or("Normal", Weather::ball_type), false)
         } else {
-            self.mon(source).converted_move_type(&move_data.move_type)
+            let mon = self.mon(source);
+            let base = if move_data.name == "Raging Bull" {
+                match mon.species.name.as_str() {
+                    "Tauros-Paldea-Combat" => "Fighting",
+                    "Tauros-Paldea-Blaze" => "Fire",
+                    "Tauros-Paldea-Aqua" => "Water",
+                    _ => &move_data.move_type,
+                }
+            } else {
+                &move_data.move_type
+            };
+            mon.converted_move_type(base)
         };
         let source_name = self.ident(source);
         let original_target =
@@ -2535,6 +2548,18 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Soak" {
+                    let mon = self.mon(target);
+                    if mon.types().eq(["Water"])
+                        || matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally")
+                    {
+                        self.add(format!("|-fail|{}", self.ident(target)));
+                    } else {
+                        self.mon_mut(target).temporary_type = Some("Water");
+                        self.add(format!("|-start|{}|typechange|Water", self.ident(target)));
+                        succeeded = true;
+                    }
+                }
                 if matches!(move_data.name.as_str(), "Whirlwind" | "Roar") {
                     if self.schedule_drag(source, target) {
                         succeeded = true;
@@ -2773,6 +2798,9 @@ impl Battle {
             return true;
         }
 
+        if move_data.name == "Raging Bull" {
+            self.break_screens(spread_targets[0].player);
+        }
         let screen_handlers = self
             .sides
             .iter()
@@ -3562,6 +3590,10 @@ impl Pokemon {
                 | "disguise"
                 | "damp"
                 | "aftermath"
+                | "sapsipper"
+                | "corrosion"
+                | "furcoat"
+                | "defiant"
         )
     }
 
@@ -3615,6 +3647,17 @@ impl Pokemon {
                 | "abilityshield"
                 | "whiteherb"
                 | "floatstone"
+                | "blackbelt"
+                | "blackglasses"
+                | "dragonfang"
+                | "hardstone"
+                | "metalcoat"
+                | "nevermeltice"
+                | "poisonbarb"
+                | "sharpbeak"
+                | "silkscarf"
+                | "silverpowder"
+                | "twistedspoon"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)

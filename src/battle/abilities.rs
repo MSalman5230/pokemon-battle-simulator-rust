@@ -481,6 +481,7 @@ impl Battle {
             ("Electric", "voltabsorb") => ("Volt Absorb", None),
             ("Ground", "eartheater") => ("Earth Eater", None),
             ("Fire", "wellbakedbody") => ("Well-Baked Body", Some((BoostStat::Def, 2))),
+            ("Grass", "sapsipper") => ("Sap Sipper", Some((BoostStat::Atk, 1))),
             _ => return false,
         };
         let succeeded = if let Some((stat, stages)) = boost {
@@ -728,11 +729,16 @@ impl Battle {
         for (i, &(stat, amount)) in changes.iter().enumerate() {
             if removed & (1 << i) == 0 && self.boost(target, &[(stat, amount)], origin.quiet()) {
                 success = true;
-                if amount < 0
-                    && target.player != source.player
-                    && self.event_ability(target) == "competitive"
-                {
-                    self.ability_boost(target, "Competitive", BoostStat::Spa, 2, true);
+                if amount < 0 && target.player != source.player {
+                    match self.event_ability(target) {
+                        "competitive" => {
+                            self.ability_boost(target, "Competitive", BoostStat::Spa, 2, true);
+                        }
+                        "defiant" => {
+                            self.ability_boost(target, "Defiant", BoostStat::Atk, 2, true);
+                        }
+                        _ => {}
+                    }
                 }
             }
         }
