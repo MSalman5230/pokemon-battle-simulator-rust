@@ -398,6 +398,8 @@ impl Battle {
         };
         let accuracy_weather = if move_id == "blizzard" {
             weather
+        } else if self.event_ability(ACTOR) == "megasol" {
+            Some(Weather::Sun)
         } else {
             self.mon(TARGET).personal_weather(weather)
         };
@@ -420,7 +422,12 @@ impl Battle {
         }
         let attack = self.mon(ACTOR);
         let power = match move_id {
-            "weatherball" if attack.personal_weather(weather).is_some() => 100,
+            "weatherball"
+                if attack.personal_weather(weather).is_some()
+                    || self.event_ability(ACTOR) == "megasol" =>
+            {
+                100
+            }
             "ragefist" => 50 + 50 * attack.times_attacked.min(6) as u16,
             "lastrespects" => 50 + 50 * u16::from(self.sides[0].as_ref().unwrap().total_fainted),
             "flail" | "reversal" => attack.reversal_power(),
@@ -472,7 +479,8 @@ impl Battle {
                     bypassed_protect: false,
                     converted: false,
                     roll: Some(roll),
-                    solar_weak: matches!(move_id, "solarbeam" | "solarblade")
+                    solar_weak: self.event_ability(ACTOR) != "megasol"
+                        && matches!(move_id, "solarbeam" | "solarblade")
                         && weather.is_some_and(|w| w != Weather::Sun),
                     expanded: move_id == "expandingforce"
                         && self.terrain() == Some(Terrain::Psychic)

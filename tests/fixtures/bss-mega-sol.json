@@ -1,0 +1,1263 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Meganium\",\"moves\":[\"Solar Beam\",\"Synthesis\",\"Weather Ball\"],\"gender\":\"F\",\"name\":\"Meganium\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Overgrow\",\"item\":\"Meganiumite\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Milotic\",\"moves\":[\"Ice Beam\",\"Recover\"],\"gender\":\"F\",\"name\":\"Milotic\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Drizzle\",\"item\":\"Utility Umbrella\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Meganium, L50, F|",
+          "|poke|p2|Milotic, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Meganium, L50, F|",
+          "|poke|p2|Milotic, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Meganium, L50, F|",
+          "|poke|p2|Milotic, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "synthesis",
+                  "weatherball"
+                ],
+                "baseAbility": "overgrow",
+                "item": "meganiumite",
+                "pokeball": "pokeball",
+                "ability": "overgrow",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Milotic",
+                "details": "Milotic, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 99,
+                  "spa": 120,
+                  "spd": 145,
+                  "spe": 101
+                },
+                "moves": [
+                  "icebeam",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "utilityumbrella",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "overgrow",
+            "item": "meganiumite",
+            "active": false,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "synthesis",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "weatherball",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Milotic",
+            "species": "Milotic",
+            "details": "Milotic, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 99,
+              "spa": 120,
+              "spd": 145,
+              "spe": 101
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "utilityumbrella",
+            "active": false,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Meganium|Meganium, L50, F|100/100",
+          "|switch|p2a: Milotic|Milotic, L50, F|100/100",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p2a: Milotic",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Meganium|Meganium, L50, F|155/155",
+          "|switch|p2a: Milotic|Milotic, L50, F|100/100",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p2a: Milotic",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Meganium|Meganium, L50, F|100/100",
+          "|switch|p2a: Milotic|Milotic, L50, F|170/170",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p2a: Milotic",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Solar Beam",
+                  "id": "solarbeam",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Synthesis",
+                  "id": "synthesis",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ],
+              "canMegaEvo": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "synthesis",
+                  "weatherball"
+                ],
+                "baseAbility": "overgrow",
+                "item": "meganiumite",
+                "pokeball": "pokeball",
+                "ability": "overgrow",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Milotic",
+                "details": "Milotic, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 99,
+                  "spa": 120,
+                  "spd": 145,
+                  "spe": 101
+                },
+                "moves": [
+                  "icebeam",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "utilityumbrella",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "overgrow",
+            "item": "meganiumite",
+            "active": true,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "synthesis",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "weatherball",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Milotic",
+            "species": "Milotic",
+            "details": "Milotic, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 99,
+              "spa": 120,
+              "spd": 145,
+              "spe": 101
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "utilityumbrella",
+            "active": true,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 mega",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|detailschange|p1a: Meganium|Meganium-Mega, L50, F",
+          "|-mega|p1a: Meganium|Meganium|Meganiumite",
+          "|move|p2a: Milotic|Ice Beam|p1a: Meganium",
+          "|-supereffective|p1a: Meganium|1",
+          "|-damage|p1a: Meganium|57/100",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-activate|p1a: Meganium|ability: Mega Sol",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Milotic",
+          "|-supereffective|p2a: Milotic|1",
+          "|-damage|p2a: Milotic|10/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|detailschange|p1a: Meganium|Meganium-Mega, L50, F",
+          "|-mega|p1a: Meganium|Meganium|Meganiumite",
+          "|move|p2a: Milotic|Ice Beam|p1a: Meganium",
+          "|-supereffective|p1a: Meganium|1",
+          "|-damage|p1a: Meganium|89/155",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-activate|p1a: Meganium|ability: Mega Sol",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Milotic",
+          "|-supereffective|p2a: Milotic|1",
+          "|-damage|p2a: Milotic|10/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|detailschange|p1a: Meganium|Meganium-Mega, L50, F",
+          "|-mega|p1a: Meganium|Meganium|Meganiumite",
+          "|move|p2a: Milotic|Ice Beam|p1a: Meganium",
+          "|-supereffective|p1a: Meganium|1",
+          "|-damage|p1a: Meganium|57/100",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-activate|p1a: Meganium|ability: Mega Sol",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Milotic",
+          "|-supereffective|p2a: Milotic|1",
+          "|-damage|p2a: Milotic|18/170",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Solar Beam",
+                  "id": "solarbeam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Synthesis",
+                  "id": "synthesis",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium-Mega, L50, F",
+                "condition": "89/155",
+                "active": true,
+                "stats": {
+                  "atk": 112,
+                  "def": 135,
+                  "spa": 163,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "synthesis",
+                  "weatherball"
+                ],
+                "baseAbility": "megasol",
+                "item": "meganiumite",
+                "pokeball": "pokeball",
+                "ability": "megasol",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Milotic",
+                "details": "Milotic, L50, F",
+                "condition": "18/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 99,
+                  "spa": 120,
+                  "spd": 145,
+                  "spe": 101
+                },
+                "moves": [
+                  "icebeam",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "utilityumbrella",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium-Mega",
+            "details": "Meganium-Mega, L50, F",
+            "hp": 89,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 135,
+              "spa": 163,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "megasol",
+            "item": "meganiumite",
+            "active": true,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "synthesis",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "weatherball",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Milotic",
+            "species": "Milotic",
+            "details": "Milotic, L50, F",
+            "hp": 18,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 99,
+              "spa": 120,
+              "spd": 145,
+              "spe": 101
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "utilityumbrella",
+            "active": true,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "7104,42574,9152,10809",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Milotic|Ice Beam|p1a: Meganium",
+          "|-supereffective|p1a: Meganium|1",
+          "|-damage|p1a: Meganium|16/100",
+          "|move|p1a: Meganium|Synthesis|p1a: Meganium",
+          "|-activate|p1a: Meganium|ability: Mega Sol",
+          "|-heal|p1a: Meganium|82/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Milotic|Ice Beam|p1a: Meganium",
+          "|-supereffective|p1a: Meganium|1",
+          "|-damage|p1a: Meganium|25/155",
+          "|move|p1a: Meganium|Synthesis|p1a: Meganium",
+          "|-activate|p1a: Meganium|ability: Mega Sol",
+          "|-heal|p1a: Meganium|128/155",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Milotic|Ice Beam|p1a: Meganium",
+          "|-supereffective|p1a: Meganium|1",
+          "|-damage|p1a: Meganium|16/100",
+          "|move|p1a: Meganium|Synthesis|p1a: Meganium",
+          "|-activate|p1a: Meganium|ability: Mega Sol",
+          "|-heal|p1a: Meganium|82/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Solar Beam",
+                  "id": "solarbeam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Synthesis",
+                  "id": "synthesis",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium-Mega, L50, F",
+                "condition": "128/155",
+                "active": true,
+                "stats": {
+                  "atk": 112,
+                  "def": 135,
+                  "spa": 163,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "synthesis",
+                  "weatherball"
+                ],
+                "baseAbility": "megasol",
+                "item": "meganiumite",
+                "pokeball": "pokeball",
+                "ability": "megasol",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Milotic",
+                "details": "Milotic, L50, F",
+                "condition": "18/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 99,
+                  "spa": 120,
+                  "spd": 145,
+                  "spe": 101
+                },
+                "moves": [
+                  "icebeam",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "utilityumbrella",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium-Mega",
+            "details": "Meganium-Mega, L50, F",
+            "hp": 128,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 135,
+              "spa": 163,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "megasol",
+            "item": "meganiumite",
+            "active": true,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "synthesis",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "weatherball",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Milotic",
+            "species": "Milotic",
+            "details": "Milotic, L50, F",
+            "hp": 18,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 99,
+              "spa": 120,
+              "spd": 145,
+              "spe": 101
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "utilityumbrella",
+            "active": true,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "55173,41332,18014,39666",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Milotic|Recover|p2a: Milotic",
+          "|-heal|p2a: Milotic|60/100",
+          "|move|p1a: Meganium|Weather Ball|p2a: Milotic",
+          "|-resisted|p2a: Milotic|1",
+          "|-damage|p2a: Milotic|41/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Milotic|Recover|p2a: Milotic",
+          "|-heal|p2a: Milotic|60/100",
+          "|move|p1a: Meganium|Weather Ball|p2a: Milotic",
+          "|-resisted|p2a: Milotic|1",
+          "|-damage|p2a: Milotic|41/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Milotic|Recover|p2a: Milotic",
+          "|-heal|p2a: Milotic|103/170",
+          "|move|p1a: Meganium|Weather Ball|p2a: Milotic",
+          "|-resisted|p2a: Milotic|1",
+          "|-damage|p2a: Milotic|70/170",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Solar Beam",
+                  "id": "solarbeam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Synthesis",
+                  "id": "synthesis",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium-Mega, L50, F",
+                "condition": "128/155",
+                "active": true,
+                "stats": {
+                  "atk": 112,
+                  "def": 135,
+                  "spa": 163,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "synthesis",
+                  "weatherball"
+                ],
+                "baseAbility": "megasol",
+                "item": "meganiumite",
+                "pokeball": "pokeball",
+                "ability": "megasol",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Milotic",
+                "details": "Milotic, L50, F",
+                "condition": "70/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 99,
+                  "spa": 120,
+                  "spd": 145,
+                  "spe": 101
+                },
+                "moves": [
+                  "icebeam",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "utilityumbrella",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium-Mega",
+            "details": "Meganium-Mega, L50, F",
+            "hp": 128,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 135,
+              "spa": 163,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "megasol",
+            "item": "meganiumite",
+            "active": true,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "synthesis",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "weatherball",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Milotic",
+            "species": "Milotic",
+            "details": "Milotic, L50, F",
+            "hp": 70,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 99,
+              "spa": 120,
+              "spd": 145,
+              "spe": 101
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "utilityumbrella",
+            "active": true,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -533,7 +533,12 @@ impl Battle {
             atk = tr.modify(atk, 6144);
         }
         let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
-        let damage_weather = self.effective_weather();
+        let mega_sun = source_active && self.event_ability(source) == "megasol";
+        let damage_weather = if mega_sun {
+            Some(Weather::Sun)
+        } else {
+            self.effective_weather()
+        };
         let def = if (damage_weather == Some(Weather::Sand)
             && !defense_uses_def
             && mon.has_type("Rock"))
@@ -651,9 +656,17 @@ impl Battle {
             attack: atk,
             defense: NonZeroU32::new(def.max(1)).unwrap(),
             spread_or_bond: if spread { 3072 } else { 4096 },
-            weather: mon
-                .personal_weather(damage_weather)
-                .map_or(4096, |w| w.damage_modifier(move_type)),
+            weather: if move_data.name == "Hydro Steam"
+                && damage_weather == Some(Weather::Sun)
+                && (mega_sun || user.personal_weather(damage_weather) == Some(Weather::Sun))
+            {
+                6144
+            } else if mega_sun {
+                Weather::Sun.damage_modifier(move_type)
+            } else {
+                mon.personal_weather(damage_weather)
+                    .map_or(4096, |w| w.damage_modifier(move_type))
+            },
             critical: crit,
             stab: if !stab {
                 4096

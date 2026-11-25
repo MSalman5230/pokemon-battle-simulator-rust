@@ -2796,7 +2796,12 @@ impl Battle {
         let charge_spec = ChargeSpec::for_move(&move_data.name);
         let releasing_charge = own_action && self.mon(source).charge.is_some();
         let weather = self.effective_weather();
-        let move_weather = self.mon(source).personal_weather(weather);
+        let mega_sun = !delayed && self.event_ability(source) == "megasol";
+        let move_weather = if mega_sun {
+            Some(Weather::Sun)
+        } else {
+            self.mon(source).personal_weather(weather)
+        };
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
             && matches!(
                 move_weather,
@@ -2952,6 +2957,8 @@ impl Battle {
         }
         let weather_at_target = if move_data.name == "Blizzard" {
             weather
+        } else if mega_sun {
+            Some(Weather::Sun)
         } else {
             target.and_then(|target| self.mon(target).personal_weather(weather))
         };
@@ -3332,6 +3339,9 @@ impl Battle {
                 self.add(format!("|-prepare|{source_name}|{}", move_data.name));
                 if let Some(stat) = spec.boost {
                     self.boost(source, &[(stat, 1)], false);
+                }
+                if mega_sun && weather != Some(Weather::Sun) && spec.instant == Some(Weather::Sun) {
+                    self.add(format!("|-activate|{source_name}|ability: Mega Sol"));
                 }
                 let weather_skip = spec.instant.is_some() && spec.instant == move_weather;
                 let herb_skip = !weather_skip && self.mon(source).effective_item() == "powerherb";
@@ -4559,8 +4569,13 @@ impl Battle {
                     move_data.name.as_str(),
                     "Moonlight" | "Morning Sun" | "Synthesis"
                 ) {
-                    let fraction = match self.mon(target).personal_weather(self.effective_weather())
-                    {
+                    if mega_sun && weather != Some(Weather::Sun) {
+                        self.add(format!(
+                            "|-activate|{}|ability: Mega Sol",
+                            self.ident(target)
+                        ));
+                    }
+                    let fraction = match move_weather {
                         Some(Weather::Sun) => 2732,
                         Some(_) => 1024,
                         None => 2048,
@@ -6096,6 +6111,7 @@ impl Pokemon {
                 | "cheekpouch"
                 | "cudchew"
                 | "solarpower"
+                | "megasol"
                 | "fairyaura"
                 | "darkaura"
                 | "aurabreak"

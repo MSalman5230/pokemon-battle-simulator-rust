@@ -1440,6 +1440,11 @@ fn cud_chew_repeats_a_berry_next_turn_even_if_it_was_eaten_after_residuals() {
 }
 
 #[test]
+fn mega_sol_uses_sun_only_for_the_users_move_and_keeps_real_weather() {
+    replay(include_str!("fixtures/bss-mega-sol.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
