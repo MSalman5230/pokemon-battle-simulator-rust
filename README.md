@@ -9,7 +9,8 @@ That result covers the fixed 32-game workload. The worker now validates
 ordinary BSS rosters in Rust, without a reference manifest. Unsupported
 mechanics and unimplemented legality constraints return errors. Roster Ranch
 Rumble team generation is native. Full format parity, Random Battle team
-generation, and Poke-RL's tactics and lookahead are not complete.
+generation, and Poke-RL's lookahead are not complete. The worker implements
+the tactics metadata and a subset of public-state damage queries.
 
 ## Local setup
 
@@ -57,6 +58,7 @@ node scripts/export-tactics-metadata.mjs
 node scripts/capture-oracle.mjs
 node scripts/capture-validation.mjs
 node scripts/capture-generate-teams.mjs
+node scripts/capture-tactics.mjs
 ```
 
 The tests use checked-in fixtures and do not need Node. The fixture generator

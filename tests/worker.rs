@@ -15,6 +15,7 @@ fn worker_validates_sets_and_admits_rosters_without_an_external_manifest() {
     let mut invalid_team = teams[0].clone();
     invalid_team[0]["moves"][0] = json!("no such move");
     let error = "\"nosuchmove\" is an invalid move.";
+    let tactic: Value = serde_json::from_str(include_str!("fixtures/tactics.json")).unwrap();
     let requests = [
         json!({"id":1,"op":"batch","requests":[
             {"op":"validate","sets":[valid,invalid_team[0]]},
@@ -24,6 +25,7 @@ fn worker_validates_sets_and_admits_rosters_without_an_external_manifest() {
         json!({"id":3,"op":"new","game":"good","teams":teams,"seed":[1,2,3,4]}),
         json!({"id":4,"op":"step","game":"good","actions":[14,14]}),
         json!({"id":5,"op":"tactics_metadata"}),
+        json!({"id":6,"op":"calculate","queries":[tactic["cases"][0]["input"],tactic["cases"][2]["input"]]}),
     ];
     let mut child = Command::new(env!("CARGO_BIN_EXE_pokemon-battle-worker"))
         .stdin(Stdio::piped())
@@ -43,7 +45,7 @@ fn worker_validates_sets_and_admits_rosters_without_an_external_manifest() {
         .lines()
         .map(|line| serde_json::from_str(line).unwrap())
         .collect();
-    assert_eq!(responses.len(), 5);
+    assert_eq!(responses.len(), 6);
     assert_eq!(
         responses[0],
         json!({"id":1,"result":[[null,[error]],[null,[error]]]})
@@ -55,4 +57,10 @@ fn worker_validates_sets_and_admits_rosters_without_an_external_manifest() {
     assert_eq!(responses[3]["result"]["views"][0]["turn"], 1);
     let data: Value = serde_json::from_str(include_str!("../data/tactics-metadata.json")).unwrap();
     assert_eq!(responses[4], json!({"id":5,"result":data["metadata"]}));
+    assert_eq!(responses[5]["id"], 6);
+    assert_eq!(
+        responses[5]["result"][0]["rows"],
+        tactic["cases"][0]["expected"]["rows"]
+    );
+    assert_eq!(responses[5]["result"][1]["rows"], json!([[0, 1.0]]));
 }

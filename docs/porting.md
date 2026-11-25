@@ -77,4 +77,10 @@ PRNG and supports native pick-four doubles setup. Seeded tests compare complete
 rosters and the final team PRNG state. Random Battle and Random Doubles Battle
 generation remain to be ported. Continue testing more rosters, seeds, and
 formats and record focused native fixtures for gaps.
+
+The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
+markers. Its hypothetical damage calculator runs in an isolated battle and
+reuses the native damage formula. Tests compare each enumerated damage roll,
+accuracy, speed, and survival flags. Unsupported preparation, multihit, and
+other conditional cases do not fall back to heuristic damage estimates.
 The benchmark rejects any mismatch before timing the adapter.

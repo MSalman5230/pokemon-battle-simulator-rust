@@ -1369,7 +1369,7 @@ impl Battle {
         )
     }
 
-    fn move_priority(&self, pos: Position, data: &Move) -> i8 {
+    pub(super) fn move_priority(&self, pos: Position, data: &Move) -> i8 {
         data.priority
             + i8::from(
                 data.name == "Grassy Glide"
@@ -3362,7 +3362,12 @@ impl Battle {
         self.effectiveness_of(move_data, &move_data.move_type, target)
     }
 
-    fn effectiveness_of(&self, move_data: &Move, move_type: &str, target: Position) -> Option<i8> {
+    pub(super) fn effectiveness_of(
+        &self,
+        move_data: &Move,
+        move_type: &str,
+        target: Position,
+    ) -> Option<i8> {
         let mut modifier = 0;
         for typing in self.mon(target).types() {
             if move_data.name == "Freeze-Dry" && typing == "Water" {
@@ -3399,7 +3404,7 @@ impl Pokemon {
         }
     }
 
-    fn current_speed(&self, weather: Option<Weather>, tailwind: bool) -> u32 {
+    pub(super) fn current_speed(&self, weather: Option<Weather>, tailwind: bool) -> u32 {
         let mut stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
         if tailwind {
             stat *= 2;

@@ -93,6 +93,7 @@ impl Worker {
         match query["op"].as_str() {
             Some("validate") => return validate(query, out),
             Some("tactics_metadata") => return encode(out, tactics::metadata()),
+            Some("calculate") => return encode(out, tactics::calculate_many(&query["queries"])?),
             Some("new" | "step" | "close" | "trace") => {}
             Some(op) => return Err(format!("not ported: operation {op}")),
             None => return Err("missing operation".into()),
