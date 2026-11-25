@@ -53,8 +53,11 @@ seed, turn cap, and repeat options.
 Add `--trace-parity` before `--` to check every terminal game's spectator
 trace, excluding only Showdown's wall-clock markers. Trace requests are
 verification-only and do not change the timed workload or its hash.
-The [recorded trace run](verified-trace-bss-result.json) verified all 32
-traces and all 673 steps. The same timed workload ran 4.45× faster.
+The [extended-mechanics trace run](verified-extended-bss-result.json) verified
+all 32 traces and all 673 steps at Rust commit `a60fb32`. It measured 334
+steps/s for Showdown and 1,460 for Rust across five replays (4.37×). The
+[previous trace run](verified-trace-bss-result.json) measured 4.45× on the
+same workload hash.
 
 The [recorded native-validation run](verified-native-bss-result.json) used
 Rust commit `70653a09946713dc4593e467e83d3ef6bb6c7a2c`. Both workers matched
@@ -115,3 +118,7 @@ Add `--diagnose-parity` before `--` to report the first error or mismatch
 for each battle. This runs untimed, isolates games from failures in other
 slots, and exits nonzero if any game fails. The timed benchmark still
 requires parity on the original batched workload.
+On a separate untimed stress replay with 160 games and seed `20261125`,
+`a60fb32` matched 111 complete games and 2,297 steps before any blocker.
+The other 49 games stopped at an explicitly unsupported mechanic. This run
+does not establish parity on new seeds and does not report throughput.

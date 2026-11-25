@@ -68,11 +68,12 @@ BSS benchmark and the fixed 32-game default benchmark using the training
 corpus. The [recorded default run](../benchmarks/verified-native-bss-result.json)
 matched 673 steps without truncation and measured a 4.46× release speedup
 with native validation enabled.
-This is a benchmark milestone, not general parity. Native Flat Rules
-validation covers BSS and VGC Reg M-B/M-C, including Bo3, for ordinary modern
-sets. The worker uses it by default and admits the 128 rosters in the locked
-training corpus. Some origin, special form, and event constraints are still
-unsupported. Roster Ranch Rumble generates ten-member rosters with a separate
+This is a benchmark milestone, not general parity. Native validation covers
+ordinary modern sets under Flat Rules, OU, UU, Doubles, Draft, 4v4 Doubles UU,
+and 4v4 Doubles Draft, including their corresponding team bans. It admits all
+128 rosters in the locked training corpus. NatDex Draft legality and some
+origin, special form, and event constraints are still unsupported. Roster
+Ranch Rumble generates ten-member rosters with a separate
 PRNG and supports native pick-four doubles setup. Seeded tests compare complete
 rosters and the final team PRNG state. Random Battle and Random Doubles Battle
 generate teams, skip preview, and retain level-based stats and Illusion.
@@ -96,3 +97,9 @@ rollout seeds and follows interrupted turns through switches. Replays compare
 public and critic observations and reconstruction assumptions. Unported world
 effects are reported per world rather than borrowed from a live game.
 The benchmark rejects any mismatch before timing the adapter.
+
+The local `series::Series` API runs the explicit Reg M-B and Reg M-C Bo3
+formats with fixed submitted rosters and caller-supplied game seeds. It
+starts a fresh battle for each game, preserves the format's open team sheets,
+and follows Showdown's win threshold when games tie. The series API does not
+implement rooms, timers, or server state.
