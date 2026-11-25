@@ -104,6 +104,42 @@ impl Battle {
         self.mon_mut(pos).ability_order = self.ability_order;
     }
 
+    pub(super) fn skill_swap(&mut self, source: Position, target: Position) -> bool {
+        let user = self.mon(source);
+        let mon = self.mon(target);
+        let user_effect = DEX.ability(&user.ability);
+        let target_effect = DEX.ability(&mon.ability);
+        if user.fainted
+            || mon.fainted
+            || user_effect.is_some_and(|a| a.no_skill_swap)
+            || target_effect.is_some_and(|a| a.no_skill_swap)
+        {
+            return false;
+        }
+        let a = std::mem::take(&mut self.mon_mut(source).ability);
+        let b = std::mem::replace(&mut self.mon_mut(target).ability, a);
+        self.mon_mut(source).ability = b;
+        let target_name = self.ident(target);
+        let source_name = self.ident(source);
+        if target.player == source.player {
+            self.add(format!(
+                "|-activate|{source_name}|Skill Swap|||[of] {target_name}"
+            ));
+            self.add("|-hint|Skill Swap does not announce the abilities of the Pokémon when used between allies.");
+        } else {
+            let target_label = target_effect.map_or("", |a| a.name.as_str());
+            let user_label = user_effect.map_or("", |a| a.name.as_str());
+            self.add(format!(
+                "|-activate|{source_name}|Skill Swap|{target_label}|{user_label}|[of] {target_name}"
+            ));
+        }
+        self.reset_ability_order(source);
+        self.reset_ability_order(target);
+        self.start_ability(target);
+        self.start_ability(source);
+        true
+    }
+
     pub(super) fn contact_ability(&mut self, holder: Position, source: Position) {
         let (id, label) = match self.mon(holder).ability.as_str() {
             "mummy" => ("mummy", "Mummy"),

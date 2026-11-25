@@ -754,6 +754,10 @@ impl Battle {
                     | "horndrill"
                     | "sheercold"
                     | "destinybond"
+                    | "foulplay"
+                    | "trick"
+                    | "switcheroo"
+                    | "skillswap"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1997,6 +2001,8 @@ impl Battle {
                     && source != pos
                     && self.status_immune(pos, "powder"))
                 || (move_data.name == "Leech Seed" && self.mon(pos).has_type("Grass"))
+                || (matches!(move_data.name.as_str(), "Trick" | "Switcheroo")
+                    && self.mon(pos).ability == "stickyhold")
             {
                 self.add(format!("|-immune|{}", self.ident(pos)));
                 false
@@ -2067,6 +2073,23 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if matches!(
+                    move_data.name.as_str(),
+                    "Skill Swap" | "Trick" | "Switcheroo"
+                ) {
+                    let swapped = if move_data.name == "Skill Swap" {
+                        self.skill_swap(source, target)
+                    } else {
+                        self.swap_items(source, target, &move_data.name)
+                    };
+                    if swapped {
+                        succeeded = true;
+                    } else {
+                        self.log[base].public =
+                            format!("|move|{source_name}|{}||[still]", move_data.name);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if move_data.name == "Leech Seed" {
                     if self.leech_seed(source, target) {
                         succeeded = true;
@@ -2316,14 +2339,19 @@ impl Battle {
                     self.terrain_power_modifier(source, target, move_data, move_type);
                 let user = self.mon(source);
                 let mon = self.mon(target);
+                let offensive = if move_data.name == "Foul Play" {
+                    mon
+                } else {
+                    user
+                };
                 let (atk, atk_stage, def, def_stage) = if move_data.category == Category::Physical {
                     (
                         if move_data.name == "Body Press" {
                             user.stats.def
                         } else {
-                            user.stats.atk
+                            offensive.stats.atk
                         },
-                        user.boosts.get(if move_data.name == "Body Press" {
+                        offensive.boosts.get(if move_data.name == "Body Press" {
                             BoostStat::Def
                         } else {
                             BoostStat::Atk
@@ -2599,6 +2627,9 @@ impl Battle {
                         "flamebody" => self.flame_body(target, source),
                         "cutecharm" => self.cute_charm(target, source),
                         "mummy" | "lingeringaroma" => self.contact_ability(target, source),
+                        "wanderingspirit" => {
+                            self.skill_swap(source, target);
+                        }
                         _ => {}
                     }
                 }
@@ -2983,6 +3014,7 @@ impl Pokemon {
                 | "magicguard"
                 | "weakarmor"
                 | "mummy"
+                | "wanderingspirit"
                 | "lingeringaroma"
                 | "trace"
                 | "illuminate"

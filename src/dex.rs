@@ -207,6 +207,8 @@ pub struct Effect {
     pub no_trace: bool,
     #[serde(default)]
     pub cannot_suppress: bool,
+    #[serde(default)]
+    pub no_skill_swap: bool,
 }
 
 #[derive(Debug, Deserialize)]

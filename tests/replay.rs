@@ -420,3 +420,13 @@ fn bss_ohko_bypasses_regular_damage_and_respects_sturdy_and_type_immunity() {
 fn bss_destiny_bond_disallows_repetition_and_resolves_the_faint_chain() {
     replay(include_str!("fixtures/bss-destiny-bond.json"));
 }
+
+#[test]
+fn bss_trick_swaps_held_items_and_foul_play_uses_the_targets_attack_stat() {
+    replay(include_str!("fixtures/bss-trick-foul-play.json"));
+}
+
+#[test]
+fn bss_wandering_spirit_and_skill_swap_preserve_base_abilities() {
+    replay(include_str!("fixtures/bss-wandering-spirit.json"));
+}

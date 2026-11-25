@@ -164,6 +164,49 @@ impl Battle {
         }
     }
 
+    pub(super) fn swap_items(&mut self, user: Position, target: Position, move_name: &str) -> bool {
+        let user_item = DEX.item(self.format.dex_mod, &self.mon(user).item);
+        let foe_item = DEX.item(self.format.dex_mod, &self.mon(target).item);
+        if (user_item.is_none() && foe_item.is_none())
+            || user_item.is_some_and(|item| {
+                !self.mon(user).can_transfer_item(item) || !self.mon(target).can_transfer_item(item)
+            })
+            || foe_item.is_some_and(|item| {
+                !self.mon(target).can_transfer_item(item) || !self.mon(user).can_transfer_item(item)
+            })
+        {
+            return false;
+        }
+        let from_user = std::mem::take(&mut self.mon_mut(user).item);
+        let from_target = std::mem::take(&mut self.mon_mut(target).item);
+        self.add(format!(
+            "|-activate|{}|move: Trick|[of] {}",
+            self.ident(user),
+            self.ident(target)
+        ));
+        for (pos, id, new, previous) in [
+            (target, from_user, user_item, foe_item),
+            (user, from_target, foe_item, user_item),
+        ] {
+            if let Some(item) = new {
+                self.mon_mut(pos).item = id;
+                self.on_switch_in_item(pos);
+                self.add(format!(
+                    "|-item|{}|{}|[from] move: {move_name}",
+                    self.ident(pos),
+                    item.effect.name
+                ));
+            } else if let Some(item) = previous {
+                self.add(format!(
+                    "|-enditem|{}|{}|[silent]|[from] move: {move_name}",
+                    self.ident(pos),
+                    item.effect.name
+                ));
+            }
+        }
+        true
+    }
+
     pub(super) fn item_heal(&mut self, pos: Position, amount: u32, item: &str) {
         let mon = self.mon_mut(pos);
         if mon.hp == 0 || mon.hp == mon.max_hp.get() {
