@@ -712,6 +712,7 @@ impl Battle {
                     | "painsplit"
                     | "tripleaxel"
                     | "triplekick"
+                    | "trickroom"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -759,7 +760,7 @@ impl Battle {
                     action.priority.priority = f64::from(data.priority);
                 }
             }
-            action.priority.speed = self.mon(source).current_speed(self.weather()) as i32;
+            action.priority.speed = self.field_speed(source);
         }
     }
 
@@ -829,7 +830,7 @@ impl Battle {
     fn insert_run_switch(&mut self, incoming: Position, queue: &mut Vec<Action>) {
         self.reset_ability_order(incoming);
         let mut action = Action::new(Some(incoming), ActionKind::RunSwitch);
-        self.mon_mut(incoming).speed = self.mon(incoming).current_speed(self.weather());
+        self.mon_mut(incoming).speed = self.field_speed(incoming);
         self.prioritize(&mut action);
         let first = queue.partition_point(|q| q.priority.compare(action.priority).is_lt());
         let last =
@@ -1063,7 +1064,7 @@ impl Battle {
     pub(super) fn ordered_actives(
         &mut self,
         include_fainted: bool,
-    ) -> ([(Position, u32); 4], usize) {
+    ) -> ([(Position, i32); 4], usize) {
         // Even a field-wide event with no matching handler performs this
         // selection and consumes every speed-tie draw.
         let mut actives = [(
@@ -1088,9 +1089,16 @@ impl Battle {
     fn update_speed(&mut self) {
         for pos in self.positions() {
             if !self.mon(pos).fainted {
-                self.mon_mut(pos).speed = self.mon(pos).current_speed(self.weather());
+                self.mon_mut(pos).speed = self.field_speed(pos);
             }
         }
+    }
+
+    pub(super) fn field_speed(&self, pos: Position) -> i32 {
+        self.stat_rules.truncation.action_speed(
+            self.mon(pos).current_speed(self.weather()),
+            (self.trick_room > 0) ^ self.twisted_dimension,
+        )
     }
 
     pub(super) fn each_event(&mut self) {
@@ -1120,6 +1128,7 @@ impl Battle {
             Taunt,
             Disable,
             Screen(Screen),
+            TrickRoom,
         }
         self.add("|");
         self.update_speed();
@@ -1134,6 +1143,20 @@ impl Battle {
                 Priority {
                     order: 1,
                     sub_order: 5,
+                    ..Priority::default()
+                },
+            ));
+        }
+        if self.trick_room > 0 {
+            timers.push((
+                Position {
+                    player: Player::P1,
+                    slot: 0,
+                },
+                Effect::TrickRoom,
+                Priority {
+                    order: 27,
+                    sub_order: 1,
                     ..Priority::default()
                 },
             ));
@@ -1158,7 +1181,7 @@ impl Battle {
             let priority = |order, sub_order| Priority {
                 order,
                 sub_order,
-                speed: mon.speed as i32,
+                speed: mon.speed,
                 ..Priority::default()
             };
             if let Some((order, _, _)) = mon.status.residual() {
@@ -1214,6 +1237,13 @@ impl Battle {
                 self.tick_screen(pos.player, screen);
                 continue;
             }
+            if matches!(effect, Effect::TrickRoom) {
+                self.trick_room -= 1;
+                if self.trick_room == 0 {
+                    self.add("|-fieldend|move: Trick Room");
+                }
+                continue;
+            }
             let mon = self.mon_mut(pos);
             if mon.fainted {
                 continue;
@@ -1223,7 +1253,7 @@ impl Battle {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
                 }
-                Effect::Weather | Effect::Screen(_) => unreachable!(),
+                Effect::Weather | Effect::Screen(_) | Effect::TrickRoom => unreachable!(),
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::Disable => self.tick_disable(pos),
                 Effect::Taunt => self.tick_taunt(pos),
@@ -1470,6 +1500,17 @@ impl Battle {
             if !self.court_change(source) {
                 self.log[base].public = format!("|move|{source_name}|Court Change||[still]");
                 self.add(format!("|-fail|{source_name}"));
+            }
+            return true;
+        }
+        if move_data.name == "Trick Room" {
+            self.protean_prepare(source, move_type);
+            if self.trick_room > 0 {
+                self.trick_room = 0;
+                self.add("|-fieldend|move: Trick Room");
+            } else {
+                self.trick_room = 5;
+                self.add(format!("|-fieldstart|move: Trick Room|[of] {source_name}"));
             }
             return true;
         }
@@ -1744,7 +1785,7 @@ impl Battle {
                         Some(_) => 1024,
                         None => 2048,
                     };
-                    let tr = self.format.stat_rules().truncation;
+                    let tr = self.stat_rules.truncation;
                     let mon = self.mon_mut(target);
                     if mon.hp == mon.max_hp.get() {
                         self.add(format!("|-fail|{}|heal", self.ident(target)));
@@ -1794,7 +1835,7 @@ impl Battle {
             return true;
         }
 
-        let tr = self.format.stat_rules().truncation;
+        let tr = self.stat_rules.truncation;
         let screen_handlers = self
             .sides
             .iter()
@@ -2305,10 +2346,7 @@ impl Battle {
     fn accuracy(&self, source: Position, target: Position, accuracy: u8) -> u32 {
         let accuracy =
             if self.mon(target).ability == "sandveil" && self.weather() == Some(Weather::Sand) {
-                self.format
-                    .stat_rules()
-                    .truncation
-                    .modify(u32::from(accuracy), 3277) as i32
+                self.stat_rules.truncation.modify(u32::from(accuracy), 3277) as i32
             } else {
                 i32::from(accuracy)
             };

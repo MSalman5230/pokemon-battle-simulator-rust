@@ -4,7 +4,7 @@ use crate::{
     choice::{Choice, SlotChoice, to_id},
     dex::{DEX, Format, Move, Species},
     input::{Input, Player, PlayerOptions, Set, SetStats, Start, Team},
-    mechanics::{Boosts, Nature, Stats, health, max_pp},
+    mechanics::{Boosts, Nature, StatRules, Stats, health, max_pp},
     order::{Priority, speed_sort_by},
     rng::{Rng, Seed},
 };
@@ -109,6 +109,8 @@ pub enum Phase {
 
 pub struct Battle {
     format: &'static Format,
+    stat_rules: StatRules,
+    twisted_dimension: bool,
     rng: Rng,
     sides: [Option<Side>; 2],
     pending_preview: [Option<Vec<usize>>; 2],
@@ -118,6 +120,7 @@ pub struct Battle {
     winner: Option<Player>,
     last_faint: Option<Player>,
     weather: Option<(Weather, u8)>,
+    trick_room: u8,
     ability_order: u32,
     pending_actions: [Option<Vec<Action>>; 2],
     suspended: Vec<Action>,
@@ -141,7 +144,7 @@ pub struct Pokemon {
     nature: Nature,
     pub stats: Stats,
     pub boosts: Boosts,
-    speed: u32,
+    speed: i32,
     pub hp: u32,
     pub status: Status,
     pub times_attacked: u32,
@@ -288,6 +291,8 @@ impl Battle {
             .ok_or_else(|| BattleError::Unsupported("implicit seed generation".into()))?;
         let mut battle = Self {
             format,
+            stat_rules: format.stat_rules(),
+            twisted_dimension: format.has_rule("twisteddimensionmod"),
             rng: Rng::new(seed),
             sides: [None, None],
             pending_preview: [None, None],
@@ -297,6 +302,7 @@ impl Battle {
             winner: None,
             last_faint: None,
             weather: None,
+            trick_room: 0,
             ability_order: 0,
             pending_actions: [None, None],
             suspended: Vec::new(),
@@ -665,7 +671,7 @@ impl Pokemon {
             nature,
             stats,
             boosts: Boosts::default(),
-            speed: stats.spe,
+            speed: stats.spe as i32,
             hp: max_hp.get(),
             status: Status::Healthy,
             times_attacked: 0,

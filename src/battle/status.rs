@@ -161,7 +161,7 @@ impl Battle {
             mon.level,
             boosted_stat(mon.stats.atk, mon.boosts.get(BoostStat::Atk)),
             boosted_stat(mon.stats.def, mon.boosts.get(BoostStat::Def)),
-            self.format.stat_rules().truncation,
+            self.stat_rules.truncation,
             &mut self.rng,
         );
         let mon = self.mon_mut(pos);

@@ -39,7 +39,7 @@ impl Battle {
 
     pub(super) fn mega_evolve(&mut self, pos: Position) {
         let species = self.mega_species(pos).expect("validated Mega form");
-        let rules = self.format.stat_rules();
+        let rules = self.stat_rules;
         let mon = self.mon_mut(pos);
         mon.species = species;
         mon.temporary_type = None;
@@ -52,7 +52,6 @@ impl Battle {
                 s,
             )
         });
-        mon.speed = mon.stats.spe;
         let suffix = mon.details.split_once(',').map(|(_, suffix)| suffix);
         mon.details =
             suffix.map_or_else(|| species.name.clone(), |s| format!("{},{s}", species.name));
@@ -80,6 +79,7 @@ impl Battle {
             .get("0")
             .map_or_else(String::new, |name| to_id(name));
         mon.base_ability.clone_from(&mon.ability);
+        self.mon_mut(pos).speed = self.field_speed(pos);
         self.reset_ability_order(pos);
         self.start_ability(pos);
     }

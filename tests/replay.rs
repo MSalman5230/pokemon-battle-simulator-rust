@@ -320,3 +320,8 @@ fn bss_multihit_rechecks_damage_and_abilities_between_strikes() {
 fn vgc_multihit_counts_only_the_strikes_that_execute_after_focus_sash() {
     replay(include_str!("fixtures/vgc-multihit-sash.json"));
 }
+
+#[test]
+fn vgc_trick_room_reverses_speed_without_reversing_priority_and_can_end_early() {
+    replay(include_str!("fixtures/vgc-trick-room.json"));
+}

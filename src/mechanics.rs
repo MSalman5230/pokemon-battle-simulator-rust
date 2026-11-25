@@ -128,6 +128,18 @@ impl Truncation {
     pub fn modify(self, value: u32, modifier: u32) -> u32 {
         ((self.word(u64::from(value) * u64::from(modifier)) + 2047) / 4096) as u32
     }
+
+    pub fn action_speed(self, speed: u32, inverted: bool) -> i32 {
+        let speed = match self {
+            Self::Cartridge => speed.min(10_000),
+            Self::Unbounded => speed,
+        } as i32;
+        let speed = if inverted { 10_000 - speed } else { speed };
+        match self {
+            Self::Cartridge => speed & 0x1fff,
+            Self::Unbounded => speed,
+        }
+    }
 }
 
 /// Chain event modifiers before applying them to the value (ties round up).
@@ -143,11 +155,7 @@ pub fn boosted_stat(value: u32, stage: i8) -> u32 {
 }
 
 pub fn action_speed(stat: u32, trick_room: bool, twisted_dimension: bool) -> i32 {
-    if trick_room ^ twisted_dimension {
-        -(stat as i32)
-    } else {
-        stat as i32
-    }
+    Truncation::Cartridge.action_speed(stat, trick_room ^ twisted_dimension)
 }
 
 pub(crate) fn confusion_damage(
