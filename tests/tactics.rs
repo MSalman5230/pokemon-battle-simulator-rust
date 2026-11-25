@@ -16,19 +16,30 @@ fn equal(a: &Value, b: &Value) -> bool {
 
 #[test]
 fn hypothetical_calculator_matches_native_damage_rows_and_public_state() {
-    let data: Value = serde_json::from_str(include_str!("fixtures/tactics.json")).unwrap();
+    check_fixture(include_str!("fixtures/tactics.json"));
+}
+
+#[test]
+#[ignore = "run node scripts/capture-tactics.mjs .tools/tactics-training.json after setup"]
+fn all_training_moves_match_native_tactical_calculator() {
+    check_fixture(&std::fs::read_to_string(".tools/tactics-training.json").unwrap());
+}
+
+fn check_fixture(source: &str) {
+    let data: Value = serde_json::from_str(source).unwrap();
     assert_eq!(data["revision"], DEX.revision);
+    let cases = data["cases"].as_array().unwrap();
+    let queries = Value::Array(cases.iter().map(|case| case["input"].clone()).collect());
+    let rows = tactics::calculate_many(&queries).unwrap();
     let mut problems = Vec::new();
-    for case in data["cases"].as_array().unwrap() {
-        match tactics::calculate_many(&json!([case["input"]])) {
-            Ok(row) if equal(&json!(row[0]), &case["expected"]) => {}
-            Ok(row) => problems.push(format!(
+    assert_eq!(rows.len(), cases.len());
+    for (case, row) in cases.iter().zip(rows) {
+        let row = json!(row);
+        if !equal(&row, &case["expected"]) {
+            problems.push(format!(
                 "{}\nexpected {}\ngot      {}",
-                case["name"],
-                case["expected"],
-                json!(row[0])
-            )),
-            Err(err) => problems.push(format!("{}: {err}", case["name"])),
+                case["name"], case["expected"], row,
+            ));
         }
     }
     assert!(problems.is_empty(), "{}", problems.join("\n"));

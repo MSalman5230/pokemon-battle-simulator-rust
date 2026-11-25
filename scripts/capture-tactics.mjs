@@ -10,6 +10,7 @@ const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
 const lock = JSON.parse(readFileSync(new URL('package-lock.json', stage)));
 assert(lock.packages['node_modules/pokemon-showdown'].resolved.endsWith('/' + revision));
 const {calculateMany} = require('./tactics.cjs');
+const {TeamValidator} = require('pokemon-showdown');
 
 const mon = (species, ability = '', item = '', state = {}, set = {}) => ({
     set: {species, ability, item, nature: 'Hardy', moves: ['Protect'], gender: 'F', ...set}, ...state,
@@ -107,8 +108,56 @@ add('Bright Powder decreases accuracy after the attackers lens modifier', 'thund
 add('Gravity strengthens Grav Apple and improves numeric accuracy', 'gravapple',
     mon('Flapple', 'Ripen'), fire, {pseudo:{gravity:{}}});
 add('Gravity grounds a Flying target against Earthquake', 'earthquake', normal, fire, {pseudo:{gravity:{}}});
+add('ordinary ranged hit counts have native weights', 'bulletseed', mon('Breloom', 'Technician'), normal);
+add('Loaded Dice narrows the possible counts', 'iciclespear', mon('Baxcalibur', 'Thermal Exchange', 'Loaded Dice'), water);
+add('Skill Link chooses the maximum and crosses a known Substitute', 'iciclespear',
+    mon('Cloyster', 'Skill Link'), {...normal, volatiles:{substitute:{hp:33}}});
+add('unknown Substitute HP is reported on a multihit estimate', 'rockblast',
+    mon('Cloyster', 'Skill Link'), {...normal, volatiles:{substitute:{}}});
+add('multihit recalculates damage after Ice Face changes the defender', 'rockblast',
+    mon('Cloyster', 'Skill Link'), mon('Eiscue', 'Ice Face'));
+add('multihit changes Disguise once before continuing', 'bulletseed', mon('Breloom', 'Technician'), mon('Mimikyu', 'Disguise'));
+add('Population Bomb models every strike until the defender faints', 'populationbomb',
+    mon('Maushold', 'Technician'), {...normal, hp:0.27, item:'Focus Sash'});
+add('Triple Axel increases the base power on each native hit', 'tripleaxel', mon('Weavile', 'Pressure'), normal);
+add('guaranteed critical hits apply per strike', 'surgingstrikes', mon('Urshifu-Rapid-Strike', 'Unseen Fist'),
+    {...normal, boosts:{def:2}});
+add('damage beyond False Swipe stopping threshold is excluded', 'falseswipe',
+    mon('Haxorus', 'Mold Breaker'), {...normal, hp:0.03});
+add('volatiles the reference cannot restore are explicitly marked', 'watergun',
+    {...normal, volatiles:{torment:{}}}, electric);
+const hydrapple = mon('Hydrapple', 'Regenerator');
+add('Fickle Beam uses the prepared scenario random draws', 'ficklebeam', hydrapple, normal);
+add('another state does not move the prepared scenario random cursor', 'ficklebeam', hydrapple, water);
+add('a repeated Fickle Beam continues its prepared state random cursor', 'ficklebeam', hydrapple, normal);
+add('Endeavor damage-only estimate preserves the signed callback result', 'endeavor',
+    mon('Snorlax', 'Thick Fat'), {...water, hp: .3});
+add('stored power counts positive non-offense stages too', 'storedpower',
+    mon('Espeon', 'Synchronize', '', {boosts: {atk:-1, def:2, accuracy:1}}), water);
+add('OHKO is blocked by Sturdy before damage-only rolls', 'fissure',
+    mon('Snorlax', 'Thick Fat'), mon('Avalugg', 'Sturdy'));
+add('Counter without previous damage is marked unreliable and returns zero', 'counter', normal, water);
+
+const trainingPath = process.argv[2];
+if (trainingPath) {
+    assert.equal(process.argv.length, 3, 'Usage: node scripts/capture-tactics.mjs [TRAINING_OUTPUT.json]');
+    const corpus = JSON.parse(readFileSync(new URL('../.tools/verified-training-corpus.json', import.meta.url)));
+    assert.equal(corpus.revision, revision);
+    const dex = new TeamValidator(corpus.format).dex;
+    const byMove = new Map();
+    for (const {team} of corpus.teams) for (const set of team) for (const name of set.moves) {
+        const move = dex.moves.get(name);
+        if (!byMove.has(move.id)) byMove.set(move.id, set);
+    }
+    queries.length = 0;
+    for (const [move, set] of byMove) {
+        add(`${move} against neutral Normal`, move, {set}, mon('Snorlax', 'Thick Fat'));
+        add(`${move} against Water with public status and health`, move, {set},
+            mon('Suicune', 'Pressure', '', {hp: 0.43, status: 'psn'}));
+    }
+}
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));
-writeFileSync(new URL('../tests/fixtures/tactics.json', import.meta.url),
+writeFileSync(trainingPath ?? new URL('../tests/fixtures/tactics.json', import.meta.url),
     `{"revision":${JSON.stringify(revision)},"cases":[\n${data.map(x => JSON.stringify(x)).join(',\n')}\n]}\n`);
