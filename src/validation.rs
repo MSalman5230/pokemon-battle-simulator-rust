@@ -14,6 +14,7 @@ use std::{collections::HashMap, sync::LazyLock};
 mod flat;
 mod natdex;
 mod origins;
+mod sources;
 pub use flat::{TeamValidator, ValidationError};
 
 type Table<T> = HashMap<String, T>;

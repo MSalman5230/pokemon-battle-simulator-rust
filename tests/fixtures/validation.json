@@ -2855,6 +2855,162 @@
       ]
     },
     {
+      "name": "event-exclusive move checks level and shiny together",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Charcadet",
+        "ability": "Flash Fire",
+        "moves": [
+          "Celebrate"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 1,
+        "shiny": true
+      },
+      "expected": [
+        "Charcadet does not exist in Gen 9.",
+        "Charcadet's move Celebrate does not exist in Gen 9.",
+        "Charcadet must be at least level 5 because it has a move only available from an event.",
+        "Charcadet must not be shiny because it has a move only available from an event."
+      ]
+    },
+    {
+      "name": "event-exclusive move checks fixed IVs below Hyper Training",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Klawf",
+        "ability": "Anger Shell",
+        "moves": [
+          "Block"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 1,
+        "shiny": true
+      },
+      "expected": [
+        "Klawf does not exist in Gen 9.",
+        "Klawf must be at least level 16 because it has a move only available from an event.",
+        "Klawf must not be shiny because it has a move only available from an event.",
+        "Klawf must have 30 HP IVs because it has a move only available from an event.",
+        "Klawf must have 30 Attack IVs because it has a move only available from an event.",
+        "Klawf must have 30 Defense IVs because it has a move only available from an event.",
+        "Klawf must have 30 Special Attack IVs because it has a move only available from an event.",
+        "Klawf must have 30 Special Defense IVs because it has a move only available from an event.",
+        "Klawf must have 30 Speed IVs because it has a move only available from an event."
+      ]
+    },
+    {
+      "name": "an incompatible event move prevents the GO origin",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Gastrodon-East",
+        "ability": "Storm Drain",
+        "moves": [
+          "Yawn"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 1,
+        "shiny": true
+      },
+      "expected": [
+        "Gastrodon (Gastrodon-East) does not exist in Gen 9.",
+        "Gastrodon-East must be at least level 30 to be evolved.",
+        "Gastrodon-East must be at least level 50 to be underleveled from an event.",
+        "Gastrodon-East must not be shiny to be underleveled from an event.",
+        "Gastrodon-East must have 0 Attack IVs to be underleveled from an event.",
+        "Gastrodon-East must have 8 Speed IVs to be underleveled from an event.",
+        "It failed to validate as a Pokemon from Pokemon GO because:",
+        "Gastrodon-East's move Yawn is incompatible with a Pokemon GO origin."
+      ]
+    },
+    {
+      "name": "past move cannot transfer into a modern format",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Spinda",
+        "ability": "Contrary",
+        "moves": [
+          "Fake Out"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Spinda does not exist in Gen 9.",
+        "Spinda's move Fake Out can't be transferred from Gen 7 to 9."
+      ]
+    },
+    {
+      "name": "pre-evolution-only source cannot transfer to Eternal Floette",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Floette-Eternal",
+        "ability": "Flower Veil",
+        "moves": [
+          "After You"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Floette-Eternal can't learn After You."
+      ]
+    },
+    {
+      "name": "underlevel evolution has no alternate event or GO origin",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Garganacl",
+        "ability": "Purifying Salt",
+        "moves": [
+          "Ancient Power"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 1
+      },
+      "expected": [
+        "Garganacl must be at least level 38 to be evolved."
+      ]
+    },
+    {
+      "name": "the minimum level for a GO evolution can be lower",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Decidueye-Hisui",
+        "ability": "Scrappy",
+        "moves": [
+          "Aerial Ace"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 1
+      },
+      "expected": [
+        "Decidueye-Hisui must be at least level 36 to be evolved.",
+        "It failed to validate as a Pokemon from Pokemon GO because:",
+        "Decidueye-Hisui must be at least level 12 to be from Pokemon GO."
+      ]
+    },
+    {
+      "name": "underlevel evolution can originate in GO",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Dragonite",
+        "ability": "Inner Focus",
+        "moves": [
+          "Dragon Claw"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 1
+      },
+      "expected": null
+    },
+    {
       "name": "plate determines Arceus forme",
       "format": "gen9championsnatdexdraft",
       "set": {

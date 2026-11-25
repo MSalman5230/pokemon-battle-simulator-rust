@@ -1,9 +1,10 @@
 //! Team and set validation for the standard Champions competitive formats.
 
 use super::{
-    FormatRules, LEGALITY, MoveSources,
+    FormatRules, LEGALITY,
     natdex::{NATDEX, NatDexCatalog},
     origins::{Origin, STATS, go_problems, hidden_power, perfect_ivs},
+    sources::{ExactSource, SetSources},
 };
 use crate::{
     choice::to_id,
@@ -11,6 +12,7 @@ use crate::{
 };
 use serde_json::Value;
 use std::{
+    borrow::Cow,
     collections::{HashMap, HashSet},
     fmt,
 };
@@ -662,6 +664,7 @@ impl TeamValidator {
                 "{display} has no moves (it must have at least one to be usable)."
             ));
         }
+        let mut sources = SetSources::default();
         if moves.len() > self.format.max_move_count {
             problems.push(format!(
                 "{display} has {} moves, which is more than the limit of {}.",
@@ -712,37 +715,17 @@ impl TeamValidator {
                 }
             }
             for data in &moves {
-                let id = move_id(data);
                 if self
                     .natdex
-                    .is_some_and(|natdex| natdex.can_learn(&species_id, &id, level))
+                    .is_some_and(|natdex| natdex.can_learn(&species_id, &move_id(data), level))
                 {
                     continue;
                 }
-                match LEGALITY.move_sources(
-                    dex,
-                    &species_id,
-                    &id,
-                    level.clamp(1, i64::from(u16::MAX)) as u16,
-                ) {
-                    MoveSources::Unrestricted => {}
-                    MoveSources::Absent => {
-                        problems.push(format!("{display} can't learn {}.", data.name));
-                        break;
-                    }
-                    MoveSources::Conditional | MoveSources::Missing => {
-                        if species.name == "Smeargle"
-                            && (data.flags.contains_key("nosketch") || data.is_z_move)
-                        {
-                            problems
-                                .push(format!("{display}'s move {} can't be Sketched.", data.name));
-                            break;
-                        }
-                        return Err(ValidationError(format!(
-                            "learnset prerequisites for {} using {}",
-                            species.name, data.name
-                        )));
-                    }
+                if let Some(problem) =
+                    sources.check_move(dex, species, level, self.rules.min_source_gen, data)
+                {
+                    problems.push(format!("{display}{problem}"));
+                    break;
                 }
             }
         }
@@ -762,15 +745,50 @@ impl TeamValidator {
             hp_type: &hp_type,
             level,
         };
-        if let Some(events) = self.event_for(species)? {
-            self.check_event_only(species, &origin, events, &mut problems);
-        }
-        if matches!(
+        let must_be_go = matches!(
             species_id.as_str(),
             "meltan" | "melmetal" | "gimmighoulroaming"
-        ) && let Some(go) = go_problems(dex, species, set, level, &species.name)
-            .filter(|problems| !problems.is_empty())
-        {
+        );
+        let underlevel = self.underlevel(species, level);
+        let go = (must_be_go || underlevel.is_some() || !sources.locked().is_empty())
+            .then(|| go_problems(dex, species, set, level, &species.name))
+            .flatten()
+            .map(|mut reasons| {
+                let moves = sources.go_incompatible_moves();
+                match moves {
+                    [] => {}
+                    [name] => reasons.push(format!(
+                        "{display}'s move {name} is incompatible with a Pokemon GO origin."
+                    )),
+                    names => reasons.push(format!(
+                        "{display}'s moves {} are incompatible with a Pokemon GO origin.",
+                        names.join(", ")
+                    )),
+                }
+                reasons
+            });
+        if let Some(underlevel) = underlevel {
+            self.check_underlevel(
+                species,
+                &origin,
+                &display,
+                underlevel,
+                (sources.locked(), go.as_deref()),
+                &mut problems,
+            );
+        } else if !sources.locked().is_empty() {
+            self.check_move_origins(
+                species,
+                &origin,
+                &display,
+                sources.locked(),
+                go.as_deref(),
+                &mut problems,
+            );
+        } else if let Some(events) = self.event_for(species)? {
+            self.check_event_only(species, &origin, events, &mut problems);
+        }
+        if must_be_go && let Some(go) = go.filter(|problems| !problems.is_empty()) {
             problems.push(format!(
                 "{display} is only obtainable from Pokemon GO, and failed to validate because:"
             ));
@@ -826,17 +844,6 @@ impl TeamValidator {
                 problems.push(format!("{display} must not be nicknamed a different Pokémon species than what it actually is."));
             }
         }
-        if problems.is_empty()
-            && self
-                .species_rules(species)
-                .evo_level
-                .is_some_and(|n| level < i64::from(n))
-        {
-            return Err(ValidationError(format!(
-                "obtainability prerequisites for {}",
-                species.name
-            )));
-        }
         if let Some(natdex) = self.natdex {
             if self.species_rules(species).tier == "Illegal"
                 && natdex.tier(&species_id) == Some("Illegal")
@@ -866,6 +873,176 @@ impl TeamValidator {
             item_label,
             facts,
         })
+    }
+
+    fn evolution_chain(
+        &self,
+        species: &'static Species,
+    ) -> impl Iterator<Item = &'static Species> + '_ {
+        std::iter::successors(Some(species), |&species| {
+            let prevo = &self.species_rules(species).prevo;
+            (!prevo.is_empty()).then(|| self.named_species(prevo))
+        })
+    }
+
+    fn underlevel(&self, species: &'static Species, level: i64) -> Option<(&'static Species, u16)> {
+        self.evolution_chain(species).find_map(|species| {
+            let rules = self.species_rules(species);
+            rules
+                .evo_level
+                .filter(|&min| !rules.prevo.is_empty() && level < i64::from(min))
+                .map(|min| (species, min))
+        })
+    }
+
+    fn explicit_origin(
+        &self,
+        species: &Species,
+        source: ExactSource,
+    ) -> Option<Cow<'static, Value>> {
+        match source {
+            ExactSource::Event { species, index, .. } => LEGALITY
+                .learnset(self.format.dex_mod, species)?
+                .events
+                .as_ref()?
+                .get(index)
+                .map(Cow::Borrowed),
+            ExactSource::VirtualConsole(7) => Some(Cow::Owned(virtual_console(species))),
+            ExactSource::VirtualConsole(8) => Some(Cow::Owned(if species.name == "Mew" {
+                serde_json::json!({"generation":8,"perfectIVs":3,"from":"Gen 7 Let's Go! HOME transfer"})
+            } else {
+                serde_json::json!({"generation":8,"shiny":1,"from":"Gen 7 Let's Go! HOME transfer"})
+            })),
+            ExactSource::DreamWorld { .. } => Some(Cow::Owned(
+                serde_json::json!({"generation":5,"level":10,"from":"Gen 5 Dream World"}),
+            )),
+            _ => None,
+        }
+    }
+
+    fn check_move_origins(
+        &self,
+        species: &Species,
+        origin: &Origin<'_>,
+        display: &str,
+        candidates: &[ExactSource],
+        go: Option<&[String]>,
+        problems: &mut Vec<String>,
+    ) {
+        if candidates.iter().any(|&source| {
+            if source == ExactSource::VirtualConsole(8)
+                && go.is_some_and(|reasons| !reasons.is_empty())
+            {
+                return false;
+            }
+            self.explicit_origin(species, source)
+                .is_none_or(|event| origin.event_problems(&event, "", "an event").is_empty())
+        }) {
+            return;
+        }
+        if species.name == "Mew" && go.is_some_and(<[String]>::is_empty) {
+            return;
+        }
+        if let Some(event) = candidates
+            .iter()
+            .find_map(|&source| self.explicit_origin(species, source))
+        {
+            if candidates.len() > 1 {
+                problems.push(format!("{display} has an event-exclusive move that it doesn't qualify for (only one of several ways to get the move will be listed):"));
+            }
+            problems.extend(origin.event_problems(
+                &event,
+                " because it has a move only available",
+                "an event",
+            ));
+            if species.name == "Mew"
+                && let Some(go) = go.filter(|reasons| !reasons.is_empty())
+            {
+                problems.push(
+                    "Additionally, it failed to validate as a Pokemon from Pokemon GO because:"
+                        .into(),
+                );
+                problems.extend_from_slice(go);
+            }
+        }
+    }
+
+    fn check_underlevel(
+        &self,
+        species: &'static Species,
+        origin: &Origin<'_>,
+        display: &str,
+        (evolved, min_level): (&Species, u16),
+        (locked, go): (&[ExactSource], Option<&[String]>),
+        problems: &mut Vec<String>,
+    ) {
+        if (locked.is_empty() || locked.contains(&ExactSource::VirtualConsole(8)))
+            && go.is_some_and(<[String]>::is_empty)
+        {
+            return;
+        }
+        let mut first_event = None;
+        let mut check = |event: &Value| {
+            let reasons = origin.event_problems(event, " to be underleveled", "an event");
+            if reasons.is_empty() {
+                true
+            } else {
+                first_event.get_or_insert(reasons);
+                false
+            }
+        };
+        if locked.is_empty() {
+            for entry in self.evolution_chain(species) {
+                if let Some(events) = LEGALITY
+                    .learnset(self.format.dex_mod, &to_id(&entry.name))
+                    .and_then(|learnset| learnset.events.as_ref())
+                    && events
+                        .iter()
+                        .filter(|event| {
+                            event["level"]
+                                .as_i64()
+                                .is_some_and(|level| level <= origin.level)
+                        })
+                        .any(&mut check)
+                {
+                    return;
+                }
+                if entry.name == evolved.name {
+                    break;
+                }
+            }
+        } else {
+            for &source in locked {
+                if let ExactSource::Event {
+                    species: source_species,
+                    ..
+                } = source
+                {
+                    let source_species = self.named_species(source_species);
+                    if source_species.base_species != species.base_species
+                        && source_species.base_species != evolved.base_species
+                    {
+                        continue;
+                    }
+                    if self
+                        .explicit_origin(species, source)
+                        .is_some_and(|event| check(&event))
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+        problems.push(format!(
+            "{display} must be at least level {min_level} to be evolved."
+        ));
+        if let Some(first_event) = first_event {
+            problems.extend(first_event);
+        }
+        if let Some(go) = go.filter(|go| !go.is_empty()) {
+            problems.push("It failed to validate as a Pokemon from Pokemon GO because:".into());
+            problems.extend_from_slice(go);
+        }
     }
 
     fn event_for(&self, species: &Species) -> Result<Option<&'static [Value]>, ValidationError> {
@@ -923,13 +1100,7 @@ impl TeamValidator {
             reasons.extend(reasons_for_event);
         }
         if self.species_rules(species).generation <= 2 {
-            let source = match species.name.as_str() {
-                "Mew" => serde_json::json!({"generation":2, "level":5, "perfectIVs":5}),
-                "Celebi" => {
-                    serde_json::json!({"generation":2, "level":30, "perfectIVs":5, "shiny":1})
-                }
-                _ => serde_json::json!({"generation":2, "level":3, "perfectIVs":3, "shiny":1}),
-            };
+            let source = virtual_console(species);
             if origin
                 .event_problems(&source, " to be", "Gen 1-2 Virtual Console transfer")
                 .is_empty()
@@ -1062,6 +1233,15 @@ impl TeamValidator {
         }
         Ok(())
     }
+}
+
+fn virtual_console(species: &Species) -> Value {
+    let (level, perfect_ivs) = match species.name.as_str() {
+        "Mew" => (5, 5),
+        "Celebi" => (30, 5),
+        _ => (3, 3),
+    };
+    serde_json::json!({"generation":2,"level":level,"perfectIVs":perfect_ivs,"shiny":u8::from(species.name != "Mew"),"from":"Gen 1-2 Virtual Console transfer"})
 }
 
 fn capitalize(id: &str) -> String {

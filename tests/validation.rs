@@ -58,6 +58,27 @@ fn ordinary_competitive_sets_and_teams_match_pinned_validation() {
 }
 
 #[test]
+fn natdex_accepts_all_legacy_and_reactive_reference_rosters() {
+    for manifest in [
+        include_str!("../benchmarks/native-legacy-rosters.json"),
+        include_str!("../benchmarks/native-reactive-rosters.json"),
+    ] {
+        let data: Value = serde_json::from_str(manifest).unwrap();
+        for (format, teams) in data.as_object().unwrap() {
+            let validator = TeamValidator::new(format).unwrap();
+            for (index, team) in teams.as_array().unwrap().iter().enumerate() {
+                assert_eq!(
+                    validator.validate_team(team.as_array().unwrap()).unwrap(),
+                    None,
+                    "{format} roster {}",
+                    index + 1
+                );
+            }
+        }
+    }
+}
+
+#[test]
 #[ignore = "requires the locally generated reference-verified training manifest"]
 fn bss_admits_the_reference_validated_training_rosters() {
     let manifest: Value =
