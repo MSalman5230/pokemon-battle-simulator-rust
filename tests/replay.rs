@@ -2005,6 +2005,13 @@ fn commander_blocks_targeting_and_passing_ends_after_dondozo_faints() {
 }
 
 #[test]
+fn doubles_pledges_promote_the_second_action_and_preserve_side_timers() {
+    replay(include_str!(
+        "fixtures/custom-pledge-pairs-and-side-conditions.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

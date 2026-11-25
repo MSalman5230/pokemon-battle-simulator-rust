@@ -1837,6 +1837,11 @@ const legacyCommanderEntryRosters = [
         named('Jolteon', ['Recover']), {...named('Dondozo', ['Order Up']), ability:'Unaware'}],
     [named('Porygon2', ['Tackle']), named('Torkoal', ['Recover'])],
 ];
+const legacyPledgeRosters = [
+    [named('Jolteon', ['Fire Pledge', 'Grass Pledge', 'Water Pledge', 'Court Change']),
+        named('Porygon2', ['Water Pledge', 'Grass Pledge', 'Fire Pledge', 'Thunderbolt'])],
+    [named('Chansey', ['Recover']), named('Rapidash', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3258,6 +3263,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1, move 1','pass, move 2']], legacyCommanderRosters, 'custom-commander-release-and-order-up'],
     ['doublescustomgame', [['team 123','team 12'], ['move 1, switch 3','move 1 1, move 1'],
         ['pass, move 1 1','move 1 2, move 1']], legacyCommanderEntryRosters, 'custom-commander-cancels-queued-move'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 2 1','move 1, move 1'],
+        ['move 2 1, move 1 1','move 1, move 1'], ['move 3 1, move 3 1','move 1, move 1'],
+        ['move 3 1, move 4 1','move 1, move 1'], ['move 4, move 4 1','move 1, move 1'],
+        ['move 4, move 4 1','move 1, move 1']], legacyPledgeRosters, 'custom-pledge-pairs-and-side-conditions'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

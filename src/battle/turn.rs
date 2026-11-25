@@ -6,6 +6,7 @@ use super::{
     damage::RegularHit,
     field_effects::{LegacyCondition, LegacyField},
     leech::DrainKind,
+    pledges::Pledge,
 };
 use crate::{
     choice::{MoveChoice, SpecialChoice, TargetKind},
@@ -88,6 +89,7 @@ enum MoveInvocation {
         original_target: Option<(Player, u8)>,
         prankster: bool,
         round_followup: bool,
+        pledge_from: Option<Pledge>,
         z_priority: Option<i8>,
     },
     External {
@@ -254,6 +256,7 @@ pub(super) struct Action {
     fractional_priority: f64,
     prankster: bool,
     round_followup: bool,
+    pledge_from: Option<Pledge>,
     z_move: bool,
 }
 
@@ -287,6 +290,7 @@ impl Action {
             fractional_priority: 0.0,
             prankster: false,
             round_followup: false,
+            pledge_from: None,
             z_move: false,
             priority: Priority {
                 order,
@@ -1258,6 +1262,9 @@ impl Battle {
                     | "rage"
                     | "relicsong"
                     | "orderup"
+                    | "firepledge"
+                    | "grasspledge"
+                    | "waterpledge"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -2167,6 +2174,7 @@ impl Battle {
                             original_target: action.original_target,
                             prankster: action.prankster,
                             round_followup: action.round_followup,
+                            pledge_from: action.pledge_from,
                             z_priority: action.z_move.then(|| {
                                 (action.priority.priority - action.fractional_priority).round()
                                     as i8
@@ -2537,6 +2545,7 @@ impl Battle {
             self.effective_weather(),
             self.terrain(),
             self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0,
+            self.pledge_active(pos.player, Pledge::Grass),
         );
         match self.stat_rules.truncation {
             crate::mechanics::Truncation::Cartridge => stat.min(10_000),
@@ -2672,6 +2681,8 @@ impl Battle {
             LegacyField(LegacyField),
             LegacyCondition(LegacyCondition),
             Mist,
+            Pledge(Pledge),
+            SeaOfFire,
             Taunt,
             Encore,
             Disable,
@@ -2840,6 +2851,19 @@ impl Battle {
                     },
                 ));
             }
+            for pledge in Pledge::ALL {
+                if self.pledge_active(player, pledge) {
+                    timers.push((
+                        Position { player, slot: 0 },
+                        Effect::Pledge(pledge),
+                        Priority {
+                            order: 26,
+                            sub_order: pledge.residual_sub_order(),
+                            ..Priority::default()
+                        },
+                    ));
+                }
+            }
             if self.lucky_chant_active(player) {
                 timers.push((
                     Position { player, slot: 0 },
@@ -2913,6 +2937,9 @@ impl Battle {
             };
             if let Some((order, _, _)) = mon.status.residual() {
                 timers.push((pos, Effect::Status, priority(order, 0)));
+            }
+            if self.pledge_active(pos.player, Pledge::Fire) {
+                timers.push((pos, Effect::SeaOfFire, priority(5, 1)));
             }
             if mon.volatile_ids().contains(&"aquaring") {
                 timers.push((pos, Effect::AquaRing, priority(6, 2)));
@@ -3110,6 +3137,10 @@ impl Battle {
             }
             if matches!(effect, Effect::Mist) {
                 self.tick_mist(pos.player);
+                continue;
+            }
+            if let Effect::Pledge(pledge) = effect {
+                self.tick_pledge(pos.player, pledge);
                 continue;
             }
             if matches!(effect, Effect::EchoedVoice) {
@@ -3324,6 +3355,7 @@ impl Battle {
                 | Effect::EchoedVoice
                 | Effect::LegacyField(_)
                 | Effect::Mist
+                | Effect::Pledge(_)
                 | Effect::TrickRoom
                 | Effect::Gravity
                 | Effect::WonderRoom
@@ -3336,6 +3368,17 @@ impl Battle {
                     unreachable!()
                 }
                 Effect::GrassyHeal => self.grassy_heal(pos),
+                Effect::SeaOfFire => {
+                    if !self.mon(pos).has_type("Fire") {
+                        self.indirect_damage(pos, 8, "|[from] Fire Pledge");
+                        if self.mon(pos).hp == 0 {
+                            self.mark_fainted(pos);
+                            if self.check_win() {
+                                return;
+                            }
+                        }
+                    }
+                }
                 Effect::Nightmare => {
                     self.indirect_damage(pos, 4, "|[from] Nightmare");
                     if self.mon(pos).hp == 0 {
@@ -3828,6 +3871,14 @@ impl Battle {
                 ..
             }
         );
+        let pledge_from = match invocation {
+            MoveInvocation::Choice { pledge_from, .. } => pledge_from,
+            _ => None,
+        };
+        let pledge = Pledge::for_move(move_data);
+        let pledge_combo = pledge
+            .zip(pledge_from)
+            .and_then(|(current, earlier)| current.combo(earlier));
         let called_from = if z_weather.is_some() {
             "|[from] move: Weather Ball"
         } else if let Some((effect, _)) = external {
@@ -3838,6 +3889,8 @@ impl Battle {
             "|[from] move: Copycat"
         } else if round_followup {
             "|[from] move: Round"
+        } else if let Some(earlier) = pledge_from {
+            earlier.source_label()
         } else if continuing {
             "|[from] lockedmove"
         } else {
@@ -4140,6 +4193,10 @@ impl Battle {
         if electrified && self.format.report_exact_hp {
             self.add("|debug|Electrify making move type electric");
         }
+        if let Some(combo) = pledge_combo {
+            move_type = combo.element();
+            result.spends_charge = false;
+        }
         if !delayed && move_type == "Normal" && self.legacy_field_active(LegacyField::IonDeluge) {
             move_type = "Electric";
             result.spends_charge = !reflected;
@@ -4183,6 +4240,13 @@ impl Battle {
         } else {
             false
         };
+        let rainbow = !delayed
+            && self.pledge_active(source.player, Pledge::Water)
+            && move_data.name != "Secret Power"
+            && !move_data.secondaries.is_empty();
+        if rainbow && self.format.report_exact_hp {
+            self.add("|debug|doubling secondary chance");
+        }
         let secondary_multiplier = if !delayed && self.event_ability(source) == "serenegrace" {
             if self.format.report_exact_hp && (!move_data.secondaries.is_empty() || added_flinch) {
                 self.add("|debug|doubling secondary chance");
@@ -4395,7 +4459,15 @@ impl Battle {
             );
         }
 
-        if let Some(slot) = caller.map(|(caller, _)| caller).or(slot)
+        let pressure_slot = if let Some(earlier) = pledge_from {
+            self.mon(source)
+                .moves
+                .iter()
+                .position(|slot| slot.id == earlier.id())
+        } else {
+            caller.map(|(caller, _)| caller).or(slot)
+        };
+        if let Some(slot) = pressure_slot
             && !struggle
             && !continuing
         {
@@ -4605,6 +4677,30 @@ impl Battle {
             })
         {
             Self::promote_move(queue, index, true);
+        }
+        if !z_powered
+            && let Some(pledge) = pledge
+            && let Some((index, partner)) = queue.iter().enumerate().find_map(|(index, action)| {
+                let partner = action.actor?;
+                if partner == source
+                    || partner.player != source.player
+                    || self.mon(partner).hp == 0
+                    || action.z_move
+                    || !matches!(action.kind, ActionKind::Move { .. })
+                {
+                    return None;
+                }
+                let other = Pledge::for_move(action.move_data?)?;
+                pledge.combo(other).map(|_| (index, partner))
+            })
+        {
+            let mut action = queue.remove(index);
+            action.priority.order = 3;
+            action.pledge_from = Some(pledge);
+            queue.insert(0, action);
+            self.add(format!("|-waiting|{source_name}|{}", self.ident(partner)));
+            result.failed = true;
+            return true;
         }
         if move_data.name == "Ally Switch" {
             let stall = self
@@ -7191,6 +7287,9 @@ impl Battle {
                         battle.add("|debug|BP doubled");
                     }
                     power * 2
+                } else if pledge_combo.is_some() {
+                    battle.add("|-combine");
+                    150
                 } else if let Some(allies) = &beat_up {
                     let ally = allies[usize::from(hit - 1)];
                     let result = 5 + ally.base_stats.atk as u16 / 10;
@@ -7378,6 +7477,7 @@ impl Battle {
                         solar_weak,
                         expanded,
                         converted,
+                        force_stab: pledge_combo.is_some(),
                         hit,
                         spread,
                         effect,
@@ -7492,6 +7592,9 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
+                if let Some(combo @ (Pledge::Fire | Pledge::Grass)) = pledge_combo {
+                    self.start_pledge_condition(target.player, combo);
+                }
                 if matches!(
                     move_data.name.as_str(),
                     "Wake-Up Slap" | "Smelling Salts" | "Incinerate"
@@ -7584,12 +7687,14 @@ impl Battle {
             if !sheer_force_removed && !move_data.self_boosts.is_empty() && (!parental || hit == 1)
             {
                 let roll = self.rng.below(100);
-                if move_data
-                    .self_chance
-                    .is_none_or(|chance| roll < u32::from(chance) * secondary_multiplier)
-                {
+                if move_data.self_chance.is_none_or(|chance| {
+                    roll < u32::from(chance) * secondary_multiplier * if rainbow { 2 } else { 1 }
+                }) {
                     self.boost(source, &move_data.self_boosts, true);
                 }
+            }
+            if pledge_combo == Some(Pledge::Water) {
+                self.start_pledge_condition(source.player, Pledge::Water);
             }
             if move_data.name == "Rage"
                 && self.mon(source).hp != 0
@@ -7662,10 +7767,17 @@ impl Battle {
                         continue;
                     }
                     let roll = self.rng.below(100);
-                    if effect
-                        .chance
-                        .is_none_or(|chance| roll < u32::from(chance) * secondary_multiplier)
+                    let rainbow_multiplier = if rainbow
+                        && !(secondary_multiplier == 2
+                            && effect.volatile_status.as_deref() == Some("flinch"))
                     {
+                        2
+                    } else {
+                        1
+                    };
+                    if effect.chance.is_none_or(|chance| {
+                        roll < u32::from(chance) * secondary_multiplier * rainbow_multiplier
+                    }) {
                         if genesis {
                             self.set_terrain(source, Terrain::Psychic, None);
                         }
@@ -8723,6 +8835,7 @@ impl Pokemon {
         weather: Option<Weather>,
         terrain: Option<Terrain>,
         tailwind: bool,
+        swamp: bool,
     ) -> u32 {
         let mut stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
         if self.fainted {
@@ -8750,13 +8863,16 @@ impl Pokemon {
             stat *= 2;
         }
         let quick_feet = self.active_ability() == "quickfeet" && self.status != Status::Healthy;
-        let multiplier = match (self.effective_item(), quick_feet) {
+        let mut multiplier = match (self.effective_item(), quick_feet) {
             ("choicescarf", true) => 9216,
             ("ironball", true) => 3072,
             (_, true) | ("choicescarf", false) => 6144,
             ("ironball", false) => 2048,
             _ => 4096,
         };
+        if swamp {
+            multiplier /= 4;
+        }
         if multiplier != 4096 {
             stat = crate::mechanics::Truncation::Cartridge.modify(stat, multiplier);
         }

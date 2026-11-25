@@ -335,6 +335,7 @@ pub(super) struct RegularHit<'a> {
     pub solar_weak: bool,
     pub expanded: bool,
     pub converted: bool,
+    pub force_stab: bool,
     pub hit: u8,
     pub spread: bool,
     pub effect: i8,
@@ -365,6 +366,7 @@ impl Battle {
             solar_weak,
             expanded,
             converted,
+            force_stab,
             hit,
             spread,
             effect,
@@ -679,7 +681,7 @@ impl Battle {
             attack_modifier = crate::mechanics::chain(attack_modifier, 2048);
         }
         let atk = tr.modify(atk, attack_modifier);
-        let stab = user.has_type(move_type);
+        let stab = force_stab || user.has_type(move_type);
         let mut power_modifier = if source_active {
             chain(
                 chain(

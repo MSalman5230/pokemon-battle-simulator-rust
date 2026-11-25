@@ -214,6 +214,8 @@ impl Battle {
             && p2.mist == 0
             && p1.lucky_chant == 0
             && p2.lucky_chant == 0
+            && p1.pledges == [0; 3]
+            && p2.pledges == [0; 3]
         {
             return false;
         }
@@ -223,6 +225,7 @@ impl Battle {
         std::mem::swap(&mut p1.safeguard, &mut p2.safeguard);
         std::mem::swap(&mut p1.mist, &mut p2.mist);
         std::mem::swap(&mut p1.lucky_chant, &mut p2.lucky_chant);
+        std::mem::swap(&mut p1.pledges, &mut p2.pledges);
         self.add("|-swapsideconditions");
         self.add(format!(
             "|-activate|{}|move: Court Change",

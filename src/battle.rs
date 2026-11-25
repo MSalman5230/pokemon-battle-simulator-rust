@@ -33,6 +33,7 @@ mod mega;
 mod multihit;
 mod partial_trap;
 mod perish;
+mod pledges;
 mod rampage;
 mod screens;
 mod stat_moves;
@@ -214,6 +215,7 @@ struct Side {
     guards: [Option<SideGuard>; 4],
     safeguard: u8,
     mist: u8,
+    pledges: [u8; 3],
     lucky_chant: u8,
     wishes: [Option<support::Wish>; 2],
     future_moves: [Option<support::FutureMove>; 2],
@@ -693,6 +695,7 @@ impl Battle {
             guards: [None; 4],
             safeguard: 0,
             mist: 0,
+            pledges: [0; 3],
             lucky_chant: 0,
             wishes: [None; 2],
             future_moves: [None; 2],

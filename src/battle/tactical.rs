@@ -288,6 +288,7 @@ impl Battle {
                 weather,
                 self.terrain(),
                 self.sides[p.player.index()].as_ref().unwrap().tailwind > 0,
+                self.pledge_active(p.player, super::pledges::Pledge::Grass),
             )
         });
         let mut unsupported_reasons = Vec::new();
@@ -493,6 +494,7 @@ impl Battle {
                     parental_second_hit: false,
                     contact: self.move_makes_contact(ACTOR, data),
                     converted: false,
+                    force_stab: false,
                     roll: Some(roll),
                     solar_weak: self.event_ability(ACTOR) != "megasol"
                         && matches!(move_id, "solarbeam" | "solarblade")
