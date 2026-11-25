@@ -2306,7 +2306,8 @@ impl Battle {
                 if converted && (hit == 1 || user.converted_move_type(&move_data.move_type).1) {
                     power_modifier = crate::mechanics::chain(4915, power_modifier);
                 }
-                if move_data.name == "Knock Off" && mon.can_take_item(self.format.dex_mod).is_some()
+                if move_data.name == "Knock Off"
+                    && mon.transferable_item(self.format.dex_mod).is_some()
                 {
                     power_modifier = crate::mechanics::chain(power_modifier, 6144);
                 }
@@ -2656,6 +2657,9 @@ impl Battle {
                 self.mark_fainted(source);
             }
         }
+        if hits_landed > 0 {
+            self.magician_after_hit(source, &spread_targets);
+        }
         if !self.mon(source).fainted && self.first_bench(source.player, 0).is_some() {
             let pivot = match move_data.name.as_str() {
                 "U-turn" => Some("U-turn"),
@@ -2864,6 +2868,9 @@ impl Pokemon {
                 | "innerfocus"
                 | "oblivious"
                 | "owntempo"
+                | "magician"
+                | "symbiosis"
+                | "gluttony"
                 | "overcoat"
                 | "speedboost"
                 | "multiscale"
@@ -2975,6 +2982,11 @@ impl Pokemon {
                 | "terrainextender"
                 | "mentalherb"
                 | "safetygoggles"
+                | "liechiberry"
+                | "ganlonberry"
+                | "salacberry"
+                | "petayaberry"
+                | "apicotberry"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

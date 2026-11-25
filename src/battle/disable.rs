@@ -218,6 +218,7 @@ impl Battle {
             return;
         }
         self.consume(target, "Mental Herb", false);
+        self.symbiosis_after_item(target);
         if attract {
             let mon = self.mon_mut(target);
             mon.attract = None;

@@ -2,6 +2,7 @@
 
 use super::turn::Position;
 use super::*;
+use crate::mechanics::BoostStat;
 
 impl Battle {
     pub(super) fn on_switch_in_item(&mut self, pos: Position) {
@@ -15,6 +16,7 @@ impl Battle {
         if mon.item == "focussash" && mon.hp == mon.max_hp.get() && damage >= mon.hp {
             let remaining = mon.hp - 1;
             self.consume(pos, "Focus Sash", false);
+            self.symbiosis_after_item(pos);
             remaining
         } else {
             damage
@@ -34,7 +36,9 @@ impl Battle {
             let amount = mon.max_hp.get() / 4;
             self.consume(pos, "Sitrus Berry", true);
             self.item_heal(pos, amount, "Sitrus Berry");
+            self.symbiosis_after_item(pos);
         }
+        self.pinch_stat_berry(pos);
         self.cure_with_berry(pos);
     }
 
@@ -44,6 +48,7 @@ impl Battle {
             return;
         }
         let berry = match (mon.item.as_str(), mon.status) {
+            ("lumberry", _) if mon.confusion > 0 => "Lum Berry",
             (_, Status::Healthy | Status::Fainted) => return,
             ("lumberry", _) => "Lum Berry",
             ("chestoberry", Status::Sleep(_)) => "Chesto Berry",
@@ -51,6 +56,112 @@ impl Battle {
         };
         self.consume(pos, berry, true);
         self.cure_status(pos, "[msg]");
+        if berry == "Lum Berry" && self.mon(pos).confusion > 0 {
+            self.cure_confusion(pos);
+        }
+        self.symbiosis_after_item(pos);
+    }
+
+    fn pinch_stat_berry(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        let (name, stat) = match mon.item.as_str() {
+            "liechiberry" => ("Liechi Berry", BoostStat::Atk),
+            "ganlonberry" => ("Ganlon Berry", BoostStat::Def),
+            "salacberry" => ("Salac Berry", BoostStat::Spe),
+            "petayaberry" => ("Petaya Berry", BoostStat::Spa),
+            "apicotberry" => ("Apicot Berry", BoostStat::Spd),
+            _ => return,
+        };
+        if mon.hp * if mon.ability == "gluttony" { 2 } else { 4 } > mon.max_hp.get() {
+            return;
+        }
+        self.consume(pos, name, true);
+        let mon = self.mon_mut(pos);
+        let amount = mon.boosts.add(stat, 1);
+        let reason = if amount > 0 {
+            mon.stats_raised = true;
+            format!("|[from] item: {name}")
+        } else {
+            String::new()
+        };
+        self.add(format!(
+            "|-boost|{}|{}|{amount}{reason}",
+            self.ident(pos),
+            stat.id()
+        ));
+        self.symbiosis_after_item(pos);
+    }
+
+    pub(super) fn symbiosis_after_item(&mut self, recipient: Position) {
+        if self.format.game_type.active_slots() == 1
+            || self.mon(recipient).hp == 0
+            || self.mon(recipient).pivot_move.is_some()
+        {
+            return;
+        }
+        let ally = Position {
+            slot: 1 - recipient.slot,
+            ..recipient
+        };
+        let mon = self.mon(ally);
+        if mon.hp == 0 || mon.ability != "symbiosis" {
+            return;
+        }
+        let Some(item) = mon.transferable_item(self.format.dex_mod) else {
+            return;
+        };
+        if !self.mon(recipient).can_transfer_item(item) {
+            return;
+        }
+        let id = std::mem::take(&mut self.mon_mut(ally).item);
+        self.mon_mut(recipient).item = id;
+        self.on_switch_in_item(recipient);
+        self.add(format!(
+            "|-activate|{}|ability: Symbiosis|{}|[of] {}",
+            self.ident(ally),
+            item.effect.name,
+            self.ident(recipient)
+        ));
+    }
+
+    pub(super) fn magician_after_hit(&mut self, user: Position, targets: &[Position]) {
+        let mon = self.mon(user);
+        if mon.ability != "magician" || mon.hp == 0 || !mon.item.is_empty() {
+            return;
+        }
+        let mut ordered: Vec<_> = targets
+            .iter()
+            .map(|&target| (target, self.mon(target).speed))
+            .collect();
+        speed_sort_by(&mut ordered, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for (target, _) in ordered {
+            if target == user {
+                continue;
+            }
+            let victim = self.mon(target);
+            let Some(name) = victim.can_take_item(self.format.dex_mod) else {
+                if victim.hp > 0 && victim.ability == "stickyhold" && !victim.item.is_empty() {
+                    self.add(format!(
+                        "|-activate|{}|ability: Sticky Hold",
+                        self.ident(target)
+                    ));
+                }
+                continue;
+            };
+            let target_name = if victim.fainted {
+                format!("{}: {}", target.player.id(), victim.name)
+            } else {
+                self.ident(target)
+            };
+            let id = std::mem::take(&mut self.mon_mut(target).item);
+            self.mon_mut(user).item = id;
+            self.on_switch_in_item(user);
+            self.add(format!(
+                "|-item|{}|{name}|[from] ability: Magician|[of] {target_name}",
+                self.ident(user)
+            ));
+            break;
+        }
     }
 
     pub(super) fn item_heal(&mut self, pos: Position, amount: u32, item: &str) {

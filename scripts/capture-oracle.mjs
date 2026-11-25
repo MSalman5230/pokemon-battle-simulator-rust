@@ -312,6 +312,19 @@ const leechRosters = [
     [{...named('Tangrowth', ['Leech Seed', 'Recover']), ability: 'No Guard'}, named('Swampert', ['Recover'])],
     [named('Umbreon', ['Tackle']), {...named('Clefable', ['Tackle']), ability: 'Magic Guard'}, named('Vileplume', ['Tackle'])],
 ];
+const magicianRosters = [
+    [{...named('Delphox', ['Water Gun']), ability: 'Magician'}, named('Umbreon', ['Recover'])],
+    [{...named('Vaporeon', ['Tackle']), item: 'Leftovers'}, named('Glaceon', ['Recover'])],
+];
+const symbiosisRosters = [
+    [{...named('Grimmsnarl', ['Recover']), item: 'Sitrus Berry'},
+        {...named('Florges', ['Recover']), ability: 'Symbiosis', item: 'Leftovers'}],
+    [named('Hariyama', ['Close Combat']), named('Vaporeon', ['Recover'])],
+];
+const gluttonyRosters = [
+    [named('Heracross', ['Drain Punch']), named('Umbreon', ['Recover'])],
+    [{...named('Snorlax', ['Tackle']), ability: 'Gluttony', item: 'Salac Berry'}, named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -461,6 +474,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         conditionalSecondaryRosters, 'bss-conditional-secondary', '1,2,3,6'],
     ['bssregmc', [['team 12', 'team 123'], ['move 1', 'move 1'], ['switch 2', 'move 1'],
         ['switch 2', 'switch 2'], ['move 1', 'move 1'], ['move 1', 'switch 3']], leechRosters, 'bss-leech-seed'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 1']], magicianRosters, 'bss-magician'],
+    ['vgc2026regmc', [['team 12', 'team 12'], ['move 1, move 1', 'move 1 1, move 1']],
+        symbiosisRosters, 'vgc-symbiosis'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1']], gluttonyRosters, 'bss-gluttony'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

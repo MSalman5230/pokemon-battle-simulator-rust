@@ -395,3 +395,18 @@ fn bss_conditional_secondaries_follow_same_turn_boosts_and_sample_status() {
 fn bss_leech_seed_heals_the_replacement_in_the_seeders_slot() {
     replay(include_str!("fixtures/bss-leech-seed.json"));
 }
+
+#[test]
+fn bss_magician_steals_the_held_item_before_residuals() {
+    replay(include_str!("fixtures/bss-magician.json"));
+}
+
+#[test]
+fn vgc_symbiosis_transfers_after_the_consumed_item_resolves() {
+    replay(include_str!("fixtures/vgc-symbiosis.json"));
+}
+
+#[test]
+fn bss_gluttony_activates_a_pinch_berry_at_half_hp() {
+    replay(include_str!("fixtures/bss-gluttony.json"));
+}

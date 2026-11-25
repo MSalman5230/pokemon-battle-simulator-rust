@@ -76,14 +76,25 @@ impl Pokemon {
     }
 
     pub(super) fn can_take_item(&self, dex_mod: crate::dex::Mod) -> Option<&'static str> {
-        if self.ability == "stickyhold" {
+        if self.hp > 0 && self.ability == "stickyhold" {
             return None;
         }
+        self.transferable_item(dex_mod)
+            .map(|item| item.effect.name.as_str())
+    }
+
+    pub(super) fn transferable_item(
+        &self,
+        dex_mod: crate::dex::Mod,
+    ) -> Option<&'static crate::dex::Item> {
         let item = DEX.item(dex_mod, &self.item)?;
-        let protected = item.mega_stone.as_ref().is_some_and(|m| {
+        self.can_transfer_item(item).then_some(item)
+    }
+
+    pub(super) fn can_transfer_item(&self, item: &crate::dex::Item) -> bool {
+        !item.mega_stone.as_ref().is_some_and(|m| {
             m.contains_key(&self.species.name) || m.contains_key(&self.species.base_species)
-        });
-        (!protected).then_some(item.effect.name.as_str())
+        })
     }
 }
 
