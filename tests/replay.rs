@@ -355,3 +355,13 @@ fn bss_side_target_moves_still_execute_after_the_last_active_foe_faints() {
 fn bss_tied_disable_handlers_consume_the_same_rng_as_showdown() {
     replay(include_str!("fixtures/bss-tied-disables.json"));
 }
+
+#[test]
+fn bss_tidy_up_stored_power_and_crash_damage() {
+    replay(include_str!("fixtures/bss-stacking-moves.json"));
+}
+
+#[test]
+fn bss_own_tempo_prevents_confusion_and_intimidate() {
+    replay(include_str!("fixtures/bss-own-tempo.json"));
+}

@@ -275,6 +275,7 @@ impl Battle {
             let blocked = match self.mon(target).ability.as_str() {
                 "innerfocus" => Some("Inner Focus"),
                 "oblivious" => Some("Oblivious"),
+                "owntempo" => Some("Own Tempo"),
                 _ => None,
             };
             if let Some(blocked) = blocked {

@@ -42,6 +42,34 @@ impl Hazard {
 }
 
 impl Battle {
+    pub(super) fn tidy_hazards(&mut self, pos: Position) -> bool {
+        let mut removed = false;
+        for player in [pos.player, pos.player.foe()] {
+            for hazard in [
+                Hazard::Spikes,
+                Hazard::ToxicSpikes,
+                Hazard::StealthRock,
+                Hazard::StickyWeb,
+            ] {
+                let hazards = &mut self.sides[player.index()].as_mut().unwrap().hazards;
+                let before = hazards.len();
+                hazards.retain(|&(h, _)| h != hazard);
+                if hazards.len() != before {
+                    let label = hazard
+                        .label()
+                        .strip_prefix("move: ")
+                        .unwrap_or(hazard.label());
+                    self.add(format!("|-sideend|{}|{label}", self.side_ident(player)));
+                    removed = true;
+                }
+            }
+        }
+        if removed {
+            self.add(format!("|-activate|{}|move: Tidy Up", self.ident(pos)));
+        }
+        removed
+    }
+
     pub(super) fn court_change(&mut self, source: Position) -> bool {
         let [p1, p2] = &mut self.sides;
         let p1 = p1.as_mut().unwrap();

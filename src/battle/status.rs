@@ -129,6 +129,7 @@ impl Battle {
 
     pub(super) fn apply_confusion(&mut self, pos: Position, fatigue: bool) -> bool {
         if self.mon(pos).hp == 0
+            || self.mon(pos).ability == "owntempo"
             || self.mon(pos).confusion > 0
             || (self.terrain() == Some(Terrain::Misty) && self.mon(pos).grounded())
         {
@@ -143,6 +144,13 @@ impl Battle {
         true
     }
 
+    pub(super) fn cure_confusion(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        mon.confusion = 0;
+        mon.untrack_volatile("confusion");
+        self.add(format!("|-end|{}|confusion", self.ident(pos)));
+    }
+
     fn before_confusion_move(&mut self, pos: Position) -> bool {
         use crate::mechanics::{BoostStat, boosted_stat, confusion_damage};
         let mon = self.mon_mut(pos);
@@ -151,8 +159,7 @@ impl Battle {
         }
         mon.confusion -= 1;
         if mon.confusion == 0 {
-            mon.untrack_volatile("confusion");
-            self.add(format!("|-end|{}|confusion", self.ident(pos)));
+            self.cure_confusion(pos);
             return true;
         }
         self.add(format!("|-activate|{}|confusion", self.ident(pos)));

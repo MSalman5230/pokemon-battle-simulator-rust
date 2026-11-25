@@ -277,6 +277,15 @@ const tiedDisableRosters = [
     [{...named('Garchomp', ['Tackle', 'Recover']), item: 'Choice Band'}, named('Vaporeon', ['Recover'])],
     [named('Umbreon', ['Taunt', 'Water Gun']), named('Snorlax', ['Recover'])],
 ];
+const stackingMovesRosters = [
+    [named('Maushold', ['Tidy Up', 'Stored Power', 'Supercell Slam', 'Recover']),
+        {...named('Clefable', ['Supercell Slam']), ability: 'Magic Guard'}],
+    [named('Golem', ['Spikes', 'Stealth Rock', 'Water Gun']), named('Snorlax', ['Recover'])],
+];
+const ownTempoRosters = [
+    [{...named('Slowbro', ['Rain Dance', 'Recover']), ability: 'Own Tempo'}, named('Vaporeon', ['Recover'])],
+    [{...named('Arcanine', ['Hurricane', 'Recover']), ability: 'Intimidate'}, named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -406,6 +415,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         faintedTargetRosters, 'bss-hazard-after-faint'],
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 2']],
         tiedDisableRosters, 'bss-tied-disables'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 2', 'move 2'], ['move 1', 'move 1'],
+        ['move 1', 'move 3'], ['move 2', 'move 3'], ['move 3', 'move 3'], ['switch 2', 'move 3'], ['move 1', 'move 3']],
+        stackingMovesRosters, 'bss-stacking-moves'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 2'], ['move 2', 'move 1'], ['move 2', 'move 1']],
+        ownTempoRosters, 'bss-own-tempo', '1,2,3,6'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -720,6 +720,12 @@ impl Battle {
                     | "icespinner"
                     | "grassyglide"
                     | "encore"
+                    | "tidyup"
+                    | "storedpower"
+                    | "powertrip"
+                    | "supercellslam"
+                    | "highjumpkick"
+                    | "jumpkick"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1152,6 +1158,10 @@ impl Battle {
         for (pos, _) in order.into_iter().take(count) {
             self.attract_update(pos);
             self.try_trace(pos);
+            if self.mon(pos).ability == "owntempo" && self.mon(pos).confusion > 0 {
+                self.add(format!("|-activate|{}|ability: Own Tempo", self.ident(pos)));
+                self.cure_confusion(pos);
+            }
             self.on_update_item(pos);
         }
     }
@@ -1431,10 +1441,11 @@ impl Battle {
         let called_from = if rampage { "|[from] lockedmove" } else { "" };
         let weather = self.weather();
         let weather_ball = move_data.name == "Weather Ball";
-        let power = if weather_ball && weather.is_some() {
-            move_data.base_power * 2
-        } else {
-            move_data.base_power
+        let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
+        let power = match (weather_ball && weather.is_some(), stacked_power) {
+            (true, _) => move_data.base_power * 2,
+            (_, true) => move_data.base_power + self.mon(source).boosts.positive() * 20,
+            _ => move_data.base_power,
         };
         let (move_type, converted) = if struggle {
             ("???", false)
@@ -1836,12 +1847,32 @@ impl Battle {
             }
         });
         if spread_targets.is_empty() {
+            if matches!(
+                move_data.name.as_str(),
+                "Supercell Slam" | "High Jump Kick" | "Jump Kick"
+            ) {
+                self.indirect_damage(source, 2, &format!("|[from] {}", to_id(&move_data.name)));
+                if self.mon(source).hp == 0 {
+                    self.mark_fainted(source);
+                }
+            }
             return true;
         }
 
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Tidy Up" {
+                    let removed = self.tidy_hazards(source);
+                    let raised =
+                        self.boost(source, &[(BoostStat::Atk, 1), (BoostStat::Spe, 1)], true);
+                    if removed || raised {
+                        succeeded = true;
+                    } else {
+                        self.log[base].public = format!("|move|{source_name}|Tidy Up||[still]");
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if move_data.name == "Encore" {
                     let queued = Self::queued_move(queue, target);
                     if let Some(slot) = self.start_encore(target, queued.is_some()) {
@@ -2026,6 +2057,9 @@ impl Battle {
             };
             damage.clear();
             for &target in &spread_targets {
+                if stacked_power && self.format.report_exact_hp {
+                    self.add(format!("|debug|BP: {power}"));
+                }
                 if move_data.name == "Poltergeist" {
                     let item = DEX
                         .item(self.format.dex_mod, &self.mon(target).item)
@@ -2624,6 +2658,7 @@ impl Pokemon {
                 | "intimidate"
                 | "innerfocus"
                 | "oblivious"
+                | "owntempo"
                 | "speedboost"
                 | "multiscale"
                 | "guts"

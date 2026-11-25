@@ -1,0 +1,3447 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Maushold\",\"moves\":[\"Tidy Up\",\"Stored Power\",\"Supercell Slam\",\"Recover\"],\"gender\":\"F\",\"name\":\"Maushold\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Clefable\",\"moves\":[\"Supercell Slam\"],\"gender\":\"F\",\"name\":\"Clefable\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Magic Guard\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Golem\",\"moves\":[\"Spikes\",\"Stealth Rock\",\"Water Gun\"],\"gender\":\"F\",\"name\":\"Golem\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Snorlax\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Maushold, L50, F|",
+          "|poke|p1|Clefable, L50, F|",
+          "|poke|p2|Golem, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Maushold, L50, F|",
+          "|poke|p1|Clefable, L50, F|",
+          "|poke|p2|Golem, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Maushold, L50, F|",
+          "|poke|p1|Clefable, L50, F|",
+          "|poke|p2|Golem, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "149/149",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 149,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Maushold|Maushold, L50, F|100/100",
+          "|switch|p2a: Golem|Golem, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Maushold|Maushold, L50, F|149/149",
+          "|switch|p2a: Golem|Golem, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Maushold|Maushold, L50, F|100/100",
+          "|switch|p2a: Golem|Golem, L50, F|155/155",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tidy Up",
+                  "id": "tidyup",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Stored Power",
+                  "id": "storedpower",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Supercell Slam",
+                  "id": "supercellslam",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "149/149",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 149,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Maushold|Stored Power|p2a: Golem",
+          "|-damage|p2a: Golem|94/100",
+          "|move|p2a: Golem|Stealth Rock|p1a: Maushold",
+          "|-sidestart|p1: player0|move: Stealth Rock",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Stored Power|p2a: Golem",
+          "|-damage|p2a: Golem|94/100",
+          "|move|p2a: Golem|Stealth Rock|p1a: Maushold",
+          "|-sidestart|p1: player0|move: Stealth Rock",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Stored Power|p2a: Golem",
+          "|-damage|p2a: Golem|146/155",
+          "|move|p2a: Golem|Stealth Rock|p1a: Maushold",
+          "|-sidestart|p1: player0|move: Stealth Rock",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tidy Up",
+                  "id": "tidyup",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Stored Power",
+                  "id": "storedpower",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Supercell Slam",
+                  "id": "supercellslam",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "149/149",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "146/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 149,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 146,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Maushold|Tidy Up|p1a: Maushold",
+          "|-sideend|p1: player0|Stealth Rock",
+          "|-activate|p1a: Maushold|move: Tidy Up",
+          "|-boost|p1a: Maushold|atk|1",
+          "|-boost|p1a: Maushold|spe|1",
+          "|move|p2a: Golem|Spikes|p1a: Maushold",
+          "|-sidestart|p1: player0|Spikes",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Tidy Up|p1a: Maushold",
+          "|-sideend|p1: player0|Stealth Rock",
+          "|-activate|p1a: Maushold|move: Tidy Up",
+          "|-boost|p1a: Maushold|atk|1",
+          "|-boost|p1a: Maushold|spe|1",
+          "|move|p2a: Golem|Spikes|p1a: Maushold",
+          "|-sidestart|p1: player0|Spikes",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Tidy Up|p1a: Maushold",
+          "|-sideend|p1: player0|Stealth Rock",
+          "|-activate|p1a: Maushold|move: Tidy Up",
+          "|-boost|p1a: Maushold|atk|1",
+          "|-boost|p1a: Maushold|spe|1",
+          "|move|p2a: Golem|Spikes|p1a: Maushold",
+          "|-sidestart|p1: player0|Spikes",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tidy Up",
+                  "id": "tidyup",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Stored Power",
+                  "id": "storedpower",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Supercell Slam",
+                  "id": "supercellslam",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "149/149",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "146/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 149,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 146,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 4,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Maushold|Tidy Up|p1a: Maushold",
+          "|-sideend|p1: player0|Spikes",
+          "|-activate|p1a: Maushold|move: Tidy Up",
+          "|-boost|p1a: Maushold|atk|1",
+          "|-boost|p1a: Maushold|spe|1",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|91/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Tidy Up|p1a: Maushold",
+          "|-sideend|p1: player0|Spikes",
+          "|-activate|p1a: Maushold|move: Tidy Up",
+          "|-boost|p1a: Maushold|atk|1",
+          "|-boost|p1a: Maushold|spe|1",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|136/149",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Tidy Up|p1a: Maushold",
+          "|-sideend|p1: player0|Spikes",
+          "|-activate|p1a: Maushold|move: Tidy Up",
+          "|-boost|p1a: Maushold|atk|1",
+          "|-boost|p1a: Maushold|spe|1",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|91/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tidy Up",
+                  "id": "tidyup",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Stored Power",
+                  "id": "storedpower",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Supercell Slam",
+                  "id": "supercellslam",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "136/149",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "146/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 136,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 146,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 3"
+      ],
+      "turn": 5,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Maushold|Stored Power|p2a: Golem",
+          "|-damage|p2a: Golem|68/100",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|81/100",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Stored Power|p2a: Golem",
+          "|-damage|p2a: Golem|68/100",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|122/149",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Stored Power|p2a: Golem",
+          "|-damage|p2a: Golem|106/155",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|81/100",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tidy Up",
+                  "id": "tidyup",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Stored Power",
+                  "id": "storedpower",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Supercell Slam",
+                  "id": "supercellslam",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "122/149",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "106/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 122,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 106,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 3"
+      ],
+      "turn": 6,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Maushold|Supercell Slam|p2a: Golem",
+          "|-immune|p2a: Golem",
+          "|-damage|p1a: Maushold|32/100|[from] supercellslam",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|22/100",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Supercell Slam|p2a: Golem",
+          "|-immune|p2a: Golem",
+          "|-damage|p1a: Maushold|48/149|[from] supercellslam",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|34/149",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Maushold|Supercell Slam|p2a: Golem",
+          "|-immune|p2a: Golem",
+          "|-damage|p1a: Maushold|32/100|[from] supercellslam",
+          "|move|p2a: Golem|Water Gun|p1a: Maushold",
+          "|-damage|p1a: Maushold|22/100",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tidy Up",
+                  "id": "tidyup",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Stored Power",
+                  "id": "storedpower",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Supercell Slam",
+                  "id": "supercellslam",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "34/149",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "106/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 34,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 106,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 17,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 3"
+      ],
+      "turn": 7,
+      "seed": "61380,11535,34528,49510",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Clefable|Clefable, L50, F|100/100",
+          "|move|p2a: Golem|Water Gun|p1a: Clefable",
+          "|-damage|p1a: Clefable|92/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p1a: Clefable|Clefable, L50, F|170/170",
+          "|move|p2a: Golem|Water Gun|p1a: Clefable",
+          "|-damage|p1a: Clefable|158/170",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p1a: Clefable|Clefable, L50, F|100/100",
+          "|move|p2a: Golem|Water Gun|p1a: Clefable",
+          "|-damage|p1a: Clefable|92/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Supercell Slam",
+                  "id": "supercellslam",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "158/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "34/149",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 16,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "106/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 158,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 34,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 106,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 16,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 8,
+      "seed": "30954,58228,1566,4235",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Clefable|Supercell Slam|p2a: Golem",
+          "|-immune|p2a: Golem",
+          "|move|p2a: Golem|Water Gun|p1a: Clefable",
+          "|-crit|p1a: Clefable",
+          "|-damage|p1a: Clefable|81/100",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p1a: Clefable|Supercell Slam|p2a: Golem",
+          "|-immune|p2a: Golem",
+          "|move|p2a: Golem|Water Gun|p1a: Clefable",
+          "|-crit|p1a: Clefable",
+          "|-damage|p1a: Clefable|139/170",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p1a: Clefable|Supercell Slam|p2a: Golem",
+          "|-immune|p2a: Golem",
+          "|move|p2a: Golem|Water Gun|p1a: Clefable",
+          "|-crit|p1a: Clefable",
+          "|-damage|p1a: Clefable|81/100",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Supercell Slam",
+                  "id": "supercellslam",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "139/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "supercellslam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Maushold",
+                "details": "Maushold, L50, F",
+                "condition": "34/149",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 95,
+                  "spe": 131
+                },
+                "moves": [
+                  "tidyup",
+                  "storedpower",
+                  "supercellslam",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 15,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golem",
+                "details": "Golem, L50, F",
+                "condition": "106/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 150,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 139,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "supercellslam",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Maushold",
+            "species": "Maushold",
+            "details": "Maushold, L50, F",
+            "hp": 34,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 90,
+              "spa": 85,
+              "spd": 95,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tidyup",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "storedpower",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "supercellslam",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golem",
+            "species": "Golem",
+            "details": "Golem, L50, F",
+            "hp": 106,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 150,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "watergun",
+                "pp": 15,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

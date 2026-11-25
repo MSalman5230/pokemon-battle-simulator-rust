@@ -299,6 +299,10 @@ impl BoostStat {
 pub struct Boosts([i8; 7]);
 
 impl Boosts {
+    pub fn positive(self) -> u16 {
+        self.0.into_iter().map(|boost| boost.max(0) as u16).sum()
+    }
+
     pub fn get(self, stat: BoostStat) -> i8 {
         self.0[stat as usize]
     }
