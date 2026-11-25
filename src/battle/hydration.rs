@@ -501,6 +501,7 @@ impl WorldTransform {
             uses_base_types: false,
         }));
         mon.species = species;
+        mon.weighthg = species.weighthg;
         mon.stats = Stats {
             hp: mon.stats.hp,
             ..self.stats

@@ -5,6 +5,7 @@ use super::{turn::Position, *};
 impl Pokemon {
     pub(super) fn set_current_species(&mut self, species: &'static Species, rules: StatRules) {
         self.species = species;
+        self.weighthg = species.weighthg;
         self.stats_before_change = None;
         self.set_temporary_type(None);
         self.stats = Stats::map(|stat| {
@@ -20,6 +21,7 @@ impl Pokemon {
     }
 
     pub(super) fn reset_forme(&mut self, rules: StatRules) {
+        self.weighthg = self.base_species.weighthg;
         let saved_stats = self.stats_before_change.take();
         if let Some(f) = self.transformed.take() {
             self.set_current_species(self.base_species, rules);

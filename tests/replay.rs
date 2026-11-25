@@ -1859,6 +1859,19 @@ fn inherited_recovery_moves_preserve_healing_and_status_order() {
 }
 
 #[test]
+fn inherited_type_and_weight_moves_change_only_their_intended_matchups() {
+    replay(include_str!(
+        "fixtures/natdex-conversion-and-camouflage.json"
+    ));
+    replay(include_str!("fixtures/natdex-tar-shot.json"));
+    replay(include_str!("fixtures/custom-autotomize-weight.json"));
+    replay(include_str!(
+        "fixtures/natdex-foresight-and-odor-sleuth.json"
+    ));
+    replay(include_str!("fixtures/natdex-miracle-eye.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

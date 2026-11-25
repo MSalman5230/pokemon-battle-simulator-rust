@@ -1620,6 +1620,26 @@ const legacyZRecoveryRosters = [
     [{...named('Smeargle', ['Tackle', 'Recover']), ability:'Own Tempo', item:'Normalium Z'}],
     [named('Vaporeon', ['Psychic Noise', 'Tail Whip'])],
 ];
+const legacyCamouflageRosters = [
+    [{...named('Porygon2', ['Thunderbolt', 'Conversion', 'Camouflage', 'Grassy Terrain']), ability:'Analytic'}],
+    [named('Vaporeon', ['Water Gun', 'Recover'])],
+];
+const legacyTarShotRosters = [
+    [{...named('Smeargle', ['Tar Shot', 'Flamethrower']), ability:'Own Tempo'}],
+    [{...named('Corviknight', ['Recover', 'Baton Pass']), ability:'Pressure'}, named('Vaporeon', ['Recover'])],
+];
+const legacyWeightRosters = [
+    [{...named('Aggron', ['Autotomize']), ability:'Sturdy'}, named('Vaporeon', ['Recover'])],
+    [{...named('Smeargle', ['Grass Knot', 'Recover']), ability:'Own Tempo'}],
+];
+const legacyForesightRosters = [
+    [{...named('Smeargle', ['Tackle', 'Foresight', 'Odor Sleuth', 'Miracle Eye']), ability:'Own Tempo'}],
+    [named('Gengar', ['Double Team', 'Recover'])],
+];
+const legacyMiracleRosters = [
+    [{...named('Smeargle', ['Psychic', 'Miracle Eye']), ability:'Own Tempo'}],
+    [named('Umbreon', ['Double Team', 'Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2925,6 +2945,18 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         legacyGroupHealingRosters, 'custom-legacy-group-heals'],
     ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2 zmove','move 2']],
         legacyZRecoveryRosters, 'natdex-z-recover-under-heal-block'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2','move 2'], ['move 4','move 2'], ['move 3','move 1'],
+        ['move 3','move 1'], ['move 2','move 2']], legacyCamouflageRosters, 'natdex-conversion-and-camouflage'],
+    ['natdexdraft', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 2'],
+        [null, 'switch 2'], ['move 2','move 1']],
+        legacyTarShotRosters, 'natdex-tar-shot'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['move 1','move 2'], ['switch 2','move 2'], ['switch 2','move 1']],
+        legacyWeightRosters, 'custom-autotomize-weight'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 1'],
+        ['move 3','move 2'], ['move 4','move 2']], legacyForesightRosters, 'natdex-foresight-and-odor-sleuth'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 1']],
+        legacyMiracleRosters, 'natdex-miracle-eye'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

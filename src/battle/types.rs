@@ -1,6 +1,6 @@
 //! Base, changed, and added Pokémon typing.
 
-use super::{Battle, BattleError, Pokemon, SetStats, to_id, turn::Position};
+use super::{Battle, BattleError, DEX, Pokemon, SetStats, to_id, turn::Position};
 
 pub(super) const TYPES: &[&str] = &[
     "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground",
@@ -136,6 +136,52 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn set_camouflage_type(&mut self, target: Position, conversion: bool) -> bool {
+        let mon = self.mon(target);
+        let typing = if conversion {
+            let Some(first) = mon.moves.first() else {
+                return false;
+            };
+            DEX.moves(self.format.dex_mod, &first.id)
+                .unwrap_or(first.move_data)
+                .move_type
+                .as_str()
+        } else {
+            self.terrain().map_or("Normal", |terrain| terrain.element())
+        };
+        if matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally")
+            || typing == "Stellar"
+            || if conversion {
+                mon.has_type(typing)
+            } else {
+                mon.types().eq([typing])
+            }
+        {
+            return false;
+        }
+        self.mon_mut(target).set_temporary_type(Some(typing));
+        self.add(format!(
+            "|-start|{}|typechange|{typing}",
+            self.ident(target)
+        ));
+        true
+    }
+
+    pub(super) fn mark_identified(&mut self, pos: Position, miracle: bool) -> bool {
+        let mon = self.mon_mut(pos);
+        if mon.is_identified() {
+            return false;
+        }
+        let (id, label) = if miracle {
+            ("miracleeye", "Miracle Eye")
+        } else {
+            ("foresight", "Foresight")
+        };
+        mon.track_volatile(id);
+        self.add(format!("|-start|{}|{label}", self.ident(pos)));
+        true
+    }
+
     pub(super) fn reflect_type(&mut self, source: Position, target: Position) -> bool {
         let user = self.mon(source);
         let model = self.mon(target);
@@ -186,5 +232,21 @@ impl Battle {
             }
         }
         self.mon_mut(pos).unrevealed_types = TypeOverride::default();
+    }
+}
+
+impl Pokemon {
+    pub(super) fn is_identified(&self) -> bool {
+        self.volatile_ids()
+            .iter()
+            .any(|&id| matches!(id, "miracleeye" | "foresight"))
+    }
+
+    pub(super) fn exposed_immunity(&self, typing: &str, move_type: &str) -> bool {
+        match (typing, move_type) {
+            ("Ghost", "Normal" | "Fighting") => self.volatile_ids().contains(&"foresight"),
+            ("Dark", "Psychic") => self.volatile_ids().contains(&"miracleeye"),
+            _ => false,
+        }
     }
 }

@@ -37,7 +37,7 @@ impl Pokemon {
                 "dragoncheer" => self.dragon_cheer = source.dragon_cheer,
                 "gem" => self.gem_boost = source.gem_boost,
                 "powertrick" => self.swap_attack_defense(),
-                "aquaring" | "ingrain" => {}
+                "aquaring" | "ingrain" | "tarshot" => {}
                 "roost" => self.roosted = source.roosted,
                 "followme" | "ragepowder" => self.attention = source.attention,
                 "flinch" => self.flinched = source.flinched,

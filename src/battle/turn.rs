@@ -976,6 +976,13 @@ impl Battle {
                     | "takeheart"
                     | "purify"
                     | "psychoshift"
+                    | "autotomize"
+                    | "camouflage"
+                    | "conversion"
+                    | "tarshot"
+                    | "foresight"
+                    | "odorsleuth"
+                    | "miracleeye"
                     | "round"
                     | "swift"
                     | "surf"
@@ -5261,6 +5268,18 @@ impl Battle {
             let list_all_targets = life_dew || teeter_dance || group_recovery;
             let mut confusion_failed = false;
             for target in spread_targets {
+                if move_data.name == "Autotomize"
+                    && self.mon(target).boosts.get(BoostStat::Spe)
+                        == if self.event_ability(target) == "contrary" {
+                            -6
+                        } else {
+                            6
+                        }
+                {
+                    self.move_still(base);
+                    self.add(format!("|-fail|{source_name}"));
+                    continue;
+                }
                 if move_data.name == "Copycat" {
                     if !history_known {
                         self.unsupported_called_move =
@@ -5381,6 +5400,22 @@ impl Battle {
                             self.restore_from_move(source, amount, z_powered);
                         }
                         succeeded = true;
+                    }
+                    "Camouflage" | "Conversion" => {
+                        succeeded =
+                            self.set_camouflage_type(target, move_data.name == "Conversion");
+                        if !succeeded {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                            self.report_no_move_effect();
+                        }
+                    }
+                    "Foresight" | "Odor Sleuth" | "Miracle Eye" => {
+                        succeeded = self.mark_identified(target, move_data.name == "Miracle Eye");
+                        if !succeeded {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                        }
                     }
                     _ => {}
                 }
@@ -6128,6 +6163,19 @@ impl Battle {
                 }
                 if memento {
                     self.mon_mut(source).hp = 0;
+                    succeeded = true;
+                }
+                if move_data.name == "Tar Shot"
+                    && !self.mon(target).volatile_ids().contains(&"tarshot")
+                {
+                    self.mon_mut(target).track_volatile("tarshot");
+                    self.add(format!("|-start|{}|Tar Shot", self.ident(target)));
+                    succeeded = true;
+                }
+                if move_data.name == "Autotomize" && self.mon(target).weighthg > 1 {
+                    let mon = self.mon_mut(target);
+                    mon.weighthg = mon.weighthg.saturating_sub(1000).max(1);
+                    self.add(format!("|-start|{}|Autotomize", self.ident(target)));
                     succeeded = true;
                 }
                 if move_data.name == "Minimize"
@@ -7604,7 +7652,13 @@ impl Battle {
         {
             0
         } else {
-            self.mon(target).boosts.get(BoostStat::Evasion)
+            let mon = self.mon(target);
+            let evasion = mon.boosts.get(BoostStat::Evasion);
+            if evasion > 0 && mon.is_identified() {
+                0
+            } else {
+                evasion
+            }
         };
         let aim = if source != target && self.event_ability(target) == "unaware" {
             0
@@ -7685,6 +7739,7 @@ impl Battle {
                 Some(2) => modifier -= 1,
                 Some(3)
                     if !(ignores_immunity
+                        || mon.exposed_immunity(typing, move_type)
                         || typing == "Flying"
                             && move_type == "Ground"
                             && self.forces_grounded(target)) =>
@@ -7700,6 +7755,9 @@ impl Battle {
                     _ => {}
                 }
             }
+        }
+        if move_type == "Fire" && mon.volatile_ids().contains(&"tarshot") {
+            modifier += 1;
         }
         Some(modifier)
     }

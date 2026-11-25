@@ -59,6 +59,7 @@ impl Battle {
         let unrevealed_types = model.unrevealed_types;
         let unknown_type = source.player != target.player || model.unknown_type;
         let times_attacked = model.times_attacked;
+        let weighthg = model.weighthg;
         let moves: Vec<_> = model
             .moves
             .iter()
@@ -96,6 +97,7 @@ impl Battle {
             uses_base_types: false,
         }));
         mon.species = species;
+        mon.weighthg = weighthg;
         mon.stats = stats;
         mon.speed = speed as i32;
         mon.boosts = boosts;
