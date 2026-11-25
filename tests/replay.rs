@@ -1368,6 +1368,11 @@ fn full_health_moonlight_preserves_update_rng_and_is_not_a_move_failure() {
 }
 
 #[test]
+fn instruct_repeats_the_last_move_now_using_its_original_target_and_pp() {
+    replay(include_str!("fixtures/vgc-instruct.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

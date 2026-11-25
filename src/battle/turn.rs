@@ -1142,6 +1142,7 @@ impl Battle {
                     | "terrainpulse"
                     | "upperhand"
                     | "aquaring"
+                    | "instruct"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -1418,6 +1419,53 @@ impl Battle {
         self.assign_fractional_priority(&mut action);
         self.prioritize(&mut action);
         self.insert_action(queue, action);
+    }
+
+    fn instruct(&mut self, source: Position, actor: Position, queue: &mut Vec<Action>) -> bool {
+        let mon = self.mon(actor);
+        let Some((slot, data)) = mon
+            .last_move_slot
+            .and_then(|slot| mon.moves.get(slot).map(|data| (slot, data)))
+        else {
+            return false;
+        };
+        if data.pp == 0
+            || ["failinstruct", "charge", "recharge"]
+                .iter()
+                .any(|&flag| data.move_data.flags.contains_key(flag))
+            || ["beakblast", "focuspunch", "shelltrap"]
+                .iter()
+                .any(|id| mon.volatile_ids().contains(id))
+        {
+            return false;
+        }
+        let prior_target = mon.last_move_target;
+        let kind = mon.requested_target(data.move_data);
+        self.add(format!(
+            "|-singleturn|{}|move: Instruct|[of] {}",
+            self.ident(actor),
+            self.ident(source)
+        ));
+        let mut action = Action::new(
+            Some(actor),
+            ActionKind::Move {
+                move_slot: slot,
+                target: prior_target,
+                mega: false,
+            },
+        );
+        self.assign_fractional_priority(&mut action);
+        if prior_target == 0 {
+            action.kind = ActionKind::Move {
+                move_slot: slot,
+                target: self.random_target(actor, kind).map_or(0, |p| p.loc(actor)),
+                mega: false,
+            };
+        }
+        self.prioritize(&mut action);
+        action.priority.order = 3;
+        queue.insert(0, action);
+        true
     }
 
     fn run_switch_batch(&mut self, first: Position, queue: &mut Vec<Action>) -> [u32; 4] {
@@ -2829,6 +2877,7 @@ impl Battle {
                 mon.used_moves |= 1 << slot;
             }
             mon.last_move_slot = Some(slot);
+            mon.last_move_target = loc;
             if mon.holds_choice_item() && mon.choice_lock.is_none() {
                 mon.choice_lock = Some(slot);
                 mon.track_volatile("choicelock");
@@ -3951,6 +4000,14 @@ impl Battle {
                         self.mon_mut(target).track_volatile("aquaring");
                         self.add(format!("|-start|{}|Aqua Ring", self.ident(target)));
                         succeeded = true;
+                    }
+                }
+                if move_data.name == "Instruct" {
+                    if self.instruct(source, target, queue) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
                     }
                 }
                 if move_data.name == "Belly Drum" {
