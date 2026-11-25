@@ -1,0 +1,874 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Venusaur\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Venusaur\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Enigma Berry\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Charizard\",\"moves\":[\"Ember\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Charizard\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Venusaur, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Venusaur, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Venusaur, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "enigmaberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "enigmaberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Venusaur|Venusaur, L50, F|155/155",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Venusaur|Venusaur, L50, F|155/155",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Venusaur|Venusaur, L50, F|155/155",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "enigmaberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "enigmaberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Tackle|p1a: Venusaur",
+          "|-damage|p1a: Venusaur|138/155",
+          "|move|p1a: Venusaur|Tackle|p2a: Charizard",
+          "|-damage|p2a: Charizard|135/153",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Tackle|p1a: Venusaur",
+          "|-damage|p1a: Venusaur|138/155",
+          "|move|p1a: Venusaur|Tackle|p2a: Charizard",
+          "|-damage|p2a: Charizard|135/153",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Tackle|p1a: Venusaur",
+          "|-damage|p1a: Venusaur|138/155",
+          "|move|p1a: Venusaur|Tackle|p2a: Charizard",
+          "|-damage|p2a: Charizard|135/153",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "138/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "enigmaberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "135/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 138,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "enigmaberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 135,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "4124,63122,38965,57347",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Ember|p1a: Venusaur",
+          "|-supereffective|p1a: Venusaur|1",
+          "|-damage|p1a: Venusaur|88/155",
+          "|-enditem|p1a: Venusaur|Enigma Berry|[eat]",
+          "|-heal|p1a: Venusaur|126/155|[from] item: Enigma Berry|[of] p2a: Charizard",
+          "|move|p1a: Venusaur|Tackle|p2a: Charizard",
+          "|-damage|p2a: Charizard|116/153",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Ember|p1a: Venusaur",
+          "|-supereffective|p1a: Venusaur|1",
+          "|-damage|p1a: Venusaur|88/155",
+          "|-enditem|p1a: Venusaur|Enigma Berry|[eat]",
+          "|-heal|p1a: Venusaur|126/155|[from] item: Enigma Berry|[of] p2a: Charizard",
+          "|move|p1a: Venusaur|Tackle|p2a: Charizard",
+          "|-damage|p2a: Charizard|116/153",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Ember|p1a: Venusaur",
+          "|-supereffective|p1a: Venusaur|1",
+          "|-damage|p1a: Venusaur|88/155",
+          "|-enditem|p1a: Venusaur|Enigma Berry|[eat]",
+          "|-heal|p1a: Venusaur|126/155|[from] item: Enigma Berry|[of] p2a: Charizard",
+          "|move|p1a: Venusaur|Tackle|p2a: Charizard",
+          "|-damage|p2a: Charizard|116/153",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "126/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "116/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 126,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 116,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

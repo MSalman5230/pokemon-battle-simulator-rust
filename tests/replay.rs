@@ -2175,6 +2175,19 @@ fn pinch_berries_obey_thresholds_flavors_randomness_and_priority() {
 }
 
 #[test]
+fn hit_berries_run_at_their_distinct_native_damage_events() {
+    replay(include_str!(
+        "fixtures/custom-kee-and-maranga-after-the-last-strike.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-enigma-heals-after-super-effective-hit.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-jaboca-ripen-and-rowap-retaliation.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

@@ -11,6 +11,7 @@ pub(super) struct PostHit {
     pub multihit: bool,
     pub smart_target: bool,
     pub delayed: bool,
+    pub category: Category,
 }
 use crate::{
     choice::TargetKind,
@@ -310,6 +311,7 @@ impl Battle {
             Ability,
             RedCard,
             EjectButton,
+            CategoryBerry,
         }
         let mut holders = [(source, 0, Kind::Ability); 8];
         let mut count = 0;
@@ -328,6 +330,7 @@ impl Battle {
             let item = match mon.item.as_str() {
                 "redcard" => Some(Kind::RedCard),
                 "ejectbutton" => Some(Kind::EjectButton),
+                "keeberry" | "marangaberry" => Some(Kind::CategoryBerry),
                 _ => None,
             };
             if let Some(item) = item {
@@ -344,6 +347,10 @@ impl Battle {
         let total: u32 = damage.iter().sum();
         for &(target, _, item) in &holders[..count] {
             match item {
+                Kind::CategoryBerry => {
+                    self.category_berry_after_move(target, hit.category);
+                    continue;
+                }
                 Kind::EjectButton => {
                     if !hit.delayed {
                         self.eject_button_after_move(target, source);

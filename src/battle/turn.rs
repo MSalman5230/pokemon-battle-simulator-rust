@@ -8292,6 +8292,7 @@ impl Battle {
                     }
                 }
                 self.debug_suppressed_hook(target, "onHit");
+                self.enigma_berry_hit(target, source, super_effective_targets & target.mask() != 0);
             }
             for &(target, _) in &damage {
                 if damaging_z
@@ -8552,14 +8553,6 @@ impl Battle {
                 }
             }
             let original_source_hp = self.mon(source).hp;
-            for &(target, _) in &damage {
-                self.reactive_stat_item(
-                    target,
-                    move_data,
-                    move_type,
-                    super_effective_targets & target.mask() != 0,
-                );
-            }
             for &(target, landed) in &damage {
                 if self.mon(target).hp == 0 && self.event_ability(target) == "innardsout" {
                     let previous = if smart_target {
@@ -8671,6 +8664,13 @@ impl Battle {
                         false,
                     );
                 }
+                self.reactive_stat_item(
+                    target,
+                    move_data,
+                    move_type,
+                    super_effective_targets & target.mask() != 0,
+                );
+                self.retaliation_berry(target, source, move_data.category);
                 if self.mon(target).effective_item() == "airballoon" {
                     self.consume(target, "Air Balloon", false);
                 }
@@ -8856,6 +8856,7 @@ impl Battle {
                     multihit,
                     smart_target,
                     delayed,
+                    category: move_data.category,
                 },
             );
             for &target in &spread_targets {
@@ -9970,6 +9971,11 @@ impl Pokemon {
                 | "magoberry"
                 | "starfberry"
                 | "wikiberry"
+                | "enigmaberry"
+                | "jabocaberry"
+                | "keeberry"
+                | "marangaberry"
+                | "rowapberry"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)

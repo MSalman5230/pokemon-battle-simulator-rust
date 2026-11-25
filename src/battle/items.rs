@@ -4,7 +4,7 @@ use super::terrain::Terrain;
 use super::turn::{BoostLabel, Pivot, Position};
 use super::*;
 use crate::{
-    dex::{FlingEffect, Item},
+    dex::{Category, FlingEffect, Item},
     mechanics::{BoostStat, Stat},
 };
 
@@ -327,6 +327,68 @@ impl Battle {
                 _ => return,
             };
         self.use_boosting_item(target, name, boosts);
+    }
+
+    pub(super) fn retaliation_berry(
+        &mut self,
+        holder: Position,
+        attacker: Position,
+        category: Category,
+    ) {
+        let (id, name) = match (self.mon(holder).item.as_str(), category) {
+            ("jabocaberry", Category::Physical) => ("jabocaberry", "Jaboca Berry"),
+            ("rowapberry", Category::Special) => ("rowapberry", "Rowap Berry"),
+            _ => return,
+        };
+        if self.debug_ignored_item(holder, "DamagingHit")
+            || self.mon(attacker).hp == 0
+            || !self.active_effects(attacker)
+            || self.event_ability(attacker) == "magicguard"
+        {
+            return;
+        }
+        let ripen = self.event_ability(holder) == "ripen";
+        if self.eat_effect_berry(holder, id, true) {
+            let who = self.ident(holder);
+            self.indirect_damage(
+                attacker,
+                if ripen { 4 } else { 8 },
+                &format!("|[from] item: {name}|[of] {who}"),
+            );
+        }
+    }
+
+    pub(super) fn enigma_berry_hit(
+        &mut self,
+        target: Position,
+        source: Position,
+        super_effective: bool,
+    ) {
+        if self.mon(target).item != "enigmaberry"
+            || self.debug_ignored_item(target, "Hit")
+            || !super_effective
+            || self.mon(target).heal_block != 0
+            || !self.eat_effect_berry(target, "enigmaberry", false)
+        {
+            return;
+        }
+        self.item_heal_from(
+            target,
+            self.mon(target).max_hp.get() / 4,
+            "Enigma Berry",
+            Some(source),
+        );
+    }
+
+    pub(super) fn category_berry_after_move(&mut self, pos: Position, category: Category) {
+        let id = match (self.mon(pos).item.as_str(), category) {
+            ("keeberry", Category::Physical) => "keeberry",
+            ("marangaberry", Category::Special) => "marangaberry",
+            _ => return,
+        };
+        if !self.debug_ignored_item(pos, "AfterMoveSecondary") {
+            self.eat_effect_berry(pos, id, false);
+        }
     }
 
     pub(super) fn throat_spray(&mut self, pos: Position, move_data: &Move) {
@@ -1150,6 +1212,8 @@ impl Battle {
                     self.apply_stat_berry(pos, &item.effect.name, stat, 2);
                 }
             }
+            "keeberry" => self.apply_stat_berry(pos, &item.effect.name, BoostStat::Def, 1),
+            "marangaberry" => self.apply_stat_berry(pos, &item.effect.name, BoostStat::Spd, 1),
             "persimberry" if self.mon(pos).confusion > 0 => self.cure_confusion(pos),
             "leppaberry" => self.replenish_pp_with_leppa(pos),
             "lumberry" => {
