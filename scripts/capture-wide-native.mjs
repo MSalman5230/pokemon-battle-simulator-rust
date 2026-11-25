@@ -10,7 +10,7 @@ const require = createRequire(new URL('worker.cjs', stage));
 const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
 const lock = JSON.parse(readFileSync(new URL('package-lock.json', stage)));
 assert(lock.packages['node_modules/pokemon-showdown'].resolved.endsWith('/' + revision));
-const {BattleStream, Dex, PRNG} = require('pokemon-showdown');
+const {BattleStream, Dex, PRNG, TeamValidator} = require('pokemon-showdown');
 const {extractChannelMessages} = require('pokemon-showdown/dist/sim/battle');
 
 const {values, positionals: [path]} = parseArgs({allowPositionals: true, options: {
@@ -18,15 +18,37 @@ const {values, positionals: [path]} = parseArgs({allowPositionals: true, options
     'first-game': {type: 'string', default: '1'},
     'max-turns': {type: 'string', default: '30'},
     format: {type: 'string', multiple: true, default: []},
+    teams: {type: 'string'},
 }});
-assert(path, 'Usage: node scripts/capture-wide-native.mjs .tools/wide-native.jsonl [--games 8] [--first-game 1] [--max-turns 30] [--format FORMAT]');
-const formats = values.format.length ? values.format : [
+assert(path, 'Usage: node scripts/capture-wide-native.mjs OUTPUT.jsonl [--games 8] [--first-game 1] [--max-turns 30] [--format FORMAT] [--teams MANIFEST.json]');
+const submitted = values.teams && JSON.parse(readFileSync(values.teams, 'utf8'));
+const formats = values.format.length ? values.format : submitted ? Object.keys(submitted) : [
     'gen9championsrandombattle', 'gen9championsrandomdoublesbattle', 'gen9championsrosterranchrumble',
 ];
+assert(formats.length, 'No formats specified');
 const games = Number(values.games), limit = Number(values['max-turns']), first = Number(values['first-game']);
 for (const value of [games, limit, first]) assert(Number.isSafeInteger(value) && value > 0 && value <= 65535);
 assert(first + games - 1 <= 65535, 'Last game must fit in a 16-bit seed word');
 const selectableTargets = new Set(['normal', 'any', 'adjacentFoe', 'adjacentAlly', 'adjacentAllyOrSelf']);
+const rosters = new Map();
+for (const format of formats) {
+    const config = Dex.formats.get(format);
+    assert(config.exists && format.startsWith('gen9champions'), `Not a Champions format: ${format}`);
+    if (config.team) {
+        assert(!submitted?.[format], `Cannot submit teams for ${format}`);
+        continue;
+    }
+    const pool = submitted?.[format];
+    assert(Array.isArray(pool) && pool.length >= 2, `Provide at least two rosters for ${format}`);
+    const validator = new TeamValidator(format);
+    rosters.set(format, pool.map((original, index) => {
+        const team = structuredClone(original);
+        assert(Array.isArray(team), `${format} roster ${index + 1} must be an array of sets`);
+        const errors = validator.validateTeam(team);
+        assert(!errors, `${format} roster ${index + 1}: ${errors?.join('; ')}`);
+        return team;
+    }));
+}
 
 function choice(side, rng) {
     const request = side.activeRequest;
@@ -84,16 +106,20 @@ function choice(side, rng) {
 }
 
 async function capture(formatid, n) {
-    const config = Dex.formats.get(formatid);
-    assert(config.exists && config.team && formatid.startsWith('gen9champions'), 'Requires a Champions generated-team format');
     const seed = [31415, 9265, 35897, n].join(',');
     const rng = new PRNG([321, 626, 459, n]);
+    const pool = rosters.get(formatid);
+    const pairing = pool && new PRNG([337, 911, 626, n]);
+    const firstTeam = pairing?.random(pool.length);
+    const otherTeam = pairing?.random(pool.length - 1);
+    const teams = pool && [pool[firstTeam], pool[otherTeam + Number(otherTeam >= firstTeam)]];
     const stream = new BattleStream({noCatch: true});
     let logCursor = 0;
     const checkpoints = [];
     function snapshot(lines) {
         const b = stream.battle;
-        const newLog = b.log.slice(logCursor).filter(l => !l.startsWith('|t:|'));
+        const newLog = b.log.slice(logCursor).filter(l =>
+            !l.startsWith('|t:|') && !l.startsWith('|uhtml|otsrequest|'));
         logCursor = b.log.length;
         const channels = extractChannelMessages(newLog.join('\n'), [0, 1, 2]);
         checkpoints.push({
@@ -113,6 +139,7 @@ async function capture(formatid, n) {
         '>start ' + JSON.stringify({formatid, seed, strictChoices: true}),
         ...[1, 2].map(p => '>player p' + p + ' ' + JSON.stringify({
             name: 'player' + (p - 1), seed: [1361, 533, p, n].join(','),
+            ...(teams && {team: teams[p - 1]}),
         })),
     ];
     for (const line of initial) await stream.write(line);

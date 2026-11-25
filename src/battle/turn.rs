@@ -57,6 +57,7 @@ enum MoveInvocation {
         loc: i8,
         original_target: Option<(Player, u8)>,
         prankster: bool,
+        round_followup: bool,
     },
     Reflected {
         data: &'static Move,
@@ -206,6 +207,7 @@ pub(super) struct Action {
     priority: Priority,
     fractional_priority: f64,
     prankster: bool,
+    round_followup: bool,
 }
 
 const STRUGGLE_SLOT: usize = usize::MAX;
@@ -236,6 +238,7 @@ impl Action {
             original_target: None,
             fractional_priority: 0.0,
             prankster: false,
+            round_followup: false,
             priority: Priority {
                 order,
                 ..Priority::default()
@@ -853,6 +856,8 @@ impl Battle {
                 info.id.as_str(),
                 "tackle"
                     | "quickattack"
+                    | "afteryou"
+                    | "round"
                     | "swift"
                     | "surf"
                     | "watergun"
@@ -1506,6 +1511,13 @@ impl Battle {
         })
     }
 
+    fn promote_move(queue: &mut Vec<Action>, index: usize, round_followup: bool) {
+        let mut action = queue.remove(index);
+        action.priority.order = 3;
+        action.round_followup = round_followup;
+        queue.insert(0, action);
+    }
+
     fn zoom_lens_active(&self, source: Position, target: Position, queue: &[Action]) -> bool {
         self.mon(source).effective_item() == "zoomlens"
             && self.active_effects(source)
@@ -1874,6 +1886,7 @@ impl Battle {
                             loc: target,
                             original_target: action.original_target,
                             prankster: action.prankster,
+                            round_followup: action.round_followup,
                         },
                         &mut queue,
                     ) {
@@ -3093,10 +3106,19 @@ impl Battle {
             && (self.mon(source).rampage.is_some()
                 || self.mon(source).uproar.is_some()
                 || releasing_charge);
+        let round_followup = matches!(
+            invocation,
+            MoveInvocation::Choice {
+                round_followup: true,
+                ..
+            }
+        );
         let called_from = if reflected {
             "|[from] ability: Magic Bounce"
         } else if sleep_talk.is_some() {
             "|[from] move: Sleep Talk"
+        } else if round_followup {
+            "|[from] move: Round"
         } else if continuing {
             "|[from] lockedmove"
         } else {
@@ -3651,6 +3673,14 @@ impl Battle {
             self.add(format!("|-fail|{source_name}"));
             result.failed = true;
             return true;
+        }
+        if move_data.name == "Round"
+            && let Some(index) = queue.iter().position(|action| {
+                action.move_data.is_some_and(|data| data.name == "Round")
+                    && matches!(action.kind, ActionKind::Move { .. })
+            })
+        {
+            Self::promote_move(queue, index, true);
         }
         if move_data.name == "Stuff Cheeks" && !self.has_held_berry(source) {
             self.move_still(base);
@@ -5163,6 +5193,27 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
+                if move_data.name == "After You" {
+                    let action = (self.slots() > 1)
+                        .then(|| {
+                            queue.iter().position(|action| {
+                                action.actor == Some(target)
+                                    && matches!(action.kind, ActionKind::Move { .. })
+                            })
+                        })
+                        .flatten();
+                    if let Some(index) = action {
+                        Self::promote_move(queue, index, false);
+                        self.add(format!("|-activate|{}|move: After You", self.ident(target)));
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|move failed because it did nothing");
+                        }
+                    }
+                }
                 if move_data.name == "Stuff Cheeks"
                     && self.boost_from(
                         target,
@@ -5518,7 +5569,12 @@ impl Battle {
                 if stacked_power && battle.format.report_exact_hp {
                     battle.add(format!("|debug|BP: {power}"));
                 }
-                let power = if let Some(allies) = &beat_up {
+                let power = if round_followup && move_data.name == "Round" {
+                    if battle.format.report_exact_hp {
+                        battle.add("|debug|BP doubled");
+                    }
+                    power * 2
+                } else if let Some(allies) = &beat_up {
                     let ally = allies[usize::from(hit - 1)];
                     let result = 5 + ally.base_stats.atk as u16 / 10;
                     if battle.format.report_exact_hp {

@@ -107,7 +107,7 @@ the same Intel i5-6300HQ host, the median across five replays was 474.1
 steps/s for Showdown and 1,673.5 for Rust (3.53×). This is a result on the
 verified subset, not a speed or parity claim about the default Poke-RL corpus.
 
-## Native generated-team replay
+## Native battle replay
 
 Use the native simulator contract to sample longer continuations in Random
 Battle, Random Doubles Battle, and Roster Ranch Rumble. This diagnostic is
@@ -116,14 +116,21 @@ separate from the timed Poke-RL workload.
 ```sh
 source scripts/env.sh
 node scripts/capture-wide-native.mjs .tools/wide-native.jsonl --games 8 --max-turns 30
-cargo test --locked --test replay wide_generated -- --ignored --nocapture
+cargo test --locked --test replay wide_native -- --ignored --nocapture
 ```
 
 Each game uses explicit, separate battle, roster, and choice seeds. The test
 checks every recorded public and private log, each side's current request,
 the party state, and the battle RNG, even when the replay reaches its turn
-cap. It reports the first mismatch in each game. Use
-`CHAMPIONS_NATIVE_CORPUS` to select a different generated corpus.
+cap. Wall-clock timestamps and the VGC client's Open Team Sheets approval
+button are excluded. It reports the first mismatch in each game. Use
+`CHAMPIONS_NATIVE_CORPUS` to select a different corpus.
+
+For submitted-team formats, pass `--teams MANIFEST.json`, a JSON object
+keyed by format ID with an array of Showdown teams under each format. Each
+team is an array of Showdown sets. The capture validates the rosters against
+the pinned oracle and uses a separate seed to select two distinct rosters
+per game. This does not replace native Rust team validation.
 
 The [recorded 24-game sample](verified-native-generated-parity.json) matches
 all 574 checkpoints. Eighteen games ended naturally. The other six reached

@@ -127,7 +127,7 @@ fn replay_fixture(fixture: &Value) {
 
 #[test]
 #[ignore = "generate a corpus with node scripts/capture-wide-native.mjs .tools/wide-native.jsonl"]
-fn wide_generated_team_battles_match_native_checkpoints() {
+fn wide_native_battles_match_native_checkpoints() {
     use std::{
         collections::BTreeMap,
         fs::File,
@@ -1655,6 +1655,17 @@ fn syrup_bomb_slows_each_turn_until_expiry_or_source_switch() {
 #[test]
 fn fairy_lock_traps_for_the_following_turn_with_ghost_immunity() {
     replay(include_str!("fixtures/bss-fairy-lock.json"));
+}
+
+#[test]
+fn after_you_promotes_an_allied_or_opposing_move_in_doubles_only() {
+    replay(include_str!("fixtures/vgc-after-you.json"));
+    replay(include_str!("fixtures/bss-after-you-fails.json"));
+}
+
+#[test]
+fn round_chains_across_both_sides_even_if_the_initial_hit_is_protected() {
+    replay(include_str!("fixtures/vgc-round-chain.json"));
 }
 
 #[test]
