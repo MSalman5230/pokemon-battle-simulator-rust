@@ -54,8 +54,8 @@ impl Battle {
         if defender.glaive_drawback {
             add(defender.speed, 2, Hook::Fixed(8192, ""));
         }
-        if defender.diving() {
-            let modifier = if matches!(data.name.as_str(), "Surf" | "Whirlpool") {
+        if let Some(state) = defender.semi_invulnerability() {
+            let modifier = if state.exposed_to(&data.name) {
                 8192
             } else {
                 4096

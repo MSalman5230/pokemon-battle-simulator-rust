@@ -809,6 +809,7 @@ impl Battle {
                     | "geomancy"
                     | "expandingforce"
                     | "dive"
+                    | "dig"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -1361,7 +1362,7 @@ impl Battle {
             Flinch,
             Recharge,
             Charge,
-            DiveTimer,
+            SemiInvulnerableTimer,
             Rampage,
             Attention,
             Leftovers,
@@ -1499,8 +1500,8 @@ impl Battle {
             if mon.charge.is_some() {
                 timers.push((pos, Effect::Charge, priority(0, 2)));
             }
-            if mon.diving() {
-                timers.push((pos, Effect::DiveTimer, priority(0, 2)));
+            if mon.semi_invulnerable() {
+                timers.push((pos, Effect::SemiInvulnerableTimer, priority(0, 2)));
             }
             if mon.rampage.is_some() {
                 timers.push((pos, Effect::Rampage, priority(0, 2)));
@@ -1580,9 +1581,9 @@ impl Battle {
                 }
                 Effect::Rampage => self.tick_rampage(pos),
                 Effect::Charge => mon.tick_charge(),
-                // The Dive condition has its own duration and participates
+                // The move's condition has its own duration and participates
                 // in ordering. The parent charge expires at the same time.
-                Effect::DiveTimer => {}
+                Effect::SemiInvulnerableTimer => {}
                 Effect::Attention => {
                     if let Some(kind) = mon.attention.take() {
                         mon.untrack_volatile(kind.name_id().1);
@@ -1973,7 +1974,7 @@ impl Battle {
             if !reflected
                 && move_data.flags.contains_key("reflectable")
                 && let Some(holder) = self.side_magic_bounce(source.player.foe())
-                && !self.mon(spread_targets[0]).diving()
+                && !self.mon(spread_targets[0]).semi_invulnerable()
             {
                 self.bounce_move(holder, source, move_data, queue);
                 return true;
@@ -2173,10 +2174,11 @@ impl Battle {
         self.protean_prepare(source, move_type);
         let spread = spread_targets.len() > 1;
         let priority = self.move_priority(source, move_data);
-        let hits_underwater = matches!(move_data.name.as_str(), "Surf" | "Whirlpool");
         spread_targets.retain(|&target| {
-            if !self.mon(target).diving()
-                || hits_underwater
+            if self
+                .mon(target)
+                .semi_invulnerability()
+                .is_none_or(|state| state.exposed_to(&move_data.name))
                 || self.mon(source).ability == "noguard"
                 || self.mon(target).ability == "noguard"
                 || (move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
@@ -2195,7 +2197,7 @@ impl Battle {
             if self.terrain() == Some(Terrain::Psychic)
                 && priority > 0
                 && mut_pos.player != source.player
-                && !self.mon(mut_pos).diving()
+                && !self.mon(mut_pos).semi_invulnerable()
             {
                 if self.grounded(mut_pos) {
                     self.terrain_activate(mut_pos, Terrain::Psychic);
@@ -2224,7 +2226,7 @@ impl Battle {
             } else if !reflected
                 && source != mut_pos
                 && move_data.flags.contains_key("reflectable")
-                && !self.mon(mut_pos).diving()
+                && !self.mon(mut_pos).semi_invulnerable()
                 && self.event_ability(mut_pos) == "magicbounce"
             {
                 self.bounce_move(mut_pos, source, move_data, queue);
@@ -2330,7 +2332,7 @@ impl Battle {
         }
         spread_targets.retain(|&pos| {
             if ohko
-                && !self.mon(pos).diving()
+                && !self.mon(pos).semi_invulnerable()
                 && (self.mon(source).level < self.mon(pos).level
                     || (sheer_cold && self.mon(pos).has_type("Ice")))
             {
@@ -2345,7 +2347,7 @@ impl Battle {
                 && self.mon(pos).ability != "noguard"
                 && !self.mon(pos).glaive_drawback
                 && !self.rng.chance(
-                    if ohko && !self.mon(pos).diving() {
+                    if ohko && !self.mon(pos).semi_invulnerable() {
                         let base = if sheer_cold && !self.mon(source).has_type("Ice") {
                             20
                         } else {

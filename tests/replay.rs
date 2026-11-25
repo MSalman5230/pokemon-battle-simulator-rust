@@ -545,3 +545,8 @@ fn vgc_magic_bounce_reflects_hazards_aimed_at_the_holders_side() {
 fn bss_magic_bounce_pivot_cancels_the_reflectors_original_action() {
     replay(include_str!("fixtures/bss-magic-bounce-pivot.json"));
 }
+
+#[test]
+fn bss_dig_is_semi_invulnerable_but_takes_double_earthquake_damage() {
+    replay(include_str!("fixtures/bss-dig.json"));
+}

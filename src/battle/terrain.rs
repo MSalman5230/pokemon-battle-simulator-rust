@@ -94,7 +94,7 @@ impl Battle {
     }
 
     pub(super) fn grassy_heal(&mut self, pos: Position) {
-        if !self.grounded(pos) || self.mon(pos).diving() {
+        if !self.grounded(pos) || self.mon(pos).semi_invulnerable() {
             if self.format.report_exact_hp {
                 self.add("|debug|Pokemon semi-invuln or not grounded; Grassy Terrain skipped");
             }
@@ -108,7 +108,7 @@ impl Battle {
     }
 
     pub(super) fn status_blocked_by_terrain(&self, pos: Position, status: &str) -> Option<Terrain> {
-        if !self.grounded(pos) || self.mon(pos).diving() {
+        if !self.grounded(pos) || self.mon(pos).semi_invulnerable() {
             return None;
         }
         match self.terrain() {
@@ -139,13 +139,13 @@ impl Battle {
         let (factor, debug) = match (terrain, move_type) {
             (Terrain::Grassy, _)
                 if self.grounded(defender)
-                    && !self.mon(defender).diving()
+                    && !self.mon(defender).semi_invulnerable()
                     && matches!(data.name.as_str(), "Earthquake" | "Bulldoze" | "Magnitude") =>
             {
                 (2048, "move weakened by grassy terrain")
             }
             (Terrain::Misty, "Dragon")
-                if self.grounded(defender) && !self.mon(defender).diving() =>
+                if self.grounded(defender) && !self.mon(defender).semi_invulnerable() =>
             {
                 (2048, "misty terrain weaken")
             }

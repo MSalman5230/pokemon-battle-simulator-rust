@@ -1,7 +1,22 @@
-//! Two-turn moves that charge without entering a semi-invulnerable state.
+//! Two-turn moves, including charge turns that grant semi-invulnerability.
 
 use super::*;
 use crate::mechanics::BoostStat;
+
+#[derive(Clone, Copy)]
+pub(super) enum SemiInvulnerable {
+    Underwater,
+    Underground,
+}
+
+impl SemiInvulnerable {
+    pub(super) fn exposed_to(self, move_name: &str) -> bool {
+        match self {
+            Self::Underwater => matches!(move_name, "Surf" | "Whirlpool"),
+            Self::Underground => matches!(move_name, "Earthquake" | "Magnitude"),
+        }
+    }
+}
 
 #[derive(Clone, Copy)]
 pub(super) struct Charge {
@@ -30,6 +45,7 @@ impl ChargeSpec {
             "Skull Bash" => ("skullbash", Some(BoostStat::Def), None),
             "Geomancy" => ("geomancy", None, None),
             "Dive" => ("dive", None, None),
+            "Dig" => ("dig", None, None),
             _ => return None,
         };
         Some(Self {
@@ -69,9 +85,16 @@ impl Pokemon {
         }
     }
 
-    pub(super) fn diving(&self) -> bool {
-        self.charge
-            .is_some_and(|state| state.id == "dive" && !state.released)
+    pub(super) fn semi_invulnerability(&self) -> Option<SemiInvulnerable> {
+        match self.charge.filter(|state| !state.released)?.id {
+            "dive" => Some(SemiInvulnerable::Underwater),
+            "dig" => Some(SemiInvulnerable::Underground),
+            _ => None,
+        }
+    }
+
+    pub(super) fn semi_invulnerable(&self) -> bool {
+        self.semi_invulnerability().is_some()
     }
 
     pub(super) fn tick_charge(&mut self) {
