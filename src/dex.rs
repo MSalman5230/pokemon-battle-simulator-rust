@@ -244,6 +244,8 @@ pub struct Effect {
     #[serde(default)]
     pub no_entrain: bool,
     #[serde(default)]
+    pub no_role_play: bool,
+    #[serde(default)]
     pub no_receiver: bool,
     #[serde(default)]
     pub no_transform: bool,

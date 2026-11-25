@@ -865,6 +865,8 @@ impl Battle {
                     | "quickattack"
                     | "afteryou"
                     | "allyswitch"
+                    | "electrify"
+                    | "roleplay"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1744,6 +1746,7 @@ impl Battle {
         party[outgoing.slot].magnet_rise = 0;
         party[outgoing.slot].dragon_cheer = 0;
         party[outgoing.slot].gem_boost = false;
+        party[outgoing.slot].electrified = false;
         party[outgoing.slot].lock_on = None;
         party[outgoing.slot].syrup_bomb = None;
         party[outgoing.slot].counter = None;
@@ -2323,6 +2326,7 @@ impl Battle {
             Endure,
             Stall,
             AllySwitchStall,
+            Electrify,
             Flinch,
             FocusPunch,
             ChillyReception,
@@ -2658,6 +2662,9 @@ impl Battle {
             if mon.ally_switch_stall.is_some() {
                 timers.push((pos, Effect::AllySwitchStall, priority(0, 2)));
             }
+            if mon.electrified {
+                timers.push((pos, Effect::Electrify, priority(0, 2)));
+            }
             if mon.flinched {
                 timers.push((pos, Effect::Flinch, priority(0, 2)));
             }
@@ -2956,6 +2963,10 @@ impl Battle {
                         mon.untrack_volatile("allyswitch");
                     }
                 }
+                Effect::Electrify => {
+                    mon.electrified = false;
+                    mon.untrack_volatile("electrify");
+                }
                 Effect::Status => {
                     self.status_residual(pos);
                     if self.check_win() {
@@ -2975,7 +2986,8 @@ impl Battle {
                     | Effect::FocusPunch
                     | Effect::BeakBlast
                     | Effect::ChillyReception
-                    | Effect::Counter => true,
+                    | Effect::Counter
+                    | Effect::Electrify => true,
                     Effect::Stall => mon.stall.is_none(),
                     Effect::AllySwitchStall => mon.ally_switch_stall.is_none(),
                     Effect::Charge | Effect::SemiInvulnerableTimer => mon.charge.is_none(),
@@ -3221,7 +3233,7 @@ impl Battle {
             "Spit Up" => u16::from(self.mon(source).stockpile.layers) * 100,
             _ => move_data.base_power,
         };
-        let (move_type, converted) = if struggle {
+        let (mut move_type, converted) = if struggle {
             ("???", false)
         } else if weather_ball {
             (move_weather.map_or("Normal", Weather::ball_type), false)
@@ -3322,6 +3334,10 @@ impl Battle {
             ));
             return false;
         }
+        let electrified = !delayed && !struggle && self.mon(source).electrified;
+        if electrified {
+            move_type = "Electric";
+        }
         result.spends_charge =
             !reflected && !delayed && move_data.name != "Charge" && move_type == "Electric";
         if move_data.name == "Focus Punch" && self.mon(source).lost_focus {
@@ -3402,6 +3418,9 @@ impl Battle {
         }
         if !delayed {
             self.stance_change(source, move_data);
+        }
+        if electrified && self.format.report_exact_hp {
+            self.add("|debug|Electrify making move type electric");
         }
         result.spends_stockpile = own_action && move_data.name == "Spit Up";
         result.ran_after_move = own_action;
@@ -4772,6 +4791,10 @@ impl Battle {
                     || self
                         .replacement_ability(source, target, &move_data.name)
                         .is_some())
+                    && (move_data.name != "Role Play" || self.can_role_play(source, target))
+                    && (move_data.name != "Electrify"
+                        || self.mon(target).active_turns == 0
+                        || Self::queued_move(queue, target).is_some())
                     && !self.behind_substitute(source, target, move_data)
                 {
                     return true;
@@ -4792,7 +4815,26 @@ impl Battle {
                     any_success |= self.replace_ability_from_move(source, target, &move_data.name);
                     continue;
                 }
+                if move_data.name == "Role Play" {
+                    any_success |= self.role_play(source, target);
+                    continue;
+                }
                 let mut succeeded = false;
+                if move_data.name == "Electrify" {
+                    let mon = self.mon_mut(target);
+                    if mon.electrified {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    } else {
+                        mon.electrified = true;
+                        mon.track_volatile("electrify");
+                        self.add(format!(
+                            "|-singleturn|{}|move: Electrify",
+                            self.ident(target)
+                        ));
+                        succeeded = true;
+                    }
+                }
                 succeeded |= self.apply_stat_move(source, target, &move_data.name);
                 if move_data.name == "Topsy-Turvy" && !succeeded {
                     self.move_still(base);
@@ -6663,6 +6705,7 @@ impl Battle {
         mon.magnet_rise = 0;
         mon.dragon_cheer = 0;
         mon.gem_boost = false;
+        mon.electrified = false;
         mon.lock_on = None;
         mon.syrup_bomb = None;
         mon.counter = None;

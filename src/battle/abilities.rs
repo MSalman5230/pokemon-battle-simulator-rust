@@ -730,6 +730,37 @@ impl Battle {
         target: Position,
         name: &str,
     ) -> bool {
+        let (id, announce_source) = self.replacement_ability(source, target, name).unwrap();
+        let id = id.to_owned();
+        self.gain_move_ability(target, id, announce_source.then_some(source), name)
+    }
+
+    pub(super) fn can_role_play(&self, source: Position, target: Position) -> bool {
+        let user = &self.mon(source).ability;
+        let copied = &self.mon(target).ability;
+        user != copied
+            && !DEX.ability(user).is_some_and(|ab| ab.cannot_suppress)
+            && !DEX
+                .ability(copied)
+                .is_some_and(|ab| ab.no_role_play || ab.cannot_suppress)
+    }
+
+    pub(super) fn role_play(&mut self, source: Position, target: Position) -> bool {
+        self.gain_move_ability(
+            source,
+            self.mon(target).ability.clone(),
+            Some(target),
+            "Role Play",
+        )
+    }
+
+    fn gain_move_ability(
+        &mut self,
+        target: Position,
+        id: String,
+        source: Option<Position>,
+        name: &str,
+    ) -> bool {
         if self.mon(target).effective_item() == "abilityshield" {
             self.add(format!(
                 "|-block|{}|item: Ability Shield",
@@ -737,9 +768,7 @@ impl Battle {
             ));
             return false;
         }
-        let (id, announce_source) = self.replacement_ability(source, target, name).unwrap();
-        let ability = DEX.ability(id);
-        let id = id.to_owned();
+        let ability = DEX.ability(&id);
         let current = self.mon(target).ability.as_str();
         let old = DEX.ability(current);
         if current == "illusion" {
@@ -754,7 +783,7 @@ impl Battle {
             ability.map_or("", |ab| ab.name.as_str()),
             old.map_or("", |ab| ab.name.as_str()),
         );
-        if announce_source {
+        if let Some(source) = source {
             msg.push_str(&format!("|[of] {}", self.ident(source)));
         }
         self.add(msg);

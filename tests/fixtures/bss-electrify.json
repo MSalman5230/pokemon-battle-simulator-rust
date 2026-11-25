@@ -1,0 +1,1161 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Heliolisk\",\"moves\":[\"Electrify\",\"Recover\"],\"gender\":\"F\",\"name\":\"Heliolisk\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Dry Skin\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Blastoise\",\"moves\":[\"Water Gun\",\"Aqua Jet\"],\"gender\":\"F\",\"name\":\"Blastoise\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Heliolisk, L50, F|",
+          "|poke|p2|Blastoise, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Heliolisk, L50, F|",
+          "|poke|p2|Blastoise, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Heliolisk, L50, F|",
+          "|poke|p2|Blastoise, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Heliolisk",
+                "details": "Heliolisk, L50, F",
+                "condition": "137/137",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 72,
+                  "spa": 129,
+                  "spd": 114,
+                  "spe": 129
+                },
+                "moves": [
+                  "electrify",
+                  "recover"
+                ],
+                "baseAbility": "dryskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dryskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blastoise",
+                "details": "Blastoise, L50, F",
+                "condition": "154/154",
+                "active": true,
+                "stats": {
+                  "atk": 103,
+                  "def": 120,
+                  "spa": 105,
+                  "spd": 125,
+                  "spe": 98
+                },
+                "moves": [
+                  "watergun",
+                  "aquajet"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Heliolisk",
+            "species": "Heliolisk",
+            "details": "Heliolisk, L50, F",
+            "hp": 137,
+            "maxhp": 137,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 72,
+              "spa": 129,
+              "spd": 114,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dryskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "electrify",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blastoise",
+            "species": "Blastoise",
+            "details": "Blastoise, L50, F",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 103,
+              "def": 120,
+              "spa": 105,
+              "spd": 125,
+              "spe": 98
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "aquajet",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Heliolisk|Heliolisk, L50, F|100/100",
+          "|switch|p2a: Blastoise|Blastoise, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Heliolisk|Heliolisk, L50, F|137/137",
+          "|switch|p2a: Blastoise|Blastoise, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Heliolisk|Heliolisk, L50, F|100/100",
+          "|switch|p2a: Blastoise|Blastoise, L50, F|154/154",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electrify",
+                  "id": "electrify",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Heliolisk",
+                "details": "Heliolisk, L50, F",
+                "condition": "137/137",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 72,
+                  "spa": 129,
+                  "spd": 114,
+                  "spe": 129
+                },
+                "moves": [
+                  "electrify",
+                  "recover"
+                ],
+                "baseAbility": "dryskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dryskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Aqua Jet",
+                  "id": "aquajet",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blastoise",
+                "details": "Blastoise, L50, F",
+                "condition": "154/154",
+                "active": true,
+                "stats": {
+                  "atk": 103,
+                  "def": 120,
+                  "spa": 105,
+                  "spd": 125,
+                  "spe": 98
+                },
+                "moves": [
+                  "watergun",
+                  "aquajet"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Heliolisk",
+            "species": "Heliolisk",
+            "details": "Heliolisk, L50, F",
+            "hp": 137,
+            "maxhp": 137,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 72,
+              "spa": 129,
+              "spd": 114,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dryskin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electrify",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blastoise",
+            "species": "Blastoise",
+            "details": "Blastoise, L50, F",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 103,
+              "def": 120,
+              "spa": 105,
+              "spd": 125,
+              "spe": 98
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "aquajet",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Heliolisk|Electrify|p2a: Blastoise",
+          "|-singleturn|p2a: Blastoise|move: Electrify",
+          "|move|p2a: Blastoise|Water Gun|p1a: Heliolisk",
+          "|-resisted|p1a: Heliolisk|1",
+          "|-damage|p1a: Heliolisk|94/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Heliolisk|Electrify|p2a: Blastoise",
+          "|-singleturn|p2a: Blastoise|move: Electrify",
+          "|move|p2a: Blastoise|Water Gun|p1a: Heliolisk",
+          "|-resisted|p1a: Heliolisk|1",
+          "|-damage|p1a: Heliolisk|129/137",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Heliolisk|Electrify|p2a: Blastoise",
+          "|-singleturn|p2a: Blastoise|move: Electrify",
+          "|move|p2a: Blastoise|Water Gun|p1a: Heliolisk",
+          "|-resisted|p1a: Heliolisk|1",
+          "|-damage|p1a: Heliolisk|94/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electrify",
+                  "id": "electrify",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Heliolisk",
+                "details": "Heliolisk, L50, F",
+                "condition": "129/137",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 72,
+                  "spa": 129,
+                  "spd": 114,
+                  "spe": 129
+                },
+                "moves": [
+                  "electrify",
+                  "recover"
+                ],
+                "baseAbility": "dryskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dryskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Aqua Jet",
+                  "id": "aquajet",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blastoise",
+                "details": "Blastoise, L50, F",
+                "condition": "154/154",
+                "active": true,
+                "stats": {
+                  "atk": 103,
+                  "def": 120,
+                  "spa": 105,
+                  "spd": 125,
+                  "spe": 98
+                },
+                "moves": [
+                  "watergun",
+                  "aquajet"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Heliolisk",
+            "species": "Heliolisk",
+            "details": "Heliolisk, L50, F",
+            "hp": 129,
+            "maxhp": 137,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 72,
+              "spa": 129,
+              "spd": 114,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dryskin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electrify",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blastoise",
+            "species": "Blastoise",
+            "details": "Blastoise, L50, F",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 103,
+              "def": 120,
+              "spa": 105,
+              "spd": 125,
+              "spe": 98
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "aquajet",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Blastoise|Aqua Jet|p1a: Heliolisk",
+          "|-heal|p1a: Heliolisk|100/100|[from] ability: Dry Skin|[of] p2a: Blastoise",
+          "|move|p1a: Heliolisk|Electrify||[still]",
+          "|-fail|p1a: Heliolisk",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Blastoise|Aqua Jet|p1a: Heliolisk",
+          "|-heal|p1a: Heliolisk|137/137|[from] ability: Dry Skin|[of] p2a: Blastoise",
+          "|move|p1a: Heliolisk|Electrify||[still]",
+          "|-fail|p1a: Heliolisk",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Blastoise|Aqua Jet|p1a: Heliolisk",
+          "|-heal|p1a: Heliolisk|100/100|[from] ability: Dry Skin|[of] p2a: Blastoise",
+          "|move|p1a: Heliolisk|Electrify||[still]",
+          "|-fail|p1a: Heliolisk",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electrify",
+                  "id": "electrify",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Heliolisk",
+                "details": "Heliolisk, L50, F",
+                "condition": "137/137",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 72,
+                  "spa": 129,
+                  "spd": 114,
+                  "spe": 129
+                },
+                "moves": [
+                  "electrify",
+                  "recover"
+                ],
+                "baseAbility": "dryskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dryskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Aqua Jet",
+                  "id": "aquajet",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blastoise",
+                "details": "Blastoise, L50, F",
+                "condition": "154/154",
+                "active": true,
+                "stats": {
+                  "atk": 103,
+                  "def": 120,
+                  "spa": 105,
+                  "spd": 125,
+                  "spe": 98
+                },
+                "moves": [
+                  "watergun",
+                  "aquajet"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Heliolisk",
+            "species": "Heliolisk",
+            "details": "Heliolisk, L50, F",
+            "hp": 137,
+            "maxhp": 137,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 72,
+              "spa": 129,
+              "spd": 114,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dryskin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electrify",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blastoise",
+            "species": "Blastoise",
+            "details": "Blastoise, L50, F",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 103,
+              "def": 120,
+              "spa": 105,
+              "spd": 125,
+              "spe": 98
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "aquajet",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Heliolisk|Recover||[still]",
+          "|-fail|p1a: Heliolisk|heal",
+          "|move|p2a: Blastoise|Water Gun|p1a: Heliolisk",
+          "|-immune|p1a: Heliolisk|[from] ability: Dry Skin",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Heliolisk|Recover||[still]",
+          "|-fail|p1a: Heliolisk|heal",
+          "|move|p2a: Blastoise|Water Gun|p1a: Heliolisk",
+          "|-immune|p1a: Heliolisk|[from] ability: Dry Skin",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Heliolisk|Recover||[still]",
+          "|-fail|p1a: Heliolisk|heal",
+          "|move|p2a: Blastoise|Water Gun|p1a: Heliolisk",
+          "|-immune|p1a: Heliolisk|[from] ability: Dry Skin",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electrify",
+                  "id": "electrify",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Heliolisk",
+                "details": "Heliolisk, L50, F",
+                "condition": "137/137",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 72,
+                  "spa": 129,
+                  "spd": 114,
+                  "spe": 129
+                },
+                "moves": [
+                  "electrify",
+                  "recover"
+                ],
+                "baseAbility": "dryskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dryskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Aqua Jet",
+                  "id": "aquajet",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Blastoise",
+                "details": "Blastoise, L50, F",
+                "condition": "154/154",
+                "active": true,
+                "stats": {
+                  "atk": 103,
+                  "def": 120,
+                  "spa": 105,
+                  "spd": 125,
+                  "spe": 98
+                },
+                "moves": [
+                  "watergun",
+                  "aquajet"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Heliolisk",
+            "species": "Heliolisk",
+            "details": "Heliolisk, L50, F",
+            "hp": 137,
+            "maxhp": 137,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 72,
+              "spa": 129,
+              "spd": 114,
+              "spe": 129
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dryskin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electrify",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Blastoise",
+            "species": "Blastoise",
+            "details": "Blastoise, L50, F",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 103,
+              "def": 120,
+              "spa": 105,
+              "spd": 125,
+              "spe": 98
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "aquajet",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

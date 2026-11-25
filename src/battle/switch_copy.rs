@@ -22,6 +22,7 @@ impl Pokemon {
                 "confusion" => self.confusion = source.confusion,
                 "stall" => self.stall = source.stall,
                 "allyswitch" => self.ally_switch_stall = source.ally_switch_stall,
+                "electrify" => self.electrified = source.electrified,
                 "protect" | "kingsshield" | "banefulbunker" | "spikyshield" | "burningbulwark"
                 | "obstruct" | "silktrap" => self.protection = source.protection,
                 "healblock" => self.heal_block = source.heal_block,

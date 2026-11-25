@@ -1675,6 +1675,16 @@ fn ally_switch_swaps_queued_actors_but_preserves_selected_target_slots() {
 }
 
 #[test]
+fn electrify_changes_the_queued_move_for_one_turn_and_fails_after_its_action() {
+    replay(include_str!("fixtures/bss-electrify.json"));
+}
+
+#[test]
+fn role_play_starts_the_new_ability_and_fails_when_already_copied() {
+    replay(include_str!("fixtures/bss-role-play.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
