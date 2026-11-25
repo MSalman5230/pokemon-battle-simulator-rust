@@ -9,6 +9,11 @@ pub(super) struct Trap {
 }
 
 impl Battle {
+    fn ignores_trapping(&self, pos: Position) -> bool {
+        let mon = self.mon(pos);
+        mon.has_type("Ghost") || mon.item == "shedshell" || mon.ability == "runaway"
+    }
+
     pub(super) fn trap_info(&self, pos: Position) -> Trap {
         let mon = self.mon(pos);
         if mon.hard_locked() {
@@ -17,7 +22,7 @@ impl Battle {
                 possible: true,
             };
         }
-        if mon.fainted || mon.has_type("Ghost") {
+        if mon.fainted || self.ignores_trapping(pos) {
             return Trap::default();
         }
         let affected = |ability: &str| match ability {
@@ -29,7 +34,7 @@ impl Battle {
         let foe = self.party(pos.player.foe()).unwrap();
         let active = &foe[..self.format.game_type.active_slots()];
         let live = active.iter().filter(|mon| !mon.fainted);
-        let actual = mon.item != "shedshell" && live.clone().any(|foe| affected(&foe.ability));
+        let actual = self.is_bound(pos) || live.clone().any(|foe| affected(&foe.ability));
         let possible = actual
             || live
                 .flat_map(|foe| {
@@ -59,8 +64,8 @@ impl Battle {
         let mon = self.mon(pos);
         mon.hard_locked()
             || mon.revealed_trap
-            || (!self.last_active(pos)
-                && self.trap_info(pos).actual
+            || (((self.is_bound(pos) && !self.ignores_trapping(pos))
+                || (!self.last_active(pos) && self.trap_info(pos).actual))
                 && self.party(player).unwrap()[self.format.game_type.active_slots()..]
                     .iter()
                     .any(|p| !p.fainted))

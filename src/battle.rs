@@ -26,6 +26,7 @@ mod items;
 mod leech;
 mod mega;
 mod multihit;
+mod partial_trap;
 mod rampage;
 mod screens;
 use charge::Charge;
@@ -245,6 +246,7 @@ pub struct Pokemon {
     gender: u8,
     yawn: Option<status::Yawn>,
     seeded_from: Option<Position>,
+    partial_trap: Option<partial_trap::PartialTrap>,
     taunt: u8,
     encore: Option<(usize, u8)>,
     revealed_disables: u32,
@@ -857,6 +859,7 @@ impl Pokemon {
             gender: gender.as_bytes()[0],
             yawn: None,
             seeded_from: None,
+            partial_trap: None,
             taunt: 0,
             encore: None,
             revealed_disables: 0,

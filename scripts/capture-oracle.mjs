@@ -684,6 +684,13 @@ const speedAbilityRosters = [
     [{...named('Lucario', ['Tackle', 'Recover']), ability: 'Steadfast'}, named('Espeon', ['Recover'])],
     [{...named('Raichu-Alola', ['Fake Out', 'Electric Terrain', 'Tackle']), ability: 'Surge Surfer'}, named('Umbreon', ['Recover'])],
 ];
+const bindingRosters = [
+    [{...named('Toxapex', ['Infestation', 'Recover', 'Tidy Up']), item: 'Binding Band'}, named('Espeon', ['Recover'])],
+    [named('Umbreon', ['Recover', 'Substitute', 'Rapid Spin']), named('Vaporeon', ['Recover'])],
+];
+const bindingExpiryRosters = [
+    [named('Toxapex', ['Infestation', 'Recover']), bindingRosters[0][1]], bindingRosters[1],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1032,6 +1039,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1']], lightBallRosters, 'bss-light-ball'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 3']],
         speedAbilityRosters, 'bss-steadfast-surge-surfer'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 3','move 1'],
+        ['move 1','move 1'], ['move 2','move 3'], ['move 1','move 1'], ['switch 2','move 1'], ['move 1','switch 2']],
+        bindingRosters, 'bss-binding-move-removal'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ...Array(5).fill(['move 2','move 1'])],
+        bindingExpiryRosters, 'bss-binding-move-expiry'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -1036,6 +1036,16 @@ impl Battle {
                     | "mirrorcoat"
                     | "clangoroussoul"
                     | "steelbeam"
+                    | "bind"
+                    | "clamp"
+                    | "firespin"
+                    | "infestation"
+                    | "magmastorm"
+                    | "sandtomb"
+                    | "snaptrap"
+                    | "thundercage"
+                    | "whirlpool"
+                    | "wrap"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1295,6 +1305,7 @@ impl Battle {
         party[outgoing.slot].spent_elements = 0;
         party[outgoing.slot].yawn = None;
         party[outgoing.slot].seeded_from = None;
+        party[outgoing.slot].partial_trap = None;
         party[outgoing.slot].taunt = 0;
         party[outgoing.slot].encore = None;
         party[outgoing.slot].attract = None;
@@ -1735,6 +1746,7 @@ impl Battle {
             Wish,
             LeechSeed,
             SaltCure,
+            PartialTrap,
             Taunt,
             Encore,
             Disable,
@@ -1853,6 +1865,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"saltcure") {
                 timers.push((pos, Effect::SaltCure, priority(13, 2)));
             }
+            if mon.partial_trap.is_some() {
+                timers.push((pos, Effect::PartialTrap, priority(13, 2)));
+            }
             if mon.volatile_ids().contains(&"focuspunch") {
                 timers.push((pos, Effect::FocusPunch, priority(0, 2)));
             }
@@ -1969,6 +1984,12 @@ impl Battle {
                 }
                 Effect::SaltCure => {
                     self.tick_salt_cure(pos);
+                    if self.check_win() {
+                        return;
+                    }
+                }
+                Effect::PartialTrap => {
+                    self.tick_partial_trap(pos);
                     if self.check_win() {
                         return;
                     }
@@ -3282,6 +3303,7 @@ impl Battle {
         let mut hp_after_damage = [0u32; 4];
         let mut hits_landed = 0;
         let mut hit_substitute = false;
+        let binding = super::partial_trap::binding_move(&move_data.name);
         for hit in 1..=max_hits {
             if (self.mon(source).hp == 0 && !sacrifice)
                 || spread_targets
@@ -3495,6 +3517,11 @@ impl Battle {
             }
             if move_data.name == "Ice Spinner" && !damage.is_empty() {
                 self.clear_terrain();
+            }
+            if let Some(binding) = binding {
+                for &(target, _) in &damage {
+                    self.start_partial_trap(target, source, binding);
+                }
             }
             let pivot = match move_data.name.as_str() {
                 "U-turn" => Some(Pivot::Move("U-turn")),
@@ -3877,6 +3904,7 @@ impl Battle {
         mon.spent_elements = 0;
         mon.yawn = None;
         mon.seeded_from = None;
+        mon.partial_trap = None;
         mon.taunt = 0;
         mon.encore = None;
         mon.attract = None;
@@ -4243,6 +4271,8 @@ impl Pokemon {
                 | "choicespecs"
                 | "quickclaw"
                 | "lightball"
+                | "bindingband"
+                | "gripclaw"
                 | "softsand"
                 | "magnet"
                 | "lightclay"

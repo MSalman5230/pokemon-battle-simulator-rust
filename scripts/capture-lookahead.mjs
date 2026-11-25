@@ -49,6 +49,17 @@ shield.input.sides[1].volatiles.push({id: 'leechseed', source_side: 'me', source
 const hazardOrder = world([4, 30, 512, 100], [[1, 2, 3, 8]]);
 hazardOrder.input.sides[0].conditions = {toxicspikes: 1, stealthrock: 1, spikes: 2};
 hazardOrder.input.sides[0].pokemon[1].hp = 1;
+const bound = world([34, 12, 59, 63], [[9, 2, 3, 4]]);
+bound.input.sides[0].volatiles.push({id:'partiallytrapped', source_side:'opp', move:'infestation', elapsed:2});
+const revival = world([12, 32, 54, 79], [[5, 6, 7, 8]]);
+for (const [side, [id, name, pp]] of [['revivalblessing', 'Revival Blessing', 1], ['recover', 'Recover', 8]].entries()) {
+    const mon = revival.input.sides[side].pokemon[0];
+    mon.moves[0] = {id, pp};
+    mon.set.moves[0] = name;
+    revival.teams[side].find(s => s.name === mon.set.name).moves[0] = name;
+}
+revival.input.sides[0].pokemon[1].hp = 0;
+revival.input.sides[0].total_fainted = 1;
 const cases = [
     {name: 'paired pivots and basic attacks', input: {observation, worlds: [pivot, confusion], candidates: [3, 1, 8],
         replies: 2, reply_probabilities: {'move:earthquake': 1}}},
@@ -60,6 +71,10 @@ const cases = [
         worlds: [shield], candidates: [1], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
     {name: 'preserve insertion order for hazards on replacement', input: {observation,
         worlds: [hazardOrder], candidates: [8], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
+    {name: 'restore a binding move from a currently active source', input: {observation,
+        worlds: [bound], candidates: [1], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
+    {name: 'continue a Revival Blessing request when every legal target has zero HP', input: {observation,
+        worlds: [revival], candidates: [0], replies: 1, reply_probabilities: {'move:recover': 1}}},
 ];
 for (const c of cases) c.expected = lookahead(c.input, Game, PublicState);
 assert(cases[0].expected.errors.length === 0, JSON.stringify(cases[0].expected.errors));
@@ -69,5 +84,7 @@ assert(cases[2].expected.rows.some(row => row.continuations > 0 && row.observati
     'fixture must exercise replacement after a faint');
 assert(cases[3].expected.rows.some(row => row.assumptions.some(a => a.fact === 'substitute HP')));
 assert(cases[4].expected.rows.some(row => row.observation.faints[0].length > 0));
+assert(cases[5].expected.rows.some(row => row.assumptions.some(a => a.fact === 'partial trap duration')));
+assert(cases[6].expected.rows.some(row => row.continuations === 1), JSON.stringify(cases[6].expected.errors));
 writeFileSync(new URL('../tests/fixtures/lookahead.json', import.meta.url),
     `{"revision":${JSON.stringify(revision)},"cases":[\n${cases.map(c => JSON.stringify(c)).join(',\n')}\n]}\n`);

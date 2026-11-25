@@ -211,7 +211,9 @@ impl Search {
                     let mut picks = [None, None];
                     for (i, player) in Player::ALL.into_iter().enumerate() {
                         let party = branch.battle().party(player).unwrap();
-                        let mut strongest = 0.0;
+                        // Revive choices all have zero HP; keep the first
+                        // legal entry when their fractions tie.
+                        let mut strongest = -1.0;
                         for action in branch.legal(player) {
                             if action.public["kind"] != "switch" {
                                 return Err("Unsupported interrupted move request".into());

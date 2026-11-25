@@ -422,6 +422,42 @@ impl WorldSide {
                     mon.substitute_hp = hp;
                     mon.track_volatile("substitute");
                 }
+                "partiallytrapped" => {
+                    let source = match e.source_side.as_deref() {
+                        Some("me") => Player::P1,
+                        Some("opp") => Player::P2,
+                        None => player.foe(),
+                        _ => return Err(unsupported("partial trap source side")),
+                    };
+                    let party = &sides[source.index()].pokemon;
+                    let trapper = e
+                        .source
+                        .as_ref()
+                        .and_then(|name| party.iter().find(|p| &p.identity == name))
+                        .unwrap_or(&party[0]);
+                    let move_id = to_id(e.move_name.as_deref().unwrap_or("Infestation"));
+                    let move_name = DEX
+                        .moves(crate::dex::Mod::Champions, &move_id)
+                        .and_then(|data| partial_trap::binding_move(&data.name))
+                        .ok_or_else(|| unsupported(format!("partial trap move {move_id}")))?;
+                    let turns = remaining(5);
+                    if turns == 0 {
+                        return Err(unsupported("partial trap duration"));
+                    }
+                    mon.partial_trap = Some(partial_trap::PartialTrap {
+                        source,
+                        trapper: trapper.roster_slot,
+                        move_name,
+                        turns,
+                        divisor: if to_id(&trapper.item) == "bindingband" {
+                            6
+                        } else {
+                            8
+                        },
+                    });
+                    mon.track_volatile("partiallytrapped");
+                    assumptions.push(json!({"fact":"partial trap duration", "assumed":turns, "elapsed":e.elapsed}));
+                }
                 "yawn" => {
                     // The reference assumes a same-side source unless the input
                     // explicitly provides the opposing side for this volatile.

@@ -72,6 +72,7 @@ impl Battle {
                 ));
             }
         }
+        self.end_partial_trap(pos, false);
     }
 
     pub(super) fn grounded(&self, pos: Position) -> bool {
@@ -83,6 +84,11 @@ impl Battle {
 
     pub(super) fn tidy_hazards(&mut self, pos: Position) -> bool {
         let mut removed = false;
+        for active in self.positions() {
+            if self.mon(active).hp > 0 {
+                removed |= self.end_substitute(active);
+            }
+        }
         for player in [pos.player, pos.player.foe()] {
             for hazard in [
                 Hazard::Spikes,

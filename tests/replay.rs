@@ -799,3 +799,9 @@ fn held_stat_modifiers_and_fractional_turn_order_match_showdown() {
     replay(include_str!("fixtures/bss-light-ball.json"));
     replay(include_str!("fixtures/bss-steadfast-surge-surfer.json"));
 }
+
+#[test]
+fn binding_moves_pin_the_live_source_until_expiry_switch_or_removal() {
+    replay(include_str!("fixtures/bss-binding-move-removal.json"));
+    replay(include_str!("fixtures/bss-binding-move-expiry.json"));
+}

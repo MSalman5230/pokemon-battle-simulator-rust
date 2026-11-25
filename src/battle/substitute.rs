@@ -44,8 +44,19 @@ impl Battle {
         let mon = self.mon_mut(pos);
         mon.substitute_hp = max_hp / 4;
         mon.track_volatile("substitute");
-        mon.hp -= cost;
+        self.end_partial_trap(pos, true);
+        self.mon_mut(pos).hp -= cost;
         self.add_health_line_with("-damage", pos, false, "");
+        true
+    }
+
+    pub(super) fn end_substitute(&mut self, pos: Position) -> bool {
+        let mon = self.mon_mut(pos);
+        if std::mem::take(&mut mon.substitute_hp) == 0 {
+            return false;
+        }
+        mon.untrack_volatile("substitute");
+        self.add(format!("|-end|{}|Substitute", self.ident(pos)));
         true
     }
 
