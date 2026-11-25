@@ -1061,7 +1061,7 @@ impl Battle {
         party[outgoing.slot].active_move_actions = 0;
         party[outgoing.slot].roosted = false;
         party[outgoing.slot].temporary_type = None;
-        party[outgoing.slot].yawn = 0;
+        party[outgoing.slot].yawn = None;
         party[outgoing.slot].seeded_from = None;
         party[outgoing.slot].taunt = 0;
         party[outgoing.slot].encore = None;
@@ -1467,7 +1467,7 @@ impl Battle {
             if mon.encore.is_some() {
                 timers.push((pos, Effect::Encore, priority(16, 2)));
             }
-            if mon.yawn > 0 {
+            if mon.yawn.is_some() {
                 timers.push((pos, Effect::Yawn, priority(23, 2)));
             }
             if mon.seeded_from.is_some() {
@@ -2050,15 +2050,17 @@ impl Battle {
                 ));
             } else {
                 self.protean_prepare(source, move_type);
-                if let Some(terrain) = self.status_blocked_by_terrain(source, "slp") {
-                    if terrain == Terrain::Electric {
-                        self.terrain_activate(source, terrain);
-                    }
+                if self.field_blocks_status(
+                    source,
+                    "slp",
+                    source.player,
+                    self.terrain() == Some(Terrain::Electric),
+                ) {
                     self.move_still(base);
                     self.add(format!("|-fail|{source_name}"));
                     return true;
                 }
-                self.apply_status(source, "slp", Some("Rest"));
+                self.apply_status(source, "slp", source.player, Some("Rest"));
                 let mon = self.mon_mut(source);
                 if matches!(mon.status, Status::Sleep(_)) {
                     mon.status = Status::Sleep(3);
@@ -2507,7 +2509,7 @@ impl Battle {
                 }
                 if move_data.name == "Yawn" {
                     let mon = self.mon(target);
-                    if mon.yawn != 0
+                    if mon.yawn.is_some()
                         || mon.status != Status::Healthy
                         || self.status_immune(target, "slp")
                     {
@@ -2527,7 +2529,10 @@ impl Battle {
                         continue;
                     }
                     let mon = self.mon_mut(target);
-                    mon.yawn = 2;
+                    mon.yawn = Some(super::status::Yawn {
+                        turns: 2,
+                        source: source.player,
+                    });
                     mon.track_volatile("yawn");
                     self.add(format!(
                         "|-start|{}|move: Yawn|[of] {source_name}",
@@ -3176,7 +3181,7 @@ impl Battle {
         mon.choice_lock = None;
         mon.roosted = false;
         mon.temporary_type = None;
-        mon.yawn = 0;
+        mon.yawn = None;
         mon.seeded_from = None;
         mon.taunt = 0;
         mon.encore = None;

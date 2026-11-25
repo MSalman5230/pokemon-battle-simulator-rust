@@ -449,9 +449,12 @@ impl Battle {
             || self.mon(attacker).hp == 0
             || self.mon(attacker).status != Status::Healthy
             || self.status_immune(attacker, "brn")
-            || self.flower_veil_status(attacker, holder, "brn", false)
-            || self.status_blocked_by_terrain(attacker, "brn").is_some()
         {
+            return;
+        }
+        let prevented = self.flower_veil_status(attacker, holder, "brn", false)
+            || self.event_ability(attacker) == "thermalexchange";
+        if prevented || self.field_blocks_status(attacker, "brn", holder.player, false) {
             return;
         }
         self.mon_mut(attacker).status = Status::Burn;

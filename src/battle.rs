@@ -162,6 +162,7 @@ pub struct Pokemon {
     speed: i32,
     pub hp: u32,
     pub status: Status,
+    slept_by_foe: bool,
     pub times_attacked: u32,
     last_foe_hit: Option<FoeHit>,
     volatile_order: Vec<&'static str>,
@@ -200,7 +201,7 @@ pub struct Pokemon {
     last_move_slot: Option<usize>,
     acted: bool,
     gender: u8,
-    yawn: u8,
+    yawn: Option<status::Yawn>,
     seeded_from: Option<Position>,
     taunt: u8,
     encore: Option<(usize, u8)>,
@@ -298,6 +299,7 @@ impl Battle {
                 | "gen9championsuu"
                 | "gen9championsdoubles"
                 | "gen9champions4v4doublesuu"
+                | "gen9championsdraft"
                 | "gen9champions4v4doublesdraft"
         ) {
             return Err(BattleError::Unsupported(format!(
@@ -701,6 +703,7 @@ impl Pokemon {
             speed: stats.spe as i32,
             hp: max_hp.get(),
             status: Status::Healthy,
+            slept_by_foe: false,
             times_attacked: 0,
             last_foe_hit: None,
             volatile_order: Vec::new(),
@@ -743,7 +746,7 @@ impl Pokemon {
             last_move_slot: None,
             acted: false,
             gender: gender.as_bytes()[0],
-            yawn: 0,
+            yawn: None,
             seeded_from: None,
             taunt: 0,
             encore: None,

@@ -550,3 +550,13 @@ fn bss_magic_bounce_pivot_cancels_the_reflectors_original_action() {
 fn bss_dig_is_semi_invulnerable_but_takes_double_earthquake_damage() {
     replay(include_str!("fixtures/bss-dig.json"));
 }
+
+#[test]
+fn draft_sleep_clause_counts_benched_foe_inflicted_sleep_but_not_rest() {
+    replay(include_str!("fixtures/draft-sleep-clause.json"));
+}
+
+#[test]
+fn draft_misty_terrain_blocks_sleep_before_the_sleep_clause() {
+    replay(include_str!("fixtures/draft-sleep-terrain.json"));
+}

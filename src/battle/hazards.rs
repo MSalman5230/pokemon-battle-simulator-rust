@@ -175,22 +175,12 @@ impl Battle {
                     } else if !boots
                         && mon.status == Status::Healthy
                         && !self.status_immune(pos, "psn")
-                        && !self.flower_veil_status(
-                            pos,
-                            foe,
-                            if layers >= 2 { "tox" } else { "psn" },
-                            false,
-                        )
-                        && self.status_blocked_by_terrain(pos, "psn").is_none()
                     {
-                        let status = if layers >= 2 {
-                            Status::Toxic(0)
-                        } else {
-                            Status::Poison
-                        };
-                        self.mon_mut(pos).status = status;
-                        self.add(format!("|-status|{}|{}", self.ident(pos), status.id()));
-                        self.cure_with_berry(pos);
+                        let id = if layers >= 2 { "tox" } else { "psn" };
+                        let prevented = self.flower_veil_status(pos, foe, id, false);
+                        if !prevented && !self.field_blocks_status(pos, id, foe.player, false) {
+                            self.apply_status(pos, id, foe.player, None);
+                        }
                     }
                 }
                 Hazard::StickyWeb if grounded && !boots => {

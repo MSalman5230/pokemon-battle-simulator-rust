@@ -3,6 +3,12 @@
 use super::turn::Position;
 use super::*;
 
+#[derive(Clone, Copy)]
+pub(super) struct Yawn {
+    pub(super) turns: u8,
+    pub(super) source: Player,
+}
+
 #[derive(Debug, Default, Copy, Clone, PartialEq, Eq)]
 pub enum Status {
     #[default]
@@ -240,29 +246,64 @@ impl Battle {
             return false;
         }
 
-        if self.flower_veil_status(pos, source, id, primary && data.secondaries.is_empty()) {
-            return false;
-        }
-        if id == "brn" && self.event_ability(pos) == "thermalexchange" {
+        let mut prevented =
+            self.flower_veil_status(pos, source, id, primary && data.secondaries.is_empty());
+        if !prevented && id == "brn" && self.event_ability(pos) == "thermalexchange" {
             if primary {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Thermal Exchange",
                     self.ident(pos)
                 ));
             }
+            prevented = true;
+        }
+        if prevented || self.field_blocks_status(pos, id, source.player, primary) {
             return false;
         }
-        if let Some(terrain) = self.status_blocked_by_terrain(pos, id) {
-            if primary {
-                self.terrain_activate(pos, terrain);
-            }
-            return false;
-        }
-        self.apply_status(pos, id, Some(&data.name));
+        self.apply_status(pos, id, source.player, Some(&data.name));
         true
     }
 
-    pub(super) fn apply_status(&mut self, pos: Position, id: &str, move_name: Option<&str>) {
+    pub(super) fn field_blocks_status(
+        &mut self,
+        pos: Position,
+        id: &str,
+        source: Player,
+        reveal_terrain: bool,
+    ) -> bool {
+        // Terrain effects have sub-order 0, before the format rule at 5.
+        if let Some(terrain) = self.status_blocked_by_terrain(pos, id) {
+            if reveal_terrain {
+                self.terrain_activate(pos, terrain);
+            }
+            return true;
+        }
+        self.format.has_rule("sleepclausemod") && self.sleep_clause_blocks(pos, id, source)
+    }
+
+    fn sleep_clause_blocks(&mut self, pos: Position, id: &str, source: Player) -> bool {
+        if id != "slp"
+            || pos.player == source
+            || !self.party(pos.player).unwrap().iter().any(|pokemon| {
+                pokemon.hp != 0
+                    && pokemon.slept_by_foe
+                    && matches!(pokemon.status, Status::Sleep(_))
+            })
+        {
+            return false;
+        }
+        self.add("|-message|Sleep Clause Mod activated.");
+        self.add("|-hint|Sleep Clause Mod prevents players from putting more than one of their opponent's Pokemon to sleep at a time");
+        true
+    }
+
+    pub(super) fn apply_status(
+        &mut self,
+        pos: Position,
+        id: &str,
+        source: Player,
+        move_name: Option<&str>,
+    ) {
         let mut status = Status::from_id(id);
         let reason = if let Status::Sleep(_) = status {
             status = Status::Sleep(if self.rng.below(3) == 0 { 2 } else { 3 });
@@ -270,25 +311,31 @@ impl Battle {
         } else {
             String::new()
         };
-        self.mon_mut(pos).status = status;
+        let mon = self.mon_mut(pos);
+        mon.status = status;
+        mon.slept_by_foe = id == "slp" && source != pos.player;
         self.add(format!("|-status|{}|{id}{reason}", self.ident(pos)));
         self.cure_with_berry(pos);
     }
 
     pub(super) fn tick_yawn(&mut self, pos: Position) {
         let mon = self.mon_mut(pos);
-        mon.yawn -= 1;
-        if mon.yawn != 0 {
+        let Some(yawn) = &mut mon.yawn else {
+            return;
+        };
+        yawn.turns -= 1;
+        if yawn.turns != 0 {
             return;
         }
+        let source = yawn.source;
+        mon.yawn = None;
         mon.untrack_volatile("yawn");
         self.add(format!("|-end|{}|move: Yawn|[silent]", self.ident(pos)));
-        if self.mon(pos).status == Status::Healthy && !self.status_immune(pos, "slp") {
-            if let Some(terrain) = self.status_blocked_by_terrain(pos, "slp") {
-                self.terrain_activate(pos, terrain);
-            } else {
-                self.apply_status(pos, "slp", None);
-            }
+        if self.mon(pos).status == Status::Healthy
+            && !self.status_immune(pos, "slp")
+            && !self.field_blocks_status(pos, "slp", source, true)
+        {
+            self.apply_status(pos, "slp", source, None);
         }
     }
 

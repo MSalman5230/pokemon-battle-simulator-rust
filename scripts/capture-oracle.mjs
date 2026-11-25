@@ -446,6 +446,12 @@ const digRosters = [
     [{...named('Eevee', ['Dig']), ability: 'Adaptability', nature: 'Bold', evs: {hp: 32, def: 32}}, named('Glaceon', ['Recover'])],
     [named('Snorlax', ['Tackle', 'Earthquake', 'Recover', 'Sandstorm']), named('Vaporeon', ['Recover'])],
 ];
+const sleepClauseRosters = [
+    [{...named('Slowbro', ['Spore', 'Tackle', 'Yawn', 'Recover']), evs: {spe: 8}}, named('Vaporeon', ['Recover'])],
+    [named('Snorlax', ['Rest']), named('Umbreon', ['Recover']), named('Glaceon', ['Recover'])],
+];
+const sleepTerrainRosters = [[{...sleepClauseRosters[0][0], moves: ['Spore', 'Yawn', 'Misty Terrain', 'Recover']},
+    sleepClauseRosters[0][1]], sleepClauseRosters[1]];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -663,6 +669,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         bouncePivotRosters, 'bss-magic-bounce-pivot'],
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 3'],
         ['move 1', 'move 2'], ['move 1', 'move 3'], ['move 1', 'move 4']], digRosters, 'bss-dig'],
+    ['draft', [['team 12', 'team 123'], ['move 2', 'move 1'], ['move 1', 'switch 2'],
+        ['move 1', 'switch 3'], ['move 3', 'move 1'], ['move 4', 'move 1']], sleepClauseRosters, 'draft-sleep-clause'],
+    ['draft', [['team 12', 'team 123'], ['move 1', 'switch 2'], ['move 2', 'switch 3'],
+        ['move 3', 'move 1'], ['move 1', 'move 1']], sleepTerrainRosters, 'draft-sleep-terrain'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
