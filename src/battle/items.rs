@@ -327,6 +327,19 @@ impl Battle {
             self.mental_herb(pos);
             return;
         }
+        if mon.hp > 0
+            && mon.hp * 2 <= mon.max_hp.get()
+            && mon.heal_block == 0
+            && mon.effective_item() == "berryjuice"
+        {
+            if self.event_ability(pos) == "ripen" {
+                self.add(format!("|-activate|{}|ability: Ripen", self.ident(pos)));
+            }
+            self.consume(pos, "Berry Juice", false);
+            self.item_heal(pos, 20, "Berry Juice");
+            self.symbiosis_after_item(pos);
+        }
+        let mon = self.mon(pos);
         if mon.hp == 0 || self.foe_unnerve(pos) {
             return;
         }
@@ -871,7 +884,7 @@ impl Battle {
             return;
         }
         let ripen = self.event_ability(pos) == "ripen";
-        if ripen && item == "Leftovers" {
+        if ripen && matches!(item, "Leftovers" | "Berry Juice") {
             self.add(format!("|-activate|{}|ability: Ripen", self.ident(pos)));
         }
         let mon = self.mon_mut(pos);
@@ -1137,6 +1150,13 @@ impl Pokemon {
     pub(super) fn holds_choice_item(&self) -> bool {
         matches!(
             self.effective_item(),
+            "choicescarf" | "choiceband" | "choicespecs"
+        )
+    }
+
+    pub(super) fn has_choice_item(&self) -> bool {
+        matches!(
+            self.item.as_str(),
             "choicescarf" | "choiceband" | "choicespecs"
         )
     }

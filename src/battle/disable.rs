@@ -77,8 +77,9 @@ impl Battle {
             + usize::from(mon.encore.is_some())
             + usize::from(mon.heal_block > 0)
             + usize::from(mon.volatile_ids().contains(&"torment"))
+            + usize::from(mon.item == "assaultvest")
             + usize::from(mon.disabled_slot.is_some());
-        let mut handlers = [mon.speed; 10];
+        let mut handlers = [mon.speed; 11];
         let mut count = own_handlers;
         for foe in self.foe_imprison(pos) {
             handlers[count] = foe.speed;
@@ -97,7 +98,7 @@ impl Battle {
             mon.untrack_volatile("choicelock");
         }
         let mon = self.mon_mut(pos);
-        if !mon.holds_choice_item() {
+        if !mon.has_choice_item() {
             mon.choice_lock = None;
             mon.untrack_volatile("choicelock");
         }
@@ -130,7 +131,7 @@ impl Battle {
                     .is_some_and(|last| mon.moves[last].id == mon.moves[slot].id))
             || (mon.active_move_actions > 0
                 && matches!(mon.moves[slot].id.as_str(), "fakeout" | "firstimpression"))
-            || (mon.taunt > 0
+            || ((mon.taunt > 0 || mon.effective_item() == "assaultvest")
                 && mon.moves[slot].move_data.category == crate::dex::Category::Status
                 && mon.moves[slot].id != "mefirst")
             || mon.encore.is_some_and(|(locked, _)| {

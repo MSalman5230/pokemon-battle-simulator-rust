@@ -62,6 +62,15 @@ function flingData(item) {
     return {basePower, status, volatileStatus, effect:special};
 }
 
+function inertHeldItem(item) {
+    // Transfer, Fling and other general inventory operations still apply.
+    // Exclude items with callbacks, battle identifiers, or special rules.
+    return !item.megaStone && !item.zMove && !item.zMoveType && !item.isPrimalOrb &&
+        !item.isGem && !item.onPlate && !item.onDrive && !item.onMemory &&
+        !item.boosts && !item.condition && item.onTakeItem !== false &&
+        !Object.values(item).some(value => typeof value === 'function');
+}
+
 const data = mod => {
     const dex = Dex.mod(mod);
     return {
@@ -71,6 +80,7 @@ const data = mod => {
             ...props(e, ['name', 'baseSpecies', 'types', 'baseStats', 'weighthg', 'gender', 'abilities',
                 'isNonstandard', 'maxHP', 'requiredItem']),
             hasCondition: dex.conditions.getByID(e.id).exists,
+            canEvolve: !!e.nfe || undefined,
             unreleasedHidden: !!e.unreleasedHidden,
             packedAbilitySlots: JSON.stringify(packedSlots) === JSON.stringify(e.abilities) ? undefined : packedSlots,
             };
@@ -108,6 +118,7 @@ const data = mod => {
         items: table(dex.items.all(), e =>
             ({...props(e, ['name', 'isNonstandard', 'megaStone']),
                 isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined, fling: flingData(e),
+                inertHeldItem: inertHeldItem(e) || undefined,
                 handlers: handlers(e)})),
         natures: table(dex.natures.all(), e => props(e, ['plus', 'minus'])),
         types: table(dex.types.all(), e => props(e, ['damageTaken'])),

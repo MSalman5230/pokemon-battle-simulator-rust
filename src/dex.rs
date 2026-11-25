@@ -127,6 +127,8 @@ pub struct Species {
     pub max_hp: Option<u32>,
     pub required_item: Option<String>,
     pub has_condition: bool,
+    #[serde(default)]
+    pub can_evolve: bool,
     pub unreleased_hidden: bool,
     pub packed_ability_slots: Option<Table<String>>,
 }
@@ -263,6 +265,8 @@ pub struct Item {
     pub is_berry: bool,
     #[serde(default)]
     pub ignore_klutz: bool,
+    #[serde(default)]
+    pub inert_held_item: bool,
     pub fling: Option<Fling>,
 }
 

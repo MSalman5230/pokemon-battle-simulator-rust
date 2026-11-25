@@ -2413,6 +2413,7 @@ impl Battle {
             Uproar,
             Attention,
             Leftovers,
+            BlackSludge,
             StatusOrb,
             WhiteHerb,
             ShedSkin,
@@ -2720,6 +2721,9 @@ impl Battle {
             if mon.item == "leftovers" {
                 timers.push((pos, Effect::Leftovers, priority(5, 4)));
             }
+            if mon.item == "blacksludge" {
+                timers.push((pos, Effect::BlackSludge, priority(5, 4)));
+            }
             if matches!(mon.item.as_str(), "toxicorb" | "flameorb") {
                 timers.push((pos, Effect::StatusOrb, priority(28, 3)));
             }
@@ -2946,7 +2950,7 @@ impl Battle {
                         mon.untrack_volatile(counter.move_kind.id());
                     }
                 }
-                Effect::Leftovers | Effect::StatusOrb | Effect::WhiteHerb
+                Effect::Leftovers | Effect::BlackSludge | Effect::StatusOrb | Effect::WhiteHerb
                     if mon.ignores_held_item() =>
                 {
                     self.debug_ignored_item(pos, "Residual");
@@ -2954,6 +2958,20 @@ impl Battle {
                 Effect::Leftovers => {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
+                }
+                Effect::BlackSludge => {
+                    if mon.has_type("Poison") {
+                        let amount = mon.max_hp.get() / 16;
+                        self.item_heal(pos, amount, "Black Sludge");
+                    } else {
+                        self.indirect_damage(pos, 8, "|[from] item: Black Sludge");
+                        if self.mon(pos).hp == 0 {
+                            self.mark_fainted(pos);
+                            if self.check_win() {
+                                return;
+                            }
+                        }
+                    }
                 }
                 Effect::StatusOrb => self.activate_status_orb(pos),
                 Effect::WhiteHerb => self.white_herb(pos),
@@ -7683,6 +7701,10 @@ impl Pokemon {
                 | "ejectbutton"
                 | "shellbell"
                 | "metronome"
+                | "assaultvest"
+                | "eviolite"
+                | "berryjuice"
+                | "blacksludge"
                 | "airballoon"
                 | "lifeorb"
                 | "rockyhelmet"
@@ -7767,7 +7789,7 @@ impl Pokemon {
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)
-                .is_none_or(|item| item.mega_stone.is_none())
+                .is_none_or(|item| item.mega_stone.is_none() && !item.inert_held_item)
         {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));
         }

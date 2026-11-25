@@ -1776,6 +1776,20 @@ fn national_dex_attacks_preserve_hp_limits_and_conditioned_damage() {
 }
 
 #[test]
+fn national_dex_legacy_items_apply_only_their_native_held_effects() {
+    replay(include_str!(
+        "fixtures/natdex-black-sludge-and-inert-item.json"
+    ));
+    replay(include_str!("fixtures/natdex-defense-items.json"));
+    replay(include_str!("fixtures/natdex-berry-juice.json"));
+}
+
+#[test]
+fn magic_room_temporarily_ignores_but_does_not_remove_a_choice_lock() {
+    replay(include_str!("fixtures/bss-magic-room-choice-lock.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

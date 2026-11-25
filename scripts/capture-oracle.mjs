@@ -1483,6 +1483,23 @@ const legacyRetaliateRosters = [
     [named('Gengar', ['Explosion']), named('Stoutland', ['Retaliate'])],
     [named('Vaporeon', ['Recover'])],
 ];
+const magicRoomChoiceRosters = [
+    [named('Alakazam', ['Magic Room', 'Recover'])],
+    [{...named('Vaporeon', ['Water Gun', 'Tackle']), item:'Choice Specs'}],
+];
+const natDexSludgeRosters = [
+    [{...named('Gengar', ['Shadow Ball', 'Trick']), item:'Black Sludge'}],
+    [{...named('Vaporeon', ['Water Gun']), item:'Big Nugget'}],
+];
+const natDexDefenseItemRosters = [
+    [{...named('Porygon2', ['Recover', 'Tackle']), item:'Eviolite'},
+        {...named('Lapras', ['Thunderbolt', 'Protect']), item:'Assault Vest'}],
+    [named('Garchomp', ['Dragon Claw', 'Draco Meteor'])],
+];
+const natDexJuiceRosters = [
+    oranBerryRosters[0],
+    [{...oranBerryRosters[1][0], item:'Berry Juice'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2718,6 +2735,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 3','move 2']], legacySleepRosters, 'natdex-sleep-attacks'],
     ['natdexdraft', [['team 12','team 1'], ['move 1','move 1'], ['switch 2',null],
         ['move 1','move 1'], ['move 1','move 1']], legacyRetaliateRosters, 'natdex-retaliate'],
+    ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1'], ['move 1','move 2']],
+        magicRoomChoiceRosters, 'bss-magic-room-choice-lock'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        natDexSludgeRosters, 'natdex-black-sludge-and-inert-item'],
+    ['natdexdraft', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 2'],
+        ['switch 2','move 2'], ['move 1','move 1']], natDexDefenseItemRosters, 'natdex-defense-items'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1']], natDexJuiceRosters, 'natdex-berry-juice'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

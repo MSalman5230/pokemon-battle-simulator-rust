@@ -632,9 +632,17 @@ impl Battle {
         } else {
             4096
         };
+        let defense_item_modifier = match mon.effective_item() {
+            "eviolite" if mon.base_species.can_evolve => 6144,
+            "assaultvest" if !defense_uses_def => 6144,
+            _ => 4096,
+        };
         let def = tr.modify(
             def,
-            chain(defense_weather_modifier, defense_ability_modifier),
+            chain(
+                chain(defense_weather_modifier, defense_ability_modifier),
+                defense_item_modifier,
+            ),
         );
         if stakeout {
             attack_modifier = crate::mechanics::chain(8192, attack_modifier);
