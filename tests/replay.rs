@@ -375,3 +375,8 @@ fn bss_phazing_samples_a_bench_member_without_a_replacement_request() {
 fn vgc_phazing_cancels_the_removed_pokemons_queued_move() {
     replay(include_str!("fixtures/vgc-phazing.json"));
 }
+
+#[test]
+fn bss_retaliation_uses_damage_from_this_turn_and_follows_the_attackers_slot() {
+    replay(include_str!("fixtures/bss-retaliation.json"));
+}

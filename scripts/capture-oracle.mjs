@@ -295,6 +295,10 @@ const jointPhazingRosters = [
     [{...named('Weavile', ['Dragon Tail']), ability: 'No Guard'}, named('Vaporeon', ['Recover'])],
     [named('Slowbro', ['Dragon Tail']), named('Umbreon', ['Recover']), named('Glaceon', ['Recover'])],
 ];
+const retaliationRosters = [
+    [named('Meowscarada', ['Tackle', 'Recover', 'U-turn']), named('Vaporeon', ['Seismic Toss', 'Recover'])],
+    [named('Slowbro', ['Metal Burst', 'Recover', 'Super Fang']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -433,6 +437,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         phazingRosters, 'bss-phazing'],
     ['vgc2026regmc', [['team 12', 'team 123'], ['move 1 1, move 1', 'move 1 1, move 1']],
         jointPhazingRosters, 'vgc-phazing'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'], ['move 3', 'move 1'],
+        ['switch 2', null], ['move 1', 'move 3'], ['move 1', 'move 2']],
+        retaliationRosters, 'bss-retaliation'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -26,6 +26,13 @@ impl Position {
 }
 
 #[derive(Debug, Copy, Clone)]
+pub(super) struct FoeHit {
+    source: Position,
+    damage: u32,
+    turn: u32,
+}
+
+#[derive(Debug, Copy, Clone)]
 enum ActionKind {
     Move {
         move_slot: usize,
@@ -732,6 +739,11 @@ impl Battle {
                     | "jumpkick"
                     | "dragontail"
                     | "circlethrow"
+                    | "metalburst"
+                    | "comeuppance"
+                    | "seismictoss"
+                    | "nightshade"
+                    | "superfang"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -964,6 +976,7 @@ impl Battle {
         party[outgoing.slot].attract = None;
         party[outgoing.slot].disabled_slot = None;
         party[outgoing.slot].last_move_slot = None;
+        party[outgoing.slot].last_foe_hit = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
             party[outgoing.slot].times_attacked = 0;
@@ -1488,6 +1501,12 @@ impl Battle {
         }
         let move_data = self.move_data(source, slot);
         let struggle = slot == STRUGGLE_SLOT;
+        let retaliation = matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
+        let retaliation_hit = if retaliation {
+            self.mon(source).last_foe_hit
+        } else {
+            None
+        };
         let rampage = self.mon(source).rampage.is_some();
         let called_from = if rampage { "|[from] lockedmove" } else { "" };
         let weather = self.weather();
@@ -1506,7 +1525,8 @@ impl Battle {
             self.mon(source).converted_move_type(&move_data.move_type)
         };
         let source_name = self.ident(source);
-        let target = self.resolve_target(source, move_data.target, loc);
+        let original_target = self.resolve_target(source, move_data.target, loc);
+        let target = retaliation_hit.map(|hit| hit.source).or(original_target);
         if !self.before_status_move(source, move_data) {
             return false;
         }
@@ -1625,6 +1645,7 @@ impl Battle {
                     TargetKind::AllAdjacent
                         | TargetKind::AllAdjacentFoes
                         | TargetKind::RandomNormal
+                        | TargetKind::Scripted
                 ))
         {
             let pressure_targets = spread_targets
@@ -1788,6 +1809,11 @@ impl Battle {
         }
         if move_data.name == "Poltergeist" && self.mon(spread_targets[0]).item.is_empty() {
             self.log[base].public = format!("|move|{source_name}|Poltergeist||[still]");
+            self.add(format!("|-fail|{source_name}"));
+            return true;
+        }
+        if retaliation && !retaliation_hit.is_some_and(|hit| hit.turn == self.turn) {
+            self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
             self.add(format!("|-fail|{source_name}"));
             return true;
         }
@@ -2108,6 +2134,18 @@ impl Battle {
             };
             damage.clear();
             for &target in &spread_targets {
+                let fixed_damage = match move_data.name.as_str() {
+                    "Metal Burst" | "Comeuppance" => {
+                        retaliation_hit.map(|hit| (hit.damage * 3 / 2).max(1))
+                    }
+                    "Seismic Toss" | "Night Shade" => Some(u32::from(self.mon(source).level)),
+                    "Super Fang" => Some((self.mon(target).hp / 2).max(1)),
+                    _ => None,
+                };
+                if let Some(value) = fixed_damage {
+                    damage.push((target, value));
+                    continue;
+                }
                 if stacked_power && self.format.report_exact_hp {
                     self.add(format!("|debug|BP: {power}"));
                 }
@@ -2266,7 +2304,9 @@ impl Battle {
                 }
                 damage.push((target, value));
             }
-            for &(target, value) in &damage {
+            for (target, hit_damage) in &mut damage {
+                let target = *target;
+                let value = *hit_damage;
                 let mon = self.mon(target);
                 let value =
                     if mon.ability == "sturdy" && mon.hp == mon.max_hp.get() && value >= mon.hp {
@@ -2280,6 +2320,7 @@ impl Battle {
                 let mon = self.mon_mut(target);
                 let landed = value.min(mon.hp);
                 mon.hp -= landed;
+                *hit_damage = landed;
                 total += landed;
                 self.add_health_line("-damage", target, false);
                 if let Some([a, b]) = move_data.drain
@@ -2463,13 +2504,20 @@ impl Battle {
             hits_landed += 1;
         }
         let mut fainted = 0;
-        for (target, _) in damage {
+        for (target, direct_damage) in damage {
             if self.mon(target).hp == 0 {
                 self.mark_fainted(target);
                 fainted += 1;
             }
             if target != source {
                 self.mon_mut(target).times_attacked += hits_landed;
+            }
+            if target.player != source.player && !self.mon(target).fainted {
+                self.mon_mut(target).last_foe_hit = Some(FoeHit {
+                    source,
+                    damage: direct_damage,
+                    turn: self.turn,
+                });
             }
         }
         if self.mon(source).hp == 0 {
@@ -2564,6 +2612,7 @@ impl Battle {
         mon.attract = None;
         mon.disabled_slot = None;
         mon.last_move_slot = None;
+        mon.last_foe_hit = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
         self.add(format!("|faint|{}", self.ident(target)));

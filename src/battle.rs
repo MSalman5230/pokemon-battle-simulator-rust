@@ -30,7 +30,7 @@ mod weather;
 pub use status::Status;
 use std::{error::Error, fmt, num::NonZeroU32};
 pub use terrain::Terrain;
-use turn::Action;
+use turn::{Action, FoeHit};
 pub use weather::Weather;
 
 #[derive(Debug, PartialEq, Eq)]
@@ -152,6 +152,7 @@ pub struct Pokemon {
     pub hp: u32,
     pub status: Status,
     pub times_attacked: u32,
+    last_foe_hit: Option<FoeHit>,
     volatile_order: Vec<&'static str>,
     flinched: bool,
     recharge: u8,
@@ -682,6 +683,7 @@ impl Pokemon {
             hp: max_hp.get(),
             status: Status::Healthy,
             times_attacked: 0,
+            last_foe_hit: None,
             volatile_order: Vec::new(),
             flinched: false,
             recharge: 0,
