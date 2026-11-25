@@ -62,12 +62,10 @@ impl Battle {
         if defender.glaive_drawback {
             add(defender.speed, 2, Hook::Fixed(8192, ""));
         }
-        if let Some(state) = defender.semi_invulnerability() {
-            let modifier = if state.exposed_to(&data.name) {
-                8192
-            } else {
-                4096
-            };
+        if let Some(modifier) = defender
+            .semi_invulnerability()
+            .and_then(|state| state.damage_modifier(&data.name))
+        {
             add(defender.speed, 2, Hook::Fixed(modifier, ""));
         }
         match defender.ability.as_str() {
@@ -233,6 +231,22 @@ impl Battle {
             self.add("|debug|Analytic boost");
         }
         let source_active = self.active_effects(source);
+        let rivalry = if source_active && self.mon(source).ability == "rivalry" {
+            match (self.mon(source).gender, self.mon(target).gender) {
+                (b'N', _) | (_, b'N') => 4096,
+                (a, b) if a == b => 5120,
+                _ => 3072,
+            }
+        } else {
+            4096
+        };
+        if rivalry != 4096 && self.format.report_exact_hp {
+            self.add(if rivalry > 4096 {
+                "|debug|Rivalry boost"
+            } else {
+                "|debug|Rivalry weaken"
+            });
+        }
         let helping = self.mon(source).helping_hand;
         let helping = (helping != 0 && source_active).then(|| 1.5_f64.powi(i32::from(helping)));
         if let Some(multiplier) = helping
@@ -380,6 +394,9 @@ impl Battle {
         if expanded {
             power_modifier = crate::mechanics::chain(6144, power_modifier);
         }
+        if rivalry != 4096 {
+            power_modifier = chain(rivalry, power_modifier);
+        }
         if analytic_last
             || ((sheer_force_removed || move_data.has_sheer_force_boost)
                 && self.event_ability(source) == "sheerforce")
@@ -402,6 +419,12 @@ impl Battle {
             power_modifier = chain(power_modifier, (multiplier * 4096.0) as u32);
         }
         power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
+        if mon
+            .semi_invulnerability()
+            .is_some_and(|state| state.doubles_power(&move_data.name))
+        {
+            power_modifier = chain(power_modifier, 8192);
+        }
         if move_data.name == "Facade" && !matches!(user.status, Status::Healthy | Status::Sleep(_))
         {
             power_modifier = chain(power_modifier, 8192);

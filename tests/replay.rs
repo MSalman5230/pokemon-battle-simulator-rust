@@ -1084,6 +1084,16 @@ fn gale_wings_grants_priority_at_full_health_only() {
 }
 
 #[test]
+fn gust_hits_bounce_and_fly_but_uses_their_distinct_damage_stages() {
+    replay(include_str!("fixtures/bss-airborne-charge.json"));
+}
+
+#[test]
+fn rivalry_distinguishes_same_opposite_and_genderless_targets() {
+    replay(include_str!("fixtures/bss-rivalry.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

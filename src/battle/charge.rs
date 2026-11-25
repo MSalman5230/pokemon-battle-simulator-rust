@@ -7,6 +7,7 @@ use crate::mechanics::BoostStat;
 pub(super) enum SemiInvulnerable {
     Underwater,
     Underground,
+    Airborne { bounce: bool },
 }
 
 impl SemiInvulnerable {
@@ -14,7 +15,30 @@ impl SemiInvulnerable {
         match self {
             Self::Underwater => matches!(move_name, "Surf" | "Whirlpool"),
             Self::Underground => matches!(move_name, "Earthquake" | "Magnitude"),
+            Self::Airborne { .. } => matches!(
+                move_name,
+                "Gust"
+                    | "Twister"
+                    | "Sky Uppercut"
+                    | "Thunder"
+                    | "Hurricane"
+                    | "Smack Down"
+                    | "Thousand Arrows"
+            ),
         }
+    }
+
+    pub(super) fn damage_modifier(self, move_name: &str) -> Option<u32> {
+        let doubled = match self {
+            Self::Airborne { bounce: true } => return None,
+            Self::Airborne { bounce: false } => matches!(move_name, "Gust" | "Twister"),
+            _ => self.exposed_to(move_name),
+        };
+        Some(if doubled { 8192 } else { 4096 })
+    }
+
+    pub(super) fn doubles_power(self, move_name: &str) -> bool {
+        matches!(self, Self::Airborne { bounce: true }) && matches!(move_name, "Gust" | "Twister")
     }
 }
 
@@ -46,6 +70,8 @@ impl ChargeSpec {
             "Geomancy" => ("geomancy", None, None),
             "Dive" => ("dive", None, None),
             "Dig" => ("dig", None, None),
+            "Bounce" => ("bounce", None, None),
+            "Fly" => ("fly", None, None),
             _ => return None,
         };
         Some(Self {
@@ -89,6 +115,8 @@ impl Pokemon {
         match self.charge.filter(|state| !state.released)?.id {
             "dive" => Some(SemiInvulnerable::Underwater),
             "dig" => Some(SemiInvulnerable::Underground),
+            "bounce" => Some(SemiInvulnerable::Airborne { bounce: true }),
+            "fly" => Some(SemiInvulnerable::Airborne { bounce: false }),
             _ => None,
         }
     }
