@@ -735,3 +735,8 @@ fn synchronize_reflects_before_berries_and_obeys_type_and_ability_immunity() {
     replay(include_str!("fixtures/bss-synchronize.json"));
     replay(include_str!("fixtures/bss-sync-limber.json"));
 }
+
+#[test]
+fn mortal_spin_clears_the_users_side_only_after_a_successful_hit() {
+    replay(include_str!("fixtures/vgc-mortal-spin.json"));
+}

@@ -42,12 +42,12 @@ impl Hazard {
 }
 
 impl Battle {
-    pub(super) fn rapid_spin(&mut self, pos: Position) {
+    pub(super) fn clear_spinning_hazards(&mut self, pos: Position, move_name: &str) {
         if self.mon(pos).hp == 0 {
             return;
         }
         let source = self.ident(pos);
-        let suffix = format!("|[from] move: Rapid Spin|[of] {source}");
+        let suffix = format!("|[from] move: {move_name}|[of] {source}");
         if self.mon_mut(pos).seeded_from.take().is_some() {
             self.mon_mut(pos).untrack_volatile("leechseed");
             self.add(format!("|-end|{source}|Leech Seed{suffix}"));

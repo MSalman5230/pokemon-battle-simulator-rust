@@ -919,6 +919,7 @@ impl Battle {
                     | "venoshock"
                     | "hex"
                     | "haze"
+                    | "mortalspin"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -2724,6 +2725,9 @@ impl Battle {
             }
         });
         if spread_targets.is_empty() {
+            if spread {
+                self.log[base].public.push_str("|[spread] ");
+            }
             if matches!(
                 move_data.name.as_str(),
                 "Supercell Slam" | "High Jump Kick" | "Jump Kick"
@@ -3359,8 +3363,9 @@ impl Battle {
                     self.consume(target, "Air Balloon", false);
                 }
             }
-            if move_data.name == "Rapid Spin" && !damage.is_empty() {
-                self.rapid_spin(source);
+            if matches!(move_data.name.as_str(), "Rapid Spin" | "Mortal Spin") && !damage.is_empty()
+            {
+                self.clear_spinning_hazards(source, &move_data.name);
             }
             if move_data.name == "Knock Off" {
                 for &(target, _) in &damage {
