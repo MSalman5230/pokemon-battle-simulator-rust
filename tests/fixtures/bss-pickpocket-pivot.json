@@ -1,0 +1,1054 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Flareon\",\"moves\":[\"Tackle\",\"U-turn\"],\"gender\":\"F\",\"name\":\"Flareon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Leftovers\"},{\"species\":\"Espeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Weavile\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Weavile\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Pickpocket\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Weavile, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Weavile, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Weavile, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "uturn"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "pickpocket",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pickpocket",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pickpocket",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|100/100",
+          "|switch|p2a: Weavile|Weavile, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|140/140",
+          "|switch|p2a: Weavile|Weavile, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|100/100",
+          "|switch|p2a: Weavile|Weavile, L50, F|145/145",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "U-turn",
+                  "id": "uturn",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "uturn"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "pickpocket",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pickpocket",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pickpocket",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 1,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "switch",
+      "waiting": [
+        false,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Weavile|Recover||[still]",
+          "|-fail|p2a: Weavile|heal",
+          "|move|p1a: Flareon|U-turn|p2a: Weavile",
+          "|-supereffective|p2a: Weavile|1",
+          "|-damage|p2a: Weavile|31/100",
+          "|-enditem|p1a: Flareon|Leftovers|[silent]|[from] ability: Pickpocket|[of] p1a: Flareon",
+          "|-item|p2a: Weavile|Leftovers|[from] ability: Pickpocket|[of] p1a: Flareon"
+        ],
+        [
+          "|",
+          "|move|p2a: Weavile|Recover||[still]",
+          "|-fail|p2a: Weavile|heal",
+          "|move|p1a: Flareon|U-turn|p2a: Weavile",
+          "|-supereffective|p2a: Weavile|1",
+          "|-damage|p2a: Weavile|31/100",
+          "|-enditem|p1a: Flareon|Leftovers|[silent]|[from] ability: Pickpocket|[of] p1a: Flareon",
+          "|-item|p2a: Weavile|Leftovers|[from] ability: Pickpocket|[of] p1a: Flareon"
+        ],
+        [
+          "|",
+          "|move|p2a: Weavile|Recover||[still]",
+          "|-fail|p2a: Weavile|heal",
+          "|move|p1a: Flareon|U-turn|p2a: Weavile",
+          "|-supereffective|p2a: Weavile|1",
+          "|-damage|p2a: Weavile|45/145",
+          "|-enditem|p1a: Flareon|Leftovers|[silent]|[from] ability: Pickpocket|[of] p1a: Flareon",
+          "|-item|p2a: Weavile|Leftovers|[from] ability: Pickpocket|[of] p1a: Flareon"
+        ]
+      ],
+      "requests": [
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "uturn"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        },
+        {
+          "wait": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "45/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "pickpocket",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "pickpocket",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "uturn",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 45,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pickpocket",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Espeon|Espeon, L50, F|100/100|[from] U-turn",
+          "|",
+          "|-heal|p2a: Weavile|37/100|[from] item: Leftovers",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|switch|p1a: Espeon|Espeon, L50, F|140/140|[from] U-turn",
+          "|",
+          "|-heal|p2a: Weavile|37/100|[from] item: Leftovers",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|switch|p1a: Espeon|Espeon, L50, F|100/100|[from] U-turn",
+          "|",
+          "|-heal|p2a: Weavile|54/145|[from] item: Leftovers",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "uturn"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "54/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "pickpocket",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "pickpocket",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "uturn",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 54,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pickpocket",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -1804,6 +1804,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2','switch 3'], ['move 1','move 1']], theftRosters, 'bss-thief-covet'],
     ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 1'],
         ['switch 2',null]], pickpocketRosters, 'bss-pickpocket'],
+    ['bssregmc', [['team 12','team 1'], ['move 2','move 1'], ['switch 2',null]],
+        pickpocketRosters, 'bss-pickpocket-pivot'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

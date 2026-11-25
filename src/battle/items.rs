@@ -429,10 +429,7 @@ impl Battle {
             || !mon.item.is_empty()
             || mon.pivot_move.is_some()
             || self.drag_flags & holder.mask() != 0
-            || matches!(
-                self.mon(attacker).pivot_move,
-                Some(Pivot::Ability | Pivot::Move("U-turn" | "Volt Switch" | "Flip Turn"))
-            )
+            || self.mon(attacker).pivot_move == Some(Pivot::Ability)
         {
             return;
         }

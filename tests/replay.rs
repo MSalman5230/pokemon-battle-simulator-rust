@@ -1265,6 +1265,7 @@ fn quash_moves_an_eligible_queued_action_after_every_other_move() {
 fn thief_covet_and_pickpocket_transfer_held_items_at_their_native_events() {
     replay(include_str!("fixtures/bss-thief-covet.json"));
     replay(include_str!("fixtures/bss-pickpocket.json"));
+    replay(include_str!("fixtures/bss-pickpocket-pivot.json"));
 }
 
 #[test]
