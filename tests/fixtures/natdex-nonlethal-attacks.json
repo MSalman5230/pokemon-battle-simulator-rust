@@ -1,0 +1,3206 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"False Swipe\",\"Hold Back\",\"Sonic Boom\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Own Tempo\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Magikarp\",\"moves\":[\"Splash\"],\"gender\":\"F\",\"name\":\"Magikarp\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Swift Swim\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Magikarp, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Magikarp, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Magikarp, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|100/100",
+          "|switch|p2a: Magikarp|Magikarp, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Magikarp|Magikarp, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|100/100",
+          "|switch|p2a: Magikarp|Magikarp, L50, F|95/95",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|86/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|86/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|82/95",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "82/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 82,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|70/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|70/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|67/95",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "67/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 67,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|56/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|56/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|54/95",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "54/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 17,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 54,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 17,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|41/100",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|41/100",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|39/95",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 16,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 16,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "39/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 16,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 39,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 16,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|25/100",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|25/100",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|24/95",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 15,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 15,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "24/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 15,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 24,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 15,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 7,
+      "seed": "61380,11535,34528,49510",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|11/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|11/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|11/95",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 14,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 14,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "11/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 14,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 11,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 14,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 8,
+      "seed": "30954,58228,1566,4235",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-crit|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-crit|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-crit|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/95",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 13,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 13,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "1/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 13,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 1,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 13,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 9,
+      "seed": "31262,39613,52537,33084",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/95",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 12,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 12,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "1/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 12,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 1,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 12,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 10,
+      "seed": "54160,3954,50453,18633",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/95",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 11,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 11,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "1/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 11,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 1,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 11,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 11,
+      "seed": "12962,13605,28059,35138",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|11"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|11"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|False Swipe|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/95",
+          "|",
+          "|upkeep",
+          "|turn|11"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 10,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 10,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "1/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 10,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 1,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 10,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 12,
+      "seed": "62033,41776,41034,54903",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|Hold Back|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|12"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|Hold Back|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/100",
+          "|",
+          "|upkeep",
+          "|turn|12"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|Hold Back|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|1/95",
+          "|",
+          "|upkeep",
+          "|turn|12"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "False Swipe",
+                  "id": "falseswipe",
+                  "pp": 10,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hold Back",
+                  "id": "holdback",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sonic Boom",
+                  "id": "sonicboom",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "falseswipe",
+                  "holdback",
+                  "sonicboom"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 9,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, F",
+                "condition": "1/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "swiftswim",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swiftswim",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 10,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 1,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 9,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 12,
+      "seed": "6239,38512,23475,60086",
+      "requestState": "",
+      "waiting": [
+        true,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|Sonic Boom|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|",
+          "|win|player0"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|Sonic Boom|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|",
+          "|win|player0"
+        ],
+        [
+          "|",
+          "|move|p2a: Magikarp|Splash|p2a: Magikarp",
+          "|-nothing",
+          "|move|p1a: Smeargle|Sonic Boom|p2a: Magikarp",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|",
+          "|win|player0"
+        ]
+      ],
+      "requests": [
+        null,
+        null
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "falseswipe",
+                "pp": 10,
+                "maxpp": 20
+              },
+              {
+                "id": "holdback",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sonicboom",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, F",
+            "hp": 0,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swiftswim",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 8,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

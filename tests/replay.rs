@@ -1767,6 +1767,15 @@ fn sparkling_aria_bypasses_covert_cloak_only_when_it_hits_multiple_targets() {
 }
 
 #[test]
+fn national_dex_attacks_preserve_hp_limits_and_conditioned_damage() {
+    replay(include_str!("fixtures/natdex-health-scaled-attacks.json"));
+    replay(include_str!("fixtures/natdex-nonlethal-attacks.json"));
+    replay(include_str!("fixtures/natdex-incinerate-and-order.json"));
+    replay(include_str!("fixtures/natdex-sleep-attacks.json"));
+    replay(include_str!("fixtures/natdex-retaliate.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

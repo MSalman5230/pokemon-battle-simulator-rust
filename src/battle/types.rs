@@ -99,12 +99,12 @@ impl Pokemon {
         self.types().any(|t| t == name)
     }
 
-    pub fn types(&self) -> impl Iterator<Item = &str> {
+    pub fn types(&self) -> impl Iterator<Item = &'static str> {
         self.base_types().chain(self.added_type)
     }
 
-    fn base_types(&self) -> impl Iterator<Item = &str> {
-        let original_types = if self
+    fn base_types(&self) -> impl Iterator<Item = &'static str> {
+        let original_types: &'static Vec<String> = if self
             .transformed
             .as_ref()
             .is_some_and(|tr| tr.uses_base_types)

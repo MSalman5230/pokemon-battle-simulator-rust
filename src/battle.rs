@@ -26,6 +26,7 @@ pub(crate) mod hydration;
 mod illusion;
 mod items;
 mod leech;
+mod legacy_attacks;
 mod mega;
 mod multihit;
 mod partial_trap;
@@ -205,6 +206,8 @@ struct Side {
     replacement_heals: [Vec<support::ReplacementHeal>; 2],
     tailwind: u8,
     total_fainted: u8,
+    fainted_this_turn: bool,
+    fainted_last_turn: bool,
 }
 
 #[derive(Clone)]
@@ -665,6 +668,8 @@ impl Battle {
             replacement_heals: [Vec::new(), Vec::new()],
             tailwind: 0,
             total_fainted: 0,
+            fainted_this_turn: false,
+            fainted_last_turn: false,
         });
         self.rng = rng;
         if self.sides.iter().all(Option::is_some) {

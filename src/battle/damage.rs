@@ -457,6 +457,14 @@ impl Battle {
         if lash_out && self.format.report_exact_hp {
             self.add("|debug|lashout buff");
         }
+        let retaliate = move_data.name == "Retaliate"
+            && self.sides[source.player.index()]
+                .as_ref()
+                .unwrap()
+                .fainted_last_turn;
+        if retaliate && self.format.report_exact_hp {
+            self.add("|debug|Boosted for a faint last turn");
+        }
         let dry_skin = move_type == "Fire" && self.event_ability(target) == "dryskin";
         let misty_explosion = move_data.name == "Misty Explosion"
             && self.terrain() == Some(Terrain::Misty)
@@ -703,6 +711,9 @@ impl Battle {
         }
         power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
         if lash_out {
+            power_modifier = chain(power_modifier, 8192);
+        }
+        if retaliate || move_data.name == "Brine" && mon.hp * 2 <= mon.max_hp.get() {
             power_modifier = chain(power_modifier, 8192);
         }
         if mon

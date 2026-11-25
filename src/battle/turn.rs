@@ -895,6 +895,25 @@ impl Battle {
                     | "splash"
                     | "happyhour"
                     | "refresh"
+                    | "terablast"
+                    | "falseswipe"
+                    | "holdback"
+                    | "brine"
+                    | "retaliate"
+                    | "incinerate"
+                    | "dreameater"
+                    | "dragonrage"
+                    | "sonicboom"
+                    | "wringout"
+                    | "crushgrip"
+                    | "naturesmadness"
+                    | "ruination"
+                    | "wakeupslap"
+                    | "smellingsalts"
+                    | "synchronoise"
+                    | "fishiousrend"
+                    | "boltbeak"
+                    | "revelationdance"
                     | "round"
                     | "swift"
                     | "surf"
@@ -2038,6 +2057,9 @@ impl Battle {
             }
         }
         self.turn += 1;
+        for side in self.sides.iter_mut().flatten() {
+            side.fainted_last_turn = std::mem::take(&mut side.fainted_this_turn);
+        }
         for pos in self.positions() {
             self.announce_reflected_type(pos);
             let mon = self.mon_mut(pos);
@@ -3354,6 +3376,8 @@ impl Battle {
             (terrain.element(), false)
         } else if move_data.name == "Hidden Power" {
             (self.mon(source).hidden_power_type(), false)
+        } else if move_data.name == "Revelation Dance" {
+            (self.mon(source).types().next().unwrap_or("Normal"), false)
         } else if move_data.name == "Aura Wheel"
             && self.mon(source).species.name == "Morpeko-Hangry"
         {
@@ -4765,6 +4789,15 @@ impl Battle {
                     && source != pos
                     && self.status_immune(pos, "powder"))
                 || (move_data.name == "Leech Seed" && self.mon(pos).has_type("Grass"))
+                || (move_data.name == "Dream Eater"
+                    && !matches!(self.mon(pos).status, Status::Sleep(_))
+                    && self.event_ability(pos) != "comatose")
+                || (move_data.name == "Synchronoise"
+                    && !self
+                        .mon(source)
+                        .types()
+                        .filter(|&t| t != "???")
+                        .any(|t| self.mon(pos).has_type(t)))
                 || (move_data.name == "Endeavor" && self.mon(source).hp >= self.mon(pos).hp)
                 || (matches!(move_data.name.as_str(), "Trick" | "Switcheroo")
                     && self.event_ability(pos) == "stickyhold")
@@ -6002,9 +6035,8 @@ impl Battle {
                     }
                     "Counter" | "Mirror Coat" => retaliation_hit.map(|hit| (hit.damage * 2).max(1)),
                     "Seismic Toss" | "Night Shade" => Some(u32::from(battle.mon(source).level)),
-                    "Super Fang" => Some((battle.mon(target).hp / 2).max(1)),
                     "Endeavor" => Some(battle.mon(target).hp - battle.mon(source).hp),
-                    _ => None,
+                    name => super::legacy_attacks::fixed_damage(name, battle.mon(target).hp),
                 };
                 if let Some(value) = fixed_damage {
                     return value;
@@ -6012,7 +6044,7 @@ impl Battle {
                 if stacked_power && battle.format.report_exact_hp {
                     battle.add(format!("|debug|BP: {power}"));
                 }
-                let power = if round_followup && move_data.name == "Round" {
+                let mut power = if round_followup && move_data.name == "Round" {
                     if battle.format.report_exact_hp {
                         battle.add("|debug|BP doubled");
                     }
@@ -6047,6 +6079,22 @@ impl Battle {
                 } else {
                     power
                 };
+                if matches!(
+                    move_data.name.as_str(),
+                    "Wake-Up Slap"
+                        | "Smelling Salts"
+                        | "Bolt Beak"
+                        | "Fishious Rend"
+                        | "Crush Grip"
+                        | "Wring Out"
+                ) {
+                    power = battle.legacy_base_power(
+                        target,
+                        &move_data.name,
+                        power,
+                        Self::queued_move(queue, target).is_some(),
+                    );
+                }
                 if move_data.name == "Poltergeist" {
                     let item = DEX
                         .item(battle.format.dex_mod, &battle.mon(target).item)
@@ -6232,6 +6280,11 @@ impl Battle {
                 } else {
                     value
                 };
+                let value = if matches!(move_data.name.as_str(), "False Swipe" | "Hold Back") {
+                    value.min(self.mon(target).hp.saturating_sub(1))
+                } else {
+                    value
+                };
                 let value = self.focus_survival(target, value, true);
                 let half_hp_berry_deferred =
                     matches!(self.event_ability(target), "berserk" | "angershell") && !multihit;
@@ -6267,6 +6320,12 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
+                if matches!(
+                    move_data.name.as_str(),
+                    "Wake-Up Slap" | "Smelling Salts" | "Incinerate"
+                ) {
+                    self.legacy_attack_hit(target, &move_data.name);
+                }
                 if shell_side_arm && target.player != source.player {
                     self.add(format!("|-hint|{shell_category} Shell Side Arm"));
                 }
@@ -6979,6 +7038,7 @@ impl Battle {
         self.last_faint = Some(target.player);
         let side = self.sides[target.player.index()].as_mut().unwrap();
         side.total_fainted = (side.total_fainted + 1).min(100);
+        side.fainted_this_turn = true;
         self.add(format!("|faint|{}", self.ident(target)));
         self.receive_fainted_ability(target);
         self.end_supreme_overlord(target, false);

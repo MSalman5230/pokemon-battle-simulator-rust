@@ -1463,6 +1463,26 @@ const sparklingCloakRosters = [
     [named('Primarina', ['Will-O-Wisp', 'Sparkling Aria']), named('Talonflame', ['Recover'])],
     [{...named('Vaporeon', ['Recover']), item:'Covert Cloak'}, named('Umbreon', ['Recover'])],
 ];
+const legacyGripRosters = [
+    [{...named('Smeargle', ["Nature's Madness", 'Wring Out', 'Brine', 'Tera Blast']), ability:'Own Tempo'}],
+    [{...named('Vaporeon', ['Tail Whip']), ability:'Hydration'}],
+];
+const legacySwipeRosters = [
+    [{...named('Smeargle', ['False Swipe', 'Hold Back', 'Sonic Boom']), ability:'Own Tempo'}],
+    [{...named('Magikarp', ['Splash']), ability:'Swift Swim'}],
+];
+const legacyBurnRosters = [
+    [{...named('Smeargle', ['Glare', 'Incinerate', 'Smelling Salts', 'Fishious Rend']), ability:'Own Tempo'}],
+    [{...named('Umbreon', ['Recover']), ability:'Synchronize', item:'Sitrus Berry'}],
+];
+const legacySleepRosters = [
+    [{...named('Smeargle', ['Dream Eater', 'Dragon Rage', 'Wake-Up Slap']), ability:'Own Tempo'}],
+    [{...named('Snorlax', ['Rest', 'Tackle']), ability:'Immunity'}],
+];
+const legacyRetaliateRosters = [
+    [named('Gengar', ['Explosion']), named('Stoutland', ['Retaliate'])],
+    [named('Vaporeon', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2688,6 +2708,16 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         sparklingCloakRosters, 'bss-sparkling-aria-cloak'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1'],
         ['move 2, move 1','move 1, move 1']], sparklingCloakRosters, 'vgc-sparkling-aria-cloak'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 1'],
+        ['move 4','move 1']], legacyGripRosters, 'natdex-health-scaled-attacks'],
+    ['natdexdraft', [['team 1','team 1'], ...Array(10).fill(['move 1','move 1']), ['move 2','move 1'],
+        ['move 3','move 1']], legacySwipeRosters, 'natdex-nonlethal-attacks'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 1'],
+        ['move 4','move 1']], legacyBurnRosters, 'natdex-incinerate-and-order'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 2'],
+        ['move 3','move 2']], legacySleepRosters, 'natdex-sleep-attacks'],
+    ['natdexdraft', [['team 12','team 1'], ['move 1','move 1'], ['switch 2',null],
+        ['move 1','move 1'], ['move 1','move 1']], legacyRetaliateRosters, 'natdex-retaliate'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
