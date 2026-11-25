@@ -92,6 +92,7 @@ const data = mod => {
                 breakable: !!e.flags?.breakable || undefined,
                 noReceiver: !!e.flags?.noreceiver || undefined,
                 noTransform: !!e.flags?.notransform || undefined,
+                noEntrain: !!e.flags?.noentrain || undefined,
                 noSkillSwap: !!e.flags?.failskillswap || undefined})),
         items: table(dex.items.all(), e =>
             ({...props(e, ['name', 'isNonstandard', 'megaStone']),

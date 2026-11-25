@@ -242,6 +242,8 @@ pub struct Effect {
     #[serde(default)]
     pub no_skill_swap: bool,
     #[serde(default)]
+    pub no_entrain: bool,
+    #[serde(default)]
     pub no_receiver: bool,
     #[serde(default)]
     pub no_transform: bool,

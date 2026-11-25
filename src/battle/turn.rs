@@ -1021,6 +1021,9 @@ impl Battle {
                     | "trick"
                     | "switcheroo"
                     | "skillswap"
+                    | "worryseed"
+                    | "simplebeam"
+                    | "entrainment"
                     | "electroshot"
                     | "solarbeam"
                     | "solarblade"
@@ -3926,9 +3929,13 @@ impl Battle {
             }
         });
         smart_target &= spread_targets.len() > 1;
-        if move_data.name == "Octolock" {
+        if matches!(move_data.name.as_str(), "Octolock" | "Worry Seed") {
             spread_targets.retain(|&target| {
-                if self.status_immune(target, "trapped") {
+                if if move_data.name == "Octolock" {
+                    self.status_immune(target, "trapped")
+                } else {
+                    matches!(self.mon(target).ability.as_str(), "insomnia" | "truant")
+                } {
                     self.add(format!("|-immune|{}", self.ident(target)));
                     false
                 } else {
@@ -4078,8 +4085,17 @@ impl Battle {
         }
 
         if move_data.category == Category::Status {
+            let ability_replacement = matches!(
+                move_data.name.as_str(),
+                "Worry Seed" | "Simple Beam" | "Entrainment"
+            );
             spread_targets.retain(|&target| {
-                if !self.behind_substitute(source, target, move_data) {
+                if (!ability_replacement
+                    || self
+                        .replacement_ability(source, target, &move_data.name)
+                        .is_some())
+                    && !self.behind_substitute(source, target, move_data)
+                {
                     return true;
                 }
                 self.add(format!("|-fail|{source_name}"));
@@ -4090,6 +4106,10 @@ impl Battle {
             let mut hit_labels = Vec::new();
             let life_dew = move_data.name == "Life Dew";
             for target in spread_targets {
+                if ability_replacement {
+                    any_success |= self.replace_ability_from_move(source, target, &move_data.name);
+                    continue;
+                }
                 let mut succeeded = false;
                 if spread && life_dew {
                     hit_labels.push(target.label());
@@ -5652,6 +5672,13 @@ impl Battle {
         boosts: &[(BoostStat, i8)],
         is_self: bool,
     ) -> bool {
+        if self.event_ability(pos) == "simple" {
+            let changes: Vec<_> = boosts
+                .iter()
+                .map(|&(stat, n)| (stat, n.saturating_mul(2)))
+                .collect();
+            return self.apply_boosts(pos, &changes, is_self, false);
+        }
         let invert = self.event_ability(pos) == "contrary";
         self.apply_boosts(pos, boosts, is_self, invert)
     }

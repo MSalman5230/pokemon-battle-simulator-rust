@@ -656,6 +656,74 @@ impl Battle {
         self.mon_mut(pos).ability_order = self.ability_order;
     }
 
+    pub(super) fn replacement_ability(
+        &self,
+        source: Position,
+        target: Position,
+        name: &str,
+    ) -> Option<(&str, bool)> {
+        let current = self.mon(target).ability.as_str();
+        let (id, announce_source) = match name {
+            "Worry Seed" => ("insomnia", false),
+            "Simple Beam" => ("simple", false),
+            "Entrainment" => (self.mon(source).ability.as_str(), true),
+            _ => unreachable!(),
+        };
+        (self.mon(target).hp != 0
+            && !(announce_source && source == target)
+            && current != "truant"
+            && current != id
+            && !DEX.ability(current).is_some_and(|ab| ab.cannot_suppress)
+            && !DEX
+                .ability(id)
+                .is_some_and(|ab| ab.cannot_suppress || announce_source && ab.no_entrain))
+        .then_some((id, announce_source))
+    }
+
+    pub(super) fn replace_ability_from_move(
+        &mut self,
+        source: Position,
+        target: Position,
+        name: &str,
+    ) -> bool {
+        if self.mon(target).effective_item() == "abilityshield" {
+            self.add(format!(
+                "|-block|{}|item: Ability Shield",
+                self.ident(target)
+            ));
+            return false;
+        }
+        let (id, announce_source) = self.replacement_ability(source, target, name).unwrap();
+        let ability = DEX.ability(id);
+        let id = id.to_owned();
+        let current = self.mon(target).ability.as_str();
+        let old = DEX.ability(current);
+        if current == "illusion" {
+            self.end_illusion(target);
+        }
+        self.end_ability(target);
+        self.mon_mut(target).ability = id;
+        self.reset_ability_order(target);
+        let mut msg = format!(
+            "|-ability|{}|{}|{}|[from] move: {name}",
+            self.ident(target),
+            ability.map_or("", |ab| ab.name.as_str()),
+            old.map_or("", |ab| ab.name.as_str()),
+        );
+        if announce_source {
+            msg.push_str(&format!("|[of] {}", self.ident(source)));
+        }
+        self.add(msg);
+        self.start_ability(target);
+        if name == "Worry Seed"
+            && old.is_some()
+            && matches!(self.mon(target).status, Status::Sleep(_))
+        {
+            self.cure_status(target, "[msg]");
+        }
+        true
+    }
+
     pub(super) fn skill_swap(&mut self, source: Position, target: Position) -> Option<bool> {
         let user = self.mon(source);
         let mon = self.mon(target);
@@ -1188,10 +1256,12 @@ impl Battle {
             return false;
         }
         let effective;
-        let changes = if self.event_ability(target) == "contrary" {
+        let ability = self.event_ability(target);
+        let changes = if matches!(ability, "contrary" | "simple") {
+            let factor = if ability == "contrary" { -1 } else { 2 };
             effective = changes
                 .iter()
-                .map(|&(s, n)| (s, n.saturating_neg()))
+                .map(|&(s, n)| (s, n.saturating_mul(factor)))
                 .collect::<Vec<_>>();
             effective.as_slice()
         } else {
@@ -1331,13 +1401,13 @@ impl Battle {
             return false;
         }
         let mut success = false;
-        let invert = self.event_ability(pos) == "contrary";
+        let factor = match self.event_ability(pos) {
+            "contrary" => -1,
+            "simple" => 2,
+            _ => 1,
+        };
         for &(stat, amount) in boosts {
-            let amount = if invert {
-                amount.saturating_neg()
-            } else {
-                amount
-            };
+            let amount = amount.saturating_mul(factor);
             let change = self.mon_mut(pos).boosts.add(stat, amount);
             if change > 0 {
                 self.mon_mut(pos).stats_raised = true;

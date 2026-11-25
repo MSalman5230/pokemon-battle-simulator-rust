@@ -1081,6 +1081,10 @@ const safeguardRosters = [
     [named('Gengar', ['Toxic', 'Recover']),
         {...named('Crobat', ['Toxic', 'Recover']), ability:'Infiltrator'}],
 ];
+const replaceAbilityRosters = [
+    [{...named('Whimsicott', ['Spore', 'Worry Seed', 'Simple Beam', 'Entrainment']), ability:'Prankster'}],
+    [named('Vaporeon', ['Calm Mind']), {...named('Jolteon', ['Calm Mind']), item:'Ability Shield'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1997,6 +2001,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         octolockRosters, 'bss-octolock'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 2','move 1'], ['move 2','move 2'], ['move 2','move 2']], safeguardRosters, 'bss-safeguard'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'], ['move 2','move 1'],
+        ['move 3','move 1'], ['move 4','move 1'], ['move 4','move 1'], ['move 2','switch 2']],
+        replaceAbilityRosters, 'bss-ability-replacement'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

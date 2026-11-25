@@ -1394,6 +1394,11 @@ fn safeguard_blocks_status_for_five_turns_unless_the_move_infiltrates() {
 }
 
 #[test]
+fn ability_replacement_handles_sleep_boosts_immunity_and_ability_shield() {
+    replay(include_str!("fixtures/bss-ability-replacement.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
