@@ -56,11 +56,7 @@ impl Battle {
                 self.ident(source)
             ));
             for pos in self.positions() {
-                if !self.mon(pos).fainted
-                    && DEX
-                        .item(self.format.dex_mod, &self.mon(pos).item)
-                        .is_some_and(|item| item.effect.handlers.iter().any(|name| name == "onEnd"))
-                {
+                if !self.mon(pos).fainted {
                     self.debug_ignored_item(pos, "End");
                 }
             }

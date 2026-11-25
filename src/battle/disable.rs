@@ -194,6 +194,7 @@ impl Battle {
 impl Pokemon {
     pub(super) fn can_use_last_resort(&self) -> bool {
         self.moves.len() >= 2
+            && self.moves.iter().any(|slot| slot.id == "lastresort")
             && self
                 .moves
                 .iter()

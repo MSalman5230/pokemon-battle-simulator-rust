@@ -141,7 +141,7 @@ impl Battle {
             ""
         };
         self.add(format!("|-{event}|{}|{prefix}{name}", self.ident(pos)));
-        if matches!(condition, LegacyCondition::Embargo) && !self.mon(pos).item.is_empty() {
+        if matches!(condition, LegacyCondition::Embargo) {
             self.debug_ignored_item(pos, "End");
         }
         Some(true)

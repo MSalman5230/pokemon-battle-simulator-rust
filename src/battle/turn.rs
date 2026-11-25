@@ -5169,6 +5169,7 @@ impl Battle {
             if self.slots() == 1 || self.mon(source.other_slot()).fainted {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}|move: Ally Switch"));
+                self.report_no_move_effect();
             } else {
                 self.ally_switch(source, queue);
                 self.each_event();
@@ -5177,6 +5178,12 @@ impl Battle {
             return true;
         }
         if move_data.name == "Stuff Cheeks" && !self.has_held_berry(source) {
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
+            return true;
+        }
+        if move_data.name == "Last Resort" && !self.mon(source).can_use_last_resort() {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             result.failed = true;
@@ -5358,6 +5365,7 @@ impl Battle {
             } else {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
                 result.failed = true;
             }
             return true;
@@ -5411,6 +5419,7 @@ impl Battle {
             if eaters == 0 {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}|move: Teatime"));
+                self.report_no_move_effect();
             } else {
                 for target in self.positions() {
                     if eaters & target.mask() != 0 {
@@ -5454,6 +5463,7 @@ impl Battle {
             if !self.court_change(source) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
                 result.failed = true;
             }
             return true;
@@ -7072,6 +7082,9 @@ impl Battle {
                     } else {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        if self.first_bench(target.player, 0).is_none() {
+                            self.report_no_move_effect();
+                        }
                     }
                 }
                 if move_data.name == "Wish" {
@@ -7089,6 +7102,7 @@ impl Battle {
                     } else {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        self.report_no_move_effect();
                     }
                 }
                 if move_data.name == "Transform" {
@@ -7386,6 +7400,7 @@ impl Battle {
                         z_powered,
                     ) {
                         self.add(format!("|-fail|{}|heal", self.ident(target)));
+                        self.report_no_move_effect();
                     }
                     // Weather-based recovery uses NOT_FAIL at full health.
                     // Update events still run and can have RNG-consuming ties.

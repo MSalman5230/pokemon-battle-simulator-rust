@@ -46,6 +46,8 @@ impl Battle {
             mon.uproar = Some(Uproar { slot, remaining: 3 });
             mon.track_volatile("uproar");
             self.add(format!("|-start|{}|Uproar", self.ident(pos)));
+        } else if mon.hp != 0 {
+            self.report_no_move_effect();
         }
     }
 

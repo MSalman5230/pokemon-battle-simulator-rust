@@ -162,6 +162,7 @@ impl Battle {
         let mon = self.mon_mut(target);
         if mon.hp == max_hp || mon.heal_block > 0 {
             self.add(format!("|-fail|{}|heal", self.ident(target)));
+            self.report_no_move_effect();
         } else {
             mon.hp = (mon.hp + amount).min(max_hp);
             self.add_health_line_with("-heal", target, false, "");
