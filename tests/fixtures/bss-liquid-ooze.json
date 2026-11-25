@@ -1,0 +1,1729 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Giga Drain\",\"Leech Seed\",\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Clefable\",\"moves\":[\"Giga Drain\"],\"gender\":\"F\",\"name\":\"Clefable\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Magic Guard\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Swalot\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Swalot\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Liquid Ooze\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Clefable, L50, F|",
+          "|poke|p2|Swalot, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Clefable, L50, F|",
+          "|poke|p2|Swalot, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Clefable, L50, F|",
+          "|poke|p2|Swalot, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "gigadrain",
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "gigadrain"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Swalot",
+                "details": "Swalot, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 103,
+                  "spa": 93,
+                  "spd": 103,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "liquidooze",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "liquidooze",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "leechseed",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Swalot",
+            "species": "Swalot",
+            "details": "Swalot, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 93,
+              "def": 103,
+              "spa": 93,
+              "spd": 103,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "liquidooze",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Swalot|Swalot, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2a: Swalot|Swalot, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Swalot|Swalot, L50, F|175/175",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Giga Drain",
+                  "id": "gigadrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Leech Seed",
+                  "id": "leechseed",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "gigadrain",
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "gigadrain"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Swalot",
+                "details": "Swalot, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 103,
+                  "spa": 93,
+                  "spd": 103,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "liquidooze",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "liquidooze",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "leechseed",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Swalot",
+            "species": "Swalot",
+            "details": "Swalot, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 93,
+              "def": 103,
+              "spa": 93,
+              "spd": 103,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "liquidooze",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vaporeon|Giga Drain|p2a: Swalot",
+          "|-resisted|p2a: Swalot|1",
+          "|-damage|p2a: Swalot|89/100",
+          "|-damage|p1a: Vaporeon|95/100|[from] ability: Liquid Ooze|[of] p2a: Swalot",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|100/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Giga Drain|p2a: Swalot",
+          "|-resisted|p2a: Swalot|1",
+          "|-damage|p2a: Swalot|89/100",
+          "|-damage|p1a: Vaporeon|195/205|[from] ability: Liquid Ooze|[of] p2a: Swalot",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|100/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Giga Drain|p2a: Swalot",
+          "|-resisted|p2a: Swalot|1",
+          "|-damage|p2a: Swalot|156/175",
+          "|-damage|p1a: Vaporeon|95/100|[from] ability: Liquid Ooze|[of] p2a: Swalot",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|175/175",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Giga Drain",
+                  "id": "gigadrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Leech Seed",
+                  "id": "leechseed",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "195/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "gigadrain",
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "gigadrain"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Swalot",
+                "details": "Swalot, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 103,
+                  "spa": 93,
+                  "spd": 103,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "liquidooze",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "liquidooze",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 195,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "leechseed",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Swalot",
+            "species": "Swalot",
+            "details": "Swalot, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 93,
+              "def": 103,
+              "spa": 93,
+              "spd": 103,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "liquidooze",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vaporeon|Leech Seed|p2a: Swalot",
+          "|-start|p2a: Swalot|move: Leech Seed",
+          "|move|p2a: Swalot|Recover||[still]",
+          "|-fail|p2a: Swalot|heal",
+          "|",
+          "|-damage|p2a: Swalot|88/100|[from] Leech Seed|[of] p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|84/100|[from] ability: Liquid Ooze|[of] p2a: Swalot",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Leech Seed|p2a: Swalot",
+          "|-start|p2a: Swalot|move: Leech Seed",
+          "|move|p2a: Swalot|Recover||[still]",
+          "|-fail|p2a: Swalot|heal",
+          "|",
+          "|-damage|p2a: Swalot|88/100|[from] Leech Seed|[of] p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|174/205|[from] ability: Liquid Ooze|[of] p2a: Swalot",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Leech Seed|p2a: Swalot",
+          "|-start|p2a: Swalot|move: Leech Seed",
+          "|move|p2a: Swalot|Recover||[still]",
+          "|-fail|p2a: Swalot|heal",
+          "|",
+          "|-damage|p2a: Swalot|154/175|[from] Leech Seed|[of] p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|84/100|[from] ability: Liquid Ooze|[of] p2a: Swalot",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Giga Drain",
+                  "id": "gigadrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Leech Seed",
+                  "id": "leechseed",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "174/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "gigadrain",
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "gigadrain"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Swalot",
+                "details": "Swalot, L50, F",
+                "condition": "154/175",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 103,
+                  "spa": 93,
+                  "spd": 103,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "liquidooze",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "liquidooze",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 174,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "leechseed",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Swalot",
+            "species": "Swalot",
+            "details": "Swalot, L50, F",
+            "hp": 154,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 93,
+              "def": 103,
+              "spa": 93,
+              "spd": 103,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "liquidooze",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Clefable|Clefable, L50, F|100/100",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|100/100",
+          "|",
+          "|-damage|p2a: Swalot|88/100|[from] Leech Seed|[of] p1a: Clefable",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Clefable|Clefable, L50, F|170/170",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|100/100",
+          "|",
+          "|-damage|p2a: Swalot|88/100|[from] Leech Seed|[of] p1a: Clefable",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Clefable|Clefable, L50, F|100/100",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|175/175",
+          "|",
+          "|-damage|p2a: Swalot|154/175|[from] Leech Seed|[of] p1a: Clefable",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Giga Drain",
+                  "id": "gigadrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "gigadrain"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "174/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "gigadrain",
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Swalot",
+                "details": "Swalot, L50, F",
+                "condition": "154/175",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 103,
+                  "spa": 93,
+                  "spd": 103,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "liquidooze",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "liquidooze",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 174,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "leechseed",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Swalot",
+            "species": "Swalot",
+            "details": "Swalot, L50, F",
+            "hp": 154,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 93,
+              "def": 103,
+              "spa": 93,
+              "spd": 103,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "liquidooze",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Clefable|Giga Drain|p2a: Swalot",
+          "|-resisted|p2a: Swalot|1",
+          "|-damage|p2a: Swalot|78/100",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|100/100",
+          "|",
+          "|-damage|p2a: Swalot|88/100|[from] Leech Seed|[of] p1a: Clefable",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Clefable|Giga Drain|p2a: Swalot",
+          "|-resisted|p2a: Swalot|1",
+          "|-damage|p2a: Swalot|78/100",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|100/100",
+          "|",
+          "|-damage|p2a: Swalot|88/100|[from] Leech Seed|[of] p1a: Clefable",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Clefable|Giga Drain|p2a: Swalot",
+          "|-resisted|p2a: Swalot|1",
+          "|-damage|p2a: Swalot|138/175",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|move|p2a: Swalot|Recover|p2a: Swalot",
+          "|-heal|p2a: Swalot|175/175",
+          "|",
+          "|-damage|p2a: Swalot|154/175|[from] Leech Seed|[of] p1a: Clefable",
+          "|-activate|p2a: Swalot|ability: Liquid Ooze",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Giga Drain",
+                  "id": "gigadrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "gigadrain"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "174/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "gigadrain",
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Swalot",
+                "details": "Swalot, L50, F",
+                "condition": "154/175",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 103,
+                  "spa": 93,
+                  "spd": 103,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "liquidooze",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "liquidooze",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 174,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gigadrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "leechseed",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Swalot",
+            "species": "Swalot",
+            "details": "Swalot, L50, F",
+            "hp": 154,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 93,
+              "def": 103,
+              "spa": 93,
+              "spd": 103,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "liquidooze",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -1003,6 +1003,26 @@ fn prankster_priority_dark_immunity_and_psychic_terrain() {
 }
 
 #[test]
+fn psychic_fangs_breaks_screens_through_substitute() {
+    replay(include_str!("fixtures/bss-psychic-fangs.json"));
+}
+
+#[test]
+fn toxic_debris_lays_at_most_two_layers_on_physical_hits() {
+    replay(include_str!("fixtures/bss-toxic-debris.json"));
+}
+
+#[test]
+fn liquid_ooze_reverses_drain_and_leech_seed_even_at_full_hp() {
+    replay(include_str!("fixtures/bss-liquid-ooze.json"));
+}
+
+#[test]
+fn compound_eyes_orders_equal_speed_accuracy_handlers() {
+    replay(include_str!("fixtures/bss-compound-eyes.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -84,10 +84,8 @@ impl Battle {
         let numerator = i32::from(base) * an * ed;
         let denominator = ad * en;
         let mut accuracy = numerator as f64 / denominator as f64;
-        let (weather_evasion, snow_cloak) = self.active_weather_evasion(target);
-        if snow_cloak && self.format.report_exact_hp {
-            self.add("|debug|Snow Cloak - decreasing accuracy");
-        }
+        self.prepare_accuracy_modifiers(source, target, true);
+        let (weather_evasion, _) = self.active_weather_evasion(target);
         let modifier = self.accuracy_modifier(source, weather_evasion);
         // The native event applies chained integer modifiers only when its
         // post-stage relay is an integer.

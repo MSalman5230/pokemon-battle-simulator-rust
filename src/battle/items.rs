@@ -29,8 +29,51 @@ pub(super) fn resistance_berry(id: &str) -> Option<(&'static str, &'static str)>
 }
 
 impl Battle {
+    pub(super) fn prepare_accuracy_modifiers(
+        &mut self,
+        source: Position,
+        target: Position,
+        numeric: bool,
+    ) {
+        let compound = self.event_ability(source) == "compoundeyes";
+        if !compound && !self.format.report_exact_hp {
+            return;
+        }
+        let evasion_handler = matches!(self.event_ability(target), "snowcloak" | "sandveil");
+        let mut evasion_first = true;
+        if compound && evasion_handler {
+            let target_speed = self.mon(target).speed;
+            let source_speed = self.mon(source).speed;
+            evasion_first = if target_speed == source_speed {
+                self.rng.below(2) == 0
+            } else {
+                target_speed > source_speed
+            };
+        }
+        if self.format.report_exact_hp && numeric {
+            let (weather, snow) = self.active_weather_evasion(target);
+            let evasion_debug = if snow {
+                "|debug|Snow Cloak - decreasing accuracy"
+            } else {
+                "|debug|Sand Veil - decreasing accuracy"
+            };
+            if weather && evasion_first {
+                self.add(evasion_debug);
+            }
+            if compound {
+                self.add("|debug|compoundeyes - enhancing accuracy");
+            }
+            if weather && !evasion_first {
+                self.add(evasion_debug);
+            }
+        }
+    }
+
     pub(super) fn accuracy_modifier(&self, source: Position, weather_evasion: bool) -> u32 {
-        let modifier = if weather_evasion { 3277 } else { 4096 };
+        let mut modifier = if weather_evasion { 3277 } else { 4096 };
+        if self.event_ability(source) == "compoundeyes" {
+            modifier = crate::mechanics::chain(modifier, 5325);
+        }
         if self.mon(source).item == "widelens" && self.active_effects(source) {
             crate::mechanics::chain(modifier, 4505)
         } else {

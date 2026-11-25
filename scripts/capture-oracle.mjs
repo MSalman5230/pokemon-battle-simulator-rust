@@ -910,6 +910,23 @@ const pranksterRosters = [
     [{...named('Sableye', ['Will-O-Wisp', 'Recover']), ability:'Prankster'}],
     [named('Umbreon', ['Recover']), named('Espeon', ['Tail Whip', 'Psychic Terrain'])],
 ];
+const screenBreakingRosters = [
+    [named('Umbreon', ['Psychic Fangs', 'Recover'])],
+    [named('Espeon', ['Reflect', 'Substitute', 'Recover'])],
+];
+const toxicDebrisRosters = [
+    [named('Vaporeon', ['Water Gun', 'Tackle']), named('Flareon', ['Recover'])],
+    [{...named('Glimmora', ['Recover']), ability:'Toxic Debris'}],
+];
+const liquidOozeRosters = [
+    [named('Vaporeon', ['Giga Drain', 'Leech Seed', 'Recover']),
+        {...named('Clefable', ['Giga Drain']), ability:'Magic Guard'}],
+    [{...named('Swalot', ['Recover']), ability:'Liquid Ooze'}],
+];
+const compoundEyesRosters = [
+    [{...named('Froslass', ['Sing', 'Recover']), ability:'Compound Eyes', item:'Wide Lens'}],
+    [{...named('Froslass', ['Snowscape', 'Recover']), ability:'Snow Cloak'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1387,6 +1404,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 1','switch 2'],
         ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 1']],
         pranksterRosters, 'bss-prankster'],
+    ['bssregmc', [['team 1','team 1'], ['move 2','move 2'], ['move 1','move 1'], ['move 1','move 3']],
+        screenBreakingRosters, 'bss-psychic-fangs'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ...Array(3).fill(['move 2','move 1']),
+        ['switch 2','move 1']], toxicDebrisRosters, 'bss-toxic-debris'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['switch 2','move 1'],
+        ['move 1','move 1']], liquidOozeRosters, 'bss-liquid-ooze'],
+    ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ...Array(5).fill(['move 1','move 2'])],
+        compoundEyesRosters, 'bss-compound-eyes'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

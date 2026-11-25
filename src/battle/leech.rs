@@ -2,7 +2,78 @@
 
 use super::*;
 
+#[derive(Clone, Copy)]
+pub(super) enum DrainKind {
+    Move,
+    LeechSeed,
+}
+
 impl Battle {
+    pub(super) fn transfer_health(
+        &mut self,
+        recipient: Position,
+        donor: Position,
+        amount: u32,
+        kind: DrainKind,
+    ) {
+        if self.event_ability(donor) == "liquidooze" {
+            if self.format.report_exact_hp {
+                let effect = match kind {
+                    DrainKind::Move => "drain",
+                    DrainKind::LeechSeed => "leechseed",
+                };
+                self.add(format!(
+                    "|debug|Heal is occurring: {} <- {} :: {effect}",
+                    self.ident(recipient),
+                    self.ident(donor)
+                ));
+            }
+            if amount == 0 || self.mon(recipient).hp == 0 || !self.active_effects(recipient) {
+                return;
+            }
+            if self.event_ability(recipient) == "magicguard" {
+                self.add(format!(
+                    "|-activate|{}|ability: Liquid Ooze",
+                    self.ident(donor)
+                ));
+                if self.format.report_exact_hp {
+                    self.add("|debug|damage event failed");
+                }
+                return;
+            }
+            let mon = self.mon_mut(recipient);
+            let original_hp = mon.hp;
+            mon.hp = mon.hp.saturating_sub(amount);
+            self.add_health_line_with(
+                "-damage",
+                recipient,
+                false,
+                &format!("|[from] ability: Liquid Ooze|[of] {}", self.ident(donor)),
+            );
+            self.emergency_exit(recipient, original_hp);
+            return;
+        }
+        if amount == 0 || !self.active_effects(recipient) {
+            return;
+        }
+        let mon = self.mon_mut(recipient);
+        if mon.hp == 0 || mon.hp >= mon.max_hp.get() {
+            return;
+        }
+        mon.hp = (mon.hp + amount).min(mon.max_hp.get());
+        match kind {
+            DrainKind::Move => self.add_health_line_with(
+                "-heal",
+                recipient,
+                false,
+                &format!("|[from] drain|[of] {}", self.ident(donor)),
+            ),
+            DrainKind::LeechSeed => {
+                self.add_health_line_with("-heal", recipient, false, "|[silent]")
+            }
+        }
+    }
+
     pub(super) fn leech_seed(&mut self, source: Position, target: Position) -> bool {
         let mon = self.mon_mut(target);
         if mon.seeded_from.is_some() {
@@ -36,13 +107,14 @@ impl Battle {
             false,
             &format!("|[from] Leech Seed|[of] {}", self.ident(source)),
         );
-        let mon = self.mon_mut(source);
-        if loss > 0 && mon.hp > 0 && mon.hp < mon.max_hp.get() {
-            mon.hp = (mon.hp + loss).min(mon.max_hp.get());
-            self.add_health_line_with("-heal", source, false, "|[silent]");
+        if loss > 0 {
+            self.transfer_health(source, target, loss, DrainKind::LeechSeed);
         }
         if self.mon(target).hp == 0 {
             self.mark_fainted(target);
+        }
+        if self.mon(source).hp == 0 && !self.mon(source).fainted {
+            self.mark_fainted(source);
         }
     }
 }

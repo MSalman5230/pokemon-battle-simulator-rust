@@ -201,6 +201,29 @@ impl Battle {
         true
     }
 
+    pub(super) fn scatter_toxic_debris(&mut self, target: Position, source: Position) {
+        let player = if target.player == source.player {
+            source.player.foe()
+        } else {
+            source.player
+        };
+        let hazard = Hazard::ToxicSpikes;
+        if self.sides[player.index()]
+            .as_ref()
+            .unwrap()
+            .hazards
+            .iter()
+            .any(|&(id, layers)| id == hazard && layers >= hazard.cap())
+        {
+            return;
+        }
+        self.add(format!(
+            "|-activate|{}|ability: Toxic Debris",
+            self.ident(target)
+        ));
+        self.add_hazard(player, hazard);
+    }
+
     pub(super) fn side_ident(&self, player: Player) -> String {
         format!(
             "{}: {}",

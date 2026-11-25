@@ -1,5 +1,5 @@
 use super::*;
-use super::{abilities::BoostOrigin, charge::ChargeSpec, damage::RegularHit};
+use super::{abilities::BoostOrigin, charge::ChargeSpec, damage::RegularHit, leech::DrainKind};
 use crate::{
     choice::{MoveChoice, SpecialChoice, TargetKind},
     dex::{Accuracy, Category},
@@ -1041,6 +1041,8 @@ impl Battle {
                     | "mindblown"
                     | "soak"
                     | "ragingbull"
+                    | "brickbreak"
+                    | "psychicfangs"
                     | "focusenergy"
                     | "helpinghand"
                     | "focuspunch"
@@ -3239,10 +3241,11 @@ impl Battle {
                 self.add(format!("|-immune|{}|[ohko]", self.ident(pos)));
                 return false;
             }
-            if matches!(accuracy, Accuracy::Percent(_)) && !ohko {
-                if self.format.report_exact_hp && self.active_weather_evasion(pos).1 {
-                    self.add("|debug|Snow Cloak - decreasing accuracy");
-                }
+            let numeric_accuracy = matches!(accuracy, Accuracy::Percent(_));
+            if !ohko {
+                self.prepare_accuracy_modifiers(source, pos, numeric_accuracy);
+            }
+            if numeric_accuracy && !ohko {
                 self.sort_unaware_handlers();
                 if !self.move_ignores_evasion(source, move_data) {
                     self.sort_unaware_handlers();
@@ -3676,7 +3679,10 @@ impl Battle {
             return true;
         }
 
-        if move_data.name == "Raging Bull" {
+        if matches!(
+            move_data.name.as_str(),
+            "Raging Bull" | "Brick Break" | "Psychic Fangs"
+        ) {
             self.break_screens(spread_targets[0].player);
         }
         let screen_handlers = self
@@ -3913,16 +3919,7 @@ impl Battle {
                     && landed > 0
                 {
                     let restored = (landed * u32::from(a) + u32::from(b) / 2) / u32::from(b);
-                    let user = self.mon_mut(source);
-                    if user.hp > 0 && user.hp < user.max_hp.get() {
-                        user.hp = (user.hp + restored.max(1)).min(user.max_hp.get());
-                        self.add_health_line_with(
-                            "-heal",
-                            source,
-                            false,
-                            &format!("|[from] drain|[of] {}", self.ident(target)),
-                        );
-                    }
+                    self.transfer_health(source, target, restored, DrainKind::Move);
                 }
             }
             for &(target, _) in &damage {
@@ -4141,6 +4138,11 @@ impl Battle {
                 }
                 if move_type == "Dark" && self.event_ability(target) == "justified" {
                     self.ability_boost(target, "Justified", BoostStat::Atk, 1, false);
+                }
+                if move_data.category == Category::Physical
+                    && self.event_ability(target) == "toxicdebris"
+                {
+                    self.scatter_toxic_debris(target, source);
                 }
                 if self.event_ability(target) == "weakarmor"
                     && move_data.category == Category::Physical
@@ -4799,6 +4801,9 @@ impl Pokemon {
                 | "justified"
                 | "poisonheal"
                 | "prankster"
+                | "liquidooze"
+                | "toxicdebris"
+                | "compoundeyes"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"
