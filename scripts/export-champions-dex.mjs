@@ -145,6 +145,11 @@ const data = mod => {
 };
 const main = data('champions');
 const mb = data('championsregmb');
+const metronomePool = mod => Dex.mod(mod).moves.all()
+    .filter(move => (!move.isNonstandard || move.isNonstandard === 'Unobtainable') && move.flags.metronome)
+    .sort((a, b) => a.num - b.num).map(move => move.id);
+const metronomeMoves = metronomePool('champions');
+assert.deepEqual(metronomePool('championsregmb'), metronomeMoves);
 // Store different records only. Some Reg M-B moves change PP, not just legality.
 const regmb = Object.fromEntries(Object.entries(mb).map(([key, records]) => {
     assert.deepEqual(Object.keys(records), Object.keys(main[key]));
@@ -180,4 +185,4 @@ function recordLines(obj) {
                 .map(([id, row]) => JSON.stringify(id) + ': ' + JSON.stringify(row)).join(',\n') + '\n}') :
             JSON.stringify(value))).join(',\n') + '\n}';
 }
-writeFileSync(new URL('data/champions.json', root), recordLines({revision, formats, ...main, regmb}) + '\n');
+writeFileSync(new URL('data/champions.json', root), recordLines({revision, formats, ...main, regmb, metronomeMoves}) + '\n');

@@ -2065,6 +2065,28 @@ fn z_sleep_talk_powers_the_called_attack_without_spending_a_second_z_move() {
 }
 
 #[test]
+fn inherited_callers_choose_the_same_moves_and_targets_as_showdown() {
+    replay(include_str!(
+        "fixtures/custom-nature-power-terrain-and-z-call.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-me-first-reads-queued-attack.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-mirror-move-reads-selected-move.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-assist-selects-from-team-moves.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-metronome-chooses-pinned-attack.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-metronome-chooses-pinned-hazard.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

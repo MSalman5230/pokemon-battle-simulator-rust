@@ -1887,6 +1887,25 @@ const legacyZSleepTalkRosters = [
     [{...named('Komala', ['Sleep Talk', 'Thunderbolt']), ability:'Comatose', item:'Normalium Z'}],
     [named('Chansey', ['Protect', 'Toxic', 'Recover'])],
 ];
+const legacyNaturePowerRosters = [
+    [{...named('Jolteon', ['Nature Power', 'Electric Terrain', 'Misty Terrain', 'Psychic Terrain']),
+        item:'Normalium Z'}],
+    [named('Chansey', ['Recover', 'Protect'])],
+];
+const legacyMeFirstRosters = [
+    [named('Jolteon', ['Me First'])], [named('Chansey', ['Tackle', 'Recover', 'Quick Attack'])],
+];
+const legacyMirrorMoveRosters = [
+    [named('Chansey', ['Mirror Move'])], [named('Jolteon', ['Tackle', 'Recover'])],
+];
+const legacyAssistRosters = [
+    [named('Smeargle', ['Assist']), named('Vaporeon', ['Dig', 'Water Gun']),
+        named('Jolteon', ['Protect', 'Thunderbolt'])],
+    [named('Chansey', ['Recover'])],
+];
+const legacyMetronomeRosters = [
+    [named('Mew', ['Metronome'], 'N')], [named('Chansey', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3339,6 +3358,19 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','move 3']], legacyConversionTwoRosters, 'custom-conversion-two-uses-executed-type'],
     ['customgame', [['team 1','team 1'], ['move 1 zmove','move 1'], ['move 1','move 2'], ['move 1','move 3']],
         legacyZSleepTalkRosters, 'custom-z-sleep-talk-damaging-call'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 2'], ['move 2','move 1'], ['move 1 zmove','move 1'],
+        ['move 3','move 1'], ['move 1','move 1'], ['move 4','move 1'], ['move 1','move 1']],
+        legacyNaturePowerRosters, 'custom-nature-power-terrain-and-z-call'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 3']],
+        legacyMeFirstRosters, 'custom-me-first-reads-queued-attack'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        legacyMirrorMoveRosters, 'custom-mirror-move-reads-selected-move'],
+    ['customgame', [['team 123','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1']],
+        legacyAssistRosters, 'custom-assist-selects-from-team-moves'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']], legacyMetronomeRosters,
+        'custom-metronome-chooses-pinned-attack', '1,2,3,8'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']], legacyMetronomeRosters,
+        'custom-metronome-chooses-pinned-hazard', '1,2,3,15'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -51,6 +51,8 @@ pub struct Dex {
     types: Table<TypeData>,
     aliases: Table<String>,
     regmb: Override,
+    #[serde(rename = "metronomeMoves")]
+    metronome_moves: Vec<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -389,6 +391,10 @@ impl Dex {
         self.moves
             .keys()
             .filter_map(move |id| self.moves(dex_mod, id))
+    }
+
+    pub(crate) fn metronome_moves(&self) -> &[String] {
+        &self.metronome_moves
     }
 
     pub fn item(&self, dex_mod: Mod, id: &str) -> Option<&Item> {

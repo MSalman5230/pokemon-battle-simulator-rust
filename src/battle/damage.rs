@@ -725,6 +725,9 @@ impl Battle {
         if converted && (hit == 1 || user.converted_move_type(&move_data.move_type).1) {
             power_modifier = crate::mechanics::chain(4915, power_modifier);
         }
+        if user.volatile_ids().contains(&"mefirst") {
+            power_modifier = chain(6144, power_modifier);
+        }
         if dry_skin {
             power_modifier = crate::mechanics::chain(5120, power_modifier);
         }

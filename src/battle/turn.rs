@@ -85,6 +85,11 @@ impl ExternalEffect {
 enum CallSource {
     SleepTalk,
     Copycat,
+    Assist,
+    Metronome,
+    NaturePower,
+    MirrorMove,
+    MeFirst,
 }
 
 impl CallSource {
@@ -92,6 +97,11 @@ impl CallSource {
         match self {
             Self::SleepTalk => ("|[from] move: Sleep Talk", "Sleep Talk called"),
             Self::Copycat => ("|[from] move: Copycat", "Copycat called"),
+            Self::Assist => ("|[from] move: Assist", "Assist called"),
+            Self::Metronome => ("|[from] move: Metronome", "Metronome called"),
+            Self::NaturePower => ("|[from] move: Nature Power", "Nature Power called"),
+            Self::MirrorMove => ("|[from] move: Mirror Move", "Mirror Move called"),
+            Self::MeFirst => ("|[from] move: Me First", "Me First called"),
         }
     }
 }
@@ -1308,6 +1318,11 @@ impl Battle {
                     | "conversion2"
                     | "mimic"
                     | "sketch"
+                    | "assist"
+                    | "metronome"
+                    | "naturepower"
+                    | "mirrormove"
+                    | "mefirst"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -2722,6 +2737,7 @@ impl Battle {
             BeakBlast,
             ShellTrap,
             Pursuit,
+            MeFirst,
             HelpingHand,
             Counter,
             Recharge,
@@ -3127,6 +3143,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"pursuit") {
                 timers.push((pos, Effect::Pursuit, priority(0, 2)));
             }
+            if mon.volatile_ids().contains(&"mefirst") {
+                timers.push((pos, Effect::MeFirst, priority(0, 2)));
+            }
             if mon.helping_hand != 0 {
                 timers.push((pos, Effect::HelpingHand, priority(0, 2)));
             }
@@ -3418,6 +3437,7 @@ impl Battle {
                     mon.untrack_volatile("shelltrap");
                 }
                 Effect::Pursuit => mon.untrack_volatile("pursuit"),
+                Effect::MeFirst => mon.untrack_volatile("mefirst"),
                 Effect::HelpingHand => {
                     mon.helping_hand = 0;
                     mon.untrack_volatile("helpinghand");
@@ -3626,6 +3646,7 @@ impl Battle {
                     | Effect::BeakBlast
                     | Effect::ShellTrap
                     | Effect::Pursuit
+                    | Effect::MeFirst
                     | Effect::ChillyReception
                     | Effect::Counter
                     | Effect::Electrify => true,
@@ -3882,6 +3903,81 @@ impl Battle {
             });
         let (_, source) = self.run_move(source, MoveInvocation::Called { slot, call }, queue);
         self.mon(source).move_failed_this_turn
+    }
+
+    fn random_called_move(&mut self, source: Position, from: CallSource) -> Option<&'static Move> {
+        match from {
+            CallSource::Metronome => {
+                let pool = DEX.metronome_moves();
+                let id = &pool[self.rng.below(pool.len() as u32) as usize];
+                DEX.moves(self.format.dex_mod, id)
+            }
+            CallSource::Assist => {
+                let roster = self.mon(source).roster_index;
+                let choices: Vec<_> = self
+                    .party(source.player)
+                    .unwrap()
+                    .iter()
+                    .filter(|mon| mon.roster_index != roster)
+                    .flat_map(|mon| mon.moves.iter().map(|slot| slot.move_data))
+                    .filter(|m| !m.is_z_move && !m.flags.contains_key("noassist"))
+                    .collect();
+                if choices.is_empty() {
+                    None
+                } else {
+                    Some(choices[self.rng.below(choices.len() as u32) as usize])
+                }
+            }
+            _ => unreachable!("not a random move caller"),
+        }
+    }
+
+    fn targeted_called_move(
+        &mut self,
+        target: Position,
+        from: CallSource,
+        queue: &[Action],
+    ) -> Option<&'static Move> {
+        match from {
+            CallSource::NaturePower => {
+                let id = match self.terrain() {
+                    Some(Terrain::Electric) => "thunderbolt",
+                    Some(Terrain::Grassy) => "energyball",
+                    Some(Terrain::Misty) => "moonblast",
+                    Some(Terrain::Psychic) => "psychic",
+                    None => "triattack",
+                };
+                DEX.moves(self.format.dex_mod, id)
+            }
+            CallSource::MirrorMove => {
+                let opponent = self.mon(target);
+                if opponent.last_declared_move.is_none() && !opponent.last_used_type_known {
+                    self.unsupported_called_move = Some((
+                        "Mirror Move",
+                        "the target's previous selected move was not observed",
+                    ));
+                    return None;
+                }
+                opponent
+                    .last_declared_move
+                    .filter(|data| !data.is_z_move && data.flags.contains_key("mirror"))
+            }
+            CallSource::MeFirst => {
+                if self.mon(target).recharge != 0 {
+                    return None;
+                }
+                let next = queue.iter().find(|action| {
+                    action.actor == Some(target) && matches!(action.kind, ActionKind::Move { .. })
+                })?;
+                next.move_data.filter(|m| {
+                    !next.z_move
+                        && !m.is_z_move
+                        && m.category != Category::Status
+                        && !m.flags.contains_key("failmefirst")
+                })
+            }
+            _ => unreachable!("not a targeted move caller"),
+        }
     }
 
     // Whether this action reached the move attempt, for AfterMove hooks.
@@ -4943,6 +5039,35 @@ impl Battle {
             );
             self.each_event();
             self.each_event();
+            return true;
+        }
+        if let Some(from) = match move_data.name.as_str() {
+            "Assist" => Some(CallSource::Assist),
+            "Metronome" => Some(CallSource::Metronome),
+            _ => None,
+        } {
+            if let Some(called) = self.random_called_move(source, from) {
+                result.failed = self.run_called_move(
+                    source,
+                    called,
+                    Call {
+                        from,
+                        caller: slot.expect("move callers can't be recursively chosen"),
+                        priority,
+                        prankster,
+                        inherits_z: z_status,
+                        target: None,
+                    },
+                    queue,
+                );
+                self.each_event();
+                self.each_event();
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
+                result.failed = true;
+            }
             return true;
         }
         if !delayed && matches!(move_data.name.as_str(), "Future Sight" | "Doom Desire") {
@@ -6260,6 +6385,37 @@ impl Battle {
                     ));
                 }
             }
+        }
+        if let Some(from) = match move_data.name.as_str() {
+            "Nature Power" => Some(CallSource::NaturePower),
+            "Mirror Move" => Some(CallSource::MirrorMove),
+            "Me First" => Some(CallSource::MeFirst),
+            _ => None,
+        } {
+            let target = spread_targets[0];
+            if let Some(called) = self.targeted_called_move(target, from, queue) {
+                if from == CallSource::MeFirst {
+                    self.mon_mut(source).track_volatile("mefirst");
+                }
+                result.failed = self.run_called_move(
+                    source,
+                    called,
+                    Call {
+                        from,
+                        caller: slot.expect("move callers can't be recursively chosen"),
+                        priority,
+                        prankster,
+                        inherits_z: z_status,
+                        target: Some(target),
+                    },
+                    queue,
+                );
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+            }
+            return true;
         }
         if move_data.name == "Spectral Thief" {
             self.steal_positive_stages(source, spread_targets[0], base);
