@@ -4,7 +4,7 @@
 use super::{Game, OriginalSet, PublicState, wire};
 use crate::{
     battle::hydration::{WorldInput, hydrate},
-    input::{Input, Player},
+    input::Player,
     rng::{Rng, Seed},
 };
 use serde::{Deserialize, Serialize, Serializer};
@@ -199,10 +199,7 @@ impl Search {
             for &action in &self.candidates {
                 let mut branch = base.clone();
                 if let Some(seed) = seed {
-                    branch
-                        .stream
-                        .apply(Input::Reseed(seed))
-                        .map_err(|e| e.to_string())?;
+                    branch.stream.reseed_rollout(seed);
                 }
                 branch.step([Some(action), Some(replies[selected].id)])?;
                 let mut continuations = 0;

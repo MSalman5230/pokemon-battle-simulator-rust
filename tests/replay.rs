@@ -770,3 +770,13 @@ fn voice_type_changes_bubble_modifiers_and_bulletproof_follow_native_hit_steps()
     ));
     replay(include_str!("fixtures/bss-water-bubble-bulletproof.json"));
 }
+
+#[test]
+fn headless_controls_match_reseeding_tiebreaks_and_forced_results() {
+    replay(include_str!("fixtures/bss-reseed-tiebreak-fraction.json"));
+    replay(include_str!("fixtures/bss-tiebreak-raw-hp.json"));
+    replay(include_str!("fixtures/bss-tiebreak-tie.json"));
+    replay(include_str!("fixtures/bss-forcewin.json"));
+    replay(include_str!("fixtures/bss-forcelose.json"));
+    replay(include_str!("fixtures/bss-forcetie.json"));
+}

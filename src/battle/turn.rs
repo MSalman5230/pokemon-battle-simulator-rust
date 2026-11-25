@@ -1921,21 +1921,12 @@ impl Battle {
         if alive == [true, true] {
             return false;
         }
-        self.winner = match alive {
+        let winner = match alive {
             [true, false] => Some(Player::P1),
             [false, true] => Some(Player::P2),
             _ => self.last_faint,
         };
-        self.add("|");
-        if let Some(winner) = self.winner {
-            self.add(format!(
-                "|win|{}",
-                self.sides[winner.index()].as_ref().unwrap().name
-            ));
-        } else {
-            self.add("|tie");
-        }
-        self.phase = Phase::Ended;
+        self.finish(winner);
         true
     }
 

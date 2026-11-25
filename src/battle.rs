@@ -15,6 +15,7 @@ mod abilities;
 use abilities::Attention;
 mod attract;
 mod charge;
+mod control;
 mod damage;
 mod disable;
 mod forme;
@@ -94,11 +95,30 @@ impl BattleStream {
             Input::Choose(player, choice) => battle.choose(player, choice),
             Input::Reseed(seed) => {
                 battle.rng = Rng::new(seed);
+                battle.add("|message|The battle's RNG was reset.");
                 Ok(())
             }
+            Input::ForceWin(winner) => {
+                battle.finish(winner);
+                Ok(())
+            }
+            Input::ForceLose(loser) => {
+                if battle.sides[loser.index()].is_some() {
+                    battle.finish(Some(loser.foe()));
+                }
+                Ok(())
+            }
+            Input::TieBreak => battle.tiebreak(),
             Input::ShowOpenTeamSheets => battle.show_open_team_sheets(),
             Input::Start(_) => unreachable!(),
         }
+    }
+
+    pub(crate) fn reseed_rollout(&mut self, seed: Seed) {
+        self.battle
+            .as_mut()
+            .expect("hydrated rollout has a battle")
+            .rng = Rng::new(seed);
     }
 }
 

@@ -45,6 +45,9 @@ pub enum Input {
     SetPlayer(Player, PlayerOptions),
     Choose(Player, Choice),
     Reseed(Seed),
+    ForceWin(Option<Player>),
+    ForceLose(Player),
+    TieBreak,
     ShowOpenTeamSheets,
 }
 
@@ -182,6 +185,13 @@ impl FromStr for Input {
                 .split_once(' ')
                 .map_or((input, ""), |(a, b)| (a, b.trim_start()))
         }
+        fn parse_player(side: &str) -> Result<Player, InputError> {
+            match side {
+                "p1" => Ok(Player::P1),
+                "p2" => Ok(Player::P2),
+                _ => Err(InputError::Syntax("expected p1 or p2")),
+            }
+        }
         let (command, data) = split(line.trim_end());
         match command {
             ">start" => serde_json::from_str(data)
@@ -189,11 +199,7 @@ impl FromStr for Input {
                 .map_err(InputError::Json),
             ">player" => {
                 let (side, data) = split(data);
-                let player = match side {
-                    "p1" => Player::P1,
-                    "p2" => Player::P2,
-                    _ => return Err(InputError::Syntax("expected p1 or p2")),
-                };
+                let player = parse_player(side)?;
                 serde_json::from_str(data)
                     .map(|options| Self::SetPlayer(player, options))
                     .map_err(InputError::Json)
@@ -209,6 +215,10 @@ impl FromStr for Input {
                     .map_err(InputError::Choice)
             }
             ">reseed" => data.parse().map(Self::Reseed).map_err(InputError::Seed),
+            ">forcewin" => parse_player(data).map(|player| Self::ForceWin(Some(player))),
+            ">forcetie" => Ok(Self::ForceWin(None)),
+            ">forcelose" => parse_player(data).map(Self::ForceLose),
+            ">tiebreak" => Ok(Self::TieBreak),
             ">show-openteamsheets" => Ok(Self::ShowOpenTeamSheets),
             _ => Err(InputError::Syntax("unsupported headless battle command")),
         }

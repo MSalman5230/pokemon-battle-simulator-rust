@@ -985,6 +985,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2, move 2','move 1, move 2']], sparklingAriaRosters, 'vgc-sparkling-aria-liquid-voice'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['switch 2','move 3']],
         waterBubbleRosters, 'bss-water-bubble-bulletproof'],
+    ['bssregmc', [['team 12','team 12'], ['>reseed 5678,222,111,4096',null], ['move 1','move 1'],
+        ['>tiebreak',null]], doubleShockRosters, 'bss-reseed-tiebreak-fraction'],
+    ['bssregmc', [['team 12','team 12'], ['>tiebreak',null]], burnUpRosters, 'bss-tiebreak-raw-hp'],
+    ['bssregmc', [['team 12','team 12'], ['>tiebreak',null]], [burnUpRosters[0],burnUpRosters[0]], 'bss-tiebreak-tie'],
+    ['bssregmc', [['>forcewin p2',null]], burnUpRosters, 'bss-forcewin'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','>forcelose p2']], burnUpRosters, 'bss-forcelose'],
+    ['bssregmc', [['team 12','team 12'], ['>forcetie',null]], burnUpRosters, 'bss-forcetie'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
