@@ -818,3 +818,11 @@ fn unaware_ignores_relevant_boosts_and_respects_mold_breaker() {
     replay(include_str!("fixtures/bss-unaware.json"));
     replay(include_str!("fixtures/vgc-unaware-speed-tie.json"));
 }
+
+#[test]
+fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
+    replay(include_str!(
+        "fixtures/bss-baton-pass-boosts-and-shield.json"
+    ));
+    replay(include_str!("fixtures/bss-baton-pass-conditions.json"));
+}

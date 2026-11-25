@@ -710,6 +710,14 @@ const unawareRosters = [
         {...named('Haxorus', ['Swords Dance', 'Tackle']), ability:'Mold Breaker'}],
 ];
 const doubleUnawareRosters = [unawareRosters[0], [unawareRosters[0][0], named('Espeon', ['Recover'])]];
+const batonShieldRosters = [
+    [named('Jolteon', ['Calm Mind', 'Substitute', 'Baton Pass']), named('Glaceon', ['Water Gun', 'Recover'])],
+    [named('Umbreon', ['Toxic', 'Recover', 'Tackle']), named('Vaporeon', ['Recover'])],
+];
+const batonBoundRosters = [
+    [named('Vaporeon', ['Recover', 'Baton Pass']), named('Umbreon', ['Recover'])],
+    [named('Ferrothorn', ['Leech Seed', 'Salt Cure', 'Recover', 'Infestation']), named('Mamoswine', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1074,6 +1082,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 3','switch 2'], ['move 2','move 1'], ['move 2','move 2']], unawareRosters, 'bss-unaware'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'],
         ['move 2 1, move 1','move 2 1, move 1']], doubleUnawareRosters, 'vgc-unaware-speed-tie'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 3','move 3'],
+        ['switch 2',null], ['move 1','move 2']], batonShieldRosters, 'bss-baton-pass-boosts-and-shield'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 4'], ['move 1','move 2'],
+        ['move 2','move 3'], ['switch 2',null]], batonBoundRosters, 'bss-baton-pass-conditions'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

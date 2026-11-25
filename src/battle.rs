@@ -36,6 +36,7 @@ use screens::Screen;
 mod status;
 mod substitute;
 mod support;
+mod switch_copy;
 mod tactical;
 mod terrain;
 mod trap;

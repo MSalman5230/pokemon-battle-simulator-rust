@@ -1046,6 +1046,7 @@ impl Battle {
                     | "thundercage"
                     | "whirlpool"
                     | "wrap"
+                    | "batonpass"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1275,6 +1276,10 @@ impl Battle {
         }
         let rules = self.stat_rules;
         let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
+        if let Some(Pivot::Move(pass @ ("Baton Pass" | "Shed Tail"))) = pivot {
+            let (active, incoming) = party.split_at_mut(bench_slot);
+            incoming[0].receive_pass(&active[outgoing.slot], pass == "Shed Tail");
+        }
         party[outgoing.slot].reset_forme(rules);
         party[outgoing.slot].protection = None;
         party[outgoing.slot].stall = None;
@@ -1282,11 +1287,6 @@ impl Battle {
         party[outgoing.slot].stats_raised = false;
         party[outgoing.slot].flinched = false;
         party[outgoing.slot].lost_focus = false;
-        let passed_substitute = if pivot == Some(Pivot::Move("Shed Tail")) {
-            party[outgoing.slot].substitute_hp
-        } else {
-            0
-        };
         party[outgoing.slot].substitute_hp = 0;
         party[outgoing.slot].recharge = 0;
         party[outgoing.slot].charge = None;
@@ -1327,10 +1327,6 @@ impl Battle {
             party[outgoing.slot].status = Status::Healthy;
         }
         party.swap(outgoing.slot, bench_slot);
-        if passed_substitute > 0 {
-            party[outgoing.slot].substitute_hp = passed_substitute;
-            party[outgoing.slot].track_volatile("substitute");
-        }
         party[outgoing.slot].used_moves = 0;
         if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
             party[outgoing.slot].status = Status::Toxic(0);
@@ -1867,11 +1863,13 @@ impl Battle {
             if mon.seeded_from.is_some() {
                 timers.push((pos, Effect::LeechSeed, priority(8, 2)));
             }
-            if mon.volatile_ids().contains(&"saltcure") {
-                timers.push((pos, Effect::SaltCure, priority(13, 2)));
-            }
-            if mon.partial_trap.is_some() {
-                timers.push((pos, Effect::PartialTrap, priority(13, 2)));
+            for &id in mon.volatile_ids() {
+                let effect = match id {
+                    "saltcure" => Effect::SaltCure,
+                    "partiallytrapped" => Effect::PartialTrap,
+                    _ => continue,
+                };
+                timers.push((pos, effect, priority(13, 2)));
             }
             if mon.volatile_ids().contains(&"focuspunch") {
                 timers.push((pos, Effect::FocusPunch, priority(0, 2)));
@@ -2676,6 +2674,18 @@ impl Battle {
                 }
                 self.each_event();
                 self.each_event();
+            }
+            return true;
+        }
+        if move_data.name == "Baton Pass" {
+            self.protean_prepare(source, move_type);
+            if self.first_bench(source.player, 0).is_some() {
+                self.mon_mut(source).pivot_move = Some(Pivot::Move("Baton Pass"));
+                self.each_event();
+                self.each_event();
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
             }
             return true;
         }
