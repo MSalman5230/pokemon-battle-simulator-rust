@@ -386,6 +386,17 @@ impl Battle {
                 self.add("|debug|Technician boost");
             }
         }
+        let glove = self.active_effects(source)
+            && self.mon(source).effective_item() == "punchingglove"
+            && move_data.flags.contains_key("punch");
+        if self.format.report_exact_hp && move_data.flags.contains_key("punch") {
+            if self.event_ability(source) == "ironfist" {
+                self.add("|debug|Iron Fist boost");
+            }
+            if glove {
+                self.add("|debug|Punching Glove boost");
+            }
+        }
         let mut spirit_handlers = [0; 2];
         let mut spirit_count = 0;
         let mut aura_handlers = [0; 4];
@@ -666,6 +677,12 @@ impl Battle {
         let defense_item_modifier = match mon.effective_item() {
             "eviolite" if mon.base_species.can_evolve => 6144,
             "assaultvest" if !defense_uses_def => 6144,
+            "deepseascale" if !defense_uses_def && mon.base_species.name == "Clamperl" => 8192,
+            "metalpowder"
+                if defense_uses_def && mon.species.name == "Ditto" && mon.transformed.is_none() =>
+            {
+                8192
+            }
             _ => 4096,
         };
         let def = tr.modify(
@@ -705,6 +722,9 @@ impl Battle {
             for _ in 0..spirit_count {
                 power_modifier = chain(6144, power_modifier);
             }
+        }
+        if glove {
+            power_modifier = chain(4506, power_modifier);
         }
         if source != target && aura_applies {
             power_modifier = chain(if aura_break { 3072 } else { 5448 }, power_modifier);

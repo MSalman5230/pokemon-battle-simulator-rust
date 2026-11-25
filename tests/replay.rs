@@ -2107,6 +2107,31 @@ fn sky_drop_locks_the_carrier_and_lifts_its_target_until_landing_or_gravity() {
 }
 
 #[test]
+fn inherited_equipment_checks_the_species_and_changes_the_correct_stat_or_event() {
+    replay(include_str!(
+        "fixtures/custom-soul-dew-boosts-only-lati.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-origin-relic-power-and-transfer.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-thick-club-boosts-alolan-marowak.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-deep-sea-scale-and-tooth.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-ditto-powders-and-transform.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-punching-glove-prevents-contact.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-speed-items-and-fractional-priority.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

@@ -1731,6 +1731,11 @@ impl Battle {
             action.fractional_priority = 0.1;
             self.add(format!("|-activate|{}|item: Quick Claw", self.ident(actor)));
         }
+        if matches!(self.mon(actor).item.as_str(), "laggingtail" | "fullincense")
+            && !self.debug_ignored_item(actor, "FractionalPriority")
+        {
+            action.fractional_priority = -0.1;
+        }
     }
 
     fn random_target(&mut self, source: Position, kind: TargetKind) -> Option<Position> {
@@ -4652,6 +4657,9 @@ impl Battle {
         } else {
             "Special"
         };
+        if !unannounced && self.mon(source).item == "punchingglove" {
+            self.debug_ignored_item(source, "ModifyMove");
+        }
         let contact = (!sky_drop || releasing_charge) && self.move_makes_contact(source, move_data);
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
@@ -7269,6 +7277,9 @@ impl Battle {
                     } else if swapped == Some(false) {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        if move_data.name != "Skill Swap" {
+                            self.report_no_move_effect();
+                        }
                     }
                 }
                 if move_data.name == "Leech Seed" {
@@ -9507,6 +9518,14 @@ impl Pokemon {
             ("ironball", false) => 2048,
             _ => 4096,
         };
+        match self.effective_item() {
+            "machobrace" | "poweranklet" | "powerband" | "powerbelt" | "powerbracer"
+            | "powerlens" | "powerweight" => multiplier /= 2,
+            "quickpowder" if self.species.name == "Ditto" && self.transformed.is_none() => {
+                multiplier *= 2
+            }
+            _ => {}
+        }
         if swamp {
             multiplier /= 4;
         }
@@ -9877,6 +9896,32 @@ impl Pokemon {
                 | "scopelens"
                 | "razorclaw"
                 | "leek"
+                | "stick"
+                | "luckypunch"
+                | "adamantorb"
+                | "lustrousorb"
+                | "griseousorb"
+                | "souldew"
+                | "deepseatooth"
+                | "deepseascale"
+                | "thickclub"
+                | "metalpowder"
+                | "quickpowder"
+                | "oddincense"
+                | "rockincense"
+                | "roseincense"
+                | "seaincense"
+                | "waveincense"
+                | "punchingglove"
+                | "fullincense"
+                | "laggingtail"
+                | "machobrace"
+                | "poweranklet"
+                | "powerband"
+                | "powerbelt"
+                | "powerbracer"
+                | "powerlens"
+                | "powerweight"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)

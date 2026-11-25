@@ -124,6 +124,10 @@ const data = mod => {
         items: table(dex.items.all(), e => {
             const mask = ['wellspringmask', 'hearthflamemask', 'cornerstonemask'].includes(e.id);
             const plate = e.onPlate && !e.zMove;
+            const relic = {
+                adamantcrystal: 'Dialga', lustrousglobe: 'Palkia', griseouscore: 'Giratina',
+                rustedsword: 'Zacian', rustedshield: 'Zamazenta',
+            }[e.id];
             return {...props(e, ['name', 'isNonstandard', 'megaStone', 'zMoveType', 'zMoveFrom', 'itemUser']),
                 isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined, fling: flingData(e),
                 inertHeldItem: inertHeldItem(e) || undefined,
@@ -134,7 +138,7 @@ const data = mod => {
                 driveType: e.onDrive || undefined,
                 memoryType: e.onMemory || undefined,
                 maskForm: mask ? e.forcedForme : undefined,
-                protectedFormBase: plate ? 'Arceus' : e.onDrive ? 'Genesect' : e.onMemory ? 'Silvally' : mask ? 'Ogerpon' : undefined,
+                protectedFormBase: plate ? 'Arceus' : e.onDrive ? 'Genesect' : e.onMemory ? 'Silvally' : mask ? 'Ogerpon' : relic,
                 naturalGift: e.naturalGift || undefined,
                 handlers: handlers(e)};
         }),

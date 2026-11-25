@@ -1,0 +1,1022 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Clamperl\",\"moves\":[\"Water Gun\"],\"gender\":\"F\",\"name\":\"Clamperl\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Deep Sea Tooth\"},{\"species\":\"Houndoom\",\"moves\":[\"Flamethrower\"],\"gender\":\"F\",\"name\":\"Houndoom\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chansey\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Clamperl\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Clamperl\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Deep Sea Scale\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Clamperl, L50, F|",
+          "|poke|p1|Houndoom, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Clamperl, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Clamperl, L50, F|",
+          "|poke|p1|Houndoom, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Clamperl, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Clamperl, L50, F|",
+          "|poke|p1|Houndoom, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Clamperl, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Clamperl",
+                "details": "Clamperl, L50, F",
+                "condition": "110/110",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 105,
+                  "spa": 94,
+                  "spd": 75,
+                  "spe": 52
+                },
+                "moves": [
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "deepseatooth",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Houndoom",
+                "details": "Houndoom, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 70,
+                  "spa": 130,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "flamethrower"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Clamperl",
+                "details": "Clamperl, L50, F",
+                "condition": "110/110",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 105,
+                  "spa": 94,
+                  "spd": 75,
+                  "spe": 52
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "deepseascale",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Clamperl",
+            "species": "Clamperl",
+            "details": "Clamperl, L50, F",
+            "hp": 110,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 105,
+              "spa": 94,
+              "spd": 75,
+              "spe": 52
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "deepseatooth",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Houndoom",
+            "species": "Houndoom",
+            "details": "Houndoom, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 70,
+              "spa": 130,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clamperl",
+            "species": "Clamperl",
+            "details": "Clamperl, L50, F",
+            "hp": 110,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 105,
+              "spa": 94,
+              "spd": 75,
+              "spe": 52
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "deepseascale",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Clamperl|Clamperl, L50, F|110/110",
+          "|switch|p1b: Houndoom|Houndoom, L50, F|150/150",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Clamperl|Clamperl, L50, F|110/110",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Clamperl|Clamperl, L50, F|110/110",
+          "|switch|p1b: Houndoom|Houndoom, L50, F|150/150",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Clamperl|Clamperl, L50, F|110/110",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Clamperl|Clamperl, L50, F|110/110",
+          "|switch|p1b: Houndoom|Houndoom, L50, F|150/150",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Clamperl|Clamperl, L50, F|110/110",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Flamethrower",
+                  "id": "flamethrower",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Clamperl",
+                "details": "Clamperl, L50, F",
+                "condition": "110/110",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 105,
+                  "spa": 94,
+                  "spd": 75,
+                  "spe": 52
+                },
+                "moves": [
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "deepseatooth",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Houndoom",
+                "details": "Houndoom, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 70,
+                  "spa": 130,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "flamethrower"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Clamperl",
+                "details": "Clamperl, L50, F",
+                "condition": "110/110",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 105,
+                  "spa": 94,
+                  "spd": 75,
+                  "spe": 52
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "deepseascale",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Clamperl",
+            "species": "Clamperl",
+            "details": "Clamperl, L50, F",
+            "hp": 110,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 105,
+              "spa": 94,
+              "spd": 75,
+              "spe": 52
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "deepseatooth",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Houndoom",
+            "species": "Houndoom",
+            "details": "Houndoom, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 70,
+              "spa": 130,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clamperl",
+            "species": "Clamperl",
+            "details": "Clamperl, L50, F",
+            "hp": 110,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 105,
+              "spa": 94,
+              "spd": 75,
+              "spe": 52
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "deepseascale",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 1 2",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "54160,3954,50453,18633",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Houndoom|Flamethrower|p2b: Clamperl",
+          "|-resisted|p2b: Clamperl|1",
+          "|-damage|p2b: Clamperl|87/110",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Clamperl|Recover|p2b: Clamperl",
+          "|-heal|p2b: Clamperl|110/110",
+          "|move|p1a: Clamperl|Water Gun|p2a: Chansey",
+          "|-damage|p2a: Chansey|289/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Houndoom|Flamethrower|p2b: Clamperl",
+          "|-resisted|p2b: Clamperl|1",
+          "|-damage|p2b: Clamperl|87/110",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Clamperl|Recover|p2b: Clamperl",
+          "|-heal|p2b: Clamperl|110/110",
+          "|move|p1a: Clamperl|Water Gun|p2a: Chansey",
+          "|-damage|p2a: Chansey|289/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Houndoom|Flamethrower|p2b: Clamperl",
+          "|-resisted|p2b: Clamperl|1",
+          "|-damage|p2b: Clamperl|87/110",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Clamperl|Recover|p2b: Clamperl",
+          "|-heal|p2b: Clamperl|110/110",
+          "|move|p1a: Clamperl|Water Gun|p2a: Chansey",
+          "|-damage|p2a: Chansey|289/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Flamethrower",
+                  "id": "flamethrower",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Clamperl",
+                "details": "Clamperl, L50, F",
+                "condition": "110/110",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 105,
+                  "spa": 94,
+                  "spd": 75,
+                  "spe": 52
+                },
+                "moves": [
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "deepseatooth",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Houndoom",
+                "details": "Houndoom, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 70,
+                  "spa": 130,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "flamethrower"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "289/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Clamperl",
+                "details": "Clamperl, L50, F",
+                "condition": "110/110",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 105,
+                  "spa": 94,
+                  "spd": 75,
+                  "spe": 52
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "deepseascale",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Clamperl",
+            "species": "Clamperl",
+            "details": "Clamperl, L50, F",
+            "hp": 110,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 105,
+              "spa": 94,
+              "spd": 75,
+              "spe": 52
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "deepseatooth",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Houndoom",
+            "species": "Houndoom",
+            "details": "Houndoom, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 70,
+              "spa": 130,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 289,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Clamperl",
+            "species": "Clamperl",
+            "details": "Clamperl, L50, F",
+            "hp": 110,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 105,
+              "spa": 94,
+              "spd": 75,
+              "spe": 52
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "deepseascale",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -1927,6 +1927,35 @@ const legacySkyDropFaintRosters = [
     [named('Aerodactyl', ['Sky Drop']), named('Shuckle', ['Recover']), named('Porygon2', ['Recover'])],
     [named('Chansey', ['Tackle']), {...named('Rampardos', ['Smack Down']), item:'Choice Band'}],
 ];
+const legacySoulDewRosters = [
+    [{...named('Latios', ['Dragon Pulse'], 'M'), item:'Soul Dew'}],
+    [{...named('Chansey', ['Trick', 'Recover']), item:'Leftovers'}],
+];
+const legacyOriginRelicRosters = [
+    [{...named('Dialga-Origin', ['Flash Cannon'], 'N'), item:'Adamant Crystal'}],
+    [{...named('Chansey', ['Trick', 'Recover']), item:'Leftovers'}],
+];
+const legacyThickClubRosters = [
+    [{...named('Marowak-Alola', ['Shadow Bone']), item:'Thick Club'}],
+    [named('Umbreon', ['Recover'])],
+];
+const legacyClamperlRosters = [
+    [{...named('Clamperl', ['Water Gun']), item:'Deep Sea Tooth'}, named('Houndoom', ['Flamethrower'])],
+    [named('Chansey', ['Recover']), {...named('Clamperl', ['Recover']), item:'Deep Sea Scale'}],
+];
+const legacyDittoPowderRosters = [
+    [{...named('Ditto', ['Tackle', 'Transform'], 'N'), item:'Quick Powder'}],
+    [{...named('Ditto', ['Tackle'], 'N'), item:'Metal Powder'}],
+];
+const legacyGloveRosters = [
+    [{...named('Conkeldurr', ['Fire Punch']), item:'Punching Glove', ability:'Iron Fist'}],
+    [{...named('Chansey', ['Recover']), item:'Rocky Helmet'}],
+];
+const legacySlowEquipmentRosters = [
+    [{...named('Espeon', ['Tackle']), item:'Power Anklet'},
+        {...named('Jolteon', ['Tackle']), item:'Lagging Tail'}],
+    [named('Chansey', ['Tackle']), named('Porygon2', ['Tackle'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3405,6 +3434,20 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         legacySkyDropSpeedRosters, 'custom-sky-drop-faster-rider'],
     ['doublescustomgame', [['team 123','team 12'], ['move 1 1, move 1','move 1 2, move 1 1']],
         legacySkyDropFaintRosters, 'custom-sky-drop-releases-rider-after-faint'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        legacySoulDewRosters, 'custom-soul-dew-boosts-only-lati'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        legacyOriginRelicRosters, 'custom-origin-relic-power-and-transfer'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        legacyThickClubRosters, 'custom-thick-club-boosts-alolan-marowak'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1 2','move 1, move 1']],
+        legacyClamperlRosters, 'custom-deep-sea-scale-and-tooth'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 1']],
+        legacyDittoPowderRosters, 'custom-ditto-powders-and-transform'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        legacyGloveRosters, 'custom-punching-glove-prevents-contact'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1 1','move 1 1, move 1 2']],
+        legacySlowEquipmentRosters, 'custom-speed-items-and-fractional-priority'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

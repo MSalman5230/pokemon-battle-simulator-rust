@@ -1255,6 +1255,25 @@ impl Pokemon {
                 | ("silkscarf", "Normal")
                 | ("silverpowder", "Bug")
                 | ("twistedspoon", "Psychic")
+                | ("oddincense", "Psychic")
+                | ("rockincense", "Rock")
+                | ("roseincense", "Grass")
+                | ("seaincense" | "waveincense", "Water")
+        ) || matches!(
+            (held, self.base_species.base_species.as_str(), move_type),
+            (
+                "adamantorb" | "adamantcrystal",
+                "Dialga",
+                "Dragon" | "Steel"
+            ) | (
+                "lustrousorb" | "lustrousglobe",
+                "Palkia",
+                "Dragon" | "Water"
+            ) | (
+                "griseousorb" | "griseouscore",
+                "Giratina",
+                "Dragon" | "Ghost"
+            ) | ("souldew", "Latios" | "Latias", "Dragon" | "Psychic")
         ) || (held.ends_with("plate") || held.ends_with("mask"))
             && DEX
                 .item(crate::dex::Mod::Champions, held)

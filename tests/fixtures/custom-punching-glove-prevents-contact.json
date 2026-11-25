@@ -1,0 +1,617 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Conkeldurr\",\"moves\":[\"Fire Punch\"],\"gender\":\"F\",\"name\":\"Conkeldurr\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Iron Fist\",\"item\":\"Punching Glove\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chansey\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Rocky Helmet\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Conkeldurr, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Conkeldurr, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Conkeldurr, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Conkeldurr",
+                "details": "Conkeldurr, L50, F",
+                "condition": "180/180",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "firepunch"
+                ],
+                "baseAbility": "ironfist",
+                "item": "punchingglove",
+                "pokeball": "pokeball",
+                "ability": "ironfist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Conkeldurr",
+            "species": "Conkeldurr",
+            "details": "Conkeldurr, L50, F",
+            "hp": 180,
+            "maxhp": 180,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 115,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ironfist",
+            "item": "punchingglove",
+            "active": false,
+            "moves": [
+              {
+                "id": "firepunch",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Conkeldurr|Conkeldurr, L50, F|180/180",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Conkeldurr|Conkeldurr, L50, F|180/180",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Conkeldurr|Conkeldurr, L50, F|180/180",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fire Punch",
+                  "id": "firepunch",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Conkeldurr",
+                "details": "Conkeldurr, L50, F",
+                "condition": "180/180",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "firepunch"
+                ],
+                "baseAbility": "ironfist",
+                "item": "punchingglove",
+                "pokeball": "pokeball",
+                "ability": "ironfist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Conkeldurr",
+            "species": "Conkeldurr",
+            "details": "Conkeldurr, L50, F",
+            "hp": 180,
+            "maxhp": 180,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 115,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ironfist",
+            "item": "punchingglove",
+            "active": true,
+            "moves": [
+              {
+                "id": "firepunch",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "rockyhelmet",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Conkeldurr|Fire Punch|p2a: Chansey",
+          "|debug|Iron Fist boost",
+          "|debug|Punching Glove boost",
+          "|-damage|p2a: Chansey|73/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Conkeldurr|Fire Punch|p2a: Chansey",
+          "|debug|Iron Fist boost",
+          "|debug|Punching Glove boost",
+          "|-damage|p2a: Chansey|73/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Conkeldurr|Fire Punch|p2a: Chansey",
+          "|debug|Iron Fist boost",
+          "|debug|Punching Glove boost",
+          "|-damage|p2a: Chansey|73/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fire Punch",
+                  "id": "firepunch",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Conkeldurr",
+                "details": "Conkeldurr, L50, F",
+                "condition": "180/180",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "firepunch"
+                ],
+                "baseAbility": "ironfist",
+                "item": "punchingglove",
+                "pokeball": "pokeball",
+                "ability": "ironfist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "73/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Conkeldurr",
+            "species": "Conkeldurr",
+            "details": "Conkeldurr, L50, F",
+            "hp": 180,
+            "maxhp": 180,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 115,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ironfist",
+            "item": "punchingglove",
+            "active": true,
+            "moves": [
+              {
+                "id": "firepunch",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 73,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "rockyhelmet",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

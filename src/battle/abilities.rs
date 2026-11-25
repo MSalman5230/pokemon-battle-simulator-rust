@@ -138,17 +138,16 @@ impl Pokemon {
         } else {
             4096
         };
-        let item = if self.effective_item() == "lightball"
-            && self.base_species.base_species == "Pikachu"
-        {
-            8192
-        } else if matches!(
-            (self.effective_item(), category),
-            ("choiceband", Category::Physical) | ("choicespecs", Category::Special)
+        let item = match (
+            self.effective_item(),
+            category,
+            self.base_species.base_species.as_str(),
         ) {
-            6144
-        } else {
-            4096
+            ("lightball", _, "Pikachu")
+            | ("deepseatooth", Category::Special, "Clamperl")
+            | ("thickclub", Category::Physical, "Cubone" | "Marowak") => 8192,
+            ("choiceband", Category::Physical, _) | ("choicespecs", Category::Special, _) => 6144,
+            _ => 4096,
         };
         let native = chain(ability, item);
         if category == Category::Physical
@@ -223,6 +222,8 @@ impl Battle {
 
     pub(super) fn move_makes_contact(&self, source: Position, data: &Move) -> bool {
         data.flags.contains_key("contact")
+            && !(self.mon(source).effective_item() == "punchingglove"
+                && data.flags.contains_key("punch"))
             && (self.mon(source).active_ability() != "longreach"
                 || self.event_ability(source) != "longreach")
     }
@@ -420,6 +421,8 @@ impl Battle {
         }
         let item = match user.effective_item() {
             "scopelens" | "razorclaw" => 1,
+            "luckypunch" if user.base_species.name == "Chansey" => 2,
+            "stick" if to_id(&user.base_species.base_species) == "farfetchd" => 2,
             "leek"
                 if matches!(
                     to_id(&user.base_species.base_species).as_str(),
