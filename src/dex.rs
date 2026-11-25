@@ -77,6 +77,8 @@ pub struct Format {
     pub adjust_level_down: Option<u16>,
     pub max_level: u16,
     pub unbounded_truncation: bool,
+    pub report_exact_hp: bool,
+    pub rule_log: Vec<String>,
 }
 
 impl Format {
@@ -152,6 +154,10 @@ pub struct Move {
     #[serde(rename = "self")]
     pub self_effect: bool,
     pub condition: bool,
+    pub generic: bool,
+    pub will_crit: Option<bool>,
+    #[serde(default)]
+    pub always_hit: bool,
     pub boosts: Vec<(BoostStat, i8)>,
     pub self_boosts: Vec<(BoostStat, i8)>,
     pub self_chance: Option<u8>,

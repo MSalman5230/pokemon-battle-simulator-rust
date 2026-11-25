@@ -127,9 +127,7 @@ impl Battle {
 
     pub(super) fn status_immune(&self, pos: Position, key: &str) -> bool {
         self.mon(pos)
-            .species
-            .types
-            .iter()
+            .types()
             .any(|typing| DEX.type_data(&to_id(typing)).unwrap().damage_taken.get(key) == Some(&3))
     }
 

@@ -204,7 +204,12 @@ impl Battle {
         suffix: &str,
     ) {
         let mon = self.mon(target);
-        let condition = health(mon.hp, mon.max_hp, mon.status.id(), false);
+        let condition = health(
+            mon.hp,
+            mon.max_hp,
+            mon.status.id(),
+            self.format.report_exact_hp,
+        );
         let mut head = format!("|{event}|{}|", self.ident(target));
         if details {
             head.push_str(&mon.details);
@@ -531,125 +536,127 @@ impl Battle {
             .get(move_slot)
             .filter(|m| m.pp > 0)
             .ok_or(BattleError::Choice("invalid move slot or no PP remaining"))?;
-        // Explicitly enumerate the verified simple moves. Static flags alone
-        // cannot prove an arbitrary Showdown move has no additional behavior.
-        if !matches!(
-            info.id.as_str(),
-            "tackle"
-                | "quickattack"
-                | "swift"
-                | "surf"
-                | "watergun"
-                | "iceshard"
-                | "protect"
-                | "aquajet"
-                | "bulletpunch"
-                | "earthquake"
-                | "leafblade"
-                | "closecombat"
-                | "makeitrain"
-                | "dracometeor"
-                | "leafstorm"
-                | "swordsdance"
-                | "nastyplot"
-                | "dragondance"
-                | "calmmind"
-                | "bulkup"
-                | "irondefense"
-                | "amnesia"
-                | "recover"
-                | "slackoff"
-                | "softboiled"
-                | "milkdrink"
-                | "flamethrower"
-                | "heatwave"
-                | "ember"
-                | "willowisp"
-                | "thunderwave"
-                | "toxic"
-                | "hypnosis"
-                | "sleeppowder"
-                | "poisonjab"
-                | "sludgebomb"
-                | "icebeam"
-                | "thunderbolt"
-                | "nuzzle"
-                | "rockslide"
-                | "shadowball"
-                | "moonblast"
-                | "raindance"
-                | "sunnyday"
-                | "sandstorm"
-                | "snowscape"
-                | "stealthrock"
-                | "spikes"
-                | "toxicspikes"
-                | "stickyweb"
-                | "uturn"
-                | "voltswitch"
-                | "flipturn"
-                | "imprison"
-                | "knockoff"
-                | "dragonclaw"
-                | "dragonpulse"
-                | "aurasphere"
-                | "darkpulse"
-                | "psychic"
-                | "crunch"
-                | "ironhead"
-                | "playrough"
-                | "rocktomb"
-                | "airslash"
-                | "icywind"
-                | "discharge"
-                | "disarmingvoice"
-                | "hypervoice"
-                | "bodypress"
-                | "roost"
-                | "freezedry"
-                | "scald"
-                | "acidarmor"
-                | "bravebird"
-                | "doubleedge"
-                | "gigadrain"
-                | "drainpunch"
-                | "headsmash"
-                | "lightofruin"
-                | "flareblitz"
-                | "wavecrash"
-                | "woodhammer"
-                | "energyball"
-                | "flashcannon"
-                | "firepunch"
-                | "icepunch"
-                | "thunderpunch"
-                | "pyroball"
-                | "extremespeed"
-                | "megakick"
-                | "hydropump"
-                | "lavaplume"
-                | "overheat"
-                | "shadowsneak"
-                | "bittermalice"
-                | "bugbuzz"
-                | "quiverdance"
-                | "shellsmash"
-                | "stoneedge"
-                | "bite"
-                | "mysticalfire"
-                | "liquidation"
-                | "earthpower"
-                | "glare"
-                | "rest"
-                | "yawn"
-                | "moonlight"
-                | "synthesis"
-                | "morningsun"
-                | "auroraveil"
-                | "reflect"
-                | "lightscreen"
-                | "disable"
-        ) {
+        // A projected generic move has only implemented data effects.
+        // The remaining moves must have explicit, audited special handling.
+        if !info.move_data.generic
+            && !matches!(
+                info.id.as_str(),
+                "tackle"
+                    | "quickattack"
+                    | "swift"
+                    | "surf"
+                    | "watergun"
+                    | "iceshard"
+                    | "protect"
+                    | "aquajet"
+                    | "bulletpunch"
+                    | "earthquake"
+                    | "leafblade"
+                    | "closecombat"
+                    | "makeitrain"
+                    | "dracometeor"
+                    | "leafstorm"
+                    | "swordsdance"
+                    | "nastyplot"
+                    | "dragondance"
+                    | "calmmind"
+                    | "bulkup"
+                    | "irondefense"
+                    | "amnesia"
+                    | "recover"
+                    | "slackoff"
+                    | "softboiled"
+                    | "milkdrink"
+                    | "flamethrower"
+                    | "heatwave"
+                    | "ember"
+                    | "willowisp"
+                    | "thunderwave"
+                    | "toxic"
+                    | "hypnosis"
+                    | "sleeppowder"
+                    | "poisonjab"
+                    | "sludgebomb"
+                    | "icebeam"
+                    | "thunderbolt"
+                    | "nuzzle"
+                    | "rockslide"
+                    | "shadowball"
+                    | "moonblast"
+                    | "raindance"
+                    | "sunnyday"
+                    | "sandstorm"
+                    | "snowscape"
+                    | "stealthrock"
+                    | "spikes"
+                    | "toxicspikes"
+                    | "stickyweb"
+                    | "uturn"
+                    | "voltswitch"
+                    | "flipturn"
+                    | "imprison"
+                    | "knockoff"
+                    | "dragonclaw"
+                    | "dragonpulse"
+                    | "aurasphere"
+                    | "darkpulse"
+                    | "psychic"
+                    | "crunch"
+                    | "ironhead"
+                    | "playrough"
+                    | "rocktomb"
+                    | "airslash"
+                    | "icywind"
+                    | "discharge"
+                    | "disarmingvoice"
+                    | "hypervoice"
+                    | "bodypress"
+                    | "roost"
+                    | "freezedry"
+                    | "scald"
+                    | "acidarmor"
+                    | "bravebird"
+                    | "doubleedge"
+                    | "gigadrain"
+                    | "drainpunch"
+                    | "headsmash"
+                    | "lightofruin"
+                    | "flareblitz"
+                    | "wavecrash"
+                    | "woodhammer"
+                    | "energyball"
+                    | "flashcannon"
+                    | "firepunch"
+                    | "icepunch"
+                    | "thunderpunch"
+                    | "pyroball"
+                    | "extremespeed"
+                    | "megakick"
+                    | "hydropump"
+                    | "lavaplume"
+                    | "overheat"
+                    | "shadowsneak"
+                    | "bittermalice"
+                    | "bugbuzz"
+                    | "quiverdance"
+                    | "shellsmash"
+                    | "stoneedge"
+                    | "bite"
+                    | "mysticalfire"
+                    | "liquidation"
+                    | "earthpower"
+                    | "glare"
+                    | "rest"
+                    | "yawn"
+                    | "moonlight"
+                    | "synthesis"
+                    | "morningsun"
+                    | "auroraveil"
+                    | "reflect"
+                    | "lightscreen"
+                    | "disable"
+            )
+        {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
         let kind = info.move_data.target;
@@ -836,6 +843,7 @@ impl Battle {
                     party[outgoing.slot].choice_lock = None;
                     party[outgoing.slot].active_turns = 0;
                     party[outgoing.slot].roosted = false;
+                    party[outgoing.slot].temporary_type = None;
                     party[outgoing.slot].yawn = 0;
                     party[outgoing.slot].attract = None;
                     party[outgoing.slot].disabled_slot = None;
@@ -1183,10 +1191,10 @@ impl Battle {
     fn run_move(&mut self, source: Position, slot: usize, loc: i8, more_actions: bool) {
         let move_data = self.move_data(source, slot);
         let struggle = slot == STRUGGLE_SLOT;
-        let move_type = if struggle {
-            "???"
+        let (move_type, converted) = if struggle {
+            ("???", false)
         } else {
-            move_data.move_type.as_str()
+            self.mon(source).converted_move_type(&move_data.move_type)
         };
         let source_name = self.ident(source);
         let target = self.resolve_target(source, move_data.target, loc);
@@ -1266,6 +1274,9 @@ impl Battle {
                 .saturating_sub(pressure_targets as u8);
         }
         if let Some(screen) = Screen::from_move(&move_data.name) {
+            if !matches!(screen, Screen::AuroraVeil) || self.weather() == Some(Weather::Snow) {
+                self.protean_prepare(source, move_type);
+            }
             if !self.set_screen(source, screen) {
                 self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
                 self.add(format!("|-fail|{source_name}"));
@@ -1273,6 +1284,7 @@ impl Battle {
             return;
         }
         if let Some(hazard) = Hazard::from_move(&move_data.name) {
+            self.protean_prepare(source, move_type);
             if move_data.flags.contains_key("mustpressure") {
                 let pressure = (0..self.slots())
                     .map(|slot| Position {
@@ -1291,6 +1303,7 @@ impl Battle {
             return;
         }
         if let Some(weather) = Weather::from_move(&move_data.name) {
+            self.protean_prepare(source, move_type);
             if !self.set_weather(source, weather, None) {
                 self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
                 self.add(format!("|-fail|{source_name}"));
@@ -1298,6 +1311,7 @@ impl Battle {
             return;
         }
         if move_data.name == "Imprison" {
+            self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
             if mon.imprisoned {
                 self.log[base].public = format!("|move|{source_name}|Imprison||[still]");
@@ -1325,6 +1339,7 @@ impl Battle {
                     "|-fail|{source_name}|[from] ability: {ability}|[of] {source_name}"
                 ));
             } else {
+                self.protean_prepare(source, move_type);
                 self.apply_status(source, "slp", Some("Rest"));
                 let mon = self.mon_mut(source);
                 if matches!(mon.status, Status::Sleep(_)) {
@@ -1348,6 +1363,7 @@ impl Battle {
                 self.add(format!("|-fail|{source_name}"));
                 return;
             }
+            self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
             mon.protected = true;
             mon.track_volatile("protect");
@@ -1359,6 +1375,7 @@ impl Battle {
             return;
         }
 
+        self.protean_prepare(source, move_type);
         let spread = spread_targets.len() > 1;
         // Preserve upstream's hit-step batching: all protection and immunity
         // checks, then all accuracy rolls, then all damage calculations.
@@ -1405,9 +1422,9 @@ impl Battle {
                 .as_bool()
                 .unwrap_or(move_data.category == Category::Status);
             if !ignores_type
-                && move_data.move_type == "Ground"
+                && move_type == "Ground"
                 && self.mon(pos).ability == "levitate"
-                && !self.mon(pos).species.types.iter().any(|t| t == "Flying")
+                && !self.mon(pos).has_type("Flying")
             {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Levitate",
@@ -1415,7 +1432,7 @@ impl Battle {
                 ));
                 false
             } else if (!ignores_type
-                && (self.effectiveness(move_data, pos).is_none()
+                && (self.effectiveness_of(move_data, move_type, pos).is_none()
                     || (move_data.move_type == "Ground" && self.mon(pos).item == "airballoon")))
                 || (move_data.flags.contains_key("powder")
                     && source != pos
@@ -1438,9 +1455,11 @@ impl Battle {
         }
         spread_targets.retain(|&pos| {
             if let Accuracy::Percent(accuracy) = move_data.accuracy
+                && !move_data.always_hit
                 && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
-                && !(move_data.name == "Toxic"
-                    && self.mon(source).species.types.iter().any(|t| t == "Poison"))
+                && !(move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
+                && self.mon(source).ability != "noguard"
+                && self.mon(pos).ability != "noguard"
                 && !self.rng.chance(self.accuracy(source, pos, accuracy), 100)
             {
                 if !spread {
@@ -1550,12 +1569,15 @@ impl Battle {
             .count() as u32;
         let mut damage = Vec::with_capacity(spread_targets.len());
         for &target in &spread_targets {
-            let effect = self.effectiveness(move_data, target).unwrap();
+            let effect = self.effectiveness_of(move_data, move_type, target).unwrap();
             let crit_ratio = move_data.crit_ratio.unwrap_or(1).min(4);
-            let crit = crit_ratio != 0
-                && self
-                    .rng
-                    .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)])
+            let crit_roll = move_data.will_crit.unwrap_or_else(|| {
+                crit_ratio != 0
+                    && self
+                        .rng
+                        .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)])
+            });
+            let crit = crit_roll
                 && !matches!(
                     self.mon(target).ability.as_str(),
                     "battlearmor" | "shellarmor"
@@ -1589,10 +1611,10 @@ impl Battle {
             let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
             let def = if (self.weather() == Some(Weather::Sand)
                 && move_data.category == Category::Special
-                && mon.species.types.iter().any(|t| t == "Rock"))
+                && mon.has_type("Rock"))
                 || (self.weather() == Some(Weather::Snow)
                     && move_data.category == Category::Physical
-                    && mon.species.types.iter().any(|t| t == "Ice"))
+                    && mon.has_type("Ice"))
             {
                 tr.modify(def, 6144)
             } else {
@@ -1610,6 +1632,9 @@ impl Battle {
                 user.ability_power_modifier(move_data, move_type, self.weather()),
                 user.item_power_modifier(move_type),
             );
+            if converted {
+                power_modifier = crate::mechanics::chain(4915, power_modifier);
+            }
             if move_data.name == "Knock Off" && mon.can_take_item(self.format.dex_mod).is_some() {
                 power_modifier = crate::mechanics::chain(power_modifier, 6144);
             }
@@ -1657,6 +1682,9 @@ impl Battle {
                     rng.below(choices);
                 }
             });
+            if spread && self.format.report_exact_hp {
+                self.add("|debug|Spread modifier: 0.75");
+            }
             if effect > 0 {
                 self.add(format!(
                     "|-supereffective|{}|{}",
@@ -1708,6 +1736,11 @@ impl Battle {
                 }
             }
         }
+        if !move_data.boosts.is_empty() {
+            for &(target, _) in &damage {
+                self.boost_from(target, source, &move_data.boosts, false, false);
+            }
+        }
         if !move_data.self_boosts.is_empty() {
             let roll = self.rng.below(100);
             if move_data
@@ -1737,7 +1770,7 @@ impl Battle {
             }
         }
         for &(target, _) in &damage {
-            if (move_data.move_type == "Fire" || move_data.thaws_target)
+            if (move_type == "Fire" || move_data.thaws_target)
                 && matches!(self.mon(target).status, Status::Freeze(_))
             {
                 self.cure_status(target, "[msg]");
@@ -1888,6 +1921,7 @@ impl Battle {
         mon.imprisoned = false;
         mon.choice_lock = None;
         mon.roosted = false;
+        mon.temporary_type = None;
         mon.yawn = 0;
         mon.attract = None;
         mon.disabled_slot = None;
@@ -1954,6 +1988,10 @@ impl Battle {
         if move_data.name == "Struggle" {
             return Some(0);
         }
+        self.effectiveness_of(move_data, &move_data.move_type, target)
+    }
+
+    fn effectiveness_of(&self, move_data: &Move, move_type: &str, target: Position) -> Option<i8> {
         let mut modifier = 0;
         for typing in self.mon(target).types() {
             if move_data.name == "Freeze-Dry" && typing == "Water" {
@@ -1964,7 +2002,7 @@ impl Battle {
                 .type_data(&to_id(typing))
                 .unwrap()
                 .damage_taken
-                .get(&move_data.move_type);
+                .get(move_type);
             match case {
                 Some(1) => modifier += 1,
                 Some(2) => modifier -= 1,
@@ -2070,6 +2108,14 @@ impl Pokemon {
                 | "thickfat"
                 | "unnerve"
                 | "cursedbody"
+                | "protean"
+                | "libero"
+                | "aerilate"
+                | "pixilate"
+                | "galvanize"
+                | "refrigerate"
+                | "dragonize"
+                | "noguard"
         )
     }
 

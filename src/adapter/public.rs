@@ -344,6 +344,11 @@ impl PublicState {
                     mon["types"] = json!(types(name));
                 }
             }
+            "-start" if get(3) == "typechange" => {
+                if let Some(key) = key {
+                    self.mon_mut(key)["types"] = json!(get(4).split('/').collect::<Vec<_>>());
+                }
+            }
             "-start"
                 if matches!(
                     get(3),

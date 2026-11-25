@@ -158,6 +158,7 @@ pub struct Pokemon {
     choice_lock: Option<usize>,
     active_turns: u32,
     roosted: bool,
+    temporary_type: Option<&'static str>,
     attract: Option<(Player, usize)>,
     disabled_slot: Option<(usize, u8)>,
     last_move_slot: Option<usize>,
@@ -244,14 +245,21 @@ impl Battle {
         let format = DEX
             .format(&start.formatid)
             .ok_or_else(|| BattleError::Unknown(format!("format {}", start.formatid)))?;
-        // The flat-rules formats share this startup path. Other formats still
-        // need their own startup and per-battle rule hooks.
+        // These formats use the common preview/start path. Generated teams
+        // and local series require separate support.
         if !matches!(
             start.formatid.as_str(),
             "gen9championsbssregmc"
                 | "gen9championsvgc2026regmc"
                 | "gen9championsbssregmb"
                 | "gen9championsvgc2026regmb"
+                | "gen9championscustomgame"
+                | "gen9championsdoublescustomgame"
+                | "gen9championsou"
+                | "gen9championsuu"
+                | "gen9championsdoubles"
+                | "gen9champions4v4doublesuu"
+                | "gen9champions4v4doublesdraft"
         ) {
             return Err(BattleError::Unsupported(format!(
                 "startup rules for {}",
@@ -414,8 +422,9 @@ impl Battle {
     fn begin_preview(&mut self) {
         self.add("|gen|9");
         self.add(format!("|tier|{}", self.format.name));
-        self.add("|rule|Species Clause: Limit one of each Pokemon");
-        self.add("|rule|Item Clause: Limit 1 of each item");
+        for rule in &self.format.rule_log {
+            self.add(rule.as_str());
+        }
         self.add("|clearpoke");
         for player in Player::ALL {
             for i in 0..self.party(player).unwrap().len() {
@@ -424,8 +433,11 @@ impl Battle {
                 self.add(format!("|poke|{}|{}|", player.id(), details));
             }
         }
-        let size = self.format.picked_team_size.unwrap();
-        self.add(format!("|teampreview|{size}"));
+        if let Some(size) = self.format.picked_team_size {
+            self.add(format!("|teampreview|{size}"));
+        } else {
+            self.add("|teampreview");
+        }
         self.phase = Phase::Preview;
     }
 
@@ -456,7 +468,7 @@ impl Battle {
                 .unwrap(),
             _ => return Err(BattleError::Choice("expected a team preview choice")),
         };
-        let size = self.format.picked_team_size.unwrap();
+        let size = self.format.picked_team_size.unwrap_or(usize::MAX);
         let party = self.party(player).unwrap();
         self.pending_preview[index] = Some(
             choice
@@ -660,6 +672,7 @@ impl Pokemon {
             choice_lock: None,
             active_turns: 0,
             roosted: false,
+            temporary_type: None,
             attract: None,
             disabled_slot: None,
             last_move_slot: None,

@@ -9,13 +9,41 @@ const require = createRequire(new URL('worker.cjs', stage));
 const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
 const lock = JSON.parse(readFileSync(new URL('package-lock.json', stage)));
 assert(lock.packages['node_modules/pokemon-showdown'].resolved.endsWith('/' + revision));
-const {Dex} = require('pokemon-showdown');
+const {Battle, Dex} = require('pokemon-showdown');
 const root = new URL('../', import.meta.url);
 const sorted = entries => Object.fromEntries(entries.sort(([a], [b]) => a.localeCompare(b, 'en')));
 const table = (entries, project) => sorted(entries.map(e => [e.id, project(e)]));
 const props = (e, keys) => Object.fromEntries(keys.map(key => [key, e[key]]));
 const handlers = e => Object.keys(e).filter(k =>
     typeof e[k] === 'function' || /^on[A-Z]/.test(k)).sort();
+
+// Only opt a move into the generic pipeline when every battle-relevant field
+// is covered. An omitted handler or unrecognized nested effect is not inert.
+const genericMoveFields = new Set([
+    'num', 'name', 'accuracy', 'basePower', 'category', 'pp', 'priority', 'flags',
+    'target', 'type', 'contestType', 'isNonstandard', 'zMove', 'maxMove', 'tags',
+    'noPPBoosts', 'critRatio', 'willCrit', 'alwaysHit', 'heal', 'boosts',
+    'status', 'ignoreImmunity', 'self', 'recoil', 'drain', 'thawsTarget',
+    'secondary', 'secondaries',
+]);
+const genericTarget = new Set(['self', 'normal', 'any', 'adjacentFoe', 'allAdjacent', 'allAdjacentFoes']);
+const supportedStatus = new Set(['brn', 'par', 'frz', 'slp', 'psn', 'tox']);
+function hasOnly(object, keys) {
+    return Object.keys(object).every(key => keys.includes(key));
+}
+function runsOnGenericPipeline(raw, move) {
+    if (!raw || Object.keys(raw).some(k => !genericMoveFields.has(k)) ||
+        !genericTarget.has(move.target) || raw.flags?.futuremove || raw.flags?.cantusetwice ||
+        typeof raw.ignoreImmunity === 'object' || (raw.status && !supportedStatus.has(raw.status))) return false;
+    if (raw.self && (!raw.self.boosts || !hasOnly(raw.self, ['boosts', 'chance']))) return false;
+    for (const effect of move.secondaries ?? []) {
+        if (!hasOnly(effect, ['chance', 'status', 'volatileStatus', 'boosts']) ||
+            (effect.status && !supportedStatus.has(effect.status)) ||
+            (effect.volatileStatus && effect.volatileStatus !== 'flinch')) return false;
+    }
+    if (move.category === 'Status') return !!(move.boosts || move.status || move.heal);
+    return move.basePower > 0 && !move.status && !move.heal;
+}
 
 const data = mod => {
     const dex = Dex.mod(mod);
@@ -32,8 +60,8 @@ const data = mod => {
         }),
         moves: table(dex.moves.all(), e => {
             const move = props(e, ['name', 'type', 'category', 'target', 'basePower', 'priority',
-                'pp', 'noPPBoosts', 'accuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget']);
-            return {...move, handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
+                'pp', 'noPPBoosts', 'accuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget', 'willCrit', 'alwaysHit']);
+            return {...move, generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
                 selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,
                 secondaries: (e.secondaries ?? []).map(s => ({chance: s.chance, status: s.status,
@@ -60,12 +88,21 @@ const regmb = Object.fromEntries(Object.entries(mb).map(([key, records]) => {
 const formats = {};
 for (const f of Dex.formats.all().filter(f => /^\[Gen 9 Champions\]/.test(f.name))) {
     const r = Dex.formats.getRuleTable(f);
+    const battle = new Battle({formatid: f.id, seed: '1,2,3,4'});
+    for (const player of ['p1', 'p2']) {
+        battle.setPlayer(player, {team: [
+            {species: 'Magikarp', moves: ['Splash'], gender: 'M'},
+            {species: 'Milotic', moves: ['Recover'], gender: 'F'},
+        ]});
+    }
+    const ruleLog = battle.log.filter(line => line.startsWith('|rule|'));
+    battle.destroy();
     formats[f.id] = {
         name: f.name, mod: f.mod, gameType: f.gameType, generator: f.team || null,
         rules: [...r.keys()], minTeamSize: r.minTeamSize, maxTeamSize: r.maxTeamSize,
         maxMoveCount: r.maxMoveCount, pickedTeamSize: r.pickedTeamSize, defaultLevel: r.defaultLevel,
         adjustLevel: r.adjustLevel, adjustLevelDown: r.adjustLevelDown, maxLevel: r.maxLevel,
-        unboundedTruncation: !!f.battle?.trunc,
+        unboundedTruncation: !!f.battle?.trunc, reportExactHp: !!f.debug, ruleLog,
     };
 }
 function recordLines(obj) {

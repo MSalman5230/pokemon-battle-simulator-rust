@@ -224,3 +224,45 @@ impl Battle {
         }
     }
 }
+
+impl Pokemon {
+    pub(super) fn converted_move_type(&self, original: &'static str) -> (&'static str, bool) {
+        if original != "Normal" {
+            return (original, false);
+        }
+        match self.ability.as_str() {
+            "aerilate" => ("Flying", true),
+            "pixilate" => ("Fairy", true),
+            "galvanize" => ("Electric", true),
+            "refrigerate" => ("Ice", true),
+            "dragonize" => ("Dragon", true),
+            _ => (original, false),
+        }
+    }
+}
+
+impl Battle {
+    pub(super) fn protean_prepare(&mut self, pos: Position, move_type: &'static str) {
+        let mon = self.mon(pos);
+        let name = match mon.ability.as_str() {
+            "protean" => "Protean",
+            "libero" => "Libero",
+            _ => return,
+        };
+        if move_type == "???" || mon.temporary_type.is_some() {
+            return;
+        }
+        let already_type = {
+            let mut types = mon.types();
+            types.next() == Some(move_type) && types.next().is_none()
+        };
+        if already_type {
+            return;
+        }
+        self.mon_mut(pos).temporary_type = Some(move_type);
+        self.add(format!(
+            "|-start|{}|typechange|{move_type}|[from] ability: {name}",
+            self.ident(pos)
+        ));
+    }
+}

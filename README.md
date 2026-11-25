@@ -1,10 +1,11 @@
 # Pokémon Battle Simulator (Rust)
 
 A headless Rust port of Pokémon Showdown's Gen 9 Champions singles and
-doubles for Poke-RL, in progress. The Rust core can replay a limited set of
-native singles and doubles battles, including preview, damage, Protect,
-switches, and partial replacements. Unsupported mechanics return errors. Team
-legality, most effects, and the Poke-RL worker are not yet ported.
+doubles for Poke-RL, in progress. The Rust core accepts native Showdown input
+and replays seeded singles and doubles battles across a growing set of rules
+and mechanics. An experimental Poke-RL worker matches the reference on a
+curated BSS workload. Unsupported mechanics return errors. Full training
+parity, native team validation, and team generation are not complete.
 
 ## Local setup
 
@@ -62,6 +63,6 @@ node benchmarks/throughput.mjs
 ```
 
 The benchmark measures batched battle steps per second through Poke-RL's
-current singles worker. It can replay the same workload against a future
-Rust worker using `-- path/to/release-worker`. See the
+current singles worker. It can check exact replay parity before measuring
+the Rust worker using `-- path/to/release-worker`. See the
 [benchmark guide](benchmarks/README.md) and the [porting plan](docs/porting.md).

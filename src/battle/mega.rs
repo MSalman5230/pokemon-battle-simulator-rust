@@ -42,6 +42,7 @@ impl Battle {
         let rules = self.format.stat_rules();
         let mon = self.mon_mut(pos);
         mon.species = species;
+        mon.temporary_type = None;
         mon.stats = Stats::map(|s| {
             rules.stat(
                 species.base_stats.get(s),

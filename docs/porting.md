@@ -56,15 +56,16 @@ interface only after measuring where time goes.
 
 ## Current replay coverage
 
-The native Rust core covers a deliberately small subset of BSS and VGC Reg M-C.
 The checked-in replays compare exact private requests, public and private log
-lines, party state, and RNG state. They cover leads, voluntary switches,
-Protect, spread damage, simultaneous faints, partial replacement, stat stages,
-self drops, and a short replay using rosters that pass the upstream BSS
-validator. The Rust core itself does not validate legality yet.
+lines, party state, and RNG state. They cover BSS and VGC Reg M-B/M-C, packable
+teams, full-team preview, spread damage, partial replacement, pivots,
+form changes, weather, hazards, screens, status, and selected move, item,
+and ability effects. Passing a preview fixture does not imply that all rules
+for that format are implemented.
 
-Continue with effect ordering (residual status, weather, hazards, items,
-abilities), move and switch interruptions, and Mega Evolution. Expand the
-fixtures before generalizing an effect. Then finish packed/generated teams,
-validation and remaining format rules, and the Poke-RL adapter. The benchmark
-must still reject any mismatch before timing the adapter.
+The experimental Poke-RL worker passes exact response replay on the curated
+BSS benchmark. It can also load a manifest verified by the upstream team
+validator for broader coverage testing. The Rust core does not yet validate
+legality or generate teams. Continue using the full worker replay to find
+unsupported mechanics, then record focused native fixtures for each one.
+The benchmark rejects any mismatch before timing the adapter.

@@ -211,3 +211,18 @@ fn bss_cute_charm_probability_and_end_on_source_switch() {
 fn bss_cursed_body_disables_and_expires() {
     replay(include_str!("fixtures/bss-cursed-body.json"));
 }
+
+#[test]
+fn bss_type_conversion_crit_guarantees_and_no_guard() {
+    replay(include_str!("fixtures/bss-converted-types.json"));
+}
+
+#[test]
+fn champions_custom_game_reports_exact_hp_in_every_view() {
+    replay(include_str!("fixtures/doublescustomgame.json"));
+}
+
+#[test]
+fn champions_ou_preview_selects_the_full_team() {
+    replay(include_str!("fixtures/ou.json"));
+}

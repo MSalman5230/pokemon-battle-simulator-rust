@@ -157,13 +157,22 @@ impl Pokemon {
     }
 
     pub fn types(&self) -> impl Iterator<Item = &str> {
-        let add_normal = self.roosted && self.species.types.as_slice() == ["Flying"];
+        let lone = self.temporary_type.or_else(|| {
+            (self.roosted && self.species.types.as_slice() == ["Flying"]).then_some("Normal")
+        });
+        let lone = lone.map(|ty| {
+            if self.roosted && ty == "Flying" {
+                "Normal"
+            } else {
+                ty
+            }
+        });
         self.species
             .types
             .iter()
             .map(String::as_str)
-            .filter(|t| !self.roosted || *t != "Flying")
-            .chain(add_normal.then_some("Normal"))
+            .filter(move |t| lone.is_none() && (!self.roosted || *t != "Flying"))
+            .chain(lone)
     }
 
     pub(super) fn grounded(&self) -> bool {
