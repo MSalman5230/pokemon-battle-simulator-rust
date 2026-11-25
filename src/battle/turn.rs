@@ -1035,6 +1035,7 @@ impl Battle {
                     | "watershuriken"
                     | "trickortreat"
                     | "forestscurse"
+                    | "uproar"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -1368,6 +1369,7 @@ impl Battle {
         party[outgoing.slot].charge = None;
         party[outgoing.slot].confusion = 0;
         party[outgoing.slot].rampage = None;
+        party[outgoing.slot].uproar = None;
         party[outgoing.slot].attention = None;
         party[outgoing.slot].glaive_drawback = false;
         party[outgoing.slot].destiny_bond = false;
@@ -1875,6 +1877,7 @@ impl Battle {
             Charge,
             SemiInvulnerableTimer,
             Rampage,
+            Uproar,
             Attention,
             Leftovers,
             StatusOrb,
@@ -2096,6 +2099,9 @@ impl Battle {
             if mon.rampage.is_some() {
                 timers.push((pos, Effect::Rampage, priority(0, 2)));
             }
+            if mon.uproar.is_some() {
+                timers.push((pos, Effect::Uproar, priority(28, 1)));
+            }
             if mon.attention.is_some() {
                 timers.push((pos, Effect::Attention, priority(0, 2)));
             }
@@ -2161,6 +2167,8 @@ impl Battle {
             if mon.fainted {
                 continue;
             }
+            let uproar_expired = matches!(effect, Effect::Uproar)
+                && mon.uproar.is_some_and(|state| state.remaining == 1);
             match effect {
                 Effect::PerishSong => {
                     if self.tick_perish_song(pos) {
@@ -2269,6 +2277,7 @@ impl Battle {
                     }
                 }
                 Effect::Rampage => self.tick_rampage(pos),
+                Effect::Uproar => self.tick_uproar(pos),
                 Effect::Charge => mon.tick_charge(),
                 // The move's condition has its own duration and participates
                 // in ordering. The parent charge expires at the same time.
@@ -2308,6 +2317,7 @@ impl Battle {
                     Effect::Stall => mon.stall.is_none(),
                     Effect::Charge | Effect::SemiInvulnerableTimer => mon.charge.is_none(),
                     Effect::Rampage => mon.rampage.is_none(),
+                    Effect::Uproar => uproar_expired,
                     Effect::Recharge => mon.recharge == 0,
                     _ => false,
                 };
@@ -2469,7 +2479,10 @@ impl Battle {
         } else {
             None
         };
-        let continuing = own_action && (self.mon(source).rampage.is_some() || releasing_charge);
+        let continuing = own_action
+            && (self.mon(source).rampage.is_some()
+                || self.mon(source).uproar.is_some()
+                || releasing_charge);
         let called_from = if reflected {
             "|[from] ability: Magic Bounce"
         } else if continuing {
@@ -3991,6 +4004,9 @@ impl Battle {
         ) {
             self.break_screens(spread_targets[0].player);
         }
+        if move_data.name == "Uproar" {
+            self.wake_from_uproar(spread_targets[0]);
+        }
         let screen_handlers = self
             .sides
             .iter()
@@ -4390,6 +4406,9 @@ impl Battle {
             }
             if !sheer_force_removed && move_data.self_rampage {
                 self.rampage_hit(source, slot.expect("rampage moves are not reflectable"));
+            }
+            if move_data.name == "Uproar" {
+                self.begin_uproar(source, slot.expect("Uproar is not reflectable"));
             }
             if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 {
                 let mon = self.mon_mut(source);
@@ -4861,6 +4880,7 @@ impl Battle {
         mon.charge = None;
         mon.confusion = 0;
         mon.rampage = None;
+        mon.uproar = None;
         mon.attention = None;
         mon.glaive_drawback = false;
         mon.destiny_bond = false;
@@ -5100,7 +5120,8 @@ impl Pokemon {
             let slot = self
                 .rampage
                 .map(|state| state.slot)
-                .or_else(|| self.charge.map(|state| state.slot))?;
+                .or_else(|| self.charge.map(|state| state.slot))
+                .or_else(|| self.uproar.map(|state| state.slot))?;
             let m = &self.moves[slot];
             Some((slot, &m.move_data.name, &m.id))
         }

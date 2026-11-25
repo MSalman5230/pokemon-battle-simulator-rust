@@ -389,7 +389,8 @@ impl Battle {
             }
             return true;
         }
-        self.format.has_rule("sleepclausemod") && self.sleep_clause_blocks(pos, id, source)
+        (id == "slp" && self.uproar_blocks_sleep(pos))
+            || self.format.has_rule("sleepclausemod") && self.sleep_clause_blocks(pos, id, source)
     }
 
     fn sleep_clause_blocks(&mut self, pos: Position, id: &str, source: Player) -> bool {

@@ -1195,6 +1195,11 @@ fn type_adding_moves_replace_the_previous_added_type_and_retarget_curse() {
 }
 
 #[test]
+fn uproar_wakes_sleepers_locks_the_user_and_blocks_new_sleep_until_expiry() {
+    replay(include_str!("fixtures/bss-uproar.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

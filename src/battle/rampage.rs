@@ -11,13 +11,79 @@ pub(super) struct Rampage {
     remaining: u8,
 }
 
+#[derive(Clone, Copy)]
+pub(super) struct Uproar {
+    pub(super) slot: usize,
+    pub(super) remaining: u8,
+}
+
 impl Pokemon {
     pub(super) fn hard_locked(&self) -> bool {
-        self.recharge > 0 || self.rampage.is_some() || self.charge.is_some()
+        self.recharge > 0
+            || self.rampage.is_some()
+            || self.charge.is_some()
+            || self.uproar.is_some()
     }
 }
 
 impl Battle {
+    pub(super) fn wake_from_uproar(&mut self, target: Position) {
+        for slot in 0..self.format.game_type.active_slots() {
+            for player in [target.player, target.player.foe()] {
+                let pos = Position { player, slot };
+                if matches!(self.mon(pos).status, Status::Sleep(_)) {
+                    self.cure_status(pos, "[msg]");
+                }
+            }
+        }
+    }
+
+    pub(super) fn begin_uproar(&mut self, pos: Position, slot: usize) {
+        let mon = self.mon_mut(pos);
+        if mon.hp != 0 && mon.uproar.is_none() {
+            mon.uproar = Some(Uproar { slot, remaining: 3 });
+            mon.track_volatile("uproar");
+            self.add(format!("|-start|{}|Uproar", self.ident(pos)));
+        }
+    }
+
+    pub(super) fn tick_uproar(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        if let Some(state) = &mut mon.uproar {
+            state.remaining -= 1;
+            if state.remaining == 0 || mon.throat_chop != 0 {
+                mon.uproar = None;
+                mon.untrack_volatile("uproar");
+                self.add(format!("|-end|{}|Uproar", self.ident(pos)));
+            } else {
+                self.add(format!("|-start|{}|Uproar|[upkeep]", self.ident(pos)));
+            }
+        }
+    }
+
+    pub(super) fn uproar_blocks_sleep(&mut self, target: Position) -> bool {
+        let mut effects = [(target, 0); 4];
+        let mut count = 0;
+        for pos in self.positions() {
+            let mon = self.mon(pos);
+            if !mon.fainted && mon.uproar.is_some() {
+                effects[count] = (pos, mon.speed);
+                count += 1;
+            }
+        }
+        let effects = &mut effects[..count];
+        speed_sort_by(effects, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        let Some(&(holder, _)) = effects.first() else {
+            return false;
+        };
+        self.add(format!(
+            "|-fail|{}|slp|[from] Uproar{}",
+            self.ident(target),
+            if holder == target { "|[msg]" } else { "" }
+        ));
+        true
+    }
+
     pub(super) fn stop_protected_rampage(&mut self, pos: Position) {
         if self.mon(pos).rampage.is_some_and(|lock| lock.duration == 2) {
             self.end_rampage(pos, false);
