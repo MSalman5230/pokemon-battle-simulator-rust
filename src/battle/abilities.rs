@@ -867,6 +867,36 @@ impl Battle {
         )
     }
 
+    pub(super) fn doodle(&mut self, source: Position, target: Position) -> Option<bool> {
+        let copied = self.mon(target).ability.clone();
+        if DEX
+            .ability(&copied)
+            .is_some_and(|ability| ability.no_role_play || ability.cannot_suppress)
+        {
+            return Some(false);
+        }
+        let mut changed = false;
+        let mut blocked = false;
+        for ally in self.positions().filter(|pos| pos.player == source.player) {
+            let mon = self.mon(ally);
+            if mon.hp == 0
+                || mon.ability == copied
+                || DEX
+                    .ability(&mon.ability)
+                    .is_some_and(|ability| ability.cannot_suppress)
+            {
+                continue;
+            }
+            let had_ability = !mon.ability.is_empty();
+            if self.gain_move_ability(ally, copied.clone(), None, "Doodle") {
+                changed |= had_ability;
+            } else {
+                blocked = true;
+            }
+        }
+        (changed || !blocked).then_some(changed)
+    }
+
     pub(super) fn inhibit_ability(&mut self, pos: Position) -> bool {
         if self.mon(pos).gastro_acid {
             return false;

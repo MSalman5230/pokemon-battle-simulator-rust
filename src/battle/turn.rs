@@ -1246,6 +1246,10 @@ impl Battle {
                     | "spotlight"
                     | "magiccoat"
                     | "snatch"
+                    | "bestow"
+                    | "doodle"
+                    | "teleport"
+                    | "nightmare"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -2625,6 +2629,7 @@ impl Battle {
             FutureMove,
             LeechSeed,
             Curse,
+            Nightmare,
             SaltCure,
             PartialTrap,
             PerishSong,
@@ -2884,6 +2889,9 @@ impl Battle {
             }
             if mon.volatile_ids().contains(&"ingrain") {
                 timers.push((pos, Effect::Ingrain, priority(7, 2)));
+            }
+            if mon.volatile_ids().contains(&"nightmare") {
+                timers.push((pos, Effect::Nightmare, priority(11, 2)));
             }
             for id in mon.volatile_ids() {
                 let effect = match *id {
@@ -3298,6 +3306,15 @@ impl Battle {
                     unreachable!()
                 }
                 Effect::GrassyHeal => self.grassy_heal(pos),
+                Effect::Nightmare => {
+                    self.indirect_damage(pos, 4, "|[from] Nightmare");
+                    if self.mon(pos).hp == 0 {
+                        self.mark_fainted(pos);
+                        if self.check_win() {
+                            return;
+                        }
+                    }
+                }
                 Effect::AquaRing => self.rooting_heal(pos, "Aqua Ring"),
                 Effect::Ingrain => self.rooting_heal(pos, "Ingrain"),
                 Effect::Octolock => self.tick_octolock(pos),
@@ -5157,13 +5174,21 @@ impl Battle {
             }
             return true;
         }
-        if move_data.name == "Baton Pass" {
-            self.protean_prepare(source, move_type);
+        if matches!(move_data.name.as_str(), "Baton Pass" | "Teleport") {
             if self.first_bench(source.player, 0).is_some() {
-                self.mon_mut(source).pivot_move = Some(Pivot::Move("Baton Pass"));
+                self.protean_prepare(source, move_type);
+                self.mon_mut(source).pivot_move =
+                    Some(Pivot::Move(if move_data.name == "Teleport" {
+                        "Teleport"
+                    } else {
+                        "Baton Pass"
+                    }));
                 self.each_event();
                 self.each_event();
             } else {
+                if move_data.name == "Baton Pass" {
+                    self.protean_prepare(source, move_type);
+                }
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
                 result.failed = true;
@@ -5963,6 +5988,34 @@ impl Battle {
                             self.add(format!("|-fail|{}|move: Heal Block", self.ident(target)));
                         } else {
                             succeeded = self.start_heal_block(target, 5);
+                        }
+                    }
+                    "Doodle" => {
+                        match self.doodle(source, target) {
+                            Some(true) => succeeded = true,
+                            Some(false) => {
+                                self.move_still(base);
+                                self.add(format!("|-fail|{source_name}"));
+                                self.report_no_move_effect();
+                                succeeded = true; // NOT_FAIL
+                            }
+                            None => {
+                                self.move_still(base);
+                                self.report_no_move_effect();
+                                succeeded = true; // NOT_FAIL
+                            }
+                        }
+                    }
+                    "Bestow" | "Nightmare" => {
+                        succeeded = if move_data.name == "Bestow" {
+                            self.bestow_item(source, target)
+                        } else {
+                            self.start_nightmare(target)
+                        };
+                        if !succeeded {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                            self.report_no_move_effect();
                         }
                     }
                     "Spotlight" if self.slots() == 1 => {
@@ -7051,7 +7104,8 @@ impl Battle {
                                 | Protection::KingsShield
                                 | Protection::SpikyShield
                         )
-                    ) {
+                    ) || battle.mat_block_active(target.player)
+                    {
                         battle.add(format!("|-zbroken|{}", battle.ident(target)));
                         return ((power + 1) / 4).max(1);
                     }

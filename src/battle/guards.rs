@@ -183,4 +183,12 @@ impl Battle {
         let guards = &mut self.sides[player.index()].as_mut().unwrap().guards;
         std::mem::take(guards).iter().any(Option::is_some)
     }
+
+    pub(super) fn mat_block_active(&self, player: Player) -> bool {
+        self.sides[player.index()]
+            .as_ref()
+            .unwrap()
+            .guards
+            .contains(&Some(SideGuard::MatBlock))
+    }
 }

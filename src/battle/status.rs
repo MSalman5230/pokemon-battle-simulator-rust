@@ -248,7 +248,29 @@ impl Battle {
                 format!("{}: {}", pos.player.id(), self.mon(pos).name)
             };
             self.add(format!("|-curestatus|{ident}|{}|{reason}", status.id()));
+            if matches!(status, Status::Sleep(_)) {
+                self.clear_nightmare(pos);
+            }
             self.mon_mut(pos).status = Status::Healthy;
+        }
+    }
+
+    pub(super) fn start_nightmare(&mut self, pos: Position) -> bool {
+        let mon = self.mon(pos);
+        if mon.volatile_ids().contains(&"nightmare")
+            || (!matches!(mon.status, Status::Sleep(_)) && self.event_ability(pos) != "comatose")
+        {
+            return false;
+        }
+        self.mon_mut(pos).track_volatile("nightmare");
+        self.add(format!("|-start|{}|Nightmare", self.ident(pos)));
+        true
+    }
+
+    fn clear_nightmare(&mut self, pos: Position) {
+        if self.mon(pos).volatile_ids().contains(&"nightmare") {
+            self.mon_mut(pos).untrack_volatile("nightmare");
+            self.add(format!("|-end|{}|Nightmare|[silent]", self.ident(pos)));
         }
     }
 
@@ -607,6 +629,9 @@ impl Battle {
         mon.status = status;
         mon.slept_by_foe = id == "slp" && source != pos.player;
         self.add(format!("|-status|{}|{id}{reason}", self.ident(pos)));
+        if id == "slp" {
+            self.clear_nightmare(pos);
+        }
     }
 
     pub(super) fn tick_yawn(&mut self, pos: Position) {

@@ -885,6 +885,29 @@ impl Battle {
         true
     }
 
+    pub(super) fn bestow_item(&mut self, user: Position, target: Position) -> bool {
+        let recipient = self.mon(target);
+        if recipient.hp == 0 || !recipient.item.is_empty() {
+            return false;
+        }
+        let Some(item) = self.mon(user).transferable_item(self.format.dex_mod) else {
+            return false;
+        };
+        if !recipient.can_transfer_item(item) {
+            return false;
+        }
+        let id = self.lose_held_item(user);
+        self.mon_mut(target).item = id;
+        self.on_gained_item(target);
+        self.add(format!(
+            "|-item|{}|{}|[from] move: Bestow|[of] {}",
+            self.ident(target),
+            item.effect.name,
+            self.ident(user)
+        ));
+        true
+    }
+
     pub(super) fn item_heal(&mut self, pos: Position, amount: u32, item: &str) {
         self.item_heal_from(pos, amount, item, None);
     }

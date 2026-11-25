@@ -1979,6 +1979,15 @@ fn inherited_reflection_and_snatch_keep_their_distinct_invocation_rules() {
 }
 
 #[test]
+fn inherited_transfer_pivot_and_nightmare_match_native_lifecycles() {
+    replay(include_str!("fixtures/custom-bestow-and-teleport.json"));
+    replay(include_str!("fixtures/custom-doodle-ability-shield.json"));
+    replay(include_str!(
+        "fixtures/custom-nightmare-sleep-lifecycle.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
