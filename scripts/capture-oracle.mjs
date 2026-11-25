@@ -656,6 +656,14 @@ const waterBubbleRosters = [
         {...named('Kommo-o', ['Recover']), ability: 'Bulletproof'}],
     [named('Vaporeon', ['Flamethrower', 'Will-O-Wisp', 'Shadow Ball', 'Recover']), named('Umbreon', ['Recover'])],
 ];
+const counterRosters = [
+    [named('Blissey', ['Counter', 'Mirror Coat', 'Recover']), named('Sylveon', ['Recover'])],
+    [named('Vaporeon', ['Water Gun', 'Tackle', 'Recover']), named('Umbreon', ['Recover'])],
+];
+const doublesCounterRosters = [
+    counterRosters[0],
+    [named('Electrode', ['Tackle']), counterRosters[1][0]],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -992,6 +1000,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['>forcewin p2',null]], burnUpRosters, 'bss-forcewin'],
     ['bssregmc', [['team 12','team 12'], ['move 1','>forcelose p2']], burnUpRosters, 'bss-forcelose'],
     ['bssregmc', [['team 12','team 12'], ['>forcetie',null]], burnUpRosters, 'bss-forcetie'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 2'],
+        ['move 2','move 1'], ['move 1','move 3']], counterRosters, 'bss-typed-counter'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1 1'],
+        ['move 2, move 1','move 1 1, move 1 1']], doublesCounterRosters, 'vgc-typed-counter'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

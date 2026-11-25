@@ -71,6 +71,42 @@ pub(super) struct FoeHit {
 }
 
 #[derive(Debug, Copy, Clone)]
+enum CounterMove {
+    Counter,
+    MirrorCoat,
+}
+
+impl CounterMove {
+    fn for_move(data: &Move) -> Option<Self> {
+        match data.name.as_str() {
+            "Counter" => Some(Self::Counter),
+            "Mirror Coat" => Some(Self::MirrorCoat),
+            _ => None,
+        }
+    }
+
+    fn id(self) -> &'static str {
+        match self {
+            Self::Counter => "counter",
+            Self::MirrorCoat => "mirrorcoat",
+        }
+    }
+
+    fn category(self) -> Category {
+        match self {
+            Self::Counter => Category::Physical,
+            Self::MirrorCoat => Category::Special,
+        }
+    }
+}
+
+#[derive(Debug, Copy, Clone)]
+pub(super) struct PreparedCounter {
+    move_kind: CounterMove,
+    hit: Option<FoeHit>,
+}
+
+#[derive(Debug, Copy, Clone)]
 enum ActionKind {
     Move {
         move_slot: usize,
@@ -84,6 +120,10 @@ enum ActionKind {
     },
     Revive {
         party_slot: usize,
+    },
+    PrepareCounter {
+        move_kind: CounterMove,
+        target: i8,
     },
     RunSwitch,
     MegaEvolve,
@@ -109,6 +149,7 @@ impl Action {
                 immediate: true, ..
             } => 3,
             ActionKind::BeforeTurn => 4,
+            ActionKind::PrepareCounter { .. } => 5,
             ActionKind::Revive { .. } => 6,
             ActionKind::RunSwitch => 101,
             ActionKind::Switch {
@@ -460,6 +501,28 @@ impl Battle {
                         let mut mega = Action::new(action.actor, ActionKind::MegaEvolve);
                         self.prioritize(&mut mega);
                         queue.push(mega);
+                    }
+                    if self.phase == Phase::Move
+                        && let ActionKind::Move {
+                            move_slot, target, ..
+                        } = action.kind
+                        && move_slot != RECHARGE_SLOT
+                        && let Some(move_kind) =
+                            CounterMove::for_move(self.move_data(action.actor.unwrap(), move_slot))
+                    {
+                        let actor = action.actor.unwrap();
+                        let target = if target != 0 {
+                            target
+                        } else {
+                            self.random_target(actor, TargetKind::Scripted)
+                                .map_or(0, |p| p.loc(actor))
+                        };
+                        let mut prep = Action::new(
+                            Some(actor),
+                            ActionKind::PrepareCounter { move_kind, target },
+                        );
+                        self.prioritize(&mut prep);
+                        queue.push(prep);
                     }
                     if self.phase == Phase::Move
                         && let ActionKind::Move { move_slot, .. } = action.kind
@@ -958,6 +1021,8 @@ impl Battle {
                     | "doubleshock"
                     | "burnup"
                     | "sparklingaria"
+                    | "counter"
+                    | "mirrorcoat"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1222,6 +1287,7 @@ impl Battle {
         party[outgoing.slot].disabled_slot = None;
         party[outgoing.slot].last_move_slot = None;
         party[outgoing.slot].last_foe_hit = None;
+        party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
             party[outgoing.slot].times_attacked = 0;
@@ -1268,6 +1334,26 @@ impl Battle {
                 }
                 ActionKind::BeforeTurn => {
                     self.ordered_actives(false);
+                }
+                ActionKind::PrepareCounter { move_kind, target } => {
+                    let pos = action.actor.unwrap();
+                    let id = move_kind.id();
+                    if !self.mon(pos).fainted {
+                        if self.format.report_exact_hp {
+                            self.add(format!("|debug|before turn callback: {id}"));
+                        }
+                        if self
+                            .resolve_target(pos, TargetKind::Scripted, target)
+                            .is_some()
+                        {
+                            let mon = self.mon_mut(pos);
+                            mon.counter = Some(PreparedCounter {
+                                move_kind,
+                                hit: None,
+                            });
+                            mon.track_volatile(id);
+                        }
+                    }
                 }
                 ActionKind::PriorityCharge(id) => {
                     let pos = action.actor.unwrap();
@@ -1618,6 +1704,7 @@ impl Battle {
             Flinch,
             FocusPunch,
             ChillyReception,
+            Counter,
             Recharge,
             Charge,
             SemiInvulnerableTimer,
@@ -1757,6 +1844,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"chillyreception") {
                 timers.push((pos, Effect::ChillyReception, priority(0, 2)));
             }
+            if mon.counter.is_some() {
+                timers.push((pos, Effect::Counter, priority(0, 2)));
+            }
             if mon.roosted {
                 timers.push((pos, Effect::Roost, priority(25, 2)));
             }
@@ -1836,6 +1926,11 @@ impl Battle {
                     mon.untrack_volatile("focuspunch");
                 }
                 Effect::ChillyReception => mon.untrack_volatile("chillyreception"),
+                Effect::Counter => {
+                    if let Some(counter) = mon.counter.take() {
+                        mon.untrack_volatile(counter.move_kind.id());
+                    }
+                }
                 Effect::Leftovers => {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
@@ -2012,14 +2107,18 @@ impl Battle {
         let weather = self.effective_weather();
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
             && matches!(weather, Some(Weather::Rain | Weather::Sand | Weather::Snow));
-        let retaliation = matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
+        let counter = CounterMove::for_move(move_data);
+        let retaliation =
+            counter.is_some() || matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
         let sheer_cold = move_data.name == "Sheer Cold";
         let ohko = sheer_cold
             || matches!(
                 move_data.name.as_str(),
                 "Fissure" | "Guillotine" | "Horn Drill"
             );
-        let retaliation_hit = if retaliation {
+        let retaliation_hit = if counter.is_some() {
+            self.mon(source).counter.and_then(|state| state.hit)
+        } else if retaliation {
             self.mon(source).last_foe_hit
         } else {
             None
@@ -2205,8 +2304,10 @@ impl Battle {
             move_data.name
         ));
         if self.slots() > 1
-            && let Some(target) =
-                actual_target.filter(|_| kind.is_choosable() || kind == TargetKind::RandomNormal)
+            && let Some(target) = actual_target.filter(|_| {
+                kind.is_choosable()
+                    || matches!(kind, TargetKind::RandomNormal | TargetKind::Scripted)
+            })
             && let Some(redirect) = self.redirect_target(source, target, move_data, move_type)
         {
             spread_targets.clear();
@@ -3173,6 +3274,7 @@ impl Battle {
                     "Metal Burst" | "Comeuppance" => {
                         retaliation_hit.map(|hit| (hit.damage * 3 / 2).max(1))
                     }
+                    "Counter" | "Mirror Coat" => retaliation_hit.map(|hit| (hit.damage * 2).max(1)),
                     "Seismic Toss" | "Night Shade" => Some(u32::from(battle.mon(source).level)),
                     "Super Fang" => Some((battle.mon(target).hp / 2).max(1)),
                     "Endeavor" => Some(battle.mon(target).hp - battle.mon(source).hp),
@@ -3314,6 +3416,7 @@ impl Battle {
                     value
                 };
                 let value = self.focus_sash(target, value);
+                let turn = self.turn;
                 let mon = self.mon_mut(target);
                 let landed = value.min(mon.hp);
                 mon.hp -= landed;
@@ -3323,6 +3426,16 @@ impl Battle {
                 }
                 if mon.volatile_ids().contains(&"focuspunch") {
                     mon.lost_focus = true;
+                }
+                if target.player != source.player
+                    && let Some(state) = &mut mon.counter
+                    && state.move_kind.category() == move_data.category
+                {
+                    state.hit = Some(FoeHit {
+                        source,
+                        damage: landed,
+                        turn,
+                    });
                 }
                 *hit_damage = landed;
                 total += landed;
@@ -3731,6 +3844,7 @@ impl Battle {
         mon.disabled_slot = None;
         mon.last_move_slot = None;
         mon.last_foe_hit = None;
+        mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
     }

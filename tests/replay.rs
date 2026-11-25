@@ -780,3 +780,9 @@ fn headless_controls_match_reseeding_tiebreaks_and_forced_results() {
     replay(include_str!("fixtures/bss-forcelose.json"));
     replay(include_str!("fixtures/bss-forcetie.json"));
 }
+
+#[test]
+fn counter_and_mirror_coat_track_separate_damage_categories_and_retaliate_at_the_right_slot() {
+    replay(include_str!("fixtures/bss-typed-counter.json"));
+    replay(include_str!("fixtures/vgc-typed-counter.json"));
+}
