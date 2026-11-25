@@ -10,6 +10,28 @@ use std::collections::VecDeque;
 
 type Key = (usize, usize);
 
+struct Stint {
+    previous: Value,
+    moves: Vec<String>,
+    pp_used: Map<String, Value>,
+    first_native_move: Option<Value>,
+    revealed_item: bool,
+    revealed_ability: bool,
+}
+
+impl Stint {
+    fn new(previous: &Value) -> Self {
+        Self {
+            previous: previous.clone(),
+            moves: Vec::new(),
+            pp_used: Map::new(),
+            first_native_move: None,
+            revealed_item: false,
+            revealed_ability: false,
+        }
+    }
+}
+
 #[derive(Default)]
 pub(super) struct PublicState {
     pub turn: u32,
@@ -25,6 +47,7 @@ pub(super) struct PublicState {
     pub history: VecDeque<Value>,
     pub faints: [Vec<Value>; 2],
     last_attacker: Option<usize>,
+    stints: [Option<Stint>; 2],
 }
 
 fn side(ident: &str) -> Option<usize> {
@@ -99,6 +122,127 @@ fn inc(value: &mut Value) {
 }
 
 impl PublicState {
+    fn switch_mon(
+        &mut self,
+        team: usize,
+        ident: &str,
+        name: &str,
+        condition: &str,
+        replace: bool,
+    ) -> Result<(), String> {
+        let new_base = DEX
+            .species(Mod::Champions, &to_id(name))
+            .map(|d| d.base_species.as_str());
+        let index = self.teams[team]
+            .iter()
+            .position(|mon| mon["base_species"] == name || mon["species"] == name)
+            .or_else(|| {
+                self.teams[team].iter().position(|mon| {
+                    let id = to_id(mon["base_species"].as_str().unwrap());
+                    DEX.species(Mod::Champions, &id)
+                        .map(|s| s.base_species.as_str())
+                        == new_base
+                })
+            })
+            .ok_or_else(|| format!("Public species not found in preview: {name}"))?;
+        if let Some(old) = self.active[team] {
+            let mon = &mut self.teams[team][old];
+            mon["active"] = json!(false);
+            if replace {
+                if old != index {
+                    self.transfer_illusion_stint(team, old, index);
+                }
+            } else {
+                mon["boosts"] = json!({});
+                mon["volatiles"] = json!({});
+                mon["last_move"] = Value::Null;
+                mon["moves_this_stint"] = json!([]);
+                if mon["status"] == "tox" {
+                    mon["status_progress"]["toxicStage"] = json!(0);
+                }
+            }
+        }
+        let uncertain = !replace
+            && self.teams[team].iter().enumerate().any(|(i, other)| {
+                i != index
+                    && other["fainted"] == false
+                    && has_illusion(other["base_species"].as_str().unwrap())
+            });
+        self.active[team] = Some(index);
+        let mon = &mut self.teams[team][index];
+        if !replace {
+            // A roster without another Illusion candidate cannot need rollback.
+            self.stints[team] = uncertain.then(|| Stint::new(mon));
+        }
+        mon["nickname"] = json!(nickname(ident));
+        mon["active"] = json!(true);
+        mon["seen"] = json!(true);
+        mon["species"] = json!(name);
+        mon["types"] = json!(types(name));
+        mon["entry_turn"] = json!(self.turn);
+        mon["identity_uncertain"] = json!(uncertain);
+        hp(mon, condition);
+        self.last_attacker = None;
+        Ok(())
+    }
+
+    fn transfer_illusion_stint(&mut self, team: usize, old: usize, new: usize) {
+        let old_state = self.teams[team][old].clone();
+        let target = &mut self.teams[team][new];
+        for field in [
+            "hp",
+            "status",
+            "boosts",
+            "volatiles",
+            "last_move",
+            "times_attacked",
+            "status_progress",
+        ] {
+            target[field] = old_state[field].clone();
+        }
+        let stint = self.stints[team].as_ref();
+        let moves = stint.map_or(&[][..], |s| s.moves.as_slice());
+        let known = target["moves"].as_array_mut().unwrap();
+        for id in moves {
+            if !known.iter().any(|value| value == id) {
+                known.push(json!(id));
+            }
+        }
+        target["moves_this_stint"] = json!(moves);
+        if target["first_native_move"].is_null() {
+            if let Some(first) = stint.and_then(|info| info.first_native_move.as_ref()) {
+                target["first_native_move"] = first.clone();
+            } else {
+                // The locked worker assigns undefined here and omits the field.
+                target.as_object_mut().unwrap().remove("first_native_move");
+            }
+        }
+        if let Some(stint) = stint {
+            for (id, cost) in &stint.pp_used {
+                let used = target["pp_used"][id].as_u64().unwrap_or(0);
+                target["pp_used"][id] = json!(used + cost.as_u64().unwrap());
+            }
+            if stint.revealed_item {
+                target["item"] = old_state["item"].clone();
+            }
+            if stint.revealed_ability {
+                target["ability"] = old_state["ability"].clone();
+            }
+            self.teams[team][old] = stint.previous.clone();
+            self.teams[team][old]["active"] = json!(false);
+        }
+    }
+
+    fn mark_revealed(&mut self, side: usize, field: &str) {
+        if let Some(stint) = &mut self.stints[side] {
+            if field == "item" {
+                stint.revealed_item = true;
+            } else {
+                stint.revealed_ability = true;
+            }
+        }
+    }
+
     fn mon_key(&self, ident: &str) -> Option<Key> {
         let side = side(ident)?;
         let nickname = nickname(ident);
@@ -135,53 +279,13 @@ impl PublicState {
                     self.teams[team].push(fresh_mon(species(get(3))));
                 }
             }
-            "replace" => return Err("Poke-RL Illusion observation is not ported".into()),
-            "switch" | "drag" => {
-                let team = team.ok_or("invalid switch side")?;
-                let name = species(get(3));
-                let new_base = DEX
-                    .species(Mod::Champions, &to_id(name))
-                    .map(|d| d.base_species.as_str());
-                let index = self.teams[team]
-                    .iter()
-                    .position(|mon| mon["base_species"] == name || mon["species"] == name)
-                    .or_else(|| {
-                        self.teams[team].iter().position(|mon| {
-                            let id = to_id(mon["base_species"].as_str().unwrap());
-                            DEX.species(Mod::Champions, &id)
-                                .map(|s| s.base_species.as_str())
-                                == new_base
-                        })
-                    })
-                    .ok_or_else(|| format!("Public species not found in preview: {name}"))?;
-                if let Some(old) = self.active[team] {
-                    let mon = &mut self.teams[team][old];
-                    mon["active"] = json!(false);
-                    mon["boosts"] = json!({});
-                    mon["volatiles"] = json!({});
-                    mon["last_move"] = Value::Null;
-                    mon["moves_this_stint"] = json!([]);
-                    if mon["status"] == "tox" {
-                        mon["status_progress"]["toxicStage"] = json!(0);
-                    }
-                }
-                let uncertain = self.teams[team].iter().enumerate().any(|(i, other)| {
-                    i != index
-                        && other["fainted"] == false
-                        && has_illusion(other["base_species"].as_str().unwrap())
-                });
-                self.active[team] = Some(index);
-                let mon = &mut self.teams[team][index];
-                mon["nickname"] = json!(nickname(ident));
-                mon["active"] = json!(true);
-                mon["seen"] = json!(true);
-                mon["species"] = json!(name);
-                mon["types"] = json!(types(name));
-                mon["entry_turn"] = json!(turn);
-                mon["identity_uncertain"] = json!(uncertain);
-                hp(mon, get(4));
-                self.last_attacker = None;
-            }
+            "switch" | "drag" | "replace" => self.switch_mon(
+                team.ok_or("invalid switch side")?,
+                ident,
+                species(get(3)),
+                get(4),
+                get(1) == "replace",
+            )?,
             "turn" => {
                 self.turn = get(2).parse().map_err(|_| "wrong turn number")?;
                 self.last_attacker = None;
@@ -222,6 +326,20 @@ impl PublicState {
                     }
                     mon["last_move"] = json!(move_id);
                     let species = mon["species"].clone();
+                    if !reveal_from && let Some(stint) = &mut self.stints[side] {
+                        stint.moves.push(move_id.clone());
+                        let used = stint
+                            .pp_used
+                            .get(&move_id)
+                            .and_then(Value::as_u64)
+                            .unwrap_or(0);
+                        stint
+                            .pp_used
+                            .insert(move_id.clone(), json!(used + cost as u64));
+                        stint
+                            .first_native_move
+                            .get_or_insert_with(|| json!({"turn":turn, "without_mega":!mega}));
+                    }
                     self.last_attacker = Some(side);
                     let order = self.history.iter().filter(|h| h["turn"] == turn).count();
                     if self.history.len() >= 12 {
@@ -306,11 +424,13 @@ impl PublicState {
             "-item" => {
                 if let Some(key) = key {
                     self.mon_mut(key)["item"] = json!(to_id(get(3)));
+                    self.mark_revealed(key.0, "item");
                 }
             }
             "-enditem" => {
                 if let Some(key) = key {
                     self.mon_mut(key)["item"] = json!("");
+                    self.mark_revealed(key.0, "item");
                 }
             }
             "-ability" => {
@@ -328,6 +448,7 @@ impl PublicState {
                         mon["identity_uncertain"] = json!(false);
                     }
                     mon["ability"] = json!(ability);
+                    self.mark_revealed(key.0, "ability");
                 }
             }
             "-mega" => {
@@ -454,8 +575,53 @@ impl PublicState {
                 .map_or(key, |ident| self.mon_key(ident));
             if let Some(mon) = mon {
                 self.mon_mut(mon)[field] = json!(to_id(label));
+                if self.active[mon.0] == Some(mon.1) {
+                    self.mark_revealed(mon.0, field);
+                }
             }
         }
         Ok(())
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::PublicState;
+
+    #[test]
+    fn illusion_reveal_restores_the_decoy_and_transfers_only_this_stint() {
+        let mut state = PublicState::default();
+        for line in [
+            "|poke|p1|Espeon, L50|",
+            "|poke|p1|Zoroark-Hisui, L50|",
+            "|poke|p1|Vaporeon, L50|",
+            "|switch|p1a: decoy|Espeon, L50|100/100",
+            "|turn|1",
+            "|move|p1a: decoy|Recover|p1a: decoy",
+            "|switch|p1a: reserve|Vaporeon, L50|100/100",
+            "|turn|2",
+            "|switch|p1a: decoy|Espeon, L50|100/100",
+            "|move|p1a: decoy|Nasty Plot|p1a: decoy",
+            "|-boost|p1a: decoy|spa|2",
+            "|-damage|p1a: decoy|92/100 brn",
+            "|-enditem|p1a: decoy|Lum Berry|[eat]",
+            "|replace|p1a: real|Zoroark-Hisui, L50",
+        ] {
+            state.feed(line).unwrap();
+        }
+        let [decoy, actual, _] = &state.teams[0][..] else {
+            panic!("three preview Pokémon")
+        };
+        assert_eq!(decoy["moves"], serde_json::json!(["recover"]));
+        assert_eq!(decoy["hp"], 1.0);
+        assert!(decoy["item"].is_null());
+        assert_eq!(actual["moves"], serde_json::json!(["nastyplot"]));
+        assert_eq!(actual["pp_used"]["nastyplot"], 1);
+        assert_eq!(actual["first_native_move"]["turn"], 2);
+        assert_eq!(actual["boosts"]["spa"], 2);
+        assert_eq!(actual["hp"], 0.92);
+        assert_eq!(actual["status"], "brn");
+        assert_eq!(actual["item"], "");
+        assert_eq!(actual["identity_uncertain"], false);
     }
 }

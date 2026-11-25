@@ -17,6 +17,7 @@ mod charge;
 mod damage;
 mod disable;
 mod hazards;
+mod illusion;
 mod items;
 mod leech;
 mod mega;
@@ -177,6 +178,7 @@ pub struct Pokemon {
     pub pokeball: String,
     pub moves: Vec<MoveSlot>,
     pub roster_index: usize,
+    illusion: Option<usize>,
     protected: bool,
     stall: Option<(u16, u8)>,
     fainted: bool,
@@ -718,6 +720,7 @@ impl Pokemon {
                 pokeball
             },
             roster_index: index,
+            illusion: None,
             protected: false,
             stall: None,
             fainted: false,

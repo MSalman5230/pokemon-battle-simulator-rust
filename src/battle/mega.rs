@@ -61,7 +61,11 @@ impl Battle {
             mon.hp = mon.stats.hp.saturating_sub(lost_hp).max(1);
             mon.max_hp = NonZeroU32::new(mon.stats.hp).unwrap();
         }
-        let details = mon.details.clone();
+        let apparent = self.disguise(pos);
+        let details = apparent.unwrap_or_else(|| self.mon(pos)).details.clone();
+        let apparent_species = apparent.map_or(species.base_species.as_str(), |mon| {
+            mon.species.name.as_str()
+        });
         self.add(format!("|detailschange|{}|{details}", self.ident(pos)));
         if changed_hp {
             self.add_health_line_with("-heal", pos, false, "|[silent]");
@@ -69,7 +73,7 @@ impl Battle {
         self.add(format!(
             "|-mega|{}|{}|{}",
             self.ident(pos),
-            species.base_species,
+            apparent_species,
             species.required_item.as_deref().unwrap_or("")
         ));
         self.sides[pos.player.index()].as_mut().unwrap().mega_used = true;

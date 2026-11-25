@@ -212,7 +212,10 @@ impl Battle {
     }
 
     pub(super) fn ident(&self, position: Position) -> String {
-        format!("{}: {}", position.label(), self.mon(position).name)
+        let display = self
+            .disguise(position)
+            .unwrap_or_else(|| self.mon(position));
+        format!("{}: {}", position.label(), display.name)
     }
 
     fn add_health_line(&mut self, event: &str, target: Position, details: bool) {
@@ -235,7 +238,7 @@ impl Battle {
         );
         let mut head = format!("|{event}|{}|", self.ident(target));
         if details {
-            head.push_str(&mon.details);
+            head.push_str(&self.displayed_details(target));
             head.push('|');
         }
         self.log.push(LogLine {
@@ -258,6 +261,7 @@ impl Battle {
         for player in Player::ALL {
             for slot in 0..self.slots() {
                 let pos = Position { player, slot };
+                self.prepare_illusion(pos);
                 self.add_health_line("switch", pos, true);
                 self.insert_run_switch(pos, &mut queue);
             }
@@ -1013,6 +1017,7 @@ impl Battle {
         party[outgoing.slot].needs_replacement = false;
         party[outgoing.slot].speed = party[outgoing.slot].stats.spe as i32;
         party[outgoing.slot].pivot_move = None;
+        party[outgoing.slot].illusion = None;
         party[outgoing.slot].reset_ability();
         if party[outgoing.slot].fainted {
             party[outgoing.slot].status = Status::Healthy;
@@ -1022,6 +1027,7 @@ impl Battle {
         if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
             party[outgoing.slot].status = Status::Toxic(0);
         }
+        self.prepare_illusion(outgoing);
         if drag {
             self.add_health_line("drag", outgoing, true);
         } else if let Some(move_name) = pivot {
@@ -2765,6 +2771,9 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
+                if self.event_ability(target) == "illusion" {
+                    self.end_illusion(target);
+                }
                 if move_data.flags.contains_key("contact") {
                     match self.event_ability(target) {
                         "flamebody" => self.flame_body(target, source),
@@ -2928,8 +2937,10 @@ impl Battle {
 
     pub(super) fn mark_fainted(&mut self, target: Position) {
         self.last_faint = Some(target.player);
+        self.add(format!("|faint|{}", self.ident(target)));
         let mon = self.mon_mut(target);
         mon.fainted = true;
+        mon.illusion = None;
         mon.reset_ability();
         mon.pivot_move = None;
         mon.stall = None;
@@ -2957,7 +2968,6 @@ impl Battle {
         mon.last_foe_hit = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
-        self.add(format!("|faint|{}", self.ident(target)));
     }
 
     fn clear_destiny_bond(&mut self, pos: Position, notify_debug: bool) -> bool {
@@ -3209,6 +3219,7 @@ impl Pokemon {
                 | "moldbreaker"
                 | "teravolt"
                 | "turboblaze"
+                | "illusion"
         )
     }
 

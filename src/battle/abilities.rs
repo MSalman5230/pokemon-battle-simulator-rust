@@ -229,6 +229,9 @@ impl Battle {
             return;
         }
         let old = old.map_or("", |ability| ability.name.as_str());
+        if mon.ability == "illusion" {
+            self.end_illusion(source);
+        }
         self.mon_mut(source).ability.clear();
         self.mon_mut(source).ability.push_str(id);
         self.reset_ability_order(source);

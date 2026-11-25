@@ -480,3 +480,13 @@ fn bss_mold_breaker_ignores_levitate_but_not_rough_skin_or_ability_shield() {
 fn vgc_mold_breaker_only_suppresses_defenses_during_the_holders_move() {
     replay(include_str!("fixtures/vgc-mold-breaker.json"));
 }
+
+#[test]
+fn bss_illusion_hides_public_identity_until_direct_damage() {
+    replay(include_str!("fixtures/bss-illusion.json"));
+}
+
+#[test]
+fn vgc_illusion_can_use_the_active_ally_to_its_right() {
+    replay(include_str!("fixtures/vgc-illusion.json"));
+}
