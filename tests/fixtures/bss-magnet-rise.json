@@ -1,0 +1,2887 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Metagross\",\"moves\":[\"Magnet Rise\",\"Recover\"],\"gender\":\"N\",\"name\":\"Metagross\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Nosepass\",\"moves\":[\"Earthquake\",\"Smack Down\",\"Gravity\",\"Recover\"],\"gender\":\"F\",\"name\":\"Nosepass\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Metagross, L50|",
+          "|poke|p2|Nosepass, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Metagross, L50|",
+          "|poke|p2|Nosepass, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Metagross, L50|",
+          "|poke|p2|Nosepass, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Metagross|Metagross, L50|100/100",
+          "|switch|p2a: Nosepass|Nosepass, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Metagross|Metagross, L50|155/155",
+          "|switch|p2a: Nosepass|Nosepass, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Metagross|Metagross, L50|100/100",
+          "|switch|p2a: Nosepass|Nosepass, L50, F|105/105",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise|p1a: Metagross",
+          "|-start|p1a: Metagross|Magnet Rise",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-immune|p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise|p1a: Metagross",
+          "|-start|p1a: Metagross|Magnet Rise",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-immune|p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise|p1a: Metagross",
+          "|-start|p1a: Metagross|Magnet Rise",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-immune|p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 3,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise||[still]",
+          "|-fail|p1a: Metagross",
+          "|move|p2a: Nosepass|Gravity|p2a: Nosepass",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p1a: Metagross|move: Gravity",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise||[still]",
+          "|-fail|p1a: Metagross",
+          "|move|p2a: Nosepass|Gravity|p2a: Nosepass",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p1a: Metagross|move: Gravity",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise||[still]",
+          "|-fail|p1a: Metagross",
+          "|move|p2a: Nosepass|Gravity|p2a: Nosepass",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p1a: Metagross|move: Gravity",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": true
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 4"
+      ],
+      "turn": 4,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": true
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 4"
+      ],
+      "turn": 5,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": true
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 4"
+      ],
+      "turn": 6,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": true
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 4"
+      ],
+      "turn": 7,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|-fieldend|move: Gravity",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|-fieldend|move: Gravity",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Recover||[still]",
+          "|-fail|p2a: Nosepass|heal",
+          "|",
+          "|-fieldend|move: Gravity",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 8,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise|p1a: Metagross",
+          "|-start|p1a: Metagross|Magnet Rise",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-immune|p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise|p1a: Metagross",
+          "|-start|p1a: Metagross|Magnet Rise",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-immune|p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise|p1a: Metagross",
+          "|-start|p1a: Metagross|Magnet Rise",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-immune|p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 9,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 9,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 9,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Smack Down|p1a: Metagross",
+          "|-resisted|p1a: Metagross|1",
+          "|-damage|p1a: Metagross|96/100",
+          "|-start|p1a: Metagross|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Smack Down|p1a: Metagross",
+          "|-resisted|p1a: Metagross|1",
+          "|-damage|p1a: Metagross|149/155",
+          "|-start|p1a: Metagross|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Recover||[still]",
+          "|-fail|p1a: Metagross|heal",
+          "|move|p2a: Nosepass|Smack Down|p1a: Metagross",
+          "|-resisted|p1a: Metagross|1",
+          "|-damage|p1a: Metagross|96/100",
+          "|-start|p1a: Metagross|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 9,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "149/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 149,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 9,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 10,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise||[still]",
+          "|-fail|p1a: Metagross",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-supereffective|p1a: Metagross|1",
+          "|-damage|p1a: Metagross|71/100",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise||[still]",
+          "|-fail|p1a: Metagross",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-supereffective|p1a: Metagross|1",
+          "|-damage|p1a: Metagross|111/155",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Magnet Rise||[still]",
+          "|-fail|p1a: Metagross",
+          "|move|p2a: Nosepass|Earthquake|p1a: Metagross",
+          "|-supereffective|p1a: Metagross|1",
+          "|-damage|p1a: Metagross|71/100",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magnet Rise",
+                  "id": "magnetrise",
+                  "pp": 8,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50",
+                "condition": "111/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "magnetrise",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 9,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Nosepass",
+                "details": "Nosepass, L50, F",
+                "condition": "105/105",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 155,
+                  "spa": 65,
+                  "spd": 110,
+                  "spe": 50
+                },
+                "moves": [
+                  "earthquake",
+                  "smackdown",
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50",
+            "hp": 111,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magnetrise",
+                "pp": 8,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Nosepass",
+            "species": "Nosepass",
+            "details": "Nosepass, L50, F",
+            "hp": 105,
+            "maxhp": 105,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 155,
+              "spa": 65,
+              "spd": 110,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 9,
+                "maxpp": 12
+              },
+              {
+                "id": "smackdown",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

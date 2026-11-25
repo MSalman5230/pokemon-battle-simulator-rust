@@ -1,0 +1,927 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Noivern\",\"moves\":[\"Fly\",\"Recover\"],\"gender\":\"F\",\"name\":\"Noivern\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Tyranitar\",\"moves\":[\"Smack Down\",\"Earthquake\"],\"gender\":\"F\",\"name\":\"Tyranitar\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Noivern, L50, F|",
+          "|poke|p2|Tyranitar, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Noivern, L50, F|",
+          "|poke|p2|Tyranitar, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Noivern, L50, F|",
+          "|poke|p2|Tyranitar, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Tyranitar",
+                "details": "Tyranitar, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 154,
+                  "def": 130,
+                  "spa": 115,
+                  "spd": 120,
+                  "spe": 81
+                },
+                "moves": [
+                  "smackdown",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Tyranitar",
+            "species": "Tyranitar",
+            "details": "Tyranitar, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 154,
+              "def": 130,
+              "spa": 115,
+              "spd": 120,
+              "spe": 81
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Noivern|Noivern, L50, F|100/100",
+          "|switch|p2a: Tyranitar|Tyranitar, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Noivern|Noivern, L50, F|160/160",
+          "|switch|p2a: Tyranitar|Tyranitar, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Noivern|Noivern, L50, F|100/100",
+          "|switch|p2a: Tyranitar|Tyranitar, L50, F|175/175",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Tyranitar",
+                "details": "Tyranitar, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 154,
+                  "def": 130,
+                  "spa": 115,
+                  "spd": 120,
+                  "spe": 81
+                },
+                "moves": [
+                  "smackdown",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Tyranitar",
+            "species": "Tyranitar",
+            "details": "Tyranitar, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 154,
+              "def": 130,
+              "spa": 115,
+              "spd": 120,
+              "spe": 81
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "smackdown",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Noivern|Fly||[still]",
+          "|-prepare|p1a: Noivern|Fly",
+          "|move|p2a: Tyranitar|Smack Down|p1a: Noivern",
+          "|-supereffective|p1a: Noivern|1",
+          "|-damage|p1a: Noivern|42/100",
+          "|-start|p1a: Noivern|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Noivern|Fly||[still]",
+          "|-prepare|p1a: Noivern|Fly",
+          "|move|p2a: Tyranitar|Smack Down|p1a: Noivern",
+          "|-supereffective|p1a: Noivern|1",
+          "|-damage|p1a: Noivern|68/160",
+          "|-start|p1a: Noivern|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Noivern|Fly||[still]",
+          "|-prepare|p1a: Noivern|Fly",
+          "|move|p2a: Tyranitar|Smack Down|p1a: Noivern",
+          "|-supereffective|p1a: Noivern|1",
+          "|-damage|p1a: Noivern|42/100",
+          "|-start|p1a: Noivern|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "68/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Tyranitar",
+                "details": "Tyranitar, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 154,
+                  "def": 130,
+                  "spa": 115,
+                  "spd": 120,
+                  "spe": 81
+                },
+                "moves": [
+                  "smackdown",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 68,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Tyranitar",
+            "species": "Tyranitar",
+            "details": "Tyranitar, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 154,
+              "def": 130,
+              "spa": 115,
+              "spd": 120,
+              "spe": 81
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "smackdown",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Noivern|Recover|p1a: Noivern",
+          "|-heal|p1a: Noivern|92/100",
+          "|move|p2a: Tyranitar|Earthquake|p1a: Noivern",
+          "|-damage|p1a: Noivern|53/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Noivern|Recover|p1a: Noivern",
+          "|-heal|p1a: Noivern|148/160",
+          "|move|p2a: Tyranitar|Earthquake|p1a: Noivern",
+          "|-damage|p1a: Noivern|86/160",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Noivern|Recover|p1a: Noivern",
+          "|-heal|p1a: Noivern|92/100",
+          "|move|p2a: Tyranitar|Earthquake|p1a: Noivern",
+          "|-damage|p1a: Noivern|53/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "86/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Smack Down",
+                  "id": "smackdown",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Tyranitar",
+                "details": "Tyranitar, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 154,
+                  "def": 130,
+                  "spa": 115,
+                  "spd": 120,
+                  "spe": 81
+                },
+                "moves": [
+                  "smackdown",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 86,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Tyranitar",
+            "species": "Tyranitar",
+            "details": "Tyranitar, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 154,
+              "def": 130,
+              "spa": 115,
+              "spd": 120,
+              "spe": 81
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "smackdown",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

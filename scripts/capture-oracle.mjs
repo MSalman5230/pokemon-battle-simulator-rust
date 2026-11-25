@@ -1198,6 +1198,14 @@ const opportunistRosters = [
     [{...named('Ninjask', ['Swords Dance', 'Tackle']), ability:'Speed Boost'},
         {...named('Azumarill', ['Belly Drum']), ability:'Huge Power', item:'Sitrus Berry'}],
 ];
+const magnetRiseRosters = [
+    [named('Metagross', ['Magnet Rise', 'Recover'], 'N')],
+    [named('Nosepass', ['Earthquake', 'Smack Down', 'Gravity', 'Recover'])],
+];
+const smackDownFlyRosters = [
+    [named('Noivern', ['Fly', 'Recover'])],
+    [named('Tyranitar', ['Smack Down', 'Earthquake'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2284,6 +2292,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','move 1']], stockpileRosters, 'bss-stockpile'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','switch 2'],
         ['move 2','move 1']], opportunistRosters, 'bss-opportunist'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 3'],
+        ...Array(4).fill(['move 2','move 4']), ['move 1','move 1'], ['move 2','move 2'],
+        ['move 1','move 1']], magnetRiseRosters, 'bss-magnet-rise'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2']],
+        smackDownFlyRosters, 'bss-smack-down-fly'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

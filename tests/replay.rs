@@ -1494,6 +1494,12 @@ fn opportunist_copies_only_positive_foe_stages_after_moves_and_residuals() {
 }
 
 #[test]
+fn magnet_rise_and_smack_down_change_ground_immunity_and_cancel_airtime() {
+    replay(include_str!("fixtures/bss-magnet-rise.json"));
+    replay(include_str!("fixtures/bss-smack-down-fly.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

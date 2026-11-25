@@ -134,12 +134,30 @@ impl Battle {
         match mon.effective_item() {
             "ironball" => true,
             "airballoon" => false,
-            _ => !mon.has_type("Flying") && self.airborne_ability(pos).is_none(),
+            _ => {
+                !mon.has_type("Flying")
+                    && mon.magnet_rise == 0
+                    && self.airborne_ability(pos).is_none()
+            }
         }
     }
 
     pub(super) fn forces_grounded(&self, pos: Position) -> bool {
-        self.gravity > 0 || self.mon(pos).volatile_ids().contains(&"ingrain")
+        self.gravity > 0
+            || self
+                .mon(pos)
+                .volatile_ids()
+                .iter()
+                .any(|&id| matches!(id, "ingrain" | "smackdown"))
+    }
+
+    pub(super) fn clear_magnet_rise(&mut self, pos: Position) -> bool {
+        let mon = self.mon_mut(pos);
+        if std::mem::take(&mut mon.magnet_rise) == 0 {
+            return false;
+        }
+        mon.untrack_volatile("magnetrise");
+        true
     }
 
     pub(super) fn tidy_hazards(&mut self, pos: Position) -> bool {

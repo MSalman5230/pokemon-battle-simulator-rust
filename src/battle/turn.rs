@@ -1121,6 +1121,8 @@ impl Battle {
                     | "stockpile"
                     | "spitup"
                     | "swallow"
+                    | "smackdown"
+                    | "magnetrise"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -1693,6 +1695,7 @@ impl Battle {
         party[outgoing.slot].octolock = None;
         party[outgoing.slot].fling_pending = false;
         party[outgoing.slot].stockpile = Default::default();
+        party[outgoing.slot].magnet_rise = 0;
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -2260,6 +2263,7 @@ impl Battle {
             Ingrain,
             Octolock,
             Opportunist,
+            MagnetRise,
         }
         self.add("|");
         self.update_speed();
@@ -2439,6 +2443,9 @@ impl Battle {
             }
             if mon.encore.is_some() {
                 timers.push((pos, Effect::Encore, priority(16, 2)));
+            }
+            if mon.magnet_rise != 0 {
+                timers.push((pos, Effect::MagnetRise, priority(18, 2)));
             }
             if mon.yawn.is_some() {
                 timers.push((pos, Effect::Yawn, priority(23, 2)));
@@ -2732,6 +2739,13 @@ impl Battle {
                 Effect::CudChew => self.chew_berry(pos),
                 Effect::Pickup => self.pick_up_item(pos),
                 Effect::Opportunist => self.apply_pending_boost_copy(pos),
+                Effect::MagnetRise => {
+                    mon.magnet_rise = mon.magnet_rise.saturating_sub(1);
+                    if mon.magnet_rise == 0 {
+                        mon.untrack_volatile("magnetrise");
+                        self.add(format!("|-end|{}|Magnet Rise", self.ident(pos)));
+                    }
+                }
                 Effect::Roost => {
                     mon.roosted = false;
                     mon.untrack_volatile("roost");
@@ -3757,15 +3771,9 @@ impl Battle {
                 self.gravity = 5;
                 self.add("|-fieldstart|move: Gravity");
                 for target in self.positions() {
-                    if matches!(
-                        self.mon(target).semi_invulnerability(),
-                        Some(super::charge::SemiInvulnerable::Airborne { .. })
-                    ) {
-                        self.mon_mut(target).clear_charge();
-                        queue.retain(|action| {
-                            action.actor != Some(target)
-                                || !matches!(action.kind, ActionKind::Move { .. })
-                        });
+                    let canceled = self.cancel_airborne_charge(target, queue);
+                    let grounded = self.clear_magnet_rise(target);
+                    if canceled || grounded {
                         self.add(format!("|-activate|{}|move: Gravity", self.ident(target)));
                     }
                 }
@@ -4037,6 +4045,12 @@ impl Battle {
             result.failed = true;
             return true;
         }
+        if move_data.name == "Magnet Rise" && self.forces_grounded(source) {
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
+            return true;
+        }
         if retaliation && !retaliation_hit.is_some_and(|hit| hit.turn == self.turn) {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
@@ -4277,9 +4291,7 @@ impl Battle {
                 && (self
                     .effectiveness_of(move_data, move_type, pos, false)
                     .is_none()
-                    || (move_data.move_type == "Ground"
-                        && self.mon(pos).effective_item() == "airballoon"
-                        && !self.grounded(pos))))
+                    || (move_type == "Ground" && !self.grounded(pos))))
                 || (move_data.flags.contains_key("powder")
                     && source != pos
                     && self.status_immune(pos, "powder"))
@@ -4583,6 +4595,21 @@ impl Battle {
                     } else {
                         self.mon_mut(target).track_volatile("ingrain");
                         self.add(format!("|-start|{}|move: Ingrain", self.ident(target)));
+                        succeeded = true;
+                    }
+                }
+                if move_data.name == "Magnet Rise" {
+                    if self.mon(target).magnet_rise != 0 {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|move failed because it did nothing");
+                        }
+                    } else {
+                        let mon = self.mon_mut(target);
+                        mon.magnet_rise = 5;
+                        mon.track_volatile("magnetrise");
+                        self.add(format!("|-start|{}|Magnet Rise", self.ident(target)));
                         succeeded = true;
                     }
                 }
@@ -5478,6 +5505,9 @@ impl Battle {
                 if move_data.name == "Jaw Lock" {
                     self.start_mutual_trap(source, target);
                 }
+                if move_data.name == "Smack Down" {
+                    self.smack_down(target, queue);
+                }
                 if let Some(item) = thrown_item {
                     self.fling_hit(source, target, item);
                 }
@@ -6058,6 +6088,43 @@ impl Battle {
         }
     }
 
+    fn cancel_airborne_charge(&mut self, target: Position, queue: &mut Vec<Action>) -> bool {
+        if !matches!(
+            self.mon(target).semi_invulnerability(),
+            Some(super::charge::SemiInvulnerable::Airborne { .. })
+        ) {
+            return false;
+        }
+        self.mon_mut(target).clear_charge();
+        queue.retain(|action| {
+            action.actor != Some(target) || !matches!(action.kind, ActionKind::Move { .. })
+        });
+        true
+    }
+
+    fn smack_down(&mut self, target: Position, queue: &mut Vec<Action>) {
+        if self.mon(target).hp == 0 {
+            return;
+        }
+        let canceled = self.cancel_airborne_charge(target, queue);
+        if self.mon(target).volatile_ids().contains(&"smackdown") {
+            if canceled {
+                self.add(format!("|-start|{}|Smack Down", self.ident(target)));
+            }
+            return;
+        }
+        let mon = self.mon(target);
+        let airborne = (mon.has_type("Flying")
+            || matches!(self.event_ability(target), "levitate" | "eelevate"))
+            && mon.effective_item() != "ironball"
+            && !self.forces_grounded(target);
+        let was_magnetized = self.clear_magnet_rise(target);
+        if airborne || canceled || was_magnetized {
+            self.mon_mut(target).track_volatile("smackdown");
+            self.add(format!("|-start|{}|Smack Down", self.ident(target)));
+        }
+    }
+
     fn note_consecutive_move(&mut self, forced: bool, data: &Move) {
         if forced {
             self.add(format!(
@@ -6155,6 +6222,7 @@ impl Battle {
         mon.octolock = None;
         mon.fling_pending = false;
         mon.stockpile = Default::default();
+        mon.magnet_rise = 0;
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
