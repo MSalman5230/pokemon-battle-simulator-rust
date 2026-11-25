@@ -39,6 +39,10 @@ accounts, chat, UI, or battle logic for unrelated generations and formats.
 
 - Use `origin` at `https://github.com/MSalman5230/pokemon-battle-simulator-rust`.
 - Work and commit directly on `main` only. Do not create branches or pull requests.
+- Configure the owner's GitHub-linked identity with repository-local `user.name`,
+  `user.email`, and `user.useConfigOnly=true`. Before committing, verify both
+  `git var GIT_AUTHOR_IDENT` and `git var GIT_COMMITTER_IDENT`. Never use Git's
+  hostname-derived email.
 - Commit regularly at small, coherent milestones after running the relevant checks.
   Push verified commits to `origin/main` without force-pushing. Do not wait until
   the whole port is finished to commit.
