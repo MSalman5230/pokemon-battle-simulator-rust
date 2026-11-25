@@ -1473,6 +1473,12 @@ fn swagger_boosts_before_confusion_and_magic_powder_sets_psychic_typing() {
 }
 
 #[test]
+fn ingrain_grounds_and_anchors_its_user_and_big_root_boosts_recovery() {
+    replay(include_str!("fixtures/bss-ingrain-big-root.json"));
+    replay(include_str!("fixtures/bss-strength-sap.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

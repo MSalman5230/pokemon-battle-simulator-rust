@@ -41,11 +41,20 @@ impl ReplacementHeal {
 }
 
 impl Battle {
-    pub(super) fn aqua_ring_heal(&mut self, pos: Position) {
+    pub(super) fn big_root_heal(&self, pos: Position, amount: u32) -> u32 {
+        if self.mon(pos).effective_item() == "bigroot" {
+            self.stat_rules.truncation.modify(amount, 5324)
+        } else {
+            amount
+        }
+    }
+
+    pub(super) fn rooting_heal(&mut self, pos: Position, effect: &str) {
+        let amount = self.big_root_heal(pos, (self.mon(pos).max_hp.get() / 16).max(1));
         let mon = self.mon_mut(pos);
         if mon.hp > 0 && mon.hp < mon.max_hp.get() && mon.heal_block == 0 {
-            mon.hp = (mon.hp + (mon.max_hp.get() / 16).max(1)).min(mon.max_hp.get());
-            self.add_health_line_with("-heal", pos, false, "|[from] Aqua Ring");
+            mon.hp = (mon.hp + amount).min(mon.max_hp.get());
+            self.add_health_line_with("-heal", pos, false, &format!("|[from] {effect}"));
         }
     }
 

@@ -25,7 +25,7 @@ impl Pokemon {
                 | "obstruct" | "silktrap" => self.protection = source.protection,
                 "healblock" => self.heal_block = source.heal_block,
                 "octolock" => self.octolock = source.octolock,
-                "aquaring" => {}
+                "aquaring" | "ingrain" => {}
                 "roost" => self.roosted = source.roosted,
                 "followme" | "ragepowder" => self.attention = source.attention,
                 "flinch" => self.flinched = source.flinched,

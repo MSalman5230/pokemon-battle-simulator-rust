@@ -128,6 +128,9 @@ impl Battle {
 
     pub(super) fn grounded(&self, pos: Position) -> bool {
         let mon = self.mon(pos);
+        if mon.volatile_ids().contains(&"ingrain") {
+            return true;
+        }
         match mon.effective_item() {
             "ironball" => true,
             "airballoon" => false,

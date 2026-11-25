@@ -83,6 +83,7 @@ impl Battle {
         let active = &foe[..self.format.game_type.active_slots()];
         let live = active.iter().filter(|mon| !mon.fainted);
         let actual = mon.volatile_ids().contains(&"trapped")
+            || mon.volatile_ids().contains(&"ingrain")
             || self.is_bound(pos)
             || self.octolock_source(pos).is_some()
             || live.clone().any(|foe| affected(&foe.ability));
@@ -114,6 +115,7 @@ impl Battle {
         let pos = Position { player, slot };
         let mon = self.mon(pos);
         let visible_trap = (mon.volatile_ids().contains(&"trapped")
+            || mon.volatile_ids().contains(&"ingrain")
             || self.is_bound(pos)
             || self.octolock_source(pos).is_some())
             && !self.ignores_trapping(pos);

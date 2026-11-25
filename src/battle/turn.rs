@@ -1035,6 +1035,7 @@ impl Battle {
                     | "swagger"
                     | "flatter"
                     | "magicpowder"
+                    | "ingrain"
                     | "electroshot"
                     | "solarbeam"
                     | "solarblade"
@@ -1936,6 +1937,8 @@ impl Battle {
                 "|-activate|{}|ability: Suction Cups",
                 self.ident(target)
             ));
+        } else if self.mon(target).volatile_ids().contains(&"ingrain") {
+            self.add(format!("|-activate|{}|move: Ingrain", self.ident(target)));
         } else {
             self.drag_flags |= target.mask();
         }
@@ -2170,6 +2173,7 @@ impl Battle {
             Terrain,
             GrassyHeal,
             AquaRing,
+            Ingrain,
             Octolock,
         }
         self.add("|");
@@ -2286,6 +2290,9 @@ impl Battle {
             }
             if mon.volatile_ids().contains(&"aquaring") {
                 timers.push((pos, Effect::AquaRing, priority(6, 2)));
+            }
+            if mon.volatile_ids().contains(&"ingrain") {
+                timers.push((pos, Effect::Ingrain, priority(7, 2)));
             }
             if mon.octolock.is_some() {
                 timers.push((pos, Effect::Octolock, priority(14, 2)));
@@ -2548,7 +2555,8 @@ impl Battle {
                     unreachable!()
                 }
                 Effect::GrassyHeal => self.grassy_heal(pos),
-                Effect::AquaRing => self.aqua_ring_heal(pos),
+                Effect::AquaRing => self.rooting_heal(pos, "Aqua Ring"),
+                Effect::Ingrain => self.rooting_heal(pos, "Ingrain"),
                 Effect::Octolock => self.tick_octolock(pos),
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::LeechSeed => {
@@ -3974,7 +3982,8 @@ impl Battle {
                     .effectiveness_of(move_data, move_type, pos, false)
                     .is_none()
                     || (move_data.move_type == "Ground"
-                        && self.mon(pos).effective_item() == "airballoon")))
+                        && self.mon(pos).effective_item() == "airballoon"
+                        && !self.grounded(pos))))
                 || (move_data.flags.contains_key("powder")
                     && source != pos
                     && self.status_immune(pos, "powder"))
@@ -4253,6 +4262,35 @@ impl Battle {
                         succeeded = true;
                     }
                 }
+                if move_data.name == "Ingrain" {
+                    if self.mon(target).volatile_ids().contains(&"ingrain") {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    } else {
+                        self.mon_mut(target).track_volatile("ingrain");
+                        self.add(format!("|-start|{}|move: Ingrain", self.ident(target)));
+                        succeeded = true;
+                    }
+                }
+                if move_data.name == "Strength Sap" {
+                    let mon = self.mon(target);
+                    let stage = mon.boosts.get(BoostStat::Atk);
+                    if stage != -6 {
+                        let amount = boosted_stat(mon.stats.atk, stage);
+                        succeeded = self.boost_from(
+                            target,
+                            source,
+                            &[(BoostStat::Atk, -1)],
+                            BoostOrigin::from_move(move_data),
+                        );
+                        succeeded |=
+                            self.transfer_health(source, target, amount, DrainKind::StrengthSap);
+                    }
+                    if !succeeded {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if move_data.name == "Torment" || move_data.name == "Octolock" {
                     let started = if move_data.name == "Torment" {
                         self.start_torment(target)
@@ -4515,31 +4553,6 @@ impl Battle {
                     mon.hp = average.min(mon.max_hp.get());
                     self.add_health_line_with("-sethp", source, false, "|[from] move: Pain Split");
                     succeeded = true;
-                }
-                if move_data.name == "Strength Sap" {
-                    let mon = self.mon(target);
-                    let stage = mon.boosts.get(BoostStat::Atk);
-                    let mut success = false;
-                    if stage > -6 {
-                        let restored = boosted_stat(mon.stats.atk, stage).max(1);
-                        success = self.boost_from(
-                            target,
-                            source,
-                            &[(BoostStat::Atk, -1)],
-                            BoostOrigin::from_move(move_data),
-                        );
-                        let mon = self.mon_mut(source);
-                        if mon.hp > 0 && mon.hp < mon.max_hp.get() {
-                            mon.hp = (mon.hp + restored).min(mon.max_hp.get());
-                            self.add_health_line("-heal", source, false);
-                            success = true;
-                        }
-                    }
-                    if !success {
-                        self.move_still(base);
-                        self.add(format!("|-fail|{source_name}"));
-                    }
-                    succeeded |= success;
                 }
                 if move_data.name == "Parting Shot" {
                     let lowered = self.boost_from(
@@ -5937,7 +5950,14 @@ impl Battle {
             match types.get(move_type) {
                 Some(1) => modifier += 1,
                 Some(2) => modifier -= 1,
-                Some(3) if !ignores_immunity => return None,
+                Some(3)
+                    if !(ignores_immunity
+                        || typing == "Flying"
+                            && move_type == "Ground"
+                            && mon.volatile_ids().contains(&"ingrain")) =>
+                {
+                    return None;
+                }
                 _ => {}
             }
             if move_data.name == "Flying Press" {
@@ -6324,6 +6344,7 @@ impl Pokemon {
                 | "powerherb"
                 | "abilityshield"
                 | "utilityumbrella"
+                | "bigroot"
                 | "brightpowder"
                 | "laxincense"
                 | "whiteherb"

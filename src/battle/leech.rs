@@ -6,6 +6,7 @@ use super::*;
 pub(super) enum DrainKind {
     Move,
     LeechSeed,
+    StrengthSap,
 }
 
 impl Battle {
@@ -15,15 +16,16 @@ impl Battle {
         donor: Position,
         amount: u32,
         kind: DrainKind,
-    ) {
+    ) -> bool {
         if self.mon(recipient).heal_block > 0 {
-            return;
+            return false;
         }
         if self.event_ability(donor) == "liquidooze" {
             if self.format.report_exact_hp {
                 let effect = match kind {
                     DrainKind::Move => "drain",
                     DrainKind::LeechSeed => "leechseed",
+                    DrainKind::StrengthSap => "strengthsap",
                 };
                 self.add(format!(
                     "|debug|Heal is occurring: {} <- {} :: {effect}",
@@ -32,7 +34,7 @@ impl Battle {
                 ));
             }
             if amount == 0 || self.mon(recipient).hp == 0 || !self.active_effects(recipient) {
-                return;
+                return false;
             }
             if self.event_ability(recipient) == "magicguard" {
                 self.add(format!(
@@ -42,7 +44,7 @@ impl Battle {
                 if self.format.report_exact_hp {
                     self.add("|debug|damage event failed");
                 }
-                return;
+                return false;
             }
             let mon = self.mon_mut(recipient);
             let original_hp = mon.hp;
@@ -55,14 +57,15 @@ impl Battle {
                 &format!("|[from] ability: Liquid Ooze|[of] {}", self.ident(donor)),
             );
             self.emergency_exit(recipient, original_hp);
-            return;
+            return false;
         }
         if amount == 0 || !self.active_effects(recipient) {
-            return;
+            return false;
         }
+        let amount = self.big_root_heal(recipient, amount);
         let mon = self.mon_mut(recipient);
         if mon.hp == 0 || mon.hp >= mon.max_hp.get() {
-            return;
+            return false;
         }
         mon.hp = (mon.hp + amount).min(mon.max_hp.get());
         match kind {
@@ -75,7 +78,9 @@ impl Battle {
             DrainKind::LeechSeed => {
                 self.add_health_line_with("-heal", recipient, false, "|[silent]")
             }
+            DrainKind::StrengthSap => self.add_health_line_with("-heal", recipient, false, ""),
         }
+        true
     }
 
     pub(super) fn leech_seed(&mut self, source: Position, target: Position) -> bool {

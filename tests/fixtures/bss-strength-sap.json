@@ -1,0 +1,1102 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Vileplume\",\"moves\":[\"Swords Dance\",\"Strength Sap\"],\"gender\":\"F\",\"name\":\"Vileplume\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Big Root\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Metapod\",\"moves\":[\"Night Shade\"],\"gender\":\"F\",\"name\":\"Metapod\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vileplume, L50, F|",
+          "|poke|p2|Metapod, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vileplume, L50, F|",
+          "|poke|p2|Metapod, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vileplume, L50, F|",
+          "|poke|p2|Metapod, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "swordsdance",
+                  "strengthsap"
+                ],
+                "baseAbility": "",
+                "item": "bigroot",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Metapod",
+                "details": "Metapod, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 75,
+                  "spa": 45,
+                  "spd": 45,
+                  "spe": 50
+                },
+                "moves": [
+                  "nightshade"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "bigroot",
+            "active": false,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "strengthsap",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Metapod",
+            "species": "Metapod",
+            "details": "Metapod, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 75,
+              "spa": 45,
+              "spd": 45,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "nightshade",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vileplume|Vileplume, L50, F|100/100",
+          "|switch|p2a: Metapod|Metapod, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vileplume|Vileplume, L50, F|150/150",
+          "|switch|p2a: Metapod|Metapod, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vileplume|Vileplume, L50, F|100/100",
+          "|switch|p2a: Metapod|Metapod, L50, F|125/125",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Strength Sap",
+                  "id": "strengthsap",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "swordsdance",
+                  "strengthsap"
+                ],
+                "baseAbility": "",
+                "item": "bigroot",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Night Shade",
+                  "id": "nightshade",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Metapod",
+                "details": "Metapod, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 75,
+                  "spa": 45,
+                  "spd": 45,
+                  "spe": 50
+                },
+                "moves": [
+                  "nightshade"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "bigroot",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "strengthsap",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Metapod",
+            "species": "Metapod",
+            "details": "Metapod, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 75,
+              "spa": 45,
+              "spd": 45,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "nightshade",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vileplume|Swords Dance|p1a: Vileplume",
+          "|-boost|p1a: Vileplume|atk|2",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|66/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Vileplume|Swords Dance|p1a: Vileplume",
+          "|-boost|p1a: Vileplume|atk|2",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|100/150",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Vileplume|Swords Dance|p1a: Vileplume",
+          "|-boost|p1a: Vileplume|atk|2",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|66/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Strength Sap",
+                  "id": "strengthsap",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "100/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "swordsdance",
+                  "strengthsap"
+                ],
+                "baseAbility": "",
+                "item": "bigroot",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Night Shade",
+                  "id": "nightshade",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Metapod",
+                "details": "Metapod, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 75,
+                  "spa": 45,
+                  "spd": 45,
+                  "spe": 50
+                },
+                "moves": [
+                  "nightshade"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 100,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "bigroot",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "strengthsap",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Metapod",
+            "species": "Metapod",
+            "details": "Metapod, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 75,
+              "spa": 45,
+              "spd": 45,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "nightshade",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vileplume|Strength Sap|p2a: Metapod",
+          "|-unboost|p2a: Metapod|atk|1",
+          "|-heal|p1a: Vileplume|100/100",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|66/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vileplume|Strength Sap|p2a: Metapod",
+          "|-unboost|p2a: Metapod|atk|1",
+          "|-heal|p1a: Vileplume|150/150",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|100/150",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vileplume|Strength Sap|p2a: Metapod",
+          "|-unboost|p2a: Metapod|atk|1",
+          "|-heal|p1a: Vileplume|100/100",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|66/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Strength Sap",
+                  "id": "strengthsap",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "100/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "swordsdance",
+                  "strengthsap"
+                ],
+                "baseAbility": "",
+                "item": "bigroot",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Night Shade",
+                  "id": "nightshade",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Metapod",
+                "details": "Metapod, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 75,
+                  "spa": 45,
+                  "spd": 45,
+                  "spe": 50
+                },
+                "moves": [
+                  "nightshade"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 100,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "bigroot",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "strengthsap",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Metapod",
+            "species": "Metapod",
+            "details": "Metapod, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 75,
+              "spa": 45,
+              "spd": 45,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "nightshade",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vileplume|Strength Sap|p2a: Metapod",
+          "|-unboost|p2a: Metapod|atk|1",
+          "|-heal|p1a: Vileplume|89/100",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|56/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Vileplume|Strength Sap|p2a: Metapod",
+          "|-unboost|p2a: Metapod|atk|1",
+          "|-heal|p1a: Vileplume|134/150",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|84/150",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Vileplume|Strength Sap|p2a: Metapod",
+          "|-unboost|p2a: Metapod|atk|1",
+          "|-heal|p1a: Vileplume|89/100",
+          "|move|p2a: Metapod|Night Shade|p1a: Vileplume",
+          "|-damage|p1a: Vileplume|56/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Strength Sap",
+                  "id": "strengthsap",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "84/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "swordsdance",
+                  "strengthsap"
+                ],
+                "baseAbility": "",
+                "item": "bigroot",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Night Shade",
+                  "id": "nightshade",
+                  "pp": 13,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Metapod",
+                "details": "Metapod, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 75,
+                  "spa": 45,
+                  "spd": 45,
+                  "spe": 50
+                },
+                "moves": [
+                  "nightshade"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 84,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "bigroot",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "strengthsap",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Metapod",
+            "species": "Metapod",
+            "details": "Metapod, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 75,
+              "spa": 45,
+              "spd": 45,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": -2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "nightshade",
+                "pp": 13,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
