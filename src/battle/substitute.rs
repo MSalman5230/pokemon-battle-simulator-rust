@@ -79,6 +79,8 @@ impl Battle {
                 let mon = self.mon_mut(source);
                 mon.hp = mon.hp.saturating_sub((mon.max_hp.get() + 2) / 4);
                 self.add_health_line_with("-damage", source, false, "|[from] recoil");
+            } else if matches!(move_data.name.as_str(), "Mind Blown" | "Steel Beam") {
+                self.half_max_hp_recoil(source, &to_id(&move_data.name));
             } else if let Some([num, den]) = move_data.recoil
                 && !matches!(self.mon(source).ability.as_str(), "rockhead" | "magicguard")
             {

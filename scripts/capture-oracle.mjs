@@ -664,6 +664,14 @@ const doublesCounterRosters = [
     counterRosters[0],
     [named('Electrode', ['Tackle']), counterRosters[1][0]],
 ];
+const soulRosters = [
+    [{...named('Kommo-o', ['Clangorous Soul', 'Recover']), item: 'Sitrus Berry'}, named('Espeon', ['Recover'])],
+    [named('Vaporeon', ['Recover']), named('Umbreon', ['Recover'])],
+];
+const steelBeamRosters = [
+    [named('Duraludon', ['Steel Beam']), named('Espeon', ['Recover'])],
+    [named('Vaporeon', ['Protect', 'Recover']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1004,6 +1012,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','move 1'], ['move 1','move 3']], counterRosters, 'bss-typed-counter'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1 1'],
         ['move 2, move 1','move 1 1, move 1 1']], doublesCounterRosters, 'vgc-typed-counter'],
+    ['bssregmc', [['team 12','team 12'], ...Array(5).fill(['move 1','move 1'])], soulRosters, 'bss-clangorous-soul'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['switch 2',null]],
+        steelBeamRosters, 'bss-steel-beam'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

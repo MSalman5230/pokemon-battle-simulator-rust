@@ -786,3 +786,9 @@ fn counter_and_mirror_coat_track_separate_damage_categories_and_retaliate_at_the
     replay(include_str!("fixtures/bss-typed-counter.json"));
     replay(include_str!("fixtures/vgc-typed-counter.json"));
 }
+
+#[test]
+fn health_costs_match_clangorous_soul_thresholds_and_steel_beam_recoil() {
+    replay(include_str!("fixtures/bss-clangorous-soul.json"));
+    replay(include_str!("fixtures/bss-steel-beam.json"));
+}

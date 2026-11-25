@@ -1,0 +1,1624 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Duraludon\",\"moves\":[\"Steel Beam\"],\"gender\":\"F\",\"name\":\"Duraludon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Espeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Protect\",\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Duraludon, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Duraludon, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Duraludon, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Duraludon",
+                "details": "Duraludon, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 135,
+                  "spa": 140,
+                  "spd": 70,
+                  "spe": 105
+                },
+                "moves": [
+                  "steelbeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Duraludon",
+            "species": "Duraludon",
+            "details": "Duraludon, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 135,
+              "spa": 140,
+              "spd": 70,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "steelbeam",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Duraludon|Duraludon, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Duraludon|Duraludon, L50, F|145/145",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Duraludon|Duraludon, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Steel Beam",
+                  "id": "steelbeam",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Duraludon",
+                "details": "Duraludon, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 135,
+                  "spa": 140,
+                  "spd": 70,
+                  "spe": 105
+                },
+                "moves": [
+                  "steelbeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Duraludon",
+            "species": "Duraludon",
+            "details": "Duraludon, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 135,
+              "spa": 140,
+              "spd": 70,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "steelbeam",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Vaporeon|Protect|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Protect",
+          "|move|p1a: Duraludon|Steel Beam|p2a: Vaporeon",
+          "|-activate|p2a: Vaporeon|move: Protect",
+          "|-damage|p1a: Duraludon|49/100|[from] steelbeam",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Vaporeon|Protect|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Protect",
+          "|move|p1a: Duraludon|Steel Beam|p2a: Vaporeon",
+          "|-activate|p2a: Vaporeon|move: Protect",
+          "|-damage|p1a: Duraludon|72/145|[from] steelbeam",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Vaporeon|Protect|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Protect",
+          "|move|p1a: Duraludon|Steel Beam|p2a: Vaporeon",
+          "|-activate|p2a: Vaporeon|move: Protect",
+          "|-damage|p1a: Duraludon|49/100|[from] steelbeam",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Steel Beam",
+                  "id": "steelbeam",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Duraludon",
+                "details": "Duraludon, L50, F",
+                "condition": "72/145",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 135,
+                  "spa": 140,
+                  "spd": 70,
+                  "spe": 105
+                },
+                "moves": [
+                  "steelbeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Duraludon",
+            "species": "Duraludon",
+            "details": "Duraludon, L50, F",
+            "hp": 72,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 135,
+              "spa": 140,
+              "spd": 70,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "steelbeam",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "switch",
+      "waiting": [
+        false,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Duraludon|Steel Beam|p2a: Vaporeon",
+          "|-resisted|p2a: Vaporeon|1",
+          "|-damage|p2a: Vaporeon|73/100",
+          "|-damage|p1a: Duraludon|0 fnt|[from] steelbeam",
+          "|faint|p1a: Duraludon",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|100/100",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Duraludon|Steel Beam|p2a: Vaporeon",
+          "|-resisted|p2a: Vaporeon|1",
+          "|-damage|p2a: Vaporeon|73/100",
+          "|-damage|p1a: Duraludon|0 fnt|[from] steelbeam",
+          "|faint|p1a: Duraludon",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|100/100",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Duraludon|Steel Beam|p2a: Vaporeon",
+          "|-resisted|p2a: Vaporeon|1",
+          "|-damage|p2a: Vaporeon|150/205",
+          "|-damage|p1a: Duraludon|0 fnt|[from] steelbeam",
+          "|faint|p1a: Duraludon",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|205/205",
+          "|",
+          "|upkeep"
+        ]
+      ],
+      "requests": [
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Duraludon",
+                "details": "Duraludon, L50, F",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 135,
+                  "spa": 140,
+                  "spd": 70,
+                  "spe": 105
+                },
+                "moves": [
+                  "steelbeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        },
+        {
+          "wait": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Duraludon",
+            "species": "Duraludon",
+            "details": "Duraludon, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "fnt",
+            "stats": {
+              "atk": 115,
+              "def": 135,
+              "spa": 140,
+              "spd": 70,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "steelbeam",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2"
+      ],
+      "turn": 3,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Espeon|Espeon, L50, F|100/100",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p1a: Espeon|Espeon, L50, F|140/140",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p1a: Espeon|Espeon, L50, F|100/100",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Duraludon",
+                "details": "Duraludon, L50, F",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 115,
+                  "def": 135,
+                  "spa": 140,
+                  "spd": 70,
+                  "spe": 105
+                },
+                "moves": [
+                  "steelbeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Duraludon",
+            "species": "Duraludon",
+            "details": "Duraludon, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 135,
+              "spa": 140,
+              "spd": 70,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "steelbeam",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

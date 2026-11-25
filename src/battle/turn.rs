@@ -1023,6 +1023,8 @@ impl Battle {
                     | "sparklingaria"
                     | "counter"
                     | "mirrorcoat"
+                    | "clangoroussoul"
+                    | "steelbeam"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -2323,6 +2325,11 @@ impl Battle {
             "Explosion" | "Self-Destruct" | "Misty Explosion"
         );
         let mind_blown = move_data.name == "Mind Blown";
+        let half_recoil = match move_data.name.as_str() {
+            "Mind Blown" => Some("mindblown"),
+            "Steel Beam" => Some("steelbeam"),
+            _ => None,
+        };
         let spent_element = match move_data.name.as_str() {
             "Burn Up" => Some("Fire"),
             "Double Shock" => Some("Electric"),
@@ -2593,6 +2600,23 @@ impl Battle {
             } else {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+            }
+            return true;
+        }
+        if move_data.name == "Clangorous Soul" {
+            let mon = self.mon(source);
+            let cost = mon.max_hp.get() * 33 / 100;
+            if mon.hp <= cost || mon.max_hp.get() == 1 {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                return true;
+            }
+            self.protean_prepare(source, move_type);
+            if self.boost(source, &move_data.boosts, true) {
+                self.mon_mut(source).hp -= cost.max(1);
+                self.add_health_line("-damage", source, false);
+                self.each_event();
+                self.each_event();
             }
             return true;
         }
@@ -2946,8 +2970,8 @@ impl Battle {
             }
             if sacrifice {
                 self.mark_fainted(source);
-            } else if mind_blown {
-                self.mind_blown_recoil(source);
+            } else if let Some(recoil) = half_recoil {
+                self.half_max_hp_recoil(source, recoil);
                 if self.mon(source).hp == 0 {
                     self.mark_fainted(source);
                 }
@@ -3752,8 +3776,10 @@ impl Battle {
             );
             self.emergency_exit(source, original_hp);
         }
-        if mind_blown && total > 0 {
-            self.mind_blown_recoil(source);
+        if let Some(recoil) = half_recoil
+            && total > 0
+        {
+            self.half_max_hp_recoil(source, recoil);
         }
         self.each_event();
         for &target in &spread_targets {
@@ -3793,12 +3819,12 @@ impl Battle {
         true
     }
 
-    fn mind_blown_recoil(&mut self, pos: Position) {
+    pub(super) fn half_max_hp_recoil(&mut self, pos: Position, effect: &str) {
         let mon = self.mon_mut(pos);
         if mon.hp != 0 && mon.ability != "magicguard" {
             let original_hp = mon.hp;
             mon.hp = mon.hp.saturating_sub(mon.max_hp.get().div_ceil(2));
-            self.add_health_line_with("-damage", pos, false, "|[from] mindblown");
+            self.add_health_line_with("-damage", pos, false, &format!("|[from] {effect}"));
             self.emergency_exit(pos, original_hp);
         }
     }
