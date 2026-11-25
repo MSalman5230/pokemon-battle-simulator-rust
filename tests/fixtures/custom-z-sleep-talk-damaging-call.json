@@ -1,0 +1,1249 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Komala\",\"moves\":[\"Sleep Talk\",\"Thunderbolt\"],\"gender\":\"F\",\"name\":\"Komala\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Comatose\",\"item\":\"Normalium Z\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chansey\",\"moves\":[\"Protect\",\"Toxic\",\"Recover\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Komala, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Komala, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Komala, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Komala",
+                "details": "Komala, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "sleeptalk",
+                  "thunderbolt"
+                ],
+                "baseAbility": "comatose",
+                "item": "normaliumz",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "protect",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "normaliumz",
+            "active": false,
+            "moves": [
+              {
+                "id": "sleeptalk",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Komala|Komala, L50, F|140/140",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|-ability|p1a: Komala|Comatose",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Komala|Komala, L50, F|140/140",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|-ability|p1a: Komala|Comatose",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Komala|Komala, L50, F|140/140",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|-ability|p1a: Komala|Comatose",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sleep Talk",
+                  "id": "sleeptalk",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Z-Sleep Talk",
+                  "target": "self"
+                },
+                null
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Komala",
+                "details": "Komala, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "sleeptalk",
+                  "thunderbolt"
+                ],
+                "baseAbility": "comatose",
+                "item": "normaliumz",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "protect",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "normaliumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "sleeptalk",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 zmove",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|-zpower|p1a: Komala",
+          "|move|p1a: Komala|Z-Sleep Talk|p1a: Komala|[anim]Sleep Talk",
+          "|-start|p1a: Komala|move: Focus Energy|[zeffect]",
+          "|move|p1a: Komala|Gigavolt Havoc|p2a: Chansey|[from] move: Sleep Talk",
+          "|-zbroken|p2a: Chansey",
+          "|-damage|p2a: Chansey|312/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|-zpower|p1a: Komala",
+          "|move|p1a: Komala|Z-Sleep Talk|p1a: Komala|[anim]Sleep Talk",
+          "|-start|p1a: Komala|move: Focus Energy|[zeffect]",
+          "|move|p1a: Komala|Gigavolt Havoc|p2a: Chansey|[from] move: Sleep Talk",
+          "|-zbroken|p2a: Chansey",
+          "|-damage|p2a: Chansey|312/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|-zpower|p1a: Komala",
+          "|move|p1a: Komala|Z-Sleep Talk|p1a: Komala|[anim]Sleep Talk",
+          "|-start|p1a: Komala|move: Focus Energy|[zeffect]",
+          "|move|p1a: Komala|Gigavolt Havoc|p2a: Chansey|[from] move: Sleep Talk",
+          "|-zbroken|p2a: Chansey",
+          "|-damage|p2a: Chansey|312/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sleep Talk",
+                  "id": "sleeptalk",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Komala",
+                "details": "Komala, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "sleeptalk",
+                  "thunderbolt"
+                ],
+                "baseAbility": "comatose",
+                "item": "normaliumz",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "312/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "protect",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "normaliumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "sleeptalk",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 312,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "54274,43667,37867,24894",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Komala|Sleep Talk|p1a: Komala",
+          "|move|p1a: Komala|Thunderbolt|p2a: Chansey|[from] move: Sleep Talk",
+          "|-damage|p2a: Chansey|282/325",
+          "|move|p2a: Chansey|Toxic|p1a: Komala",
+          "|-immune|p1a: Komala|[from] ability: Comatose",
+          "|debug|set status [tox] interrupted",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Komala|Sleep Talk|p1a: Komala",
+          "|move|p1a: Komala|Thunderbolt|p2a: Chansey|[from] move: Sleep Talk",
+          "|-damage|p2a: Chansey|282/325",
+          "|move|p2a: Chansey|Toxic|p1a: Komala",
+          "|-immune|p1a: Komala|[from] ability: Comatose",
+          "|debug|set status [tox] interrupted",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Komala|Sleep Talk|p1a: Komala",
+          "|move|p1a: Komala|Thunderbolt|p2a: Chansey|[from] move: Sleep Talk",
+          "|-damage|p2a: Chansey|282/325",
+          "|move|p2a: Chansey|Toxic|p1a: Komala",
+          "|-immune|p1a: Komala|[from] ability: Comatose",
+          "|debug|set status [tox] interrupted",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sleep Talk",
+                  "id": "sleeptalk",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Komala",
+                "details": "Komala, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "sleeptalk",
+                  "thunderbolt"
+                ],
+                "baseAbility": "comatose",
+                "item": "normaliumz",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "282/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "protect",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "normaliumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "sleeptalk",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 282,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 4,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Komala|Sleep Talk|p1a: Komala",
+          "|move|p1a: Komala|Thunderbolt|p2a: Chansey|[from] move: Sleep Talk",
+          "|-crit|p2a: Chansey",
+          "|-damage|p2a: Chansey|241/325",
+          "|move|p2a: Chansey|Recover|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Komala|Sleep Talk|p1a: Komala",
+          "|move|p1a: Komala|Thunderbolt|p2a: Chansey|[from] move: Sleep Talk",
+          "|-crit|p2a: Chansey",
+          "|-damage|p2a: Chansey|241/325",
+          "|move|p2a: Chansey|Recover|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Komala|Sleep Talk|p1a: Komala",
+          "|move|p1a: Komala|Thunderbolt|p2a: Chansey|[from] move: Sleep Talk",
+          "|-crit|p2a: Chansey",
+          "|-damage|p2a: Chansey|241/325",
+          "|move|p2a: Chansey|Recover|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sleep Talk",
+                  "id": "sleeptalk",
+                  "pp": 9,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Komala",
+                "details": "Komala, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "sleeptalk",
+                  "thunderbolt"
+                ],
+                "baseAbility": "comatose",
+                "item": "normaliumz",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "protect",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "normaliumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "sleeptalk",
+                "pp": 9,
+                "maxpp": 12
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -494,6 +494,7 @@ impl Battle {
             ("limber", "par") => "Limber",
             ("waterbubble", "brn") => "Water Bubble",
             ("purifyingsalt", _) => "Purifying Salt",
+            ("comatose", _) => "Comatose",
             ("insomnia", "slp") => "Insomnia",
             ("vitalspirit", "slp") => "Vital Spirit",
             ("leafguard", _)
@@ -516,7 +517,7 @@ impl Battle {
         if self.format.report_exact_hp {
             if !matches!(
                 label,
-                "Limber" | "Water Bubble" | "Insomnia" | "Vital Spirit" | "Leaf Guard"
+                "Limber" | "Water Bubble" | "Insomnia" | "Vital Spirit" | "Leaf Guard" | "Comatose"
             ) {
                 self.add(format!("|debug|interrupting setStatus with {label}"));
             }

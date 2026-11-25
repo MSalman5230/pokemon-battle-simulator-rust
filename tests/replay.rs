@@ -2058,6 +2058,13 @@ fn mimic_sketch_and_conversion_two_use_distinct_native_move_histories() {
 }
 
 #[test]
+fn z_sleep_talk_powers_the_called_attack_without_spending_a_second_z_move() {
+    replay(include_str!(
+        "fixtures/custom-z-sleep-talk-damaging-call.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

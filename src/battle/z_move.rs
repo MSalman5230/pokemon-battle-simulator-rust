@@ -47,7 +47,11 @@ pub(super) fn signature_supported(data: &Move) -> bool {
 
 type Variants = HashMap<(&'static str, &'static str), Move>;
 
-fn generic_attack(dex_mod: Mod, base: &'static Move, typing: &'static str) -> &'static Move {
+fn generic_attack(
+    dex_mod: Mod,
+    base: &'static Move,
+    typing: &'static str,
+) -> Option<&'static Move> {
     // Keep the normal battle path allocation-free: only build these variants
     // when a battle actually tries to spend a Z-Crystal.
     static VARIANTS: LazyLock<[Variants; 2]> = LazyLock::new(|| {
@@ -80,7 +84,7 @@ fn generic_attack(dex_mod: Mod, base: &'static Move, typing: &'static str) -> &'
             result
         })
     });
-    &VARIANTS[usize::from(dex_mod == Mod::RegMb)][&(base.name.as_str(), typing)]
+    VARIANTS[usize::from(dex_mod == Mod::RegMb)].get(&(base.name.as_str(), typing))
 }
 
 impl Battle {
@@ -157,7 +161,22 @@ impl Battle {
                 base,
                 weather_ball_type.unwrap_or(&base.move_type),
             )
+            .expect("generic Z-Move validated during selection")
         }
+    }
+
+    pub(super) fn z_called_move(
+        &self,
+        pos: Position,
+        base: &'static Move,
+    ) -> Option<&'static Move> {
+        if let Some(item) = DEX.item(self.format.dex_mod, &self.mon(pos).item)
+            && matches!(item.z_move, Some(ItemZMove::Signature(_)))
+            && let Some(move_data) = self.z_move_data(item, base)
+        {
+            return Some(move_data);
+        }
+        generic_attack(self.format.dex_mod, base, &base.move_type)
     }
 
     pub(super) fn spend_z_move(&mut self, pos: Position) {

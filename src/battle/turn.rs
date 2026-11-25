@@ -81,6 +81,31 @@ impl ExternalEffect {
     }
 }
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+enum CallSource {
+    SleepTalk,
+    Copycat,
+}
+
+impl CallSource {
+    fn labels(self) -> (&'static str, &'static str) {
+        match self {
+            Self::SleepTalk => ("|[from] move: Sleep Talk", "Sleep Talk called"),
+            Self::Copycat => ("|[from] move: Copycat", "Copycat called"),
+        }
+    }
+}
+
+#[derive(Clone, Copy)]
+struct Call {
+    from: CallSource,
+    caller: usize,
+    priority: i8,
+    prankster: bool,
+    inherits_z: bool,
+    target: Option<Position>,
+}
+
 #[derive(Clone, Copy)]
 enum MoveInvocation {
     Choice {
@@ -109,17 +134,9 @@ enum MoveInvocation {
         target: Position,
         damage: u32,
     },
-    SleepTalk {
+    Called {
         slot: usize,
-        caller: usize,
-        priority: i8,
-        prankster: bool,
-    },
-    Copycat {
-        slot: usize,
-        caller: usize,
-        priority: i8,
-        prankster: bool,
+        call: Call,
     },
 }
 
@@ -2457,6 +2474,7 @@ impl Battle {
         }
         if let Some(label) = match self.mon(pos).ability.as_str() {
             "pressure" => Some("Pressure"),
+            "comatose" => Some("Comatose"),
             "moldbreaker" => Some("Mold Breaker"),
             "teravolt" => Some("Teravolt"),
             "turboblaze" => Some("Turboblaze"),
@@ -3834,6 +3852,38 @@ impl Battle {
         (count != 0).then_some(holders[0].0)
     }
 
+    fn run_called_move(
+        &mut self,
+        source: Position,
+        data: &'static Move,
+        call: Call,
+        queue: &mut Vec<Action>,
+    ) -> bool {
+        let id = to_id(&data.name);
+        let data = DEX.moves(self.format.dex_mod, &id).unwrap_or(data);
+        let extra = MoveSlot {
+            id,
+            move_data: data,
+            pp: 0,
+            max_pp: 0,
+        };
+        if !Self::move_supported(&extra) {
+            self.unsupported_called_move = Some((call.from.labels().1, &data.name));
+            return false;
+        }
+        let user = self.mon_mut(source);
+        let slot = user
+            .moves
+            .iter()
+            .position(|slot| slot.id == extra.id)
+            .unwrap_or_else(|| {
+                user.extra_move = Some(Box::new(extra));
+                EXTRA_MOVE_SLOT
+            });
+        let (_, source) = self.run_move(source, MoveInvocation::Called { slot, call }, queue);
+        self.mon(source).move_failed_this_turn
+    }
+
     // Whether this action reached the move attempt, for AfterMove hooks.
     fn run_move(
         &mut self,
@@ -3906,25 +3956,16 @@ impl Battle {
             MoveInvocation::Future { target, .. } | MoveInvocation::BideStrike { target, .. } => {
                 (None, 0, Some(target), false, false)
             }
-            MoveInvocation::SleepTalk {
-                slot, prankster, ..
+            MoveInvocation::Called { slot, call } => {
+                (Some(slot), 0, call.target, false, call.prankster)
             }
-            | MoveInvocation::Copycat {
-                slot, prankster, ..
-            } => (Some(slot), 0, None, false, prankster),
         };
-        let sleep_talk = match invocation {
-            MoveInvocation::SleepTalk {
-                caller, priority, ..
-            } => Some((caller, priority)),
+        let call = match invocation {
+            MoveInvocation::Called { call, .. } => Some(call),
             _ => None,
         };
-        let caller = match invocation {
-            MoveInvocation::Copycat {
-                caller, priority, ..
-            } => Some((caller, priority)),
-            _ => sleep_talk,
-        };
+        let sleep_talk = call.is_some_and(|call| call.from == CallSource::SleepTalk);
+        let caller = call.map(|call| (call.caller, call.priority));
         let delayed = matches!(invocation, MoveInvocation::Future { .. });
         let bide_strike = match invocation {
             MoveInvocation::BideStrike { damage, .. } => Some(damage),
@@ -3965,9 +4006,9 @@ impl Battle {
             return true;
         }
         let base_data = match invocation {
-            MoveInvocation::Choice { slot, .. }
-            | MoveInvocation::SleepTalk { slot, .. }
-            | MoveInvocation::Copycat { slot, .. } => self.move_data(source, slot),
+            MoveInvocation::Choice { slot, .. } | MoveInvocation::Called { slot, .. } => {
+                self.move_data(source, slot)
+            }
             MoveInvocation::External { data, .. }
             | MoveInvocation::Future { data, .. }
             | MoveInvocation::BideStrike { data, .. } => data,
@@ -3977,6 +4018,8 @@ impl Battle {
             _ => None,
         };
         let z_powered = z_priority.is_some();
+        let implicit_z =
+            call.is_some_and(|call| call.inherits_z) && base_data.category != Category::Status;
         let weather = self.effective_weather();
         let mega_sun = !delayed && self.event_ability(source) == "megasol";
         let move_weather = if mega_sun {
@@ -3996,6 +4039,12 @@ impl Battle {
         };
         let mut move_data = if z_powered {
             self.z_active_move(source, base_data, z_weather)
+        } else if implicit_z {
+            let Some(z) = self.z_called_move(source, base_data) else {
+                self.unsupported_called_move = Some(("called Z-Move", &base_data.name));
+                return true;
+            };
+            z
         } else {
             base_data
         };
@@ -4016,7 +4065,7 @@ impl Battle {
         }
         let z_status = z_powered && move_data.category == Category::Status;
         let z_animated = z_status && !move_data.is_z_move;
-        let damaging_z = z_powered && !z_status;
+        let damaging_z = (z_powered || implicit_z) && !z_status;
         result.spends_charge =
             own_action && move_data.name != "Charge" && move_data.move_type == "Electric";
         let struggle = slot == Some(STRUGGLE_SLOT);
@@ -4074,10 +4123,8 @@ impl Battle {
             "|[from] move: Weather Ball"
         } else if let Some((effect, _)) = external {
             effect.label()
-        } else if sleep_talk.is_some() {
-            "|[from] move: Sleep Talk"
-        } else if caller.is_some() {
-            "|[from] move: Copycat"
+        } else if let Some(call) = call {
+            call.from.labels().0
         } else if round_followup {
             "|[from] move: Round"
         } else if let Some(earlier) = pledge_from {
@@ -4587,7 +4634,7 @@ impl Battle {
         let history_known = self.history_known;
         if !unannounced {
             let mon = self.mon_mut(source);
-            mon.last_used_type = Some(if z_powered {
+            mon.last_used_type = Some(if z_powered || implicit_z {
                 z_weather.unwrap_or(&base_data.move_type)
             } else {
                 move_type
@@ -4628,7 +4675,7 @@ impl Battle {
             ));
             base
         };
-        if damaging_z {
+        if z_powered && damaging_z {
             self.log[base].public.push_str("|[zeffect]");
         } else if z_status {
             self.apply_z_power(source, move_data);
@@ -4880,22 +4927,20 @@ impl Battle {
                 return true;
             }
             let called_slot = choices[self.rng.below(choices.len() as u32) as usize];
-            let called = &self.mon(source).moves[called_slot];
-            if !Self::move_supported(called) {
-                self.unsupported_called_move = Some(("Sleep Talk called", &called.move_data.name));
-                return true;
-            }
-            let (_, source) = self.run_move(
+            let data = self.mon(source).moves[called_slot].move_data;
+            result.failed = self.run_called_move(
                 source,
-                MoveInvocation::SleepTalk {
-                    slot: called_slot,
+                data,
+                Call {
+                    from: CallSource::SleepTalk,
                     caller: slot.expect("Sleep Talk is never reflected or recursively called"),
                     priority,
                     prankster,
+                    inherits_z: z_status,
+                    target: None,
                 },
                 queue,
             );
-            result.failed = self.mon(source).move_failed_this_turn;
             self.each_event();
             self.each_event();
             return true;
@@ -6298,37 +6343,19 @@ impl Battle {
                         result.failed = true;
                         return true;
                     }
-                    let id = to_id(&called.name);
-                    let extra = MoveSlot {
-                        id,
-                        move_data: called,
-                        pp: 0,
-                        max_pp: 0,
-                    };
-                    if !Self::move_supported(&extra) {
-                        self.unsupported_called_move = Some(("Copycat called", &called.name));
-                        return true;
-                    }
-                    let user = self.mon_mut(source);
-                    let called_slot = user
-                        .moves
-                        .iter()
-                        .position(|m| m.id == extra.id)
-                        .unwrap_or_else(|| {
-                            user.extra_move = Some(Box::new(extra));
-                            EXTRA_MOVE_SLOT
-                        });
-                    let (_, source) = self.run_move(
+                    result.failed = self.run_called_move(
                         source,
-                        MoveInvocation::Copycat {
-                            slot: called_slot,
+                        called,
+                        Call {
+                            from: CallSource::Copycat,
                             caller: slot.unwrap(),
                             priority,
                             prankster,
+                            inherits_z: z_status,
+                            target: None,
                         },
                         queue,
                     );
-                    result.failed = self.mon(source).move_failed_this_turn;
                     self.each_event();
                     self.each_event();
                     return true;
@@ -7487,7 +7514,7 @@ impl Battle {
                 break;
             }
             if hit > 1
-                && ((sleep_talk.is_none() && matches!(self.mon(source).status, Status::Sleep(_)))
+                && ((!sleep_talk && matches!(self.mon(source).status, Status::Sleep(_)))
                     || (per_strike_accuracy
                         && !self.next_strike_hits(
                             source,
@@ -9331,6 +9358,7 @@ impl Pokemon {
                 | "sheerforce"
                 | "serenegrace"
                 | "commander"
+                | "comatose"
                 | "harvest"
                 | "pickup"
                 | "berserk"

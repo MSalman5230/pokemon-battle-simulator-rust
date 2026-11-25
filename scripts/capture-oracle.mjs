@@ -1883,6 +1883,10 @@ const legacyConversionTwoRosters = [
     [named('Porygon2', ['Conversion 2', 'Recover'])],
     [named('Jolteon', ['Rain Dance', 'Weather Ball', 'Charge'])],
 ];
+const legacyZSleepTalkRosters = [
+    [{...named('Komala', ['Sleep Talk', 'Thunderbolt']), ability:'Comatose', item:'Normalium Z'}],
+    [named('Chansey', ['Protect', 'Toxic', 'Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3333,6 +3337,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2','move 2'], ['switch 2','move 2']], legacySketchRosters, 'custom-sketch-persists-across-switches'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'],
         ['move 1','move 3']], legacyConversionTwoRosters, 'custom-conversion-two-uses-executed-type'],
+    ['customgame', [['team 1','team 1'], ['move 1 zmove','move 1'], ['move 1','move 2'], ['move 1','move 3']],
+        legacyZSleepTalkRosters, 'custom-z-sleep-talk-damaging-call'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
