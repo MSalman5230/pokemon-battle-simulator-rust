@@ -532,6 +532,11 @@ const chestoRestRosters = [
     [{...named('Vaporeon', ['Rest', 'Recover']), item: 'Chesto Berry'}, named('Glaceon', ['Recover'])],
     [named('Snorlax', ['Tackle']), named('Umbreon', ['Recover'])],
 ];
+const randomLevelRosters = [
+    [{...named('Zoroark', ['Dark Pulse']), ability: 'Illusion', level: 87},
+        {...named('Flareon', ['Recover']), level: 84}],
+    [{...named('Umbreon', ['Tackle']), level: 86}, {...named('Glaceon', ['Recover']), level: 89}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -793,6 +798,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 123'], ['move 1 1, move 1','move 1, move 1']],
         dampAftermathRosters, 'vgc-damp-aftermath'],
     ['bssregmc', [['team 12','team 12'], ['move 2','move 1'], ['move 1','move 1']], chestoRestRosters, 'bss-chesto-rest'],
+    ['randombattle', [['move 1','move 1'], ['move 1','move 1']], randomLevelRosters, 'random-native-supplied'],
+    ['randomdoublesbattle', [['move 1 1, move 1', 'move 1 1, move 1']], randomLevelRosters, 'random-doubles-native-supplied'],
+    ['natdexdraft', [['team 12','team 123'], ['move 2','move 1'], ['move 1','switch 2'], ['move 1','switch 3']],
+        sleepClauseRosters, 'natdex-draft-native'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

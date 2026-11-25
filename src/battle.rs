@@ -315,6 +315,9 @@ impl Battle {
                 | "gen9championsdraft"
                 | "gen9champions4v4doublesdraft"
                 | "gen9championsrosterranchrumble"
+                | "gen9championsnatdexdraft"
+                | "gen9championsrandombattle"
+                | "gen9championsrandomdoublesbattle"
         ) {
             return Err(BattleError::Unsupported(format!(
                 "startup rules for {}",
@@ -455,6 +458,18 @@ impl Battle {
             .enumerate()
             .map(|(i, set)| Pokemon::new(self.format, i, set, &mut rng))
             .collect::<Result<Vec<_>, _>>()?;
+        if !self.format.has_rule("teampreview")
+            && let Some(other) = self.party(player.foe())
+        {
+            let active = self.format.game_type.active_slots();
+            if let Some(err) = [&party[..active], &other[..active]]
+                .into_iter()
+                .flatten()
+                .find_map(Pokemon::entry_error)
+            {
+                return Err(err);
+            }
+        }
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)
@@ -490,16 +505,19 @@ impl Battle {
         });
         self.rng = rng;
         if self.sides.iter().all(Option::is_some) {
-            self.begin_preview();
+            self.begin_battle()?;
         }
         Ok(())
     }
 
-    fn begin_preview(&mut self) {
+    fn begin_battle(&mut self) -> Result<(), BattleError> {
         self.add("|gen|9");
         self.add(format!("|tier|{}", self.format.name));
         for rule in &self.format.rule_log {
             self.add(rule.as_str());
+        }
+        if !self.format.has_rule("teampreview") {
+            return self.start_selected();
         }
         self.add("|clearpoke");
         for player in Player::ALL {
@@ -519,6 +537,7 @@ impl Battle {
             self.show_open_team_sheets()
                 .expect("both teams present before preview");
         }
+        Ok(())
     }
 
     fn show_open_team_sheets(&mut self) -> Result<(), BattleError> {

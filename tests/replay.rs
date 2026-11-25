@@ -655,3 +655,14 @@ fn vgc_damp_on_the_attackers_partner_prevents_aftermath() {
 fn bss_rest_completes_healing_before_chesto_berry_is_consumed() {
     replay(include_str!("fixtures/bss-chesto-rest.json"));
 }
+
+#[test]
+fn champions_random_formats_with_supplied_teams_skip_preview_and_mask_illusion_level() {
+    replay(include_str!("fixtures/random-native-supplied.json"));
+    replay(include_str!("fixtures/random-doubles-native-supplied.json"));
+}
+
+#[test]
+fn natdex_draft_uses_champions_battle_rules_and_sleep_clause() {
+    replay(include_str!("fixtures/natdex-draft-native.json"));
+}

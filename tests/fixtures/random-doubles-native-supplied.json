@@ -1,0 +1,739 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsrandomdoublesbattle",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsrandomdoublesbattle\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Zoroark\",\"moves\":[\"Dark Pulse\"],\"gender\":\"F\",\"name\":\"Zoroark\",\"level\":87,\"nature\":\"Hardy\",\"ability\":\"Illusion\"},{\"species\":\"Flareon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Flareon\",\"level\":84,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":86,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Glaceon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":89,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L84, F|100/100",
+          "|switch|p1b: Flareon|Flareon, L84, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L86, F|100/100",
+          "|switch|p2b: Glaceon|Glaceon, L89, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L84, F|228/228",
+          "|switch|p1b: Flareon|Flareon, L84, F|229/229",
+          "|switch|p2a: Umbreon|Umbreon, L86, F|100/100",
+          "|switch|p2b: Glaceon|Glaceon, L89, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L84, F|100/100",
+          "|switch|p1b: Flareon|Flareon, L84, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L86, F|286/286",
+          "|switch|p2b: Glaceon|Glaceon, L89, F|242/242",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dark Pulse",
+                  "id": "darkpulse",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zoroark",
+                "details": "Zoroark, L87, F",
+                "condition": "228/228",
+                "active": true,
+                "stats": {
+                  "atk": 214,
+                  "def": 136,
+                  "spa": 240,
+                  "spd": 136,
+                  "spe": 214
+                },
+                "moves": [
+                  "darkpulse"
+                ],
+                "baseAbility": "illusion",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "illusion",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L84, F",
+                "condition": "229/229",
+                "active": true,
+                "stats": {
+                  "atk": 249,
+                  "def": 131,
+                  "spa": 190,
+                  "spd": 215,
+                  "spe": 140
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L86, F",
+                "condition": "286/286",
+                "active": true,
+                "stats": {
+                  "atk": 143,
+                  "def": 220,
+                  "spa": 134,
+                  "spd": 255,
+                  "spe": 143
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L89, F",
+                "condition": "242/242",
+                "active": true,
+                "stats": {
+                  "atk": 139,
+                  "def": 228,
+                  "spa": 263,
+                  "spd": 201,
+                  "spe": 148
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zoroark",
+            "species": "Zoroark",
+            "details": "Zoroark, L87, F",
+            "hp": 228,
+            "maxhp": 228,
+            "status": "",
+            "stats": {
+              "atk": 214,
+              "def": 136,
+              "spa": 240,
+              "spd": 136,
+              "spe": 214
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "illusion",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L84, F",
+            "hp": 229,
+            "maxhp": 229,
+            "status": "",
+            "stats": {
+              "atk": 249,
+              "def": 131,
+              "spa": 190,
+              "spd": 215,
+              "spe": 140
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L86, F",
+            "hp": 286,
+            "maxhp": 286,
+            "status": "",
+            "stats": {
+              "atk": 143,
+              "def": 220,
+              "spa": 134,
+              "spd": 255,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L89, F",
+            "hp": 242,
+            "maxhp": 242,
+            "status": "",
+            "stats": {
+              "atk": 139,
+              "def": 228,
+              "spa": 263,
+              "spd": 201,
+              "spe": 148
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 1",
+        ">p2 move 1 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Flareon|Dark Pulse|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|87/100",
+          "|move|p2b: Glaceon|Recover||[still]",
+          "|-fail|p2b: Glaceon|heal",
+          "|cant|p2a: Umbreon|flinch",
+          "|move|p1b: Flareon|Recover||[still]",
+          "|-fail|p1b: Flareon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Flareon|Dark Pulse|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|87/100",
+          "|move|p2b: Glaceon|Recover||[still]",
+          "|-fail|p2b: Glaceon|heal",
+          "|cant|p2a: Umbreon|flinch",
+          "|move|p1b: Flareon|Recover||[still]",
+          "|-fail|p1b: Flareon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Flareon|Dark Pulse|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|249/286",
+          "|move|p2b: Glaceon|Recover||[still]",
+          "|-fail|p2b: Glaceon|heal",
+          "|cant|p2a: Umbreon|flinch",
+          "|move|p1b: Flareon|Recover||[still]",
+          "|-fail|p1b: Flareon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dark Pulse",
+                  "id": "darkpulse",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zoroark",
+                "details": "Zoroark, L87, F",
+                "condition": "228/228",
+                "active": true,
+                "stats": {
+                  "atk": 214,
+                  "def": 136,
+                  "spa": 240,
+                  "spd": 136,
+                  "spe": 214
+                },
+                "moves": [
+                  "darkpulse"
+                ],
+                "baseAbility": "illusion",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "illusion",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L84, F",
+                "condition": "229/229",
+                "active": true,
+                "stats": {
+                  "atk": 249,
+                  "def": 131,
+                  "spa": 190,
+                  "spd": 215,
+                  "spe": 140
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L86, F",
+                "condition": "249/286",
+                "active": true,
+                "stats": {
+                  "atk": 143,
+                  "def": 220,
+                  "spa": 134,
+                  "spd": 255,
+                  "spe": 143
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L89, F",
+                "condition": "242/242",
+                "active": true,
+                "stats": {
+                  "atk": 139,
+                  "def": 228,
+                  "spa": 263,
+                  "spd": 201,
+                  "spe": 148
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zoroark",
+            "species": "Zoroark",
+            "details": "Zoroark, L87, F",
+            "hp": 228,
+            "maxhp": 228,
+            "status": "",
+            "stats": {
+              "atk": 214,
+              "def": 136,
+              "spa": 240,
+              "spd": 136,
+              "spe": 214
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "illusion",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "darkpulse",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L84, F",
+            "hp": 229,
+            "maxhp": 229,
+            "status": "",
+            "stats": {
+              "atk": 249,
+              "def": 131,
+              "spa": 190,
+              "spd": 215,
+              "spe": 140
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L86, F",
+            "hp": 249,
+            "maxhp": 286,
+            "status": "",
+            "stats": {
+              "atk": 143,
+              "def": 220,
+              "spa": 134,
+              "spd": 255,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L89, F",
+            "hp": 242,
+            "maxhp": 242,
+            "status": "",
+            "stats": {
+              "atk": 139,
+              "def": 228,
+              "spa": 263,
+              "spd": 201,
+              "spe": 148
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
