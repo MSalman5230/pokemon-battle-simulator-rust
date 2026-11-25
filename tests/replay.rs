@@ -98,6 +98,25 @@ fn replay(raw: &str) {
                 "{context}, party for {}",
                 player.id()
             );
+            if let Some(expected) = checkpoint.get("observedDisables") {
+                let disables = battle
+                    .party(player)
+                    .unwrap()
+                    .iter()
+                    .enumerate()
+                    .map(|(i, p)| {
+                        (0..p.moves.len())
+                            .map(|m| battle.actual_move_disabled(player, i, m))
+                            .collect::<Vec<_>>()
+                    })
+                    .collect::<Vec<_>>();
+                assert_eq!(
+                    json!(disables),
+                    expected[index],
+                    "{context}, observed disables for {}",
+                    player.id()
+                );
+            }
         }
     }
 }
@@ -235,4 +254,9 @@ fn vgc_elemental_redirection_prefers_faster_holder_and_never_redirects_spread() 
 #[test]
 fn bss_magic_guard_blocks_indirect_damage_without_preventing_status() {
     replay(include_str!("fixtures/bss-magic-guard.json"));
+}
+
+#[test]
+fn bss_last_resort_unlocks_after_using_other_moves_and_resets_on_switch_in() {
+    replay(include_str!("fixtures/bss-last-resort.json"));
 }

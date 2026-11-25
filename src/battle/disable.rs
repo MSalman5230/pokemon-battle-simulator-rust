@@ -24,25 +24,29 @@ impl Battle {
             .is_some_and(|m| self.imprisoned_move(pos, &m.move_data.name))
     }
 
-    /// True move-slot disable flags, available only for the requesting
-    /// player's own observation. Zero PP does not set the underlying flag.
+    /// The underlying move-slot flags that Showdown last computed at the
+    /// start of a turn. A mid-turn pivot or faint does not refresh them.
     pub fn actual_move_disabled(
         &self,
         player: Player,
         party_slot: usize,
         move_slot: usize,
     ) -> bool {
-        let pos = Position {
-            player,
-            slot: party_slot,
-        };
-        self.is_active(player, party_slot)
-            && (self
-                .mon(pos)
-                .disabled_slot
-                .is_some_and(|(slot, _)| slot == move_slot)
-                || self.mon(pos).disabled_by_choice(move_slot)
-                || self.disabled_by_imprison(pos, move_slot))
+        self.party(player)
+            .and_then(|party| party.get(party_slot))
+            .is_some_and(|mon| {
+                move_slot < mon.moves.len() && mon.observed_disables & (1 << move_slot) != 0
+            })
+    }
+
+    pub(super) fn refresh_observed_disables(&mut self, pos: Position) {
+        let flags = (0..self.mon(pos).moves.len()).fold(0, |flags, slot| {
+            flags
+                | (u32::from(
+                    self.visible_disable(pos, slot) || self.disabled_by_imprison(pos, slot),
+                ) << slot)
+        });
+        self.mon_mut(pos).observed_disables = flags;
     }
 
     pub(super) fn visible_disable(&self, pos: Position, slot: usize) -> bool {
@@ -51,12 +55,13 @@ impl Battle {
             || mon
                 .disabled_slot
                 .is_some_and(|(disabled, _)| disabled == slot)
+            || (mon.moves[slot].id == "lastresort" && !mon.can_use_last_resort())
     }
 
     pub(super) fn actual_disabled(&self, pos: Position, slot: usize) -> bool {
         let mon = self.mon(pos);
         mon.moves[slot].pp == 0
-            || mon.disabled_by_choice(slot)
+            || self.visible_disable(pos, slot)
             || self.disabled_by_imprison(pos, slot)
     }
 
@@ -100,6 +105,17 @@ impl Battle {
         mon.revealed_disables |= 1_u32 << slot;
         mon.revealed_all_disables = doubles;
         BattleError::Unavailable("move is disabled")
+    }
+}
+
+impl Pokemon {
+    pub(super) fn can_use_last_resort(&self) -> bool {
+        self.moves.len() >= 2
+            && self
+                .moves
+                .iter()
+                .enumerate()
+                .all(|(slot, m)| m.id == "lastresort" || self.used_moves & (1 << slot) != 0)
     }
 }
 

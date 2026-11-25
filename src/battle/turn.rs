@@ -655,6 +655,7 @@ impl Battle {
                     | "reflect"
                     | "lightscreen"
                     | "disable"
+                    | "lastresort"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -859,6 +860,7 @@ impl Battle {
                         party[outgoing.slot].status = Status::Healthy;
                     }
                     party.swap(outgoing.slot, bench_slot);
+                    party[outgoing.slot].used_moves = 0;
                     if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
                         party[outgoing.slot].status = Status::Toxic(0);
                     }
@@ -963,6 +965,7 @@ impl Battle {
                 mon.choice_lock = None;
                 mon.untrack_volatile("choicelock");
             }
+            self.refresh_observed_disables(pos);
         }
         self.add(format!("|turn|{}", self.turn));
         self.phase = Phase::Move;
@@ -1213,6 +1216,7 @@ impl Battle {
         } else {
             let mon = self.mon_mut(source);
             mon.moves[slot].pp -= 1;
+            mon.used_moves |= 1 << slot;
             mon.last_move_slot = Some(slot);
             if mon.holds_choice_item() && mon.choice_lock.is_none() {
                 mon.choice_lock = Some(slot);
