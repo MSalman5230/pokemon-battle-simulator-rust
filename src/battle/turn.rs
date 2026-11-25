@@ -1073,10 +1073,6 @@ impl Battle {
             if !mon.fainted {
                 mon.active_turns += 1;
             }
-            if !mon.holds_choice_item() {
-                mon.choice_lock = None;
-                mon.untrack_volatile("choicelock");
-            }
             self.refresh_observed_disables(pos);
         }
         self.add(format!("|turn|{}", self.turn));
@@ -1511,6 +1507,9 @@ impl Battle {
                         .filter(|pos| !self.mon(*pos).fainted),
                 );
             }
+            TargetKind::FoeSide | TargetKind::AllySide | TargetKind::AllyTeam | TargetKind::All => {
+                spread_targets.extend(target);
+            }
             _ => spread_targets.extend(target.filter(|pos| !self.mon(*pos).fainted)),
         }
         let actual_target = if target.is_some_and(|target| spread_targets.contains(&target)) {
@@ -1518,7 +1517,16 @@ impl Battle {
         } else {
             spread_targets.last().copied().or(target)
         };
-        let target_name = actual_target.map_or_else(|| "null".into(), |pos| self.ident(pos));
+        let target_name = actual_target.map_or_else(
+            || "null".into(),
+            |pos| {
+                if self.mon(pos).fainted {
+                    format!("{}: {}", pos.player.id(), self.mon(pos).name)
+                } else {
+                    self.ident(pos)
+                }
+            },
+        );
         if weather_ball && self.format.report_exact_hp {
             self.add(format!("|debug|BP: {power}"));
         }

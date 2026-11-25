@@ -40,6 +40,25 @@ impl Battle {
     }
 
     pub(super) fn refresh_observed_disables(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        let own_handlers = usize::from(mon.choice_lock.is_some())
+            + usize::from(mon.taunt > 0)
+            + usize::from(mon.encore.is_some())
+            + usize::from(mon.disabled_slot.is_some());
+        let mut handlers = [mon.speed; 6];
+        let mut count = own_handlers;
+        for foe in self.foe_imprison(pos) {
+            handlers[count] = foe.speed;
+            count += 1;
+        }
+        // DisableMove sorts these condition handlers together, even when the
+        // final flags do not depend on which tied condition runs first.
+        speed_sort_by(&mut handlers[..count], &mut self.rng, |a, b| b.cmp(a));
+        let mon = self.mon_mut(pos);
+        if !mon.holds_choice_item() {
+            mon.choice_lock = None;
+            mon.untrack_volatile("choicelock");
+        }
         let flags = (0..self.mon(pos).moves.len()).fold(0, |flags, slot| {
             flags
                 | (u32::from(

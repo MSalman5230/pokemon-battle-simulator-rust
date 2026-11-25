@@ -269,6 +269,14 @@ const encoreRosters = [
     [named('Umbreon', ['Quick Attack', 'Recover']), named('Glaceon', ['Recover'])],
 ];
 const mentalHerbRosters = [encoreRosters[0], [{...encoreRosters[1][0], item: 'Mental Herb'}, encoreRosters[1][1]]];
+const faintedTargetRosters = [
+    [named('Shedinja', ['Tackle']), named('Vaporeon', ['Recover'])],
+    [{...named('Snorlax', ['Stealth Rock']), item: 'Rocky Helmet'}, named('Umbreon', ['Recover'])],
+];
+const tiedDisableRosters = [
+    [{...named('Garchomp', ['Tackle', 'Recover']), item: 'Choice Band'}, named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Taunt', 'Water Gun']), named('Snorlax', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -394,6 +402,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         encoreRosters, 'vgc-encore'],
     ['bssregmc', [['team 12', 'team 12'], ['move 2', 'move 1'], ['move 1', 'move 2'], ['move 2', 'move 1']],
         mentalHerbRosters, 'bss-mental-herb'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['switch 2', null]],
+        faintedTargetRosters, 'bss-hazard-after-faint'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 2']],
+        tiedDisableRosters, 'bss-tied-disables'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

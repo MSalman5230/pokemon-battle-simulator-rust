@@ -345,3 +345,13 @@ fn vgc_encore_replaces_and_retargets_a_queued_action() {
 fn bss_mental_herb_cures_encore_before_the_selected_move_executes() {
     replay(include_str!("fixtures/bss-mental-herb.json"));
 }
+
+#[test]
+fn bss_side_target_moves_still_execute_after_the_last_active_foe_faints() {
+    replay(include_str!("fixtures/bss-hazard-after-faint.json"));
+}
+
+#[test]
+fn bss_tied_disable_handlers_consume_the_same_rng_as_showdown() {
+    replay(include_str!("fixtures/bss-tied-disables.json"));
+}
