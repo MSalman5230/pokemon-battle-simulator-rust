@@ -2981,7 +2981,12 @@ impl Battle {
         let base_target = move_base_target(move_data, source, loc);
         let original_target =
             forced_target.or_else(|| self.resolve_target(source, base_target, loc));
-        let mut target = retaliation_hit.map(|hit| hit.source).or(original_target);
+        let lost_counter_target =
+            counter.is_some() && retaliation_hit.is_some_and(|hit| self.mon(hit.source).fainted);
+        let mut target = retaliation_hit
+            .filter(|_| !lost_counter_target)
+            .map(|hit| hit.source)
+            .or(original_target);
         if darts && target.is_some_and(|pos| self.mon(pos).fainted && pos.player == source.player) {
             target = self.random_target(source, TargetKind::Normal);
         }
@@ -3168,6 +3173,9 @@ impl Battle {
             }
             _ => spread_targets.extend(target.filter(|pos| !self.mon(*pos).fainted)),
         }
+        if lost_counter_target {
+            spread_targets.clear();
+        }
         let actual_target = if target.is_some_and(|target| spread_targets.contains(&target)) {
             target
         } else {
@@ -3207,6 +3215,7 @@ impl Battle {
         };
         let mut redirected = false;
         if !delayed
+            && !lost_counter_target
             && self.slots() > 1
             && !move_data.tracks_target
             && (kind == TargetKind::Scripted
@@ -4935,7 +4944,7 @@ impl Battle {
         let mut hit_substitute = false;
         let binding = super::partial_trap::binding_move(&move_data.name);
         for hit in 1..=max_hits {
-            if (self.mon(source).hp == 0 && !sacrifice && !smart_target)
+            if (self.mon(source).hp == 0 && !sacrifice && !smart_target && !delayed)
                 || spread_targets
                     .iter()
                     .all(|&target| self.mon(target).hp == 0)

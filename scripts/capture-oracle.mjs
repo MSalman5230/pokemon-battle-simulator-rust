@@ -668,6 +668,10 @@ const doublesCounterRosters = [
     counterRosters[0],
     [named('Electrode', ['Tackle']), counterRosters[1][0]],
 ];
+const faintedCounterRosters = [
+    [counterRosters[0][0], {...named('Garchomp', ['Stomping Tantrum']), ability:'Sand Veil', nature:'Adamant', evs:{atk:32}}],
+    [named('Electrode', ['Tackle']), named('Umbreon', ['Recover']), named('Glaceon', ['Recover'])],
+];
 const soulRosters = [
     [{...named('Kommo-o', ['Clangorous Soul', 'Recover']), item: 'Sitrus Berry'}, named('Espeon', ['Recover'])],
     [named('Vaporeon', ['Recover']), named('Umbreon', ['Recover'])],
@@ -859,6 +863,11 @@ const futureSightRosters = [
 const doubleFutureRosters = [
     [named('Espeon', ['Future Sight', 'Recover']), named('Metagross', ['Doom Desire', 'Recover'])],
     [named('Vaporeon', ['Substitute', 'Recover']), named('Umbreon', ['Recover'])],
+];
+const faintedFutureRosters = [
+    [named('Espeon', ['Future Sight']), named('Umbreon', ['Recover'])],
+    [{...named('Tyranitar', ['Crunch']), ability:'Unnerve', nature:'Adamant', evs:{atk:32}},
+        named('Vaporeon', ['Recover'])],
 ];
 const belchRosters = [
     [{...named('Swalot', ['Recover', 'Belch']), item:'Lum Berry'}, named('Vaporeon', ['Recover'])],
@@ -1800,6 +1809,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','move 1'], ['move 1','move 3']], counterRosters, 'bss-typed-counter'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1 1'],
         ['move 2, move 1','move 1 1, move 1 1']], doublesCounterRosters, 'vgc-typed-counter'],
+    ['vgc2026regmc', [['team 12','team 123'], ['move 1, move 1 1','move 1 1, move 1']],
+        faintedCounterRosters, 'vgc-counter-fainted-attacker'],
     ['bssregmc', [['team 12','team 12'], ...Array(5).fill(['move 1','move 1'])], soulRosters, 'bss-clangorous-soul'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['switch 2',null]],
         steelBeamRosters, 'bss-steel-beam'],
@@ -1905,6 +1916,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 2','move 1, move 1'],
         ['move 2, move 2','move 2, move 1'], ['move 2, move 2','move 2, move 1']],
         doubleFutureRosters, 'vgc-delayed-attacks'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['switch 2',null],
+        ['move 1','switch 2'], ['move 1','move 1']], faintedFutureRosters, 'bss-future-fainted-user'],
     ['bssregmc', [['team 12','team 12'], ['move 2','move 2'], ['move 1','move 1'], ['move 2','move 2'],
         ['switch 2','move 2'], ['switch 2','move 2'], ['move 2','move 2']], belchRosters, 'bss-belch'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 2'], ['switch 2','move 3'],

@@ -828,6 +828,7 @@ fn headless_controls_match_reseeding_tiebreaks_and_forced_results() {
 fn counter_and_mirror_coat_track_separate_damage_categories_and_retaliate_at_the_right_slot() {
     replay(include_str!("fixtures/bss-typed-counter.json"));
     replay(include_str!("fixtures/vgc-typed-counter.json"));
+    replay(include_str!("fixtures/vgc-counter-fainted-attacker.json"));
 }
 
 #[test]
@@ -956,6 +957,7 @@ fn plus_minus_and_curious_medicine_observe_the_live_partner() {
 fn delayed_attacks_use_original_source_and_current_slot_occupant() {
     replay(include_str!("fixtures/bss-future-sight.json"));
     replay(include_str!("fixtures/vgc-delayed-attacks.json"));
+    replay(include_str!("fixtures/bss-future-fainted-user.json"));
 }
 
 #[test]
