@@ -892,6 +892,11 @@ fn ripen_doubles_berry_effects_but_only_announces_leftovers() {
 }
 
 #[test]
+fn beak_blast_burns_contact_only_while_preparing() {
+    replay(include_str!("fixtures/bss-beak-blast.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

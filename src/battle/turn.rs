@@ -537,6 +537,7 @@ impl Battle {
                         {
                             "Focus Punch" => Some("focuspunch"),
                             "Chilly Reception" => Some("chillyreception"),
+                            "Beak Blast" => Some("beakblast"),
                             _ => None,
                         }
                     {
@@ -1027,6 +1028,7 @@ impl Battle {
                     | "ragingbull"
                     | "focusenergy"
                     | "focuspunch"
+                    | "beakblast"
                     | "revivalblessing"
                     | "chillyreception"
                     | "ficklebeam"
@@ -1406,6 +1408,8 @@ impl Battle {
                                 "|-singleturn|{}|move: Focus Punch",
                                 self.ident(pos)
                             ));
+                        } else if id == "beakblast" {
+                            self.add(format!("|-singleturn|{}|move: Beak Blast", self.ident(pos)));
                         }
                     }
                 }
@@ -1475,6 +1479,11 @@ impl Battle {
                         },
                         &mut queue,
                     ) {
+                        if self.mon(source).volatile_ids().contains(&"beakblast")
+                            && self.move_data(source, move_slot).name == "Beak Blast"
+                        {
+                            self.mon_mut(source).untrack_volatile("beakblast");
+                        }
                         self.end_rampage_attempt(source);
                         if !recharging {
                             self.white_herbs_after_action();
@@ -1767,6 +1776,7 @@ impl Battle {
             Flinch,
             FocusPunch,
             ChillyReception,
+            BeakBlast,
             Counter,
             Recharge,
             Charge,
@@ -1914,6 +1924,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"chillyreception") {
                 timers.push((pos, Effect::ChillyReception, priority(0, 2)));
             }
+            if mon.volatile_ids().contains(&"beakblast") {
+                timers.push((pos, Effect::BeakBlast, priority(0, 2)));
+            }
             if mon.counter.is_some() {
                 timers.push((pos, Effect::Counter, priority(0, 2)));
             }
@@ -1999,6 +2012,7 @@ impl Battle {
                     mon.untrack_volatile("focuspunch");
                 }
                 Effect::ChillyReception => mon.untrack_volatile("chillyreception"),
+                Effect::BeakBlast => mon.untrack_volatile("beakblast"),
                 Effect::Counter => {
                     if let Some(counter) = mon.counter.take() {
                         mon.untrack_volatile(counter.move_kind.id());
@@ -3655,6 +3669,11 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
+                if move_data.flags.contains_key("contact")
+                    && self.mon(target).volatile_ids().contains(&"beakblast")
+                {
+                    self.try_status(source, "brn", target, move_data, false, base);
+                }
                 if critical_hits & target.mask() != 0 && self.event_ability(target) == "angerpoint"
                 {
                     self.ability_boost(target, "Anger Point", BoostStat::Atk, 12, false);
