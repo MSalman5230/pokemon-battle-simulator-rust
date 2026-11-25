@@ -863,6 +863,12 @@ fn ability_events_change_typing_or_boosts_at_the_native_step() {
 }
 
 #[test]
+fn unburden_can_resume_after_item_loss_and_recycle_only_restores_used_items() {
+    replay(include_str!("fixtures/bss-recycle-unburden.json"));
+    replay(include_str!("fixtures/bss-recycle-popped-balloon.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

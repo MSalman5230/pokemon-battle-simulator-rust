@@ -232,6 +232,9 @@ impl Battle {
     }
 
     pub(super) fn end_ability(&mut self, pos: Position) {
+        if self.mon(pos).ability == "unburden" {
+            self.mon_mut(pos).untrack_volatile("unburden");
+        }
         if self.mon(pos).volatile_ids().contains(&"flashfire") {
             self.mon_mut(pos).untrack_volatile("flashfire");
             self.add(format!(

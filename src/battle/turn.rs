@@ -1006,6 +1006,7 @@ impl Battle {
                     | "waterspout"
                     | "dragonenergy"
                     | "wish"
+                    | "recycle"
                     | "tailwind"
                     | "lastrespects"
                     | "ragefist"
@@ -3132,6 +3133,14 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
+                if move_data.name == "Recycle" {
+                    if self.recycle_item(target) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if matches!(
                     move_data.name.as_str(),
                     "Skill Swap" | "Trick" | "Switcheroo"
@@ -3374,11 +3383,7 @@ impl Battle {
         let mut landed_by_target = [0u32; 4];
         let mut hp_after_damage = [0u32; 4];
         let mut hits_landed = 0;
-        let attack_hazard = match move_data.name.as_str() {
-            "Stone Axe" => Some(Hazard::StealthRock),
-            "Ceaseless Edge" => Some(Hazard::Spikes),
-            _ => None,
-        };
+        let attack_hazard = Hazard::from_attack(&move_data.name);
         let mut hit_substitute = false;
         let binding = super::partial_trap::binding_move(&move_data.name);
         for hit in 1..=max_hits {
@@ -3522,11 +3527,6 @@ impl Battle {
                 if self.behind_substitute(source, target, move_data) {
                     let value = compute(self, target, true);
                     self.strike_substitute(source, target, move_data, value, ohko);
-                    if self.mon(source).hp > 0
-                        && let Some(hazard) = attack_hazard
-                    {
-                        self.add_hazard(source.player.foe(), hazard);
-                    }
                     shielded |= target.mask();
                     hit_substitute = true;
                 }
@@ -3830,7 +3830,7 @@ impl Battle {
             if move_data.name == "Knock Off" {
                 for &(target, _) in &damage {
                     if let Some(item) = self.can_take_item(target) {
-                        self.mon_mut(target).item.clear();
+                        self.lose_held_item(target);
                         self.add(format!(
                             "|-enditem|{}|{item}|[from] move: Knock Off|[of] {source_name}",
                             self.ident(target)
@@ -4237,6 +4237,9 @@ impl Pokemon {
                 | ("sandrush", Some(Weather::Sand))
                 | ("slushrush", Some(Weather::Snow))
         ) || self.ability == "surgesurfer" && terrain == Some(Terrain::Electric)
+            || self.ability == "unburden"
+                && self.item.is_empty()
+                && self.volatile_ids().contains(&"unburden")
         {
             stat *= 2;
         }
@@ -4344,6 +4347,7 @@ impl Pokemon {
                 | "angerpoint"
                 | "eelevate"
                 | "mimicry"
+                | "unburden"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

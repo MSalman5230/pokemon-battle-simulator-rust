@@ -189,7 +189,7 @@ impl Battle {
         if !self.mon(recipient).can_transfer_item(item) {
             return;
         }
-        let id = std::mem::take(&mut self.mon_mut(ally).item);
+        let id = self.lose_held_item(ally);
         self.mon_mut(recipient).item = id;
         self.on_gained_item(recipient);
         self.add(format!(
@@ -232,7 +232,7 @@ impl Battle {
             } else {
                 self.ident(target)
             };
-            let id = std::mem::take(&mut self.mon_mut(target).item);
+            let id = self.lose_held_item(target);
             self.mon_mut(user).item = id;
             self.on_gained_item(user);
             self.add(format!(
@@ -256,8 +256,8 @@ impl Battle {
         {
             return false;
         }
-        let from_user = std::mem::take(&mut self.mon_mut(user).item);
-        let from_target = std::mem::take(&mut self.mon_mut(target).item);
+        let from_user = self.lose_held_item(user);
+        let from_target = self.lose_held_item(target);
         self.add(format!(
             "|-activate|{}|move: Trick|[of] {}",
             self.ident(user),
@@ -296,9 +296,41 @@ impl Battle {
     }
 
     pub(super) fn consume(&mut self, pos: Position, item: &str, eaten: bool) {
-        self.mon_mut(pos).item.clear();
+        let id = self.lose_held_item(pos);
+        // Air Balloon runs AfterUseItem directly without recording lastItem.
+        if !id.is_empty() && id != "airballoon" {
+            self.mon_mut(pos).last_item = id;
+        }
         let reason = if eaten { "|[eat]" } else { "" };
         self.add(format!("|-enditem|{}|{item}{reason}", self.ident(pos)));
+    }
+
+    pub(super) fn lose_held_item(&mut self, pos: Position) -> String {
+        let mon = self.mon_mut(pos);
+        let item = std::mem::take(&mut mon.item);
+        if !item.is_empty() && mon.ability == "unburden" {
+            mon.track_volatile("unburden");
+        }
+        item
+    }
+
+    pub(super) fn recycle_item(&mut self, pos: Position) -> bool {
+        let mon = self.mon(pos);
+        if !mon.item.is_empty() {
+            return false;
+        }
+        let Some(item) = DEX.item(self.format.dex_mod, &mon.last_item) else {
+            return false;
+        };
+        let mon = self.mon_mut(pos);
+        mon.item = std::mem::take(&mut mon.last_item);
+        self.add(format!(
+            "|-item|{}|{}|[from] move: Recycle",
+            self.ident(pos),
+            item.effect.name
+        ));
+        self.on_gained_item(pos);
+        true
     }
 
     pub(super) fn indirect_damage(&mut self, pos: Position, divisor: u32, cause: &str) {

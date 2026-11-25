@@ -13,6 +13,14 @@ pub(super) enum Hazard {
 }
 
 impl Hazard {
+    pub(super) fn from_attack(name: &str) -> Option<Self> {
+        match name {
+            "Stone Axe" => Some(Self::StealthRock),
+            "Ceaseless Edge" => Some(Self::Spikes),
+            _ => None,
+        }
+    }
+
     pub(super) fn from_move(name: &str) -> Option<Self> {
         Some(match name {
             "Stealth Rock" => Self::StealthRock,

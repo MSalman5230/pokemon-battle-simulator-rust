@@ -785,6 +785,15 @@ const eelevateRosters = [
     [named('Magikarp', ['Earthquake', 'Recover'], 'M'),
         {...named('Haxorus', ['Earthquake']), ability:'Mold Breaker'}],
 ];
+const recycleRosters = [
+    [{...named('Sneasler', ['Recycle', 'Recover', 'Tackle']), ability:'Unburden',
+        item:'Sitrus Berry', evs:{hp:1}}, named('Umbreon', ['Recover'])],
+    [named('Jolteon', ['Super Fang', 'Recover', 'Knock Off']), named('Vaporeon', ['Recover'])],
+];
+const poppedBalloonRosters = [
+    [{...named('Jolteon', ['Substitute', 'Recycle', 'Recover']), item:'Air Balloon'}, named('Umbreon', ['Recover'])],
+    [named('Samurott-Hisui', ['Stone Axe', 'Recover']), named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1187,6 +1196,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         angerPointRosters, 'bss-anger-point'],
     ['bssregmc', [['team 12','team 12'], ['move 2 mega','move 1'], ['move 1','move 2'],
         [null,'switch 2'], ['move 2','move 1']], eelevateRosters, 'bss-eelevate'],
+    ['bssregmc', [['team 12','team 12'], ['move 3','move 1'], ['move 1','move 2'], ['move 3','move 3'],
+        ['move 1','move 2'], ['switch 2','move 2'], ['switch 2','move 2'], ['move 2','move 2']],
+        recycleRosters, 'bss-recycle-unburden'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2']],
+        poppedBalloonRosters, 'bss-recycle-popped-balloon'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

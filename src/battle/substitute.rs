@@ -123,7 +123,11 @@ impl Battle {
                 "Ice Spinner" => {
                     self.clear_terrain();
                 }
-                _ => {}
+                name => {
+                    if let Some(hazard) = Hazard::from_attack(name) {
+                        self.add_hazard(source.player.foe(), hazard);
+                    }
+                }
             }
         }
         if self.mon(target).item == "airballoon" {
