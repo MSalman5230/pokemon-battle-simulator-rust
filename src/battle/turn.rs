@@ -1586,7 +1586,7 @@ impl Battle {
                 && self.mon(pos).hp > 0
                 && self.mon(pos).ability == "unnerve"
             {
-                self.add(format!("|-ability|{}|Unnerve", self.ident(pos)));
+                self.start_ability(pos);
             }
         }
         let mut deferred_hospitality = 0;
@@ -1606,7 +1606,7 @@ impl Battle {
                 match self.mon(pos).ability.as_str() {
                     "hospitality" => deferred_hospitality |= pos.mask(),
                     "imposter" => self.imposter_on_entry(pos),
-                    "mimicry" => {}
+                    "unnerve" | "mimicry" => {}
                     _ => self.start_ability(pos),
                 }
                 self.on_switch_in_item(pos);
@@ -2049,6 +2049,7 @@ impl Battle {
             "fairyaura" => Some("Fairy Aura"),
             "darkaura" => Some("Dark Aura"),
             "aurabreak" => Some("Aura Break"),
+            "unnerve" => Some("Unnerve"),
             _ => None,
         } {
             self.add(format!("|-ability|{}|{label}", self.ident(pos)));

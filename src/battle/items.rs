@@ -175,6 +175,14 @@ impl Battle {
     }
 
     fn on_gained_item(&mut self, pos: Position) {
+        if self.mon(pos).holds_choice_item() && self.mon(pos).choice_lock.is_some() {
+            if self.format.report_exact_hp {
+                self.add("|debug|removing choicelock");
+            }
+            let mon = self.mon_mut(pos);
+            mon.choice_lock = None;
+            mon.untrack_volatile("choicelock");
+        }
         self.on_switch_in_item(pos);
         self.use_matching_terrain_seed(pos);
         self.white_herb(pos);

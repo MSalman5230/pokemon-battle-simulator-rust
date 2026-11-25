@@ -341,6 +341,10 @@ const trickRosters = [
     [{...named('Rotom-Wash', ['Trick', 'Foul Play']), ability: 'Levitate', item: 'Choice Scarf'}, named('Vaporeon', ['Recover'])],
     [{...named('Snorlax', ['Water Gun', 'Recover']), item: 'Leftovers'}, {...named('Slowbro', ['Recover']), ability: 'Sticky Hold'}],
 ];
+const sameChoiceItemRosters = [
+    [{...named('Jolteon', ['Tackle', 'Protect']), item:'Choice Scarf'}],
+    [{...named('Vaporeon', ['Trick', 'Recover']), item:'Choice Scarf'}],
+];
 const wanderingRosters = [
     [{...named('Heracross', ['Aerial Ace', 'Skill Swap']), ability: 'Guts'}, named('Vaporeon', ['Recover'])],
     [{...named('Runerigus', ['Recover']), ability: 'Wandering Spirit'}, named('Umbreon', ['Recover'])],
@@ -823,6 +827,10 @@ const receiverRosters = [
         {...named('Kingambit', ['Explosion']), ability:'Supreme Overlord'},
         named('Vaporeon', ['Recover'])],
     [named('Dusclops', ['Recover']), named('Gengar', ['Recover'])],
+];
+const receiverUnnerveRosters = [
+    [receiverRosters[0][0], {...receiverRosters[0][1], ability:'Unnerve'}, receiverRosters[0][2]],
+    receiverRosters[1],
 ];
 const healingWishRosters = [
     [named('Vaporeon', ['Recover']), named('Espeon', ['Healing Wish']), named('Jolteon', ['Recover'])],
@@ -1766,6 +1774,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 1'], ['move 1', 'move 2'],
         ['switch 2', 'switch 2']], destinyBondRosters, 'bss-destiny-bond'],
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'], ['move 1', 'switch 2']], trickRosters, 'bss-trick-foul-play'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2']],
+        sameChoiceItemRosters, 'bss-trick-same-choice-item'],
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'], ['move 1', 'move 1'],
         ['switch 2', 'move 1'], ['switch 2', 'move 1']], wanderingRosters, 'bss-wandering-spirit'],
     ['bssregmc', [['team 12', 'team 12'], ['move 3', 'move 1'], ['move 1', 'switch 2'], ['move 2', 'move 1'],
@@ -2029,6 +2039,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1, move 1'],
         ['pass, switch 3',null], ['move 2 1, move 1','move 1, move 1']],
         receiverRosters, 'vgc-receiver'],
+    ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1, move 1']],
+        receiverUnnerveRosters, 'vgc-receiver-unnerve'],
     ['bssregmc', [['team 123','team 12'], ['move 1','move 1'], ['switch 2','move 2'],
         ['move 1','move 2'], ['switch 3',null], ['move 1','move 3'], ['switch 2','move 2']],
         healingWishRosters, 'bss-healing-wish'],

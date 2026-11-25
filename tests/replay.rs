@@ -467,6 +467,7 @@ fn bss_destiny_bond_disallows_repetition_and_resolves_the_faint_chain() {
 #[test]
 fn bss_trick_swaps_held_items_and_foul_play_uses_the_targets_attack_stat() {
     replay(include_str!("fixtures/bss-trick-foul-play.json"));
+    replay(include_str!("fixtures/bss-trick-same-choice-item.json"));
 }
 
 #[test]
@@ -922,6 +923,7 @@ fn defog_and_ally_heals_keep_native_order_and_targeting() {
 fn supreme_overlord_snapshots_faints_and_receiver_starts_inherited_ability() {
     replay(include_str!("fixtures/bss-supreme-overlord.json"));
     replay(include_str!("fixtures/vgc-receiver.json"));
+    replay(include_str!("fixtures/vgc-receiver-unnerve.json"));
 }
 
 #[test]
