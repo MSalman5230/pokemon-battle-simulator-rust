@@ -72,6 +72,14 @@ typedActive.ability = 'protean';
 typedActive.type_ability_used = 'Protean';
 const unusedProtean = structuredClone(savedTypes);
 delete unusedProtean.input.sides[0].pokemon[0].type_ability_used;
+const transformed = world([31, 6, 12, 27], [[9, 3, 6, 28]]);
+transformed.input.sides[0].pokemon[0].transformed = {
+    form: 'Jolteon', types: ['Electric', 'Flying'], ability: 'Volt Absorb',
+    stats: {atk: 108, def: 80, spa: 160, spd: 115, spe: 177},
+    moves: [{name: 'Thunderbolt', pp: 5}, {name: 'Quick Attack', pp: 5},
+        {name: 'Protect', pp: 5}, {name: 'Volt Switch', pp: 5}],
+    pp_used: {'Thunderbolt': 3, 'Protect': 5}, copied_effects: {focusenergy: {}},
+};
 const cases = [
     {name: 'paired pivots and basic attacks', input: {observation, worlds: [pivot, confusion], candidates: [3, 1, 8],
         replies: 2, reply_probabilities: {'move:earthquake': 1}}},
@@ -91,6 +99,8 @@ const cases = [
         worlds: [delayed], candidates: [1], replies: 1, reply_probabilities: {'move:protect': 1}}},
     {name: 'restore dual and typeless typing separately from the used Protean flag', input: {observation,
         worlds: [savedTypes, unusedProtean], candidates: [1], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
+    {name: 'restore Transform with copied stats, critical boost, spent PP and switch reset', input: {observation,
+        worlds: [transformed], candidates: [0, 8], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
 ];
 for (const c of cases) c.expected = lookahead(c.input, Game, PublicState);
 assert(cases[0].expected.errors.length === 0, JSON.stringify(cases[0].expected.errors));
@@ -107,5 +117,10 @@ assert(cases[7].expected.rows.length === 1 && !cases[7].expected.errors.length,
 assert(cases[8].expected.rows.length === 2 && !cases[8].expected.errors.length,
     JSON.stringify(cases[8].expected.errors));
 assert.notDeepEqual(...cases[8].expected.rows.map(row => row.observation));
+assert(cases[9].expected.rows.length === 2 && !cases[9].expected.errors.length,
+    JSON.stringify(cases[9].expected.errors));
+const [copied, reverted] = cases[9].expected.rows.map(row => row.observation.own[3]);
+assert(copied.species === 'Jolteon' && copied.moves[0].pp === 1 && copied.volatile_ids.includes('focusenergy'));
+assert(reverted.species === 'Swampert' && reverted.moves[0].id === 'earthquake' && reverted.moves[0].pp === 12);
 writeFileSync(new URL('../tests/fixtures/lookahead.json', import.meta.url),
     `{"revision":${JSON.stringify(revision)},"cases":[\n${cases.map(c => JSON.stringify(c)).join(',\n')}\n]}\n`);

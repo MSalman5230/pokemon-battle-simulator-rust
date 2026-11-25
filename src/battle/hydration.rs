@@ -79,7 +79,26 @@ pub(crate) struct WorldMon {
     #[serde(default)]
     times_attacked: u32,
     #[serde(default)]
-    transformed: Option<Value>,
+    transformed: Option<WorldTransform>,
+}
+
+#[derive(Deserialize)]
+struct WorldTransform {
+    form: String,
+    stats: Stats,
+    types: Vec<String>,
+    ability: String,
+    moves: Vec<WorldCopiedMove>,
+    #[serde(default)]
+    pp_used: BTreeMap<String, u8>,
+    #[serde(default)]
+    copied_effects: BTreeMap<String, Value>,
+}
+
+#[derive(Deserialize)]
+struct WorldCopiedMove {
+    name: String,
+    pp: u8,
 }
 
 #[derive(Deserialize)]
@@ -196,7 +215,7 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .max(side.pokemon.iter().filter(|mon| mon.hp == 0).count() as u8);
         native.mega_used = side.mega_used;
         for (j, (pokemon, given)) in native.party.iter_mut().zip(&side.pokemon).enumerate() {
-            given.apply(pokemon, &mut assumptions)?;
+            given.apply(pokemon, battle.format.dex_mod, &mut assumptions)?;
             pokemon.active_turns = if j != 0 {
                 0
             } else if side.fresh {
@@ -340,25 +359,16 @@ fn restore_delayed_effects(battle: &mut Battle, input: &WorldInput) -> Result<()
 }
 
 impl WorldMon {
-    fn apply(&self, mon: &mut Pokemon, assumptions: &mut Vec<Value>) -> Result<(), BattleError> {
-        if self.hp > self.maxhp.get()
-            || self.maxhp.get() > u16::MAX.into()
-            || self.transformed.is_some()
-        {
-            return Err(unsupported("invalid HP or transformed Pokémon"));
+    fn apply(
+        &self,
+        mon: &mut Pokemon,
+        dex_mod: crate::dex::Mod,
+        assumptions: &mut Vec<Value>,
+    ) -> Result<(), BattleError> {
+        if self.hp > self.maxhp.get() || self.maxhp.get() > u16::MAX.into() {
+            return Err(unsupported("invalid HP"));
         }
-        if [
-            self.stats.atk,
-            self.stats.def,
-            self.stats.spa,
-            self.stats.spd,
-            self.stats.spe,
-        ]
-        .iter()
-        .any(|n| !(1..=u32::from(u16::MAX)).contains(n))
-        {
-            return Err(unsupported("stored stat outside supported range"));
-        }
+        validate_stats(self.stats)?;
         mon.roster_index = self.roster_slot;
         mon.stats = self.stats;
         mon.max_hp = self.maxhp;
@@ -405,6 +415,79 @@ impl WorldMon {
             m.pp = input.pp;
             if m.pp < m.max_pp {
                 mon.used_moves |= 1 << i;
+            }
+        }
+        if let Some(copy) = &self.transformed {
+            copy.apply(mon, dex_mod)?;
+        }
+        Ok(())
+    }
+}
+
+fn validate_stats(stats: Stats) -> Result<(), BattleError> {
+    if [stats.atk, stats.def, stats.spa, stats.spd, stats.spe]
+        .iter()
+        .any(|n| !(1..=u32::from(u16::MAX)).contains(n))
+    {
+        return Err(unsupported("stored stat outside supported range"));
+    }
+    Ok(())
+}
+
+impl WorldTransform {
+    fn apply(&self, mon: &mut Pokemon, dex_mod: crate::dex::Mod) -> Result<(), BattleError> {
+        let species = DEX
+            .species(dex_mod, &to_id(&self.form))
+            .ok_or_else(|| unsupported(format!("copied form {}", self.form)))?;
+        validate_stats(self.stats)?;
+        let types = types::TypeOverride::from_types(&self.types)
+            .ok_or_else(|| unsupported(format!("copied types {:?}", self.types)))?;
+        if self.moves.len() > u32::BITS as usize {
+            return Err(unsupported("too many copied moves"));
+        }
+        let mut used = 0;
+        let mut copied = Vec::with_capacity(self.moves.len());
+        for (i, entry) in self.moves.iter().enumerate() {
+            let move_data = DEX
+                .moves(dex_mod, &to_id(&entry.name))
+                .ok_or_else(|| unsupported(format!("copied move {}", entry.name)))?;
+            let max_pp = move_data.pp.min(5);
+            let pp = entry
+                .pp
+                .saturating_sub(self.pp_used.get(&entry.name).copied().unwrap_or_default());
+            if pp > max_pp {
+                return Err(unsupported("invalid copied PP"));
+            }
+            if pp < max_pp {
+                used |= 1 << i;
+            }
+            copied.push(MoveSlot {
+                id: to_id(&move_data.name),
+                move_data,
+                pp,
+                max_pp,
+            });
+        }
+        mon.transformed = Some(Box::new(transform::Transformed {
+            original_moves: std::mem::replace(&mut mon.moves, copied),
+            original_stats: mon.stats,
+            uses_base_types: false,
+        }));
+        mon.species = species;
+        mon.stats = Stats {
+            hp: mon.stats.hp,
+            ..self.stats
+        };
+        mon.temporary_types = types;
+        mon.added_type = None;
+        mon.spent_elements = 0;
+        mon.ability = to_id(&self.ability);
+        mon.type_change_used = false;
+        mon.used_moves = used;
+        for effect in self.copied_effects.keys() {
+            match effect.as_str() {
+                "focusenergy" => mon.track_volatile("focusenergy"),
+                _ => return Err(unsupported(format!("copied effect {effect}"))),
             }
         }
         Ok(())
