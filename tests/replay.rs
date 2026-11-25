@@ -1461,6 +1461,18 @@ fn electromorphosis_waits_for_the_attackers_stat_drops() {
 }
 
 #[test]
+fn heal_bell_includes_the_bench_and_respects_active_ability_immunity() {
+    replay(include_str!("fixtures/bss-heal-bell.json"));
+    replay(include_str!("fixtures/vgc-heal-bell-soundproof.json"));
+}
+
+#[test]
+fn swagger_boosts_before_confusion_and_magic_powder_sets_psychic_typing() {
+    replay(include_str!("fixtures/bss-swagger.json"));
+    replay(include_str!("fixtures/bss-magic-powder.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

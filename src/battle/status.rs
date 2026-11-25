@@ -219,13 +219,76 @@ impl Battle {
     pub(super) fn cure_status(&mut self, pos: Position, reason: &str) {
         let status = self.mon(pos).status;
         if self.mon(pos).hp != 0 && status != Status::Healthy {
-            self.add(format!(
-                "|-curestatus|{}|{}|{reason}",
-                self.ident(pos),
-                status.id()
-            ));
+            let ident = if self.active_effects(pos) {
+                self.ident(pos)
+            } else {
+                format!("{}: {}", pos.player.id(), self.mon(pos).name)
+            };
+            self.add(format!("|-curestatus|{ident}|{}|{reason}", status.id()));
             self.mon_mut(pos).status = Status::Healthy;
         }
+    }
+
+    pub(super) fn cure_team(&mut self, source: Position, data: &Move) -> bool {
+        let aroma = data.name == "Aromatherapy";
+        let mut allies = [(source, 0); 2];
+        let mut count = 0;
+        for ally in self.positions().filter(|pos| pos.player == source.player) {
+            let ability = self.event_ability(ally);
+            if (aroma && ability == "sapsipper") || (!aroma && ability == "soundproof") {
+                allies[count] = (ally, self.mon(ally).speed);
+                count += 1;
+            }
+        }
+        speed_sort_by(&mut allies[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for &(ally, _) in &allies[..count] {
+            if !aroma {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Soundproof",
+                    self.ident(ally)
+                ));
+            } else if ally != source {
+                self.ability_boost(
+                    ally,
+                    "Sap Sipper",
+                    crate::mechanics::BoostStat::Atk,
+                    1,
+                    false,
+                );
+            }
+        }
+        self.add(format!(
+            "|-activate|{}|move: {}",
+            self.ident(source),
+            data.name
+        ));
+        let mut cured = false;
+        for slot in 0..self.party(source.player).unwrap().len() {
+            let ally = Position { slot, ..source };
+            if ally != source {
+                let blocked = match self.event_ability(ally) {
+                    "soundproof" if !aroma => Some("Soundproof"),
+                    "sapsipper" if aroma => Some("Sap Sipper"),
+                    "goodasgold" => Some("Good as Gold"),
+                    _ => None,
+                };
+                if let Some(ability) = blocked {
+                    self.add(format!(
+                        "|-immune|{}|[from] ability: {ability}",
+                        self.ident(ally)
+                    ));
+                    continue;
+                }
+                if aroma && self.mon(ally).substitute_hp > 0 {
+                    continue;
+                }
+            }
+            if self.mon(ally).hp != 0 && self.mon(ally).status != Status::Healthy {
+                self.cure_status(ally, "[msg]");
+                cured = true;
+            }
+        }
+        cured
     }
 
     pub(super) fn status_immune(&self, pos: Position, key: &str) -> bool {

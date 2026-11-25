@@ -1144,6 +1144,22 @@ const chargeAfterDropsRosters = [
     [named('Luxray', ['Superpower'])],
     [{...named('Bellibolt', ['Recover']), ability:'Electromorphosis'}],
 ];
+const healBellRosters = [
+    [named('Snorlax', ['Recover']), named('Blissey', ['Heal Bell'])],
+    [named('Gengar', ['Toxic', 'Recover'])],
+];
+const soundproofHealBellRosters = [
+    [named('Blissey', ['Heal Bell', 'Recover']), {...named('Electrode', ['Recover']), ability:'Soundproof'}],
+    [named('Gengar', ['Toxic', 'Recover']), named('Vaporeon', ['Recover'])],
+];
+const swaggerRosters = [
+    [{...named('Sableye', ['Swagger']), ability:'Prankster', item:'Wide Lens'}],
+    [named('Vaporeon', ['Recover'])],
+];
+const magicPowderRosters = [
+    [named('Hatterene', ['Magic Powder'])],
+    [named('Vaporeon', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -2089,6 +2105,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
         infernalParadeRosters, 'bss-infernal-parade'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], chargeAfterDropsRosters, 'bss-charge-after-drops'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 2'], ['move 1','move 2'],
+        ['move 1','move 2']], healBellRosters, 'bss-heal-bell'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 2, move 1','move 1 2, move 1'],
+        ['move 1, move 1','move 2, move 1']], soundproofHealBellRosters, 'vgc-heal-bell-soundproof'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']], swaggerRosters, 'bss-swagger'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']], magicPowderRosters, 'bss-magic-powder'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

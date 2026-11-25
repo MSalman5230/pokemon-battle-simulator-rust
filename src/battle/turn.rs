@@ -1030,6 +1030,11 @@ impl Battle {
                     | "assurance"
                     | "infernalparade"
                     | "clearsmog"
+                    | "healbell"
+                    | "aromatherapy"
+                    | "swagger"
+                    | "flatter"
+                    | "magicpowder"
                     | "electroshot"
                     | "solarbeam"
                     | "solarblade"
@@ -3411,6 +3416,18 @@ impl Battle {
             }
             return true;
         }
+        if matches!(move_data.name.as_str(), "Heal Bell" | "Aromatherapy") {
+            self.protean_prepare(source, move_type);
+            if self.cure_team(source, move_data) {
+                self.each_event();
+                self.each_event();
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+            }
+            return true;
+        }
         if let Some(hazard) = Hazard::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !reflected
@@ -4193,13 +4210,26 @@ impl Battle {
                         succeeded = true;
                     }
                 }
-                if matches!(
-                    move_data.name.as_str(),
-                    "Confuse Ray" | "Sweet Kiss" | "Supersonic"
-                ) {
+                let confusing_boost = matches!(move_data.name.as_str(), "Swagger" | "Flatter");
+                if confusing_boost {
+                    succeeded |= self.boost_from(
+                        target,
+                        source,
+                        &move_data.boosts,
+                        BoostOrigin::from_move(move_data),
+                    );
+                }
+                if confusing_boost
+                    || matches!(
+                        move_data.name.as_str(),
+                        "Confuse Ray" | "Sweet Kiss" | "Supersonic"
+                    )
+                {
                     if self.mon(target).confusion > 0 {
-                        self.move_still(base);
-                        self.add(format!("|-fail|{source_name}"));
+                        if !succeeded {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                        }
                     } else if self.event_ability(target) == "owntempo" {
                         self.add(format!(
                             "|-immune|{}|confusion|[from] ability: Own Tempo",
@@ -4210,7 +4240,7 @@ impl Battle {
                     {
                         self.terrain_activate(target, Terrain::Misty);
                     } else if !self.safeguard_blocks(target, source, true, true, true) {
-                        succeeded = self.apply_confusion(target, false);
+                        succeeded |= self.apply_confusion(target, false);
                     }
                 }
                 if move_data.name == "Aqua Ring" {
@@ -4289,16 +4319,26 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
-                if move_data.name == "Soak" {
+                if matches!(move_data.name.as_str(), "Soak" | "Magic Powder") {
+                    let ty = if move_data.name == "Soak" {
+                        "Water"
+                    } else {
+                        "Psychic"
+                    };
                     let mon = self.mon(target);
-                    if mon.types().eq(["Water"])
+                    if mon.types().eq([ty])
                         || matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally")
                     {
-                        self.add(format!("|-fail|{}", self.ident(target)));
+                        if move_data.name == "Magic Powder" {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                        } else {
+                            self.add(format!("|-fail|{}", self.ident(target)));
+                        }
                     } else {
                         let mon = self.mon_mut(target);
-                        mon.set_temporary_type(Some("Water"));
-                        self.add(format!("|-start|{}|typechange|Water", self.ident(target)));
+                        mon.set_temporary_type(Some(ty));
+                        self.add(format!("|-start|{}|typechange|{ty}", self.ident(target)));
                         succeeded = true;
                     }
                 }
@@ -4638,7 +4678,7 @@ impl Battle {
                 } else {
                     move_data.boosts.as_slice()
                 };
-                if !boosts.is_empty() {
+                if !boosts.is_empty() && !confusing_boost {
                     succeeded |=
                         self.boost_from(target, source, boosts, BoostOrigin::from_move(move_data));
                 }
