@@ -2224,13 +2224,6 @@ impl Battle {
             "Double Shock" => Some("Electric"),
             _ => None,
         };
-        if let Some(ty) = spent_element
-            && !self.mon(source).has_type(ty)
-        {
-            self.add(format!("|-fail|{source_name}|move: {}", move_data.name));
-            self.move_still(base);
-            return true;
-        }
         if spread_targets.is_empty() && !sacrifice && !mind_blown {
             self.log[base].public.push_str("|[notarget]");
             self.add(format!("|-fail|{source_name}"));
@@ -2240,22 +2233,41 @@ impl Battle {
         if let Some(slot) = slot
             && !struggle
             && !continuing
-            && (kind.is_choosable()
-                || matches!(
-                    kind,
-                    TargetKind::AllAdjacent
-                        | TargetKind::AllAdjacentFoes
-                        | TargetKind::RandomNormal
-                        | TargetKind::Scripted
-                ))
         {
-            let pressure_targets = spread_targets
-                .iter()
-                .filter(|pos| pos.player != source.player && self.mon(**pos).ability == "pressure")
-                .count();
+            let pressure_targets =
+                if kind == TargetKind::All || move_data.flags.contains_key("mustpressure") {
+                    self.party(source.player.foe()).unwrap()[..self.slots()]
+                        .iter()
+                        .filter(|mon| mon.hp != 0 && mon.ability == "pressure")
+                        .count()
+                } else if kind.is_choosable()
+                    || matches!(
+                        kind,
+                        TargetKind::AllAdjacent
+                            | TargetKind::AllAdjacentFoes
+                            | TargetKind::RandomNormal
+                            | TargetKind::Scripted
+                    )
+                {
+                    spread_targets
+                        .iter()
+                        .filter(|pos| {
+                            pos.player != source.player && self.mon(**pos).ability == "pressure"
+                        })
+                        .count()
+                } else {
+                    0
+                };
             self.mon_mut(source).moves[slot].pp = self.mon(source).moves[slot]
                 .pp
                 .saturating_sub(pressure_targets as u8);
+        }
+        if let Some(ty) = spent_element
+            && !self.mon(source).has_type(ty)
+        {
+            self.add(format!("|-fail|{source_name}|move: {}", move_data.name));
+            self.move_still(base);
+            return true;
         }
         let damp = self.damp_holder("TryMove", sacrifice || mind_blown);
         if sacrifice || mind_blown {
@@ -2342,19 +2354,6 @@ impl Battle {
         }
         if let Some(hazard) = Hazard::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
-            if let Some(slot) = slot
-                && move_data.flags.contains_key("mustpressure")
-            {
-                let pressure = (0..self.slots())
-                    .map(|slot| Position {
-                        player: source.player.foe(),
-                        slot,
-                    })
-                    .filter(|&p| !self.mon(p).fainted && self.mon(p).ability == "pressure")
-                    .count() as u8;
-                self.mon_mut(source).moves[slot].pp =
-                    self.mon(source).moves[slot].pp.saturating_sub(pressure);
-            }
             if !reflected
                 && move_data.flags.contains_key("reflectable")
                 && let Some(holder) = self.side_magic_bounce(source.player.foe())

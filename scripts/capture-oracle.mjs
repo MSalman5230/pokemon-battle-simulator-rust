@@ -588,7 +588,7 @@ const fickleBeamRosters = [
     [named('Blissey', ['Recover']), named('Vaporeon', ['Recover'])],
 ];
 const statusPowerRosters = [
-    [named('Qwilfish', ['Barb Barrage', 'Hex', 'Toxic', 'Venoshock']), named('Glaceon', ['Recover'])],
+    [{...named('Qwilfish', ['Barb Barrage', 'Hex', 'Toxic', 'Venoshock']), ability: 'Pressure'}, named('Glaceon', ['Recover'])],
     [named('Umbreon', ['Haze', 'Calm Mind', 'Recover']), named('Vaporeon', ['Recover'])],
 ];
 const syncRosters = [

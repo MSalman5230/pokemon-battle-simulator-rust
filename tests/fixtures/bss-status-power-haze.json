@@ -5,7 +5,7 @@
     {
       "lines": [
         ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
-        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Qwilfish\",\"moves\":[\"Barb Barrage\",\"Hex\",\"Toxic\",\"Venoshock\"],\"gender\":\"F\",\"name\":\"Qwilfish\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Glaceon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Qwilfish\",\"moves\":[\"Barb Barrage\",\"Hex\",\"Toxic\",\"Venoshock\"],\"gender\":\"F\",\"name\":\"Qwilfish\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Pressure\"},{\"species\":\"Glaceon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
         ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Haze\",\"Calm Mind\",\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
       ],
       "turn": 0,
@@ -88,10 +88,10 @@
                   "toxic",
                   "venoshock"
                 ],
-                "baseAbility": "",
+                "baseAbility": "pressure",
                 "item": "",
                 "pokeball": "pokeball",
-                "ability": "",
+                "ability": "pressure",
                 "commanding": false,
                 "reviving": false
               },
@@ -202,7 +202,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "",
+            "ability": "pressure",
             "item": "",
             "active": false,
             "moves": [
@@ -365,6 +365,7 @@
           "|start",
           "|switch|p1a: Qwilfish|Qwilfish, L50, F|100/100",
           "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|-ability|p1a: Qwilfish|Pressure",
           "|turn|1"
         ],
         [
@@ -374,6 +375,7 @@
           "|start",
           "|switch|p1a: Qwilfish|Qwilfish, L50, F|140/140",
           "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|-ability|p1a: Qwilfish|Pressure",
           "|turn|1"
         ],
         [
@@ -383,6 +385,7 @@
           "|start",
           "|switch|p1a: Qwilfish|Qwilfish, L50, F|100/100",
           "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|-ability|p1a: Qwilfish|Pressure",
           "|turn|1"
         ]
       ],
@@ -448,10 +451,10 @@
                   "toxic",
                   "venoshock"
                 ],
-                "baseAbility": "",
+                "baseAbility": "pressure",
                 "item": "",
                 "pokeball": "pokeball",
-                "ability": "",
+                "ability": "pressure",
                 "commanding": false,
                 "reviving": false
               },
@@ -590,7 +593,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "",
+            "ability": "pressure",
             "item": "",
             "active": true,
             "moves": [
@@ -842,10 +845,10 @@
                   "toxic",
                   "venoshock"
                 ],
-                "baseAbility": "",
+                "baseAbility": "pressure",
                 "item": "",
                 "pokeball": "pokeball",
-                "ability": "",
+                "ability": "pressure",
                 "commanding": false,
                 "reviving": false
               },
@@ -984,7 +987,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "",
+            "ability": "pressure",
             "item": "",
             "active": true,
             "moves": [
@@ -1239,10 +1242,10 @@
                   "toxic",
                   "venoshock"
                 ],
-                "baseAbility": "",
+                "baseAbility": "pressure",
                 "item": "",
                 "pokeball": "pokeball",
-                "ability": "",
+                "ability": "pressure",
                 "commanding": false,
                 "reviving": false
               },
@@ -1381,7 +1384,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "",
+            "ability": "pressure",
             "item": "",
             "active": true,
             "moves": [
@@ -1633,10 +1636,10 @@
                   "toxic",
                   "venoshock"
                 ],
-                "baseAbility": "",
+                "baseAbility": "pressure",
                 "item": "",
                 "pokeball": "pokeball",
-                "ability": "",
+                "ability": "pressure",
                 "commanding": false,
                 "reviving": false
               },
@@ -1672,7 +1675,7 @@
                 {
                   "move": "Haze",
                   "id": "haze",
-                  "pp": 19,
+                  "pp": 18,
                   "maxpp": 20,
                   "target": "all",
                   "disabled": false
@@ -1775,7 +1778,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "",
+            "ability": "pressure",
             "item": "",
             "active": true,
             "moves": [
@@ -1866,7 +1869,7 @@
             "moves": [
               {
                 "id": "haze",
-                "pp": 19,
+                "pp": 18,
                 "maxpp": 20
               },
               {
@@ -2030,10 +2033,10 @@
                   "toxic",
                   "venoshock"
                 ],
-                "baseAbility": "",
+                "baseAbility": "pressure",
                 "item": "",
                 "pokeball": "pokeball",
-                "ability": "",
+                "ability": "pressure",
                 "commanding": false,
                 "reviving": false
               },
@@ -2069,7 +2072,7 @@
                 {
                   "move": "Haze",
                   "id": "haze",
-                  "pp": 19,
+                  "pp": 18,
                   "maxpp": 20,
                   "target": "all",
                   "disabled": false
@@ -2172,7 +2175,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "",
+            "ability": "pressure",
             "item": "",
             "active": true,
             "moves": [
@@ -2263,7 +2266,7 @@
             "moves": [
               {
                 "id": "haze",
-                "pp": 19,
+                "pp": 18,
                 "maxpp": 20
               },
               {
@@ -2424,10 +2427,10 @@
                   "toxic",
                   "venoshock"
                 ],
-                "baseAbility": "",
+                "baseAbility": "pressure",
                 "item": "",
                 "pokeball": "pokeball",
-                "ability": "",
+                "ability": "pressure",
                 "commanding": false,
                 "reviving": false
               },
@@ -2463,7 +2466,7 @@
                 {
                   "move": "Haze",
                   "id": "haze",
-                  "pp": 19,
+                  "pp": 18,
                   "maxpp": 20,
                   "target": "all",
                   "disabled": false
@@ -2566,7 +2569,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "",
+            "ability": "pressure",
             "item": "",
             "active": true,
             "moves": [
@@ -2657,7 +2660,7 @@
             "moves": [
               {
                 "id": "haze",
-                "pp": 19,
+                "pp": 18,
                 "maxpp": 20
               },
               {

@@ -510,6 +510,16 @@ impl PublicState {
                     }
                 }
             }
+            "-clearboost" => {
+                if let Some(key) = key {
+                    self.mon_mut(key)["boosts"] = json!({});
+                }
+            }
+            "-clearallboost" => {
+                for mon in self.teams.iter_mut().flatten() {
+                    mon["boosts"] = json!({});
+                }
+            }
             "-item" => {
                 if let Some(key) = key {
                     self.mon_mut(key)["item"] = json!(to_id(get(3)));
@@ -676,6 +686,25 @@ impl PublicState {
 #[cfg(test)]
 mod tests {
     use super::PublicState;
+
+    #[test]
+    fn haze_clears_the_observed_boosts_on_both_sides() {
+        let mut state = PublicState::default();
+        for line in [
+            "|poke|p1|Espeon, L50|",
+            "|poke|p2|Umbreon, L50|",
+            "|switch|p1a: unit0|Espeon, L50|100/100",
+            "|switch|p2a: unit0|Umbreon, L50|100/100",
+            "|-boost|p1a: unit0|spa|2",
+            "|-unboost|p2a: unit0|spd|1",
+            "|-clearallboost",
+        ] {
+            state.feed(line).unwrap();
+        }
+        for team in state.teams {
+            assert_eq!(team[0]["boosts"], serde_json::json!({}));
+        }
+    }
 
     #[test]
     fn illusion_reveal_restores_the_decoy_and_transfers_only_this_stint() {
