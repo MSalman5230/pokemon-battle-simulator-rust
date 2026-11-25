@@ -1068,6 +1068,22 @@ fn berserk_checks_half_hp_before_a_single_hit_triggers_sitrus_berry() {
 }
 
 #[test]
+fn no_retreat_boosts_once_and_ghosts_can_still_switch() {
+    replay(include_str!("fixtures/bss-no-retreat.json"));
+    replay(include_str!("fixtures/bss-ghost-no-retreat.json"));
+}
+
+#[test]
+fn analytic_checks_the_live_move_queue() {
+    replay(include_str!("fixtures/bss-analytic.json"));
+}
+
+#[test]
+fn gale_wings_grants_priority_at_full_health_only() {
+    replay(include_str!("fixtures/bss-gale-wings.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

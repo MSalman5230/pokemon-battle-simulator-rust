@@ -424,6 +424,7 @@ impl Battle {
             .count() as u32;
         result.rows.clear();
         let sheer_force_removed = self.sheer_force_removes_secondaries(ACTOR, data);
+        let analytic_last = self.event_ability(ACTOR) == "analytic";
         for roll in (0..16).rev() {
             let value = self.regular_hit(
                 ACTOR,
@@ -439,6 +440,7 @@ impl Battle {
                     crit,
                     screen_handlers,
                     sheer_force_removed,
+                    analytic_last,
                     converted: false,
                     roll: Some(roll),
                     solar_weak: matches!(move_id, "solarbeam" | "solarblade")

@@ -34,7 +34,9 @@ impl Battle {
         let foe = self.party(pos.player.foe()).unwrap();
         let active = &foe[..self.format.game_type.active_slots()];
         let live = active.iter().filter(|mon| !mon.fainted);
-        let actual = self.is_bound(pos) || live.clone().any(|foe| affected(&foe.ability));
+        let actual = mon.volatile_ids().contains(&"trapped")
+            || self.is_bound(pos)
+            || live.clone().any(|foe| affected(&foe.ability));
         let possible = actual
             || live
                 .flat_map(|foe| {
@@ -62,10 +64,11 @@ impl Battle {
     pub fn trapped_in_request(&self, player: Player, slot: usize) -> bool {
         let pos = Position { player, slot };
         let mon = self.mon(pos);
+        let visible_trap = (mon.volatile_ids().contains(&"trapped") || self.is_bound(pos))
+            && !self.ignores_trapping(pos);
         mon.hard_locked()
             || mon.revealed_trap
-            || (((self.is_bound(pos) && !self.ignores_trapping(pos))
-                || (!self.last_active(pos) && self.trap_info(pos).actual))
+            || ((visible_trap || (!self.last_active(pos) && self.trap_info(pos).actual))
                 && self.party(player).unwrap()[self.format.game_type.active_slots()..]
                     .iter()
                     .any(|p| !p.fainted))

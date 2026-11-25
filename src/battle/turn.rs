@@ -1047,6 +1047,7 @@ impl Battle {
                     | "facade"
                     | "focusenergy"
                     | "helpinghand"
+                    | "noretreat"
                     | "focuspunch"
                     | "beakblast"
                     | "revivalblessing"
@@ -1772,6 +1773,11 @@ impl Battle {
                 data.name == "Grassy Glide"
                     && self.terrain() == Some(Terrain::Grassy)
                     && self.grounded(pos),
+            )
+            + i8::from(
+                data.move_type == "Flying"
+                    && self.mon(pos).hp == self.mon(pos).max_hp.get()
+                    && self.event_ability(pos) == "galewings",
             )
     }
 
@@ -2672,6 +2678,12 @@ impl Battle {
             return true;
         }
         if move_data.name == "Belch" && !self.mon(source).ate_berry {
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}"));
+            return true;
+        }
+        if move_data.name == "No Retreat" && self.mon(source).volatile_ids().contains(&"noretreat")
+        {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             return true;
@@ -3676,6 +3688,16 @@ impl Battle {
                     succeeded |=
                         self.boost_from(target, source, boosts, BoostOrigin::from_move(move_data));
                 }
+                if move_data.name == "No Retreat" {
+                    let mon = self.mon_mut(target);
+                    mon.track_volatile("noretreat");
+                    if !mon.volatile_ids().contains(&"trapped") {
+                        mon.track_volatile("trapped");
+                        self.add(format!("|-activate|{}|trapped", self.ident(target)));
+                        self.add(format!("|-start|{}|move: No Retreat", self.ident(target)));
+                    }
+                    succeeded = true;
+                }
                 if succeeded {
                     any_success = true;
                     if spread {
@@ -3884,6 +3906,13 @@ impl Battle {
                         crit,
                         screen_handlers,
                         sheer_force_removed,
+                        analytic_last: battle.event_ability(source) == "analytic"
+                            && !queue.iter().any(|action| {
+                                matches!(action.kind, ActionKind::Move { .. })
+                                    && action.actor.is_some_and(|actor| {
+                                        actor != source && !battle.mon(actor).fainted
+                                    })
+                            }),
                         roll: None,
                     },
                 )
@@ -4869,6 +4898,8 @@ impl Pokemon {
                 | "harvest"
                 | "pickup"
                 | "berserk"
+                | "analytic"
+                | "galewings"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

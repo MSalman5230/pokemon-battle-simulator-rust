@@ -192,6 +192,7 @@ pub(super) struct RegularHit<'a> {
     pub crit: bool,
     pub screen_handlers: u32,
     pub sheer_force_removed: bool,
+    pub analytic_last: bool,
     /// When provided by a hypothetical query, use this native 0–15 roll
     /// instead of consuming the battle PRNG.
     pub roll: Option<u32>,
@@ -218,6 +219,7 @@ impl Battle {
             crit,
             screen_handlers,
             sheer_force_removed,
+            analytic_last,
             roll,
         } = args;
         let tr = self.stat_rules.truncation;
@@ -226,6 +228,9 @@ impl Battle {
         }
         if expanded && self.format.report_exact_hp {
             self.add("|debug|terrain buff");
+        }
+        if analytic_last && self.format.report_exact_hp {
+            self.add("|debug|Analytic boost");
         }
         let source_active = self.active_effects(source);
         let helping = self.mon(source).helping_hand;
@@ -375,8 +380,9 @@ impl Battle {
         if expanded {
             power_modifier = crate::mechanics::chain(6144, power_modifier);
         }
-        if (sheer_force_removed || move_data.has_sheer_force_boost)
-            && self.event_ability(source) == "sheerforce"
+        if analytic_last
+            || ((sheer_force_removed || move_data.has_sheer_force_boost)
+                && self.event_ability(source) == "sheerforce")
         {
             power_modifier = chain(5325, power_modifier);
         }
