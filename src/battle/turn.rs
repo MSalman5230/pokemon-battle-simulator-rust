@@ -46,6 +46,8 @@ pub(super) struct Action {
     priority: Priority,
 }
 
+const STRUGGLE_SLOT: usize = usize::MAX;
+
 impl Action {
     fn new(actor: Option<Position>, kind: ActionKind) -> Self {
         let order = match kind {
@@ -81,6 +83,7 @@ impl Battle {
         self.party(player)
             .and_then(|p| p.get(slot))
             .is_some_and(|p| !p.fainted)
+            && self.any_move_in_request(Position { player, slot })
             && self.can_mega(Position { player, slot })
     }
 
@@ -119,29 +122,39 @@ impl Battle {
                 let mut request = json!({
                 "active": (0..self.slots()).map(|slot| {
                     let mon = self.mon(Position { player, slot });
-                    let moves = if mon.moves.iter().all(|m| m.pp == 0) {
+                    let pos = Position { player, slot };
+                    let moves = if !self.any_move_in_request(pos) && mon.revealed_disables == 0 {
                         vec![json!({"move":"Struggle","id":"struggle","target":"randomNormal","disabled":false})]
                     } else {
-                        mon.moves.iter().map(|m| json!({
-                            "move": m.move_data.name, "id": m.id, "pp": m.pp, "maxpp": m.max_pp,
-                            "target": m.move_data.target, "disabled": m.pp == 0,
-                        })).collect()
+                        mon.moves.iter().enumerate().map(|(move_slot, m)| {
+                            let mut request = json!({
+                                "move": m.move_data.name, "id": m.id, "pp": m.pp, "maxpp": m.max_pp,
+                                "target": m.move_data.target, "disabled": self.move_disabled_in_request(player, slot, move_slot),
+                            });
+                            if let Some(source) = self.disable_source(pos, move_slot) {
+                                request["disabledSource"] = json!(source);
+                            }
+                            request
+                        }).collect()
                     };
                     let mut request = json!({"moves":moves});
-                    let pos = Position { player, slot };
+                    if self.last_active(pos) && self.foe_imprison(pos).next().is_some() && !mon.revealed_all_disables {
+                        request["maybeDisabled"] = json!(true);
+                        if mon.revealed_disables == 0 { request["maybeLocked"] = json!(true); }
+                    }
                     if self.trapped_in_request(player, slot) {
                         request["trapped"] = json!(true);
                     } else if self.last_active(pos) && self.first_bench(player, 0).is_some() && self.trap_info(pos).possible {
                         request["maybeTrapped"] = json!(true);
                     }
-                    if self.can_mega(Position { player, slot }) { request["canMegaEvo"] = json!(true); }
+                    if self.can_mega_in_slot(player, slot) { request["canMegaEvo"] = json!(true); }
                     request
                 }).collect::<Vec<_>>(),
                 "side": self.side_request(player).unwrap(),
                 });
                 if self.party(player).unwrap()[..self.slots()]
                     .iter()
-                    .any(|p| p.revealed_trap)
+                    .any(|p| p.revealed_trap || p.revealed_disables != 0)
                 {
                     request["update"] = json!(true);
                 }
@@ -278,6 +291,13 @@ impl Battle {
                         return Err(BattleError::Unavailable("active Pokémon is trapped"));
                     }
                     self.cant_undo[idx] |= self.last_active(pos) && trap.possible;
+                } else if let ActionKind::Move { move_slot, .. } = action.kind {
+                    let pos = action.actor.unwrap();
+                    if move_slot != STRUGGLE_SLOT && self.actual_disabled(pos, move_slot) {
+                        return Err(self.reveal_disabled_move(pos, move_slot));
+                    }
+                    self.cant_undo[idx] |=
+                        self.slots() == 1 && self.foe_imprison(pos).next().is_some();
                 }
             }
         }
@@ -311,7 +331,7 @@ impl Battle {
                     } = action.kind
                     {
                         let source = action.actor.unwrap();
-                        let kind = self.mon(source).moves[move_slot].move_data.target;
+                        let kind = self.move_data(source, move_slot).target;
                         let target = self
                             .random_target(source, kind)
                             .map_or(0, |p| p.loc(source));
@@ -470,13 +490,38 @@ impl Battle {
         mega: bool,
     ) -> Result<ActionKind, BattleError> {
         let moves = &self.mon(actor).moves;
-        if moves.iter().all(|m| m.pp == 0) {
-            return Err(BattleError::Unsupported("Struggle".into()));
+        let visibly_available = self.any_move_in_request(actor);
+        let really_available = moves
+            .iter()
+            .enumerate()
+            .any(|(i, _)| !self.actual_disabled(actor, i));
+        if !really_available {
+            if mega
+                || target.is_some()
+                || !matches!(selection, MoveChoice::Auto | MoveChoice::Slot(_))
+                    && !matches!(selection, MoveChoice::Name(name) if name == "struggle")
+            {
+                return Err(BattleError::Choice("only Struggle is available"));
+            }
+            if let MoveChoice::Slot(n) = selection
+                && ((!visibly_available && n.get() != 1)
+                    || (visibly_available && n.get() > moves.len()))
+            {
+                return Err(BattleError::Choice("only Struggle is available"));
+            }
+            return Ok(ActionKind::Move {
+                move_slot: STRUGGLE_SLOT,
+                target: 0,
+                mega: false,
+            });
         }
         let move_slot = match selection {
             MoveChoice::Slot(n) => Some(n.get() - 1),
             MoveChoice::Name(name) => moves.iter().position(|m| &m.id == name),
-            MoveChoice::Auto => moves.iter().position(|m| m.pp != 0),
+            MoveChoice::Auto => moves
+                .iter()
+                .enumerate()
+                .position(|(i, _)| !self.actual_disabled(actor, i)),
         }
         .ok_or(BattleError::Choice("unknown move slot"))?;
         let info = moves
@@ -540,6 +585,7 @@ impl Battle {
                 | "uturn"
                 | "voltswitch"
                 | "flipturn"
+                | "imprison"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -561,13 +607,21 @@ impl Battle {
         })
     }
 
+    fn move_data(&self, source: Position, slot: usize) -> &'static Move {
+        if slot == STRUGGLE_SLOT {
+            DEX.moves(self.format.dex_mod, "struggle").unwrap()
+        } else {
+            self.mon(source).moves[slot].move_data
+        }
+    }
+
     fn prioritize(&mut self, action: &mut Action) {
         if let Some(source) = action.actor {
             if let ActionKind::Move {
                 move_slot, target, ..
             } = action.kind
             {
-                let data = self.mon(source).moves[move_slot].move_data;
+                let data = self.move_data(source, move_slot);
                 // ModifyPriority receives a resolved target even when no effects
                 // listen to it. In doubles this can consume a retarget draw.
                 self.resolve_target(source, data.target, target);
@@ -707,6 +761,7 @@ impl Battle {
                     party[outgoing.slot].boosts = Boosts::default();
                     party[outgoing.slot].flinched = false;
                     party[outgoing.slot].volatile_order.clear();
+                    party[outgoing.slot].imprisoned = false;
                     if !party[outgoing.slot].fainted {
                         party[outgoing.slot].times_attacked = 0;
                     }
@@ -807,7 +862,10 @@ impl Battle {
         }
         self.turn += 1;
         for pos in self.positions() {
-            self.mon_mut(pos).revealed_trap = false;
+            let mon = self.mon_mut(pos);
+            mon.revealed_trap = false;
+            mon.revealed_disables = 0;
+            mon.revealed_all_disables = false;
         }
         self.add(format!("|turn|{}", self.turn));
         self.phase = Phase::Move;
@@ -988,7 +1046,13 @@ impl Battle {
     }
 
     fn run_move(&mut self, source: Position, slot: usize, loc: i8, more_actions: bool) {
-        let move_data = self.mon(source).moves[slot].move_data;
+        let move_data = self.move_data(source, slot);
+        let struggle = slot == STRUGGLE_SLOT;
+        let move_type = if struggle {
+            "???"
+        } else {
+            move_data.move_type.as_str()
+        };
         let source_name = self.ident(source);
         let target = self.resolve_target(source, move_data.target, loc);
         if !self.before_status_move(source, move_data) {
@@ -999,8 +1063,11 @@ impl Battle {
         {
             self.cure_status(source, &format!("[from] move: {}", move_data.name));
         }
-        let mon = self.mon_mut(source);
-        mon.moves[slot].pp -= 1;
+        if struggle {
+            self.add(format!("|-activate|{source_name}|move: Struggle"));
+        } else {
+            self.mon_mut(source).moves[slot].pp -= 1;
+        }
         let mut spread_targets = Vec::new();
         match move_data.target {
             TargetKind::AllAdjacent | TargetKind::AllAdjacentFoes => {
@@ -1041,11 +1108,12 @@ impl Battle {
             return;
         }
 
-        if move_data.target.is_choosable()
-            || matches!(
-                move_data.target,
-                TargetKind::AllAdjacent | TargetKind::AllAdjacentFoes
-            )
+        if !struggle
+            && (move_data.target.is_choosable()
+                || matches!(
+                    move_data.target,
+                    TargetKind::AllAdjacent | TargetKind::AllAdjacentFoes
+                ))
         {
             let pressure_targets = spread_targets
                 .iter()
@@ -1077,6 +1145,20 @@ impl Battle {
             if !self.set_weather(source, weather, None) {
                 self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
                 self.add(format!("|-fail|{source_name}"));
+            }
+            return;
+        }
+        if move_data.name == "Imprison" {
+            let mon = self.mon_mut(source);
+            if mon.imprisoned {
+                self.log[base].public = format!("|move|{source_name}|Imprison||[still]");
+                self.add(format!("|-fail|{source_name}"));
+            } else {
+                mon.imprisoned = true;
+                mon.track_volatile("imprison");
+                self.add(format!("|-start|{source_name}|move: Imprison"));
+                self.each_event();
+                self.each_event();
             }
             return;
         }
@@ -1244,13 +1326,13 @@ impl Battle {
             } else {
                 def
             };
-            let atk = if user.attack_boosts_type(&move_data.move_type) {
+            let atk = if user.attack_boosts_type(move_type) {
                 tr.modify(atk, 6144)
             } else {
                 atk
             };
-            let stab = user.species.types.contains(&move_data.move_type);
-            let mut power_modifier = user.item_power_modifier(&move_data.move_type);
+            let stab = user.has_type(move_type);
+            let mut power_modifier = user.item_power_modifier(move_type);
             if self.weather() == Some(Weather::Sand)
                 && user.ability == "sandforce"
                 && matches!(move_data.move_type.as_str(), "Rock" | "Ground" | "Steel")
@@ -1265,7 +1347,7 @@ impl Battle {
                 spread_or_bond: if spread { 3072 } else { 4096 },
                 weather: self
                     .weather()
-                    .map_or(4096, |w| w.damage_modifier(&move_data.move_type)),
+                    .map_or(4096, |w| w.damage_modifier(move_type)),
                 critical: crit,
                 stab: if stab { 6144 } else { 4096 },
                 effectiveness: effect,
@@ -1370,7 +1452,16 @@ impl Battle {
             self.mark_fainted(source);
             self.check_win();
         }
+        if struggle && !self.mon(source).fainted {
+            let mon = self.mon_mut(source);
+            let recoil = ((mon.max_hp.get() + 2) / 4).max(1);
+            mon.hp = mon.hp.saturating_sub(recoil);
+            self.add_health_line_with("-damage", source, false, "|[from] recoil");
+        }
         self.each_event();
+        if self.mon(source).hp == 0 && !self.mon(source).fainted {
+            self.mark_fainted(source);
+        }
         if self.mon(source).item == "lifeorb" && !self.mon(source).fainted {
             self.indirect_damage(source, 10, "|[from] item: Life Orb");
             if self.mon(source).hp == 0 {
@@ -1403,6 +1494,7 @@ impl Battle {
         mon.protected = false;
         mon.flinched = false;
         mon.volatile_order.clear();
+        mon.imprisoned = false;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
         self.add(format!("|faint|{}", self.ident(target)));
@@ -1454,6 +1546,9 @@ impl Battle {
     }
 
     pub(super) fn effectiveness(&self, move_data: &Move, target: Position) -> Option<i8> {
+        if move_data.name == "Struggle" {
+            return Some(0);
+        }
         let mut modifier = 0;
         for typing in &self.mon(target).species.types {
             let case = DEX

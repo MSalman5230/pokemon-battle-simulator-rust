@@ -344,6 +344,11 @@ impl PublicState {
                     mon["types"] = json!(types(name));
                 }
             }
+            "-start" if get(3) == "move: Imprison" => {
+                if let Some(key) = key {
+                    self.mon_mut(key)["volatiles"]["imprison"] = json!({"turn":turn,"move":null});
+                }
+            }
             "-singleturn" => {
                 if let Some(key) = key {
                     self.mon_mut(key)["volatiles"][effect(get(3))] =

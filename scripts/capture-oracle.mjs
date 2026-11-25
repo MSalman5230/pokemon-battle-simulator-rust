@@ -141,6 +141,14 @@ const mbRosters = [
         named('Vaporeon', ['Surf']), named('Zacian-Crowned', ['Tackle'])],
     rosters[1],
 ];
+const imprisonRosters = [
+    [named('Espeon', ['Imprison', 'Tackle']), named('Flareon', ['Tackle'])],
+    [named('Vaporeon', ['Tackle', 'Water Gun']), named('Umbreon', ['Recover'])],
+];
+const struggleRosters = [
+    [named('Vaporeon', ['Recover']), named('Flareon', ['Tackle'])],
+    [named('Glaceon', ['Protect']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -181,6 +189,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 123', 'team 365'], ['move 3', 'move 2']], competitiveRosters, 'bss-packed'],
     ['bssregmb', [['team 123', 'team 123'], ['move 1', 'move 1']], mbRosters, 'bss-reg-mb'],
     ['bssregmc', [['team 123', 'team 123'], ['switch 2', 'move 1'], ['move 1', null]], trappedRosters, 'bss-hidden-trap'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'],
+        [null, 'move 2'], ['switch 2', 'move 2']], imprisonRosters, 'bss-imprison'],
+    ['bssregmc', [['team 12', 'team 12'], ...Array(10).fill(['move 1', 'move 1'])],
+        struggleRosters, 'bss-struggle'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
@@ -190,7 +202,7 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
             JSON.stringify({revision, teams: players.map(team => ({team}))}, null, 2) + '\n');
     }
     const inputs = [
-        '>start ' + JSON.stringify({formatid, seed, strictChoices: label !== "bss-hidden-trap"}),
+        '>start ' + JSON.stringify({formatid, seed, strictChoices: !["bss-hidden-trap", "bss-imprison"].includes(label)}),
         ...players.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team: label === 'bss-packed' ?
             Teams.pack(team).replace('|Blaze|', '|0|').replace('|Torrent|', '||') : team})),
     ];
@@ -207,6 +219,7 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         checkpoints.push({
             lines,
             ...(label === 'bss-hidden-trap' && checkpoints.length === 2 && {unavailable: ['>p1 switch 2']}),
+            ...(label === 'bss-imprison' && checkpoints.length === 3 && {unavailable: ['>p2 move 1']}),
             turn: battle.turn,
             seed: battle.prng.getSeed(),
             requestState: battle.requestState,

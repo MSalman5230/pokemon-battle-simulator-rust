@@ -208,11 +208,16 @@ impl Game {
                         json!({"id":id,"kind":"move","slot":slot,"move":name,"mega":evolve,"choice":choice})));
                 }
             };
-            if active.moves.iter().all(|m| m.pp == 0) {
+            if active
+                .moves
+                .iter()
+                .enumerate()
+                .all(|(i, _)| battle.move_disabled_in_request(player, 0, i))
+            {
                 add(0, "struggle");
             } else {
                 for (slot, m) in active.moves.iter().enumerate() {
-                    if m.pp != 0 {
+                    if !battle.move_disabled_in_request(player, 0, slot) {
                         add(slot, &m.id);
                     }
                 }

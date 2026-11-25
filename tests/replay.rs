@@ -176,3 +176,13 @@ fn bss_reg_m_b_preview_and_pp_overrides() {
 fn bss_hidden_trap_is_discovered_without_revealing_the_other_choice() {
     replay(include_str!("fixtures/bss-hidden-trap.json"));
 }
+
+#[test]
+fn bss_imprison_discovery_only_updates_the_choosing_owner() {
+    replay(include_str!("fixtures/bss-imprison.json"));
+}
+
+#[test]
+fn bss_no_pp_forces_typeless_struggle_and_recoil() {
+    replay(include_str!("fixtures/bss-struggle.json"));
+}

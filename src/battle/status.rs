@@ -81,6 +81,14 @@ impl Battle {
             self.add(format!("|cant|{}|flinch", self.ident(pos)));
             return false;
         }
+        if self.imprisoned_move(pos, &data.name) {
+            self.add(format!(
+                "|cant|{}|move: Imprison|{}",
+                self.ident(pos),
+                data.name
+            ));
+            return false;
+        }
         if self.mon(pos).status == Status::Paralysis && self.rng.chance(1, 8) {
             self.add(format!("|cant|{}|par", self.ident(pos)));
             return false;

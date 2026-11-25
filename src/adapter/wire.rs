@@ -152,6 +152,9 @@ impl Serialize for OwnRoster<'_> {
                 .enumerate()
                 .find(|(_, p)| p.roster_index == slot);
             seq.serialize_element(&OwnMon {
+                battle,
+                player: self.player,
+                party_slot: actual.map(|(i, _)| i),
                 visible,
                 actual: actual.map(|(_, p)| p),
                 slot,
@@ -166,6 +169,9 @@ impl Serialize for OwnRoster<'_> {
 }
 
 struct OwnMon<'a> {
+    battle: &'a Battle,
+    player: Player,
+    party_slot: Option<usize>,
     visible: &'a Value,
     actual: Option<&'a Pokemon>,
     slot: usize,
@@ -204,17 +210,24 @@ struct SlotView<'a> {
     disabled: bool,
 }
 
-struct Moves<'a>(&'a [crate::battle::MoveSlot]);
+struct Moves<'a> {
+    battle: &'a Battle,
+    player: Player,
+    party_slot: usize,
+    slots: &'a [crate::battle::MoveSlot],
+}
 
 impl Serialize for Moves<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        let mut seq = serializer.serialize_seq(Some(self.0.len()))?;
-        for m in self.0 {
+        let mut seq = serializer.serialize_seq(Some(self.slots.len()))?;
+        for (slot, m) in self.slots.iter().enumerate() {
             seq.serialize_element(&SlotView {
                 id: &m.id,
                 pp: m.pp,
                 maxpp: m.max_pp,
-                disabled: false,
+                disabled: self
+                    .battle
+                    .actual_move_disabled(self.player, self.party_slot, slot),
             })?;
         }
         seq.end()
@@ -267,7 +280,15 @@ impl Serialize for OwnMon<'_> {
             map.serialize_entry("identity_uncertain", &false)?;
             map.serialize_entry("times_attacked", &p.times_attacked)?;
             map.serialize_entry("volatile_ids", p.volatile_ids())?;
-            map.serialize_entry("moves", &Moves(&p.moves))?;
+            map.serialize_entry(
+                "moves",
+                &Moves {
+                    battle: self.battle,
+                    player: self.player,
+                    party_slot: self.party_slot.unwrap(),
+                    slots: &p.moves,
+                },
+            )?;
             map.serialize_entry("item", &p.item)?;
             map.serialize_entry("ability", &p.ability)?;
         } else {

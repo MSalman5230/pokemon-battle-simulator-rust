@@ -10,6 +10,7 @@ use crate::{
 };
 use serde::Serialize;
 
+mod disable;
 mod hazards;
 mod items;
 mod mega;
@@ -148,6 +149,9 @@ pub struct Pokemon {
     fainted: bool,
     needs_replacement: bool,
     revealed_trap: bool,
+    imprisoned: bool,
+    revealed_disables: u32,
+    revealed_all_disables: bool,
     pivot_move: Option<&'static str>,
 }
 
@@ -637,6 +641,9 @@ impl Pokemon {
             fainted: false,
             needs_replacement: false,
             revealed_trap: false,
+            imprisoned: false,
+            revealed_disables: 0,
+            revealed_all_disables: false,
             pivot_move: None,
         })
     }
