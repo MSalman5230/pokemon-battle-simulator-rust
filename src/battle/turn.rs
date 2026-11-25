@@ -1,5 +1,5 @@
-use super::charge::ChargeSpec;
 use super::*;
+use super::{abilities::BoostOrigin, charge::ChargeSpec};
 use crate::{
     choice::{MoveChoice, SpecialChoice, TargetKind},
     dex::{Accuracy, Category},
@@ -2238,8 +2238,12 @@ impl Battle {
                     let mut success = false;
                     if stage > -6 {
                         let restored = boosted_stat(mon.stats.atk, stage).max(1);
-                        success =
-                            self.boost_from(target, source, &[(BoostStat::Atk, -1)], false, false);
+                        success = self.boost_from(
+                            target,
+                            source,
+                            &[(BoostStat::Atk, -1)],
+                            BoostOrigin::from_move(move_data),
+                        );
                         let mon = self.mon_mut(source);
                         if mon.hp > 0 && mon.hp < mon.max_hp.get() {
                             mon.hp = (mon.hp + restored).min(mon.max_hp.get());
@@ -2278,6 +2282,13 @@ impl Battle {
                     {
                         self.log[base].public = format!("|move|{source_name}|Yawn||[still]");
                         self.add(format!("|-fail|{source_name}"));
+                        continue;
+                    }
+                    if let Some(holder) = self.flower_veil_holder(target) {
+                        if self.format.report_exact_hp {
+                            self.add("|debug|Flower Veil blocking yawn");
+                        }
+                        self.log_flower_veil(target, holder);
                         continue;
                     }
                     if self.status_blocked_by_terrain(target, "slp") == Some(Terrain::Electric) {
@@ -2342,7 +2353,8 @@ impl Battle {
                     move_data.boosts.as_slice()
                 };
                 if !boosts.is_empty() {
-                    succeeded |= self.boost_from(target, source, boosts, false, false);
+                    succeeded |=
+                        self.boost_from(target, source, boosts, BoostOrigin::from_move(move_data));
                 }
             }
             if succeeded {
@@ -2607,7 +2619,12 @@ impl Battle {
             }
             if !move_data.boosts.is_empty() {
                 for &(target, _) in &damage {
-                    self.boost_from(target, source, &move_data.boosts, false, false);
+                    self.boost_from(
+                        target,
+                        source,
+                        &move_data.boosts,
+                        BoostOrigin::from_move(move_data),
+                    );
                 }
             }
             if !move_data.self_boosts.is_empty() {
@@ -2649,7 +2666,7 @@ impl Battle {
                             self.try_status(target, status, source, move_data, false, base);
                         }
                         if !effect.boosts.is_empty() {
-                            self.boost_from(target, source, &effect.boosts, true, false);
+                            self.boost_from(target, source, &effect.boosts, BoostOrigin::Secondary);
                         }
                         if !effect.self_boosts.is_empty() {
                             self.boost(source, &effect.self_boosts, true);
@@ -3156,6 +3173,7 @@ impl Pokemon {
                 | "refrigerate"
                 | "dragonize"
                 | "noguard"
+                | "flowerveil"
         )
     }
 

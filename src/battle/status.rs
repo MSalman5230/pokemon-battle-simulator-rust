@@ -241,6 +241,9 @@ impl Battle {
             return false;
         }
 
+        if self.flower_veil_status(pos, source, id, primary && data.secondaries.is_empty()) {
+            return false;
+        }
         if let Some(terrain) = self.status_blocked_by_terrain(pos, id) {
             if primary {
                 self.terrain_activate(pos, terrain);

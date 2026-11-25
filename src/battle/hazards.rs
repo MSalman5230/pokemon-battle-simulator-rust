@@ -1,7 +1,7 @@
 //! Ordered side conditions that apply when a Pokémon enters the field.
 
-use super::turn::Position;
 use super::*;
+use super::{abilities::BoostOrigin, turn::Position};
 use crate::mechanics::BoostStat;
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
@@ -122,6 +122,10 @@ impl Battle {
 
     pub(super) fn on_switch_in_hazards(&mut self, pos: Position) {
         let player = pos.player;
+        let foe = Position {
+            player: player.foe(),
+            slot: 0,
+        };
         // Side conditions have equal speed, order and priority. Showdown's
         // SwitchIn comparator breaks the tie by creation order.
         let hazards = self.sides[player.index()].as_ref().unwrap().hazards.clone();
@@ -164,6 +168,12 @@ impl Battle {
                     } else if !boots
                         && mon.status == Status::Healthy
                         && !self.status_immune(pos, "psn")
+                        && !self.flower_veil_status(
+                            pos,
+                            foe,
+                            if layers >= 2 { "tox" } else { "psn" },
+                            false,
+                        )
                         && self.status_blocked_by_terrain(pos, "psn").is_none()
                     {
                         let status = if layers >= 2 {
@@ -178,16 +188,7 @@ impl Battle {
                 }
                 Hazard::StickyWeb if grounded && !boots => {
                     self.add(format!("|-activate|{}|move: Sticky Web", self.ident(pos)));
-                    self.boost_from(
-                        pos,
-                        Position {
-                            player: player.foe(),
-                            slot: 0,
-                        },
-                        &[(BoostStat::Spe, -1)],
-                        false,
-                        false,
-                    );
+                    self.boost_from(pos, foe, &[(BoostStat::Spe, -1)], BoostOrigin::Hazard);
                 }
                 _ => {}
             }

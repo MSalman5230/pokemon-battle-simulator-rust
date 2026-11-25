@@ -21,6 +21,46 @@ impl Attention {
     }
 }
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub(super) enum BoostOrigin {
+    Move { has_secondaries: bool },
+    Secondary,
+    Intimidate,
+    MirrorArmor,
+    Hazard,
+}
+
+impl BoostOrigin {
+    pub(super) fn from_move(data: &Move) -> Self {
+        Self::Move {
+            has_secondaries: !data.secondaries.is_empty(),
+        }
+    }
+
+    fn quiet(self) -> bool {
+        matches!(self, Self::Secondary | Self::Intimidate | Self::MirrorArmor)
+    }
+
+    fn reveal_protection(self) -> bool {
+        !matches!(
+            self,
+            Self::Secondary
+                | Self::Move {
+                    has_secondaries: true
+                }
+        )
+    }
+}
+
+#[derive(Clone, Copy)]
+enum DropHook {
+    FlowerVeil,
+    Block(&'static str),
+    IntimidateBlock(&'static str),
+    Illuminate,
+    MirrorArmor,
+}
+
 impl Pokemon {
     pub(super) fn ability_power_modifier(
         &self,
@@ -306,11 +346,67 @@ impl Battle {
             .any(|p| p.hp > 0 && p.ability == "unnerve")
     }
 
+    pub(super) fn flower_veil_holder(&mut self, target: Position) -> Option<Position> {
+        let (mut holders, count) = self.flower_veils(target);
+        let holders = &mut holders[..count];
+        speed_sort_by(holders, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        holders
+            .first()
+            .filter(|_| self.mon(target).has_type("Grass"))
+            .map(|h| h.0)
+    }
+
+    fn flower_veils(&self, target: Position) -> ([(Position, i32); 2], usize) {
+        let mut holders = [(target, 0); 2];
+        let mut count = 0;
+        for slot in 0..self.format.game_type.active_slots() {
+            let pos = Position { slot, ..target };
+            let mon = self.mon(pos);
+            if mon.hp > 0 && mon.ability == "flowerveil" {
+                holders[count] = (pos, mon.speed);
+                count += 1;
+            }
+        }
+        (holders, count)
+    }
+
+    pub(super) fn log_flower_veil(&mut self, target: Position, holder: Position) {
+        self.add(format!(
+            "|-block|{}|ability: Flower Veil|[of] {}",
+            self.ident(target),
+            self.ident(holder)
+        ));
+    }
+
+    pub(super) fn flower_veil_status(
+        &mut self,
+        target: Position,
+        source: Position,
+        id: &str,
+        reveal: bool,
+    ) -> bool {
+        if let Some(holder) = self.flower_veil_holder(target).filter(|_| target != source) {
+            if self.format.report_exact_hp {
+                self.add("|debug|interrupting setStatus with Flower Veil");
+            }
+            if reveal {
+                self.log_flower_veil(target, holder);
+            }
+            if self.format.report_exact_hp {
+                self.add(format!("|debug|set status [{id}] interrupted"));
+            }
+            true
+        } else {
+            false
+        }
+    }
+
     pub(super) fn flame_body(&mut self, holder: Position, attacker: Position) {
         if !self.rng.chance(3, 10)
             || self.mon(attacker).hp == 0
             || self.mon(attacker).status != Status::Healthy
             || self.status_immune(attacker, "brn")
+            || self.flower_veil_status(attacker, holder, "brn", false)
             || self.status_blocked_by_terrain(attacker, "brn").is_some()
         {
             return;
@@ -358,22 +454,12 @@ impl Battle {
                 self.add(format!("|-ability|{}|Intimidate|boost", self.ident(pos)));
                 started = true;
             }
-            let blocked = match self.mon(target).ability.as_str() {
-                "innerfocus" => Some("Inner Focus"),
-                "oblivious" => Some("Oblivious"),
-                "owntempo" => Some("Own Tempo"),
-                _ => None,
-            };
-            if let Some(blocked) = blocked {
-                let ident = self.ident(target);
-                self.add(format!(
-                    "|-fail|{ident}|unboost|atk|[from] ability: {blocked}|[of] {ident}"
-                ));
-            } else if let Some(ability) = self.mon(target).stat_drop_protection() {
-                self.fail_stat_drop(target, ability);
-            } else {
-                self.boost_from(target, pos, &[(BoostStat::Atk, -1)], true, false);
-            }
+            self.boost_from(
+                target,
+                pos,
+                &[(BoostStat::Atk, -1)],
+                BoostOrigin::Intimidate,
+            );
         }
     }
 
@@ -382,57 +468,87 @@ impl Battle {
         target: Position,
         source: Position,
         changes: &[(BoostStat, i8)],
-        quiet: bool,
-        reflected: bool,
+        origin: BoostOrigin,
     ) -> bool {
         if self.mon(target).hp == 0 {
             return false;
         }
-        let mut success = false;
-        let protection = (target != source)
-            .then(|| self.mon(target).stat_drop_protection())
-            .flatten();
-        if let Some(ability) = protection
-            && !quiet
-            && changes
-                .iter()
-                .any(|&(stat, amount)| amount < 0 && self.mon(target).boosts.get(stat) > -6)
-        {
-            self.fail_stat_drop(target, ability);
+        let mon = self.mon(target);
+        let mut hooks = [(target, 0, DropHook::FlowerVeil); 3];
+        let own = match mon.ability.as_str() {
+            "mirrorarmor" => Some(DropHook::MirrorArmor),
+            "illuminate" => Some(DropHook::Illuminate),
+            "innerfocus" => Some(DropHook::IntimidateBlock("Inner Focus")),
+            "oblivious" => Some(DropHook::IntimidateBlock("Oblivious")),
+            "owntempo" => Some(DropHook::IntimidateBlock("Own Tempo")),
+            _ => mon.stat_drop_protection().map(DropHook::Block),
+        };
+        let mut count = 0;
+        if let Some(own) = own {
+            hooks[0] = (target, mon.speed, own);
+            count += 1;
         }
-        let mirror = self.mon(target).ability == "mirrorarmor" && target != source && !reflected;
-        for &(stat, amount) in changes {
-            let current = self.mon(target).boosts.get(stat);
-            if amount < 0
-                && stat == BoostStat::Accuracy
-                && target != source
-                && self.mon(target).ability == "illuminate"
-            {
-                if !quiet && current > -6 {
-                    let ident = self.ident(target);
-                    self.add(format!(
-                        "|-fail|{ident}|unboost|accuracy|[from] ability: Illuminate|[of] {ident}"
-                    ));
+        let (veils, veils_count) = self.flower_veils(target);
+        for &(holder, speed) in &veils[..veils_count] {
+            hooks[count] = (holder, speed, DropHook::FlowerVeil);
+            count += 1;
+        }
+        let hooks = &mut hooks[..count];
+        speed_sort_by(hooks, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        let mut removed = 0_u8;
+        if target != source {
+            for &(holder, _, hook) in hooks.iter() {
+                if matches!(hook, DropHook::FlowerVeil) && !self.mon(target).has_type("Grass")
+                    || matches!(hook, DropHook::MirrorArmor) && origin == BoostOrigin::MirrorArmor
+                {
+                    continue;
                 }
-                continue;
-            }
-            if amount < 0 && protection.is_some() {
-                continue;
-            }
-            if mirror && amount < 0 && current > -6 {
-                if self.mon(source).hp != 0 {
-                    self.add(format!("|-ability|{}|Mirror Armor", self.ident(target)));
-                    self.boost_from(
-                        source,
-                        target,
-                        &[(stat, amount.max(-6 - current))],
-                        true,
-                        true,
-                    );
+                let mut blocked = false;
+                for (i, &(stat, amount)) in changes.iter().enumerate() {
+                    let current = self.mon(target).boosts.get(stat);
+                    if removed & (1 << i) != 0
+                        || amount >= 0
+                        || current <= -6
+                        || matches!(hook, DropHook::Illuminate) && stat != BoostStat::Accuracy
+                        || matches!(hook, DropHook::IntimidateBlock(_))
+                            && (stat != BoostStat::Atk || origin != BoostOrigin::Intimidate)
+                    {
+                        continue;
+                    }
+                    removed |= 1 << i;
+                    blocked = true;
+                    if matches!(hook, DropHook::MirrorArmor) && self.mon(source).hp != 0 {
+                        self.add(format!("|-ability|{}|Mirror Armor", self.ident(target)));
+                        self.boost_from(
+                            source,
+                            target,
+                            &[(stat, amount.max(-6 - current))],
+                            BoostOrigin::MirrorArmor,
+                        );
+                    }
                 }
-                continue;
+                if blocked && origin.reveal_protection() {
+                    match hook {
+                        DropHook::FlowerVeil => self.log_flower_veil(target, holder),
+                        DropHook::Block(ability) => self.fail_stat_drop(target, ability),
+                        DropHook::IntimidateBlock(ability) => {
+                            let ident = self.ident(target);
+                            self.add(format!(
+                                "|-fail|{ident}|unboost|atk|[from] ability: {ability}|[of] {ident}"
+                            ));
+                        }
+                        DropHook::Illuminate => {
+                            let ident = self.ident(target);
+                            self.add(format!("|-fail|{ident}|unboost|accuracy|[from] ability: Illuminate|[of] {ident}"));
+                        }
+                        DropHook::MirrorArmor => {}
+                    }
+                }
             }
-            if self.boost(target, &[(stat, amount)], quiet) {
+        }
+        let mut success = false;
+        for (i, &(stat, amount)) in changes.iter().enumerate() {
+            if removed & (1 << i) == 0 && self.boost(target, &[(stat, amount)], origin.quiet()) {
                 success = true;
                 if amount < 0
                     && target.player != source.player

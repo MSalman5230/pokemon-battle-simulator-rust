@@ -460,3 +460,8 @@ fn bss_dive_blocks_ordinary_attacks_but_allows_surf_and_no_guard() {
 fn bss_resist_berries_check_type_effectiveness_and_unnerve() {
     replay(include_str!("fixtures/bss-resist-berries.json"));
 }
+
+#[test]
+fn vgc_flower_veil_protects_grass_allies_from_status_and_stat_drops() {
+    replay(include_str!("fixtures/vgc-flower-veil.json"));
+}
