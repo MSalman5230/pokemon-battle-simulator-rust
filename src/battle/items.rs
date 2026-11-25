@@ -5,7 +5,7 @@ use super::turn::{BoostLabel, Pivot, Position};
 use super::*;
 use crate::{
     dex::{FlingEffect, Item},
-    mechanics::BoostStat,
+    mechanics::{BoostStat, Stat},
 };
 
 #[derive(Clone, Copy)]
@@ -59,6 +59,17 @@ fn stat_berry(id: &str) -> Option<(&'static str, BoostStat)> {
         "salacberry" => ("Salac Berry", BoostStat::Spe),
         "petayaberry" => ("Petaya Berry", BoostStat::Spa),
         "apicotberry" => ("Apicot Berry", BoostStat::Spd),
+        _ => return None,
+    })
+}
+
+fn disliked_flavor(id: &str) -> Option<Stat> {
+    Some(match id {
+        "figyberry" => Stat::Atk,
+        "iapapaberry" => Stat::Def,
+        "wikiberry" => Stat::Spa,
+        "aguavberry" => Stat::Spd,
+        "magoberry" => Stat::Spe,
         _ => return None,
     })
 }
@@ -418,6 +429,7 @@ impl Battle {
             self.symbiosis_after_item(pos);
         }
         self.pinch_stat_berry(pos);
+        self.pinch_effect_berry(pos);
         self.cure_with_berry(pos);
         self.check_other_berries(pos);
     }
@@ -571,28 +583,75 @@ impl Battle {
         let Some((name, stat)) = stat_berry(mon.effective_item()) else {
             return;
         };
-        if mon.hp
-            * if self.event_ability(pos) == "gluttony" {
-                2
-            } else {
-                4
-            }
-            > mon.max_hp.get()
-        {
+        if !self.pinch_berry_ready(pos) {
             return;
         }
         self.consume(pos, name, true);
-        self.apply_stat_berry(pos, name, stat);
+        self.apply_stat_berry(pos, name, stat, 1);
         self.after_eating_berry(pos, name, false);
         self.symbiosis_after_item(pos);
     }
 
-    fn apply_stat_berry(&mut self, pos: Position, name: &str, stat: BoostStat) {
-        let amount = match self.event_ability(pos) {
-            "contrary" => -1,
-            "ripen" | "simple" => 2,
-            _ => 1,
+    fn pinch_berry_ready(&self, pos: Position) -> bool {
+        let mon = self.mon(pos);
+        mon.hp > 0
+            && (mon.hp * 4 <= mon.max_hp.get()
+                || mon.hp * 2 <= mon.max_hp.get() && self.event_ability(pos) == "gluttony")
+    }
+
+    fn pinch_effect_berry(&mut self, pos: Position) {
+        let id = match self.mon(pos).effective_item() {
+            "figyberry" => "figyberry",
+            "iapapaberry" => "iapapaberry",
+            "wikiberry" => "wikiberry",
+            "aguavberry" => "aguavberry",
+            "magoberry" => "magoberry",
+            "lansatberry" => "lansatberry",
+            "starfberry" => "starfberry",
+            _ => return,
         };
+        if self.pinch_berry_ready(pos)
+            && (self.mon(pos).heal_block == 0 || disliked_flavor(id).is_none())
+        {
+            self.eat_effect_berry(pos, id, false);
+        }
+    }
+
+    fn eat_effect_berry(&mut self, pos: Position, id: &str, allow_faint: bool) -> bool {
+        if (!allow_faint && self.mon(pos).hp == 0) || self.foe_unnerve(pos) {
+            return false;
+        }
+        let item = DEX.item(self.format.dex_mod, id).unwrap();
+        let name = &item.effect.name;
+        self.consume(pos, name, true);
+        self.berry_effect(pos, id, item, None);
+        self.after_eating_berry(pos, name, false);
+        self.symbiosis_after_item(pos);
+        true
+    }
+
+    pub(super) fn custap_berry(&mut self, pos: Position) -> bool {
+        if self.mon(pos).item != "custapberry"
+            || self.debug_ignored_item(pos, "FractionalPriority")
+            || !self.pinch_berry_ready(pos)
+            || !self.eat_effect_berry(pos, "custapberry", false)
+        {
+            return false;
+        }
+        self.add(format!(
+            "|-activate|{}|item: Custap Berry|[consumed]",
+            self.ident(pos)
+        ));
+        true
+    }
+
+    fn apply_stat_berry(&mut self, pos: Position, name: &str, stat: BoostStat, amount: i8) {
+        let amount = amount
+            * match self.event_ability(pos) {
+                "contrary" => -1,
+                "ripen" | "simple" => 2,
+                _ => 1,
+            };
         let mon = self.mon_mut(pos);
         let changed = mon.boosts.add(stat, amount);
         let reason = if changed != 0 {
@@ -1057,6 +1116,40 @@ impl Battle {
                 self.item_heal_from(pos, amount, &item.effect.name, source);
             }
             "oranberry" => self.item_heal_from(pos, 10, &item.effect.name, source),
+            id if let Some(flavor) = disliked_flavor(id) => {
+                let amount = self.mon(pos).max_hp.get() / 3;
+                self.item_heal_from(pos, amount, &item.effect.name, source);
+                if self.mon(pos).nature.minus == Some(flavor) {
+                    self.apply_confusion(pos, false);
+                }
+            }
+            "lansatberry" => {
+                let volatiles = self.mon(pos).volatile_ids();
+                if !volatiles.contains(&"focusenergy") && !volatiles.contains(&"dragoncheer") {
+                    self.mon_mut(pos).track_volatile("focusenergy");
+                    self.add(format!("|-start|{}|move: Focus Energy", self.ident(pos)));
+                }
+            }
+            "starfberry" => {
+                let mut stats = [BoostStat::Atk; 5];
+                let mut count = 0;
+                for stat in [
+                    BoostStat::Atk,
+                    BoostStat::Def,
+                    BoostStat::Spa,
+                    BoostStat::Spd,
+                    BoostStat::Spe,
+                ] {
+                    if self.mon(pos).boosts.get(stat) < 6 {
+                        stats[count] = stat;
+                        count += 1;
+                    }
+                }
+                if count > 0 {
+                    let stat = stats[self.rng.below(count as u32) as usize];
+                    self.apply_stat_berry(pos, &item.effect.name, stat, 2);
+                }
+            }
             "persimberry" if self.mon(pos).confusion > 0 => self.cure_confusion(pos),
             "leppaberry" => self.replenish_pp_with_leppa(pos),
             "lumberry" => {
@@ -1071,7 +1164,7 @@ impl Battle {
             id if status_berry_matches(id, self.mon(pos).status) => self.cure_status(pos, "[msg]"),
             _ => {
                 if let Some((name, stat)) = stat_berry(id) {
-                    self.apply_stat_berry(pos, name, stat);
+                    self.apply_stat_berry(pos, name, stat, 1);
                 }
             }
         }

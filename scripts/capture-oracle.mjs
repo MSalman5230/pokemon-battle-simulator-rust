@@ -1989,6 +1989,22 @@ const throatSprayStatusRosters = [
     [{...named('Lapras', ['Perish Song']), item:'Throat Spray'}, named('Snorlax', ['Recover'])],
     [named('Chansey', ['Tackle']), named('Porygon2', ['Tackle'])],
 ];
+const figyGluttonyRosters = [
+    [{...named('Snorlax', ['Tackle']), item:'Figy Berry', ability:'Gluttony', nature:'Modest', ivs:{hp:29}}],
+    [named('Raticate', ['Super Fang', 'Tackle'])],
+];
+const iapapaCudRosters = [
+    [{...named('Farigiraf', ['Tackle']), item:'Iapapa Berry', ability:'Cud Chew', ivs:{hp:25}}],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
+const starfRipenRosters = [
+    [{...named('Applin', ['Tackle']), item:'Starf Berry', ability:'Ripen', ivs:{hp:25}}],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
+const lansatCustapRosters = item => [
+    [{...named('Shuckle', ['Tackle']), item, ivs:{hp:25}}],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3497,6 +3513,16 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         throatSprayDamageRosters, 'custom-throat-spray-only-after-successful-sound'],
     ['customgame', [['team 12','team 12'], ['move 1','move 1']],
         throatSprayStatusRosters, 'custom-throat-spray-after-perish-song'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        figyGluttonyRosters, 'custom-figy-gluttony-threshold-and-disliked-flavor'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2']],
+        iapapaCudRosters, 'custom-iapapa-cud-chew-heals-again'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2']],
+        starfRipenRosters, 'custom-ripen-starf-random-stat'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2']],
+        lansatCustapRosters('Lansat Berry'), 'custom-lansat-focus-energy'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2']],
+        lansatCustapRosters('Custap Berry'), 'custom-custap-reorders-next-action'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

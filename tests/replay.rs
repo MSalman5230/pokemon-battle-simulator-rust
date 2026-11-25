@@ -2160,6 +2160,21 @@ fn reactive_equipment_fires_at_the_native_hit_boost_field_and_move_events() {
 }
 
 #[test]
+fn pinch_berries_obey_thresholds_flavors_randomness_and_priority() {
+    replay(include_str!(
+        "fixtures/custom-figy-gluttony-threshold-and-disliked-flavor.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-iapapa-cud-chew-heals-again.json"
+    ));
+    replay(include_str!("fixtures/custom-ripen-starf-random-stat.json"));
+    replay(include_str!("fixtures/custom-lansat-focus-energy.json"));
+    replay(include_str!(
+        "fixtures/custom-custap-reorders-next-action.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

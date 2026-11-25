@@ -1736,6 +1736,9 @@ impl Battle {
         {
             action.fractional_priority = -0.1;
         }
+        if action.fractional_priority <= 0.0 && self.custap_berry(actor) {
+            action.fractional_priority = 0.1;
+        }
     }
 
     fn random_target(&mut self, source: Position, kind: TargetKind) -> Option<Position> {
@@ -9959,6 +9962,14 @@ impl Pokemon {
                 | "snowball"
                 | "throatspray"
                 | "weaknesspolicy"
+                | "aguavberry"
+                | "custapberry"
+                | "figyberry"
+                | "iapapaberry"
+                | "lansatberry"
+                | "magoberry"
+                | "starfberry"
+                | "wikiberry"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)
