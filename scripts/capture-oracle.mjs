@@ -1252,6 +1252,10 @@ const minimizeRosters = [
     [named('Clefable', ['Minimize', 'Recover'])],
     [named('Blissey', ['Recover', 'Body Slam'])],
 ];
+const hazeTieRosters = [
+    [named('Vaporeon', ['Haze'])],
+    [named('Vaporeon', ['Tackle'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2363,6 +2367,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2',null]], mementoRosters, 'bss-memento'],
     ['bssregmc', [['team 1','team 1'], ...Array(3).fill(['move 1','move 1']),
         ['move 1','move 2'], ['move 2','move 2']], minimizeRosters, 'bss-minimize'],
+    ['bssregmc', [['team 1','team 1'], ...Array(2).fill(['move 1','move 1'])],
+        hazeTieRosters, 'bss-haze-speed-tie'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

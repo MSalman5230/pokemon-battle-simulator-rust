@@ -3760,8 +3760,6 @@ impl Battle {
             for pos in self.positions() {
                 self.mon_mut(pos).boosts = Boosts::default();
             }
-            self.each_event();
-            self.each_event();
             return true;
         }
         if move_data.name == "Perish Song" {

@@ -1547,6 +1547,11 @@ fn minimize_keeps_its_separate_trampling_drawback_when_boosts_are_capped() {
 }
 
 #[test]
+fn haze_does_not_run_individual_hit_updates_during_speed_ties() {
+    replay(include_str!("fixtures/bss-haze-speed-tie.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
