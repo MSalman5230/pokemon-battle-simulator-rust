@@ -792,3 +792,10 @@ fn health_costs_match_clangorous_soul_thresholds_and_steel_beam_recoil() {
     replay(include_str!("fixtures/bss-clangorous-soul.json"));
     replay(include_str!("fixtures/bss-steel-beam.json"));
 }
+
+#[test]
+fn held_stat_modifiers_and_fractional_turn_order_match_showdown() {
+    replay(include_str!("fixtures/bss-quick-claw.json"));
+    replay(include_str!("fixtures/bss-light-ball.json"));
+    replay(include_str!("fixtures/bss-steadfast-surge-surfer.json"));
+}

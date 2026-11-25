@@ -100,7 +100,9 @@ impl Pokemon {
         } else {
             4096
         };
-        let item = if matches!(
+        let item = if self.item == "lightball" && self.base_species.base_species == "Pikachu" {
+            8192
+        } else if matches!(
             (self.item.as_str(), category),
             ("choiceband", Category::Physical) | ("choicespecs", Category::Special)
         ) {

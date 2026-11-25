@@ -282,6 +282,7 @@ impl Battle {
         let speed = [ACTOR, TARGET].map(|p| {
             self.mon(p).current_speed(
                 weather,
+                self.terrain(),
                 self.sides[p.player.index()].as_ref().unwrap().tailwind > 0,
             )
         });

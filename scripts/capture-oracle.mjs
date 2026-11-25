@@ -672,6 +672,18 @@ const steelBeamRosters = [
     [named('Duraludon', ['Steel Beam']), named('Espeon', ['Recover'])],
     [named('Vaporeon', ['Protect', 'Recover']), named('Umbreon', ['Recover'])],
 ];
+const quickClawRosters = [
+    [{...named('Snorlax', ['Recover']), item: 'Quick Claw'}, named('Espeon', ['Recover'])],
+    [named('Vaporeon', ['Recover', 'Quick Attack']), named('Umbreon', ['Recover'])],
+];
+const lightBallRosters = [
+    [{...named('Pikachu', ['Quick Attack', 'Thunderbolt']), item: 'Light Ball'}, named('Espeon', ['Recover'])],
+    [named('Umbreon', ['Recover']), named('Vaporeon', ['Recover'])],
+];
+const speedAbilityRosters = [
+    [{...named('Lucario', ['Tackle', 'Recover']), ability: 'Steadfast'}, named('Espeon', ['Recover'])],
+    [{...named('Raichu-Alola', ['Fake Out', 'Electric Terrain', 'Tackle']), ability: 'Surge Surfer'}, named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1015,6 +1027,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 12'], ...Array(5).fill(['move 1','move 1'])], soulRosters, 'bss-clangorous-soul'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['switch 2',null]],
         steelBeamRosters, 'bss-steel-beam'],
+    ['bssregmc', [['team 12','team 12'], ...Array(5).fill(['move 1','move 1']), ['move 1','move 2']],
+        quickClawRosters, 'bss-quick-claw'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1']], lightBallRosters, 'bss-light-ball'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 3']],
+        speedAbilityRosters, 'bss-steadfast-surge-surfer'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -137,6 +137,7 @@ pub(super) struct Action {
     actor: Option<Position>,
     kind: ActionKind,
     priority: Priority,
+    fractional_priority: f64,
 }
 
 const STRUGGLE_SLOT: usize = usize::MAX;
@@ -163,6 +164,7 @@ impl Action {
         Self {
             actor,
             kind,
+            fractional_priority: 0.0,
             priority: Priority {
                 order,
                 ..Priority::default()
@@ -544,6 +546,15 @@ impl Battle {
                         self.random_target(actor, self.move_data(actor, move_slot).target);
                         self.prioritize(&mut charge);
                         queue.push(charge);
+                    }
+                    if self.phase == Phase::Move
+                        && matches!(action.kind, ActionKind::Move { .. })
+                        && let Some(actor) = action.actor
+                        && self.mon(actor).item == "quickclaw"
+                        && self.rng.chance(1, 5)
+                    {
+                        action.fractional_priority = 0.1;
+                        self.add(format!("|-activate|{}|item: Quick Claw", self.ident(actor)));
                     }
                     if let ActionKind::Move {
                         move_slot,
@@ -1065,11 +1076,12 @@ impl Battle {
                 // listen to it. In doubles this can consume a retarget draw.
                 if move_slot == RECHARGE_SLOT {
                     self.random_target(source, TargetKind::Normal);
-                    action.priority.priority = 0.0;
+                    action.priority.priority = action.fractional_priority;
                 } else {
                     let data = self.move_data(source, move_slot);
                     self.resolve_target(source, data.target, target);
-                    action.priority.priority = f64::from(self.move_priority(source, data));
+                    action.priority.priority =
+                        f64::from(self.move_priority(source, data)) + action.fractional_priority;
                 }
             }
             action.priority.speed = self.field_speed(source);
@@ -1657,6 +1669,7 @@ impl Battle {
         self.stat_rules.truncation.action_speed(
             self.mon(pos).current_speed(
                 self.effective_weather(),
+                self.terrain(),
                 self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0,
             ),
             (self.trick_room > 0) ^ self.twisted_dimension,
@@ -4014,7 +4027,12 @@ impl Pokemon {
         }
     }
 
-    pub(super) fn current_speed(&self, weather: Option<Weather>, tailwind: bool) -> u32 {
+    pub(super) fn current_speed(
+        &self,
+        weather: Option<Weather>,
+        terrain: Option<Terrain>,
+        tailwind: bool,
+    ) -> u32 {
         let mut stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
         if tailwind {
             stat *= 2;
@@ -4025,7 +4043,8 @@ impl Pokemon {
                 | ("chlorophyll", Some(Weather::Sun))
                 | ("sandrush", Some(Weather::Sand))
                 | ("slushrush", Some(Weather::Snow))
-        ) {
+        ) || self.ability == "surgesurfer" && terrain == Some(Terrain::Electric)
+        {
             stat *= 2;
         }
         if self.item == "choicescarf" {
@@ -4186,6 +4205,8 @@ impl Pokemon {
                 | "waterbubble"
                 | "liquidvoice"
                 | "bulletproof"
+                | "steadfast"
+                | "surgesurfer"
         )
     }
 
@@ -4220,6 +4241,8 @@ impl Pokemon {
                 | "choicescarf"
                 | "choiceband"
                 | "choicespecs"
+                | "quickclaw"
+                | "lightball"
                 | "softsand"
                 | "magnet"
                 | "lightclay"

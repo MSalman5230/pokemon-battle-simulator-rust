@@ -2,6 +2,7 @@
 
 use super::turn::Position;
 use super::*;
+use crate::mechanics::BoostStat;
 
 #[derive(Clone, Copy)]
 pub(super) struct Yawn {
@@ -85,6 +86,9 @@ impl Battle {
         }
         if self.mon(pos).flinched {
             self.add(format!("|cant|{}|flinch", self.ident(pos)));
+            if self.event_ability(pos) == "steadfast" {
+                self.ability_boost(pos, "Steadfast", BoostStat::Spe, 1, false);
+            }
             return false;
         }
         if let Some((slot, _)) = self.mon(pos).disabled_slot
