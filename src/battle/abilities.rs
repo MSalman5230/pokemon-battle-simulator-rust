@@ -473,7 +473,11 @@ impl Battle {
     }
 
     pub(super) fn airborne_ability(&self, holder: Position) -> Option<&'static str> {
-        let label = match self.mon(holder).ability.as_str() {
+        let mon = self.mon(holder);
+        if mon.effective_item() == "ironball" {
+            return None;
+        }
+        let label = match mon.ability.as_str() {
             "levitate" => "Levitate",
             "eelevate" => "Eelevate",
             _ => return None,

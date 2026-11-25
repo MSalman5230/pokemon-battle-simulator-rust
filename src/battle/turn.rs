@@ -1026,6 +1026,9 @@ impl Battle {
                     | "throatchop"
                     | "lashout"
                     | "stompingtantrum"
+                    | "reversal"
+                    | "flail"
+                    | "payback"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -4076,6 +4079,26 @@ impl Battle {
                     }
                     power *= 2;
                 }
+                if matches!(move_data.name.as_str(), "Reversal" | "Flail") {
+                    power = battle.mon(source).reversal_power();
+                    if battle.format.report_exact_hp {
+                        battle.add(format!("|debug|BP: {power}"));
+                    }
+                }
+                if move_data.name == "Payback" {
+                    let enhanced = battle.mon(target).active_turns != 0
+                        && Self::queued_move(queue, target).is_none();
+                    if enhanced {
+                        power *= 2;
+                    }
+                    if battle.format.report_exact_hp {
+                        battle.add(if enhanced {
+                            "|debug|Payback damage boost"
+                        } else {
+                            "|debug|Payback NOT boosted"
+                        });
+                    }
+                }
                 let crit_ratio = battle.crit_ratio(source, target, move_data);
                 let crit_roll = move_data.will_crit.unwrap_or_else(|| {
                     crit_ratio != 0
@@ -4929,8 +4952,14 @@ impl Battle {
         target: Position,
         ignores_immunity: bool,
     ) -> Option<i8> {
+        let mon = self.mon(target);
+        if move_type == "Ground" && mon.effective_item() == "ironball" && mon.has_type("Flying") {
+            // The held item neutralizes the entire Ground matchup on a
+            // Flying holder, including the contribution of its other type.
+            return Some(0);
+        }
         let mut modifier = 0;
-        for typing in self.mon(target).types() {
+        for typing in mon.types() {
             if typing == "???" {
                 continue;
             }
@@ -5017,8 +5046,10 @@ impl Pokemon {
         {
             stat *= 2;
         }
-        if self.effective_item() == "choicescarf" {
-            stat = crate::mechanics::Truncation::Cartridge.modify(stat, 6144);
+        match self.effective_item() {
+            "choicescarf" => stat = crate::mechanics::Truncation::Cartridge.modify(stat, 6144),
+            "ironball" => stat /= 2,
+            _ => {}
         }
         if self.status == Status::Paralysis {
             stat / 2
@@ -5270,6 +5301,7 @@ impl Pokemon {
                 | "covertcloak"
                 | "widelens"
                 | "zoomlens"
+                | "ironball"
                 | "toxicorb"
                 | "flameorb"
                 | "gripclaw"

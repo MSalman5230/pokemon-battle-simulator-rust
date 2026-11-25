@@ -120,9 +120,11 @@ impl Battle {
 
     pub(super) fn grounded(&self, pos: Position) -> bool {
         let mon = self.mon(pos);
-        !mon.has_type("Flying")
-            && mon.effective_item() != "airballoon"
-            && self.airborne_ability(pos).is_none()
+        match mon.effective_item() {
+            "ironball" => true,
+            "airballoon" => false,
+            _ => !mon.has_type("Flying") && self.airborne_ability(pos).is_none(),
+        }
     }
 
     pub(super) fn tidy_hazards(&mut self, pos: Position) -> bool {

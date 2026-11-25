@@ -185,6 +185,19 @@ impl Battle {
     }
 }
 
+impl Pokemon {
+    pub(super) fn reversal_power(&self) -> u16 {
+        match self.hp * 48 / self.max_hp.get() {
+            0..=1 => 200,
+            2..=4 => 150,
+            5..=9 => 100,
+            10..=16 => 80,
+            17..=32 => 40,
+            _ => 20,
+        }
+    }
+}
+
 pub(super) struct RegularHit<'a> {
     pub power: u16,
     pub move_type: &'a str,

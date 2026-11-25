@@ -359,6 +359,8 @@ impl Battle {
                     | "facade"
                     | "flyingpress"
                     | "throatchop"
+                    | "flail"
+                    | "reversal"
             )
         {
             return Err(unsupported(format!("move {move_id}")));
@@ -407,6 +409,7 @@ impl Battle {
             "weatherball" if weather.is_some() => 100,
             "ragefist" => 50 + 50 * attack.times_attacked.min(6) as u16,
             "lastrespects" => 50 + 50 * u16::from(self.sides[0].as_ref().unwrap().total_fainted),
+            "flail" | "reversal" => attack.reversal_power(),
             "eruption" | "waterspout" | "dragonenergy" => {
                 (u32::from(data.base_power) * attack.hp / attack.max_hp).max(1) as u16
             }

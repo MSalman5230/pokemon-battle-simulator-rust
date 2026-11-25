@@ -71,6 +71,10 @@ add('Charge volatile powers the electric attack', 'thundershock',
     mon('Bellibolt', 'Electromorphosis', '', {volatiles:{charge:{}}}), normal);
 add('Klutz suppresses a held damage item without removing it', 'tackle',
     mon('Lopunny', 'Klutz', 'Choice Band'), normal);
+add('Reversal at the lowest HP bracket', 'reversal',
+    mon('Machamp', 'Guts', '', {hp:.02,max_hp:200}), normal);
+add('a Flying holder of Iron Ball takes neutral Ground damage', 'earthquake',
+    normal, mon('Zapdos', 'Pressure', 'Iron Ball'));
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

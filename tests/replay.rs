@@ -1157,6 +1157,21 @@ fn lash_out_only_boosts_when_a_stat_fell_this_turn() {
 }
 
 #[test]
+fn iron_ball_slows_and_grounds_flying_and_levitating_holders() {
+    replay(include_str!("fixtures/bss-iron-ball.json"));
+}
+
+#[test]
+fn reversal_and_flail_use_the_native_hp_thresholds() {
+    replay(include_str!("fixtures/bss-reversal-flail.json"));
+}
+
+#[test]
+fn payback_requires_a_target_that_has_acted_and_did_not_switch_this_turn() {
+    replay(include_str!("fixtures/bss-payback.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
