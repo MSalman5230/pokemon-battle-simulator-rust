@@ -30,14 +30,20 @@ traffic. It does not run player models, feature encoding, or training.
   the same machine. This is transport-level singles throughput. Poke-RL
   has no equivalent doubles worker yet.
 
-## Compare a Rust worker later
+## Compare the Rust worker on the default workload
 
 ```sh
-node benchmarks/throughput.mjs -- ./target/release/pokemon-battle-worker
+source scripts/env.sh
+cargo build --locked --release
+node scripts/verify-bss-teams.mjs .tools/poke-rl-simulator/teams_train.json \
+  .tools/verified-training-corpus.json
+node benchmarks/throughput.mjs -- ./target/release/pokemon-battle-worker \
+  --verified-teams .tools/verified-training-corpus.json
 ```
 
-The experimental Rust worker currently supports only the verified subset below.
-For this test the candidate must support `new` and `batch` with
+The admission manifest validates rosters offline with the locked reference.
+The Rust worker does not use Showdown at runtime. For this test a candidate
+must support `new` and `batch` with
 `step`/`close` entries from Poke-RL's protocol. It must echo the request
 `id` and return the corresponding JSON `result`, in order. Both backends
 receive byte-identical lines. A full untimed replay checks replies before
@@ -47,11 +53,19 @@ a mismatch, the harness fails without reporting a speedup.
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,
 seed, turn cap, and repeat options.
 
-## Verified Rust subset
+The [recorded default-workload run](verified-default-bss-result.json) used
+Rust commit `3b7fd74c3107132feed6398d54fe8575397c2b26`. Both workers matched
+all replies in the untimed parity replay, including 673 steps across 32
+completed games with no truncations. The median across five timed replays on
+the same i5-6300HQ was 337.7 steps/s for Showdown and 1,501.9 for Rust
+(4.45×). This verifies the fixed workload, not every team combination, seed,
+mode, or worker operation.
 
-The experimental worker has no JavaScript runtime dependency, but it accepts
-only the exact rosters in the checked-in, oracle-validated BSS corpus. It
-does not yet replace the training worker on the default manifest.
+## Small checked-in BSS corpus
+
+Without an admission manifest, the experimental worker accepts only the exact
+rosters in the checked-in, oracle-validated BSS corpus. This gives a smaller
+benchmark without preparing a manifest.
 
 ```sh
 source scripts/env.sh
@@ -89,18 +103,6 @@ node benchmarks/throughput.mjs --capture-replay benchmarks/results/full-workload
 The coverage report counts selected moves and the active species, abilities,
 items, and Mega choices at selection time. A selected move may still fail or
 never execute. This diagnostic keeps the same deterministic workload hash.
-
-For full-corpus bring-up, generate an offline admission manifest using the
-same locked validator. This does not supply missing mechanics or certify
-Rust parity. The benchmark still withholds a speed result on any error or
-mismatch.
-
-```sh
-node scripts/verify-bss-teams.mjs .tools/poke-rl-simulator/teams_train.json \
-  .tools/verified-training-corpus.json
-node benchmarks/throughput.mjs -- ./target/release/pokemon-battle-worker \
-  --verified-teams .tools/verified-training-corpus.json
-```
 
 Add `--diagnose-parity` before `--` to report the first error or mismatch
 for each battle. This runs untimed, isolates games from failures in other

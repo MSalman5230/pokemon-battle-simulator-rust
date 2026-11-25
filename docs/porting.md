@@ -64,8 +64,10 @@ and ability effects. Passing a preview fixture does not imply that all rules
 for that format are implemented.
 
 The experimental Poke-RL worker passes exact response replay on the curated
-BSS benchmark. It can also load a manifest verified by the upstream team
-validator for broader coverage testing. The Rust core does not yet validate
-legality or generate teams. Continue using the full worker replay to find
-unsupported mechanics, then record focused native fixtures for each one.
+BSS benchmark and the fixed 32-game default benchmark using the training
+manifest. The [recorded default run](../benchmarks/verified-default-bss-result.json)
+matched 673 steps without truncation and measured a 4.45× release speedup.
+This is a benchmark milestone, not general parity. The Rust core does not
+yet validate legality or generate teams. Continue testing more rosters,
+seeds, and formats and record focused native fixtures for missing mechanics.
 The benchmark rejects any mismatch before timing the adapter.

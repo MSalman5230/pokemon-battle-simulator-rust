@@ -3,9 +3,11 @@
 A headless Rust port of Pokémon Showdown's Gen 9 Champions singles and
 doubles for Poke-RL, in progress. The Rust core accepts native Showdown input
 and replays seeded singles and doubles battles across a growing set of rules
-and mechanics. An experimental Poke-RL worker matches the reference on a
-curated BSS workload. Unsupported mechanics return errors. Full training
-parity, native team validation, and team generation are not complete.
+and mechanics. The experimental Poke-RL worker matched all 673 step replies
+in the default BSS Reg M-C benchmark and ran 4.45× faster in release mode.
+That result covers the fixed 32-game workload with prevalidated rosters.
+Unsupported mechanics return errors. Full training parity, native team
+validation, and team generation are not complete.
 
 ## Local setup
 
@@ -63,6 +65,6 @@ node benchmarks/throughput.mjs
 ```
 
 The benchmark measures batched battle steps per second through Poke-RL's
-current singles worker. It can check exact replay parity before measuring
-the Rust worker using `-- path/to/release-worker`. See the
+current singles worker. It checks exact replay parity before measuring
+the Rust worker. See the
 [benchmark guide](benchmarks/README.md) and the [porting plan](docs/porting.md).
