@@ -76,6 +76,7 @@ const data = mod => {
         abilities: table(dex.abilities.all(), e =>
             ({...props(e, ['name', 'isNonstandard']), handlers: handlers(e),
                 noTrace: !!e.flags?.notrace || undefined, cannotSuppress: !!e.flags?.cantsuppress || undefined,
+                breakable: !!e.flags?.breakable || undefined,
                 noSkillSwap: !!e.flags?.failskillswap || undefined})),
         items: table(dex.items.all(), e =>
             ({...props(e, ['name', 'isNonstandard', 'megaStone']), handlers: handlers(e)})),

@@ -21,7 +21,7 @@ impl Battle {
             return Trap::default();
         }
         let affected = |ability: &str| match ability {
-            "arenatrap" => mon.grounded(),
+            "arenatrap" => self.grounded(pos),
             "magnetpull" => mon.has_type("Steel"),
             "shadowtag" => mon.ability != "shadowtag",
             _ => false,

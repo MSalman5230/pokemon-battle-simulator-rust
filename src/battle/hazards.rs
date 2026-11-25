@@ -42,6 +42,13 @@ impl Hazard {
 }
 
 impl Battle {
+    pub(super) fn grounded(&self, pos: Position) -> bool {
+        let mon = self.mon(pos);
+        !mon.has_type("Flying")
+            && mon.item != "airballoon"
+            && (mon.ability != "levitate" || self.ignores_ability_of(pos))
+    }
+
     pub(super) fn tidy_hazards(&mut self, pos: Position) -> bool {
         let mut removed = false;
         for player in [pos.player, pos.player.foe()] {
@@ -134,7 +141,7 @@ impl Battle {
             if mon.hp == 0 {
                 break;
             }
-            let grounded = mon.grounded();
+            let grounded = self.grounded(pos);
             let boots = mon.item == "heavydutyboots";
             let max_hp = mon.max_hp.get();
             match hazard {
@@ -230,9 +237,5 @@ impl Pokemon {
             .map(String::as_str)
             .filter(move |t| lone.is_none() && (!self.roosted || *t != "Flying"))
             .chain(lone)
-    }
-
-    pub(super) fn grounded(&self) -> bool {
-        !self.has_type("Flying") && self.item != "airballoon" && self.ability != "levitate"
     }
 }

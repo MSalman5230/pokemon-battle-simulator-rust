@@ -115,14 +115,6 @@ impl Pokemon {
         }
     }
 
-    pub(super) fn can_take_item(&self, dex_mod: crate::dex::Mod) -> Option<&'static str> {
-        if self.hp > 0 && self.ability == "stickyhold" {
-            return None;
-        }
-        self.transferable_item(dex_mod)
-            .map(|item| item.effect.name.as_str())
-    }
-
     pub(super) fn transferable_item(
         &self,
         dex_mod: crate::dex::Mod,
@@ -139,12 +131,43 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn ignores_ability_of(&self, target: Position) -> bool {
+        self.ability_breaker.is_some_and(|source| source != target)
+            && self.mon(target).item != "abilityshield"
+    }
+
+    /// Mold Breaker skips breakable event handlers. It does not change the
+    /// Pokémon's ability or the answer to direct checks such as hasAbility.
+    pub(super) fn ability_suppressed(&self, holder: Position) -> bool {
+        self.ignores_ability_of(holder)
+            && DEX
+                .ability(&self.mon(holder).ability)
+                .is_some_and(|ability| ability.breakable)
+    }
+
+    pub(super) fn event_ability(&self, holder: Position) -> &str {
+        if self.ability_suppressed(holder) {
+            ""
+        } else {
+            &self.mon(holder).ability
+        }
+    }
+
+    pub(super) fn can_take_item(&self, target: Position) -> Option<&'static str> {
+        let mon = self.mon(target);
+        if mon.hp > 0 && self.event_ability(target) == "stickyhold" {
+            return None;
+        }
+        mon.transferable_item(self.format.dex_mod)
+            .map(|item| item.effect.name.as_str())
+    }
+
     pub(super) fn reset_ability_order(&mut self, pos: Position) {
         self.ability_order += 1;
         self.mon_mut(pos).ability_order = self.ability_order;
     }
 
-    pub(super) fn skill_swap(&mut self, source: Position, target: Position) -> bool {
+    pub(super) fn skill_swap(&mut self, source: Position, target: Position) -> Option<bool> {
         let user = self.mon(source);
         let mon = self.mon(target);
         let user_effect = DEX.ability(&user.ability);
@@ -154,7 +177,13 @@ impl Battle {
             || user_effect.is_some_and(|a| a.no_skill_swap)
             || target_effect.is_some_and(|a| a.no_skill_swap)
         {
-            return false;
+            return Some(false);
+        }
+        for pos in [target, source] {
+            if self.mon(pos).item == "abilityshield" {
+                self.add(format!("|-block|{}|item: Ability Shield", self.ident(pos)));
+                return None;
+            }
         }
         let a = std::mem::take(&mut self.mon_mut(source).ability);
         let b = std::mem::replace(&mut self.mon_mut(target).ability, a);
@@ -177,7 +206,7 @@ impl Battle {
         self.reset_ability_order(target);
         self.start_ability(target);
         self.start_ability(source);
-        true
+        Some(true)
     }
 
     pub(super) fn contact_ability(&mut self, holder: Position, source: Position) {
@@ -189,6 +218,14 @@ impl Battle {
         let mon = self.mon(source);
         let old = DEX.ability(&mon.ability);
         if mon.hp == 0 || mon.ability == id || old.is_some_and(|ability| ability.cannot_suppress) {
+            return;
+        }
+        if mon.item == "abilityshield" {
+            self.add(format!("|-ability|{}|{label}", self.ident(holder)));
+            self.add(format!(
+                "|-block|{}|item: Ability Shield",
+                self.ident(source)
+            ));
             return;
         }
         let old = old.map_or("", |ability| ability.name.as_str());
@@ -289,7 +326,7 @@ impl Battle {
             .filter(|&candidate| {
                 let mon = self.mon(candidate);
                 mon.hp > 0
-                    && mon.ability == ability
+                    && self.event_ability(candidate) == ability
                     && geometry.valid_location(2, source.slot as u8, candidate.loc(source))
             })
             .min_by_key(|&candidate| {
@@ -315,7 +352,7 @@ impl Battle {
         if target == source {
             return false;
         }
-        let (label, boost) = match (move_type, self.mon(target).ability.as_str()) {
+        let (label, boost) = match (move_type, self.event_ability(target)) {
             ("Water", "waterabsorb") => ("Water Absorb", None),
             ("Water", "stormdrain") => ("Storm Drain", Some((BoostStat::Spa, 1))),
             ("Electric", "lightningrod") => ("Lightning Rod", Some((BoostStat::Spa, 1))),
@@ -351,8 +388,8 @@ impl Battle {
         let holders = &mut holders[..count];
         speed_sort_by(holders, &mut self.rng, |a, b| b.1.cmp(&a.1));
         holders
-            .first()
-            .filter(|_| self.mon(target).has_type("Grass"))
+            .iter()
+            .find(|(pos, _)| !self.ability_suppressed(*pos) && self.mon(target).has_type("Grass"))
             .map(|h| h.0)
     }
 
@@ -498,6 +535,9 @@ impl Battle {
         let mut removed = 0_u8;
         if target != source {
             for &(holder, _, hook) in hooks.iter() {
+                if self.ability_suppressed(holder) {
+                    continue;
+                }
                 if matches!(hook, DropHook::FlowerVeil) && !self.mon(target).has_type("Grass")
                     || matches!(hook, DropHook::MirrorArmor) && origin == BoostOrigin::MirrorArmor
                 {
@@ -552,7 +592,7 @@ impl Battle {
                 success = true;
                 if amount < 0
                     && target.player != source.player
-                    && self.mon(target).ability == "competitive"
+                    && self.event_ability(target) == "competitive"
                 {
                     self.ability_boost(target, "Competitive", BoostStat::Spa, 2, true);
                 }

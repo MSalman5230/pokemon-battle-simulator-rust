@@ -6,6 +6,7 @@ use crate::mechanics::chain;
 #[derive(Clone, Copy)]
 enum Hook {
     Fixed(u32, &'static str),
+    DefenderAbility(u32, &'static str),
     Berry(&'static str, bool),
     Screens,
 }
@@ -66,15 +67,15 @@ impl Battle {
                 defender.speed,
                 7,
                 if defender.hp == defender.max_hp.get() {
-                    Hook::Fixed(2048, "Multiscale weaken")
+                    Hook::DefenderAbility(2048, "Multiscale weaken")
                 } else {
-                    Hook::Fixed(4096, "")
+                    Hook::DefenderAbility(4096, "")
                 },
             ),
             "auraguard" => add(
                 defender.speed,
                 7,
-                Hook::Fixed(
+                Hook::DefenderAbility(
                     if data.flags.contains_key("contact") {
                         2048
                     } else {
@@ -97,6 +98,15 @@ impl Battle {
         for &(_, _, hook) in hooks.iter() {
             let (next, debug) = match hook {
                 Hook::Fixed(value, debug) => (value, debug),
+                Hook::DefenderAbility(value, debug) => {
+                    if self.ability_suppressed(target) {
+                        if self.format.report_exact_hp {
+                            self.add("|debug|ModifyDamage handler suppressed by Mold Breaker");
+                        }
+                        continue;
+                    }
+                    (value, debug)
+                }
                 Hook::Berry(name, true) if !self.foe_unnerve(target) => {
                     self.consume(target, name, true);
                     self.symbiosis_after_item(target);

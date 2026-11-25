@@ -94,13 +94,13 @@ impl Battle {
     }
 
     pub(super) fn grassy_heal(&mut self, pos: Position) {
-        let mon = self.mon_mut(pos);
-        if !mon.grounded() || mon.diving() {
+        if !self.grounded(pos) || self.mon(pos).diving() {
             if self.format.report_exact_hp {
                 self.add("|debug|Pokemon semi-invuln or not grounded; Grassy Terrain skipped");
             }
             return;
         }
+        let mon = self.mon_mut(pos);
         if mon.hp > 0 && mon.hp < mon.max_hp.get() {
             mon.hp = (mon.hp + (mon.max_hp.get() / 16).max(1)).min(mon.max_hp.get());
             self.add_health_line_with("-heal", pos, false, "|[from] Grassy Terrain");
@@ -108,7 +108,7 @@ impl Battle {
     }
 
     pub(super) fn status_blocked_by_terrain(&self, pos: Position, status: &str) -> Option<Terrain> {
-        if !self.mon(pos).grounded() || self.mon(pos).diving() {
+        if !self.grounded(pos) || self.mon(pos).diving() {
             return None;
         }
         match self.terrain() {
@@ -138,24 +138,22 @@ impl Battle {
         };
         let (factor, debug) = match (terrain, move_type) {
             (Terrain::Grassy, _)
-                if self.mon(defender).grounded()
+                if self.grounded(defender)
                     && !self.mon(defender).diving()
                     && matches!(data.name.as_str(), "Earthquake" | "Bulldoze" | "Magnitude") =>
             {
                 (2048, "move weakened by grassy terrain")
             }
             (Terrain::Misty, "Dragon")
-                if self.mon(defender).grounded() && !self.mon(defender).diving() =>
+                if self.grounded(defender) && !self.mon(defender).diving() =>
             {
                 (2048, "misty terrain weaken")
             }
-            (Terrain::Electric, "Electric") if self.mon(attacker).grounded() => {
+            (Terrain::Electric, "Electric") if self.grounded(attacker) => {
                 (5325, "electric terrain boost")
             }
-            (Terrain::Grassy, "Grass") if self.mon(attacker).grounded() => {
-                (5325, "grassy terrain boost")
-            }
-            (Terrain::Psychic, "Psychic") if self.mon(attacker).grounded() => {
+            (Terrain::Grassy, "Grass") if self.grounded(attacker) => (5325, "grassy terrain boost"),
+            (Terrain::Psychic, "Psychic") if self.grounded(attacker) => {
                 (5325, "psychic terrain boost")
             }
             _ => return 4096,

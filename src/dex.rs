@@ -208,6 +208,8 @@ pub struct Effect {
     #[serde(default)]
     pub cannot_suppress: bool,
     #[serde(default)]
+    pub breakable: bool,
+    #[serde(default)]
     pub no_skill_swap: bool,
 }
 

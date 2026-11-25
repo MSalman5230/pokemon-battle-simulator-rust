@@ -470,3 +470,13 @@ fn vgc_flower_veil_protects_grass_allies_from_status_and_stat_drops() {
 fn bss_parting_shot_switches_after_a_stat_drop_or_mirror_armor() {
     replay(include_str!("fixtures/bss-parting-shot.json"));
 }
+
+#[test]
+fn bss_mold_breaker_ignores_levitate_but_not_rough_skin_or_ability_shield() {
+    replay(include_str!("fixtures/bss-mold-breaker.json"));
+}
+
+#[test]
+fn vgc_mold_breaker_only_suppresses_defenses_during_the_holders_move() {
+    replay(include_str!("fixtures/vgc-mold-breaker.json"));
+}

@@ -1067,9 +1067,13 @@ impl Battle {
                 }
                 ActionKind::Residual => self.residual(),
             }
-            if self.drag_flags != 0 {
-                self.apply_drags(&mut queue)?;
-            }
+            let drags = if self.drag_flags != 0 {
+                self.apply_drags(&mut queue)
+            } else {
+                Ok(())
+            };
+            self.ability_breaker = None;
+            drags?;
             if self.phase == Phase::Ended || self.check_win() {
                 return Ok(());
             }
@@ -1180,8 +1184,14 @@ impl Battle {
     }
 
     pub(super) fn start_ability(&mut self, pos: Position) {
-        if self.mon(pos).ability == "pressure" {
-            self.add(format!("|-ability|{}|Pressure", self.ident(pos)));
+        if let Some(label) = match self.mon(pos).ability.as_str() {
+            "pressure" => Some("Pressure"),
+            "moldbreaker" => Some("Mold Breaker"),
+            "teravolt" => Some("Teravolt"),
+            "turboblaze" => Some("Turboblaze"),
+            _ => None,
+        } {
+            self.add(format!("|-ability|{}|{label}", self.ident(pos)));
         }
         self.switch_in_weather(pos);
         self.switch_in_terrain(pos);
@@ -1243,7 +1253,7 @@ impl Battle {
             + i8::from(
                 data.name == "Grassy Glide"
                     && self.terrain() == Some(Terrain::Grassy)
-                    && self.mon(pos).grounded(),
+                    && self.grounded(pos),
             )
     }
 
@@ -1252,7 +1262,7 @@ impl Battle {
         for (pos, _) in order.into_iter().take(count) {
             self.attract_update(pos);
             self.try_trace(pos);
-            if self.mon(pos).ability == "owntempo" && self.mon(pos).confusion > 0 {
+            if self.event_ability(pos) == "owntempo" && self.mon(pos).confusion > 0 {
                 self.add(format!("|-activate|{}|ability: Own Tempo", self.ident(pos)));
                 self.cure_confusion(pos);
             }
@@ -1649,9 +1659,15 @@ impl Battle {
                 mon.track_volatile("choicelock");
             }
         }
+        if matches!(
+            self.mon(source).ability.as_str(),
+            "moldbreaker" | "teravolt" | "turboblaze"
+        ) {
+            self.ability_breaker = Some(source);
+        }
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
-            && self.mon(source).grounded();
+            && self.grounded(source);
         let kind = if expanded {
             // Both ModifyMove passes retarget a changed target kind.
             self.random_target(source, TargetKind::AllAdjacentFoes);
@@ -2005,7 +2021,7 @@ impl Battle {
                 && mut_pos.player != source.player
                 && !self.mon(mut_pos).diving()
             {
-                if self.mon(mut_pos).grounded() {
+                if self.grounded(mut_pos) {
                     self.terrain_activate(mut_pos, Terrain::Psychic);
                     return false;
                 } else if move_data.priority > 0 {
@@ -2015,7 +2031,7 @@ impl Battle {
             if self.mon(mut_pos).protected && move_data.flags.contains_key("protect") {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
                 false
-            } else if ohko && self.mon(mut_pos).ability == "sturdy" {
+            } else if ohko && self.event_ability(mut_pos) == "sturdy" {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Sturdy",
                     self.ident(mut_pos)
@@ -2024,7 +2040,7 @@ impl Battle {
             } else if source != mut_pos
                 && move_data.flags.contains_key("powder")
                 && !self.mon(mut_pos).has_type("Grass")
-                && self.mon(mut_pos).ability == "overcoat"
+                && self.event_ability(mut_pos) == "overcoat"
             {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Overcoat",
@@ -2044,7 +2060,7 @@ impl Battle {
                 false
             } else if self.absorb_elemental(mut_pos, source, move_type) {
                 false
-            } else if self.mon(mut_pos).ability == "oblivious" && move_data.name == "Taunt" {
+            } else if self.event_ability(mut_pos) == "oblivious" && move_data.name == "Taunt" {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Oblivious",
                     self.ident(mut_pos)
@@ -2052,7 +2068,7 @@ impl Battle {
                 false
             } else if source != mut_pos
                 && move_data.flags.contains_key("sound")
-                && self.mon(mut_pos).ability == "soundproof"
+                && self.event_ability(mut_pos) == "soundproof"
             {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Soundproof",
@@ -2061,7 +2077,7 @@ impl Battle {
                 false
             } else if move_data.category == Category::Status
                 && source != mut_pos
-                && self.mon(mut_pos).ability == "goodasgold"
+                && self.event_ability(mut_pos) == "goodasgold"
             {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Good as Gold",
@@ -2080,6 +2096,7 @@ impl Battle {
             if !ignores_type
                 && move_type == "Ground"
                 && self.mon(pos).ability == "levitate"
+                && !self.ignores_ability_of(pos)
                 && !self.mon(pos).has_type("Flying")
             {
                 self.add(format!(
@@ -2095,7 +2112,7 @@ impl Battle {
                     && self.status_immune(pos, "powder"))
                 || (move_data.name == "Leech Seed" && self.mon(pos).has_type("Grass"))
                 || (matches!(move_data.name.as_str(), "Trick" | "Switcheroo")
-                    && self.mon(pos).ability == "stickyhold")
+                    && self.event_ability(pos) == "stickyhold")
             {
                 self.add(format!("|-immune|{}", self.ident(pos)));
                 false
@@ -2174,11 +2191,11 @@ impl Battle {
                     let swapped = if move_data.name == "Skill Swap" {
                         self.skill_swap(source, target)
                     } else {
-                        self.swap_items(source, target, &move_data.name)
+                        Some(self.swap_items(source, target, &move_data.name))
                     };
-                    if swapped {
+                    if swapped == Some(true) {
                         succeeded = true;
-                    } else {
+                    } else if swapped == Some(false) {
                         self.log[base].public =
                             format!("|move|{source_name}|{}||[still]", move_data.name);
                         self.add(format!("|-fail|{source_name}"));
@@ -2451,10 +2468,7 @@ impl Battle {
                             .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)])
                 });
                 let crit = crit_roll
-                    && !matches!(
-                        self.mon(target).ability.as_str(),
-                        "battlearmor" | "shellarmor"
-                    );
+                    && !matches!(self.event_ability(target), "battlearmor" | "shellarmor");
                 if solar_weak && self.format.report_exact_hp {
                     self.add("|debug|weakened by weather");
                 }
@@ -2515,8 +2529,9 @@ impl Battle {
                 if stakeout {
                     attack_modifier = crate::mechanics::chain(8192, attack_modifier);
                 }
-                if (mon.ability == "heatproof" && move_type == "Fire")
-                    || (mon.ability == "thickfat" && matches!(move_type, "Fire" | "Ice"))
+                if (self.event_ability(target) == "heatproof" && move_type == "Fire")
+                    || (self.event_ability(target) == "thickfat"
+                        && matches!(move_type, "Fire" | "Ice"))
                 {
                     attack_modifier = crate::mechanics::chain(attack_modifier, 2048);
                 }
@@ -2598,14 +2613,16 @@ impl Battle {
                 let target = *target;
                 let value = *hit_damage;
                 let mon = self.mon(target);
-                let value =
-                    if mon.ability == "sturdy" && mon.hp == mon.max_hp.get() && value >= mon.hp {
-                        let value = mon.hp - 1;
-                        self.add(format!("|-ability|{}|Sturdy", self.ident(target)));
-                        value
-                    } else {
-                        value
-                    };
+                let value = if self.event_ability(target) == "sturdy"
+                    && mon.hp == mon.max_hp.get()
+                    && value >= mon.hp
+                {
+                    let value = mon.hp - 1;
+                    self.add(format!("|-ability|{}|Sturdy", self.ident(target)));
+                    value
+                } else {
+                    value
+                };
                 let value = self.focus_sash(target, value);
                 let mon = self.mon_mut(target);
                 let landed = value.min(mon.hp);
@@ -2688,7 +2705,7 @@ impl Battle {
                         }
                         if effect.volatile_status.as_deref() == Some("flinch")
                             && self.mon(target).hp > 0
-                            && self.mon(target).ability != "innerfocus"
+                            && self.event_ability(target) != "innerfocus"
                         {
                             self.mon_mut(target).flinched = true;
                             self.mon_mut(target).track_volatile("flinch");
@@ -2705,7 +2722,7 @@ impl Battle {
                     && self.mon(source).hp > 0
                     && self.first_bench(target.player, 0).is_some()
                 {
-                    if self.mon(target).ability == "suctioncups" {
+                    if self.event_ability(target) == "suctioncups" {
                         self.add(format!(
                             "|-activate|{}|ability: Suction Cups",
                             self.ident(target)
@@ -2749,7 +2766,7 @@ impl Battle {
             }
             for &(target, _) in &damage {
                 if move_data.flags.contains_key("contact") {
-                    match self.mon(target).ability.as_str() {
+                    match self.event_ability(target) {
                         "flamebody" => self.flame_body(target, source),
                         "cutecharm" => self.cute_charm(target, source),
                         "mummy" | "lingeringaroma" => self.contact_ability(target, source),
@@ -2766,13 +2783,13 @@ impl Battle {
                 {
                     self.disable_last_move(source, target, true);
                 }
-                if self.mon(target).ability == "thermalexchange" && move_type == "Fire" {
+                if self.event_ability(target) == "thermalexchange" && move_type == "Fire" {
                     self.ability_boost(target, "Thermal Exchange", BoostStat::Atk, 1, false);
                 }
-                if self.mon(target).ability == "stamina" {
+                if self.event_ability(target) == "stamina" {
                     self.ability_boost(target, "Stamina", BoostStat::Def, 1, false);
                 }
-                if self.mon(target).ability == "weakarmor"
+                if self.event_ability(target) == "weakarmor"
                     && move_data.category == Category::Physical
                 {
                     self.ability_boosts(
@@ -2788,13 +2805,13 @@ impl Battle {
             }
             if move_data.name == "Knock Off" {
                 for &(target, _) in &damage {
-                    if let Some(item) = self.mon(target).can_take_item(self.format.dex_mod) {
+                    if let Some(item) = self.can_take_item(target) {
                         self.mon_mut(target).item.clear();
                         self.add(format!(
                             "|-enditem|{}|{item}|[from] move: Knock Off|[of] {source_name}",
                             self.ident(target)
                         ));
-                    } else if self.mon(target).ability == "stickyhold"
+                    } else if self.event_ability(target) == "stickyhold"
                         && self.mon(target).hp > 0
                         && !self.mon(target).item.is_empty()
                     {
@@ -2997,7 +3014,7 @@ impl Battle {
 
     fn accuracy(&self, source: Position, target: Position, accuracy: u8) -> u32 {
         let accuracy =
-            if self.mon(target).ability == "sandveil" && self.weather() == Some(Weather::Sand) {
+            if self.event_ability(target) == "sandveil" && self.weather() == Some(Weather::Sand) {
                 self.stat_rules.truncation.modify(u32::from(accuracy), 3277) as i32
             } else {
                 i32::from(accuracy)
@@ -3189,6 +3206,9 @@ impl Pokemon {
                 | "dragonize"
                 | "noguard"
                 | "flowerveil"
+                | "moldbreaker"
+                | "teravolt"
+                | "turboblaze"
         )
     }
 
@@ -3239,6 +3259,7 @@ impl Pokemon {
                 | "petayaberry"
                 | "apicotberry"
                 | "powerherb"
+                | "abilityshield"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)

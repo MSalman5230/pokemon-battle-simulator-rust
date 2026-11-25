@@ -375,6 +375,19 @@ const partingShotRosters = [
     [{...named('Diancie', ['Recover']), ability: 'Clear Body'},
         {...named('Corviknight', ['Recover']), ability: 'Mirror Armor'}, named('Snorlax', ['Recover'])],
 ];
+const moldBreakerRosters = [
+    [{...named('Haxorus', ['Earthquake', 'Dragon Claw', 'Will-O-Wisp', 'Skill Swap']), ability: 'Mold Breaker'},
+        named('Jolteon', ['Recover'])],
+    [{...named('Rotom-Wash', ['Recover']), ability: 'Levitate', evs: {hp: 32, def: 32}, nature: 'Bold'},
+        {...named('Garchomp', ['Recover']), ability: 'Rough Skin', evs: {hp: 32, def: 32}},
+        {...named('Mismagius', ['Recover']), ability: 'Levitate', item: 'Ability Shield'}],
+];
+const breakerRedirectRosters = [
+    [{...named('Haxorus', ['Thunderbolt', 'Will-O-Wisp']), ability: 'Mold Breaker'},
+        named('Jolteon', ['Thunderbolt', 'Will-O-Wisp'])],
+    [{...named('Rhydon', ['Recover']), ability: 'Lightning Rod'}, named('Vaporeon', ['Recover']),
+        {...named('Gholdengo', ['Recover']), ability: 'Good as Gold'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -556,6 +569,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 123'], ['move 1', 'move 1'], ['move 1', 'switch 2'],
         ['switch 2', null], ['switch 2', 'switch 3'], ['move 1', 'move 1'], ['switch 2', null]],
         partingShotRosters, 'bss-parting-shot'],
+    ['bssregmc', [['team 12', 'team 123'], ['move 1', 'move 1'], ['move 2', 'switch 2'],
+        ['move 1', 'switch 3'], ['move 4', 'move 1']], moldBreakerRosters, 'bss-mold-breaker'],
+    ['vgc2026regmc', [['team 12', 'team 123'], ['move 1 2, move 1 2', 'move 1, move 1'],
+        ['move 2 1, move 2 1', 'switch 3, move 1']], breakerRedirectRosters, 'vgc-mold-breaker'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

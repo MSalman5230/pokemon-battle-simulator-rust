@@ -129,10 +129,10 @@ impl Battle {
 
     pub(super) fn apply_confusion(&mut self, pos: Position, fatigue: bool) -> bool {
         if self.mon(pos).hp == 0
-            || self.mon(pos).ability == "owntempo"
+            || self.event_ability(pos) == "owntempo"
             || self.mon(pos).confusion > 0
             || (self.terrain() == Some(Terrain::Misty)
-                && self.mon(pos).grounded()
+                && self.grounded(pos)
                 && !self.mon(pos).diving())
         {
             return false;
@@ -203,7 +203,7 @@ impl Battle {
             return true;
         }
         (matches!(key, "powder" | "sandstorm")
-            && (mon.item == "safetygoggles" || mon.ability == "overcoat"))
+            && (mon.item == "safetygoggles" || self.event_ability(pos) == "overcoat"))
             || mon.types().any(|typing| {
                 DEX.type_data(&to_id(typing)).unwrap().damage_taken.get(key) == Some(&3)
             })
@@ -242,6 +242,15 @@ impl Battle {
         }
 
         if self.flower_veil_status(pos, source, id, primary && data.secondaries.is_empty()) {
+            return false;
+        }
+        if id == "brn" && self.event_ability(pos) == "thermalexchange" {
+            if primary {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Thermal Exchange",
+                    self.ident(pos)
+                ));
+            }
             return false;
         }
         if let Some(terrain) = self.status_blocked_by_terrain(pos, id) {

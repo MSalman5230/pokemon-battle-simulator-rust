@@ -96,7 +96,14 @@ impl Battle {
             "apicotberry" => ("Apicot Berry", BoostStat::Spd),
             _ => return,
         };
-        if mon.hp * if mon.ability == "gluttony" { 2 } else { 4 } > mon.max_hp.get() {
+        if mon.hp
+            * if self.event_ability(pos) == "gluttony" {
+                2
+            } else {
+                4
+            }
+            > mon.max_hp.get()
+        {
             return;
         }
         self.consume(pos, name, true);
@@ -128,7 +135,7 @@ impl Battle {
             ..recipient
         };
         let mon = self.mon(ally);
-        if mon.hp == 0 || mon.ability != "symbiosis" {
+        if mon.hp == 0 || self.event_ability(ally) != "symbiosis" {
             return;
         }
         let Some(item) = mon.transferable_item(self.format.dex_mod) else {
@@ -163,8 +170,11 @@ impl Battle {
                 continue;
             }
             let victim = self.mon(target);
-            let Some(name) = victim.can_take_item(self.format.dex_mod) else {
-                if victim.hp > 0 && victim.ability == "stickyhold" && !victim.item.is_empty() {
+            let Some(name) = self.can_take_item(target) else {
+                if victim.hp > 0
+                    && self.event_ability(target) == "stickyhold"
+                    && !victim.item.is_empty()
+                {
                     self.add(format!(
                         "|-activate|{}|ability: Sticky Hold",
                         self.ident(target)
