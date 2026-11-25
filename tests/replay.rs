@@ -1,6 +1,7 @@
 use pokemon_battle_simulator::{
     battle::{BattleStream, Phase},
     input::Player,
+    mechanics::BoostStat,
 };
 use serde_json::{Value, json};
 
@@ -69,6 +70,9 @@ fn replay(raw: &str) {
                 json!({
                     "name": mon.name, "species": mon.species.name, "details": mon.details, "hp": mon.hp,
                     "maxhp": mon.max_hp, "stats": stats, "ability": mon.ability, "item": mon.item,
+                    "boosts": ([BoostStat::Atk, BoostStat::Def, BoostStat::Spa, BoostStat::Spd, BoostStat::Spe,
+                        BoostStat::Accuracy, BoostStat::Evasion].into_iter()
+                        .map(|s| (s.id().to_owned(), json!(mon.boosts.get(s)))).collect::<serde_json::Map<_,_>>()),
                     "active":battle.is_active(player, i),
                     "moves": mon.moves.iter().map(|m| json!({"id":m.id,"pp":m.pp,"maxpp":m.max_pp})).collect::<Vec<_>>(),
                 })
@@ -96,4 +100,9 @@ fn vgc_doubles_native_replay() {
 #[test]
 fn vgc_doubles_replay_with_two_faints_and_one_replacement() {
     replay(include_str!("fixtures/vgc-replacements.json"));
+}
+
+#[test]
+fn bss_replay_with_legal_rosters_and_stat_changes() {
+    replay(include_str!("fixtures/bss-competitive.json"));
 }

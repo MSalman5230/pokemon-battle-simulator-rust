@@ -20,13 +20,17 @@ const handlers = e => Object.keys(e).filter(k =>
 const data = mod => {
     const dex = Dex.mod(mod);
     return {
-        species: table(dex.species.all(), e => props(e, ['name', 'baseSpecies', 'types',
-            'baseStats', 'gender', 'abilities', 'isNonstandard', 'maxHP', 'requiredItem'])),
+        species: table(dex.species.all(), e => ({
+            ...props(e, ['name', 'baseSpecies', 'types', 'baseStats', 'gender', 'abilities',
+                'isNonstandard', 'maxHP', 'requiredItem']),
+            hasCondition: dex.conditions.getByID(e.id).exists,
+        })),
         moves: table(dex.moves.all(), e => {
             const move = props(e, ['name', 'type', 'category', 'target', 'basePower', 'priority',
-                'pp', 'noPPBoosts', 'accuracy', 'critRatio', 'flags', 'isNonstandard']);
+                'pp', 'noPPBoosts', 'accuracy', 'critRatio', 'flags', 'isNonstandard', 'heal']);
             return {...move, handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
-                self: !!e.self, condition: !!e.condition};
+                self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
+                selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance};
         }),
         abilities: table(dex.abilities.all(), e =>
             ({...props(e, ['name', 'isNonstandard']), handlers: handlers(e)})),

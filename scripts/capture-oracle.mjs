@@ -6,7 +6,7 @@ import {createRequire} from 'node:module';
 
 const stage = new URL('../.tools/poke-rl-simulator/', import.meta.url);
 const require = createRequire(new URL('worker.cjs', stage));
-const {Battle, BattleStream, PRNG} = require('pokemon-showdown');
+const {Battle, BattleStream, PRNG, TeamValidator} = require('pokemon-showdown');
 const {extractChannelMessages} = require('pokemon-showdown/dist/sim/battle');
 const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
 const lock = JSON.parse(readFileSync(new URL('package-lock.json', stage)));
@@ -74,6 +74,17 @@ const replacementRosters = [
         named('Glaceon', ['Ice Shard'])],
     [named('Camerupt', ['Tackle']), named('Rhydon', ['Tackle']), named('Flareon', ['Quick Attack'])],
 ];
+const competitiveSets = [
+    ['Infernape', 'Blaze', ['Close Combat', 'Protect', 'Swords Dance', 'Earthquake']],
+    ['Empoleon', 'Torrent', ['Surf', 'Aqua Jet', 'Swords Dance', 'Protect']],
+    ['Meganium', 'Overgrow', ['Swords Dance', 'Earthquake', 'Leaf Blade', 'Protect']],
+    ['Swampert', 'Torrent', ['Earthquake', 'Surf', 'Protect', 'Dive']],
+    ['Sceptile', 'Overgrow', ['Leaf Blade', 'Earthquake', 'Swords Dance', 'Protect']],
+    ['Blaziken', 'Blaze', ['Close Combat', 'Protect', 'Swords Dance', 'Earthquake']],
+].map(([species, ability, moves]) => ({
+    ...named(species, moves), ability, nature: 'Adamant', evs: {hp: 2, atk: 32, spe: 32},
+}));
+const competitiveRosters = [competitiveSets, [...competitiveSets].reverse()];
 for (const [suffix, play, players = rosters, label = suffix] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -81,8 +92,15 @@ for (const [suffix, play, players = rosters, label = suffix] of [
     ['vgc2026regmc', [['team 123', 'team 123'], ['move 1, move 1', 'move 1 1, move 1 1'],
         [null, 'pass, switch 3'], ['move 1, move 1', 'move 1 1'],
         ['move 1, move 1', 'move 1 1']], replacementRosters, 'vgc-replacements'],
+    ['bssregmc', [['team 123', 'team 365'], ['move 3', 'move 2'], ['move 1', 'move 3'],
+        ['move 1', 'move 2'], [null, 'switch 2'], ['move 1', 'move 2']],
+        competitiveRosters, 'bss-competitive'],
 ]) {
     const formatid = 'gen9champions' + suffix;
+    if (players === competitiveRosters) {
+        const validator = new TeamValidator(formatid);
+        for (const team of players) assert.equal(validator.validateTeam(structuredClone(team)), null);
+    }
     const inputs = [
         '>start ' + JSON.stringify({formatid, seed: seeds[1], strictChoices: true}),
         ...players.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team})),
@@ -106,7 +124,7 @@ for (const [suffix, play, players = rosters, label = suffix] of [
             requests: battle.sides.map(s => s.activeRequest),
             teams: battle.sides.map(s => s.pokemon.map(p => ({
                 name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp,
-                stats: p.storedStats, ability: p.ability, item: p.item, active: p.isActive,
+                stats: p.storedStats, boosts: {...p.boosts}, ability: p.ability, item: p.item, active: p.isActive,
                 moves: p.moveSlots.map(m => ({id: m.id, pp: m.pp, maxpp: m.maxpp})),
             }))),
         });

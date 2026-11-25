@@ -2,7 +2,7 @@
 //! and does not run the handlers named in a record.
 
 use crate::choice::{TargetKind, to_id};
-use crate::mechanics::{Nature, StatRules, Stats, Truncation};
+use crate::mechanics::{BoostStat, Nature, StatRules, Stats, Truncation};
 use serde::Deserialize;
 use std::collections::HashMap;
 use std::sync::LazyLock;
@@ -110,6 +110,7 @@ pub struct Species {
     #[serde(rename = "maxHP")]
     pub max_hp: Option<u32>,
     pub required_item: Option<String>,
+    pub has_condition: bool,
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Deserialize)]
@@ -149,6 +150,10 @@ pub struct Move {
     #[serde(rename = "self")]
     pub self_effect: bool,
     pub condition: bool,
+    pub boosts: Vec<(BoostStat, i8)>,
+    pub self_boosts: Vec<(BoostStat, i8)>,
+    pub self_chance: Option<u8>,
+    pub heal: Option<[u16; 2]>,
 }
 
 #[derive(Debug, Deserialize)]

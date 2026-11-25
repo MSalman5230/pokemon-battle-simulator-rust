@@ -236,3 +236,46 @@ pub fn health(hp: u32, max_hp: NonZeroU32, status: &str, report_exact_hp: bool) 
     }
     Health { secret, shared }
 }
+
+#[derive(Debug, Copy, Clone, Eq, PartialEq, Deserialize)]
+#[serde(rename_all = "lowercase")]
+#[repr(u8)]
+pub enum BoostStat {
+    Atk,
+    Def,
+    Spa,
+    Spd,
+    Spe,
+    Accuracy,
+    Evasion,
+}
+
+impl BoostStat {
+    pub fn id(self) -> &'static str {
+        match self {
+            Self::Atk => "atk",
+            Self::Def => "def",
+            Self::Spa => "spa",
+            Self::Spd => "spd",
+            Self::Spe => "spe",
+            Self::Accuracy => "accuracy",
+            Self::Evasion => "evasion",
+        }
+    }
+}
+
+#[derive(Debug, Default, Copy, Clone)]
+pub struct Boosts([i8; 7]);
+
+impl Boosts {
+    pub fn get(self, stat: BoostStat) -> i8 {
+        self.0[stat as usize]
+    }
+
+    pub fn add(&mut self, stat: BoostStat, amount: i8) -> i8 {
+        let old = self.get(stat);
+        let next = old.saturating_add(amount).clamp(-6, 6);
+        self.0[stat as usize] = next;
+        next - old
+    }
+}

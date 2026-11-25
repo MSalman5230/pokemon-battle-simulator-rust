@@ -53,3 +53,18 @@ interface only after measuring where time goes.
 3. Benchmark identical replay workloads and compare release builds on the
    same machine. Keep the current singles JSON-lines baseline separate
    from future doubles, in-process core, and end-to-end training tests.
+
+## Current replay coverage
+
+The native Rust core covers a deliberately small subset of BSS and VGC Reg M-C.
+The checked-in replays compare exact private requests, public and private log
+lines, party state, and RNG state. They cover leads, voluntary switches,
+Protect, spread damage, simultaneous faints, partial replacement, stat stages,
+self drops, and a short replay using rosters that pass the upstream BSS
+validator. The Rust core itself does not validate legality yet.
+
+Continue with effect ordering (residual status, weather, hazards, items,
+abilities), move and switch interruptions, and Mega Evolution. Expand the
+fixtures before generalizing an effect. Then finish packed/generated teams,
+validation and remaining format rules, and the Poke-RL adapter. The benchmark
+must still reject any mismatch before timing the adapter.

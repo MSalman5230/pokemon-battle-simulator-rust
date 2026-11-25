@@ -2,7 +2,7 @@ use super::*;
 use crate::{
     choice::{MoveChoice, TargetKind},
     dex::{Accuracy, Category},
-    mechanics::Damage,
+    mechanics::{BoostStat, Damage, boosted_stat},
 };
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
@@ -206,6 +206,7 @@ impl Battle {
             self.pending_actions[p.index()].is_some()
                 || (self.phase == Phase::Replace && !self.force_switch(p).contains(&true))
         }) {
+            self.update_speed();
             let mut queue = Vec::new();
             for p in Player::ALL {
                 for mut action in self.pending_actions[p.index()].take().unwrap_or_default() {
@@ -372,7 +373,32 @@ impl Battle {
         // cannot prove an arbitrary Showdown move has no additional behavior.
         if !matches!(
             info.id.as_str(),
-            "tackle" | "quickattack" | "swift" | "surf" | "watergun" | "iceshard" | "protect"
+            "tackle"
+                | "quickattack"
+                | "swift"
+                | "surf"
+                | "watergun"
+                | "iceshard"
+                | "protect"
+                | "aquajet"
+                | "bulletpunch"
+                | "earthquake"
+                | "leafblade"
+                | "closecombat"
+                | "makeitrain"
+                | "dracometeor"
+                | "leafstorm"
+                | "swordsdance"
+                | "nastyplot"
+                | "dragondance"
+                | "calmmind"
+                | "bulkup"
+                | "irondefense"
+                | "amnesia"
+                | "recover"
+                | "slackoff"
+                | "softboiled"
+                | "milkdrink"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -399,7 +425,7 @@ impl Battle {
                 self.resolve_target(source, data.target, target);
                 action.priority.priority = f64::from(data.priority);
             }
-            action.priority.speed = self.mon(source).stats.spe as i32;
+            action.priority.speed = self.mon(source).current_speed() as i32;
         }
     }
 
@@ -468,6 +494,7 @@ impl Battle {
 
     fn insert_run_switch(&mut self, incoming: Position, queue: &mut Vec<Action>) {
         let mut action = Action::new(Some(incoming), ActionKind::RunSwitch);
+        self.mon_mut(incoming).update_speed();
         self.prioritize(&mut action);
         let first = queue.partition_point(|q| q.priority.compare(action.priority).is_lt());
         let last =
@@ -502,6 +529,7 @@ impl Battle {
                     let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
                     party[outgoing.slot].protected = false;
                     party[outgoing.slot].stall = None;
+                    party[outgoing.slot].boosts = Boosts::default();
                     party.swap(outgoing.slot, bench_slot);
                     self.add_health_line("switch", outgoing, true);
                     self.insert_run_switch(outgoing, &mut queue);
@@ -536,6 +564,7 @@ impl Battle {
                 .first()
                 .is_some_and(|q| matches!(q.kind, ActionKind::Move { .. }))
             {
+                self.update_speed();
                 for candidate in &mut queue {
                     self.prioritize(candidate);
                 }
@@ -571,11 +600,19 @@ impl Battle {
         for pos in self.positions() {
             let pokemon = self.mon(pos);
             if include_fainted || !pokemon.fainted {
-                speeds[count] = pokemon.stats.spe;
+                speeds[count] = pokemon.speed;
                 count += 1;
             }
         }
         speed_sort_by(&mut speeds[..count], &mut self.rng, |a, b| b.cmp(a));
+    }
+
+    fn update_speed(&mut self) {
+        for pos in self.positions() {
+            if !self.mon(pos).fainted {
+                self.mon_mut(pos).update_speed();
+            }
+        }
     }
 
     fn each_event(&mut self) {
@@ -584,14 +621,15 @@ impl Battle {
 
     fn residual(&mut self) {
         self.add("|");
+        self.update_speed();
         let mut timers = Vec::new();
         for pos in self.positions() {
             let mon = self.mon(pos);
             if mon.protected {
-                timers.push((pos, false, mon.stats.spe));
+                timers.push((pos, false, mon.speed));
             }
             if mon.stall.is_some() {
-                timers.push((pos, true, mon.stats.spe));
+                timers.push((pos, true, mon.speed));
             }
         }
         speed_sort_by(&mut timers, &mut self.rng, |a, b| b.2.cmp(&a.2));
@@ -708,7 +746,9 @@ impl Battle {
             }
         });
         spread_targets.retain(|&pos| {
-            if self.effectiveness(move_data, pos).is_none() {
+            if move_data.category != Category::Status
+                && self.effectiveness(move_data, pos).is_none()
+            {
                 self.add(format!("|-immune|{}", self.ident(pos)));
                 false
             } else {
@@ -717,7 +757,8 @@ impl Battle {
         });
         spread_targets.retain(|&pos| {
             if let Accuracy::Percent(accuracy) = move_data.accuracy
-                && !self.rng.chance(u32::from(accuracy), 100)
+                && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
+                && !self.rng.chance(self.accuracy(source, pos, accuracy), 100)
             {
                 if !spread {
                     self.log[base].public.push_str("|[miss]");
@@ -732,6 +773,34 @@ impl Battle {
             return;
         }
 
+        if move_data.category == Category::Status {
+            let mut succeeded = false;
+            for target in spread_targets {
+                if let Some([num, den]) = move_data.heal {
+                    let mon = self.mon_mut(target);
+                    if mon.hp == mon.max_hp.get() {
+                        self.log[base].public =
+                            format!("|move|{source_name}|{}||[still]", move_data.name);
+                        self.add(format!("|-fail|{}|heal", self.ident(target)));
+                        continue;
+                    }
+                    let amount =
+                        (mon.max_hp.get() * u32::from(num) + u32::from(den) / 2) / u32::from(den);
+                    mon.hp = (mon.hp + amount).min(mon.max_hp.get());
+                    self.add_health_line("-heal", target, false);
+                    succeeded = true;
+                }
+                if !move_data.boosts.is_empty() {
+                    succeeded |= self.boost(target, &move_data.boosts, false);
+                }
+            }
+            if succeeded {
+                self.each_event();
+                self.each_event();
+            }
+            return;
+        }
+
         let tr = self.format.stat_rules().truncation;
         let mut damage = Vec::with_capacity(spread_targets.len());
         for &target in &spread_targets {
@@ -743,10 +812,27 @@ impl Battle {
                     .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)]);
             let user = self.mon(source);
             let mon = self.mon(target);
-            let (atk, def) = if move_data.category == Category::Physical {
-                (user.stats.atk, mon.stats.def)
+            let (atk, atk_stage, def, def_stage) = if move_data.category == Category::Physical {
+                (
+                    user.stats.atk,
+                    user.boosts.get(BoostStat::Atk),
+                    mon.stats.def,
+                    mon.boosts.get(BoostStat::Def),
+                )
             } else {
-                (user.stats.spa, mon.stats.spd)
+                (
+                    user.stats.spa,
+                    user.boosts.get(BoostStat::Spa),
+                    mon.stats.spd,
+                    mon.boosts.get(BoostStat::Spd),
+                )
+            };
+            let atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });
+            let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
+            let atk = if user.attack_boosts_type(&move_data.move_type) {
+                tr.modify(atk, 6144)
+            } else {
+                atk
             };
             let stab = user.species.types.contains(&move_data.move_type);
             let value = Damage {
@@ -787,6 +873,15 @@ impl Battle {
             mon.hp = mon.hp.saturating_sub(value);
             self.add_health_line("-damage", target, false);
         }
+        if !move_data.self_boosts.is_empty() {
+            let roll = self.rng.below(100);
+            if move_data
+                .self_chance
+                .is_none_or(|chance| roll < u32::from(chance))
+            {
+                self.boost(source, &move_data.self_boosts, true);
+            }
+        }
         self.each_event();
         for (target, _) in damage {
             if self.mon(target).hp == 0 {
@@ -794,6 +889,7 @@ impl Battle {
                 mon.fainted = true;
                 mon.stall = None;
                 mon.protected = false;
+                mon.boosts = Boosts::default();
                 self.add(format!("|faint|{}", self.ident(target)));
             }
         }
@@ -804,6 +900,46 @@ impl Battle {
                 .public
                 .push_str(&format!("|[spread] {}", labels.join(",")));
         }
+    }
+
+    fn boost(&mut self, pos: Position, boosts: &[(BoostStat, i8)], is_self: bool) -> bool {
+        if self.mon(pos).hp == 0
+            || !self
+                .party(pos.player.foe())
+                .unwrap()
+                .iter()
+                .any(|p| !p.fainted)
+        {
+            return false;
+        }
+        let mut succeeded = false;
+        for &(stat, amount) in boosts {
+            let mon = self.mon_mut(pos);
+            let changed = mon.boosts.add(stat, amount);
+            let event = if amount < 0 || mon.boosts.get(stat) == -6 {
+                "-unboost"
+            } else {
+                "-boost"
+            };
+            if changed != 0 || !is_self {
+                self.add(format!(
+                    "|{event}|{}|{}|{}",
+                    self.ident(pos),
+                    stat.id(),
+                    changed.abs()
+                ));
+            }
+            succeeded |= changed != 0;
+        }
+        succeeded
+    }
+
+    fn accuracy(&self, source: Position, target: Position, accuracy: u8) -> u32 {
+        let accuracy = i32::from(accuracy);
+        let boost = (i32::from(self.mon(source).boosts.get(BoostStat::Accuracy))
+            - i32::from(self.mon(target).boosts.get(BoostStat::Evasion)))
+        .clamp(-6, 6);
+        (accuracy * (3 + boost.max(0)) / (3 - boost.min(0))) as u32
     }
 
     fn effectiveness(&self, move_data: &Move, target: Position) -> Option<i8> {
@@ -826,8 +962,27 @@ impl Battle {
 }
 
 impl Pokemon {
+    fn current_speed(&self) -> u32 {
+        boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe))
+    }
+
+    fn update_speed(&mut self) {
+        self.speed = self.current_speed();
+    }
+
+    fn attack_boosts_type(&self, move_type: &str) -> bool {
+        self.hp * 3 <= self.max_hp.get()
+            && matches!(
+                (self.ability.as_str(), move_type),
+                ("blaze", "Fire") | ("torrent", "Water") | ("overgrow", "Grass") | ("swarm", "Bug")
+            )
+    }
+
     pub(super) fn entry_error(&self) -> Option<BattleError> {
-        if !self.ability.is_empty() {
+        if !matches!(
+            self.ability.as_str(),
+            "" | "blaze" | "torrent" | "overgrow" | "swarm"
+        ) {
             return Some(BattleError::Unsupported(format!(
                 "ability {}",
                 self.ability
@@ -836,21 +991,7 @@ impl Pokemon {
         if !self.item.is_empty() {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));
         }
-        // Only species exercised by this slice have been checked for
-        // forme-specific handlers, which are separate from ability handlers.
-        if !matches!(
-            self.species.name.as_str(),
-            "Flareon"
-                | "Vaporeon"
-                | "Jolteon"
-                | "Glaceon"
-                | "Umbreon"
-                | "Espeon"
-                | "Leafeon"
-                | "Sylveon"
-                | "Camerupt"
-                | "Rhydon"
-        ) {
+        if self.species.has_condition {
             return Some(BattleError::Unsupported(format!(
                 "entry effects for {}",
                 self.species.name
