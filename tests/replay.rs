@@ -903,6 +903,13 @@ fn curse_retargets_by_type_and_persists_until_the_victim_leaves() {
 }
 
 #[test]
+fn plus_minus_and_curious_medicine_observe_the_live_partner() {
+    replay(include_str!(
+        "fixtures/vgc-plus-minus-curious-medicine.json"
+    ));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

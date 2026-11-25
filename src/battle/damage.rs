@@ -284,6 +284,9 @@ impl Battle {
             def
         };
         let mut attack_modifier = user.attack_modifier(move_data.category, move_type);
+        if move_data.category == Category::Special && self.plus_minus_boost(source) {
+            attack_modifier = chain(6144, attack_modifier);
+        }
         let def = if move_data.category == Category::Physical
             && self.event_ability(target) == "furcoat"
         {

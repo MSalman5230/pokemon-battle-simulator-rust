@@ -782,6 +782,36 @@ impl Battle {
         }
     }
 
+    fn live_partner(&self, pos: Position) -> Option<Position> {
+        if self.format.game_type.active_slots() == 2 && pos.slot < 2 {
+            let ally = Position {
+                slot: 1 - pos.slot,
+                ..pos
+            };
+            (self.mon(ally).hp > 0).then_some(ally)
+        } else {
+            None
+        }
+    }
+
+    pub(super) fn curious_medicine(&mut self, holder: Position) {
+        if let Some(ally) = self.live_partner(holder) {
+            self.mon_mut(ally).boosts = Boosts::default();
+            self.add(format!(
+                "|-clearboost|{}|[from] ability: Curious Medicine|[of] {}",
+                self.ident(ally),
+                self.ident(holder)
+            ));
+        }
+    }
+
+    pub(super) fn plus_minus_boost(&self, user: Position) -> bool {
+        matches!(self.event_ability(user), "plus" | "minus")
+            && self
+                .live_partner(user)
+                .is_some_and(|ally| matches!(self.event_ability(ally), "plus" | "minus"))
+    }
+
     /// ModifyBoost observes all Unaware handlers. Even handlers that don't
     /// change the requested stat are shuffled when their speeds tie.
     pub(super) fn sort_unaware_handlers(&mut self) {

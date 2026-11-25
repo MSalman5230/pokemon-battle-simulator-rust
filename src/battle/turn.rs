@@ -1672,6 +1672,9 @@ impl Battle {
         if self.mon(pos).ability == "supremeoverlord" {
             self.start_supreme_overlord(pos);
         }
+        if self.mon(pos).ability == "curiousmedicine" {
+            self.curious_medicine(pos);
+        }
         self.try_trace(pos);
     }
 
@@ -4534,6 +4537,9 @@ impl Pokemon {
                 | "receiver"
                 | "powerofalchemy"
                 | "ripen"
+                | "plus"
+                | "minus"
+                | "curiousmedicine"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"
