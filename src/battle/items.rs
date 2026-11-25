@@ -92,12 +92,12 @@ impl Battle {
         numeric: bool,
         zoom: bool,
         category: Category,
-    ) {
+    ) -> Option<[u32; 4]> {
         let ability = self.event_ability(source);
         let compound = ability == "compoundeyes";
         let active_handler = compound || ability == "hustle";
         if !active_handler && !self.format.report_exact_hp {
-            return;
+            return self.roll_victory_accuracy(source, target);
         }
         if self.format.report_exact_hp && self.mon(target).ability == "wonderskin" {
             if self.ability_suppressed(target) {
@@ -156,6 +156,49 @@ impl Battle {
         ) {
             self.debug_ignored_item(target, "ModifyAccuracy");
         }
+        self.roll_victory_accuracy(source, target)
+    }
+
+    fn victory_accuracy_handlers(&self, target: Position) -> ([(Position, i32, bool); 4], usize) {
+        let mut effects = [(target, 0, false); 4];
+        let mut count = 0;
+        for pos in self.positions() {
+            let mon = self.mon(pos);
+            let star = mon.ability == "victorystar";
+            if !mon.fainted && (star || pos == target && mon.ability == "tangledfeet") {
+                effects[count] = (pos, mon.speed, star);
+                count += 1;
+            }
+        }
+        (effects, count)
+    }
+
+    fn roll_victory_accuracy(&mut self, source: Position, target: Position) -> Option<[u32; 4]> {
+        if !self.possible_victory_star {
+            return None;
+        }
+        let (mut effects, count) = self.victory_accuracy_handlers(target);
+        let effects = &mut effects[..count];
+        speed_sort_by(effects, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        Some(self.victory_accuracy_factors(source, effects))
+    }
+
+    fn victory_accuracy_factors(
+        &self,
+        source: Position,
+        effects: &[(Position, i32, bool)],
+    ) -> [u32; 4] {
+        let mut factors = [4096; 4];
+        for (i, &(pos, _, star)) in effects.iter().enumerate() {
+            if star {
+                if pos.player == source.player && self.event_ability(pos) == "victorystar" {
+                    factors[i] = 4506;
+                }
+            } else if self.tangled_feet(pos) {
+                factors[i] = 2048;
+            }
+        }
+        factors
     }
 
     pub(super) fn accuracy_modifier(
@@ -165,6 +208,7 @@ impl Battle {
         weather_evasion: bool,
         category: crate::dex::Category,
         zoom: bool,
+        accuracy_tail: Option<[u32; 4]>,
     ) -> u32 {
         let mut modifier = if weather_evasion { 3277 } else { 4096 };
         match self.event_ability(source) {
@@ -177,7 +221,19 @@ impl Battle {
         if self.gravity > 0 {
             modifier = crate::mechanics::chain(modifier, 6840);
         }
-        if self.tangled_feet(target) {
+        let accuracy_tail = accuracy_tail.or_else(|| {
+            self.possible_victory_star.then(|| {
+                let (mut effects, count) = self.victory_accuracy_handlers(target);
+                let effects = &mut effects[..count];
+                effects.sort_by_key(|effect| std::cmp::Reverse(effect.1));
+                self.victory_accuracy_factors(source, effects)
+            })
+        });
+        if let Some(factors) = accuracy_tail {
+            for factor in factors {
+                modifier = crate::mechanics::chain(modifier, factor);
+            }
+        } else if self.tangled_feet(target) {
             modifier = crate::mechanics::chain(modifier, 2048);
         }
         if zoom {

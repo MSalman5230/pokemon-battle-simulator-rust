@@ -114,6 +114,11 @@ impl Battle {
     pub(super) fn visible_disable(&self, pos: Position, slot: usize) -> bool {
         let mon = self.mon(pos);
         mon.disabled_by_choice(slot)
+            || (mon.ability == "gorillatactics"
+                && self.event_ability(pos) == "gorillatactics"
+                && mon
+                    .gorilla_lock
+                    .is_some_and(|data| data.name != mon.moves[slot].move_data.name))
             || (mon.volatile_ids().contains(&"torment")
                 && mon
                     .last_move_slot

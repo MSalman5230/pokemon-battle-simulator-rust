@@ -84,14 +84,21 @@ impl Battle {
         let numerator = i32::from(base) * an * ed;
         let denominator = ad * en;
         let mut accuracy = numerator as f64 / denominator as f64;
-        self.prepare_accuracy_modifiers(source, target, true, zoom, data.category);
+        let accuracy_tail =
+            self.prepare_accuracy_modifiers(source, target, true, zoom, data.category);
         let micle = !data.ohko && !data.always_hit && self.consume_micle_accuracy(source);
         if always_hits {
             return true;
         }
         let (weather_evasion, _) = self.active_weather_evasion(target);
-        let mut modifier =
-            self.accuracy_modifier(source, target, weather_evasion, data.category, zoom);
+        let mut modifier = self.accuracy_modifier(
+            source,
+            target,
+            weather_evasion,
+            data.category,
+            zoom,
+            accuracy_tail,
+        );
         if micle {
             modifier = crate::mechanics::chain(modifier, 4915);
         }

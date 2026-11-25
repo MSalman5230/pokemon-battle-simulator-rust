@@ -518,9 +518,14 @@ impl Battle {
             ("Hurricane" | "Thunder", Some(Weather::Sun)) => Accuracy::Percent(50),
             _ => move_data.accuracy,
         };
-        let Accuracy::Percent(base) = weather_adjusted else {
+        let Accuracy::Percent(mut base) = weather_adjusted else {
             return 1.0;
         };
+        if move_data.category == crate::dex::Category::Status
+            && self.event_ability(TARGET) == "wonderskin"
+        {
+            base = 50;
+        }
         if self.mon(TARGET).trampled_by(move_data)
             || [ACTOR, TARGET]
                 .into_iter()
@@ -547,6 +552,7 @@ impl Battle {
             self.weather_evasion(TARGET, weather).0,
             move_data.category,
             self.mon(ACTOR).effective_item() == "zoomlens",
+            None,
         );
         // The isolated Showdown calculation calls ModifyAccuracy after its
         // stage relay and applies chained modifiers only to integer values.

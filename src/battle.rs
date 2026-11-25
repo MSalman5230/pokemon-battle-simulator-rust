@@ -199,6 +199,7 @@ pub struct Battle {
     possible_eject_pack: bool,
     possible_ruin: bool,
     possible_soul_heart: bool,
+    possible_victory_star: bool,
     unsupported_called_move: Option<(&'static str, &'static str)>,
     last_battle_move: Option<&'static Move>,
     last_battle_move_z: bool,
@@ -329,6 +330,8 @@ pub struct Pokemon {
     announced_hero: bool,
     triggered_battle_bond: bool,
     legendary_entry_boosts: u8,
+    gorilla_lock: Option<&'static Move>,
+    slow_start: u8,
     apparent_item_type: Option<&'static str>,
     syrup_triggered: bool,
     protection: Option<turn::Protection>,
@@ -555,6 +558,7 @@ impl Battle {
             possible_eject_pack: false,
             possible_ruin: false,
             possible_soul_heart: false,
+            possible_victory_star: false,
             unsupported_called_move: None,
             last_battle_move: None,
             last_battle_move_z: false,
@@ -692,6 +696,7 @@ impl Battle {
         self.possible_eject_pack |= party.iter().any(|p| p.item == "ejectpack");
         self.possible_ruin |= party.iter().any(|p| ruin::ruin_label(&p.ability).is_some());
         self.possible_soul_heart |= party.iter().any(|p| p.ability == "soulheart");
+        self.possible_victory_star |= party.iter().any(|p| p.ability == "victorystar");
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)
@@ -1095,6 +1100,8 @@ impl Pokemon {
             announced_hero: false,
             triggered_battle_bond: false,
             legendary_entry_boosts: 0,
+            gorilla_lock: None,
+            slow_start: 0,
             apparent_item_type: None,
             syrup_triggered: false,
             protection: None,

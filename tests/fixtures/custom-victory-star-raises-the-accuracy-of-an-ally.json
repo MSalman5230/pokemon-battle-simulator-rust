@@ -1,0 +1,1019 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"5,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Victini\",\"moves\":[\"Recover\"],\"gender\":\"N\",\"name\":\"Victini\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Victory Star\"},{\"species\":\"Bronzong\",\"moves\":[\"Hypnosis\"],\"gender\":\"N\",\"name\":\"Bronzong\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Snorlax\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Chansey\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "5,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Victini, L50|",
+          "|poke|p1|Bronzong, L50|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Victini, L50|",
+          "|poke|p1|Bronzong, L50|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Victini, L50|",
+          "|poke|p1|Bronzong, L50|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Victini",
+                "details": "Victini, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 120,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 120
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "victorystar",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "victorystar",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Bronzong",
+                "details": "Bronzong, L50",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "hypnosis"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Victini",
+            "species": "Victini",
+            "details": "Victini, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 120,
+              "spa": 120,
+              "spd": 120,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "victorystar",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "hypnosis",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "5,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Victini|Victini, L50|175/175",
+          "|switch|p1b: Bronzong|Bronzong, L50|142/142",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2b: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Victini|Victini, L50|175/175",
+          "|switch|p1b: Bronzong|Bronzong, L50|142/142",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2b: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Victini|Victini, L50|175/175",
+          "|switch|p1b: Bronzong|Bronzong, L50|142/142",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2b: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Hypnosis",
+                  "id": "hypnosis",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Victini",
+                "details": "Victini, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 120,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 120
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "victorystar",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "victorystar",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Bronzong",
+                "details": "Bronzong, L50",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "hypnosis"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Victini",
+            "species": "Victini",
+            "details": "Victini, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 120,
+              "spa": 120,
+              "spd": 120,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "victorystar",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypnosis",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "59782,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Victini|Recover||[still]",
+          "|-fail|p1a: Victini|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Chansey|Recover||[still]",
+          "|-fail|p2b: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Bronzong|Hypnosis|p2a: Snorlax",
+          "|-status|p2a: Snorlax|slp|[from] move: Hypnosis",
+          "|cant|p2a: Snorlax|slp",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Victini|Recover||[still]",
+          "|-fail|p1a: Victini|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Chansey|Recover||[still]",
+          "|-fail|p2b: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Bronzong|Hypnosis|p2a: Snorlax",
+          "|-status|p2a: Snorlax|slp|[from] move: Hypnosis",
+          "|cant|p2a: Snorlax|slp",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Victini|Recover||[still]",
+          "|-fail|p1a: Victini|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Chansey|Recover||[still]",
+          "|-fail|p2b: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Bronzong|Hypnosis|p2a: Snorlax",
+          "|-status|p2a: Snorlax|slp|[from] move: Hypnosis",
+          "|cant|p2a: Snorlax|slp",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Hypnosis",
+                  "id": "hypnosis",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Victini",
+                "details": "Victini, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 120,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 120
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "victorystar",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "victorystar",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Bronzong",
+                "details": "Bronzong, L50",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "hypnosis"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235 slp",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Victini",
+            "species": "Victini",
+            "details": "Victini, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 120,
+              "spa": 120,
+              "spd": 120,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "victorystar",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypnosis",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "slp",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

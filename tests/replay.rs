@@ -2373,6 +2373,19 @@ fn inherited_move_control_abilities_change_only_their_native_action_stage() {
 }
 
 #[test]
+fn inherited_ability_modifiers_track_choice_lock_timers_and_accuracy() {
+    replay(include_str!(
+        "fixtures/custom-victory-star-raises-the-accuracy-of-an-ally.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-gorilla-tactics-locks-moves-until-switch.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-slow-start-halves-attack-and-speed-for-five-turns.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

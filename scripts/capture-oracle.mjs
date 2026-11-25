@@ -2227,6 +2227,19 @@ const wonderSkinRosters = [
     [named('Espeon', ['Tail Whip', 'Tackle'])],
     [{...named('Delcatty', ['Recover']), ability:'Wonder Skin'}],
 ];
+const victoryStarRosters = [
+    [{...named('Victini', ['Recover'], 'N'), ability:'Victory Star'}, named('Bronzong', ['Hypnosis'], 'N')],
+    [named('Snorlax', ['Recover']), named('Chansey', ['Recover'])],
+];
+const gorillaTacticsRosters = [
+    [{...named('Darmanitan-Galar', ['Tackle', 'Recover']), ability:'Gorilla Tactics', item:'Life Orb'},
+        named('Umbreon', ['Recover'])],
+    [named('Skarmory', ['Recover'])],
+];
+const slowStartRosters = [
+    [{...named('Regigigas', ['Tackle', 'Recover'], 'N'), ability:'Slow Start'}],
+    [named('Suicune', ['Recover'], 'N')],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3854,6 +3867,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         wonderGuardRosters, 'custom-wonder-guard-requires-super-effective-damage'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
         wonderSkinRosters, 'custom-wonder-skin-only-changes-numeric-status-accuracy'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1 1','move 1, move 1']],
+        victoryStarRosters, 'custom-victory-star-raises-the-accuracy-of-an-ally', '5,2,3,4'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1'],
+        ['switch 2','move 1'], ['move 2','move 1']],
+        gorillaTacticsRosters, 'custom-gorilla-tactics-locks-moves-until-switch'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 2','move 1'],
+        ['move 2','move 1'], ['move 1','move 1'], ['move 1','move 1']],
+        slowStartRosters, 'custom-slow-start-halves-attack-and-speed-for-five-turns'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

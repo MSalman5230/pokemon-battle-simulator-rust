@@ -148,12 +148,17 @@ impl Pokemon {
     pub(super) fn attack_modifier(&self, category: Category, move_type: &str) -> u32 {
         let ability = if let Some((modifier, _)) = self.typed_offensive_modifier(move_type) {
             modifier
-        } else if self.active_ability() == "defeatist" && self.hp * 2 <= self.max_hp.get() {
+        } else if (category == Category::Physical
+            && self.active_ability() == "slowstart"
+            && self.slow_start != 0)
+            || (self.active_ability() == "defeatist" && self.hp * 2 <= self.max_hp.get())
+        {
             2048
         } else if self.active_ability() == "waterbubble" && move_type == "Water" {
             8192
         } else if self.low_hp_attack_boost(move_type).is_some()
             || (self.active_ability() == "firemane" && move_type == "Fire")
+            || (self.active_ability() == "gorillatactics" && category == Category::Physical)
             || (category == Category::Physical
                 && self.active_ability() == "guts"
                 && self.status != Status::Healthy)
@@ -629,6 +634,8 @@ impl Battle {
     pub(super) fn end_ability(&mut self, pos: Position) {
         self.end_supreme_overlord(pos, false);
         self.end_paradox_ability(pos);
+        self.end_slow_start(pos);
+        self.mon_mut(pos).gorilla_lock = None;
         if self.mon(pos).ability == "opportunist" {
             self.mon_mut(pos).opportunist = PendingBoostCopy::default();
         }
@@ -1370,6 +1377,25 @@ impl Battle {
             self.ident(holder),
             self.ident(ally)
         ));
+    }
+
+    pub(super) fn end_slow_start(&mut self, pos: Position) {
+        if std::mem::take(&mut self.mon_mut(pos).slow_start) != 0 {
+            self.add(format!("|-end|{}|Slow Start|[silent]", self.ident(pos)));
+        }
+    }
+
+    pub(super) fn tick_slow_start(&mut self, pos: Position) {
+        if self.event_ability(pos) != "slowstart" || self.mon(pos).active_turns == 0 {
+            return;
+        }
+        let mon = self.mon_mut(pos);
+        if mon.slow_start != 0 {
+            mon.slow_start -= 1;
+            if mon.slow_start == 0 {
+                self.add(format!("|-end|{}|Slow Start", self.ident(pos)));
+            }
+        }
     }
 
     pub(super) fn bad_dreams(&mut self, holder: Position) {

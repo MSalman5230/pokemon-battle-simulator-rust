@@ -657,10 +657,15 @@ impl Battle {
         if self.format.report_exact_hp {
             let attack_boost = source_active
                 .then(|| {
-                    user.low_hp_attack_boost(move_type).or_else(|| {
-                        user.typed_offensive_modifier(move_type)
-                            .map(|(_, label)| label)
-                    })
+                    user.low_hp_attack_boost(move_type)
+                        .or_else(|| {
+                            user.typed_offensive_modifier(move_type)
+                                .map(|(_, label)| label)
+                        })
+                        .or_else(|| {
+                            (physical && user.active_ability() == "gorillatactics")
+                                .then_some("Gorilla Tactics Atk Boost")
+                        })
                 })
                 .flatten();
             if crit && atk_stage < 0 {

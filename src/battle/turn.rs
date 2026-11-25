@@ -2037,6 +2037,7 @@ impl Battle {
         if !returning && !self.mon(outgoing).fainted {
             self.switch_out_ability(outgoing);
             self.end_supreme_overlord(outgoing, true);
+            self.mon_mut(outgoing).slow_start = 0;
             self.end_ability(outgoing);
         }
         let rules = self.stat_rules;
@@ -2534,6 +2535,7 @@ impl Battle {
         }
         self.possible_boost_copy |= self.mon(pos).ability == "opportunist";
         self.possible_soul_heart |= self.mon(pos).ability == "soulheart";
+        self.possible_victory_star |= self.mon(pos).ability == "victorystar";
         if matches!(
             self.mon(pos).ability.as_str(),
             "asoneglastrier" | "asonespectrier"
@@ -2618,6 +2620,11 @@ impl Battle {
         match self.event_ability(pos) {
             "download" => self.download_boost(pos),
             "intrepidsword" | "dauntlessshield" => self.legendary_boost_on_entry(pos),
+            "gorillatactics" => self.mon_mut(pos).gorilla_lock = None,
+            "slowstart" => {
+                self.mon_mut(pos).slow_start = 5;
+                self.add(format!("|-start|{}|ability: Slow Start", self.ident(pos)));
+            }
             "costar" => self.costar_on_entry(pos),
             "pastelveil" => self.pastel_veil_cure(pos, true),
             "windrider" if self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0 => {
@@ -2886,6 +2893,7 @@ impl Battle {
             Weather,
             SpeedBoost,
             BadDreams,
+            SlowStart,
             Harvest,
             CudChew,
             Pickup,
@@ -3206,6 +3214,7 @@ impl Battle {
                     "harvest" => timers.push((pos, Effect::Harvest, priority(28, 2))),
                     "cudchew" => timers.push((pos, Effect::CudChew, priority(28, 2))),
                     "baddreams" => timers.push((pos, Effect::BadDreams, priority(28, 2))),
+                    "slowstart" => timers.push((pos, Effect::SlowStart, priority(28, 2))),
                     "pickup" => timers.push((pos, Effect::Pickup, priority(28, 2))),
                     "opportunist" => timers.push((pos, Effect::Opportunist, priority(29, 7))),
                     "moody" => timers.push((pos, Effect::Moody, priority(28, 2))),
@@ -3515,6 +3524,7 @@ impl Battle {
                         | Effect::Healer
                         | Effect::SpeedBoost
                         | Effect::BadDreams
+                        | Effect::SlowStart
                         | Effect::Harvest
                         | Effect::CudChew
                         | Effect::Pickup
@@ -3733,6 +3743,7 @@ impl Battle {
                         return;
                     }
                 }
+                Effect::SlowStart => self.tick_slow_start(pos),
                 Effect::Harvest => self.harvest_item(pos),
                 Effect::CudChew => self.chew_berry(pos),
                 Effect::Pickup => self.pick_up_item(pos),
@@ -4715,6 +4726,22 @@ impl Battle {
                 .mon(source)
                 .last_move_slot
                 .is_some_and(|last| self.mon(source).moves[last].move_data.name == move_data.name);
+        if own_action
+            && !z_powered
+            && !struggle
+            && self
+                .mon(source)
+                .gorilla_lock
+                .is_some_and(|locked| locked.name != move_data.name)
+            && self.event_ability(source) == "gorillatactics"
+        {
+            self.add(format!("|move|{source_name}|{}||[still]", move_data.name));
+            if self.format.report_exact_hp {
+                self.add("|debug|Disabled by Gorilla Tactics");
+            }
+            self.add(format!("|-fail|{source_name}"));
+            return false;
+        }
         if own_action && move_data.name != "Destiny Bond" {
             self.clear_destiny_bond(source, true);
         }
@@ -4814,6 +4841,16 @@ impl Battle {
         }
         if electrified && self.format.report_exact_hp {
             self.add("|debug|Electrify making move type electric");
+        }
+        if !unannounced
+            && !z_powered
+            && !implicit_z
+            && !struggle
+            && self.mon(source).gorilla_lock.is_none()
+            && self.mon(source).ability == "gorillatactics"
+            && self.event_ability(source) == "gorillatactics"
+        {
+            self.mon_mut(source).gorilla_lock = Some(move_data);
         }
         if let Some(combo) = pledge_combo {
             move_type = combo.element();
@@ -6594,15 +6631,17 @@ impl Battle {
             }
             let numeric_accuracy = matches!(accuracy, Accuracy::Percent(_));
             let zoom = self.zoom_lens_active(source, pos, queue);
-            if !ohko {
+            let accuracy_tail = if !ohko {
                 self.prepare_accuracy_modifiers(
                     source,
                     pos,
                     numeric_accuracy,
                     zoom,
                     move_data.category,
-                );
-            }
+                )
+            } else {
+                None
+            };
             if numeric_accuracy && !ohko {
                 self.sort_unaware_handlers();
                 if !self.move_ignores_evasion(source, move_data) {
@@ -6630,7 +6669,8 @@ impl Battle {
                         };
                         base + u32::from(self.mon(source).level - self.mon(pos).level)
                     } else {
-                        let accuracy = self.accuracy(source, pos, move_data, accuracy, zoom);
+                        let accuracy =
+                            self.accuracy(source, pos, move_data, accuracy, zoom, accuracy_tail);
                         if micle_accuracy {
                             self.stat_rules.truncation.modify(accuracy, 4915)
                         } else {
@@ -9410,6 +9450,7 @@ impl Battle {
         }
         self.end_supreme_overlord(target, false);
         self.end_paradox_ability(target);
+        self.end_slow_start(target);
         self.weather_ability_changed(target, true);
         self.clear_linked_traps(target);
         let rules = self.stat_rules;
@@ -9421,6 +9462,7 @@ impl Battle {
         mon.illusion = None;
         mon.disguise_pending = false;
         mon.reset_ability();
+        mon.gorilla_lock = None;
         mon.pivot_move = None;
         mon.reviving = false;
         mon.stall = None;
@@ -9620,6 +9662,7 @@ impl Battle {
         data: &Move,
         accuracy: u8,
         zoom: bool,
+        accuracy_tail: Option<[u32; 4]>,
     ) -> u32 {
         let accuracy =
             if data.category == Category::Status && self.event_ability(target) == "wonderskin" {
@@ -9633,6 +9676,7 @@ impl Battle {
             self.active_weather_evasion(target).0,
             data.category,
             zoom,
+            accuracy_tail,
         );
         let accuracy = if modifier != 4096 {
             self.stat_rules
@@ -9866,6 +9910,9 @@ impl Pokemon {
         if swamp {
             multiplier /= 4;
         }
+        if self.slow_start != 0 && self.active_ability() == "slowstart" {
+            multiplier /= 2;
+        }
         if self
             .paradox_boost
             .is_some_and(|boost| boost.stat == BoostStat::Spe)
@@ -9942,6 +9989,9 @@ impl Pokemon {
                 | "truant"
                 | "wonderguard"
                 | "wonderskin"
+                | "victorystar"
+                | "gorillatactics"
+                | "slowstart"
                 | "runaway"
                 | "drizzle"
                 | "drought"
