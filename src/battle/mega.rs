@@ -12,7 +12,7 @@ impl Battle {
     fn mega_species(&self, pos: Position) -> Option<&'static Species> {
         let mon = self.mon(pos);
         let item = DEX.item(self.format.dex_mod, &mon.item)?;
-        let target = item.mega_stone.as_ref()?.get(&mon.species.name)?;
+        let target = item.mega_stone.as_ref()?.get(&mon.base_species.name)?;
         DEX.species(self.format.dex_mod, &to_id(target))
     }
 

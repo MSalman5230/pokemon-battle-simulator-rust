@@ -39,6 +39,7 @@ mod support;
 mod switch_copy;
 mod tactical;
 mod terrain;
+mod transform;
 mod trap;
 mod turn;
 mod weather;
@@ -193,6 +194,7 @@ pub struct Pokemon {
     pub name: String,
     pub species: &'static Species,
     base_species: &'static Species,
+    transformed: Option<Box<transform::Transformed>>,
     pub details: String,
     pub level: u16,
     points: SetStats,
@@ -446,7 +448,11 @@ impl Battle {
                     details: &mon.details,
                     condition: health(mon.hp, mon.max_hp, mon.status.id(), true).secret,
                     active: index < self.format.game_type.active_slots(),
-                    stats: mon.stats.into(),
+                    stats: mon
+                        .transformed
+                        .as_ref()
+                        .map_or(mon.stats, |form| form.original_stats)
+                        .into(),
                     moves: mon.moves.iter().map(|m| m.id.as_str()).collect(),
                     base_ability: &mon.base_ability,
                     item: &mon.item,
@@ -809,6 +815,7 @@ impl Pokemon {
             name,
             species,
             base_species: species,
+            transformed: None,
             details,
             level,
             points: set.evs,

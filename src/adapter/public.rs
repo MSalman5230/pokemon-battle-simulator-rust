@@ -564,6 +564,20 @@ impl PublicState {
                     mon["types"] = json!(types(name));
                 }
             }
+            "-transform" => {
+                if let Some(key) = key
+                    && let Some(other) = self.mon_key(get(3))
+                {
+                    let model = &self.teams[other.0][other.1];
+                    let [species, types, boosts] =
+                        ["species", "types", "boosts"].map(|k| model[k].clone());
+                    let mon = self.mon_mut(key);
+                    mon["species"] = species;
+                    mon["types"] = types;
+                    mon["boosts"] = boosts;
+                    mon["volatiles"]["transform"] = json!({ "turn": turn });
+                }
+            }
             "-start" if get(3) == "typechange" => {
                 if let Some(key) = key {
                     self.mon_mut(key)["types"] = json!(get(4).split('/').collect::<Vec<_>>());

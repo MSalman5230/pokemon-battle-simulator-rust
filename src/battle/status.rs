@@ -93,7 +93,11 @@ impl Battle {
             return false;
         }
         if let Some((slot, _)) = self.mon(pos).disabled_slot
-            && self.mon(pos).moves[slot].move_data.name == data.name
+            && self
+                .mon(pos)
+                .moves
+                .get(slot)
+                .is_some_and(|m| m.move_data.name == data.name)
         {
             self.add(format!("|cant|{}|Disable|{}", self.ident(pos), data.name));
             return false;

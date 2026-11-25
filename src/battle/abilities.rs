@@ -368,7 +368,13 @@ impl Battle {
     }
 
     pub(super) fn event_ability(&self, holder: Position) -> &str {
-        if !self.active_effects(holder) || self.ability_suppressed(holder) {
+        if !self.active_effects(holder)
+            || self.ability_suppressed(holder)
+            || self.mon(holder).transformed.is_some()
+                && DEX
+                    .ability(&self.mon(holder).ability)
+                    .is_some_and(|a| a.no_transform)
+        {
             ""
         } else {
             &self.mon(holder).ability

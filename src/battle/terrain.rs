@@ -115,11 +115,20 @@ impl Battle {
         let mon = self.mon_mut(pos);
         mon.temporary_type = terrain_type;
         mon.spent_elements = 0;
+        if let Some(form) = &mut mon.transformed {
+            form.uses_base_types = terrain_type.is_none();
+        }
         let ident = self.ident(pos);
         if let Some(ty) = terrain_type {
             self.add(format!(
                 "|-start|{ident}|typechange|{ty}|[from] ability: Mimicry"
             ));
+        } else if self.mon(pos).transformed.is_some() {
+            let types = self.mon(pos).base_species.types.join("/");
+            self.add(format!(
+                "|-start|{ident}|typechange|{types}|[from] ability: Mimicry"
+            ));
+            self.add("|-hint|Transform Mimicry changes you to your original un-transformed types.");
         } else {
             self.add(format!("|-activate|{ident}|ability: Mimicry"));
             self.add(format!("|-end|{ident}|typechange|[silent]"));

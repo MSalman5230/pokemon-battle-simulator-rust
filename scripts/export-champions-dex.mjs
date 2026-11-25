@@ -84,6 +84,7 @@ const data = mod => {
                 noTrace: !!e.flags?.notrace || undefined, cannotSuppress: !!e.flags?.cantsuppress || undefined,
                 breakable: !!e.flags?.breakable || undefined,
                 noReceiver: !!e.flags?.noreceiver || undefined,
+                noTransform: !!e.flags?.notransform || undefined,
                 noSkillSwap: !!e.flags?.failskillswap || undefined})),
         items: table(dex.items.all(), e =>
             ({...props(e, ['name', 'isNonstandard', 'megaStone']), handlers: handlers(e)})),

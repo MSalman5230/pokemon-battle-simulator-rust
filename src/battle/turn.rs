@@ -970,6 +970,7 @@ impl Battle {
                     | "futuresight"
                     | "doomdesire"
                     | "belch"
+                    | "transform"
                     | "grassyglide"
                     | "encore"
                     | "tidyup"
@@ -1259,6 +1260,7 @@ impl Battle {
                 self.add(format!("|-ability|{}|Unnerve", self.ident(pos)));
             }
         }
+        let mut deferred_hospitality = 0;
         for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
                 self.apply_replacement_heals(pos);
@@ -1272,14 +1274,16 @@ impl Battle {
                 if let Some(label) = self.weather_suppressor(pos) {
                     self.add(format!("|-ability|{}|{label}", self.ident(pos)));
                 }
-                if self.mon(pos).ability != "hospitality" {
-                    self.start_ability(pos);
+                match self.mon(pos).ability.as_str() {
+                    "hospitality" => deferred_hospitality |= pos.mask(),
+                    "imposter" => self.imposter_on_entry(pos),
+                    _ => self.start_ability(pos),
                 }
                 self.on_switch_in_item(pos);
             }
         }
         for (pos, _) in order.into_iter().take(count) {
-            if switching.contains(&Some(pos)) && self.mon(pos).ability == "hospitality" {
+            if deferred_hospitality & pos.mask() != 0 {
                 self.hospitality(pos);
             }
         }
@@ -3281,6 +3285,14 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
+                if move_data.name == "Transform" {
+                    if self.transform_into(source, target, false) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if curse {
                     let ghost = self.mon(source).has_type("Ghost");
                     if self.format.report_exact_hp {
@@ -4639,6 +4651,7 @@ impl Pokemon {
                 | "plus"
                 | "minus"
                 | "curiousmedicine"
+                | "imposter"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

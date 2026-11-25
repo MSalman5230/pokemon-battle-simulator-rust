@@ -302,8 +302,17 @@ impl Pokemon {
     }
 
     pub fn types(&self) -> impl Iterator<Item = &str> {
+        let original_types = if self
+            .transformed
+            .as_ref()
+            .is_some_and(|tr| tr.uses_base_types)
+        {
+            &self.base_species.types
+        } else {
+            &self.species.types
+        };
         let lone = self.temporary_type.or_else(|| {
-            (self.roosted && self.species.types.as_slice() == ["Flying"]).then_some("Normal")
+            (self.roosted && original_types.as_slice() == ["Flying"]).then_some("Normal")
         });
         let lone = lone.map(|ty| {
             if self.roosted && ty == "Flying" {
@@ -312,8 +321,7 @@ impl Pokemon {
                 ty
             }
         });
-        self.species
-            .types
+        original_types
             .iter()
             .map(String::as_str)
             .filter(move |t| lone.is_none() && (!self.roosted || *t != "Flying"))

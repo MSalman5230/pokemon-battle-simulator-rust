@@ -54,6 +54,11 @@ impl Battle {
         // DisableMove sorts these condition handlers together, even when the
         // final flags do not depend on which tied condition runs first.
         speed_sort_by(&mut handlers[..count], &mut self.rng, |a, b| b.cmp(a));
+        if self.mon(pos).choice_lock == Some(usize::MAX) {
+            let mon = self.mon_mut(pos);
+            mon.choice_lock = None;
+            mon.untrack_volatile("choicelock");
+        }
         let mon = self.mon_mut(pos);
         if !mon.holds_choice_item() {
             mon.choice_lock = None;
@@ -84,9 +89,11 @@ impl Battle {
             || (mon.taunt > 0
                 && mon.moves[slot].move_data.category == crate::dex::Category::Status
                 && mon.moves[slot].id != "mefirst")
-            || mon
-                .encore
-                .is_some_and(|(locked, _)| mon.moves[locked].id != mon.moves[slot].id)
+            || mon.encore.is_some_and(|(locked, _)| {
+                mon.moves
+                    .get(locked)
+                    .is_some_and(|m| m.id != mon.moves[slot].id)
+            })
     }
 
     pub(super) fn actual_disabled(&self, pos: Position, slot: usize) -> bool {
@@ -196,7 +203,7 @@ impl Battle {
     pub(super) fn tick_encore(&mut self, target: Position) {
         let mon = self.mon_mut(target);
         let (slot, turns) = mon.encore.unwrap();
-        if turns > 1 && mon.moves[slot].pp > 0 {
+        if turns > 1 && mon.moves.get(slot).is_some_and(|m| m.pp > 0) {
             mon.encore = Some((slot, turns - 1));
         } else {
             self.end_encore(target);

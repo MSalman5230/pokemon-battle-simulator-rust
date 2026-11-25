@@ -20,7 +20,11 @@ impl Pokemon {
     }
 
     pub(super) fn reset_forme(&mut self, rules: StatRules) {
-        if !std::ptr::eq(self.species, self.base_species) {
+        if let Some(f) = self.transformed.take() {
+            self.set_current_species(self.base_species, rules);
+            self.moves = f.original_moves;
+            self.stats = f.original_stats;
+        } else if !std::ptr::eq(self.species, self.base_species) {
             self.set_current_species(self.base_species, rules);
         }
     }
@@ -65,7 +69,10 @@ impl Battle {
 
     pub(super) fn stance_change(&mut self, pos: Position, data: &Move) {
         let mon = self.mon(pos);
-        if mon.ability != "stancechange" || mon.species.base_species != "Aegislash" {
+        if mon.ability != "stancechange"
+            || mon.species.base_species != "Aegislash"
+            || mon.transformed.is_some()
+        {
             return;
         }
         let id = if data.name == "King's Shield" {

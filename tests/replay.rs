@@ -921,6 +921,13 @@ fn champions_belch_is_selectable_but_fails_until_the_user_eats_a_berry() {
 }
 
 #[test]
+fn transform_preserves_the_original_roster_while_copying_live_combat_state() {
+    replay(include_str!("fixtures/bss-imposter.json"));
+    replay(include_str!("fixtures/bss-transform.json"));
+    replay(include_str!("fixtures/vgc-imposter.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
