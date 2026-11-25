@@ -749,6 +749,19 @@ impl Battle {
         {
             power_modifier = chain(power_modifier, 8192);
         }
+        let legacy_power = match move_data.name.as_str() {
+            "Collision Course" if effect > 0 => {
+                Some((5461, "collision course super effective buff"))
+            }
+            "Electro Drift" if effect > 0 => Some((5461, "electro drift super effective buff")),
+            "Psyblade" if self.terrain() == Some(super::terrain::Terrain::Electric) => {
+                Some((6144, "psyblade electric terrain boost"))
+            }
+            _ => None,
+        };
+        if let Some((factor, _)) = legacy_power {
+            power_modifier = chain(power_modifier, factor);
+        }
         let mut hit_damage = Damage {
             level: user.level,
             power: tr.modify(u32::from(power), power_modifier),
@@ -789,6 +802,11 @@ impl Battle {
             bypassed_protect,
         };
         let randomness = roll.unwrap_or_else(|| self.rng.below(16));
+        if self.format.report_exact_hp
+            && let Some((_, label)) = legacy_power
+        {
+            self.add(format!("|debug|{label}"));
+        }
         if spread && self.format.report_exact_hp {
             self.add("|debug|Spread modifier: 0.75");
         } else if parental_second_hit && self.format.report_exact_hp {

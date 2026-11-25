@@ -960,6 +960,15 @@ impl Battle {
                     | "boltbeak"
                     | "revelationdance"
                     | "photongeyser"
+                    | "bleakwindstorm"
+                    | "sandsearstorm"
+                    | "wildboltstorm"
+                    | "chloroblast"
+                    | "collisioncourse"
+                    | "electrodrift"
+                    | "psyblade"
+                    | "hyperspacehole"
+                    | "hyperspacefury"
                     | "round"
                     | "swift"
                     | "surf"
@@ -3664,9 +3673,10 @@ impl Battle {
             weather_at_target.map(Weather::ordinary),
         ) {
             ("Blizzard", Some(Weather::Snow | Weather::Hail)) => Accuracy::Bypass(true),
-            ("Hurricane" | "Thunder", Some(Weather::Rain)) if target.is_some() => {
-                Accuracy::Bypass(true)
-            }
+            (
+                "Hurricane" | "Thunder" | "Bleakwind Storm" | "Sandsear Storm" | "Wildbolt Storm",
+                Some(Weather::Rain),
+            ) if target.is_some() => Accuracy::Bypass(true),
             ("Hurricane" | "Thunder", Some(Weather::Sun)) if target.is_some() => {
                 Accuracy::Percent(50)
             }
@@ -3925,6 +3935,7 @@ impl Battle {
         let half_recoil = match move_data.name.as_str() {
             "Mind Blown" => Some("mindblown"),
             "Steel Beam" => Some("steelbeam"),
+            "Chloroblast" => Some("Recoil"),
             _ => None,
         };
         let spent_element = match move_data.name.as_str() {
@@ -4027,6 +4038,19 @@ impl Battle {
             self.add(
                 "|-hint|Only a Pokemon whose form is Morpeko or Morpeko-Hangry can use this move.",
             );
+            return true;
+        }
+        if move_data.name == "Hyperspace Fury" && self.mon(source).species.name != "Hoopa-Unbound" {
+            self.add("|-hint|Only a Pokemon whose form is Hoopa Unbound can use this move.");
+            self.move_still(base);
+            let suffix = if self.mon(source).species.name == "Hoopa" {
+                "|[forme]"
+            } else {
+                ""
+            };
+            self.add(format!(
+                "|-fail|{source_name}|move: Hyperspace Fury{suffix}"
+            ));
             return true;
         }
         if move_data.name == "Sleep Talk" {
@@ -5140,7 +5164,9 @@ impl Battle {
             }
             if sacrifice {
                 self.mark_fainted(source);
-            } else if let Some(recoil) = half_recoil {
+            } else if let Some(recoil) = half_recoil
+                && move_data.name != "Chloroblast"
+            {
                 self.half_max_hp_recoil(source, recoil);
                 if self.mon(source).hp == 0 {
                     self.mark_fainted(source);
@@ -5154,7 +5180,7 @@ impl Battle {
         }
         if matches!(
             move_data.name.as_str(),
-            "Feint" | "Phantom Force" | "Shadow Force"
+            "Feint" | "Phantom Force" | "Shadow Force" | "Hyperspace Hole" | "Hyperspace Fury"
         ) {
             for &target in &spread_targets {
                 let lost_side_guard = self.clear_side_guards(target.player);
@@ -7084,7 +7110,7 @@ impl Battle {
             self.emergency_exit(source, original_hp);
         }
         if let Some(recoil) = half_recoil
-            && total > 0
+            && hits_landed > 0
         {
             self.half_max_hp_recoil(source, recoil);
         }

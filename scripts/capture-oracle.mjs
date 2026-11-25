@@ -1586,6 +1586,23 @@ const customPrimalClashRosters = [
     [primalGroudon, primalKyogre],
     [named('Glaceon', ['Tail Whip']), named('Vaporeon', ['Tail Whip'])],
 ];
+const legacyStormRosters = [
+    [{...named('Smeargle', ['Rain Dance', 'Bleakwind Storm', 'Sandsear Storm', 'Wildbolt Storm']), ability:'Own Tempo'}],
+    [{...named('Chansey', ['Life Dew']), ability:'Natural Cure'}],
+];
+const legacyPowerRosters = [
+    [{...named('Smeargle', ['Electric Terrain', 'Collision Course', 'Psyblade', 'Electro Drift']), ability:'Own Tempo'}],
+    [legacyStormRosters[1][0], named('Vaporeon', ['Recover'])],
+];
+const legacyBlastRosters = [
+    [{...named('Smeargle', ['Chloroblast', 'Protect']), ability:'Own Tempo'}],
+    [named('Vaporeon', ['Substitute', 'Protect', 'Recover'])],
+];
+const legacyHyperspaceRosters = [
+    [{...named('Hoopa', ['Hyperspace Fury', 'Hyperspace Hole']), ability:'Magician'},
+        {...named('Hoopa-Unbound', ['Hyperspace Fury']), ability:'Magician', name:'Unbound'}],
+    [named('Vaporeon', ['Protect', 'Substitute', 'Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2873,6 +2890,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2','move 1']], customPrimalRainRosters, 'custom-primal-rain'],
     ['doublescustomgame', [['team 12','team 12'], ['move 2, move 2','move 1, move 1']],
         customPrimalClashRosters, 'custom-primal-clash'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 3','move 1'], ['move 4','move 1']], legacyStormRosters, 'natdex-inherited-storms'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 3','switch 2'], ['move 4','move 1']], legacyPowerRosters, 'custom-inherited-power'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 2'],
+        ['move 1','move 3']], legacyBlastRosters, 'natdex-chloroblast'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 2'], ['move 2','move 1'],
+        ['switch 2','move 3'], ['move 1','move 1']], legacyHyperspaceRosters, 'custom-hyperspace'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -1839,6 +1839,14 @@ fn primal_reversion_keeps_the_form_and_only_the_current_weather_source() {
 }
 
 #[test]
+fn inherited_attacks_respect_weather_power_recoil_and_guard_callbacks() {
+    replay(include_str!("fixtures/natdex-inherited-storms.json"));
+    replay(include_str!("fixtures/custom-inherited-power.json"));
+    replay(include_str!("fixtures/natdex-chloroblast.json"));
+    replay(include_str!("fixtures/custom-hyperspace.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
