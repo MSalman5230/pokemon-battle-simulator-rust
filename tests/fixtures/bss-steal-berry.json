@@ -1,0 +1,2975 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Scolipede\",\"moves\":[\"Bug Bite\",\"Belch\",\"Recycle\",\"Pluck\"],\"gender\":\"F\",\"name\":\"Scolipede\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Ripen\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Tackle\",\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Sitrus Berry\"},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Sticky Hold\",\"item\":\"Sitrus Berry\"},{\"species\":\"Leafeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Leafeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Liechi Berry\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Scolipede, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Scolipede, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Scolipede, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scolipede",
+                "details": "Scolipede, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 109,
+                  "spa": 75,
+                  "spd": 89,
+                  "spe": 132
+                },
+                "moves": [
+                  "bugbite",
+                  "belch",
+                  "recycle",
+                  "pluck"
+                ],
+                "baseAbility": "ripen",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ripen",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "stickyhold",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stickyhold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "liechiberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scolipede",
+            "species": "Scolipede",
+            "details": "Scolipede, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 109,
+              "spa": 75,
+              "spd": 89,
+              "spe": 132
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ripen",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bugbite",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "belch",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recycle",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "pluck",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stickyhold",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "liechiberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 123"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Scolipede|Scolipede, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Scolipede|Scolipede, L50, F|135/135",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Scolipede|Scolipede, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bug Bite",
+                  "id": "bugbite",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Belch",
+                  "id": "belch",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recycle",
+                  "id": "recycle",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Pluck",
+                  "id": "pluck",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scolipede",
+                "details": "Scolipede, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 109,
+                  "spa": 75,
+                  "spd": 89,
+                  "spe": 132
+                },
+                "moves": [
+                  "bugbite",
+                  "belch",
+                  "recycle",
+                  "pluck"
+                ],
+                "baseAbility": "ripen",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ripen",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "stickyhold",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stickyhold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "liechiberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scolipede",
+            "species": "Scolipede",
+            "details": "Scolipede, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 109,
+              "spa": 75,
+              "spd": 89,
+              "spe": 132
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ripen",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bugbite",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "belch",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recycle",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "pluck",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stickyhold",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "liechiberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scolipede|Belch||[still]",
+          "|-fail|p1a: Scolipede",
+          "|move|p2a: Vaporeon|Tackle|p1a: Scolipede",
+          "|-damage|p1a: Scolipede|90/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Scolipede|Belch||[still]",
+          "|-fail|p1a: Scolipede",
+          "|move|p2a: Vaporeon|Tackle|p1a: Scolipede",
+          "|-damage|p1a: Scolipede|122/135",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Scolipede|Belch||[still]",
+          "|-fail|p1a: Scolipede",
+          "|move|p2a: Vaporeon|Tackle|p1a: Scolipede",
+          "|-damage|p1a: Scolipede|90/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bug Bite",
+                  "id": "bugbite",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Belch",
+                  "id": "belch",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recycle",
+                  "id": "recycle",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Pluck",
+                  "id": "pluck",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scolipede",
+                "details": "Scolipede, L50, F",
+                "condition": "122/135",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 109,
+                  "spa": 75,
+                  "spd": 89,
+                  "spe": 132
+                },
+                "moves": [
+                  "bugbite",
+                  "belch",
+                  "recycle",
+                  "pluck"
+                ],
+                "baseAbility": "ripen",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ripen",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "stickyhold",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stickyhold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "liechiberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scolipede",
+            "species": "Scolipede",
+            "details": "Scolipede, L50, F",
+            "hp": 122,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 109,
+              "spa": 75,
+              "spd": 89,
+              "spe": 132
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ripen",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bugbite",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "belch",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recycle",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "pluck",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stickyhold",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "liechiberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scolipede|Bug Bite|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|73/100",
+          "|-enditem|p2a: Vaporeon|Sitrus Berry|[from] stealeat|[move] Bug Bite|[of] p1a: Scolipede",
+          "|-heal|p1a: Scolipede|100/100|[from] item: Sitrus Berry",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Scolipede|Bug Bite|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|73/100",
+          "|-enditem|p2a: Vaporeon|Sitrus Berry|[from] stealeat|[move] Bug Bite|[of] p1a: Scolipede",
+          "|-heal|p1a: Scolipede|135/135|[from] item: Sitrus Berry",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Scolipede|Bug Bite|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|150/205",
+          "|-enditem|p2a: Vaporeon|Sitrus Berry|[from] stealeat|[move] Bug Bite|[of] p1a: Scolipede",
+          "|-heal|p1a: Scolipede|100/100|[from] item: Sitrus Berry",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|205/205",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bug Bite",
+                  "id": "bugbite",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Belch",
+                  "id": "belch",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recycle",
+                  "id": "recycle",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Pluck",
+                  "id": "pluck",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scolipede",
+                "details": "Scolipede, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 109,
+                  "spa": 75,
+                  "spd": 89,
+                  "spe": 132
+                },
+                "moves": [
+                  "bugbite",
+                  "belch",
+                  "recycle",
+                  "pluck"
+                ],
+                "baseAbility": "ripen",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ripen",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "stickyhold",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stickyhold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "liechiberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scolipede",
+            "species": "Scolipede",
+            "details": "Scolipede, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 109,
+              "spa": 75,
+              "spd": 89,
+              "spe": 132
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ripen",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bugbite",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "belch",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recycle",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "pluck",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stickyhold",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "liechiberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scolipede|Recycle||[still]",
+          "|-fail|p1a: Scolipede",
+          "|move|p2a: Vaporeon|Recover||[still]",
+          "|-fail|p2a: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Scolipede|Recycle||[still]",
+          "|-fail|p1a: Scolipede",
+          "|move|p2a: Vaporeon|Recover||[still]",
+          "|-fail|p2a: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Scolipede|Recycle||[still]",
+          "|-fail|p1a: Scolipede",
+          "|move|p2a: Vaporeon|Recover||[still]",
+          "|-fail|p2a: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bug Bite",
+                  "id": "bugbite",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Belch",
+                  "id": "belch",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recycle",
+                  "id": "recycle",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Pluck",
+                  "id": "pluck",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scolipede",
+                "details": "Scolipede, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 109,
+                  "spa": 75,
+                  "spd": 89,
+                  "spe": 132
+                },
+                "moves": [
+                  "bugbite",
+                  "belch",
+                  "recycle",
+                  "pluck"
+                ],
+                "baseAbility": "ripen",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ripen",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "stickyhold",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stickyhold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "liechiberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scolipede",
+            "species": "Scolipede",
+            "details": "Scolipede, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 109,
+              "spa": 75,
+              "spd": 89,
+              "spe": 132
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ripen",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bugbite",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "belch",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recycle",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "pluck",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stickyhold",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "liechiberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scolipede|Belch|p2a: Vaporeon|[miss]",
+          "|-miss|p1a: Scolipede|p2a: Vaporeon",
+          "|move|p2a: Vaporeon|Recover||[still]",
+          "|-fail|p2a: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Scolipede|Belch|p2a: Vaporeon|[miss]",
+          "|-miss|p1a: Scolipede|p2a: Vaporeon",
+          "|move|p2a: Vaporeon|Recover||[still]",
+          "|-fail|p2a: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Scolipede|Belch|p2a: Vaporeon|[miss]",
+          "|-miss|p1a: Scolipede|p2a: Vaporeon",
+          "|move|p2a: Vaporeon|Recover||[still]",
+          "|-fail|p2a: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bug Bite",
+                  "id": "bugbite",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Belch",
+                  "id": "belch",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recycle",
+                  "id": "recycle",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Pluck",
+                  "id": "pluck",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scolipede",
+                "details": "Scolipede, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 109,
+                  "spa": 75,
+                  "spd": 89,
+                  "spe": 132
+                },
+                "moves": [
+                  "bugbite",
+                  "belch",
+                  "recycle",
+                  "pluck"
+                ],
+                "baseAbility": "ripen",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ripen",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "stickyhold",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stickyhold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "liechiberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scolipede",
+            "species": "Scolipede",
+            "details": "Scolipede, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 109,
+              "spa": 75,
+              "spd": 89,
+              "spe": 132
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ripen",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bugbite",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "belch",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recycle",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "pluck",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stickyhold",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "liechiberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 switch 2"
+      ],
+      "turn": 6,
+      "seed": "54274,43667,37867,24894",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|move|p1a: Scolipede|Pluck|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|87/100",
+          "|-activate|p2a: Umbreon|ability: Sticky Hold",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|move|p1a: Scolipede|Pluck|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|87/100",
+          "|-activate|p2a: Umbreon|ability: Sticky Hold",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|move|p1a: Scolipede|Pluck|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|148/170",
+          "|-activate|p2a: Umbreon|ability: Sticky Hold",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bug Bite",
+                  "id": "bugbite",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Belch",
+                  "id": "belch",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recycle",
+                  "id": "recycle",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Pluck",
+                  "id": "pluck",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scolipede",
+                "details": "Scolipede, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 109,
+                  "spa": 75,
+                  "spd": 89,
+                  "spe": 132
+                },
+                "moves": [
+                  "bugbite",
+                  "belch",
+                  "recycle",
+                  "pluck"
+                ],
+                "baseAbility": "ripen",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ripen",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "148/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "stickyhold",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stickyhold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "liechiberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scolipede",
+            "species": "Scolipede",
+            "details": "Scolipede, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 109,
+              "spa": 75,
+              "spd": 89,
+              "spe": 132
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ripen",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bugbite",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "belch",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recycle",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "pluck",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 148,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stickyhold",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "liechiberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 switch 3"
+      ],
+      "turn": 7,
+      "seed": "4124,63122,38965,57347",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|100/100",
+          "|move|p1a: Scolipede|Pluck|p2a: Leafeon",
+          "|-supereffective|p2a: Leafeon|1",
+          "|-damage|p2a: Leafeon|68/100",
+          "|-enditem|p2a: Leafeon|Liechi Berry|[from] stealeat|[move] Pluck|[of] p1a: Scolipede",
+          "|-boost|p1a: Scolipede|atk|2|[from] item: Liechi Berry",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|100/100",
+          "|move|p1a: Scolipede|Pluck|p2a: Leafeon",
+          "|-supereffective|p2a: Leafeon|1",
+          "|-damage|p2a: Leafeon|68/100",
+          "|-enditem|p2a: Leafeon|Liechi Berry|[from] stealeat|[move] Pluck|[of] p1a: Scolipede",
+          "|-boost|p1a: Scolipede|atk|2|[from] item: Liechi Berry",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|140/140",
+          "|move|p1a: Scolipede|Pluck|p2a: Leafeon",
+          "|-supereffective|p2a: Leafeon|1",
+          "|-damage|p2a: Leafeon|96/140",
+          "|-enditem|p2a: Leafeon|Liechi Berry|[from] stealeat|[move] Pluck|[of] p1a: Scolipede",
+          "|-boost|p1a: Scolipede|atk|2|[from] item: Liechi Berry",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bug Bite",
+                  "id": "bugbite",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Belch",
+                  "id": "belch",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recycle",
+                  "id": "recycle",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Pluck",
+                  "id": "pluck",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scolipede",
+                "details": "Scolipede, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 109,
+                  "spa": 75,
+                  "spd": 89,
+                  "spe": 132
+                },
+                "moves": [
+                  "bugbite",
+                  "belch",
+                  "recycle",
+                  "pluck"
+                ],
+                "baseAbility": "ripen",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ripen",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "96/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "148/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "stickyhold",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stickyhold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scolipede",
+            "species": "Scolipede",
+            "details": "Scolipede, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 109,
+              "spa": 75,
+              "spd": 89,
+              "spe": 132
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ripen",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bugbite",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "belch",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recycle",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "pluck",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 96,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 148,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stickyhold",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

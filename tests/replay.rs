@@ -1172,6 +1172,11 @@ fn payback_requires_a_target_that_has_acted_and_did_not_switch_this_turn() {
 }
 
 #[test]
+fn bug_bite_and_pluck_eat_berries_without_replacing_the_held_item() {
+    replay(include_str!("fixtures/bss-steal-berry.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

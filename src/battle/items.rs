@@ -28,6 +28,17 @@ pub(super) fn resistance_berry(id: &str) -> Option<(&'static str, &'static str)>
     })
 }
 
+fn stat_berry(id: &str) -> Option<(&'static str, BoostStat)> {
+    Some(match id {
+        "liechiberry" => ("Liechi Berry", BoostStat::Atk),
+        "ganlonberry" => ("Ganlon Berry", BoostStat::Def),
+        "salacberry" => ("Salac Berry", BoostStat::Spe),
+        "petayaberry" => ("Petaya Berry", BoostStat::Spa),
+        "apicotberry" => ("Apicot Berry", BoostStat::Spd),
+        _ => return None,
+    })
+}
+
 impl Battle {
     pub(super) fn prepare_accuracy_modifiers(
         &mut self,
@@ -217,13 +228,8 @@ impl Battle {
 
     fn pinch_stat_berry(&mut self, pos: Position) {
         let mon = self.mon(pos);
-        let (name, stat) = match mon.effective_item() {
-            "liechiberry" => ("Liechi Berry", BoostStat::Atk),
-            "ganlonberry" => ("Ganlon Berry", BoostStat::Def),
-            "salacberry" => ("Salac Berry", BoostStat::Spe),
-            "petayaberry" => ("Petaya Berry", BoostStat::Spa),
-            "apicotberry" => ("Apicot Berry", BoostStat::Spd),
-            _ => return,
+        let Some((name, stat)) = stat_berry(mon.effective_item()) else {
+            return;
         };
         if mon.hp
             * if self.event_ability(pos) == "gluttony" {
@@ -236,6 +242,11 @@ impl Battle {
             return;
         }
         self.consume(pos, name, true);
+        self.apply_stat_berry(pos, name, stat);
+        self.symbiosis_after_item(pos);
+    }
+
+    fn apply_stat_berry(&mut self, pos: Position, name: &str, stat: BoostStat) {
         let amount = match self.event_ability(pos) {
             "contrary" => -1,
             "ripen" => 2,
@@ -245,6 +256,7 @@ impl Battle {
         let changed = mon.boosts.add(stat, amount);
         let reason = if changed != 0 {
             mon.stats_raised |= changed > 0;
+            mon.stats_lowered |= changed < 0;
             format!("|[from] item: {name}")
         } else {
             String::new()
@@ -256,7 +268,64 @@ impl Battle {
             stat.id(),
             changed.abs(),
         ));
-        self.symbiosis_after_item(pos);
+    }
+
+    pub(super) fn eat_stolen_berry(&mut self, source: Position, target: Position, move_name: &str) {
+        if self.mon(source).hp == 0 {
+            return;
+        }
+        let Some(item) = DEX
+            .item(self.format.dex_mod, &self.mon(target).item)
+            .filter(|item| item.is_berry)
+        else {
+            return;
+        };
+        if self.can_take_item(target).is_none() {
+            if self.event_ability(target) == "stickyhold" && self.mon(target).hp > 0 {
+                self.add(format!(
+                    "|-activate|{}|ability: Sticky Hold",
+                    self.ident(target)
+                ));
+            }
+            return;
+        }
+        let id = self.lose_held_item(target);
+        let name = &item.effect.name;
+        self.add(format!(
+            "|-enditem|{}|{name}|[from] stealeat|[move] {move_name}|[of] {}",
+            self.ident(target),
+            self.ident(source)
+        ));
+        // Pluck and Bug Bite invoke Eat directly, without replacing the
+        // user's held item or recording a consumed item for Recycle.
+        if !self.debug_ignored_item(source, "Eat") {
+            match id.as_str() {
+                "sitrusberry" => {
+                    let amount = self.mon(source).max_hp.get() / 4;
+                    self.item_heal(source, amount, name);
+                }
+                "lumberry" => {
+                    self.cure_status(source, "[msg]");
+                    if self.mon(source).confusion > 0 {
+                        self.cure_confusion(source);
+                    }
+                }
+                "chestoberry" if matches!(self.mon(source).status, Status::Sleep(_)) => {
+                    self.cure_status(source, "[msg]");
+                }
+                _ => {
+                    if let Some((name, stat)) = stat_berry(&id) {
+                        self.apply_stat_berry(source, name, stat);
+                    }
+                }
+            }
+        }
+        if self.event_ability(source) == "ripen" {
+            self.mon_mut(source).ripen_pending = resistance_berry(&id).is_some();
+        }
+        if item.effect.handlers.iter().any(|hook| hook == "onEat") {
+            self.mon_mut(source).ate_berry = true;
+        }
     }
 
     pub(super) fn symbiosis_after_item(&mut self, recipient: Position) {
@@ -407,6 +476,9 @@ impl Battle {
             mon.last_item = id;
             mon.used_item_this_turn = true;
             mon.ate_berry |= eaten;
+            if eaten {
+                mon.ripen_pending = false;
+            }
         }
         let reason = if eaten { "|[eat]" } else { "" };
         self.add(format!("|-enditem|{}|{item}{reason}", self.ident(pos)));
@@ -507,7 +579,6 @@ impl Battle {
 impl Pokemon {
     pub(super) fn ignores_held_item(&self) -> bool {
         self.ability == "klutz"
-            && !self.item.is_empty()
             && !DEX
                 .item(crate::dex::Mod::Champions, &self.item)
                 .is_some_and(|item| item.ignore_klutz)

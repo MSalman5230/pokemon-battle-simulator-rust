@@ -1029,6 +1029,8 @@ impl Battle {
                     | "reversal"
                     | "flail"
                     | "payback"
+                    | "bugbite"
+                    | "pluck"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -1702,6 +1704,9 @@ impl Battle {
         }
         if self.mon(pos).ability == "zerotohero" {
             self.announce_hero(pos);
+        }
+        if self.mon(pos).ability == "ripen" {
+            self.mon_mut(pos).ripen_pending = false;
         }
         if let Some(label) = match self.mon(pos).ability.as_str() {
             "pressure" => Some("Pressure"),
@@ -4230,6 +4235,9 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
+                if matches!(move_data.name.as_str(), "Bug Bite" | "Pluck") {
+                    self.eat_stolen_berry(source, target, &move_data.name);
+                }
                 self.charge_after_damage(target, move_data);
             }
             for &(target, _) in &damage {

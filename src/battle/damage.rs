@@ -132,7 +132,8 @@ impl Battle {
             b.0.cmp(&a.0).then_with(|| a.1.cmp(&b.1))
         });
         let mut modifier = 4096;
-        let mut ripened = false;
+        let mut ripened = self.event_ability(target) == "ripen"
+            && std::mem::take(&mut self.mon_mut(target).ripen_pending);
         for &(_, _, hook) in hooks.iter() {
             let (next, debug) = match hook {
                 Hook::Fixed(value, debug) => (value, debug),
