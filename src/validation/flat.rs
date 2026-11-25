@@ -1,4 +1,4 @@
-//! Team and set validation for standard Champions Flat Rules.
+//! Team and set validation for the standard Champions competitive formats.
 
 use super::{FormatRules, LEGALITY, MoveSources};
 use crate::{
@@ -6,7 +6,10 @@ use crate::{
     dex::{DEX, Format, Species},
 };
 use serde_json::Value;
-use std::{collections::HashSet, fmt};
+use std::{
+    collections::{HashMap, HashSet},
+    fmt,
+};
 
 #[derive(Debug, PartialEq, Eq)]
 pub struct ValidationError(String);
@@ -30,6 +33,7 @@ struct CheckedSet {
     nickname: String,
     item_id: String,
     item_label: &'static str,
+    facts: Vec<String>,
 }
 
 impl CheckedSet {
@@ -40,6 +44,7 @@ impl CheckedSet {
             nickname: String::new(),
             item_id: String::new(),
             item_label: "",
+            facts: Vec::new(),
         }
     }
 }
@@ -93,15 +98,11 @@ impl TeamValidator {
         let rules = LEGALITY
             .format(&id)
             .expect("Champions legality rules are projected");
-        if !matches!(
-            id.as_str(),
-            "gen9championsbssregmc"
-                | "gen9championsbssregmb"
-                | "gen9championsvgc2026regmc"
-                | "gen9championsvgc2026regmb"
-                | "gen9championsvgc2026regmcbo3"
-                | "gen9championsvgc2026regmbbo3"
-        ) {
+        if format.has_rule("natdexmod")
+            || !["flatrules", "standard", "standarddraft", "standarddoubles"]
+                .into_iter()
+                .any(|r| format.has_rule(r))
+        {
             return Err(ValidationError(format!(
                 "team validation for {}",
                 format.name
@@ -140,51 +141,79 @@ impl TeamValidator {
             problems.append(&mut result.problems);
             checked.push(result);
         }
-        let mut nums = HashSet::new();
-        if let Some(duplicate) = checked
-            .iter()
-            .filter_map(|set| set.species)
-            .find(|species| {
-                let data = self.species_rules(species);
-                !nums.insert(data.num)
-            })
-        {
-            problems.extend([
-                "You are limited to one of each Pokemon by Species Clause.".into(),
-                format!("(You have more than one {})", duplicate.base_species),
-            ]);
+        for super::Combination(rule, source, limit, bans) in &self.rules.complex_team_bans {
+            let limit = limit.unwrap_or(0) as usize;
+            let count: usize = bans
+                .iter()
+                .map(|ban| {
+                    let matches = checked.iter().filter(|s| s.facts.contains(ban)).count();
+                    if limit == 0 {
+                        usize::from(matches > 0)
+                    } else {
+                        matches
+                    }
+                })
+                .sum();
+            let clause = rule_suffix(source);
+            if limit > 0 && count > limit {
+                problems.push(format!("You are limited to {limit} of {rule}{clause}."));
+            } else if limit == 0 && count >= bans.len() {
+                problems.push(format!(
+                    "Your team has the combination of {rule}, which is banned{clause}."
+                ));
+            }
         }
-        let mut names = HashSet::new();
-        if let Some(duplicate) = checked
-            .iter()
-            .filter(|set| {
-                !set.nickname.is_empty()
-                    && set
-                        .species
-                        .is_some_and(|species| species.base_species != set.nickname)
-            })
-            .find(|set| !names.insert(set.nickname.as_str()))
-        {
-            problems.extend([
-                "Your Pokemon must have different nicknames.".into(),
-                format!("(You have more than one {})", duplicate.nickname),
-            ]);
-        }
-        if self.rules.item_limit > 0
-            && let Some(repeated) =
-                checked
-                    .iter()
-                    .filter(|set| !set.item_id.is_empty())
-                    .find(|set| {
-                        checked.iter().filter(|s| s.item_id == set.item_id).count()
-                            > usize::from(self.rules.item_limit)
-                    })
-        {
-            let limit = self.rules.item_limit;
-            problems.extend([
-                format!("You are limited to {limit} of each item by Item Clause."),
-                format!("(You have more than {limit} {})", repeated.item_label),
-            ]);
+        for rule in &self.format.rules {
+            match rule.as_str() {
+                "speciesclause" => {
+                    let mut nums = HashSet::new();
+                    if let Some(duplicate) = checked
+                        .iter()
+                        .filter_map(|s| s.species)
+                        .find(|species| !nums.insert(self.species_rules(species).num))
+                    {
+                        problems.extend([
+                            "You are limited to one of each Pokemon by Species Clause.".into(),
+                            format!("(You have more than one {})", duplicate.base_species),
+                        ]);
+                    }
+                }
+                "nicknameclause" => {
+                    let mut names = HashSet::new();
+                    if let Some(duplicate) = checked
+                        .iter()
+                        .filter(|set| {
+                            !set.nickname.is_empty()
+                                && set
+                                    .species
+                                    .is_some_and(|species| species.base_species != set.nickname)
+                        })
+                        .find(|set| !names.insert(set.nickname.as_str()))
+                    {
+                        problems.extend([
+                            "Your Pokemon must have different nicknames.".into(),
+                            format!("(You have more than one {})", duplicate.nickname),
+                        ]);
+                    }
+                }
+                "itemclause" if self.rules.item_limit > 0 => {
+                    let limit = self.rules.item_limit;
+                    let mut items = HashMap::new();
+                    for set in checked.iter().filter(|s| !s.item_id.is_empty()) {
+                        *items.entry(set.item_id.as_str()).or_insert(0) += 1;
+                    }
+                    if let Some(repeated) = checked
+                        .iter()
+                        .find(|s| items.get(s.item_id.as_str()).copied().unwrap_or(0) > limit)
+                    {
+                        problems.extend([
+                            format!("You are limited to {limit} of each item by Item Clause."),
+                            format!("(You have more than {limit} {})", repeated.item_label),
+                        ]);
+                    }
+                }
+                _ => {}
+            }
         }
         Ok((!problems.is_empty()).then_some(problems))
     }
@@ -203,6 +232,49 @@ impl TeamValidator {
                 format!("banned by {rule}")
             }
         })
+    }
+
+    fn species_ban(&self, species: &Species, tier: &Species, display: &str) -> Option<String> {
+        for forme in [species, tier] {
+            if let Some(reason) = self.ban_reason(&format!("pokemon:{}", to_id(&forme.name))) {
+                return Some(format!("{} is {reason}.", forme.name));
+            }
+        }
+        if let Some(reason) =
+            self.ban_reason(&format!("basepokemon:{}", to_id(&species.base_species)))
+        {
+            return Some(format!("{} is {reason}.", species.name));
+        }
+        let rules = self.species_rules(tier);
+        for tag in self
+            .format
+            .rules
+            .iter()
+            .rev()
+            .filter_map(|r| r.strip_prefix("-tag:"))
+        {
+            let label = match tag {
+                "ag" if matches!(rules.tier.as_str(), "AG" | "(AG)") => Some("AG"),
+                "uber" if matches!(rules.tier.as_str(), "Uber" | "AG" | "(AG)") => Some("Uber"),
+                "ou" if matches!(rules.tier.as_str(), "OU" | "(OU)") => Some("OU"),
+                "uubl" if rules.tier == "UUBL" => Some("UUBL"),
+                "duber" if matches!(rules.doubles_tier.as_deref(), Some("DUber" | "(DUber)")) => {
+                    Some("DUber")
+                }
+                _ => rules
+                    .tags
+                    .iter()
+                    .find(|label| to_id(label) == tag)
+                    .map(String::as_str),
+            };
+            if let Some(label) = label {
+                let reason = self.ban_reason(&format!("tag:{tag}")).unwrap();
+                return Some(format!("{display} is tagged {label}, which is {reason}."));
+            }
+        }
+        tier.is_nonstandard
+            .as_ref()
+            .map(|label| nonexistent(display, label))
     }
 
     fn check_set(&self, set: &Value) -> Result<CheckedSet, ValidationError> {
@@ -369,30 +441,28 @@ impl TeamValidator {
             .unwrap_or(species);
         let species_id = to_id(&species.name);
         let nature = to_id(string(set, "nature"));
-        if !nature.is_empty() && !DEX.has_nature(&nature) {
-            problems.push(format!("\"{nature}\" is an invalid nature."));
-        }
-        let species_rules = self.species_rules(tier_species);
         let display_species = if name == tier_species.name {
             name.clone()
         } else {
             format!("{name} ({})", tier_species.name)
         };
-        if let Some(reason) = self.ban_reason(&format!("pokemon:{species_id}")) {
-            problems.push(format!("{} is {reason}.", species.name));
-        } else if let Some(tag) = species_rules
-            .tags
-            .iter()
-            .find(|tag| self.ban_reason(&format!("tag:{}", to_id(tag))).is_some())
-        {
-            let reason = self.ban_reason(&format!("tag:{}", to_id(tag))).unwrap();
-            problems.push(format!(
-                "{display_species} is tagged {tag}, which is {reason}."
-            ));
-        } else if let Some(label) = &tier_species.is_nonstandard {
-            problems.push(nonexistent(&display_species, label));
+        if let Some(problem) = self.species_ban(species, tier_species, &display_species) {
+            problems.push(problem);
         }
-        if let Some(item) = item
+        if let Some(reason) = self.ban_reason(&format!(
+            "item:{}",
+            if item_id.is_empty() {
+                "noitem"
+            } else {
+                &item_id
+            }
+        )) {
+            if item_id.is_empty() {
+                problems.push(format!("{name} not holding an item is {reason}."));
+            } else {
+                problems.push(format!("{name}'s item {item_label} is {reason}."));
+            }
+        } else if let Some(item) = item
             && let Some(label) = &item.effect.is_nonstandard
         {
             problems.push(nonexistent(&format!("{name}'s item {item_label}"), label));
@@ -410,11 +480,16 @@ impl TeamValidator {
         if species.unreleased_hidden && species.abilities.get("H") == Some(&ability.name) {
             problems.push(format!("{display}'s Hidden Ability is unreleased."));
         }
-        if let Some(label) = &ability.is_nonstandard {
+        if let Some(reason) = self.ban_reason(&format!("ability:{}", to_id(&ability.name))) {
+            problems.push(format!("{name}'s ability {} is {reason}.", ability.name));
+        } else if let Some(label) = &ability.is_nonstandard {
             problems.push(nonexistent(
                 &format!("{name}'s ability {}", ability.name),
                 label,
             ));
+        }
+        if !nature.is_empty() && !DEX.has_nature(&nature) {
+            problems.push(format!("\"{nature}\" is an invalid nature."));
         }
         if moves.is_empty() {
             problems.push(format!(
@@ -463,6 +538,46 @@ impl TeamValidator {
                 }
             }
         }
+        let mut facts = Vec::new();
+        if !self.rules.complex_team_bans.is_empty() || !self.rules.complex_bans.is_empty() {
+            facts.extend([
+                format!("pokemon:{species_id}"),
+                format!("pokemon:{}", to_id(&tier_species.name)),
+                format!("basepokemon:{}", to_id(&species.base_species)),
+                format!("item:{item_id}"),
+                format!("ability:{}", to_id(&ability.name)),
+            ]);
+            facts.extend(moves.iter().map(|m| format!("move:{}", to_id(&m.name))));
+            facts.extend(species.types.iter().map(|ty| format!("type:{}", to_id(ty))));
+            let rules = self.species_rules(tier_species);
+            facts.push(format!("tag:{}", to_id(&rules.tier)));
+            facts.extend(
+                rules
+                    .doubles_tier
+                    .iter()
+                    .chain(&rules.tags)
+                    .map(|tag| format!("tag:{}", to_id(tag))),
+            );
+        }
+        for super::Combination(rule, source, limit, bans) in &self.rules.complex_bans {
+            let count = bans.iter().filter(|&ban| facts.contains(ban)).count();
+            let clause = rule_suffix(source);
+            let limit = limit.unwrap_or(0) as usize;
+            if limit > 0 && count > limit {
+                problems.push(format!(
+                    "{display} is limited to {limit} of {rule}{clause}."
+                ));
+            } else if limit == 0 && count >= bans.len() {
+                let reason = if source == "Obtainable Moves" {
+                    "impossible to obtain legitimately".into()
+                } else {
+                    format!("banned{clause}")
+                };
+                problems.push(format!(
+                    "{display} has the combination of {rule}, which is {reason}."
+                ));
+            }
+        }
         if let Some(other) = DEX
             .species(dex, &to_id(&name))
             .filter(|other| other.name.eq_ignore_ascii_case(&name))
@@ -493,6 +608,7 @@ impl TeamValidator {
             nickname: name,
             item_id,
             item_label,
+            facts,
         })
     }
 
@@ -659,6 +775,14 @@ impl TeamValidator {
             problems.push(format!("{name} has {total} total Stat Points, which is more than this format's limit of {cap}."));
         }
         Ok(())
+    }
+}
+
+fn rule_suffix(source: &str) -> String {
+    if source.is_empty() {
+        String::new()
+    } else {
+        format!(" by {source}")
     }
 }
 

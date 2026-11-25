@@ -31,7 +31,7 @@ fn champions_legality_uses_the_pinned_learnsets_and_regulation_table() {
 }
 
 #[test]
-fn flat_rules_ordinary_sets_and_teams_match_pinned_validation() {
+fn ordinary_competitive_sets_and_teams_match_pinned_validation() {
     let data: Value = serde_json::from_str(include_str!("fixtures/validation.json")).unwrap();
     assert_eq!(data["revision"], DEX.revision);
     let mut differences = Vec::new();

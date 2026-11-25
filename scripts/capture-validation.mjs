@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Oracle verdicts for ordinary BSS and VGC sets and roster construction.
+// Oracle verdicts for ordinary Champions sets and roster construction.
 import assert from 'node:assert/strict';
 import {readFileSync, writeFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
@@ -55,5 +55,48 @@ const fixtures = formats.flatMap(format => {
             expected: validator.validateTeam(structuredClone(team))})),
     ];
 });
+const ids = {
+    ou: 'gen9championsou', uu: 'gen9championsuu', draft: 'gen9championsdraft',
+    doubles: 'gen9championsdoubles', duu: 'gen9champions4v4doublesuu',
+    doublesDraft: 'gen9champions4v4doublesdraft',
+};
+const simple = (species, ability, moves, item = '') => ({species, ability, moves, item, nature: 'Hardy'});
+const leagueTeam = [
+    simple('Vaporeon', 'Water Absorb', ['Surf', 'Protect']),
+    simple('Snorlax', 'Thick Fat', ['Body Slam', 'Protect']),
+    simple('Umbreon', 'Synchronize', ['Foul Play', 'Protect']),
+    simple('Arcanine', 'Intimidate', ['Flare Blitz', 'Protect']),
+    simple('Clefable', 'Magic Guard', ['Gravity', 'Moonblast']),
+    simple('Gengar', 'Cursed Body', ['Shadow Ball', 'Sludge Bomb']),
+];
+const leagueCases = [
+    ['OU forbids direct sleep', ids.ou, 'set', base],
+    ['OU Uber tier', ids.ou, 'set', simple('Gholdengo','Good as Gold',['Make It Rain','Protect'])],
+    ['OU item ban', ids.ou, 'set', {...leagueTeam[0], item:'Damp Rock'}],
+    ['UU inherits OU ban source', ids.uu, 'set', {...leagueTeam[0], item:'Damp Rock'}],
+    ['UU OU tier', ids.uu, 'set', simple('Garchomp','Rough Skin',['Earthquake','Protect'])],
+    ['UU direct ability ban', ids.uu, 'set', simple('Ninetales','Drought',['Flamethrower','Protect'])],
+    ['Doubles DUber tier', ids.doubles, 'set', simple('Archaludon','Stamina',['Flash Cannon','Protect'])],
+    ['4v4 Doubles UU bans all forms of a base species', ids.duu, 'set', simple('Garchomp','Rough Skin',['Earthquake','Protect'])],
+    ['4v4 Doubles UU checks the held Mega Stone forme', ids.duu, 'set', simple('Charizard','Blaze',['Flamethrower'],'Charizardite Y')],
+    ['Draft permits Sleep Powder', ids.draft, 'set', base],
+    ['Doubles Draft uses Flat Rules', ids.doublesDraft, 'set', base],
+];
+for (const format of Object.values(ids)) {
+    leagueCases.push(['ordinary full roster', format, 'team', leagueTeam]);
+}
+for (const format of [ids.doubles, ids.duu, ids.doublesDraft]) {
+    leagueCases.push(['Gravity with accuracy-limited sleep on a separate teammate', format, 'team',
+        [...leagueTeam.slice(0, 5), {...leagueTeam[5], moves:['Hypnosis','Shadow Ball']}]]);
+}
+for (const format of [ids.ou, ids.draft]) {
+    leagueCases.push(['duplicate items and nicknames follow format clauses', format, 'team', leagueTeam.map((s,i) =>
+        ({...s, ...(i<2 && {name:'Twice'}), ...(i<4 && {item:i===0||i===3?'Leftovers':'Sitrus Berry'})}))]);
+}
+for (const [name, format, key, value] of leagueCases) {
+    const validator = new TeamValidator(format);
+    const method = key === 'set' ? 'validateSet' : 'validateTeam';
+    fixtures.push({name, format, [key]: value, expected: validator[method](structuredClone(value))});
+}
 writeFileSync(new URL('../tests/fixtures/validation.json', import.meta.url),
     JSON.stringify({revision, fixtures}, null, 2) + '\n');

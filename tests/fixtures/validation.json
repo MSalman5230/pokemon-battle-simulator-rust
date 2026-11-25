@@ -2408,6 +2408,961 @@
         "Your Pokemon must have different nicknames.",
         "(You have more than one Twice)"
       ]
+    },
+    {
+      "name": "OU forbids direct sleep",
+      "format": "gen9championsou",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur's move Sleep Powder is banned by Sleep Moves Clause."
+      ]
+    },
+    {
+      "name": "OU Uber tier",
+      "format": "gen9championsou",
+      "set": {
+        "species": "Gholdengo",
+        "ability": "Good as Gold",
+        "moves": [
+          "Make It Rain",
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Gholdengo is tagged Uber, which is banned."
+      ]
+    },
+    {
+      "name": "OU item ban",
+      "format": "gen9championsou",
+      "set": {
+        "species": "Vaporeon",
+        "ability": "Water Absorb",
+        "moves": [
+          "Surf",
+          "Protect"
+        ],
+        "item": "Damp Rock",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Vaporeon's item Damp Rock is banned."
+      ]
+    },
+    {
+      "name": "UU inherits OU ban source",
+      "format": "gen9championsuu",
+      "set": {
+        "species": "Vaporeon",
+        "ability": "Water Absorb",
+        "moves": [
+          "Surf",
+          "Protect"
+        ],
+        "item": "Damp Rock",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Vaporeon's item Damp Rock is banned by [Gen 9 Champions] OU."
+      ]
+    },
+    {
+      "name": "UU OU tier",
+      "format": "gen9championsuu",
+      "set": {
+        "species": "Garchomp",
+        "ability": "Rough Skin",
+        "moves": [
+          "Earthquake",
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Garchomp is tagged OU, which is banned."
+      ]
+    },
+    {
+      "name": "UU direct ability ban",
+      "format": "gen9championsuu",
+      "set": {
+        "species": "Ninetales",
+        "ability": "Drought",
+        "moves": [
+          "Flamethrower",
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Ninetales's ability Drought is banned."
+      ]
+    },
+    {
+      "name": "Doubles DUber tier",
+      "format": "gen9championsdoubles",
+      "set": {
+        "species": "Archaludon",
+        "ability": "Stamina",
+        "moves": [
+          "Flash Cannon",
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Archaludon is tagged DUber, which is banned."
+      ]
+    },
+    {
+      "name": "4v4 Doubles UU bans all forms of a base species",
+      "format": "gen9champions4v4doublesuu",
+      "set": {
+        "species": "Garchomp",
+        "ability": "Rough Skin",
+        "moves": [
+          "Earthquake",
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Garchomp is banned."
+      ]
+    },
+    {
+      "name": "4v4 Doubles UU checks the held Mega Stone forme",
+      "format": "gen9champions4v4doublesuu",
+      "set": {
+        "species": "Charizard",
+        "ability": "Blaze",
+        "moves": [
+          "Flamethrower"
+        ],
+        "item": "Charizardite Y",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Charizard-Mega-Y is banned."
+      ]
+    },
+    {
+      "name": "Draft permits Sleep Powder",
+      "format": "gen9championsdraft",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": null
+    },
+    {
+      "name": "Doubles Draft uses Flat Rules",
+      "format": "gen9champions4v4doublesdraft",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": null
+    },
+    {
+      "name": "ordinary full roster",
+      "format": "gen9championsou",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "ordinary full roster",
+      "format": "gen9championsuu",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": [
+        "Clefable is tagged OU, which is banned."
+      ]
+    },
+    {
+      "name": "ordinary full roster",
+      "format": "gen9championsdraft",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "ordinary full roster",
+      "format": "gen9championsdoubles",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "ordinary full roster",
+      "format": "gen9champions4v4doublesuu",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "ordinary full roster",
+      "format": "gen9champions4v4doublesdraft",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "Gravity with accuracy-limited sleep on a separate teammate",
+      "format": "gen9championsdoubles",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Hypnosis",
+            "Shadow Ball"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": [
+        "Your team has the combination of Gravity ++ Hypnosis, which is banned by Gravity Sleep Clause."
+      ]
+    },
+    {
+      "name": "Gravity with accuracy-limited sleep on a separate teammate",
+      "format": "gen9champions4v4doublesuu",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Hypnosis",
+            "Shadow Ball"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": [
+        "Your team has the combination of Gravity ++ Hypnosis, which is banned by Gravity Sleep Clause."
+      ]
+    },
+    {
+      "name": "Gravity with accuracy-limited sleep on a separate teammate",
+      "format": "gen9champions4v4doublesdraft",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Hypnosis",
+            "Shadow Ball"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "duplicate items and nicknames follow format clauses",
+      "format": "gen9championsou",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "Leftovers",
+          "nature": "Hardy",
+          "name": "Twice"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "Sitrus Berry",
+          "nature": "Hardy",
+          "name": "Twice"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "Sitrus Berry",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "Leftovers",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": [
+        "You are limited to 1 of each item by Item Clause.",
+        "(You have more than 1 Leftovers)",
+        "Your Pokemon must have different nicknames.",
+        "(You have more than one Twice)"
+      ]
+    },
+    {
+      "name": "duplicate items and nicknames follow format clauses",
+      "format": "gen9championsdraft",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "Leftovers",
+          "nature": "Hardy",
+          "name": "Twice"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "Sitrus Berry",
+          "nature": "Hardy",
+          "name": "Twice"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "Sitrus Berry",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "Leftovers",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": [
+        "Your Pokemon must have different nicknames.",
+        "(You have more than one Twice)"
+      ]
     }
   ]
 }
