@@ -571,6 +571,14 @@ const doublesFocusPunchRosters = [
     [named('Snorlax', ['Focus Punch']), named('Glaceon', ['Focus Punch'])],
     [named('Toxapex', ['Tackle']), named('Vaporeon', ['Recover'])],
 ];
+const reviveBenchRosters = [
+    [named('Electrode', ['Explosion', 'Tackle']), named('Pawmot', ['Revival Blessing', 'Tackle'])],
+    [named('Gengar', ['Recover']), named('Vaporeon', ['Recover'])],
+];
+const reviveActiveRosters = [
+    [named('Magikarp', ['Tackle']), named('Pawmot', ['Revival Blessing', 'Tackle'])],
+    [named('Jolteon', ['Thunderbolt']), named('Vaporeon', ['Protect', 'Water Gun'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -857,6 +865,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','move 3'], ['move 1','move 4']], focusPunchRosters, 'bss-focus-punch'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 1','move 1 2, move 1']],
         doublesFocusPunchRosters, 'vgc-focus-punch'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['switch 2',null],
+        ['move 1','move 1'], ['switch',null], ['switch 2','move 1']], reviveBenchRosters, 'bss-revive-bench'],
+    ['bssregmc', [['team 21','team 12'], ['move 1','move 1']], reviveBenchRosters, 'bss-revive-fails'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1','move 1 1, move 1'],
+        ['pass, switch 1',null]], reviveActiveRosters, 'vgc-revive-active'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

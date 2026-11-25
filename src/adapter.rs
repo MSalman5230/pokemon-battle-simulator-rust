@@ -248,8 +248,9 @@ impl Game {
         if battle.phase() == Phase::Move && battle.trapped_in_request(player, 0) {
             return out;
         }
+        let revive = battle.is_reviving(player, 0);
         for (party_slot, mon) in party.iter().enumerate().skip(1) {
-            if mon.hp == 0 {
+            if revive != (mon.hp == 0) {
                 continue;
             }
             let slot = mon.roster_index;
@@ -260,7 +261,7 @@ impl Game {
                 id,
                 choice.clone(),
                 json!({ "id":id,"kind":"switch","slot":slot,
-                "party_slot":party_slot,"revive":false,"species":species,"choice":choice }),
+                "party_slot":party_slot,"revive":revive,"species":species,"choice":choice }),
             ));
         }
         out

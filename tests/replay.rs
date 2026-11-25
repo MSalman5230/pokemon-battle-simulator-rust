@@ -710,3 +710,10 @@ fn focus_punch_prepares_in_speed_order_and_loses_no_pp_when_interrupted() {
     replay(include_str!("fixtures/bss-focus-punch.json"));
     replay(include_str!("fixtures/vgc-focus-punch.json"));
 }
+
+#[test]
+fn revival_blessing_selects_a_fainted_teammate_without_switching_the_user() {
+    replay(include_str!("fixtures/bss-revive-bench.json"));
+    replay(include_str!("fixtures/bss-revive-fails.json"));
+    replay(include_str!("fixtures/vgc-revive-active.json"));
+}

@@ -72,6 +72,9 @@ enum ActionKind {
         immediate: bool,
         pivot: Option<&'static str>,
     },
+    Revive {
+        party_slot: usize,
+    },
     RunSwitch,
     MegaEvolve,
     FocusPunchCharge,
@@ -96,6 +99,7 @@ impl Action {
                 immediate: true, ..
             } => 3,
             ActionKind::BeforeTurn => 4,
+            ActionKind::Revive { .. } => 6,
             ActionKind::RunSwitch => 101,
             ActionKind::Switch {
                 immediate: false, ..
@@ -267,6 +271,18 @@ impl Battle {
         details: bool,
         suffix: &str,
     ) {
+        let head = self.ident(target);
+        self.add_health_with_ident(event, target, &head, details, suffix);
+    }
+
+    fn add_health_with_ident(
+        &mut self,
+        event: &str,
+        target: Position,
+        ident: &str,
+        details: bool,
+        suffix: &str,
+    ) {
         let mon = self.mon(target);
         let condition = health(
             mon.hp,
@@ -274,7 +290,7 @@ impl Battle {
             mon.status.id(),
             self.format.report_exact_hp,
         );
-        let mut head = format!("|{event}|{}|", self.ident(target));
+        let mut head = format!("|{event}|{ident}|");
         if details {
             head.push_str(&self.displayed_details(target));
             head.push('|');
@@ -312,8 +328,16 @@ impl Battle {
         let bench = party[self.slots()..].iter().any(|p| !p.fainted);
         party[..self.slots()]
             .iter()
-            .map(|p| bench && (p.needs_replacement || p.pivot_move.is_some()))
+            .map(|p| p.reviving || bench && (p.needs_replacement || p.pivot_move.is_some()))
             .collect()
+    }
+
+    pub fn is_reviving(&self, player: Player, slot: usize) -> bool {
+        self.phase == Phase::Replace
+            && self
+                .party(player)
+                .and_then(|p| p.get(slot))
+                .is_some_and(|p| p.reviving)
     }
 
     pub(super) fn choose_action(
@@ -388,6 +412,9 @@ impl Battle {
             let mut queue = Vec::new();
             for p in Player::ALL {
                 for mut action in self.pending_actions[p.index()].take().unwrap_or_default() {
+                    if matches!(action.kind, ActionKind::Revive { .. }) {
+                        self.mon_mut(action.actor.unwrap()).reviving = false;
+                    }
                     if let ActionKind::Switch {
                         immediate: true, ..
                     } = action.kind
@@ -462,7 +489,7 @@ impl Battle {
         let party = self.party(player).unwrap();
         let replace = self.phase == Phase::Replace;
         let flags = self.force_switch(player);
-        let needed = flags
+        let mut needed = flags
             .iter()
             .filter(|&&x| x)
             .count()
@@ -490,6 +517,31 @@ impl Battle {
                     .ok_or(BattleError::Choice("incomplete choices"))?
             };
             auto |= matches!(choice, SlotChoice::Auto);
+            if replace && mon.reviving && matches!(choice, SlotChoice::Auto | SlotChoice::Switch(_))
+            {
+                let party_slot = match choice {
+                    SlotChoice::Switch(Some(i)) => i.get() - 1,
+                    _ => party
+                        .iter()
+                        .position(|p| p.fainted)
+                        .ok_or(BattleError::Choice("no fainted Pokémon to revive"))?,
+                };
+                let target =
+                    party
+                        .get(party_slot)
+                        .filter(|p| p.fainted)
+                        .ok_or(BattleError::Choice(
+                            "Revival Blessing requires a fainted Pokémon",
+                        ))?;
+                if party_slot < count
+                    && let Some(error) = target.entry_error()
+                {
+                    return Err(error);
+                }
+                needed = needed.saturating_sub(1);
+                actions.push(Action::new(Some(actor), ActionKind::Revive { party_slot }));
+                continue;
+            }
             let action = match choice {
                 SlotChoice::Auto if replace => {
                     if switched.count_ones() as usize == needed {
@@ -523,7 +575,7 @@ impl Battle {
                         pivot: mon.pivot_move,
                     }
                 }
-                SlotChoice::Pass if replace => continue,
+                SlotChoice::Pass if replace && !mon.reviving => continue,
                 SlotChoice::Move {
                     selection,
                     target,
@@ -851,6 +903,7 @@ impl Battle {
                     | "ragingbull"
                     | "focusenergy"
                     | "focuspunch"
+                    | "revivalblessing"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1064,10 +1117,11 @@ impl Battle {
         pivot: Option<&str>,
         drag: bool,
     ) {
-        if !self.mon(outgoing).fainted && pivot.is_none() && !drag {
+        let returning = outgoing.slot == bench_slot;
+        if !returning && !self.mon(outgoing).fainted && pivot.is_none() && !drag {
             self.each_event();
         }
-        if !self.mon(outgoing).fainted {
+        if !returning && !self.mon(outgoing).fainted {
             self.switch_out_ability(outgoing);
             self.end_ability(outgoing);
         }
@@ -1107,6 +1161,7 @@ impl Battle {
             party[outgoing.slot].times_attacked = 0;
         }
         party[outgoing.slot].needs_replacement = false;
+        party[outgoing.slot].reviving = false;
         party[outgoing.slot].speed = party[outgoing.slot].stats.spe as i32;
         party[outgoing.slot].pivot_move = None;
         party[outgoing.slot].illusion = None;
@@ -1162,13 +1217,46 @@ impl Battle {
                     bench_slot, pivot, ..
                 } => {
                     let outgoing = action.actor.unwrap();
-                    if pivot.is_some() {
+                    if pivot.is_some() || outgoing.slot == bench_slot {
                         queue.retain(|q| {
                             q.actor != Some(outgoing) || matches!(q.kind, ActionKind::RunSwitch)
                         });
                     }
                     self.switch_party_member(outgoing, bench_slot, pivot, false);
                     self.insert_run_switch(outgoing, &mut queue);
+                }
+                ActionKind::Revive { party_slot } => {
+                    let target = Position {
+                        slot: party_slot,
+                        player: action.actor.unwrap().player,
+                    };
+                    let returns_to_field = party_slot < self.slots();
+                    if returns_to_field {
+                        let mut reentry = Action::new(
+                            Some(target),
+                            ActionKind::Switch {
+                                bench_slot: party_slot,
+                                immediate: true,
+                                pivot: None,
+                            },
+                        );
+                        self.prioritize(&mut reentry);
+                        queue.push(reentry);
+                    }
+                    let mon = self.mon_mut(target);
+                    mon.fainted = false;
+                    mon.needs_replacement = false;
+                    mon.slept_by_foe = false;
+                    mon.status = Status::Healthy;
+                    mon.hp = (mon.max_hp.get() / 2).max(1);
+                    let ident = format!("{}: {}", target.player.id(), mon.name);
+                    self.add_health_with_ident(
+                        "-heal",
+                        target,
+                        &ident,
+                        false,
+                        "|[from] move: Revival Blessing",
+                    );
                 }
                 ActionKind::Move {
                     move_slot, target, ..
@@ -2258,6 +2346,18 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Revival Blessing" {
+            self.protean_prepare(source, move_type);
+            if self.party(source.player).unwrap().iter().any(|p| p.fainted) {
+                self.mon_mut(source).reviving = true;
+                self.each_event();
+                self.each_event();
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+            }
+            return true;
+        }
         if matches!(
             move_data.name.as_str(),
             "Protect" | "Detect" | "King's Shield"
@@ -3342,6 +3442,7 @@ impl Battle {
         mon.disguise_pending = false;
         mon.reset_ability();
         mon.pivot_move = None;
+        mon.reviving = false;
         mon.stall = None;
         mon.protection = None;
         mon.flinched = false;

@@ -67,3 +67,55 @@ fn invalid_joint_choice_does_not_advance_and_turn_cap_keeps_native_phase() {
             .is_none()
     );
 }
+
+#[test]
+fn revival_legal_actions_use_original_roster_slot_and_exclude_living_bench() {
+    let mut game = Game::new_prevalidated(
+        [
+            vec![
+                json!({"species":"Electrode","moves":["Explosion"]}),
+                json!({"species":"Pawmot","moves":["Revival Blessing","Tackle"]}),
+                json!({"species":"Vaporeon","moves":["Recover"]}),
+                json!({"species":"Umbreon","moves":["Recover"]}),
+                json!({"species":"Glaceon","moves":["Recover"]}),
+                json!({"species":"Espeon","moves":["Recover"]}),
+            ],
+            [
+                "Gengar", "Banette", "Sableye", "Vaporeon", "Scizor", "Umbreon",
+            ]
+            .into_iter()
+            .map(|species| json!({"species":species,"moves":["Recover"]}))
+            .collect(),
+        ],
+        Seed::Gen5([1, 2, 3, 4]),
+        8,
+        true,
+    )
+    .unwrap();
+    for choices in [
+        [Some(14), Some(14)],
+        [Some(0), Some(0)],
+        [Some(9), None],
+        [Some(0), Some(0)],
+    ] {
+        game.step(choices).unwrap();
+    }
+    let snapshot = to_value(game.result()).unwrap();
+    assert_eq!(snapshot["views"][0]["phase"], "switch");
+    assert_eq!(
+        snapshot["views"][0]["legal"],
+        json!([
+            {"id":8,"kind":"switch","slot":0,"party_slot":1,"revive":true,"species":"Electrode","choice":"switch 2"}
+        ])
+    );
+    game.step([Some(8), None]).unwrap();
+    let snapshot = to_value(game.result()).unwrap();
+    assert_eq!(snapshot["views"][0]["phase"], "move");
+    assert!(
+        snapshot["views"][0]["legal"]
+            .as_array()
+            .unwrap()
+            .iter()
+            .any(|row| row["id"] == 8 && row["revive"] == false)
+    );
+}

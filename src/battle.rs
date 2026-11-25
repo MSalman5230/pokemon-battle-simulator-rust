@@ -204,6 +204,7 @@ pub struct Pokemon {
     stall: Option<(u16, u8)>,
     fainted: bool,
     needs_replacement: bool,
+    reviving: bool,
     revealed_trap: bool,
     imprisoned: bool,
     choice_lock: Option<usize>,
@@ -418,7 +419,7 @@ impl Battle {
                     pokeball: &mon.pokeball,
                     ability: &mon.ability,
                     commanding: false,
-                    reviving: false,
+                    reviving: mon.reviving,
                 })
                 .collect(),
         })
@@ -812,6 +813,7 @@ impl Pokemon {
             stall: None,
             fainted: false,
             needs_replacement: false,
+            reviving: false,
             revealed_trap: false,
             imprisoned: false,
             choice_lock: None,
