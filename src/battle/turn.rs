@@ -3833,11 +3833,16 @@ impl Battle {
         }
         if move_data.name == "Rest" {
             let mon = self.mon(source);
-            if mon.hp == mon.max_hp.get() {
+            let ability = self.event_ability(source);
+            if matches!(mon.status, Status::Sleep(_)) || ability == "comatose" {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+            } else if mon.hp == mon.max_hp.get() {
                 self.add(format!("|-fail|{source_name}|heal"));
                 result.failed = true;
-            } else if matches!(mon.ability.as_str(), "insomnia" | "vitalspirit") {
-                let ability = if mon.ability == "insomnia" {
+            } else if matches!(ability, "insomnia" | "vitalspirit") {
+                let ability = if ability == "insomnia" {
                     "Insomnia"
                 } else {
                     "Vital Spirit"
@@ -5965,6 +5970,8 @@ impl Battle {
         }
         let original_source_hp = self.mon(source).hp;
         if !suppress_after_move
+            && !delayed
+            && self.drag_flags & source.mask() == 0
             && self.mon(source).effective_item() == "lifeorb"
             && self.active_effects(source)
         {
@@ -5973,7 +5980,7 @@ impl Battle {
                 self.mark_fainted(source);
             }
         }
-        if !suppress_after_move && hits_landed > 0 {
+        if !suppress_after_move && !delayed && hits_landed > 0 {
             self.magician_after_hit(source, &spread_targets);
         }
         self.emergency_exit(source, original_source_hp);

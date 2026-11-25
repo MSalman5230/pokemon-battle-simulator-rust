@@ -1086,6 +1086,10 @@ const sleepTalkRosters = [
     [named('Vaporeon', ['Sleep Talk', 'Water Gun', 'Solar Beam'])],
     [{...named('Mewtwo', ['Spore', 'Recover'], 'N'), ability:'Pressure'}],
 ];
+const sleepTalkRestRosters = [
+    [named('Snorlax', ['Sleep Talk', 'Rest'])],
+    [named('Vaporeon', ['Tackle'])],
+];
 const tormentRosters = [
     [named('Umbreon', ['Torment', 'Recover'])],
     [named('Vaporeon', ['Tackle', 'Water Gun'])],
@@ -1151,6 +1155,14 @@ const redCardRosters = [
 const guardDogCardRosters = [
     [{...named('Mabosstiff', ['Tackle']), ability:'Guard Dog'}, redCardRosters[0][1]],
     redCardRosters[1],
+];
+const lifeOrbCardRosters = [
+    [{...named('Garchomp', ['Stomping Tantrum']), item:'Life Orb'}, redCardRosters[0][1]],
+    redCardRosters[1],
+];
+const floettiteRosters = [
+    [{...named('Floette-Eternal', ['Tackle']), ability:'Flower Veil', item:'Floettite'}],
+    [named('Umbreon', ['Knock Off'])],
 ];
 const terrainSeedRosters = [
     [named('Vaporeon', ['Grassy Terrain', 'Psychic Terrain', 'Recover'])],
@@ -2219,6 +2231,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         shellSideArmRosters, 'bss-shell-side-arm'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'],
         ['move 1','move 2'], ['move 1','move 2']], sleepTalkRosters, 'bss-sleep-talk'],
+    ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1']],
+        sleepTalkRestRosters, 'bss-sleep-talk-rest'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 1']],
         tormentRosters, 'bss-torment'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1'],
@@ -2249,6 +2263,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         redCardRosters, 'bss-red-card'],
     ['bssregmc', [['team 12','team 1'], ['move 1','move 1']],
         guardDogCardRosters, 'bss-red-card-guard-dog'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1']],
+        lifeOrbCardRosters, 'bss-red-card-life-orb'],
+    ['bssregmc', [['team 1','team 1'], ['move 1 mega','move 1']],
+        floettiteRosters, 'bss-floettite-knock-off'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'],
         ['move 3','switch 2']], terrainSeedRosters, 'bss-terrain-seeds'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1'],

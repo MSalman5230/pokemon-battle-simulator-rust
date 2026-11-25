@@ -146,7 +146,9 @@ impl Pokemon {
 
     pub(super) fn can_transfer_item(&self, item: &crate::dex::Item) -> bool {
         !item.mega_stone.as_ref().is_some_and(|m| {
-            m.contains_key(&self.species.name) || m.contains_key(&self.species.base_species)
+            m.contains_key(&self.base_species.name)
+                || m.contains_key(&self.base_species.base_species)
+                || m.values().any(|forme| *forme == self.base_species.name)
         })
     }
 }

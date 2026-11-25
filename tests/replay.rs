@@ -1388,6 +1388,7 @@ fn shell_side_arm_uses_the_stronger_category_and_its_contact_rules() {
 #[test]
 fn sleep_talk_selects_eligible_moves_and_pressure_consumes_the_callers_pp() {
     replay(include_str!("fixtures/bss-sleep-talk.json"));
+    replay(include_str!("fixtures/bss-sleep-talk-rest.json"));
 }
 
 #[test]
@@ -1446,6 +1447,12 @@ fn stench_adds_a_flinch_roll_only_to_attacks_that_lack_one() {
 fn red_card_forces_a_switch_unless_the_attacker_cannot_be_dragged() {
     replay(include_str!("fixtures/bss-red-card.json"));
     replay(include_str!("fixtures/bss-red-card-guard-dog.json"));
+    replay(include_str!("fixtures/bss-red-card-life-orb.json"));
+}
+
+#[test]
+fn knocking_off_the_appropriate_mega_stone_does_not_get_a_boost() {
+    replay(include_str!("fixtures/bss-floettite-knock-off.json"));
 }
 
 #[test]
