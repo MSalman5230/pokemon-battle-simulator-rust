@@ -282,6 +282,75 @@ impl Battle {
         self.cure_with_berry(pos);
     }
 
+    pub(super) fn has_held_berry(&self, pos: Position) -> bool {
+        DEX.item(self.format.dex_mod, &self.mon(pos).item)
+            .is_some_and(|item| item.is_berry)
+    }
+
+    pub(super) fn force_eat_berry(&mut self, target: Position, source: Position) {
+        let id = &self.mon(target).item;
+        let Some(item) = DEX
+            .item(self.format.dex_mod, id)
+            .filter(|item| item.is_berry)
+        else {
+            return;
+        };
+        if self.mon(target).hp == 0 {
+            return;
+        }
+        let resisted = resistance_berry(id).is_some();
+        let id = id.clone();
+        let name = &item.effect.name;
+        // A forced meal skips TryEatItem, including the Ripen announcement
+        // and Unnerve, but still runs the berry's Eat and the EatItem hooks.
+        self.consume_with_reason(target, name, true, "|[eat]");
+        if !self.debug_ignored_item(target, "Eat") {
+            self.berry_effect(target, &id, item, Some(source));
+        }
+        self.after_eating_berry_from(target, name, false, Some(source));
+        if self.event_ability(target) == "ripen" {
+            self.mon_mut(target).ripen_pending = resisted;
+        }
+        self.symbiosis_after_item(target);
+    }
+
+    pub(super) fn corrode_item(&mut self, source: Position, target: Position) {
+        if let Some(item) = self.can_take_item(target) {
+            self.lose_held_item(target);
+            self.add(format!(
+                "|-enditem|{}|{item}|[from] move: Corrosive Gas|[of] {}",
+                self.ident(target),
+                self.ident(source)
+            ));
+        } else {
+            if !self.mon(target).item.is_empty()
+                && self.mon(target).hp != 0
+                && self.event_ability(target) == "stickyhold"
+            {
+                self.add(format!(
+                    "|-activate|{}|ability: Sticky Hold",
+                    self.ident(target)
+                ));
+            }
+            self.add(format!("|-fail|{}|move: Corrosive Gas", self.ident(target)));
+        }
+    }
+
+    pub(super) fn consume_normal_gem(&mut self, source: Position, move_name: &str) {
+        if self.mon(source).effective_item() == "normalgem" {
+            self.consume_with_reason(
+                source,
+                "Normal Gem",
+                false,
+                &format!("|[from] gem|[move] {move_name}"),
+            );
+            self.symbiosis_after_item(source);
+            let mon = self.mon_mut(source);
+            mon.gem_boost = true;
+            mon.track_volatile("gem");
+        }
+    }
+
     pub(super) fn cure_with_berry(&mut self, pos: Position) {
         let mon = self.mon(pos);
         if mon.hp == 0 || self.foe_unnerve(pos) {
@@ -765,13 +834,13 @@ impl Battle {
     }
 
     pub(super) fn consume(&mut self, pos: Position, item: &str, eaten: bool) {
+        if eaten && self.event_ability(pos) == "ripen" {
+            self.add(format!("|-activate|{}|ability: Ripen", self.ident(pos)));
+        }
         self.consume_with_reason(pos, item, eaten, if eaten { "|[eat]" } else { "" });
     }
 
     fn consume_with_reason(&mut self, pos: Position, item: &str, eaten: bool, reason: &str) {
-        if eaten && self.event_ability(pos) == "ripen" {
-            self.add(format!("|-activate|{}|ability: Ripen", self.ident(pos)));
-        }
         let id = self.lose_held_item(pos);
         // Air Balloon runs AfterUseItem directly without recording lastItem.
         if !id.is_empty() && id != "airballoon" {

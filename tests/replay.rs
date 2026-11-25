@@ -1601,6 +1601,22 @@ fn axe_kick_can_crash_against_protection() {
 }
 
 #[test]
+fn forced_berry_meals_update_effects_and_available_moves() {
+    replay(include_str!("fixtures/bss-stuff-cheeks.json"));
+    replay(include_str!("fixtures/bss-teatime.json"));
+}
+
+#[test]
+fn corrosive_gas_reports_item_loss_or_failure_per_target() {
+    replay(include_str!("fixtures/vgc-corrosive-gas.json"));
+}
+
+#[test]
+fn normal_gem_is_consumed_on_the_hit_and_boosts_damage_to_substitute() {
+    replay(include_str!("fixtures/bss-normal-gem.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

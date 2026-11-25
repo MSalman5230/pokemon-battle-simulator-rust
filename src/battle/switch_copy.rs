@@ -26,6 +26,7 @@ impl Pokemon {
                 "healblock" => self.heal_block = source.heal_block,
                 "octolock" => self.octolock = source.octolock,
                 "dragoncheer" => self.dragon_cheer = source.dragon_cheer,
+                "gem" => self.gem_boost = source.gem_boost,
                 "powertrick" => self.swap_attack_defense(),
                 "aquaring" | "ingrain" => {}
                 "roost" => self.roosted = source.roosted,

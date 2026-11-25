@@ -484,6 +484,10 @@ impl Battle {
                 "|debug|Supreme Overlord boost: {supreme_overlord}/4096"
             ));
         }
+        let gem_boost = self.mon(source).gem_boost;
+        if gem_boost && self.format.report_exact_hp {
+            self.add("|debug|Gem Boost");
+        }
         if move_data.ignore_defensive && self.format.report_exact_hp {
             self.add("|debug|Negating (sp)def boost/penalty.");
         }
@@ -640,6 +644,9 @@ impl Battle {
         }
         if rivalry != 4096 {
             power_modifier = chain(rivalry, power_modifier);
+        }
+        if gem_boost {
+            power_modifier = chain(power_modifier, 5325);
         }
         if analytic_last
             || ((sheer_force_removed || move_data.has_sheer_force_boost)

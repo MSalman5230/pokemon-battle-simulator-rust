@@ -1141,6 +1141,9 @@ impl Battle {
                     | "snore"
                     | "spite"
                     | "triattack"
+                    | "corrosivegas"
+                    | "stuffcheeks"
+                    | "teatime"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -1715,6 +1718,7 @@ impl Battle {
         party[outgoing.slot].stockpile = Default::default();
         party[outgoing.slot].magnet_rise = 0;
         party[outgoing.slot].dragon_cheer = 0;
+        party[outgoing.slot].gem_boost = false;
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -2294,6 +2298,7 @@ impl Battle {
             Opportunist,
             MagnetRise,
             Moody,
+            Gem,
         }
         self.add("|");
         self.update_speed();
@@ -2554,6 +2559,9 @@ impl Battle {
             if mon.flinched {
                 timers.push((pos, Effect::Flinch, priority(0, 2)));
             }
+            if mon.gem_boost {
+                timers.push((pos, Effect::Gem, priority(0, 2)));
+            }
             if mon.recharge != 0 {
                 timers.push((pos, Effect::Recharge, priority(0, 2)));
             }
@@ -2773,6 +2781,10 @@ impl Battle {
                 Effect::Pickup => self.pick_up_item(pos),
                 Effect::Opportunist => self.apply_pending_boost_copy(pos),
                 Effect::Moody => self.moody(pos),
+                Effect::Gem => {
+                    mon.gem_boost = false;
+                    mon.untrack_volatile("gem");
+                }
                 Effect::MagnetRise => {
                     mon.magnet_rise = mon.magnet_rise.saturating_sub(1);
                     if mon.magnet_rise == 0 {
@@ -3594,6 +3606,12 @@ impl Battle {
             result.failed = true;
             return true;
         }
+        if move_data.name == "Stuff Cheeks" && !self.has_held_berry(source) {
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
+            return true;
+        }
         if matches!(
             (move_data.name.as_str(), self.mon(source).stockpile.layers),
             ("Stockpile", 3) | ("Spit Up" | "Swallow", 0)
@@ -3733,6 +3751,40 @@ impl Battle {
                     self.add("|debug|move failed because it did nothing");
                 }
                 result.failed = true;
+            }
+            return true;
+        }
+        if move_data.name == "Teatime" {
+            self.protean_prepare(source, move_type);
+            let mut eaters = 0;
+            for target in self.positions() {
+                if self.mon(target).hp == 0 {
+                    continue;
+                }
+                if self.mon(target).semi_invulnerable()
+                    && !matches!(self.event_ability(target), "noguard")
+                    && self.event_ability(source) != "noguard"
+                {
+                    self.add(format!("|-miss|{source_name}|{}", self.ident(target)));
+                } else if self.event_ability(target) == "goodasgold" && target != source {
+                    self.add(format!(
+                        "|-immune|{}|[from] ability: Good as Gold",
+                        self.ident(target)
+                    ));
+                } else if self.has_held_berry(target) {
+                    eaters |= target.mask();
+                }
+            }
+            self.add("|-fieldactivate|move: Teatime");
+            if eaters == 0 {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}|move: Teatime"));
+            } else {
+                for target in self.positions() {
+                    if eaters & target.mask() != 0 {
+                        self.force_eat_berry(target, source);
+                    }
+                }
             }
             return true;
         }
@@ -5039,6 +5091,21 @@ impl Battle {
                         }
                     }
                 }
+                if move_data.name == "Corrosive Gas" {
+                    self.corrode_item(source, target);
+                    succeeded = true;
+                }
+                if move_data.name == "Stuff Cheeks"
+                    && self.boost_from(
+                        target,
+                        source,
+                        &[(BoostStat::Def, 2)],
+                        BoostOrigin::from_move(move_data),
+                    )
+                {
+                    self.force_eat_berry(target, source);
+                    succeeded = true;
+                }
                 if move_data.name == "Yawn" {
                     let mon = self.mon(target);
                     if mon.yawn.is_some()
@@ -5330,6 +5397,14 @@ impl Battle {
             } else {
                 spread_targets.as_slice()
             };
+            if !delayed
+                && move_type == "Normal"
+                && self.mon(source).item == "normalgem"
+                && !move_data.flags.contains_key("pledgecombo")
+                && strike_targets.iter().any(|&target| target != source)
+            {
+                self.consume_normal_gem(source, &move_data.name);
+            }
             if darts {
                 let target = self.ident(strike_targets[0]);
                 if hit == 1 {
@@ -6365,6 +6440,7 @@ impl Battle {
         mon.stockpile = Default::default();
         mon.magnet_rise = 0;
         mon.dragon_cheer = 0;
+        mon.gem_boost = false;
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
@@ -6970,6 +7046,7 @@ impl Pokemon {
                 | "quickclaw"
                 | "kingsrock"
                 | "razorfang"
+                | "normalgem"
                 | "lightball"
                 | "bindingband"
                 | "covertcloak"
