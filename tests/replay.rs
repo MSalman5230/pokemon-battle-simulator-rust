@@ -1881,6 +1881,13 @@ fn inherited_critical_and_heal_conditions_preserve_rolls_and_expiration() {
 }
 
 #[test]
+fn inherited_charged_attacks_retain_targets_and_consume_pp_once() {
+    replay(include_str!("fixtures/natdex-freeze-shock-and-z-move.json"));
+    replay(include_str!("fixtures/natdex-ice-burn-power-herb.json"));
+    replay(include_str!("fixtures/custom-razor-wind-charge.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

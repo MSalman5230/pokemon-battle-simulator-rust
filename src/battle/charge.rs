@@ -79,6 +79,9 @@ impl ChargeSpec {
             "Phantom Force" => ("phantomforce", None, None),
             "Shadow Force" => ("shadowforce", None, None),
             "Sky Attack" => ("skyattack", None, None),
+            "Freeze Shock" => ("freezeshock", None, None),
+            "Ice Burn" => ("iceburn", None, None),
+            "Razor Wind" => ("razorwind", None, None),
             _ => return None,
         };
         Some(Self {

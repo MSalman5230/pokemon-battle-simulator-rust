@@ -222,8 +222,11 @@ impl Battle {
     }
 
     pub(super) fn z_move_requests(&self, pos: Position) -> Option<Vec<serde_json::Value>> {
-        let crystal = self.z_crystal(pos)?;
         let mon = self.mon(pos);
+        if mon.hard_locked() {
+            return None;
+        }
+        let crystal = self.z_crystal(pos)?;
         if !mon
             .moves
             .iter()
