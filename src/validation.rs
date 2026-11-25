@@ -87,6 +87,9 @@ pub struct SpeciesRules {
     pub gender: Option<String>,
     pub evo_region: Option<String>,
     pub pokemon_go: Option<PokemonGo>,
+    pub can_gigantamax: Option<String>,
+    #[serde(default)]
+    pub gmax_unreleased: bool,
 }
 
 #[derive(Deserialize)]

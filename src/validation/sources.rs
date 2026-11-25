@@ -99,6 +99,12 @@ impl Default for SetSources {
 }
 
 impl SetSources {
+    pub(super) fn require(&mut self, source: ExactSource) {
+        self.pool.through = 0;
+        self.pool.exact.clear();
+        self.pool.add(source);
+    }
+
     pub(super) fn locked(&self) -> &[ExactSource] {
         if self.pool.through == 0 {
             &self.pool.exact

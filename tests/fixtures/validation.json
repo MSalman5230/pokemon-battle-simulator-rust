@@ -3011,6 +3011,85 @@
       "expected": null
     },
     {
+      "name": "legacy Gigantamax species spelling selects the eligible base form",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Charizard-Gmax",
+        "ability": "Blaze",
+        "moves": [
+          "Flamethrower"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "unused Dynamax level does not affect Champions legality",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Charizard",
+        "ability": "Blaze",
+        "moves": [
+          "Flamethrower"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "dynamaxLevel": 0
+      },
+      "expected": null
+    },
+    {
+      "name": "the legacy flag cannot claim an unavailable Gigantamax form",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Mewtwo",
+        "ability": "Pressure",
+        "moves": [
+          "Psychic"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "gigantamax": true
+      },
+      "expected": [
+        "Mewtwo cannot Gigantamax but is flagged as being able to."
+      ]
+    },
+    {
+      "name": "Gigantamax Melmetal is available as a gift",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Melmetal",
+        "ability": "Iron Fist",
+        "moves": [
+          "Double Iron Bash"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "gigantamax": true
+      },
+      "expected": null
+    },
+    {
+      "name": "Gigantamax Melmetal gift cannot be shiny",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Melmetal",
+        "ability": "Iron Fist",
+        "moves": [
+          "Double Iron Bash"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "gigantamax": true,
+        "shiny": true
+      },
+      "expected": [
+        "Melmetal must not be shiny because it has a move only available from an event."
+      ]
+    },
+    {
       "name": "plate determines Arceus forme",
       "format": "gen9championsnatdexdraft",
       "set": {

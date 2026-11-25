@@ -49,6 +49,7 @@ function project(dex, legacy = false) {
             changesFrom: s.changesFrom, requiredAbility: s.requiredAbility, requiredItems: s.requiredItems,
             requiredMove: s.requiredMove, evoLevel: s.evoLevel, canHatch: s.canHatch, mother: s.mother,
             prevo: s.prevo, nfe: s.nfe, eggGroups: s.eggGroups, parents,
+            canGigantamax: s.canGigantamax, gmaxUnreleased: s.gmaxUnreleased || undefined,
             ...(go && {pokemonGo: go}),
             ...(legacy && {natDexTier: s.natDexTier, gender: s.gender, evoRegion: s.evoRegion}),
         }];

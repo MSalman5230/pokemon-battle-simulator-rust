@@ -440,23 +440,47 @@ impl TeamValidator {
         self.natdex.is_some() && matches!(label, "Past" | "Unobtainable")
     }
 
-    fn species_ban(&self, species: &Species, tier: &Species, display: &str) -> Option<String> {
+    fn species_ban(
+        &self,
+        species: &Species,
+        tier: &Species,
+        display: &str,
+        gigantamax: bool,
+    ) -> Option<String> {
         let species = if matches!(tier.name.as_str(), "Zacian-Crowned" | "Zamazenta-Crowned") {
             tier
         } else {
             species
         };
+        let rules = self.species_rules(tier);
+        if gigantamax && rules.can_gigantamax.is_none() {
+            return Some(format!(
+                "{} cannot Gigantamax but is flagged as being able to.",
+                tier.name
+            ));
+        }
         for forme in [species, tier] {
             if let Some(reason) = self.ban_reason(&format!("pokemon:{}", to_id(&forme.name))) {
                 return Some(format!("{} is {reason}.", forme.name));
             }
+        }
+        if gigantamax
+            && (self
+                .ban_reason(&format!("pokemon:{}gmax", to_id(&tier.name)))
+                .is_some()
+                || self.ban_reason("tag:gigantamax").is_some())
+        {
+            let reason = self
+                .ban_reason(&format!("pokemon:{}gmax", to_id(&tier.name)))
+                .or_else(|| self.ban_reason("tag:gigantamax"))
+                .unwrap();
+            return Some(format!("Gigantamaxing {} is {reason}.", tier.name));
         }
         if let Some(reason) =
             self.ban_reason(&format!("basepokemon:{}", to_id(&species.base_species)))
         {
             return Some(format!("{} is {reason}.", species.name));
         }
-        let rules = self.species_rules(tier);
         for tag in self
             .format
             .rules
@@ -483,10 +507,15 @@ impl TeamValidator {
                 return Some(format!("{display} is tagged {label}, which is {reason}."));
             }
         }
-        tier.is_nonstandard
+        let nonstandard = tier
+            .is_nonstandard
             .as_ref()
             .filter(|label| !self.allows_nonstandard(label))
-            .map(|label| nonexistent(display, label))
+            .map(|label| nonexistent(display, label));
+        nonstandard.or_else(|| {
+            (gigantamax && rules.gmax_unreleased && self.ban_reason("tag:unobtainable").is_some())
+                .then(|| format!("{} is flagged as gigantamax, but it cannot gigantamax without hacking or glitches.", tier.name))
+        })
     }
 
     fn check_set(&self, set: &Value) -> Result<CheckedSet, ValidationError> {
@@ -495,11 +524,20 @@ impl TeamValidator {
         }
         let dex = self.format.dex_mod;
         let original_id = to_id(string(set, "species"));
-        let Some(original) = DEX.species(dex, &original_id) else {
+        let Some(mut original) = DEX.species(dex, &original_id) else {
             return Ok(CheckedSet::invalid(format!(
                 "The Pokemon \"{original_id}\" does not exist."
             )));
         };
+        let mut gigantamax = set["gigantamax"] == true;
+        let mut raw_name = string(set, "name");
+        if let Some(base) = original.name.strip_suffix("-Gmax") {
+            original = self.named_species(base);
+            gigantamax = true;
+            if raw_name.ends_with("-Gmax") {
+                raw_name = &original.base_species;
+            }
+        }
         let item_input = to_id(string(set, "item"));
         let item = DEX.item(dex, &item_input);
         if !item_input.is_empty() && item.is_none() {
@@ -537,17 +575,7 @@ impl TeamValidator {
             };
             moves.push(data);
         }
-        if set["gigantamax"] == true
-            || original_id.ends_with("gmax")
-            || !set["dynamaxLevel"].is_null()
-        {
-            return Err(ValidationError(format!(
-                "special set options for {}",
-                original.name
-            )));
-        }
         let mut problems = Vec::new();
-        let raw_name = string(set, "name");
         let mut name = nickname(raw_name);
         if name.is_empty() {
             name.clone_from(&original.base_species);
@@ -611,7 +639,8 @@ impl TeamValidator {
         } else {
             format!("{name} ({})", tier_species.name)
         };
-        if let Some(problem) = self.species_ban(species, tier_species, &display_species) {
+        if let Some(problem) = self.species_ban(species, tier_species, &display_species, gigantamax)
+        {
             problems.push(problem);
         }
         if let Some(reason) = self.ban_reason(&format!(
@@ -665,6 +694,18 @@ impl TeamValidator {
             ));
         }
         let mut sources = SetSources::default();
+        if gigantamax
+            && species_id == "melmetal"
+            && LEGALITY
+                .learnset(dex, &species_id)
+                .is_some_and(|learnset| learnset.events.is_some())
+        {
+            sources.require(ExactSource::Event {
+                generation: 8,
+                species: "melmetal",
+                index: 0,
+            });
+        }
         if moves.len() > self.format.max_move_count {
             problems.push(format!(
                 "{display} has {} moves, which is more than the limit of {}.",
@@ -804,6 +845,12 @@ impl TeamValidator {
                 format!("ability:{}", to_id(&ability.name)),
             ]);
             facts.extend(moves.iter().map(|m| format!("move:{}", move_id(m))));
+            if gigantamax && self.species_rules(tier_species).can_gigantamax.is_some() {
+                facts.extend([
+                    format!("pokemon:{}gmax", to_id(&tier_species.name)),
+                    "tag:gigantamax".into(),
+                ]);
+            }
             facts.extend(species.types.iter().map(|ty| format!("type:{}", to_id(ty))));
             let rules = self.species_rules(tier_species);
             facts.push(format!("tag:{}", to_id(&rules.tier)));
