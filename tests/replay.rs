@@ -635,3 +635,18 @@ fn bss_rapid_spin_requires_a_hit_and_clears_leech_seed_and_entry_hazards() {
 fn bss_status_phazing_respects_suction_cups_and_roar_respects_soundproof() {
     replay(include_str!("fixtures/bss-status-drag.json"));
 }
+
+#[test]
+fn vgc_damp_blocks_explosion_without_sacrificing_the_user() {
+    replay(include_str!("fixtures/vgc-damp.json"));
+}
+
+#[test]
+fn bss_aftermath_damages_the_contact_attacker_before_faint_resolution() {
+    replay(include_str!("fixtures/bss-aftermath.json"));
+}
+
+#[test]
+fn vgc_damp_on_the_attackers_partner_prevents_aftermath() {
+    replay(include_str!("fixtures/vgc-damp-aftermath.json"));
+}

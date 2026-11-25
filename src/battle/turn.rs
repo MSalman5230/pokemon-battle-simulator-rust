@@ -829,6 +829,10 @@ impl Battle {
                     | "rapidspin"
                     | "whirlwind"
                     | "roar"
+                    | "explosion"
+                    | "selfdestruct"
+                    | "mistyexplosion"
+                    | "mindblown"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1966,7 +1970,12 @@ impl Battle {
                 self.ident(redirect)
             );
         }
-        if spread_targets.is_empty() {
+        let sacrifice = matches!(
+            move_data.name.as_str(),
+            "Explosion" | "Self-Destruct" | "Misty Explosion"
+        );
+        let mind_blown = move_data.name == "Mind Blown";
+        if spread_targets.is_empty() && !sacrifice && !mind_blown {
             self.log[base].public.push_str("|[notarget]");
             self.add(format!("|-fail|{source_name}"));
             return true;
@@ -1991,6 +2000,31 @@ impl Battle {
             self.mon_mut(source).moves[slot].pp = self.mon(source).moves[slot]
                 .pp
                 .saturating_sub(pressure_targets as u8);
+        }
+        let damp = self.damp_holder("TryMove", sacrifice || mind_blown);
+        if sacrifice || mind_blown {
+            if let Some(holder) = damp {
+                self.move_still(base);
+                self.add(format!(
+                    "|cant|{}|ability: Damp|{}|[of] {source_name}",
+                    self.ident(holder),
+                    move_data.name
+                ));
+                return true;
+            }
+            if sacrifice {
+                // The user is queued to faint before any target, but its
+                // faint log and cleanup happen after damage is applied.
+                self.mon_mut(source).hp = 0;
+            }
+            if spread_targets.is_empty() {
+                self.log[base].public.push_str("|[notarget]");
+                self.add(format!("|-fail|{source_name}"));
+                if sacrifice {
+                    self.mark_fainted(source);
+                }
+                return true;
+            }
         }
         if let Some(spec) = charge_spec {
             if releasing_charge {
@@ -2487,6 +2521,14 @@ impl Battle {
                     self.mark_fainted(source);
                 }
             }
+            if sacrifice {
+                self.mark_fainted(source);
+            } else if mind_blown {
+                self.mind_blown_recoil(source);
+                if self.mon(source).hp == 0 {
+                    self.mark_fainted(source);
+                }
+            }
             return true;
         }
 
@@ -2744,7 +2786,7 @@ impl Battle {
         let mut total = 0;
         let mut hits_landed = 0;
         for hit in 1..=max_hits {
-            if self.mon(source).hp == 0
+            if (self.mon(source).hp == 0 && !sacrifice)
                 || spread_targets
                     .iter()
                     .all(|&target| self.mon(target).hp == 0)
@@ -2840,6 +2882,12 @@ impl Battle {
                 let terrain_power =
                     self.terrain_power_modifier(source, target, move_data, move_type);
                 let dry_skin = move_type == "Fire" && self.event_ability(target) == "dryskin";
+                let misty_explosion = move_data.name == "Misty Explosion"
+                    && self.terrain() == Some(Terrain::Misty)
+                    && self.grounded(source);
+                if misty_explosion && self.format.report_exact_hp {
+                    self.add("|debug|misty terrain boost");
+                }
                 let purifying_salt =
                     move_type == "Ghost" && self.event_ability(target) == "purifyingsalt";
                 let flash_fire = move_type == "Fire"
@@ -2937,6 +2985,9 @@ impl Battle {
                 }
                 if dry_skin {
                     power_modifier = crate::mechanics::chain(5120, power_modifier);
+                }
+                if misty_explosion {
+                    power_modifier = crate::mechanics::chain(6144, power_modifier);
                 }
                 if move_data.name == "Knock Off"
                     && mon.transferable_item(self.format.dex_mod).is_some()
@@ -3126,6 +3177,11 @@ impl Battle {
             }
             if move_data.flags.contains_key("contact") {
                 for &(target, _) in &damage {
+                    if self.mon(target).ability == "aftermath" {
+                        self.aftermath(target, source);
+                    }
+                }
+                for &(target, _) in &damage {
                     if self.mon(target).ability == "roughskin" {
                         if self.mon(source).hp > 0 && self.mon(source).ability == "magicguard" {
                             self.add(format!(
@@ -3220,6 +3276,9 @@ impl Battle {
             self.each_event();
             hits_landed += 1;
         }
+        if sacrifice {
+            self.mark_fainted(source);
+        }
         let mut fainted = 0;
         for (target, direct_damage) in damage {
             if self.mon(target).hp == 0 {
@@ -3248,7 +3307,9 @@ impl Battle {
             }
         }
         if self.mon(source).hp == 0 {
-            self.mark_fainted(source);
+            if !self.mon(source).fainted {
+                self.mark_fainted(source);
+            }
             self.check_win();
         }
         if ohko && self.mon(spread_targets[0]).hp == 0 {
@@ -3290,6 +3351,9 @@ impl Battle {
                 },
             );
         }
+        if mind_blown && total > 0 {
+            self.mind_blown_recoil(source);
+        }
         self.each_event();
         if hits_landed > 0 && !move_data.after_hit_boosts.is_empty() {
             self.boost(source, &move_data.after_hit_boosts, true);
@@ -3322,6 +3386,14 @@ impl Battle {
                 .push_str(&format!("|[spread] {}", labels.join(",")));
         }
         true
+    }
+
+    fn mind_blown_recoil(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        if mon.hp != 0 && mon.ability != "magicguard" {
+            mon.hp = mon.hp.saturating_sub(mon.max_hp.get().div_ceil(2));
+            self.add_health_line_with("-damage", pos, false, "|[from] mindblown");
+        }
     }
 
     pub(super) fn mark_fainted(&mut self, target: Position) {
@@ -3636,6 +3708,8 @@ impl Pokemon {
                 | "reckless"
                 | "purifyingsalt"
                 | "disguise"
+                | "damp"
+                | "aftermath"
         )
     }
 

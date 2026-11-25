@@ -514,6 +514,20 @@ const statusDragRosters = [
     [{...named('Octillery', ['Recover']), ability: 'Suction Cups'},
         {...named('Mr. Mime', ['Recover']), ability: 'Soundproof'}, named('Glaceon', ['Recover'])],
 ];
+const dampRosters = [
+    [{...named('Golem', ['Explosion', 'Misty Explosion', 'Mind Blown']), ability: 'Sturdy'},
+        named('Flareon', ['Tackle', 'Protect']), named('Glaceon', ['Recover'])],
+    [{...named('Swampert', ['Recover']), ability: 'Damp'}, named('Gengar', ['Recover']), named('Umbreon', ['Recover'])],
+];
+const aftermathRosters = [
+    [{...named('Machamp', ['High Horsepower', 'Recover']), item: 'Choice Band', evs: {atk: 32}, nature: 'Adamant'},
+        named('Glaceon', ['Recover'])],
+    [{...named('Stunky', ['Recover']), ability: 'Aftermath'}, named('Umbreon', ['Recover'])],
+];
+const dampAftermathRosters = [
+    [aftermathRosters[0][0], {...named('Golduck', ['Recover']), ability: 'Damp'}],
+    [aftermathRosters[1][0], named('Vaporeon', ['Recover']), aftermathRosters[1][1]],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -768,6 +782,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','move 4'], ['move 1','switch 2'], ['move 1','switch 2']], spinRosters, 'bss-rapid-spin'],
     ['bssregmc', [['team 12','team 123'], ['move 1','move 1'], ['move 2','switch 2'], ['move 1','move 1']],
         statusDragRosters, 'bss-status-drag'],
+    ['vgc2026regmc', [['team 123','team 123'], ['move 1, move 1 1','move 1, move 1'],
+        ['move 3, move 2','switch 3, move 1'], ['move 1, move 1 1','move 1, move 1']],
+        dampRosters, 'vgc-damp'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1']], aftermathRosters, 'bss-aftermath'],
+    ['vgc2026regmc', [['team 12','team 123'], ['move 1 1, move 1','move 1, move 1']],
+        dampAftermathRosters, 'vgc-damp-aftermath'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

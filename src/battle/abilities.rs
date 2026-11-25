@@ -132,6 +132,48 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn damp_holder(&mut self, event: &str, interrupts: bool) -> Option<Position> {
+        let mut holders = [(
+            Position {
+                player: Player::P1,
+                slot: 0,
+            },
+            0,
+        ); 4];
+        let mut count = 0;
+        for pos in self.positions() {
+            let mon = self.mon(pos);
+            if mon.hp > 0 && mon.ability == "damp" {
+                holders[count] = (pos, mon.speed);
+                count += 1;
+            }
+        }
+        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for &(pos, _) in &holders[..count] {
+            if self.ability_suppressed(pos) {
+                if self.format.report_exact_hp {
+                    self.add(format!("|debug|{event} handler suppressed by Mold Breaker"));
+                }
+            } else if interrupts {
+                return Some(pos);
+            }
+        }
+        None
+    }
+
+    pub(super) fn aftermath(&mut self, target: Position, source: Position) {
+        if self.mon(target).hp == 0
+            && self.mon(source).hp > 0
+            && self.damp_holder("Damage", true).is_none()
+        {
+            self.indirect_damage(
+                source,
+                4,
+                &format!("|[from] ability: Aftermath|[of] {}", self.ident(target)),
+            );
+        }
+    }
+
     pub(super) fn switch_out_ability(&mut self, pos: Position) {
         match self.event_ability(pos) {
             "naturalcure" => {
