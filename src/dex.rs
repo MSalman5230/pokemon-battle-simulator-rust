@@ -142,10 +142,18 @@ pub struct Species {
     pub has_condition: bool,
     #[serde(default)]
     pub can_evolve: bool,
+    pub move_mega: Option<MoveMega>,
     #[serde(default)]
     pub transformed_z_restricted: bool,
     pub unreleased_hidden: bool,
     pub packed_ability_slots: Option<Table<String>>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MoveMega {
+    pub target: String,
+    pub move_id: String,
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Deserialize)]

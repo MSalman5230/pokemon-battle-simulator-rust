@@ -3401,9 +3401,16 @@ impl Battle {
         } else {
             self.mon(source).personal_weather(weather)
         };
-        let z_weather = (z_powered && base_data.name == "Weather Ball")
-            .then(|| move_weather.map(Weather::ball_type))
-            .flatten();
+        let ball_weather = if base_data.name == "Weather Ball" {
+            move_weather.filter(|w| *w != Weather::StrongWinds)
+        } else {
+            None
+        };
+        let z_weather = if z_powered {
+            ball_weather.map(Weather::ball_type)
+        } else {
+            None
+        };
         let mut move_data = if z_powered {
             self.z_active_move(source, base_data, z_weather)
         } else {
@@ -3487,7 +3494,7 @@ impl Battle {
         };
         let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
         let power = match move_data.name.as_str() {
-            "Weather Ball" if move_weather.is_some() => move_data.base_power * 2,
+            "Weather Ball" if ball_weather.is_some() => move_data.base_power * 2,
             "Terrain Pulse" if terrain_pulse.is_some() => move_data.base_power * 2,
             "Stored Power" | "Power Trip" => {
                 move_data.base_power + self.mon(source).boosts.positive() * 20
@@ -4449,9 +4456,16 @@ impl Battle {
         if let Some(weather) = Weather::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !self.set_weather(source, weather, None) {
-                self.move_still(base);
-                self.add(format!("|-fail|{source_name}"));
-                result.failed = true;
+                if let Some(lock) = self.weather_lock(weather) {
+                    self.add(format!(
+                        "|-fail|{source_name}|{}|[from] {lock}",
+                        move_data.name
+                    ));
+                } else {
+                    self.move_still(base);
+                    self.add(format!("|-fail|{source_name}"));
+                    result.failed = true;
+                }
             }
             return true;
         }
@@ -5919,8 +5933,8 @@ impl Battle {
                     }
                     let fraction = match move_weather {
                         Some(Weather::Sun) => 2732,
+                        None | Some(Weather::StrongWinds) => 2048,
                         Some(_) => 1024,
-                        None => 2048,
                     };
                     let tr = self.stat_rules.truncation;
                     let mon = self.mon_mut(target);
@@ -6310,6 +6324,9 @@ impl Battle {
                         .effectiveness_of(move_data, move_type, target, ignores_type)
                         .unwrap()
                 };
+                if !disguised && battle.delta_stream_weakens(target, move_type) {
+                    battle.add("|-fieldactivate|Delta Stream");
+                }
                 let mut power = battle.situational_base_power(source, target, move_data, power);
                 if matches!(move_data.name.as_str(), "Hex" | "Infernal Parade")
                     && (battle.mon(target).status != Status::Healthy
@@ -7531,6 +7548,10 @@ impl Battle {
             }
             let types = &DEX.type_data(&to_id(typing)).unwrap().damage_taken;
             match types.get(move_type) {
+                Some(1)
+                    if typing == "Flying"
+                        && self.weather() == Some(Weather::StrongWinds)
+                        && self.effective_weather() == Some(Weather::StrongWinds) => {}
                 Some(1) => modifier += 1,
                 Some(2) => modifier -= 1,
                 Some(3)
@@ -7552,6 +7573,13 @@ impl Battle {
             }
         }
         Some(modifier)
+    }
+
+    fn delta_stream_weakens(&self, target: Position, move_type: &str) -> bool {
+        self.weather() == Some(Weather::StrongWinds)
+            && self.mon(target).has_type("Flying")
+            && self.effective_weather() == Some(Weather::StrongWinds)
+            && DEX.type_data("flying").unwrap().damage_taken.get(move_type) == Some(&1)
     }
 }
 
@@ -7853,6 +7881,7 @@ impl Pokemon {
                 | "lightmetal"
                 | "cloudnine"
                 | "airlock"
+                | "deltastream"
                 | "stancechange"
                 | "magicbounce"
                 | "naturalcure"

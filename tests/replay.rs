@@ -1826,6 +1826,11 @@ fn legacy_signature_z_attacks_apply_their_inherited_damage_and_field_hooks() {
 }
 
 #[test]
+fn national_dex_rayquaza_mega_evolves_by_move_and_starts_delta_stream() {
+    replay(include_str!("fixtures/natdex-rayquaza-delta-stream.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

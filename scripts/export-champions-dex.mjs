@@ -76,11 +76,13 @@ const data = mod => {
     return {
         species: table(speciesIncludingCosmetics(dex), e => {
             const packedSlots = Dex.species.get(e.name).abilities;
+            const altForme = e.otherFormes?.[0] && dex.species.get(e.otherFormes[0]);
             return {
             ...props(e, ['name', 'baseSpecies', 'types', 'baseStats', 'weighthg', 'gender', 'abilities',
                 'isNonstandard', 'maxHP', 'requiredItem']),
             hasCondition: dex.conditions.getByID(e.id).exists,
             canEvolve: !!e.nfe || undefined,
+            moveMega: altForme?.isMega && altForme.requiredMove ? {target:altForme.id, moveId:Dex.toID(altForme.requiredMove)} : undefined,
             transformedZRestricted: (e.isMega || e.isPrimal || e.forme === 'Ultra') || undefined,
             unreleasedHidden: !!e.unreleasedHidden,
             packedAbilitySlots: JSON.stringify(packedSlots) === JSON.stringify(e.abilities) ? undefined : packedSlots,

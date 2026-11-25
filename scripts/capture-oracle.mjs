@@ -1567,6 +1567,11 @@ const customUltraAndMegaRosters = [
     [customZUltraRosters[0][0], {...named('Charizard', ['Protect']), item:'Charizardite X', ability:'Blaze'}],
     customZSoulblazeRosters[1],
 ];
+const natDexRayquazaRosters = [
+    [{...named('Rayquaza', ['Dragon Ascent', 'Protect', 'Weather Ball']), ability:'Air Lock', item:'Leftovers'},
+        named('Eevee', ['Tackle'])],
+    [named('Vaporeon', ['Ice Beam', 'Recover', 'Rain Dance'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2844,6 +2849,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         customZUltraRosters, 'custom-z-ultra'],
     ['doublescustomgame', [['team 12','team 12'], ['move 2 ultra, move 1 mega','move 1, move 1']],
         customUltraAndMegaRosters, 'custom-ultra-and-mega'],
+    ['natdexdraft', [['team 12','team 1'], ['move 2 mega','move 3'], ['move 3','move 1'], ['switch 2','move 2']],
+        natDexRayquazaRosters, 'natdex-rayquaza-delta-stream'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -10,6 +10,7 @@ pub enum Weather {
     Sand,
     Snow,
     Hail,
+    StrongWinds,
 }
 
 impl Weather {
@@ -20,6 +21,7 @@ impl Weather {
             Self::Sand => "Sandstorm",
             Self::Snow => "Snowscape",
             Self::Hail => "Hail",
+            Self::StrongWinds => "DeltaStream",
         }
     }
 
@@ -29,6 +31,7 @@ impl Weather {
             Self::Sun => "heatrock",
             Self::Sand => "smoothrock",
             Self::Snow | Self::Hail => "icyrock",
+            Self::StrongWinds => "",
         }
     }
 
@@ -57,6 +60,14 @@ impl Weather {
             Self::Sun => "Fire",
             Self::Sand => "Rock",
             Self::Snow | Self::Hail => "Ice",
+            Self::StrongWinds => "Normal",
+        }
+    }
+
+    fn permanent_ability(self) -> Option<&'static str> {
+        match self {
+            Self::StrongWinds => Some("deltastream"),
+            _ => None,
         }
     }
 }
@@ -112,6 +123,22 @@ impl Battle {
     }
 
     pub(super) fn weather_ability_changed(&mut self, pos: Position, ending: bool) {
+        if ending
+            && self.strong_weather_source == Some((pos.player, self.mon(pos).roster_index))
+            && let Some(ability) = self.weather().and_then(Weather::permanent_ability)
+            && self.mon(pos).ability == ability
+        {
+            self.strong_weather_source = self
+                .positions()
+                .filter(|&other| other != pos)
+                .find(|&other| self.mon(other).hp > 0 && self.event_ability(other) == ability)
+                .map(|other| (other.player, self.mon(other).roster_index));
+            if self.strong_weather_source.is_none() {
+                self.weather = None;
+                self.add("|-weather|none");
+                self.weather_change_event(None);
+            }
+        }
         if self.weather_suppressor(pos).is_some() {
             self.weather_change_event(ending.then_some(pos));
         }
@@ -138,6 +165,7 @@ impl Battle {
             "drought" => (Weather::Sun, "Drought"),
             "sandstream" => (Weather::Sand, "Sand Stream"),
             "snowwarning" => (Weather::Snow, "Snow Warning"),
+            "deltastream" => (Weather::StrongWinds, "Delta Stream"),
             _ => return,
         };
         self.set_weather(pos, weather, Some(label));
@@ -152,12 +180,25 @@ impl Battle {
         if self.weather() == Some(weather) {
             return false;
         }
-        let duration = if self.mon(pos).effective_item() == weather.rock() {
+        let strong = weather.permanent_ability().is_some();
+        if let Some(lock) = self.weather_lock(weather) {
+            if let Some(label) = ability {
+                self.add(format!(
+                    "|-ability|{}|{label}|[from] {lock}|[fail]",
+                    self.ident(pos)
+                ));
+            }
+            return false;
+        }
+        let duration = if strong {
+            0
+        } else if self.mon(pos).effective_item() == weather.rock() {
             8
         } else {
             5
         };
         self.weather = Some((weather, duration));
+        self.strong_weather_source = strong.then(|| (pos.player, self.mon(pos).roster_index));
         let reason = ability.map_or_else(String::new, |label| {
             format!("|[from] ability: {label}|[of] {}", self.ident(pos))
         });
@@ -166,17 +207,25 @@ impl Battle {
         true
     }
 
+    pub(super) fn weather_lock(&self, proposed: Weather) -> Option<&'static str> {
+        if self.strong_weather_source.is_some() && proposed.permanent_ability().is_none() {
+            self.weather().and_then(Weather::permanent_ability)
+        } else {
+            None
+        }
+    }
+
     pub(super) fn weather_residual(&mut self) {
         let Some((weather, turns)) = self.weather else {
             return;
         };
-        if turns <= 1 {
+        if turns <= 1 && weather.permanent_ability().is_none() {
             self.weather = None;
             self.add("|-weather|none");
             self.weather_change_event(None);
             return;
         }
-        self.weather = Some((weather, turns - 1));
+        self.weather = Some((weather, turns.saturating_sub(1)));
         self.add(format!("|-weather|{}|[upkeep]", weather.label()));
         if self.weather_suppressed() {
             return;

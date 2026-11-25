@@ -11,8 +11,20 @@ impl Battle {
 
     fn mega_species(&self, pos: Position) -> Option<&'static Species> {
         let mon = self.mon(pos);
-        let item = DEX.item(self.format.dex_mod, &mon.item)?;
-        let target = item.mega_stone.as_ref()?.get(&mon.base_species.name)?;
+        let item = DEX.item(self.format.dex_mod, &mon.item);
+        if let Some(evolution) = &mon.base_species.move_mega
+            && item.is_none_or(|item| item.z_move.is_none())
+            && (self.format.has_rule("+tag:past") || self.format.has_rule("+tag:future"))
+            && mon
+                .transformed
+                .as_ref()
+                .map_or(&mon.moves, |state| &state.original_moves)
+                .iter()
+                .any(|slot| slot.id == evolution.move_id)
+        {
+            return DEX.species(self.format.dex_mod, &evolution.target);
+        }
+        let target = item?.mega_stone.as_ref()?.get(&mon.base_species.name)?;
         DEX.species(self.format.dex_mod, &to_id(target))
     }
 
