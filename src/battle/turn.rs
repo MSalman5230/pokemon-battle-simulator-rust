@@ -47,6 +47,7 @@ pub(super) struct Action {
 }
 
 const STRUGGLE_SLOT: usize = usize::MAX;
+const RECHARGE_SLOT: usize = usize::MAX - 1;
 
 impl Action {
     fn new(actor: Option<Position>, kind: ActionKind) -> Self {
@@ -77,6 +78,12 @@ impl Action {
 impl Battle {
     pub fn turn(&self) -> u32 {
         self.turn
+    }
+
+    pub fn must_recharge(&self, player: Player, slot: usize) -> bool {
+        self.party(player)
+            .and_then(|party| party.get(slot))
+            .is_some_and(|mon| mon.recharge > 0)
     }
 
     pub fn can_mega_in_slot(&self, player: Player, slot: usize) -> bool {
@@ -123,6 +130,9 @@ impl Battle {
                 "active": (0..self.slots()).map(|slot| {
                     let mon = self.mon(Position { player, slot });
                     let pos = Position { player, slot };
+                    if mon.recharge > 0 {
+                        return json!({"moves":[{"move":"Recharge","id":"recharge"}],"trapped":true});
+                    }
                     let moves = if !self.any_move_in_request(pos) && mon.revealed_disables == 0 {
                         vec![json!({"move":"Struggle","id":"struggle","target":"randomNormal","disabled":false})]
                     } else {
@@ -298,7 +308,10 @@ impl Battle {
                     self.cant_undo[idx] |= self.last_active(pos) && trap.possible;
                 } else if let ActionKind::Move { move_slot, .. } = action.kind {
                     let pos = action.actor.unwrap();
-                    if move_slot != STRUGGLE_SLOT && self.actual_disabled(pos, move_slot) {
+                    if move_slot != STRUGGLE_SLOT
+                        && move_slot != RECHARGE_SLOT
+                        && self.actual_disabled(pos, move_slot)
+                    {
                         if self.visible_disable(pos, move_slot) {
                             return Err(BattleError::Choice("move is disabled"));
                         }
@@ -337,6 +350,7 @@ impl Battle {
                         target: 0,
                         mega,
                     } = action.kind
+                        && move_slot != RECHARGE_SLOT
                     {
                         let source = action.actor.unwrap();
                         let kind = self.move_data(source, move_slot).target;
@@ -497,6 +511,31 @@ impl Battle {
         target: Option<i8>,
         mega: bool,
     ) -> Result<ActionKind, BattleError> {
+        if self.mon(actor).recharge > 0 {
+            let valid = match selection {
+                MoveChoice::Auto => true,
+                MoveChoice::Slot(slot) => slot.get() == 1 && target.is_none(),
+                MoveChoice::Name(name) => {
+                    name == "recharge"
+                        && (self.slots() == 1 || target.is_some())
+                        && target.is_none_or(|loc| {
+                            TargetKind::Normal.valid_location(
+                                self.slots() as u8,
+                                actor.slot as u8,
+                                loc,
+                            )
+                        })
+                }
+            };
+            if !valid || mega {
+                return Err(BattleError::Choice("only Recharge is available"));
+            }
+            return Ok(ActionKind::Move {
+                move_slot: RECHARGE_SLOT,
+                target: 0,
+                mega: false,
+            });
+        }
         let moves = &self.mon(actor).moves;
         let visibly_available = self.any_move_in_request(actor);
         let really_available = moves
@@ -692,11 +731,16 @@ impl Battle {
                 move_slot, target, ..
             } = action.kind
             {
-                let data = self.move_data(source, move_slot);
                 // ModifyPriority receives a resolved target even when no effects
                 // listen to it. In doubles this can consume a retarget draw.
-                self.resolve_target(source, data.target, target);
-                action.priority.priority = f64::from(data.priority);
+                if move_slot == RECHARGE_SLOT {
+                    self.random_target(source, TargetKind::Normal);
+                    action.priority.priority = 0.0;
+                } else {
+                    let data = self.move_data(source, move_slot);
+                    self.resolve_target(source, data.target, target);
+                    action.priority.priority = f64::from(data.priority);
+                }
             }
             action.priority.speed = self.mon(source).current_speed(self.weather()) as i32;
         }
@@ -840,6 +884,7 @@ impl Battle {
                     party[outgoing.slot].stall = None;
                     party[outgoing.slot].boosts = Boosts::default();
                     party[outgoing.slot].flinched = false;
+                    party[outgoing.slot].recharge = 0;
                     party[outgoing.slot].volatile_order.clear();
                     party[outgoing.slot].imprisoned = false;
                     party[outgoing.slot].choice_lock = None;
@@ -1036,6 +1081,7 @@ impl Battle {
             Protect,
             Stall,
             Flinch,
+            Recharge,
             Leftovers,
             ShedSkin,
             Weather,
@@ -1115,6 +1161,9 @@ impl Battle {
             if mon.flinched {
                 timers.push((pos, Effect::Flinch, priority(0, 2)));
             }
+            if mon.recharge != 0 {
+                timers.push((pos, Effect::Recharge, priority(0, 2)));
+            }
         }
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
         for (pos, effect, _) in timers {
@@ -1154,6 +1203,12 @@ impl Battle {
                 Effect::Flinch => {
                     mon.flinched = false;
                     mon.untrack_volatile("flinch");
+                }
+                Effect::Recharge => {
+                    mon.recharge -= 1;
+                    if mon.recharge == 0 {
+                        mon.untrack_volatile("mustrecharge");
+                    }
                 }
                 Effect::Stall => {
                     mon.stall = mon.stall.and_then(|(counter, duration)| {
@@ -1198,6 +1253,14 @@ impl Battle {
     }
 
     fn run_move(&mut self, source: Position, slot: usize, loc: i8, more_actions: bool) {
+        if slot == RECHARGE_SLOT {
+            self.random_target(source, TargetKind::Normal);
+            self.add(format!("|cant|{}|recharge", self.ident(source)));
+            let mon = self.mon_mut(source);
+            mon.recharge = 0;
+            mon.untrack_volatile("mustrecharge");
+            return;
+        }
         let move_data = self.move_data(source, slot);
         let struggle = slot == STRUGGLE_SLOT;
         let (move_type, converted) = if struggle {
@@ -1767,6 +1830,12 @@ impl Battle {
                 self.boost(source, &move_data.self_boosts, true);
             }
         }
+        if move_data.self_recharge && self.mon(source).hp > 0 {
+            let mon = self.mon_mut(source);
+            mon.recharge = 2;
+            mon.track_volatile("mustrecharge");
+            self.add(format!("|-mustrecharge|{source_name}"));
+        }
         for &(target, _) in &damage {
             for effect in &move_data.secondaries {
                 let roll = self.rng.below(100);
@@ -1952,6 +2021,7 @@ impl Battle {
         mon.stall = None;
         mon.protected = false;
         mon.flinched = false;
+        mon.recharge = 0;
         mon.volatile_order.clear();
         mon.imprisoned = false;
         mon.choice_lock = None;

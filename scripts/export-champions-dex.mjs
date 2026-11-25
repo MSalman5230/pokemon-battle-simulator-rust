@@ -35,7 +35,8 @@ function runsOnGenericPipeline(raw, move) {
     if (!raw || Object.keys(raw).some(k => !genericMoveFields.has(k)) ||
         !genericTarget.has(move.target) || raw.flags?.futuremove || raw.flags?.cantusetwice ||
         typeof raw.ignoreImmunity === 'object' || (raw.status && !supportedStatus.has(raw.status))) return false;
-    if (raw.self && (!raw.self.boosts || !hasOnly(raw.self, ['boosts', 'chance']))) return false;
+    if (raw.self && !(raw.self.boosts && hasOnly(raw.self, ['boosts', 'chance']) ||
+            raw.self.volatileStatus === 'mustrecharge' && hasOnly(raw.self, ['volatileStatus']))) return false;
     for (const effect of move.secondaries ?? []) {
         if (!hasOnly(effect, ['chance', 'status', 'volatileStatus', 'boosts', 'self']) ||
             (effect.self && (!effect.self.boosts || !hasOnly(effect.self, ['boosts']))) ||
@@ -65,6 +66,7 @@ const data = mod => {
             return {...move, generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
                 selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,
+                selfRecharge: e.self?.volatileStatus === 'mustrecharge' || undefined,
                 secondaries: (e.secondaries ?? []).map(s => ({chance: s.chance, status: s.status,
                     volatileStatus: s.volatileStatus, boosts: Object.entries(s.boosts ?? {}),
                     selfBoosts: s.self?.boosts && Object.entries(s.self.boosts)}))};

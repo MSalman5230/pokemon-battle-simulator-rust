@@ -161,6 +161,8 @@ pub struct Move {
     pub boosts: Vec<(BoostStat, i8)>,
     pub self_boosts: Vec<(BoostStat, i8)>,
     pub self_chance: Option<u8>,
+    #[serde(default)]
+    pub self_recharge: bool,
     pub heal: Option<[u16; 2]>,
     pub drain: Option<[u16; 2]>,
     pub recoil: Option<[u16; 2]>,

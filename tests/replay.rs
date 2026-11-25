@@ -265,3 +265,13 @@ fn bss_last_resort_unlocks_after_using_other_moves_and_resets_on_switch_in() {
 fn bss_armor_items_secondary_self_boost_and_shed_skin() {
     replay(include_str!("fixtures/bss-damage-hooks.json"));
 }
+
+#[test]
+fn bss_recharge_locks_the_request_only_when_the_hit_succeeds() {
+    replay(include_str!("fixtures/bss-recharge.json"));
+}
+
+#[test]
+fn vgc_recharge_keeps_the_ally_choice_and_rng_order() {
+    replay(include_str!("fixtures/vgc-recharge.json"));
+}

@@ -11,6 +11,12 @@ pub(super) struct Trap {
 impl Battle {
     pub(super) fn trap_info(&self, pos: Position) -> Trap {
         let mon = self.mon(pos);
+        if mon.recharge > 0 {
+            return Trap {
+                actual: true,
+                possible: true,
+            };
+        }
         if mon.fainted || mon.has_type("Ghost") {
             return Trap::default();
         }
@@ -51,7 +57,8 @@ impl Battle {
     pub fn trapped_in_request(&self, player: Player, slot: usize) -> bool {
         let pos = Position { player, slot };
         let mon = self.mon(pos);
-        mon.revealed_trap
+        mon.recharge > 0
+            || mon.revealed_trap
             || (!self.last_active(pos)
                 && self.trap_info(pos).actual
                 && self.party(player).unwrap()[self.format.game_type.active_slots()..]

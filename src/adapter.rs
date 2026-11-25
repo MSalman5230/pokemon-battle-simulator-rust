@@ -208,7 +208,9 @@ impl Game {
                         json!({"id":id,"kind":"move","slot":slot,"move":name,"mega":evolve,"choice":choice})));
                 }
             };
-            if active
+            if battle.must_recharge(player, 0) {
+                add(0, "recharge");
+            } else if active
                 .moves
                 .iter()
                 .enumerate()
