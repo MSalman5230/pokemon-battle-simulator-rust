@@ -1,6 +1,6 @@
 //! Shared ability hooks used by move effects and held-item modifiers.
 
-use super::{turn::Position, *};
+use super::{boost_copy::PendingBoostCopy, turn::Position, *};
 use crate::{
     choice::TargetKind,
     dex::Category,
@@ -469,6 +469,9 @@ impl Battle {
 
     pub(super) fn end_ability(&mut self, pos: Position) {
         self.end_supreme_overlord(pos, false);
+        if self.mon(pos).ability == "opportunist" {
+            self.mon_mut(pos).opportunist = PendingBoostCopy::default();
+        }
         if self.mon(pos).ability == "unburden" {
             self.mon_mut(pos).untrack_volatile("unburden");
         }
@@ -1480,11 +1483,29 @@ impl Battle {
             }
         }
         let mut success = false;
+        let record = self.possible_opportunist;
+        let mut observed = PendingBoostCopy::default();
         for (i, &(stat, amount)) in changes.iter().enumerate() {
-            if removed & (1 << i) == 0
-                && self.apply_boosts(target, &[(stat, amount)], origin.quiet(), false)
-            {
+            if removed & (1 << i) != 0 {
+                continue;
+            }
+            let before = if record {
+                self.mon(target).boosts.get(stat)
+            } else {
+                0
+            };
+            if self.apply_boosts_with_item(
+                target,
+                &[(stat, amount)],
+                origin.quiet(),
+                false,
+                None,
+                false,
+            ) {
                 success = true;
+                if record {
+                    observed.accumulate(stat, self.mon(target).boosts.get(stat) - before);
+                }
                 if amount < 0 && target.player != source.player {
                     match self.event_ability(target) {
                         "competitive" => {
@@ -1497,6 +1518,9 @@ impl Battle {
                     }
                 }
             }
+        }
+        if record {
+            self.note_foe_boosts(target, observed);
         }
         success
     }
@@ -1529,6 +1553,8 @@ impl Battle {
             return false;
         }
         let mut success = false;
+        let record = self.possible_opportunist && label != "Opportunist";
+        let mut observed = PendingBoostCopy::default();
         let factor = match self.event_ability(pos) {
             "contrary" => -1,
             "simple" => 2,
@@ -1537,6 +1563,9 @@ impl Battle {
         for &(stat, amount) in boosts {
             let amount = amount.saturating_mul(factor);
             let change = self.mon_mut(pos).boosts.add(stat, amount);
+            if record {
+                observed.accumulate(stat, change);
+            }
             if change > 0 {
                 self.mon_mut(pos).stats_raised = true;
             } else if change < 0 {
@@ -1565,6 +1594,9 @@ impl Battle {
                     change.abs()
                 ));
             }
+        }
+        if record {
+            self.note_foe_boosts(pos, observed);
         }
         success
     }
@@ -1623,6 +1655,7 @@ impl Battle {
             self.add(format!("|-ability|{}|Speed Boost|boost", self.ident(pos)));
             self.add(format!("|-boost|{}|spe|1", self.ident(pos)));
         }
+        self.note_foe_boost(pos, BoostStat::Spe, change);
     }
 }
 
@@ -1641,6 +1674,7 @@ impl Pokemon {
         self.type_change_used = false;
         self.cud_chew = None;
         self.trace_seeking = false;
+        self.opportunist = PendingBoostCopy::default();
     }
 
     fn stat_drop_protection(&self) -> Option<&'static str> {

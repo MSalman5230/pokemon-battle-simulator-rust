@@ -1482,6 +1482,11 @@ fn stockpile_counts_successful_boosts_and_spit_up_and_swallow_consume_it() {
 }
 
 #[test]
+fn opportunist_copies_only_positive_foe_stages_after_moves_and_residuals() {
+    replay(include_str!("fixtures/bss-opportunist.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

@@ -1,3 +1,4 @@
+use super::boost_copy::PendingBoostCopy;
 use super::*;
 use super::{abilities::BoostOrigin, charge::ChargeSpec, damage::RegularHit, leech::DrainKind};
 use crate::{
@@ -77,6 +78,7 @@ enum MoveInvocation {
 struct MoveResult {
     spends_charge: bool,
     spends_stockpile: bool,
+    ran_after_move: bool,
     failed: bool,
 }
 
@@ -1614,6 +1616,11 @@ impl Battle {
                 self.hospitality(pos);
             }
         }
+        if self.possible_opportunist {
+            for (pos, _) in order.into_iter().take(count) {
+                self.apply_pending_boost_copy(pos);
+            }
+        }
         for (pos, _) in order.into_iter().take(count) {
             self.white_herb(pos);
         }
@@ -1725,6 +1732,7 @@ impl Battle {
                     let pos = action.actor.unwrap();
                     if !self.mon(pos).fainted {
                         self.mega_evolve(pos);
+                        self.apply_pending_boost_copies();
                         self.white_herbs_after_action();
                     }
                 }
@@ -2013,6 +2021,7 @@ impl Battle {
     }
 
     pub(super) fn start_ability(&mut self, pos: Position) {
+        self.possible_opportunist |= self.mon(pos).ability == "opportunist";
         if matches!(self.mon(pos).ability.as_str(), "berserk" | "angershell") {
             self.mon_mut(pos).half_hp_berry_deferred = false;
         }
@@ -2250,6 +2259,7 @@ impl Battle {
             AquaRing,
             Ingrain,
             Octolock,
+            Opportunist,
         }
         self.add("|");
         self.update_speed();
@@ -2408,6 +2418,7 @@ impl Battle {
                     "harvest" => timers.push((pos, Effect::Harvest, priority(28, 2))),
                     "cudchew" => timers.push((pos, Effect::CudChew, priority(28, 2))),
                     "pickup" => timers.push((pos, Effect::Pickup, priority(28, 2))),
+                    "opportunist" => timers.push((pos, Effect::Opportunist, priority(29, 7))),
                     _ => {}
                 }
             }
@@ -2720,6 +2731,7 @@ impl Battle {
                 Effect::Harvest => self.harvest_item(pos),
                 Effect::CudChew => self.chew_berry(pos),
                 Effect::Pickup => self.pick_up_item(pos),
+                Effect::Opportunist => self.apply_pending_boost_copy(pos),
                 Effect::Roost => {
                     mon.roosted = false;
                     mon.untrack_volatile("roost");
@@ -2872,6 +2884,9 @@ impl Battle {
         }
         if result.spends_stockpile {
             self.end_stockpile(source);
+        }
+        if result.ran_after_move {
+            self.apply_pending_boost_copies();
         }
         if !matches!(invocation, MoveInvocation::Future { .. }) && !self.mon(source).fainted {
             self.mon_mut(source).move_failed_this_turn = result.failed || !attempted;
@@ -3184,6 +3199,7 @@ impl Battle {
             self.stance_change(source, move_data);
         }
         result.spends_stockpile = own_action && move_data.name == "Spit Up";
+        result.ran_after_move = own_action;
         let shell_side_arm = move_data.name == "Shell Side Arm";
         if shell_side_arm && let Some(target) = target {
             move_data = self.shell_side_arm(source, target, move_data);
@@ -4632,6 +4648,7 @@ impl Battle {
                                 self.ident(target)
                             ));
                         }
+                        self.note_foe_boost(target, BoostStat::Atk, changed);
                         succeeded = true;
                     }
                 }
@@ -6175,7 +6192,7 @@ impl Battle {
         is_self: bool,
         invert: bool,
     ) -> bool {
-        self.apply_boosts_with_item(pos, boosts, is_self, invert, None)
+        self.apply_boosts_with_item(pos, boosts, is_self, invert, None, true)
     }
 
     pub(super) fn apply_boosts_with_item(
@@ -6185,6 +6202,7 @@ impl Battle {
         is_self: bool,
         invert: bool,
         item: Option<&str>,
+        notify_copy: bool,
     ) -> bool {
         if self.mon(pos).hp == 0
             || !self
@@ -6196,6 +6214,8 @@ impl Battle {
             return false;
         }
         let mut succeeded = false;
+        let record = notify_copy && self.possible_opportunist;
+        let mut observed = PendingBoostCopy::default();
         for &(stat, amount) in boosts {
             let amount = if invert {
                 amount.saturating_neg()
@@ -6204,6 +6224,9 @@ impl Battle {
             };
             let mon = self.mon_mut(pos);
             let changed = mon.boosts.add(stat, amount);
+            if record {
+                observed.accumulate(stat, changed);
+            }
             if changed > 0 {
                 mon.stats_raised = true;
             } else if changed < 0 {
@@ -6230,6 +6253,9 @@ impl Battle {
                 self.add(line);
             }
             succeeded |= changed != 0;
+        }
+        if record {
+            self.note_foe_boosts(pos, observed);
         }
         succeeded
     }
@@ -6584,6 +6610,7 @@ impl Pokemon {
                 | "guarddog"
                 | "stench"
                 | "longreach"
+                | "opportunist"
                 | "fairyaura"
                 | "darkaura"
                 | "aurabreak"

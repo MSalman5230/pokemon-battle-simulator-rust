@@ -308,6 +308,13 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .iter()
             .any(|p| p.ability == "unaware" || p.base_ability == "unaware")
     });
+    battle.possible_opportunist = Player::ALL.into_iter().any(|player| {
+        battle
+            .party(player)
+            .unwrap()
+            .iter()
+            .any(|p| p.ability == "opportunist" || p.base_ability == "opportunist")
+    });
     battle.update_speed();
     for player in Player::ALL {
         battle.refresh_observed_disables(Position { player, slot: 0 });

@@ -197,7 +197,7 @@ impl Battle {
             "contrary" => (1, true),
             _ => (1, false),
         };
-        self.apply_boosts_with_item(pos, &[(stat, amount)], false, invert, Some(name));
+        self.apply_boosts_with_item(pos, &[(stat, amount)], false, invert, Some(name), true);
         self.symbiosis_after_item(pos);
     }
 
@@ -338,6 +338,7 @@ impl Battle {
             stat.id(),
             changed.abs(),
         ));
+        self.note_foe_boost(pos, stat, changed);
     }
 
     pub(super) fn eat_stolen_berry(&mut self, source: Position, target: Position, move_name: &str) {

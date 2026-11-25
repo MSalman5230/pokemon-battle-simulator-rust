@@ -1,0 +1,1757 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Espathra\",\"moves\":[\"Calm Mind\",\"Recover\"],\"gender\":\"F\",\"name\":\"Espathra\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Opportunist\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Ninjask\",\"moves\":[\"Swords Dance\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Ninjask\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Speed Boost\"},{\"species\":\"Azumarill\",\"moves\":[\"Belly Drum\"],\"gender\":\"F\",\"name\":\"Azumarill\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Huge Power\",\"item\":\"Sitrus Berry\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Espathra, L50, F|",
+          "|poke|p2|Ninjask, L50, F|",
+          "|poke|p2|Azumarill, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Espathra, L50, F|",
+          "|poke|p2|Ninjask, L50, F|",
+          "|poke|p2|Azumarill, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Espathra, L50, F|",
+          "|poke|p2|Ninjask, L50, F|",
+          "|poke|p2|Azumarill, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Espathra",
+                "details": "Espathra, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 121,
+                  "spd": 80,
+                  "spe": 125
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "opportunist",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "opportunist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ninjask",
+                "details": "Ninjask, L50, F",
+                "condition": "136/136",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 65,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 180
+                },
+                "moves": [
+                  "swordsdance",
+                  "tackle"
+                ],
+                "baseAbility": "speedboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "speedboost",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Espathra",
+            "species": "Espathra",
+            "details": "Espathra, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 121,
+              "spd": 80,
+              "spe": 125
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "opportunist",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ninjask",
+            "species": "Ninjask",
+            "details": "Ninjask, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 65,
+              "spa": 70,
+              "spd": 70,
+              "spe": 180
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "speedboost",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Espathra|Espathra, L50, F|100/100",
+          "|switch|p2a: Ninjask|Ninjask, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Espathra|Espathra, L50, F|170/170",
+          "|switch|p2a: Ninjask|Ninjask, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Espathra|Espathra, L50, F|100/100",
+          "|switch|p2a: Ninjask|Ninjask, L50, F|136/136",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Espathra",
+                "details": "Espathra, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 121,
+                  "spd": 80,
+                  "spe": 125
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "opportunist",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "opportunist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ninjask",
+                "details": "Ninjask, L50, F",
+                "condition": "136/136",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 65,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 180
+                },
+                "moves": [
+                  "swordsdance",
+                  "tackle"
+                ],
+                "baseAbility": "speedboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "speedboost",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Espathra",
+            "species": "Espathra",
+            "details": "Espathra, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 121,
+              "spd": 80,
+              "spe": 125
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "opportunist",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ninjask",
+            "species": "Ninjask",
+            "details": "Ninjask, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 65,
+              "spa": 70,
+              "spd": 70,
+              "spe": 180
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "speedboost",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Ninjask|Swords Dance|p2a: Ninjask",
+          "|-boost|p2a: Ninjask|atk|2",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|atk|2",
+          "|move|p1a: Espathra|Calm Mind|p1a: Espathra",
+          "|-boost|p1a: Espathra|spa|1",
+          "|-boost|p1a: Espathra|spd|1",
+          "|",
+          "|-ability|p2a: Ninjask|Speed Boost|boost",
+          "|-boost|p2a: Ninjask|spe|1",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|spe|1",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Ninjask|Swords Dance|p2a: Ninjask",
+          "|-boost|p2a: Ninjask|atk|2",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|atk|2",
+          "|move|p1a: Espathra|Calm Mind|p1a: Espathra",
+          "|-boost|p1a: Espathra|spa|1",
+          "|-boost|p1a: Espathra|spd|1",
+          "|",
+          "|-ability|p2a: Ninjask|Speed Boost|boost",
+          "|-boost|p2a: Ninjask|spe|1",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|spe|1",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Ninjask|Swords Dance|p2a: Ninjask",
+          "|-boost|p2a: Ninjask|atk|2",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|atk|2",
+          "|move|p1a: Espathra|Calm Mind|p1a: Espathra",
+          "|-boost|p1a: Espathra|spa|1",
+          "|-boost|p1a: Espathra|spd|1",
+          "|",
+          "|-ability|p2a: Ninjask|Speed Boost|boost",
+          "|-boost|p2a: Ninjask|spe|1",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|spe|1",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Espathra",
+                "details": "Espathra, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 121,
+                  "spd": 80,
+                  "spe": 125
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "opportunist",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "opportunist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ninjask",
+                "details": "Ninjask, L50, F",
+                "condition": "136/136",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 65,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 180
+                },
+                "moves": [
+                  "swordsdance",
+                  "tackle"
+                ],
+                "baseAbility": "speedboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "speedboost",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Espathra",
+            "species": "Espathra",
+            "details": "Espathra, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 121,
+              "spd": 80,
+              "spe": 125
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "opportunist",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ninjask",
+            "species": "Ninjask",
+            "details": "Ninjask, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 65,
+              "spa": 70,
+              "spd": 70,
+              "spe": 180
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "speedboost",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Ninjask|Tackle|p1a: Espathra",
+          "|-damage|p1a: Espathra|73/100",
+          "|move|p1a: Espathra|Recover|p1a: Espathra",
+          "|-heal|p1a: Espathra|100/100",
+          "|",
+          "|-ability|p2a: Ninjask|Speed Boost|boost",
+          "|-boost|p2a: Ninjask|spe|1",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|spe|1",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Ninjask|Tackle|p1a: Espathra",
+          "|-damage|p1a: Espathra|125/170",
+          "|move|p1a: Espathra|Recover|p1a: Espathra",
+          "|-heal|p1a: Espathra|170/170",
+          "|",
+          "|-ability|p2a: Ninjask|Speed Boost|boost",
+          "|-boost|p2a: Ninjask|spe|1",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|spe|1",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Ninjask|Tackle|p1a: Espathra",
+          "|-damage|p1a: Espathra|73/100",
+          "|move|p1a: Espathra|Recover|p1a: Espathra",
+          "|-heal|p1a: Espathra|100/100",
+          "|",
+          "|-ability|p2a: Ninjask|Speed Boost|boost",
+          "|-boost|p2a: Ninjask|spe|1",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|spe|1",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Espathra",
+                "details": "Espathra, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 121,
+                  "spd": 80,
+                  "spe": 125
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "opportunist",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "opportunist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ninjask",
+                "details": "Ninjask, L50, F",
+                "condition": "136/136",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 65,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 180
+                },
+                "moves": [
+                  "swordsdance",
+                  "tackle"
+                ],
+                "baseAbility": "speedboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "speedboost",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Espathra",
+            "species": "Espathra",
+            "details": "Espathra, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 121,
+              "spd": 80,
+              "spe": 125
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "opportunist",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ninjask",
+            "species": "Ninjask",
+            "details": "Ninjask, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 65,
+              "spa": 70,
+              "spd": 70,
+              "spe": 180
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "speedboost",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 switch 2"
+      ],
+      "turn": 4,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Azumarill|Azumarill, L50, F|100/100",
+          "|move|p1a: Espathra|Recover||[still]",
+          "|-fail|p1a: Espathra|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Azumarill|Azumarill, L50, F|100/100",
+          "|move|p1a: Espathra|Recover||[still]",
+          "|-fail|p1a: Espathra|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Azumarill|Azumarill, L50, F|175/175",
+          "|move|p1a: Espathra|Recover||[still]",
+          "|-fail|p1a: Espathra|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Espathra",
+                "details": "Espathra, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 121,
+                  "spd": 80,
+                  "spe": 125
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "opportunist",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "opportunist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Belly Drum",
+                  "id": "bellydrum",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Ninjask",
+                "details": "Ninjask, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 110,
+                  "def": 65,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 180
+                },
+                "moves": [
+                  "swordsdance",
+                  "tackle"
+                ],
+                "baseAbility": "speedboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "speedboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Espathra",
+            "species": "Espathra",
+            "details": "Espathra, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 121,
+              "spd": 80,
+              "spe": 125
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "opportunist",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Ninjask",
+            "species": "Ninjask",
+            "details": "Ninjask, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 65,
+              "spa": 70,
+              "spd": 70,
+              "spe": 180
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "speedboost",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Espathra|Recover||[still]",
+          "|-fail|p1a: Espathra|heal",
+          "|move|p2a: Azumarill|Belly Drum|p2a: Azumarill",
+          "|-damage|p2a: Azumarill|50/100g",
+          "|-setboost|p2a: Azumarill|atk|6|[from] move: Belly Drum",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|atk|4",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Espathra|Recover||[still]",
+          "|-fail|p1a: Espathra|heal",
+          "|move|p2a: Azumarill|Belly Drum|p2a: Azumarill",
+          "|-damage|p2a: Azumarill|50/100g",
+          "|-setboost|p2a: Azumarill|atk|6|[from] move: Belly Drum",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|atk|4",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Espathra|Recover||[still]",
+          "|-fail|p1a: Espathra|heal",
+          "|move|p2a: Azumarill|Belly Drum|p2a: Azumarill",
+          "|-damage|p2a: Azumarill|88/175",
+          "|-setboost|p2a: Azumarill|atk|6|[from] move: Belly Drum",
+          "|-ability|p1a: Espathra|Opportunist|boost",
+          "|-boost|p1a: Espathra|atk|4",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Espathra",
+                "details": "Espathra, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 121,
+                  "spd": 80,
+                  "spe": 125
+                },
+                "moves": [
+                  "calmmind",
+                  "recover"
+                ],
+                "baseAbility": "opportunist",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "opportunist",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Belly Drum",
+                  "id": "bellydrum",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "88/175",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Ninjask",
+                "details": "Ninjask, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 110,
+                  "def": 65,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 180
+                },
+                "moves": [
+                  "swordsdance",
+                  "tackle"
+                ],
+                "baseAbility": "speedboost",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "speedboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Espathra",
+            "species": "Espathra",
+            "details": "Espathra, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 121,
+              "spd": 80,
+              "spe": 125
+            },
+            "boosts": {
+              "atk": 6,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "opportunist",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 88,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 6,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Ninjask",
+            "species": "Ninjask",
+            "details": "Ninjask, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 65,
+              "spa": 70,
+              "spd": 70,
+              "spe": 180
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "speedboost",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

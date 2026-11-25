@@ -1181,6 +1181,11 @@ const stockpileRosters = [
     [named('Swalot', ['Stockpile', 'Spit Up', 'Swallow'])],
     [named('Vaporeon', ['Tackle', 'Protect', 'Recover'])],
 ];
+const opportunistRosters = [
+    [{...named('Espathra', ['Calm Mind', 'Recover']), ability:'Opportunist'}],
+    [{...named('Ninjask', ['Swords Dance', 'Tackle']), ability:'Speed Boost'},
+        {...named('Azumarill', ['Belly Drum']), ability:'Huge Power', item:'Sitrus Berry'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2259,6 +2264,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ...Array(4).fill(['move 1','move 1']),
         ['move 3','move 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 1'],
         ['move 2','move 1']], stockpileRosters, 'bss-stockpile'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','switch 2'],
+        ['move 2','move 1']], opportunistRosters, 'bss-opportunist'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

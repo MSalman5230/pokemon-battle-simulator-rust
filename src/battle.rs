@@ -14,6 +14,7 @@ use serde::Serialize;
 mod abilities;
 use abilities::Attention;
 mod attract;
+mod boost_copy;
 mod charge;
 mod control;
 mod damage;
@@ -175,6 +176,7 @@ pub struct Battle {
     ability_order: u32,
     ability_breaker: Option<Position>,
     possible_unaware: bool,
+    possible_opportunist: bool,
     unsupported_called_move: Option<&'static str>,
     turn_queue_empty: bool,
     pending_actions: [Option<Vec<Action>>; 2],
@@ -229,6 +231,7 @@ pub struct Pokemon {
     linked_trap_from: Option<(Player, u8)>,
     fling_pending: bool,
     stockpile: support::Stockpile,
+    opportunist: boost_copy::PendingBoostCopy,
     counter: Option<turn::PreparedCounter>,
     volatile_order: Vec<&'static str>,
     flinched: bool,
@@ -474,6 +477,7 @@ impl Battle {
             ability_order: 0,
             ability_breaker: None,
             possible_unaware: false,
+            possible_opportunist: false,
             unsupported_called_move: None,
             turn_queue_empty: true,
             pending_actions: [None, None],
@@ -602,6 +606,7 @@ impl Battle {
             }
         }
         self.possible_unaware |= party.iter().any(|p| p.ability == "unaware");
+        self.possible_opportunist |= party.iter().any(|p| p.ability == "opportunist");
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)
@@ -928,6 +933,7 @@ impl Pokemon {
             linked_trap_from: None,
             fling_pending: false,
             stockpile: support::Stockpile::default(),
+            opportunist: boost_copy::PendingBoostCopy::default(),
             counter: None,
             volatile_order: Vec::new(),
             flinched: false,
