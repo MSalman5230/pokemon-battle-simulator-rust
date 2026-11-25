@@ -485,6 +485,7 @@ impl Battle {
                     analytic_last,
                     bypassed_protect: false,
                     parental_second_hit: false,
+                    contact: self.move_makes_contact(ACTOR, data),
                     converted: false,
                     roll: Some(roll),
                     solar_weak: self.event_ability(ACTOR) != "megasol"

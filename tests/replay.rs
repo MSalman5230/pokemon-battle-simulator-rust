@@ -1472,6 +1472,11 @@ fn kings_rock_adds_flinching_after_sheer_force_and_when_thrown() {
 }
 
 #[test]
+fn long_reach_removes_contact_for_damage_protection_and_items() {
+    replay(include_str!("fixtures/bss-long-reach.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

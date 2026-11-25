@@ -113,6 +113,7 @@ impl Battle {
         data: &Move,
         (typing, effectiveness, crit): (&str, i8, bool),
         screen_handlers: u32,
+        contact: bool,
     ) -> u32 {
         let user = self.mon(source);
         let defender = self.mon(target);
@@ -172,18 +173,9 @@ impl Battle {
             "auraguard" => add(
                 defender.speed,
                 7,
-                Hook::Ability(
-                    target,
-                    if data.flags.contains_key("contact") {
-                        2048
-                    } else {
-                        4096
-                    },
-                    "",
-                ),
+                Hook::Ability(target, if contact { 2048 } else { 4096 }, ""),
             ),
             "fluffy" => {
-                let contact = data.flags.contains_key("contact");
                 let factor = match (typing == "Fire", contact) {
                     (true, false) => 8192,
                     (false, true) => 2048,
@@ -324,6 +316,7 @@ pub(super) struct RegularHit<'a> {
     pub analytic_last: bool,
     pub bypassed_protect: bool,
     pub parental_second_hit: bool,
+    pub contact: bool,
     /// When provided by a hypothetical query, use this native 0–15 roll
     /// instead of consuming the battle PRNG.
     pub roll: Option<u32>,
@@ -353,6 +346,7 @@ impl Battle {
             analytic_last,
             bypassed_protect,
             parental_second_hit,
+            contact,
             roll,
         } = args;
         let tr = self.stat_rules.truncation;
@@ -740,6 +734,7 @@ impl Battle {
             move_data,
             (move_type, effect, crit),
             screen_handlers,
+            contact,
         );
         if bypassed_protect {
             let ability = if self.event_ability(source) == "piercingdrill" {

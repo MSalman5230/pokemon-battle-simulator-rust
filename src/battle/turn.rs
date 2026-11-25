@@ -3035,7 +3035,10 @@ impl Battle {
                 original_target: Some((player, roster_index)),
                 ..
             } if move_data.tracks_target
-                || matches!(self.event_ability(source), "stalwart" | "propellertail") =>
+                || (matches!(
+                    self.mon(source).ability.as_str(),
+                    "stalwart" | "propellertail"
+                ) && matches!(self.event_ability(source), "stalwart" | "propellertail")) =>
             {
                 (0..self.slots())
                     .map(|slot| Position { player, slot })
@@ -3180,6 +3183,7 @@ impl Battle {
         } else {
             "Special"
         };
+        let contact = self.move_makes_contact(source, move_data);
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
             && self.grounded(source);
@@ -4078,9 +4082,7 @@ impl Battle {
             if move_data.flags.contains_key("protect")
                 && let Some(guard) = self.blocking_side_guard(mut_pos.player, kind, priority)
             {
-                if matches!(self.event_ability(source), "unseenfist" | "piercingdrill")
-                    && move_data.flags.contains_key("contact")
-                {
+                if matches!(self.event_ability(source), "unseenfist" | "piercingdrill") && contact {
                     bypassed |= mut_pos.mask();
                 } else {
                     protected += 1;
@@ -4109,9 +4111,7 @@ impl Battle {
                 && (protect.blocks_status() || move_data.category != Category::Status)
                 && move_data.flags.contains_key("protect")
             {
-                if matches!(self.event_ability(source), "unseenfist" | "piercingdrill")
-                    && move_data.flags.contains_key("contact")
-                {
+                if matches!(self.event_ability(source), "unseenfist" | "piercingdrill") && contact {
                     bypassed |= mut_pos.mask();
                 } else {
                     // Personal guards return NOT_FAIL.
@@ -4122,7 +4122,7 @@ impl Battle {
                         self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
                     }
                     self.stop_protected_rampage(source);
-                    if move_data.flags.contains_key("contact") {
+                    if contact {
                         self.protection_contact(protect, source, mut_pos, base);
                     }
                     return false;
@@ -5326,6 +5326,7 @@ impl Battle {
                             }),
                         bypassed_protect: bypassed & target.mask() != 0,
                         parental_second_hit: parental && hit > 1,
+                        contact,
                         roll: None,
                     },
                 )
@@ -5436,9 +5437,7 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
-                if move_data.flags.contains_key("contact")
-                    && self.mon(target).volatile_ids().contains(&"beakblast")
-                {
+                if contact && self.mon(target).volatile_ids().contains(&"beakblast") {
                     self.try_status(source, "brn", target, move_data, false, base);
                 }
                 if critical_hits & target.mask() != 0 && self.event_ability(target) == "angerpoint"
@@ -5646,7 +5645,7 @@ impl Battle {
                     self.innards_out(target, source, landed + previous);
                 }
             }
-            if move_data.flags.contains_key("contact") {
+            if contact {
                 for &(target, _) in &damage {
                     if self.mon(target).ability == "aftermath" {
                         self.aftermath(target, source);
@@ -5688,7 +5687,7 @@ impl Battle {
                 if landed > 0 && self.event_ability(target) == "seedsower" {
                     self.set_terrain(target, Terrain::Grassy, Some("Seed Sower"));
                 }
-                if move_data.flags.contains_key("contact") {
+                if contact {
                     match self.event_ability(target) {
                         "flamebody" | "static" | "poisonpoint" | "effectspore" => {
                             self.contact_status(target, source, base)
@@ -5745,9 +5744,7 @@ impl Battle {
                 if self.mon(target).effective_item() == "airballoon" {
                     self.consume(target, "Air Balloon", false);
                 }
-                if move_data.flags.contains_key("contact")
-                    && self.event_ability(source) == "poisontouch"
-                {
+                if contact && self.event_ability(source) == "poisontouch" {
                     self.poison_touch(source, target, base);
                 }
             }
@@ -5904,7 +5901,7 @@ impl Battle {
             source,
             &damage,
             landed_by_target,
-            move_data,
+            contact,
             multihit,
             smart_target,
         );
@@ -6558,6 +6555,7 @@ impl Pokemon {
                 | "supersweetsyrup"
                 | "guarddog"
                 | "stench"
+                | "longreach"
                 | "fairyaura"
                 | "darkaura"
                 | "aurabreak"

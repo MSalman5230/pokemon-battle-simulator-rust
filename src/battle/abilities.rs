@@ -152,6 +152,12 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn move_makes_contact(&self, source: Position, data: &Move) -> bool {
+        data.flags.contains_key("contact")
+            && (self.mon(source).ability != "longreach"
+                || self.event_ability(source) != "longreach")
+    }
+
     pub(super) fn anticipation(&mut self, holder: Position) {
         let threatened = self
             .positions()
@@ -227,7 +233,7 @@ impl Battle {
         source: Position,
         hits: &[(Position, u32)],
         damage: [u32; 4],
-        data: &Move,
+        contact: bool,
         multihit: bool,
         smart_target: bool,
     ) {
@@ -261,7 +267,7 @@ impl Battle {
             }
             match self.event_ability(target) {
                 "pickpocket" => {
-                    if data.flags.contains_key("contact") {
+                    if contact {
                         self.pickpocket_after_move(target, source);
                     }
                     continue;
