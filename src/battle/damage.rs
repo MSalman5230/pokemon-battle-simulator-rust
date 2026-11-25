@@ -356,10 +356,26 @@ impl Battle {
         let tr = self.stat_rules.truncation;
         let mut spirit_handlers = [0; 2];
         let mut spirit_count = 0;
-        for pos in self.positions().filter(|p| p.player == source.player) {
-            if self.event_ability(pos) == "steelyspirit" {
-                spirit_handlers[spirit_count] = self.mon(pos).speed;
-                spirit_count += 1;
+        let mut aura_handlers = [0; 4];
+        let mut aura_count = 0;
+        let mut aura_applies = false;
+        let mut aura_break = false;
+        for pos in self.positions() {
+            match self.event_ability(pos) {
+                "steelyspirit" if pos.player == source.player => {
+                    spirit_handlers[spirit_count] = self.mon(pos).speed;
+                    spirit_count += 1;
+                }
+                ability @ ("fairyaura" | "darkaura") => {
+                    aura_handlers[aura_count] = self.mon(pos).speed;
+                    aura_count += 1;
+                    aura_applies |= matches!(
+                        (ability, move_type),
+                        ("fairyaura", "Fairy") | ("darkaura", "Dark")
+                    );
+                }
+                "aurabreak" => aura_break = true,
+                _ => {}
             }
         }
         speed_sort_by(
@@ -367,6 +383,9 @@ impl Battle {
             &mut self.rng,
             |a, b| b.cmp(a),
         );
+        speed_sort_by(&mut aura_handlers[..aura_count], &mut self.rng, |a, b| {
+            b.cmp(a)
+        });
         if move_type == "Steel" && self.format.report_exact_hp {
             for _ in 0..spirit_count {
                 self.add("|debug|Steely Spirit boost");
@@ -575,6 +594,9 @@ impl Battle {
             for _ in 0..spirit_count {
                 power_modifier = chain(6144, power_modifier);
             }
+        }
+        if source != target && aura_applies {
+            power_modifier = chain(if aura_break { 3072 } else { 5448 }, power_modifier);
         }
         if solar_weak {
             power_modifier = crate::mechanics::chain(2048, power_modifier);

@@ -1945,6 +1945,9 @@ impl Battle {
             "moldbreaker" => Some("Mold Breaker"),
             "teravolt" => Some("Teravolt"),
             "turboblaze" => Some("Turboblaze"),
+            "fairyaura" => Some("Fairy Aura"),
+            "darkaura" => Some("Dark Aura"),
+            "aurabreak" => Some("Aura Break"),
             _ => None,
         } {
             self.add(format!("|-ability|{}|{label}", self.ident(pos)));
@@ -3098,6 +3101,8 @@ impl Battle {
         if !delayed
             && self.slots() > 1
             && !move_data.tracks_target
+            && (kind == TargetKind::Scripted
+                || !matches!(self.event_ability(source), "stalwart" | "propellertail"))
             && let Some(target) = actual_target.filter(|_| {
                 kind.is_choosable()
                     || matches!(kind, TargetKind::RandomNormal | TargetKind::Scripted)
@@ -5305,6 +5310,11 @@ impl Battle {
                 if move_type == "Dark" && self.event_ability(target) == "justified" {
                     self.ability_boost(target, "Justified", BoostStat::Atk, 1, false);
                 }
+                if matches!(move_type, "Dark" | "Bug" | "Ghost")
+                    && self.event_ability(target) == "rattled"
+                {
+                    self.ability_boost(target, "Rattled", BoostStat::Spe, 1, false);
+                }
                 if move_data.category == Category::Physical
                     && self.event_ability(target) == "toxicdebris"
                 {
@@ -6080,6 +6090,12 @@ impl Pokemon {
                 | "poisontouch"
                 | "cheekpouch"
                 | "solarpower"
+                | "fairyaura"
+                | "darkaura"
+                | "aurabreak"
+                | "stalwart"
+                | "propellertail"
+                | "rattled"
                 | "steelyspirit"
                 | "analytic"
                 | "galewings"

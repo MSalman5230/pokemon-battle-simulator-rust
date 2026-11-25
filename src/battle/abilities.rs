@@ -1239,12 +1239,15 @@ impl Battle {
                 self.add(format!("|-ability|{}|Intimidate|boost", self.ident(pos)));
                 started = true;
             }
-            self.boost_from(
+            let lowered = self.boost_from(
                 target,
                 pos,
                 &[(BoostStat::Atk, -1)],
                 BoostOrigin::Intimidate,
             );
+            if lowered && self.event_ability(target) == "rattled" {
+                self.ability_boost(target, "Rattled", BoostStat::Spe, 1, false);
+            }
         }
     }
 

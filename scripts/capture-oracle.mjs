@@ -1103,6 +1103,19 @@ const piercingDrillRosters = [
     [{...named('Excadrill', ['Iron Head', 'Earthquake']), ability:'Sand Rush', item:'Excadrite'}],
     [named('Vaporeon', ['Protect', 'Recover', 'Spiky Shield'])],
 ];
+const auraRosters = [
+    [{...named('Sylveon', ['Moonblast']), ability:'Fairy Aura'}, named('Umbreon', ['Recover'])],
+    [named('Vaporeon', ['Recover']), named('Leafeon', ['Recover']),
+        {...named('Froslass', ['Recover']), ability:'Aura Break'}],
+];
+const stalwartRosters = [
+    [{...named('Archaludon', ['Dragon Pulse']), ability:'Stalwart'}, named('Vaporeon', ['Recover'])],
+    [named('Clefable', ['Follow Me']), named('Umbreon', ['Recover'])],
+];
+const rattledRosters = [
+    [{...named('Magikarp', ['Tackle']), ability:'Rattled'}],
+    [{...named('Mightyena', ['Snarl']), ability:'Intimidate'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -2031,6 +2044,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         solarPowerRosters, 'bss-solar-power'],
     ['bssregmc', [['team 1','team 1'], ['move 1 mega','move 1'], ['move 1','move 2'], ['move 2','move 3']],
         piercingDrillRosters, 'bss-piercing-drill'],
+    ['vgc2026regmc', [['team 12','team 123'], ['move 1 1, move 1','move 1, move 1'], ['move 1 1, move 1','move 1, switch 3']],
+        auraRosters, 'vgc-auras'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 2, move 1','move 1, move 1']], stalwartRosters, 'vgc-stalwart'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], rattledRosters, 'bss-rattled'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

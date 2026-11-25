@@ -1419,6 +1419,21 @@ fn piercing_drill_bypasses_protect_only_for_contact_moves() {
 }
 
 #[test]
+fn auras_modify_power_and_aura_break_reverses_the_modifier() {
+    replay(include_str!("fixtures/vgc-auras.json"));
+}
+
+#[test]
+fn stalwart_targets_through_follow_me() {
+    replay(include_str!("fixtures/vgc-stalwart.json"));
+}
+
+#[test]
+fn rattled_responds_to_intimidate_and_a_dark_attack() {
+    replay(include_str!("fixtures/bss-rattled.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
