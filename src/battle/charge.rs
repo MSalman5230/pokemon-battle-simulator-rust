@@ -249,14 +249,24 @@ impl Battle {
         let mut holders = [(Position { player, slot: 0 }, 0); 2];
         let mut len = 0;
         for pos in self.positions().filter(|pos| pos.player == player) {
-            if self.event_ability(pos) == "windpower" {
+            if matches!(self.event_ability(pos), "windpower" | "windrider") {
                 holders[len] = (pos, self.mon(pos).speed);
                 len += 1;
             }
         }
         speed_sort_by(&mut holders[..len], &mut self.rng, |a, b| b.1.cmp(&a.1));
         for &(pos, _) in &holders[..len] {
-            self.charge_electric(pos, Some(("Tailwind", "Wind Power")));
+            if self.event_ability(pos) == "windrider" {
+                self.ability_boost(
+                    pos,
+                    "Wind Rider",
+                    crate::mechanics::BoostStat::Atk,
+                    1,
+                    false,
+                );
+            } else {
+                self.charge_electric(pos, Some(("Tailwind", "Wind Power")));
+            }
         }
     }
 }

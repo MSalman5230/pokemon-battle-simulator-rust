@@ -1,0 +1,617 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Pecharunt\",\"moves\":[\"Toxic\"],\"gender\":\"N\",\"name\":\"Pecharunt\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Poison Puppeteer\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chansey\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Pecharunt, L50|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Pecharunt, L50|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Pecharunt, L50|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pecharunt",
+                "details": "Pecharunt, L50",
+                "condition": "163/163",
+                "active": true,
+                "stats": {
+                  "atk": 108,
+                  "def": 180,
+                  "spa": 108,
+                  "spd": 108,
+                  "spe": 108
+                },
+                "moves": [
+                  "toxic"
+                ],
+                "baseAbility": "poisonpuppeteer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "poisonpuppeteer",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pecharunt",
+            "species": "Pecharunt",
+            "details": "Pecharunt, L50",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 108,
+              "def": 180,
+              "spa": 108,
+              "spd": 108,
+              "spe": 108
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonpuppeteer",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Pecharunt|Pecharunt, L50|163/163",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Pecharunt|Pecharunt, L50|163/163",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Pecharunt|Pecharunt, L50|163/163",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pecharunt",
+                "details": "Pecharunt, L50",
+                "condition": "163/163",
+                "active": true,
+                "stats": {
+                  "atk": 108,
+                  "def": 180,
+                  "spa": 108,
+                  "spd": 108,
+                  "spe": 108
+                },
+                "moves": [
+                  "toxic"
+                ],
+                "baseAbility": "poisonpuppeteer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "poisonpuppeteer",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pecharunt",
+            "species": "Pecharunt",
+            "details": "Pecharunt, L50",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 108,
+              "def": 180,
+              "spa": 108,
+              "spd": 108,
+              "spe": 108
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonpuppeteer",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Pecharunt|Toxic|p2a: Chansey",
+          "|-status|p2a: Chansey|tox",
+          "|-start|p2a: Chansey|confusion|[from] ability: Poison Puppeteer|[of] p1a: Pecharunt",
+          "|-activate|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Tackle|p1a: Pecharunt",
+          "|-immune|p1a: Pecharunt",
+          "|",
+          "|-damage|p2a: Chansey|305/325 tox|[from] psn",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Pecharunt|Toxic|p2a: Chansey",
+          "|-status|p2a: Chansey|tox",
+          "|-start|p2a: Chansey|confusion|[from] ability: Poison Puppeteer|[of] p1a: Pecharunt",
+          "|-activate|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Tackle|p1a: Pecharunt",
+          "|-immune|p1a: Pecharunt",
+          "|",
+          "|-damage|p2a: Chansey|305/325 tox|[from] psn",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Pecharunt|Toxic|p2a: Chansey",
+          "|-status|p2a: Chansey|tox",
+          "|-start|p2a: Chansey|confusion|[from] ability: Poison Puppeteer|[of] p1a: Pecharunt",
+          "|-activate|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Tackle|p1a: Pecharunt",
+          "|-immune|p1a: Pecharunt",
+          "|",
+          "|-damage|p2a: Chansey|305/325 tox|[from] psn",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pecharunt",
+                "details": "Pecharunt, L50",
+                "condition": "163/163",
+                "active": true,
+                "stats": {
+                  "atk": 108,
+                  "def": 180,
+                  "spa": 108,
+                  "spd": 108,
+                  "spe": 108
+                },
+                "moves": [
+                  "toxic"
+                ],
+                "baseAbility": "poisonpuppeteer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "poisonpuppeteer",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "305/325 tox",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pecharunt",
+            "species": "Pecharunt",
+            "details": "Pecharunt, L50",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 108,
+              "def": 180,
+              "spa": 108,
+              "spd": 108,
+              "spe": 108
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonpuppeteer",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 305,
+            "maxhp": 325,
+            "status": "tox",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

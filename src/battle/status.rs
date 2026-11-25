@@ -172,6 +172,15 @@ impl Battle {
     }
 
     pub(super) fn apply_confusion(&mut self, pos: Position, fatigue: bool) -> bool {
+        self.apply_confusion_with_cause(pos, fatigue, None)
+    }
+
+    fn apply_confusion_with_cause(
+        &mut self,
+        pos: Position,
+        fatigue: bool,
+        puppeteer: Option<Position>,
+    ) -> bool {
         if self.mon(pos).hp == 0
             || self.event_ability(pos) == "owntempo"
             || self.mon(pos).confusion > 0
@@ -181,7 +190,16 @@ impl Battle {
         {
             return false;
         }
-        let reason = if fatigue { "|[fatigue]" } else { "" };
+        let reason = if let Some(source) = puppeteer {
+            format!(
+                "|[from] ability: Poison Puppeteer|[of] {}",
+                self.ident(source)
+            )
+        } else if fatigue {
+            "|[fatigue]".to_owned()
+        } else {
+            String::new()
+        };
         self.add(format!("|-start|{}|confusion{reason}", self.ident(pos)));
         let turns = 2 + self.rng.below(4) as u8;
         let mon = self.mon_mut(pos);
@@ -422,10 +440,34 @@ impl Battle {
                     .iter()
                     .any(|effect| effect.status.as_deref() == Some(id));
         self.set_status(pos, id, source.player, from_move.then_some(&data.name));
-        if !self.synchronize_status(pos, source, id, move_log) {
+        let puppeteer = matches!(id, "psn" | "tox")
+            && pos != source
+            && self.mon(source).base_species.name == "Pecharunt"
+            && self.event_ability(source) == "poisonpuppeteer";
+        let puppeteer_first = puppeteer
+            && (self.event_ability(pos) != "synchronize"
+                || match self.mon(source).speed.cmp(&self.mon(pos).speed) {
+                    std::cmp::Ordering::Greater => true,
+                    std::cmp::Ordering::Equal => self.rng.below(2) == 0,
+                    std::cmp::Ordering::Less => false,
+                });
+        if puppeteer_first {
+            self.puppet_poison_confusion(pos, source);
+        }
+        let synchronized = self.synchronize_status(pos, source, id, move_log);
+        if puppeteer && !puppeteer_first {
+            self.puppet_poison_confusion(pos, source);
+        }
+        if !synchronized {
             self.cure_with_berry(pos);
         }
         true
+    }
+
+    fn puppet_poison_confusion(&mut self, pos: Position, source: Position) {
+        if !self.safeguard_blocks(pos, source, false, false, true) {
+            self.apply_confusion_with_cause(pos, false, Some(source));
+        }
     }
 
     pub(super) fn synchronize_status(
@@ -493,6 +535,7 @@ impl Battle {
             ("thermalexchange", "brn") => "Thermal Exchange",
             ("limber", "par") => "Limber",
             ("waterbubble", "brn") => "Water Bubble",
+            ("waterveil", "brn") => "Water Veil",
             ("purifyingsalt", _) => "Purifying Salt",
             ("comatose", _) => "Comatose",
             ("insomnia", "slp") => "Insomnia",
@@ -506,7 +549,7 @@ impl Battle {
             {
                 "Leaf Guard"
             }
-            _ => return false,
+            _ => return matches!(id, "psn" | "tox") && self.pastel_veil_blocks(pos, id, reveal),
         };
         if reveal {
             self.add(format!(
@@ -517,13 +560,56 @@ impl Battle {
         if self.format.report_exact_hp {
             if !matches!(
                 label,
-                "Limber" | "Water Bubble" | "Insomnia" | "Vital Spirit" | "Leaf Guard" | "Comatose"
+                "Limber"
+                    | "Water Bubble"
+                    | "Water Veil"
+                    | "Insomnia"
+                    | "Vital Spirit"
+                    | "Leaf Guard"
+                    | "Comatose"
             ) {
                 self.add(format!("|debug|interrupting setStatus with {label}"));
             }
             self.add(format!("|debug|set status [{id}] interrupted"));
         }
         true
+    }
+
+    fn pastel_veil_blocks(&mut self, pos: Position, id: &str, reveal: bool) -> bool {
+        let mut holders = [(pos, 0); 2];
+        let mut count = 0;
+        for holder in self.positions().filter(|p| p.player == pos.player) {
+            let mon = self.mon(holder);
+            if mon.ability == "pastelveil" && !mon.fainted {
+                holders[count] = (holder, mon.speed);
+                count += 1;
+            }
+        }
+        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for (holder, _) in holders.into_iter().take(count) {
+            if self.ability_suppressed(holder) {
+                if self.format.report_exact_hp {
+                    self.log_suppressed_ability(holder, "SetStatus");
+                }
+                continue;
+            }
+            if reveal {
+                let target = self.ident(pos);
+                if holder == pos {
+                    self.add(format!("|-immune|{target}|[from] ability: Pastel Veil"));
+                } else {
+                    self.add(format!(
+                        "|-block|{target}|ability: Pastel Veil|[of] {}",
+                        self.ident(holder)
+                    ));
+                }
+            }
+            if self.format.report_exact_hp {
+                self.add(format!("|debug|set status [{id}] interrupted"));
+            }
+            return true;
+        }
+        false
     }
 
     pub(super) fn yawn_blocked_by_ability(&mut self, pos: Position) -> bool {

@@ -1,0 +1,1028 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Tornadus\",\"moves\":[\"Tailwind\"],\"gender\":\"M\",\"name\":\"Tornadus\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Brambleghast\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Brambleghast\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Wind Rider\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Whimsicott\",\"moves\":[\"Gust\"],\"gender\":\"F\",\"name\":\"Whimsicott\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Porygon2\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Porygon2\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Tornadus, L50, M|",
+          "|poke|p1|Brambleghast, L50, F|",
+          "|poke|p2|Whimsicott, L50, F|",
+          "|poke|p2|Porygon2, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Tornadus, L50, M|",
+          "|poke|p1|Brambleghast, L50, F|",
+          "|poke|p2|Whimsicott, L50, F|",
+          "|poke|p2|Porygon2, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Tornadus, L50, M|",
+          "|poke|p1|Brambleghast, L50, F|",
+          "|poke|p2|Whimsicott, L50, F|",
+          "|poke|p2|Porygon2, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tornadus",
+                "details": "Tornadus, L50, M",
+                "condition": "154/154",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 90,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 131
+                },
+                "moves": [
+                  "tailwind"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Brambleghast",
+                "details": "Brambleghast, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 90,
+                  "spa": 100,
+                  "spd": 90,
+                  "spe": 110
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "windrider",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "windrider",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Whimsicott",
+                "details": "Whimsicott, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 87,
+                  "def": 105,
+                  "spa": 97,
+                  "spd": 95,
+                  "spe": 136
+                },
+                "moves": [
+                  "gust"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tornadus",
+            "species": "Tornadus",
+            "details": "Tornadus, L50, M",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 90,
+              "spa": 145,
+              "spd": 100,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Brambleghast",
+            "species": "Brambleghast",
+            "details": "Brambleghast, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 90,
+              "spa": 100,
+              "spd": 90,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "windrider",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Whimsicott",
+            "species": "Whimsicott",
+            "details": "Whimsicott, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 87,
+              "def": 105,
+              "spa": 97,
+              "spd": 95,
+              "spe": 136
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gust",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Tornadus|Tornadus, L50, M|154/154",
+          "|switch|p1b: Brambleghast|Brambleghast, L50, F|130/130",
+          "|switch|p2a: Whimsicott|Whimsicott, L50, F|135/135",
+          "|switch|p2b: Porygon2|Porygon2, L50, F|160/160",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Tornadus|Tornadus, L50, M|154/154",
+          "|switch|p1b: Brambleghast|Brambleghast, L50, F|130/130",
+          "|switch|p2a: Whimsicott|Whimsicott, L50, F|135/135",
+          "|switch|p2b: Porygon2|Porygon2, L50, F|160/160",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Tornadus|Tornadus, L50, M|154/154",
+          "|switch|p1b: Brambleghast|Brambleghast, L50, F|130/130",
+          "|switch|p2a: Whimsicott|Whimsicott, L50, F|135/135",
+          "|switch|p2b: Porygon2|Porygon2, L50, F|160/160",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tailwind",
+                  "id": "tailwind",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tornadus",
+                "details": "Tornadus, L50, M",
+                "condition": "154/154",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 90,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 131
+                },
+                "moves": [
+                  "tailwind"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Brambleghast",
+                "details": "Brambleghast, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 90,
+                  "spa": 100,
+                  "spd": 90,
+                  "spe": 110
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "windrider",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "windrider",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gust",
+                  "id": "gust",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Whimsicott",
+                "details": "Whimsicott, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 87,
+                  "def": 105,
+                  "spa": 97,
+                  "spd": 95,
+                  "spe": 136
+                },
+                "moves": [
+                  "gust"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tornadus",
+            "species": "Tornadus",
+            "details": "Tornadus, L50, M",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 90,
+              "spa": 145,
+              "spd": 100,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Brambleghast",
+            "species": "Brambleghast",
+            "details": "Brambleghast, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 90,
+              "spa": 100,
+              "spd": 90,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "windrider",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Whimsicott",
+            "species": "Whimsicott",
+            "details": "Whimsicott, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 87,
+              "def": 105,
+              "spa": 97,
+              "spd": 95,
+              "spe": 136
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gust",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1 1",
+        ">p2 move 1 2, move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Whimsicott|Gust|p1b: Brambleghast",
+          "|-ability|p1b: Brambleghast|Wind Rider|boost",
+          "|-boost|p1b: Brambleghast|atk|1",
+          "|move|p1a: Tornadus|Tailwind|p1a: Tornadus",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|-ability|p1b: Brambleghast|Wind Rider|boost",
+          "|-boost|p1b: Brambleghast|atk|1",
+          "|move|p1b: Brambleghast|Tackle|p2a: Whimsicott",
+          "|-damage|p2a: Whimsicott|93/135",
+          "|move|p2b: Porygon2|Recover||[still]",
+          "|-fail|p2b: Porygon2|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Whimsicott|Gust|p1b: Brambleghast",
+          "|-ability|p1b: Brambleghast|Wind Rider|boost",
+          "|-boost|p1b: Brambleghast|atk|1",
+          "|move|p1a: Tornadus|Tailwind|p1a: Tornadus",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|-ability|p1b: Brambleghast|Wind Rider|boost",
+          "|-boost|p1b: Brambleghast|atk|1",
+          "|move|p1b: Brambleghast|Tackle|p2a: Whimsicott",
+          "|-damage|p2a: Whimsicott|93/135",
+          "|move|p2b: Porygon2|Recover||[still]",
+          "|-fail|p2b: Porygon2|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Whimsicott|Gust|p1b: Brambleghast",
+          "|-ability|p1b: Brambleghast|Wind Rider|boost",
+          "|-boost|p1b: Brambleghast|atk|1",
+          "|move|p1a: Tornadus|Tailwind|p1a: Tornadus",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|-ability|p1b: Brambleghast|Wind Rider|boost",
+          "|-boost|p1b: Brambleghast|atk|1",
+          "|move|p1b: Brambleghast|Tackle|p2a: Whimsicott",
+          "|-damage|p2a: Whimsicott|93/135",
+          "|move|p2b: Porygon2|Recover||[still]",
+          "|-fail|p2b: Porygon2|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tailwind",
+                  "id": "tailwind",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tornadus",
+                "details": "Tornadus, L50, M",
+                "condition": "154/154",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 90,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 131
+                },
+                "moves": [
+                  "tailwind"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Brambleghast",
+                "details": "Brambleghast, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 90,
+                  "spa": 100,
+                  "spd": 90,
+                  "spe": 110
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "windrider",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "windrider",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gust",
+                  "id": "gust",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Whimsicott",
+                "details": "Whimsicott, L50, F",
+                "condition": "93/135",
+                "active": true,
+                "stats": {
+                  "atk": 87,
+                  "def": 105,
+                  "spa": 97,
+                  "spd": 95,
+                  "spe": 136
+                },
+                "moves": [
+                  "gust"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tornadus",
+            "species": "Tornadus",
+            "details": "Tornadus, L50, M",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 90,
+              "spa": 145,
+              "spd": 100,
+              "spe": 131
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwind",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Brambleghast",
+            "species": "Brambleghast",
+            "details": "Brambleghast, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 90,
+              "spa": 100,
+              "spd": 90,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "windrider",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Whimsicott",
+            "species": "Whimsicott",
+            "details": "Whimsicott, L50, F",
+            "hp": 93,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 87,
+              "def": 105,
+              "spa": 97,
+              "spd": 95,
+              "spe": 136
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gust",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

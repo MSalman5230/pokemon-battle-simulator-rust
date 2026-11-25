@@ -23,7 +23,7 @@ pub(super) struct Position {
 }
 
 impl Position {
-    fn other_slot(self) -> Self {
+    pub(super) fn other_slot(self) -> Self {
         Self {
             slot: 1 - self.slot,
             ..self
@@ -1969,7 +1969,7 @@ impl Battle {
                 match self.mon(pos).active_ability() {
                     "hospitality" => deferred_hospitality |= pos.mask(),
                     "imposter" => self.imposter_on_entry(pos),
-                    "unnerve" | "asoneglastrier" | "asonespectrier" | "mimicry" => {}
+                    "unnerve" | "asoneglastrier" | "asonespectrier" | "mimicry" | "costar" => {}
                     _ => self.start_ability(pos),
                 }
                 self.on_switch_in_item(pos);
@@ -1983,12 +1983,18 @@ impl Battle {
                 }
                 self.use_matching_terrain_seed(pos);
                 self.use_room_service(pos);
+                if self.mon(pos).ability == "costar" {
+                    self.costar_on_entry(pos);
+                }
                 self.update_booster_energy(pos);
             }
         }
         for (pos, _) in order.into_iter().take(count) {
             if deferred_hospitality & pos.mask() != 0 {
                 self.hospitality(pos);
+            }
+            if self.mon(pos).ability == "pastelveil" {
+                self.pastel_veil_cure(pos, true);
             }
         }
         if self.slots() == 2
@@ -2597,6 +2603,11 @@ impl Battle {
         match self.event_ability(pos) {
             "download" => self.download_boost(pos),
             "intrepidsword" | "dauntlessshield" => self.legendary_boost_on_entry(pos),
+            "costar" => self.costar_on_entry(pos),
+            "pastelveil" => self.pastel_veil_cure(pos, true),
+            "windrider" if self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0 => {
+                self.ability_boost(pos, "Wind Rider", BoostStat::Atk, 1, false);
+            }
             "anticipation" => self.anticipation(pos),
             "forewarn" => self.forewarn(pos),
             _ => {}
@@ -2780,6 +2791,19 @@ impl Battle {
                 ));
                 self.cure_status(pos, "[msg]");
             }
+            if self.mon(pos).ability == "waterveil"
+                && self.mon(pos).status == Status::Burn
+                && self.event_ability(pos) == "waterveil"
+            {
+                self.add(format!(
+                    "|-activate|{}|ability: Water Veil",
+                    self.ident(pos)
+                ));
+                self.cure_status(pos, "[msg]");
+            }
+            if self.mon(pos).ability == "pastelveil" {
+                self.pastel_veil_cure(pos, false);
+            }
             if matches!(self.mon(pos).status, Status::Freeze(_))
                 && self.event_ability(pos) == "magmaarmor"
             {
@@ -2841,6 +2865,7 @@ impl Battle {
             Healer,
             Weather,
             SpeedBoost,
+            BadDreams,
             Harvest,
             CudChew,
             Pickup,
@@ -3160,6 +3185,7 @@ impl Battle {
                 match mon.ability.as_str() {
                     "harvest" => timers.push((pos, Effect::Harvest, priority(28, 2))),
                     "cudchew" => timers.push((pos, Effect::CudChew, priority(28, 2))),
+                    "baddreams" => timers.push((pos, Effect::BadDreams, priority(28, 2))),
                     "pickup" => timers.push((pos, Effect::Pickup, priority(28, 2))),
                     "opportunist" => timers.push((pos, Effect::Opportunist, priority(29, 7))),
                     "moody" => timers.push((pos, Effect::Moody, priority(28, 2))),
@@ -3468,6 +3494,7 @@ impl Battle {
                         | Effect::HungerSwitch
                         | Effect::Healer
                         | Effect::SpeedBoost
+                        | Effect::BadDreams
                         | Effect::Harvest
                         | Effect::CudChew
                         | Effect::Pickup
@@ -3680,6 +3707,12 @@ impl Battle {
                 Effect::HungerSwitch => self.hunger_switch(pos),
                 Effect::Healer => self.healer_residual(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
+                Effect::BadDreams => {
+                    self.bad_dreams(pos);
+                    if self.check_win() {
+                        return;
+                    }
+                }
                 Effect::Harvest => self.harvest_item(pos),
                 Effect::CudChew => self.chew_berry(pos),
                 Effect::Pickup => self.pick_up_item(pos),
@@ -6343,6 +6376,17 @@ impl Battle {
                     "|-immune|{}|[from] ability: Bulletproof",
                     self.ident(mut_pos)
                 ));
+                false
+            } else if source != mut_pos
+                && move_data.flags.contains_key("wind")
+                && self.event_ability(mut_pos) == "windrider"
+            {
+                if !self.ability_boost(mut_pos, "Wind Rider", BoostStat::Atk, 1, false) {
+                    self.add(format!(
+                        "|-immune|{}|[from] ability: Wind Rider",
+                        self.ident(mut_pos)
+                    ));
+                }
                 false
             } else if source != mut_pos
                 && source.player == mut_pos.player
@@ -9801,6 +9845,12 @@ impl Pokemon {
                 | "steamengine"
                 | "toxicchain"
                 | "watercompaction"
+                | "baddreams"
+                | "costar"
+                | "pastelveil"
+                | "poisonpuppeteer"
+                | "waterveil"
+                | "windrider"
                 | "runaway"
                 | "drizzle"
                 | "drought"

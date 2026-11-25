@@ -1336,6 +1336,64 @@ impl Battle {
         }
     }
 
+    pub(super) fn pastel_veil_cure(&mut self, holder: Position, allies: bool) {
+        if self.event_ability(holder) != "pastelveil" {
+            return;
+        }
+        for pos in self
+            .positions()
+            .filter(|p| p.player == holder.player && (allies || *p == holder))
+        {
+            let mon = self.mon(pos);
+            if mon.hp > 0 && matches!(mon.status, Status::Poison | Status::Toxic(_)) {
+                self.add(format!(
+                    "|-activate|{}|ability: Pastel Veil",
+                    self.ident(holder)
+                ));
+                self.cure_status(pos, "[msg]");
+            }
+        }
+    }
+
+    pub(super) fn costar_on_entry(&mut self, holder: Position) {
+        if self.slots() != 2 || self.event_ability(holder) != "costar" {
+            return;
+        }
+        let ally = holder.other_slot();
+        if self.mon(ally).fainted {
+            return;
+        }
+        self.mon_mut(holder).boosts = self.mon(ally).boosts;
+        self.copy_critical_conditions(holder, ally);
+        self.add(format!(
+            "|-copyboost|{}|{}|[from] ability: Costar",
+            self.ident(holder),
+            self.ident(ally)
+        ));
+    }
+
+    pub(super) fn bad_dreams(&mut self, holder: Position) {
+        if self.event_ability(holder) != "baddreams" || self.mon(holder).hp == 0 {
+            return;
+        }
+        let mut fainted = 0;
+        let reason = format!("|[from] ability: Bad Dreams|[of] {}", self.ident(holder));
+        for pos in self.positions().filter(|p| p.player != holder.player) {
+            if self.mon(pos).hp > 0
+                && (matches!(self.mon(pos).status, Status::Sleep(_))
+                    || self.event_ability(pos) == "comatose")
+            {
+                self.indirect_damage(pos, 8, &reason);
+                if self.mon(pos).hp == 0 {
+                    fainted |= pos.mask();
+                }
+            }
+        }
+        for pos in self.positions().filter(|pos| fainted & pos.mask() != 0) {
+            self.mark_fainted(pos);
+        }
+    }
+
     pub(super) fn flower_veil_holder(&mut self, target: Position) -> Option<Position> {
         let (mut holders, count) = self.flower_veils(target);
         let holders = &mut holders[..count];

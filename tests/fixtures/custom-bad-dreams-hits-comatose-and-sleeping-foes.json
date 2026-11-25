@@ -1,0 +1,1104 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Darkrai\",\"moves\":[\"Recover\",\"Spore\"],\"gender\":\"N\",\"name\":\"Darkrai\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Bad Dreams\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Komala\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Komala\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Comatose\"},{\"species\":\"Chansey\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Darkrai, L50|",
+          "|poke|p2|Komala, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Darkrai, L50|",
+          "|poke|p2|Komala, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Darkrai, L50|",
+          "|poke|p2|Komala, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Darkrai",
+                "details": "Darkrai, L50",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 110,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 145
+                },
+                "moves": [
+                  "recover",
+                  "spore"
+                ],
+                "baseAbility": "baddreams",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "baddreams",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Komala",
+                "details": "Komala, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "comatose",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": false,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Darkrai",
+            "species": "Darkrai",
+            "details": "Darkrai, L50",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 110,
+              "spa": 155,
+              "spd": 110,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "baddreams",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "spore",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Darkrai|Darkrai, L50|145/145",
+          "|switch|p2a: Komala|Komala, L50, F|140/140",
+          "|-ability|p2a: Komala|Comatose",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Darkrai|Darkrai, L50|145/145",
+          "|switch|p2a: Komala|Komala, L50, F|140/140",
+          "|-ability|p2a: Komala|Comatose",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Darkrai|Darkrai, L50|145/145",
+          "|switch|p2a: Komala|Komala, L50, F|140/140",
+          "|-ability|p2a: Komala|Comatose",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Spore",
+                  "id": "spore",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Darkrai",
+                "details": "Darkrai, L50",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 110,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 145
+                },
+                "moves": [
+                  "recover",
+                  "spore"
+                ],
+                "baseAbility": "baddreams",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "baddreams",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Komala",
+                "details": "Komala, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "comatose",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": false,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Darkrai",
+            "species": "Darkrai",
+            "details": "Darkrai, L50",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 110,
+              "spa": 155,
+              "spd": 110,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "baddreams",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "spore",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Darkrai|Recover||[still]",
+          "|-fail|p1a: Darkrai|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2a: Komala|Recover||[still]",
+          "|-fail|p2a: Komala|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|-damage|p2a: Komala|123/140|[from] ability: Bad Dreams|[of] p1a: Darkrai",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Darkrai|Recover||[still]",
+          "|-fail|p1a: Darkrai|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2a: Komala|Recover||[still]",
+          "|-fail|p2a: Komala|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|-damage|p2a: Komala|123/140|[from] ability: Bad Dreams|[of] p1a: Darkrai",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Darkrai|Recover||[still]",
+          "|-fail|p1a: Darkrai|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2a: Komala|Recover||[still]",
+          "|-fail|p2a: Komala|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|-damage|p2a: Komala|123/140|[from] ability: Bad Dreams|[of] p1a: Darkrai",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Spore",
+                  "id": "spore",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Darkrai",
+                "details": "Darkrai, L50",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 110,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 145
+                },
+                "moves": [
+                  "recover",
+                  "spore"
+                ],
+                "baseAbility": "baddreams",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "baddreams",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Komala",
+                "details": "Komala, L50, F",
+                "condition": "123/140",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "comatose",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": false,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Darkrai",
+            "species": "Darkrai",
+            "details": "Darkrai, L50",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 110,
+              "spa": 155,
+              "spd": 110,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "baddreams",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "spore",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 123,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 switch 2"
+      ],
+      "turn": 3,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|move|p1a: Darkrai|Spore|p2a: Chansey",
+          "|-status|p2a: Chansey|slp|[from] move: Spore",
+          "|",
+          "|-damage|p2a: Chansey|285/325 slp|[from] ability: Bad Dreams|[of] p1a: Darkrai",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|move|p1a: Darkrai|Spore|p2a: Chansey",
+          "|-status|p2a: Chansey|slp|[from] move: Spore",
+          "|",
+          "|-damage|p2a: Chansey|285/325 slp|[from] ability: Bad Dreams|[of] p1a: Darkrai",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|move|p1a: Darkrai|Spore|p2a: Chansey",
+          "|-status|p2a: Chansey|slp|[from] move: Spore",
+          "|",
+          "|-damage|p2a: Chansey|285/325 slp|[from] ability: Bad Dreams|[of] p1a: Darkrai",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Spore",
+                  "id": "spore",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Darkrai",
+                "details": "Darkrai, L50",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 110,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 145
+                },
+                "moves": [
+                  "recover",
+                  "spore"
+                ],
+                "baseAbility": "baddreams",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "baddreams",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "285/325 slp",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Komala",
+                "details": "Komala, L50, F",
+                "condition": "123/140",
+                "active": false,
+                "stats": {
+                  "atk": 135,
+                  "def": 85,
+                  "spa": 95,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "comatose",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "comatose",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Darkrai",
+            "species": "Darkrai",
+            "details": "Darkrai, L50",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 110,
+              "spa": 155,
+              "spd": 110,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "baddreams",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "spore",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 285,
+            "maxhp": 325,
+            "status": "slp",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Komala",
+            "species": "Komala",
+            "details": "Komala, L50, F",
+            "hp": 123,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 85,
+              "spa": 95,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "comatose",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

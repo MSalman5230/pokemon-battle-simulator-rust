@@ -2177,6 +2177,32 @@ const colorChangeRosters = [
     [named('Charizard', ['Ember', 'Water Gun'])],
     [{...named('Kecleon', ['Recover']), ability:'Color Change'}],
 ];
+const waterVeilRosters = [
+    [{...named('Wailord', ['Recover']), ability:'Water Veil'}],
+    [named('Ninetales', ['Will-O-Wisp'])],
+];
+const pastelVeilRosters = [
+    [{...named('Rapidash-Galar', ['Recover']), ability:'Pastel Veil'},
+        named('Snorlax', ['Recover']), named('Umbreon', ['Recover'])],
+    [named('Muk', ['Toxic']), named('Venusaur', ['Recover'])],
+];
+const poisonPuppeteerRosters = [
+    [{...named('Pecharunt', ['Toxic'], 'N'), ability:'Poison Puppeteer'}],
+    [named('Chansey', ['Tackle'])],
+];
+const badDreamsRosters = [
+    [{...named('Darkrai', ['Recover', 'Spore'], 'N'), ability:'Bad Dreams'}],
+    [{...named('Komala', ['Recover']), ability:'Comatose'}, named('Chansey', ['Recover'])],
+];
+const costarRosters = [
+    [named('Hawlucha', ['Bulk Up', 'Focus Energy', 'Tackle']), named('Snorlax', ['Recover']),
+        {...named('Flamigo', ['Tackle']), ability:'Costar'}],
+    [named('Chansey', ['Recover']), named('Umbreon', ['Recover'])],
+];
+const windRiderRosters = [
+    [named('Tornadus', ['Tailwind'], 'M'), {...named('Brambleghast', ['Tackle']), ability:'Wind Rider'}],
+    [named('Whimsicott', ['Gust']), named('Porygon2', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3778,6 +3804,20 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         perishBodyRosters, 'custom-perish-body-starts-separate-countdowns'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 2','move 1']],
         colorChangeRosters, 'custom-color-change-applies-after-damage'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        waterVeilRosters, 'custom-water-veil-blocks-burn'],
+    ['doublescustomgame', [['team 123','team 12'], ['move 1, move 1','move 1 2, move 1'],
+        ['switch 3, move 1','move 1 2, move 1'], ['switch 3, move 1','move 1 2, move 1']],
+        pastelVeilRosters, 'custom-pastel-veil-protects-allies-and-cures-poison-on-entry'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        poisonPuppeteerRosters, 'custom-poison-puppeteer-confuses-after-poisoning'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2']],
+        badDreamsRosters, 'custom-bad-dreams-hits-comatose-and-sleeping-foes'],
+    ['doublescustomgame', [['team 123','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['move 2, move 1','move 1, move 1'], ['move 3 1, switch 3','move 1, move 1']],
+        costarRosters, 'custom-costar-copies-boosts-and-focus-energy'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1 1','move 1 2, move 1']],
+        windRiderRosters, 'custom-wind-rider-absorbs-wind-and-boosts-from-tailwind'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

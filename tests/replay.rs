@@ -2331,6 +2331,26 @@ fn inherited_hit_reaction_abilities_follow_contact_type_and_secondary_rules() {
 }
 
 #[test]
+fn inherited_status_and_support_abilities_run_at_matching_native_phases() {
+    replay(include_str!("fixtures/custom-water-veil-blocks-burn.json"));
+    replay(include_str!(
+        "fixtures/custom-pastel-veil-protects-allies-and-cures-poison-on-entry.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-poison-puppeteer-confuses-after-poisoning.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-bad-dreams-hits-comatose-and-sleeping-foes.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-costar-copies-boosts-and-focus-energy.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-wind-rider-absorbs-wind-and-boosts-from-tailwind.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
