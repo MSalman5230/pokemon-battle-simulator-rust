@@ -190,6 +190,12 @@ const redirectRosters = [
         {...named('Rhydon', ['Recover']), ability: 'Lightning Rod'},
         {...named('Vaporeon', ['Water Gun']), ability: 'Water Absorb'}],
 ];
+const magicGuardRosters = [
+    [{...named('Clefable', ['Double-Edge', 'Recover']), ability: 'Magic Guard', item: 'Life Orb'},
+        named('Vaporeon', ['Recover'])],
+    [{...named('Garchomp', ['Stealth Rock', 'Toxic', 'Sandstorm', 'Water Gun']),
+        ability: 'Rough Skin', item: 'Rocky Helmet'}, named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -257,6 +263,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 123', 'team 123'], ['move 1 1, move 2 2', 'move 1, move 1'],
         ['move 2 1, switch 3', 'move 2 1, switch 3'], ['move 3, move 1', 'move 1, move 1 1']],
         redirectRosters, 'vgc-elemental-redirection'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 2', 'move 1'], ['move 1', 'move 2'],
+        ['switch 2', 'move 3'], ['switch 2', 'move 4'], ['move 1', 'move 4']],
+        magicGuardRosters, 'bss-magic-guard'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

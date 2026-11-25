@@ -66,7 +66,7 @@ impl Battle {
 
     pub(super) fn indirect_damage(&mut self, pos: Position, divisor: u32, cause: &str) {
         let mon = self.mon_mut(pos);
-        if mon.hp == 0 {
+        if mon.hp == 0 || mon.ability == "magicguard" {
             return;
         }
         mon.hp = mon.hp.saturating_sub((mon.max_hp.get() / divisor).max(1));

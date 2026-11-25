@@ -231,3 +231,8 @@ fn champions_ou_preview_selects_the_full_team() {
 fn vgc_elemental_redirection_prefers_faster_holder_and_never_redirects_spread() {
     replay(include_str!("fixtures/vgc-elemental-redirection.json"));
 }
+
+#[test]
+fn bss_magic_guard_blocks_indirect_damage_without_preventing_status() {
+    replay(include_str!("fixtures/bss-magic-guard.json"));
+}

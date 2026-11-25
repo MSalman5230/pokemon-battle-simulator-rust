@@ -202,6 +202,9 @@ impl Battle {
             mon.status = Status::Toxic(stage);
             amount *= u32::from(stage);
         }
+        if mon.ability == "magicguard" {
+            return;
+        }
         if mon.status == Status::Burn && mon.ability == "heatproof" {
             amount = (amount / 2).max(1);
         }

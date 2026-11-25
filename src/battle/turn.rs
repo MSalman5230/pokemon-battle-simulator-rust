@@ -1783,11 +1783,18 @@ impl Battle {
         if move_data.flags.contains_key("contact") {
             for &(target, _) in &damage {
                 if self.mon(target).ability == "roughskin" {
-                    self.indirect_damage(
-                        source,
-                        8,
-                        &format!("|[from] ability: Rough Skin|[of] {}", self.ident(target)),
-                    );
+                    if self.mon(source).hp > 0 && self.mon(source).ability == "magicguard" {
+                        self.add(format!(
+                            "|-activate|{}|ability: Rough Skin",
+                            self.ident(target)
+                        ));
+                    } else {
+                        self.indirect_damage(
+                            source,
+                            8,
+                            &format!("|[from] ability: Rough Skin|[of] {}", self.ident(target)),
+                        );
+                    }
                 }
             }
             for &(target, _) in &damage {
@@ -1866,7 +1873,7 @@ impl Battle {
             (self.mon(source).max_hp.get() + 2) / 4
         } else if let Some([num, den]) = move_data.recoil
             && total > 0
-            && self.mon(source).ability != "rockhead"
+            && !matches!(self.mon(source).ability.as_str(), "rockhead" | "magicguard")
         {
             ((total * u32::from(num) + u32::from(den) / 2) / u32::from(den)).max(1)
         } else {
@@ -2097,6 +2104,7 @@ impl Pokemon {
                 | "voltabsorb"
                 | "eartheater"
                 | "wellbakedbody"
+                | "magicguard"
                 | "soundproof"
                 | "auraguard"
                 | "sturdy"

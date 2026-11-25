@@ -143,6 +143,9 @@ impl Battle {
 
     fn hazard_damage(&mut self, pos: Position, damage: u32, reason: &str) {
         let mon = self.mon_mut(pos);
+        if mon.ability == "magicguard" {
+            return;
+        }
         mon.hp = mon.hp.saturating_sub(damage.max(1));
         self.add_health_line_with("-damage", pos, false, reason);
         if self.mon(pos).hp == 0 {
