@@ -242,6 +242,14 @@ impl Battle {
 }
 
 impl Pokemon {
+    pub(super) fn element_bit(ty: &str) -> u8 {
+        match ty {
+            "Fire" => 1,
+            "Electric" => 2,
+            _ => 0,
+        }
+    }
+
     pub(super) fn has_type(&self, name: &str) -> bool {
         self.types().any(|t| t == name)
     }
@@ -263,5 +271,12 @@ impl Pokemon {
             .map(String::as_str)
             .filter(move |t| lone.is_none() && (!self.roosted || *t != "Flying"))
             .chain(lone)
+            .map(|ty| {
+                if self.spent_elements & Self::element_bit(ty) != 0 {
+                    "???"
+                } else {
+                    ty
+                }
+            })
     }
 }

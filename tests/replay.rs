@@ -750,3 +750,9 @@ fn substitute_separates_shield_damage_and_shed_tail_preserves_remaining_shield_h
     replay(include_str!("fixtures/bss-substitute-multihit.json"));
     replay(include_str!("fixtures/bss-substitute-secondaries.json"));
 }
+
+#[test]
+fn double_shock_and_burn_up_spend_only_their_element_until_switching() {
+    replay(include_str!("fixtures/bss-double-shock.json"));
+    replay(include_str!("fixtures/bss-burn-up.json"));
+}

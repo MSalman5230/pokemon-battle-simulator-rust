@@ -931,7 +931,9 @@ impl Battle {
         if already_type {
             return;
         }
-        self.mon_mut(pos).temporary_type = Some(move_type);
+        let mon = self.mon_mut(pos);
+        mon.temporary_type = Some(move_type);
+        mon.spent_elements = 0;
         self.add(format!(
             "|-start|{}|typechange|{move_type}|[from] ability: {name}",
             self.ident(pos)

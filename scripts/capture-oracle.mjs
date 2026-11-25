@@ -630,6 +630,14 @@ const shieldSecondariesRosters = [
     [substituteRosters[0][0], substituteRosters[0][1]],
     [named('Torkoal', ['Mystical Fire', 'Rapid Spin', 'Flame Charge', 'Recover']), named('Espeon', ['Recover'])],
 ];
+const doubleShockRosters = [
+    [named('Pawmot', ['Double Shock', 'Recover']), named('Glaceon', ['Recover'])],
+    [named('Snorlax', ['Protect', 'Thunder Wave', 'Recover']), named('Umbreon', ['Recover'])],
+];
+const burnUpRosters = [
+    [named('Arcanine', ['Burn Up', 'Recover']), named('Glaceon', ['Recover'])],
+    [named('Vaporeon', ['Will-O-Wisp', 'Recover']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -946,6 +954,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         multiShieldRosters, 'bss-substitute-multihit'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 3']],
         shieldSecondariesRosters, 'bss-substitute-secondaries'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 3'],
+        ['switch 2','move 3'], ['switch 2','move 3'], ['move 1','move 3']],
+        doubleShockRosters, 'bss-double-shock'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2']],
+        burnUpRosters, 'bss-burn-up'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

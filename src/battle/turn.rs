@@ -922,6 +922,8 @@ impl Battle {
                     | "mortalspin"
                     | "substitute"
                     | "shedtail"
+                    | "doubleshock"
+                    | "burnup"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1172,6 +1174,7 @@ impl Battle {
         party[outgoing.slot].active_move_actions = 0;
         party[outgoing.slot].roosted = false;
         party[outgoing.slot].temporary_type = None;
+        party[outgoing.slot].spent_elements = 0;
         party[outgoing.slot].yawn = None;
         party[outgoing.slot].seeded_from = None;
         party[outgoing.slot].taunt = 0;
@@ -2165,6 +2168,18 @@ impl Battle {
             "Explosion" | "Self-Destruct" | "Misty Explosion"
         );
         let mind_blown = move_data.name == "Mind Blown";
+        let spent_element = match move_data.name.as_str() {
+            "Burn Up" => Some("Fire"),
+            "Double Shock" => Some("Electric"),
+            _ => None,
+        };
+        if let Some(ty) = spent_element
+            && !self.mon(source).has_type(ty)
+        {
+            self.add(format!("|-fail|{source_name}|move: {}", move_data.name));
+            self.move_still(base);
+            return true;
+        }
         if spread_targets.is_empty() && !sacrifice && !mind_blown {
             self.log[base].public.push_str("|[notarget]");
             self.add(format!("|-fail|{source_name}"));
@@ -2804,7 +2819,9 @@ impl Battle {
                     {
                         self.add(format!("|-fail|{}", self.ident(target)));
                     } else {
-                        self.mon_mut(target).temporary_type = Some("Water");
+                        let mon = self.mon_mut(target);
+                        mon.temporary_type = Some("Water");
+                        mon.spent_elements = 0;
                         self.add(format!("|-start|{}|typechange|Water", self.ident(target)));
                         succeeded = true;
                     }
@@ -3279,6 +3296,19 @@ impl Battle {
                     self.boost(source, &move_data.self_boosts, true);
                 }
             }
+            if let Some(ty) = spent_element
+                && self.mon(source).hp != 0
+            {
+                let mon = self.mon_mut(source);
+                if !matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally") {
+                    mon.spent_elements |= Pokemon::element_bit(ty);
+                }
+                let types = mon.types().collect::<Vec<_>>().join("/");
+                self.add(format!(
+                    "|-start|{source_name}|typechange|{types}|[from] move: {}",
+                    move_data.name
+                ));
+            }
             if move_data.self_recharge && self.mon(source).hp > 0 {
                 let mon = self.mon_mut(source);
                 mon.recharge = 2;
@@ -3601,6 +3631,7 @@ impl Battle {
         mon.choice_lock = None;
         mon.roosted = false;
         mon.temporary_type = None;
+        mon.spent_elements = 0;
         mon.yawn = None;
         mon.seeded_from = None;
         mon.taunt = 0;
@@ -3715,6 +3746,9 @@ impl Battle {
     ) -> Option<i8> {
         let mut modifier = 0;
         for typing in self.mon(target).types() {
+            if typing == "???" {
+                continue;
+            }
             if move_data.name == "Freeze-Dry" && typing == "Water" {
                 modifier += 1;
                 continue;

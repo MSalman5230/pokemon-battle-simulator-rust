@@ -210,7 +210,7 @@ impl Battle {
         }
         (matches!(key, "powder" | "sandstorm")
             && (mon.item == "safetygoggles" || self.event_ability(pos) == "overcoat"))
-            || mon.types().any(|typing| {
+            || mon.types().filter(|ty| *ty != "???").any(|typing| {
                 DEX.type_data(&to_id(typing)).unwrap().damage_taken.get(key) == Some(&3)
             })
     }
