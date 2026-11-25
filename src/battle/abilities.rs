@@ -183,6 +183,11 @@ impl Pokemon {
 
     pub(super) fn can_transfer_item(&self, item: &crate::dex::Item) -> bool {
         !item.unremovable
+            && !(item.is_primal_orb
+                && item
+                    .item_user
+                    .as_ref()
+                    .is_some_and(|users| users.contains(&self.base_species.base_species)))
             && !item.mega_stone.as_ref().is_some_and(|m| {
                 m.contains_key(&self.base_species.name)
                     || m.contains_key(&self.base_species.base_species)
@@ -1754,7 +1759,7 @@ impl Battle {
         if mon.hp != 0
             && mon.status != Status::Healthy
             && mon.effective_item() != "utilityumbrella"
-            && self.effective_weather() == Some(Weather::Rain)
+            && self.effective_weather().map(Weather::ordinary) == Some(Weather::Rain)
         {
             if self.format.report_exact_hp {
                 self.add("|debug|hydration");

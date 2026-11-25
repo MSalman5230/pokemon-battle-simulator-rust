@@ -126,6 +126,7 @@ const data = mod => {
                 isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined, fling: flingData(e),
                 inertHeldItem: inertHeldItem(e) || undefined,
                 zMove: e.zMove || undefined, unremovable: e.onTakeItem === false || undefined,
+                isPrimalOrb: e.isPrimalOrb || undefined,
                 handlers: handlers(e)})),
         natures: table(dex.natures.all(), e => props(e, ['plus', 'minus'])),
         types: table(dex.types.all(), e => props(e, ['damageTaken'])),

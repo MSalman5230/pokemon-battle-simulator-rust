@@ -1773,6 +1773,10 @@ impl Battle {
                 if self.mon(pos).hp == 0 {
                     continue;
                 }
+                if self.primal_reversion(pos) {
+                    self.on_switch_in_item(pos);
+                    continue;
+                }
                 if let Some(label) = self.weather_suppressor(pos) {
                     self.add(format!("|-ability|{}|{label}", self.ident(pos)));
                 }
@@ -3441,7 +3445,7 @@ impl Battle {
         let releasing_charge = own_action && self.mon(source).charge.is_some();
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
             && matches!(
-                move_weather,
+                move_weather.map(Weather::ordinary),
                 Some(Weather::Rain | Weather::Sand | Weather::Snow | Weather::Hail)
             );
         let counter = CounterMove::for_move(move_data);
@@ -3658,7 +3662,10 @@ impl Battle {
         } else {
             target.and_then(|target| self.mon(target).personal_weather(weather))
         };
-        let mut accuracy = match (move_data.name.as_str(), weather_at_target) {
+        let mut accuracy = match (
+            move_data.name.as_str(),
+            weather_at_target.map(Weather::ordinary),
+        ) {
             ("Blizzard", Some(Weather::Snow | Weather::Hail)) => Accuracy::Bypass(true),
             ("Hurricane" | "Thunder", Some(Weather::Rain)) if target.is_some() => {
                 Accuracy::Bypass(true)
@@ -3987,6 +3994,20 @@ impl Battle {
             |(_, priority)| priority,
         );
         if !delayed
+            && move_data.category != Category::Status
+            && let Some((label, element)) = weather.and_then(|w| w.extinguishes(move_type))
+        {
+            if self.format.report_exact_hp {
+                self.add(format!("|debug|{label} {element} suppress"));
+            }
+            self.add(format!(
+                "|-fail|{source_name}|{}|[from] {label}",
+                move_data.name
+            ));
+            self.move_still(base);
+            return true;
+        }
+        if !delayed
             && let Some(target) = spread_targets.last().copied().or(actual_target)
             && let Some((holder, name)) =
                 self.try_move_guard(source, target, move_data, priority, sacrifice || mind_blown)
@@ -4187,7 +4208,8 @@ impl Battle {
                 if mega_sun && weather != Some(Weather::Sun) && spec.instant == Some(Weather::Sun) {
                     self.add(format!("|-activate|{source_name}|ability: Mega Sol"));
                 }
-                let weather_skip = spec.instant.is_some() && spec.instant == move_weather;
+                let weather_skip =
+                    spec.instant.is_some() && spec.instant == move_weather.map(Weather::ordinary);
                 let herb_skip = !weather_skip && self.mon(source).effective_item() == "powerherb";
                 self.move_still(base);
                 if weather_skip || herb_skip {
@@ -5931,7 +5953,7 @@ impl Battle {
                             self.ident(target)
                         ));
                     }
-                    let fraction = match move_weather {
+                    let fraction = match move_weather.map(Weather::ordinary) {
                         Some(Weather::Sun) => 2732,
                         None | Some(Weather::StrongWinds) => 2048,
                         Some(_) => 1024,
@@ -5991,7 +6013,9 @@ impl Battle {
                     }
                     succeeded = true;
                 }
-                let boosts = if move_data.name == "Growth" && move_weather == Some(Weather::Sun) {
+                let boosts = if move_data.name == "Growth"
+                    && move_weather.map(Weather::ordinary) == Some(Weather::Sun)
+                {
                     &[(BoostStat::Atk, 2), (BoostStat::Spa, 2)]
                 } else {
                     move_data.boosts.as_slice()
@@ -7640,7 +7664,10 @@ impl Pokemon {
             stat *= 2;
         }
         if matches!(
-            (self.active_ability(), self.personal_weather(weather)),
+            (
+                self.active_ability(),
+                self.personal_weather(weather).map(Weather::ordinary)
+            ),
             ("swiftswim", Some(Weather::Rain))
                 | ("chlorophyll", Some(Weather::Sun))
                 | ("sandrush", Some(Weather::Sand))
@@ -7882,6 +7909,8 @@ impl Pokemon {
                 | "cloudnine"
                 | "airlock"
                 | "deltastream"
+                | "desolateland"
+                | "primordialsea"
                 | "stancechange"
                 | "magicbounce"
                 | "naturalcure"
@@ -8023,7 +8052,10 @@ impl Pokemon {
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)
                 .is_none_or(|item| {
-                    item.mega_stone.is_none() && item.z_move.is_none() && !item.inert_held_item
+                    item.mega_stone.is_none()
+                        && item.z_move.is_none()
+                        && !item.is_primal_orb
+                        && !item.inert_held_item
                 })
         {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));

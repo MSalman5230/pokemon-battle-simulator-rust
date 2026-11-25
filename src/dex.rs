@@ -297,6 +297,8 @@ pub struct Item {
     pub inert_held_item: bool,
     #[serde(default)]
     pub unremovable: bool,
+    #[serde(default)]
+    pub is_primal_orb: bool,
     pub z_move: Option<ItemZMove>,
     pub z_move_type: Option<String>,
     pub z_move_from: Option<String>,

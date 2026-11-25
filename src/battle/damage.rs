@@ -629,7 +629,7 @@ impl Battle {
         if !physical
             && source_active
             && self.event_ability(source) == "solarpower"
-            && damage_weather == Some(Weather::Sun)
+            && damage_weather.map(Weather::ordinary) == Some(Weather::Sun)
             && user.effective_item() != "utilityumbrella"
         {
             attack_modifier = chain(6144, attack_modifier);
@@ -801,6 +801,8 @@ impl Battle {
                 (Some(Weather::Sun), "Fire", _) => "Sunny Day fire boost",
                 (Some(Weather::Sun), "Water", 6144) => "Sunny Day Hydro Steam boost",
                 (Some(Weather::Sun), "Water", _) => "Sunny Day water suppress",
+                (Some(Weather::HarshSunlight), "Fire", _) => "Desolate Land fire boost",
+                (Some(Weather::HeavyRain), "Water", _) => "Rain water boost",
                 _ => unreachable!(),
             };
             self.add(format!("|debug|{msg}"));

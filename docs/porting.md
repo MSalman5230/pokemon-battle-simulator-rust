@@ -77,10 +77,11 @@ sets, with National Dex transfer learnsets and a Champions fallback. Some
 origin, special form, and event constraints are still unsupported. Focused
 National Dex and Custom Game replays cover the once-per-side Z-Crystal
 selection, generic damage and status Z effects, and signature effects such as
-Guardian of Alola's fixed damage and Genesis Supernova's terrain. Other
-inherited mechanics still need coverage. Roster Ranch Rumble generates
-ten-member rosters with a separate
-PRNG and supports native pick-four doubles setup. Seeded tests compare complete
+Guardian of Alola's fixed damage and Genesis Supernova's terrain. Ultra Burst,
+move-based Mega Rayquaza, and Primal Reversion also have seeded fixtures,
+including strong weather ending when its source leaves. Other inherited mechanics
+still need coverage. Roster Ranch Rumble generates ten-member rosters with a
+separate PRNG and supports native pick-four doubles setup. Seeded tests compare complete
 rosters and the final team PRNG state. Random Battle and Random Doubles Battle
 generate teams, skip preview, and retain level-based stats and Illusion.
 Continue testing more rosters, seeds, and formats and record focused native

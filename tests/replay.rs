@@ -1831,6 +1831,13 @@ fn national_dex_rayquaza_mega_evolves_by_move_and_starts_delta_stream() {
 }
 
 #[test]
+fn primal_reversion_keeps_the_form_and_only_the_current_weather_source() {
+    replay(include_str!("fixtures/natdex-primal-sunlight.json"));
+    replay(include_str!("fixtures/custom-primal-rain.json"));
+    replay(include_str!("fixtures/custom-primal-clash.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

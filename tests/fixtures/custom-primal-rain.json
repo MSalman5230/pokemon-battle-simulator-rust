@@ -1,0 +1,1455 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Kyogre\",\"moves\":[\"Water Gun\",\"Protect\"],\"gender\":\"F\",\"name\":\"Kyogre\",\"level\":50,\"nature\":\"Modest\",\"ability\":\"Drizzle\",\"item\":\"Blue Orb\"},{\"species\":\"Starmie\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Starmie\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Natural Cure\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Charizard\",\"moves\":[\"Flamethrower\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Charizard\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kyogre, L50, F|",
+          "|poke|p1|Starmie, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kyogre, L50, F|",
+          "|poke|p1|Starmie, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kyogre, L50, F|",
+          "|poke|p1|Starmie, L50, F|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kyogre",
+                "details": "Kyogre, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 108,
+                  "def": 110,
+                  "spa": 187,
+                  "spd": 160,
+                  "spe": 110
+                },
+                "moves": [
+                  "watergun",
+                  "protect"
+                ],
+                "baseAbility": "drizzle",
+                "item": "blueorb",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Starmie",
+                "details": "Starmie, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "flamethrower",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kyogre",
+            "species": "Kyogre",
+            "details": "Kyogre, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 108,
+              "def": 110,
+              "spa": 187,
+              "spd": 160,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "blueorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Kyogre|Kyogre, L50, F|175/175",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|detailschange|p1a: Kyogre|Kyogre-Primal, L50, F",
+          "|-primal|p1a: Kyogre|Blue Orb",
+          "|-weather|PrimordialSea|[from] ability: Primordial Sea|[of] p1a: Kyogre",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Kyogre|Kyogre, L50, F|175/175",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|detailschange|p1a: Kyogre|Kyogre-Primal, L50, F",
+          "|-primal|p1a: Kyogre|Blue Orb",
+          "|-weather|PrimordialSea|[from] ability: Primordial Sea|[of] p1a: Kyogre",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Kyogre|Kyogre, L50, F|175/175",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|detailschange|p1a: Kyogre|Kyogre-Primal, L50, F",
+          "|-primal|p1a: Kyogre|Blue Orb",
+          "|-weather|PrimordialSea|[from] ability: Primordial Sea|[of] p1a: Kyogre",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kyogre",
+                "details": "Kyogre-Primal, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 153,
+                  "def": 110,
+                  "spa": 220,
+                  "spd": 180,
+                  "spe": 110
+                },
+                "moves": [
+                  "watergun",
+                  "protect"
+                ],
+                "baseAbility": "primordialsea",
+                "item": "blueorb",
+                "pokeball": "pokeball",
+                "ability": "primordialsea",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Starmie",
+                "details": "Starmie, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Flamethrower",
+                  "id": "flamethrower",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "flamethrower",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kyogre",
+            "species": "Kyogre-Primal",
+            "details": "Kyogre-Primal, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 153,
+              "def": 110,
+              "spa": 220,
+              "spd": 180,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "primordialsea",
+            "item": "blueorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Charizard|Flamethrower||[still]",
+          "|debug|Primordial Sea fire suppress",
+          "|-fail|p2a: Charizard|Flamethrower|[from] Primordial Sea",
+          "|move|p1a: Kyogre|Water Gun|p2a: Charizard",
+          "|debug|Rain water boost",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|1/153",
+          "|",
+          "|-weather|PrimordialSea|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Flamethrower||[still]",
+          "|debug|Primordial Sea fire suppress",
+          "|-fail|p2a: Charizard|Flamethrower|[from] Primordial Sea",
+          "|move|p1a: Kyogre|Water Gun|p2a: Charizard",
+          "|debug|Rain water boost",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|1/153",
+          "|",
+          "|-weather|PrimordialSea|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Charizard|Flamethrower||[still]",
+          "|debug|Primordial Sea fire suppress",
+          "|-fail|p2a: Charizard|Flamethrower|[from] Primordial Sea",
+          "|move|p1a: Kyogre|Water Gun|p2a: Charizard",
+          "|debug|Rain water boost",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|1/153",
+          "|",
+          "|-weather|PrimordialSea|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kyogre",
+                "details": "Kyogre-Primal, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 153,
+                  "def": 110,
+                  "spa": 220,
+                  "spd": 180,
+                  "spe": 110
+                },
+                "moves": [
+                  "watergun",
+                  "protect"
+                ],
+                "baseAbility": "primordialsea",
+                "item": "blueorb",
+                "pokeball": "pokeball",
+                "ability": "primordialsea",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Starmie",
+                "details": "Starmie, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Flamethrower",
+                  "id": "flamethrower",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "1/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "flamethrower",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kyogre",
+            "species": "Kyogre-Primal",
+            "details": "Kyogre-Primal, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 153,
+              "def": 110,
+              "spa": 220,
+              "spd": 180,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "primordialsea",
+            "item": "blueorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 1,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|-weather|none",
+          "|switch|p1a: Starmie|Starmie, L50, F|135/135",
+          "|move|p2a: Charizard|Flamethrower|p1a: Starmie",
+          "|-resisted|p1a: Starmie|1",
+          "|-damage|p1a: Starmie|102/135",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-weather|none",
+          "|switch|p1a: Starmie|Starmie, L50, F|135/135",
+          "|move|p2a: Charizard|Flamethrower|p1a: Starmie",
+          "|-resisted|p1a: Starmie|1",
+          "|-damage|p1a: Starmie|102/135",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-weather|none",
+          "|switch|p1a: Starmie|Starmie, L50, F|135/135",
+          "|move|p2a: Charizard|Flamethrower|p1a: Starmie",
+          "|-resisted|p1a: Starmie|1",
+          "|-damage|p1a: Starmie|102/135",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Starmie",
+                "details": "Starmie, L50, F",
+                "condition": "102/135",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Kyogre",
+                "details": "Kyogre-Primal, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 153,
+                  "def": 110,
+                  "spa": 220,
+                  "spd": 180,
+                  "spe": 110
+                },
+                "moves": [
+                  "watergun",
+                  "protect"
+                ],
+                "baseAbility": "primordialsea",
+                "item": "blueorb",
+                "pokeball": "pokeball",
+                "ability": "primordialsea",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Flamethrower",
+                  "id": "flamethrower",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "1/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "flamethrower",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50, F",
+            "hp": 102,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Kyogre",
+            "species": "Kyogre-Primal",
+            "details": "Kyogre-Primal, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 153,
+              "def": 110,
+              "spa": 220,
+              "spd": 180,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "primordialsea",
+            "item": "blueorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 1,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Kyogre|Kyogre-Primal, L50, F|175/175",
+          "|-weather|PrimordialSea|[from] ability: Primordial Sea|[of] p1a: Kyogre",
+          "|move|p2a: Charizard|Flamethrower||[still]",
+          "|debug|Primordial Sea fire suppress",
+          "|-fail|p2a: Charizard|Flamethrower|[from] Primordial Sea",
+          "|",
+          "|-weather|PrimordialSea|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Kyogre|Kyogre-Primal, L50, F|175/175",
+          "|-weather|PrimordialSea|[from] ability: Primordial Sea|[of] p1a: Kyogre",
+          "|move|p2a: Charizard|Flamethrower||[still]",
+          "|debug|Primordial Sea fire suppress",
+          "|-fail|p2a: Charizard|Flamethrower|[from] Primordial Sea",
+          "|",
+          "|-weather|PrimordialSea|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Kyogre|Kyogre-Primal, L50, F|175/175",
+          "|-weather|PrimordialSea|[from] ability: Primordial Sea|[of] p1a: Kyogre",
+          "|move|p2a: Charizard|Flamethrower||[still]",
+          "|debug|Primordial Sea fire suppress",
+          "|-fail|p2a: Charizard|Flamethrower|[from] Primordial Sea",
+          "|",
+          "|-weather|PrimordialSea|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kyogre",
+                "details": "Kyogre-Primal, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 153,
+                  "def": 110,
+                  "spa": 220,
+                  "spd": 180,
+                  "spe": 110
+                },
+                "moves": [
+                  "watergun",
+                  "protect"
+                ],
+                "baseAbility": "primordialsea",
+                "item": "blueorb",
+                "pokeball": "pokeball",
+                "ability": "primordialsea",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Starmie",
+                "details": "Starmie, L50, F",
+                "condition": "102/135",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Flamethrower",
+                  "id": "flamethrower",
+                  "pp": 13,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "1/153",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "flamethrower",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kyogre",
+            "species": "Kyogre-Primal",
+            "details": "Kyogre-Primal, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 153,
+              "def": 110,
+              "spa": 220,
+              "spd": 180,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "primordialsea",
+            "item": "blueorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50, F",
+            "hp": 102,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 1,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 13,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

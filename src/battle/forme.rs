@@ -43,13 +43,7 @@ impl Battle {
         {
             return;
         }
-        let weather = if mon.effective_item() == "utilityumbrella"
-            && matches!(weather, Some(Weather::Rain | Weather::Sun))
-        {
-            None
-        } else {
-            weather
-        };
+        let weather = mon.personal_weather(weather).map(Weather::ordinary);
         let id = match weather {
             Some(Weather::Sun) => "castformsunny",
             Some(Weather::Rain) => "castformrainy",

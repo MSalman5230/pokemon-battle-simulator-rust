@@ -1572,6 +1572,20 @@ const natDexRayquazaRosters = [
         named('Eevee', ['Tackle'])],
     [named('Vaporeon', ['Ice Beam', 'Recover', 'Rain Dance'])],
 ];
+const primalGroudon = {...named('Groudon', ['Fire Punch', 'Protect']), ability:'Drought', item:'Red Orb', nature:'Jolly'};
+const primalKyogre = {...named('Kyogre', ['Water Gun', 'Protect']), ability:'Drizzle', item:'Blue Orb', nature:'Modest'};
+const natDexPrimalSunRosters = [
+    [primalGroudon, named('Umbreon', ['Protect'])],
+    [named('Vaporeon', ['Water Gun', 'Sunny Day'])],
+];
+const customPrimalRainRosters = [
+    [primalKyogre, {...named('Starmie', ['Recover']), ability:'Natural Cure'}],
+    [named('Charizard', ['Flamethrower', 'Tackle'])],
+];
+const customPrimalClashRosters = [
+    [primalGroudon, primalKyogre],
+    [named('Glaceon', ['Tail Whip']), named('Vaporeon', ['Tail Whip'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2851,6 +2865,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         customUltraAndMegaRosters, 'custom-ultra-and-mega'],
     ['natdexdraft', [['team 12','team 1'], ['move 2 mega','move 3'], ['move 3','move 1'], ['switch 2','move 2']],
         natDexRayquazaRosters, 'natdex-rayquaza-delta-stream'],
+    ['natdexdraft', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['switch 2','move 1'],
+        ['switch 2','move 1']], natDexPrimalSunRosters, 'natdex-primal-sunlight'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1'],
+        ['switch 2','move 1']], customPrimalRainRosters, 'custom-primal-rain'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 2, move 2','move 1, move 1']],
+        customPrimalClashRosters, 'custom-primal-clash'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

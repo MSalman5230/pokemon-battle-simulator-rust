@@ -1070,7 +1070,9 @@ impl Battle {
 
     pub(super) fn harvest_item(&mut self, pos: Position) {
         // Harvest flips its coin before checking the holder's item.
-        if self.effective_weather() != Some(Weather::Sun) && !self.rng.chance(1, 2) {
+        if self.effective_weather().map(Weather::ordinary) != Some(Weather::Sun)
+            && !self.rng.chance(1, 2)
+        {
             return;
         }
         let mon = self.mon(pos);
@@ -1138,11 +1140,12 @@ impl Battle {
 
 impl Pokemon {
     pub(super) fn ignores_held_item(&self) -> bool {
-        self.items_suppressed
+        (self.items_suppressed
             || self.active_ability() == "klutz"
                 && !DEX
                     .item(crate::dex::Mod::Champions, &self.item)
-                    .is_some_and(|item| item.ignore_klutz)
+                    .is_some_and(|item| item.ignore_klutz))
+            && !matches!(self.item.as_str(), "redorb" | "blueorb")
     }
 
     /// The held item remains in inventories even when its effects are ignored.

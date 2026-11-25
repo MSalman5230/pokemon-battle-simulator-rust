@@ -11,6 +11,8 @@ pub enum Weather {
     Snow,
     Hail,
     StrongWinds,
+    HarshSunlight,
+    HeavyRain,
 }
 
 impl Weather {
@@ -22,6 +24,8 @@ impl Weather {
             Self::Snow => "Snowscape",
             Self::Hail => "Hail",
             Self::StrongWinds => "DeltaStream",
+            Self::HarshSunlight => "DesolateLand",
+            Self::HeavyRain => "PrimordialSea",
         }
     }
 
@@ -31,7 +35,7 @@ impl Weather {
             Self::Sun => "heatrock",
             Self::Sand => "smoothrock",
             Self::Snow | Self::Hail => "icyrock",
-            Self::StrongWinds => "",
+            Self::StrongWinds | Self::HarshSunlight | Self::HeavyRain => "",
         }
     }
 
@@ -48,7 +52,9 @@ impl Weather {
 
     pub(super) fn damage_modifier(self, move_type: &str) -> u32 {
         match (self, move_type) {
-            (Self::Rain, "Water") | (Self::Sun, "Fire") => 6144,
+            (Self::Rain | Self::HeavyRain, "Water") | (Self::Sun | Self::HarshSunlight, "Fire") => {
+                6144
+            }
             (Self::Rain, "Fire") | (Self::Sun, "Water") => 2048,
             _ => 4096,
         }
@@ -56,8 +62,8 @@ impl Weather {
 
     pub(super) fn ball_type(self) -> &'static str {
         match self {
-            Self::Rain => "Water",
-            Self::Sun => "Fire",
+            Self::Rain | Self::HeavyRain => "Water",
+            Self::Sun | Self::HarshSunlight => "Fire",
             Self::Sand => "Rock",
             Self::Snow | Self::Hail => "Ice",
             Self::StrongWinds => "Normal",
@@ -67,6 +73,24 @@ impl Weather {
     fn permanent_ability(self) -> Option<&'static str> {
         match self {
             Self::StrongWinds => Some("deltastream"),
+            Self::HarshSunlight => Some("desolateland"),
+            Self::HeavyRain => Some("primordialsea"),
+            _ => None,
+        }
+    }
+
+    pub(super) fn ordinary(self) -> Self {
+        match self {
+            Self::HarshSunlight => Self::Sun,
+            Self::HeavyRain => Self::Rain,
+            weather => weather,
+        }
+    }
+
+    pub(super) fn extinguishes(self, typing: &str) -> Option<(&'static str, &'static str)> {
+        match (self, typing) {
+            (Self::HarshSunlight, "Water") => Some(("Desolate Land", "water")),
+            (Self::HeavyRain, "Fire") => Some(("Primordial Sea", "fire")),
             _ => None,
         }
     }
@@ -75,7 +99,7 @@ impl Weather {
 impl Pokemon {
     pub(super) fn personal_weather(&self, weather: Option<Weather>) -> Option<Weather> {
         weather.filter(|weather| {
-            !matches!(weather, Weather::Sun | Weather::Rain)
+            !matches!(weather.ordinary(), Weather::Sun | Weather::Rain)
                 || self.effective_item() != "utilityumbrella"
         })
     }
@@ -166,6 +190,8 @@ impl Battle {
             "sandstream" => (Weather::Sand, "Sand Stream"),
             "snowwarning" => (Weather::Snow, "Snow Warning"),
             "deltastream" => (Weather::StrongWinds, "Delta Stream"),
+            "desolateland" => (Weather::HarshSunlight, "Desolate Land"),
+            "primordialsea" => (Weather::HeavyRain, "Primordial Sea"),
             _ => return,
         };
         self.set_weather(pos, weather, Some(label));
@@ -231,6 +257,7 @@ impl Battle {
             return;
         }
         let (ordered, count) = self.ordered_actives(false);
+        let ordinary = weather.ordinary();
         for (pos, _) in ordered.into_iter().take(count) {
             if weather == Weather::Sand {
                 if !self.status_immune(pos, "sandstorm")
@@ -256,12 +283,12 @@ impl Battle {
                 }
             } else if weather == Weather::Snow && self.mon(pos).active_ability() == "icebody" {
                 self.ability_heal(pos, 16, "Ice Body", None);
-            } else if weather == Weather::Rain
+            } else if ordinary == Weather::Rain
                 && self.event_ability(pos) == "raindish"
                 && self.mon(pos).effective_item() != "utilityumbrella"
             {
                 self.ability_heal(pos, 16, "Rain Dish", None);
-            } else if weather == Weather::Sun
+            } else if ordinary == Weather::Sun
                 && self.event_ability(pos) == "solarpower"
                 && self.mon(pos).effective_item() != "utilityumbrella"
             {
@@ -273,7 +300,7 @@ impl Battle {
             } else if self.mon(pos).active_ability() == "dryskin"
                 && self.mon(pos).effective_item() != "utilityumbrella"
             {
-                match weather {
+                match ordinary {
                     Weather::Rain => {
                         self.ability_heal(pos, 8, "Dry Skin", None);
                     }

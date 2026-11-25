@@ -3,6 +3,12 @@
 use super::turn::Position;
 use super::*;
 
+enum PermanentEvolution {
+    Mega,
+    Ultra,
+    Primal,
+}
+
 impl Battle {
     pub(super) fn can_mega(&self, pos: Position) -> bool {
         let side = self.sides[pos.player.index()].as_ref().unwrap();
@@ -75,10 +81,39 @@ impl Battle {
     }
 
     pub(super) fn mega_evolve(&mut self, pos: Position) {
-        let (species, burst) = self.mega_species(pos).map_or_else(
-            || (self.ultra_species(pos).expect("validated Ultra form"), true),
-            |species| (species, false),
+        let (species, method) = self.mega_species(pos).map_or_else(
+            || {
+                (
+                    self.ultra_species(pos).expect("validated Ultra form"),
+                    PermanentEvolution::Ultra,
+                )
+            },
+            |species| (species, PermanentEvolution::Mega),
         );
+        self.permanent_evolution(pos, species, method);
+    }
+
+    pub(super) fn primal_reversion(&mut self, pos: Position) -> bool {
+        let mon = self.mon(pos);
+        if mon.transformed.is_some() {
+            return false;
+        }
+        let id = match (mon.item.as_str(), mon.base_species.name.as_str()) {
+            ("redorb", "Groudon") => "groudonprimal",
+            ("blueorb", "Kyogre") => "kyogreprimal",
+            _ => return false,
+        };
+        let form = DEX.species(self.format.dex_mod, id).unwrap();
+        self.permanent_evolution(pos, form, PermanentEvolution::Primal);
+        true
+    }
+
+    fn permanent_evolution(
+        &mut self,
+        pos: Position,
+        species: &'static Species,
+        method: PermanentEvolution,
+    ) {
         let rules = self.stat_rules;
         let mon = self.mon_mut(pos);
         // Forme change stores the new raw Speed. The queue applies Speed
@@ -103,18 +138,22 @@ impl Battle {
         if changed_hp {
             self.add_health_line_with("-heal", pos, false, "|[silent]");
         }
-        let event = if burst { "-burst" } else { "-mega" };
-        self.add(format!(
-            "|{event}|{}|{}|{}",
-            self.ident(pos),
-            apparent_species,
-            species.required_item.as_deref().unwrap_or("")
-        ));
+        let item = species.required_item.as_deref().unwrap_or("");
+        let ident = self.ident(pos);
+        match method {
+            PermanentEvolution::Primal => self.add(format!("|-primal|{ident}|{item}")),
+            PermanentEvolution::Ultra => {
+                self.add(format!("|-burst|{ident}|{apparent_species}|{item}"))
+            }
+            PermanentEvolution::Mega => {
+                self.add(format!("|-mega|{ident}|{apparent_species}|{item}"))
+            }
+        }
         let side = self.sides[pos.player.index()].as_mut().unwrap();
-        if burst {
-            side.ultra_used = true;
-        } else {
-            side.mega_used = true;
+        match method {
+            PermanentEvolution::Ultra => side.ultra_used = true,
+            PermanentEvolution::Mega => side.mega_used = true,
+            PermanentEvolution::Primal => {}
         }
         self.end_ability(pos);
         let mon = self.mon_mut(pos);

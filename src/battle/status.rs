@@ -363,7 +363,7 @@ impl Battle {
             return false;
         }
         if id == "frz"
-            && ((self.effective_weather() == Some(Weather::Sun)
+            && ((self.effective_weather().map(Weather::ordinary) == Some(Weather::Sun)
                 && self.mon(pos).effective_item() != "utilityumbrella")
                 || self.event_ability(pos) == "magmaarmor")
         {
@@ -467,7 +467,10 @@ impl Battle {
             ("insomnia", "slp") => "Insomnia",
             ("vitalspirit", "slp") => "Vital Spirit",
             ("leafguard", _)
-                if self.mon(pos).personal_weather(self.effective_weather())
+                if self
+                    .mon(pos)
+                    .personal_weather(self.effective_weather())
+                    .map(Weather::ordinary)
                     == Some(Weather::Sun) =>
             {
                 "Leaf Guard"
@@ -501,7 +504,10 @@ impl Battle {
             "insomnia" => "Insomnia",
             "vitalspirit" => "Vital Spirit",
             "leafguard"
-                if self.mon(pos).personal_weather(self.effective_weather())
+                if self
+                    .mon(pos)
+                    .personal_weather(self.effective_weather())
+                    .map(Weather::ordinary)
                     == Some(Weather::Sun) =>
             {
                 "Leaf Guard"
