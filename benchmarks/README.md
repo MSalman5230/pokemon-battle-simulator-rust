@@ -59,10 +59,12 @@ steps/s for Showdown and 1,460 for Rust across five replays (4.37×). The
 [previous trace run](verified-trace-bss-result.json) measured 4.45× on the
 same workload hash.
 
-The [latest BSS trace milestone](verified-expanded-bss-result.json) at
-commit `48ac725` matched all 32 traces and 673 step replies. On the same
-workload, Showdown ran at 339.1 steps/s and Rust at 1,464.3 steps/s (4.32×).
-It also matched 2,856 steps in a separate 160-game diagnostic.
+The [latest BSS trace milestone](verified-late-bss-result.json) at commit
+`97c3e03` matched all 32 traces and 673 step replies. On the same workload,
+Showdown ran at 348.8 steps/s and Rust at 1,504.5 steps/s (4.31×). It also
+matched 2,856 steps in a separate 160-game diagnostic. The
+[earlier expanded-audit run](verified-expanded-bss-result.json) at `48ac725`
+measured 4.32× and matched the same traces and replies.
 
 The [earlier BSS trace milestone](verified-current-bss-result.json) at
 commit `2d9e2b2` matched all 32 traces and all 673 step replies. On the
