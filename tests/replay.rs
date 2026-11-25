@@ -762,3 +762,11 @@ fn champions_emergency_switching_preserves_other_pivots_and_checks_berries_first
     replay(include_str!("fixtures/bss-wimp-out-double-pivot.json"));
     replay(include_str!("fixtures/bss-emergency-exit-berry.json"));
 }
+
+#[test]
+fn voice_type_changes_bubble_modifiers_and_bulletproof_follow_native_hit_steps() {
+    replay(include_str!(
+        "fixtures/vgc-sparkling-aria-liquid-voice.json"
+    ));
+    replay(include_str!("fixtures/bss-water-bubble-bulletproof.json"));
+}

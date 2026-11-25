@@ -319,6 +319,7 @@ impl Battle {
             ("immunity", "psn" | "tox") => "Immunity",
             ("thermalexchange", "brn") => "Thermal Exchange",
             ("limber", "par") => "Limber",
+            ("waterbubble", "brn") => "Water Bubble",
             ("purifyingsalt", _) => "Purifying Salt",
             _ => return false,
         };
@@ -329,7 +330,7 @@ impl Battle {
             ));
         }
         if self.format.report_exact_hp {
-            if label != "Limber" {
+            if !matches!(label, "Limber" | "Water Bubble") {
                 self.add(format!("|debug|interrupting setStatus with {label}"));
             }
             self.add(format!("|debug|set status [{id}] interrupted"));

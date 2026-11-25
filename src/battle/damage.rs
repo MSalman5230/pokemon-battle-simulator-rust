@@ -271,7 +271,8 @@ impl Battle {
         if flash_fire {
             attack_modifier = crate::mechanics::chain(6144, attack_modifier);
         }
-        if (self.event_ability(target) == "heatproof" && move_type == "Fire")
+        if (matches!(self.event_ability(target), "heatproof" | "waterbubble")
+            && move_type == "Fire")
             || (self.event_ability(target) == "thickfat" && matches!(move_type, "Fire" | "Ice"))
             || purifying_salt
         {

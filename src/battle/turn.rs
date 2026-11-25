@@ -957,6 +957,7 @@ impl Battle {
                     | "shedtail"
                     | "doubleshock"
                     | "burnup"
+                    | "sparklingaria"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1597,6 +1598,13 @@ impl Battle {
                 self.add(format!("|-activate|{}|ability: Limber", self.ident(pos)));
                 self.cure_status(pos, "[msg]");
             }
+            if self.event_ability(pos) == "waterbubble" && self.mon(pos).status == Status::Burn {
+                self.add(format!(
+                    "|-activate|{}|ability: Water Bubble",
+                    self.ident(pos)
+                ));
+                self.cure_status(pos, "[msg]");
+            }
             self.on_update_item(pos);
         }
     }
@@ -2068,7 +2076,11 @@ impl Battle {
             } else {
                 &move_data.move_type
             };
-            mon.converted_move_type(base)
+            if mon.ability == "liquidvoice" && move_data.flags.contains_key("sound") {
+                ("Water", false)
+            } else {
+                mon.converted_move_type(base)
+            }
         };
         let source_name = self.ident(source);
         let original_target =
@@ -2720,6 +2732,14 @@ impl Battle {
             {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Soundproof",
+                    self.ident(mut_pos)
+                ));
+                false
+            } else if move_data.flags.contains_key("bullet")
+                && self.event_ability(mut_pos) == "bulletproof"
+            {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Bulletproof",
                     self.ident(mut_pos)
                 ));
                 false
@@ -3653,6 +3673,13 @@ impl Battle {
             self.magician_after_hit(source, &spread_targets);
         }
         self.emergency_exit(source, original_source_hp);
+        if move_data.name == "Sparkling Aria" && self.mon(source).hp > 0 {
+            for &target in &spread_targets {
+                if target != source && self.mon(target).status == Status::Burn {
+                    self.cure_status(target, "[msg]");
+                }
+            }
+        }
         if spread {
             let labels: Vec<_> = spread_targets.into_iter().map(Position::label).collect();
             self.log[base]
@@ -4025,6 +4052,9 @@ impl Pokemon {
                 | "limber"
                 | "emergencyexit"
                 | "wimpout"
+                | "waterbubble"
+                | "liquidvoice"
+                | "bulletproof"
         )
     }
 

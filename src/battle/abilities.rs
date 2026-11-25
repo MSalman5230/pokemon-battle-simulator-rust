@@ -89,7 +89,9 @@ impl Pokemon {
     }
 
     pub(super) fn attack_modifier(&self, category: Category, move_type: &str) -> u32 {
-        let ability = if self.attack_boosts_type(move_type)
+        let ability = if self.ability == "waterbubble" && move_type == "Water" {
+            8192
+        } else if self.attack_boosts_type(move_type)
             || (category == Category::Physical
                 && self.ability == "guts"
                 && self.status != Status::Healthy)

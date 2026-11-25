@@ -646,6 +646,16 @@ const exitBerryRosters = [
     exitRosters[0],
     [{...named('Golisopod', ['Recover']), ability: 'Emergency Exit', item: 'Sitrus Berry'}, named('Umbreon', ['Recover'])],
 ];
+const sparklingAriaRosters = [
+    [{...named('Primarina', ['Hyper Voice', 'Sparkling Aria']), ability: 'Liquid Voice'},
+        named('Rotom-Wash', ['Will-O-Wisp', 'Recover'])],
+    [{...named('Vaporeon', ['Recover']), ability: 'Water Absorb'}, named('Sylveon', ['Will-O-Wisp', 'Recover'])],
+];
+const waterBubbleRosters = [
+    [{...named('Araquanid', ['Water Gun', 'Recover']), ability: 'Water Bubble'},
+        {...named('Kommo-o', ['Recover']), ability: 'Bulletproof'}],
+    [named('Vaporeon', ['Flamethrower', 'Will-O-Wisp', 'Shadow Ball', 'Recover']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -971,6 +981,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         exitRosters, 'bss-wimp-out-double-pivot'],
     ['bssregmc', [['team 12','team 12'], ['move 2','move 1']],
         exitBerryRosters, 'bss-emergency-exit-berry'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1 2','move 1, move 1 2'],
+        ['move 2, move 2','move 1, move 2']], sparklingAriaRosters, 'vgc-sparkling-aria-liquid-voice'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['switch 2','move 3']],
+        waterBubbleRosters, 'bss-water-bubble-bulletproof'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
