@@ -101,6 +101,11 @@ of these four samples matched 26,575 checkpoints in 960 completed games.
 The captures test those specific seeds and choices. Keep expanding the
 corpus to exercise other mechanics.
 
+The [submitted-team sample](../benchmarks/verified-native-submitted-128-parity.json)
+reuses Poke-RL rosters in both BSS Reg M-C and VGC 2026 Reg M-C. It matched
+all 2,177 checkpoints in 128 completed games, including exact private move
+requests and PRNG state in both formats.
+
 The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
 markers. Its hypothetical damage calculator runs in an isolated battle and
 reuses the native damage formula. Tests compare each enumerated damage roll,

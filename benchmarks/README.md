@@ -132,6 +132,11 @@ team is an array of Showdown sets. The capture validates the rosters against
 the pinned oracle and uses a separate seed to select two distinct rosters
 per game. This does not replace native Rust team validation.
 
+The [submitted-team sample](verified-native-submitted-128-parity.json) uses
+all 128 rosters from `../Poke-RL/data/teams_train.json` as the pool for both
+BSS Reg M-C singles and VGC 2026 Reg M-C doubles. It matches all 2,177
+checkpoints across 64 complete games in each format.
+
 The [recorded 24-game sample](verified-native-generated-parity.json) matches
 all 574 checkpoints. Eighteen games ended naturally. The other six reached
 the 30-turn cap with exact results through their last recorded checkpoint.
