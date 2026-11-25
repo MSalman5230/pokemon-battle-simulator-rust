@@ -525,3 +525,8 @@ fn bss_cloud_nine_suppresses_effects_without_removing_the_weather() {
 fn vgc_eruption_and_water_spout_use_current_hp_after_priority_damage() {
     replay(include_str!("fixtures/vgc-hp-power.json"));
 }
+
+#[test]
+fn bss_stance_change_switches_form_before_attack_and_kings_shield() {
+    replay(include_str!("fixtures/bss-stance-change.json"));
+}

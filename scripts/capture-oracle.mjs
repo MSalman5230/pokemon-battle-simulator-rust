@@ -426,6 +426,10 @@ const hpPowerRosters = [
     [{...named('Typhlosion', ['Eruption']), ability: 'Blaze'}, named('Vaporeon', ['Water Spout'])],
     [{...named('Snorlax', ['Quick Attack']), ability: 'Thick Fat'}, named('Pelipper', ['Protect'])],
 ];
+const stanceRosters = [
+    [{...named('Aegislash', ['Shadow Ball', "King's Shield", 'Recover'], 'M'), ability: 'Stance Change'}, named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Bite', 'Toxic', 'Recover']), named('Glaceon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -632,6 +636,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         cloudNineRosters, 'bss-cloud-nine'],
     ['vgc2026regmc', [['team 12', 'team 12'], ['move 1, move 1', 'move 1 1, move 1']],
         hpPowerRosters, 'vgc-hp-power'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'],
+        ['move 1', 'move 3'], ['move 2', 'move 2'], ['move 1', 'move 3'], ['switch 2', 'move 3'],
+        ['switch 2', 'move 3']], stanceRosters, 'bss-stance-change'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

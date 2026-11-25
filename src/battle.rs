@@ -16,6 +16,7 @@ mod attract;
 mod charge;
 mod damage;
 mod disable;
+mod forme;
 mod hazards;
 mod illusion;
 mod items;
@@ -150,6 +151,7 @@ struct Side {
 pub struct Pokemon {
     pub name: String,
     pub species: &'static Species,
+    base_species: &'static Species,
     pub details: String,
     pub level: u16,
     points: SetStats,
@@ -180,7 +182,7 @@ pub struct Pokemon {
     pub moves: Vec<MoveSlot>,
     pub roster_index: usize,
     illusion: Option<usize>,
-    protected: bool,
+    protection: Option<turn::Protection>,
     stall: Option<(u16, u8)>,
     fainted: bool,
     needs_replacement: bool,
@@ -688,6 +690,7 @@ impl Pokemon {
         Ok(Self {
             name,
             species,
+            base_species: species,
             details,
             level,
             points: set.evs,
@@ -722,7 +725,7 @@ impl Pokemon {
             },
             roster_index: index,
             illusion: None,
-            protected: false,
+            protection: None,
             stall: None,
             fainted: false,
             needs_replacement: false,

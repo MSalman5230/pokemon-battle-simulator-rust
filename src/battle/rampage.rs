@@ -18,6 +18,12 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn stop_protected_rampage(&mut self, pos: Position) {
+        if self.mon(pos).rampage.is_some_and(|lock| lock.duration == 2) {
+            self.end_rampage(pos, false);
+        }
+    }
+
     pub(super) fn rampage_hit(&mut self, pos: Position, slot: usize) {
         if let Some(lock) = &mut self.mon_mut(pos).rampage {
             if lock.remaining >= 2 {

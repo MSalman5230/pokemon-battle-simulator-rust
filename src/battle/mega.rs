@@ -41,17 +41,10 @@ impl Battle {
         let species = self.mega_species(pos).expect("validated Mega form");
         let rules = self.stat_rules;
         let mon = self.mon_mut(pos);
-        mon.species = species;
-        mon.temporary_type = None;
-        mon.stats = Stats::map(|s| {
-            rules.stat(
-                species.base_stats.get(s),
-                mon.points.raw(s).clamp(0, 255) as u8,
-                mon.level,
-                mon.nature,
-                s,
-            )
-        });
+        let old_speed = mon.speed;
+        mon.set_current_species(species, rules);
+        mon.base_species = species;
+        mon.speed = old_speed;
         let suffix = mon.details.split_once(',').map(|(_, suffix)| suffix);
         mon.details =
             suffix.map_or_else(|| species.name.clone(), |s| format!("{},{s}", species.name));

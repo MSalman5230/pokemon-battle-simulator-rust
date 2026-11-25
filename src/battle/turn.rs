@@ -26,6 +26,21 @@ impl Position {
     }
 }
 
+#[derive(Debug, Copy, Clone, Eq, PartialEq)]
+pub(super) enum Protection {
+    Protect,
+    KingsShield,
+}
+
+impl Protection {
+    fn volatile(self) -> &'static str {
+        match self {
+            Self::Protect => "protect",
+            Self::KingsShield => "kingsshield",
+        }
+    }
+}
+
 #[derive(Debug, Copy, Clone)]
 pub(super) struct FoeHit {
     source: Position,
@@ -605,6 +620,7 @@ impl Battle {
                     | "watergun"
                     | "iceshard"
                     | "protect"
+                    | "kingsshield"
                     | "aquajet"
                     | "bulletpunch"
                     | "earthquake"
@@ -1001,8 +1017,10 @@ impl Battle {
         if !self.mon(outgoing).fainted {
             self.weather_ability_changed(outgoing);
         }
+        let rules = self.stat_rules;
         let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
-        party[outgoing.slot].protected = false;
+        party[outgoing.slot].reset_forme(rules);
+        party[outgoing.slot].protection = None;
         party[outgoing.slot].stall = None;
         party[outgoing.slot].boosts = Boosts::default();
         party[outgoing.slot].stats_raised = false;
@@ -1433,7 +1451,7 @@ impl Battle {
             if mon.ability == "shedskin" {
                 timers.push((pos, Effect::ShedSkin, priority(5, 3)));
             }
-            if mon.protected {
+            if mon.protection.is_some() {
                 timers.push((pos, Effect::Protect, priority(0, 2)));
             }
             if mon.stall.is_some() {
@@ -1513,8 +1531,9 @@ impl Battle {
                     mon.untrack_volatile("roost");
                 }
                 Effect::Protect => {
-                    mon.protected = false;
-                    mon.untrack_volatile("protect");
+                    if let Some(protect) = mon.protection.take() {
+                        mon.untrack_volatile(protect.volatile());
+                    }
                 }
                 Effect::Flinch => {
                     mon.flinched = false;
@@ -1698,6 +1717,7 @@ impl Battle {
         ) {
             self.ability_breaker = Some(source);
         }
+        self.stance_change(source, move_data);
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
             && self.grounded(source);
@@ -1946,7 +1966,7 @@ impl Battle {
             }
             return true;
         }
-        if move_data.name == "Protect" {
+        if matches!(move_data.name.as_str(), "Protect" | "King's Shield") {
             let more_actions = queue
                 .iter()
                 .any(|q| matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. }));
@@ -1962,8 +1982,13 @@ impl Battle {
             }
             self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
-            mon.protected = true;
-            mon.track_volatile("protect");
+            let protect = if move_data.name == "Protect" {
+                Protection::Protect
+            } else {
+                Protection::KingsShield
+            };
+            mon.protection = Some(protect);
+            mon.track_volatile(protect.volatile());
             mon.track_volatile("stall");
             mon.stall = Some(((stall * 3).min(729), 2));
             self.add(format!("|-singleturn|{source_name}|Protect"));
@@ -2079,8 +2104,22 @@ impl Battle {
                     self.add("|-hint|Psychic Terrain doesn't affect airborne Pokémon.");
                 }
             }
-            if self.mon(mut_pos).protected && move_data.flags.contains_key("protect") {
+            if let Some(protect) = self.mon(mut_pos).protection
+                && (protect == Protection::Protect || move_data.category != Category::Status)
+                && move_data.flags.contains_key("protect")
+            {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
+                self.stop_protected_rampage(source);
+                if protect == Protection::KingsShield && move_data.flags.contains_key("contact") {
+                    self.boost_from(
+                        source,
+                        mut_pos,
+                        &[(BoostStat::Atk, -1)],
+                        BoostOrigin::from_move(
+                            DEX.moves(self.format.dex_mod, "kingsshield").unwrap(),
+                        ),
+                    );
+                }
                 false
             } else if ohko && self.event_ability(mut_pos) == "sturdy" {
                 self.add(format!(
@@ -3008,13 +3047,15 @@ impl Battle {
         self.last_faint = Some(target.player);
         self.add(format!("|faint|{}", self.ident(target)));
         self.weather_ability_changed(target);
+        let rules = self.stat_rules;
         let mon = self.mon_mut(target);
+        mon.reset_forme(rules);
         mon.fainted = true;
         mon.illusion = None;
         mon.reset_ability();
         mon.pivot_move = None;
         mon.stall = None;
-        mon.protected = false;
+        mon.protection = None;
         mon.flinched = false;
         mon.recharge = 0;
         mon.charge = None;
@@ -3295,6 +3336,7 @@ impl Pokemon {
                 | "lightmetal"
                 | "cloudnine"
                 | "airlock"
+                | "stancechange"
         )
     }
 

@@ -1,0 +1,3367 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Aegislash\",\"moves\":[\"Shadow Ball\",\"King's Shield\",\"Recover\"],\"gender\":\"M\",\"name\":\"Aegislash\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Stance Change\"},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Bite\",\"Toxic\",\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Glaceon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Aegislash, L50, M|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Aegislash, L50, M|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Aegislash, L50, M|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 160,
+                  "spa": 70,
+                  "spd": 160,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aegislash",
+            "species": "Aegislash",
+            "details": "Aegislash, L50, M",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 160,
+              "spa": 70,
+              "spd": 160,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Aegislash|Aegislash, L50, M|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Aegislash|Aegislash, L50, M|135/135",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Aegislash|Aegislash, L50, M|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "King's Shield",
+                  "id": "kingsshield",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 160,
+                  "spa": 70,
+                  "spd": 160,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aegislash",
+            "species": "Aegislash",
+            "details": "Aegislash, L50, M",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 160,
+              "spa": 70,
+              "spd": 160,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Bite|p1a: Aegislash",
+          "|-supereffective|p1a: Aegislash|1",
+          "|-damage|p1a: Aegislash|67/100",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|84/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Bite|p1a: Aegislash",
+          "|-supereffective|p1a: Aegislash|1",
+          "|-damage|p1a: Aegislash|91/135",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|84/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Bite|p1a: Aegislash",
+          "|-supereffective|p1a: Aegislash|1",
+          "|-damage|p1a: Aegislash|67/100",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|143/170",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "King's Shield",
+                  "id": "kingsshield",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "91/135",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 70,
+                  "spa": 160,
+                  "spd": 70,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "143/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aegislash",
+            "species": "Aegislash-Blade",
+            "details": "Aegislash, L50, M",
+            "hp": 91,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 70,
+              "spa": 160,
+              "spd": 70,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 143,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "54274,43667,37867,24894",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|-formechange|p1a: Aegislash|Aegislash|",
+          "|move|p1a: Aegislash|King's Shield|p1a: Aegislash",
+          "|-singleturn|p1a: Aegislash|Protect",
+          "|move|p2a: Umbreon|Bite|p1a: Aegislash",
+          "|-activate|p1a: Aegislash|move: Protect",
+          "|-unboost|p2a: Umbreon|atk|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-formechange|p1a: Aegislash|Aegislash|",
+          "|move|p1a: Aegislash|King's Shield|p1a: Aegislash",
+          "|-singleturn|p1a: Aegislash|Protect",
+          "|move|p2a: Umbreon|Bite|p1a: Aegislash",
+          "|-activate|p1a: Aegislash|move: Protect",
+          "|-unboost|p2a: Umbreon|atk|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-formechange|p1a: Aegislash|Aegislash|",
+          "|move|p1a: Aegislash|King's Shield|p1a: Aegislash",
+          "|-singleturn|p1a: Aegislash|Protect",
+          "|move|p2a: Umbreon|Bite|p1a: Aegislash",
+          "|-activate|p1a: Aegislash|move: Protect",
+          "|-unboost|p2a: Umbreon|atk|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "King's Shield",
+                  "id": "kingsshield",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "91/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 160,
+                  "spa": 70,
+                  "spd": 160,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "143/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aegislash",
+            "species": "Aegislash",
+            "details": "Aegislash, L50, M",
+            "hp": 91,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 160,
+              "spa": 70,
+              "spd": 160,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 143,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 4,
+      "seed": "55173,41332,18014,39666",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|100/100",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|83/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|100/100",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|83/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|170/170",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|142/170",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "King's Shield",
+                  "id": "kingsshield",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "91/135",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 70,
+                  "spa": 160,
+                  "spd": 70,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "142/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aegislash",
+            "species": "Aegislash-Blade",
+            "details": "Aegislash, L50, M",
+            "hp": 91,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 70,
+              "spa": 160,
+              "spd": 70,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 142,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "56224,59251,18573,26068",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|-formechange|p1a: Aegislash|Aegislash|",
+          "|move|p1a: Aegislash|King's Shield|p1a: Aegislash",
+          "|-singleturn|p1a: Aegislash|Protect",
+          "|move|p2a: Umbreon|Toxic|p1a: Aegislash",
+          "|-immune|p1a: Aegislash",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|-formechange|p1a: Aegislash|Aegislash|",
+          "|move|p1a: Aegislash|King's Shield|p1a: Aegislash",
+          "|-singleturn|p1a: Aegislash|Protect",
+          "|move|p2a: Umbreon|Toxic|p1a: Aegislash",
+          "|-immune|p1a: Aegislash",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|-formechange|p1a: Aegislash|Aegislash|",
+          "|move|p1a: Aegislash|King's Shield|p1a: Aegislash",
+          "|-singleturn|p1a: Aegislash|Protect",
+          "|move|p2a: Umbreon|Toxic|p1a: Aegislash",
+          "|-immune|p1a: Aegislash",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "King's Shield",
+                  "id": "kingsshield",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "91/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 160,
+                  "spa": 70,
+                  "spd": 160,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "142/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aegislash",
+            "species": "Aegislash",
+            "details": "Aegislash, L50, M",
+            "hp": 91,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 160,
+              "spa": 70,
+              "spd": 160,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 142,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 6,
+      "seed": "1282,42014,22271,29224",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|100/100",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|83/100",
+          "|-unboost|p2a: Umbreon|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|100/100",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|83/100",
+          "|-unboost|p2a: Umbreon|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|170/170",
+          "|-formechange|p1a: Aegislash|Aegislash-Blade|",
+          "|move|p1a: Aegislash|Shadow Ball|p2a: Umbreon",
+          "|-resisted|p2a: Umbreon|1",
+          "|-damage|p2a: Umbreon|142/170",
+          "|-unboost|p2a: Umbreon|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 13,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "King's Shield",
+                  "id": "kingsshield",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "91/135",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 70,
+                  "spa": 160,
+                  "spd": 70,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "142/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aegislash",
+            "species": "Aegislash-Blade",
+            "details": "Aegislash, L50, M",
+            "hp": 91,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 70,
+              "spa": 160,
+              "spd": 70,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 13,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 142,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": -1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 3"
+      ],
+      "turn": 7,
+      "seed": "54160,3954,50453,18633",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|170/170",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "91/135",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 160,
+                  "spa": 70,
+                  "spd": 160,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Aegislash",
+            "species": "Aegislash",
+            "details": "Aegislash, L50, M",
+            "hp": 91,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 160,
+              "spa": 70,
+              "spd": 160,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 13,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": -1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 3"
+      ],
+      "turn": 8,
+      "seed": "12962,13605,28059,35138",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Aegislash|Aegislash, L50, M|67/100",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|switch|p1a: Aegislash|Aegislash, L50, M|91/135",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|switch|p1a: Aegislash|Aegislash, L50, M|67/100",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 13,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "King's Shield",
+                  "id": "kingsshield",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L50, M",
+                "condition": "91/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 160,
+                  "spa": 70,
+                  "spd": 160,
+                  "spe": 80
+                },
+                "moves": [
+                  "shadowball",
+                  "kingsshield",
+                  "recover"
+                ],
+                "baseAbility": "stancechange",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "bite",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aegislash",
+            "species": "Aegislash",
+            "details": "Aegislash, L50, M",
+            "hp": 91,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 160,
+              "spa": 70,
+              "spd": 160,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 13,
+                "maxpp": 16
+              },
+              {
+                "id": "kingsshield",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": -1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
