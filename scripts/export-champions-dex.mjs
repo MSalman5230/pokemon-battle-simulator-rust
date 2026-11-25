@@ -72,6 +72,7 @@ const data = mod => {
                 'pp', 'noPPBoosts', 'accuracy', 'multihit', 'multiaccuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget', 'willCrit', 'alwaysHit']);
             return {...move, ignoreDefensive: e.ignoreDefensive || undefined,
                 targetsDefense: e.overrideDefensiveStat === 'def' || undefined,
+                ohko: !!e.ohko || undefined,
                 ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
                 cantUseTwice: !!e.flags?.cantusetwice || undefined,
                 hasSheerForceBoost: e.hasSheerForceBoost || undefined,

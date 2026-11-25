@@ -970,6 +970,15 @@ const innardsOutRosters = [
     [{...named('Chandelure', ['Flamethrower']), item:'Choice Specs', nature:'Modest', evs:{spa:32}},
         named('Vaporeon', ['Recover'])],
 ];
+const dangerSenseRosters = [
+    [{...named('Whiscash', ['Recover']), ability:'Anticipation'},
+        {...named('Hypno', ['Recover']), ability:'Forewarn'}],
+    [named('Leafeon', ['Leaf Blade', 'Protect']), named('Flareon', ['Flamethrower', 'Protect'])],
+];
+const seedSowerRosters = [
+    [named('Espeon', ['Tackle'])],
+    [{...named('Arboliva', ['Recover']), ability:'Seed Sower', item:'Terrain Extender'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1827,6 +1836,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         finalGambitRosters, 'bss-final-gambit'],
     ['bssregmc', [['team 12','team 12'], ['move 1 mega','move 1']],
         innardsOutRosters, 'bss-innards-out'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 2, move 2']],
+        dangerSenseRosters, 'vgc-entry-move-threats'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        seedSowerRosters, 'bss-seed-sower'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

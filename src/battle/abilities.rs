@@ -141,6 +141,76 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn anticipation(&mut self, holder: Position) {
+        let threatened = self
+            .positions()
+            .filter(|&pos| pos.player != holder.player && self.mon(pos).hp != 0)
+            .flat_map(|pos| &self.mon(pos).moves)
+            .any(|slot| {
+                let data = slot.move_data;
+                if data.category == Category::Status {
+                    return false;
+                }
+                if data.ohko {
+                    return true;
+                }
+                let mut stage = 0;
+                for ty in self.mon(holder).types().filter(|&ty| ty != "???") {
+                    let chart = &DEX.type_data(&to_id(ty)).unwrap().damage_taken;
+                    match chart.get(&data.move_type) {
+                        Some(3) => return false,
+                        Some(1) => stage += 1,
+                        Some(2) => stage -= 1,
+                        _ => {}
+                    }
+                }
+                stage > 0
+            });
+        if threatened {
+            self.add(format!("|-ability|{}|Anticipation", self.ident(holder)));
+        }
+    }
+
+    pub(super) fn forewarn(&mut self, holder: Position) {
+        let mut strongest = Vec::new();
+        let mut best = 1;
+        for foe in self
+            .positions()
+            .filter(|&pos| pos.player != holder.player && self.mon(pos).hp != 0)
+        {
+            for slot in &self.mon(foe).moves {
+                let data = slot.move_data;
+                let threat = if data.ohko {
+                    150
+                } else if matches!(slot.id.as_str(), "counter" | "mirrorcoat" | "metalburst") {
+                    120
+                } else if data.base_power == 1
+                    || data.base_power == 0 && data.category != Category::Status
+                {
+                    80
+                } else {
+                    data.base_power
+                };
+                if threat > best {
+                    strongest.clear();
+                    best = threat;
+                }
+                if threat == best {
+                    strongest.push((foe, data));
+                }
+            }
+        }
+        if !strongest.is_empty() {
+            let (foe, data) = strongest[self.rng.below(strongest.len() as u32) as usize];
+            self.add(format!(
+                "|-activate|{}|ability: Forewarn|{}|[of] {}",
+                self.ident(holder),
+                data.name,
+                self.ident(foe)
+            ));
+        }
+    }
+
     pub(super) fn target_abilities_after_move(
         &mut self,
         source: Position,

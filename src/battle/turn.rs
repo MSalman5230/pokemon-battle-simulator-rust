@@ -1758,6 +1758,11 @@ impl Battle {
         if self.mon(pos).ability == "frisk" {
             self.frisk(pos);
         }
+        match self.event_ability(pos) {
+            "anticipation" => self.anticipation(pos),
+            "forewarn" => self.forewarn(pos),
+            _ => {}
+        }
         if self.mon(pos).ability == "screencleaner" {
             self.screen_cleaner(pos);
         }
@@ -2497,11 +2502,7 @@ impl Battle {
         let retaliation =
             counter.is_some() || matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
         let sheer_cold = move_data.name == "Sheer Cold";
-        let ohko = sheer_cold
-            || matches!(
-                move_data.name.as_str(),
-                "Fissure" | "Guillotine" | "Horn Drill"
-            );
+        let ohko = move_data.ohko;
         let retaliation_hit = if counter.is_some() {
             self.mon(source).counter.and_then(|state| state.hit)
         } else if retaliation {
@@ -4670,6 +4671,9 @@ impl Battle {
                 if landed > 0 && self.event_ability(target) == "spicyspray" {
                     self.spicy_spray(target, source, base);
                 }
+                if landed > 0 && self.event_ability(target) == "seedsower" {
+                    self.set_terrain(target, Terrain::Grassy, Some("Seed Sower"));
+                }
                 if move_data.flags.contains_key("contact") {
                     match self.event_ability(target) {
                         "flamebody" | "static" | "poisonpoint" | "effectspore" => {
@@ -5448,6 +5452,9 @@ impl Pokemon {
                 | "spicyspray"
                 | "pickpocket"
                 | "innardsout"
+                | "seedsower"
+                | "anticipation"
+                | "forewarn"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

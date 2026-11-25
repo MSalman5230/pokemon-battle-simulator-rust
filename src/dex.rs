@@ -175,6 +175,8 @@ pub struct Move {
     #[serde(default)]
     pub targets_defense: bool,
     #[serde(default)]
+    pub ohko: bool,
+    #[serde(default)]
     pub ignore_evasion: bool,
     #[serde(default)]
     pub tracks_target: bool,

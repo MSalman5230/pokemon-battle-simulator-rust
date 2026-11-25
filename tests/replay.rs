@@ -1280,6 +1280,16 @@ fn final_gambit_and_innards_out_queue_faints_in_native_order() {
 }
 
 #[test]
+fn anticipation_and_forewarn_inspect_live_foes_and_sample_tied_threats() {
+    replay(include_str!("fixtures/vgc-entry-move-threats.json"));
+}
+
+#[test]
+fn seed_sower_starts_grassy_terrain_when_hit() {
+    replay(include_str!("fixtures/bss-seed-sower.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
