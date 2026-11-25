@@ -973,6 +973,9 @@ impl Battle {
                 if self.mon(pos).hp == 0 {
                     continue;
                 }
+                if let Some(label) = self.weather_suppressor(pos) {
+                    self.add(format!("|-ability|{}|{label}", self.ident(pos)));
+                }
                 self.start_ability(pos);
                 self.on_switch_in_item(pos);
             }
@@ -991,6 +994,9 @@ impl Battle {
     ) {
         if !self.mon(outgoing).fainted && pivot.is_none() && !drag {
             self.each_event();
+        }
+        if !self.mon(outgoing).fainted {
+            self.weather_ability_changed(outgoing);
         }
         let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
         party[outgoing.slot].protected = false;
@@ -1215,6 +1221,7 @@ impl Battle {
             self.add(format!("|-ability|{}|{label}", self.ident(pos)));
         }
         self.switch_in_weather(pos);
+        self.weather_ability_changed(pos);
         self.switch_in_terrain(pos);
         if self.mon(pos).ability == "intimidate" {
             self.intimidate(pos);
@@ -1264,7 +1271,7 @@ impl Battle {
 
     pub(super) fn field_speed(&self, pos: Position) -> i32 {
         self.stat_rules.truncation.action_speed(
-            self.mon(pos).current_speed(self.weather()),
+            self.mon(pos).current_speed(self.effective_weather()),
             (self.trick_room > 0) ^ self.twisted_dimension,
         )
     }
@@ -1600,11 +1607,9 @@ impl Battle {
         let struggle = slot == STRUGGLE_SLOT;
         let charge_spec = ChargeSpec::for_move(&move_data.name);
         let releasing_charge = self.mon(source).charge.is_some();
+        let weather = self.effective_weather();
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
-            && matches!(
-                self.weather(),
-                Some(Weather::Rain | Weather::Sand | Weather::Snow)
-            );
+            && matches!(weather, Some(Weather::Rain | Weather::Sand | Weather::Snow));
         let retaliation = matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
         let sheer_cold = move_data.name == "Sheer Cold";
         let ohko = sheer_cold
@@ -1619,7 +1624,6 @@ impl Battle {
         };
         let continuing = self.mon(source).rampage.is_some() || releasing_charge;
         let called_from = if continuing { "|[from] lockedmove" } else { "" };
-        let weather = self.weather();
         let weather_ball = move_data.name == "Weather Ball";
         let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
         let power = match (weather_ball && weather.is_some(), stacked_power) {
@@ -1824,7 +1828,9 @@ impl Battle {
             }
         }
         if let Some(screen) = Screen::from_move(&move_data.name) {
-            if !matches!(screen, Screen::AuroraVeil) || self.weather() == Some(Weather::Snow) {
+            if !matches!(screen, Screen::AuroraVeil)
+                || self.effective_weather() == Some(Weather::Snow)
+            {
                 self.protean_prepare(source, move_type);
             }
             if !self.set_screen(source, screen) {
@@ -2383,7 +2389,7 @@ impl Battle {
                     move_data.name.as_str(),
                     "Moonlight" | "Morning Sun" | "Synthesis"
                 ) {
-                    let fraction = match self.weather() {
+                    let fraction = match self.effective_weather() {
                         Some(Weather::Sun) => 2732,
                         Some(_) => 1024,
                         None => 2048,
@@ -2564,10 +2570,11 @@ impl Battle {
                 };
                 let atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });
                 let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
-                let def = if (self.weather() == Some(Weather::Sand)
+                let damage_weather = self.effective_weather();
+                let def = if (damage_weather == Some(Weather::Sand)
                     && move_data.category == Category::Special
                     && mon.has_type("Rock"))
-                    || (self.weather() == Some(Weather::Snow)
+                    || (damage_weather == Some(Weather::Snow)
                         && move_data.category == Category::Physical
                         && mon.has_type("Ice"))
                 {
@@ -2612,9 +2619,7 @@ impl Battle {
                     attack: atk,
                     defense: NonZeroU32::new(def.max(1)).unwrap(),
                     spread_or_bond: if spread { 3072 } else { 4096 },
-                    weather: self
-                        .weather()
-                        .map_or(4096, |w| w.damage_modifier(move_type)),
+                    weather: damage_weather.map_or(4096, |w| w.damage_modifier(move_type)),
                     critical: crit,
                     stab: if !stab {
                         4096
@@ -2985,6 +2990,7 @@ impl Battle {
     pub(super) fn mark_fainted(&mut self, target: Position) {
         self.last_faint = Some(target.player);
         self.add(format!("|faint|{}", self.ident(target)));
+        self.weather_ability_changed(target);
         let mon = self.mon_mut(target);
         mon.fainted = true;
         mon.illusion = None;
@@ -3070,12 +3076,13 @@ impl Battle {
     }
 
     fn accuracy(&self, source: Position, target: Position, accuracy: u8) -> u32 {
-        let accuracy =
-            if self.event_ability(target) == "sandveil" && self.weather() == Some(Weather::Sand) {
-                self.stat_rules.truncation.modify(u32::from(accuracy), 3277) as i32
-            } else {
-                i32::from(accuracy)
-            };
+        let accuracy = if self.event_ability(target) == "sandveil"
+            && self.effective_weather() == Some(Weather::Sand)
+        {
+            self.stat_rules.truncation.modify(u32::from(accuracy), 3277) as i32
+        } else {
+            i32::from(accuracy)
+        };
         let evasion = if self.mon(source).ability == "illuminate" {
             0
         } else {
@@ -3269,6 +3276,8 @@ impl Pokemon {
                 | "illusion"
                 | "heavymetal"
                 | "lightmetal"
+                | "cloudnine"
+                | "airlock"
         )
     }
 

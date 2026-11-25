@@ -515,3 +515,8 @@ fn bss_scale_shot_boosts_once_after_a_successful_hit_sequence() {
 fn bss_endeavor_checks_current_hp_and_natural_type_immunity() {
     replay(include_str!("fixtures/bss-endeavor.json"));
 }
+
+#[test]
+fn bss_cloud_nine_suppresses_effects_without_removing_the_weather() {
+    replay(include_str!("fixtures/bss-cloud-nine.json"));
+}

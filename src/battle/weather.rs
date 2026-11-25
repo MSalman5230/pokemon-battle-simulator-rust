@@ -63,6 +63,30 @@ impl Battle {
         self.weather.map(|(weather, _)| weather)
     }
 
+    pub(super) fn effective_weather(&self) -> Option<Weather> {
+        self.weather().filter(|_| !self.weather_suppressed())
+    }
+
+    fn weather_suppressed(&self) -> bool {
+        self.positions()
+            .any(|pos| !self.mon(pos).fainted && self.weather_suppressor(pos).is_some())
+    }
+
+    pub(super) fn weather_suppressor(&self, pos: Position) -> Option<&'static str> {
+        match self.event_ability(pos) {
+            "cloudnine" => Some("Cloud Nine"),
+            "airlock" => Some("Air Lock"),
+            _ => None,
+        }
+    }
+
+    pub(super) fn weather_ability_changed(&mut self, pos: Position) {
+        if self.weather_suppressor(pos).is_some() {
+            // WeatherChange sorts all actives even with no listeners.
+            self.ordered_actives(false);
+        }
+    }
+
     pub(super) fn switch_in_weather(&mut self, pos: Position) {
         let (weather, label) = match self.mon(pos).ability.as_str() {
             "drizzle" => (Weather::Rain, "Drizzle"),
@@ -109,6 +133,9 @@ impl Battle {
         }
         self.weather = Some((weather, turns - 1));
         self.add(format!("|-weather|{}|[upkeep]", weather.label()));
+        if self.weather_suppressed() {
+            return;
+        }
         let (ordered, count) = self.ordered_actives(false);
         for (pos, _) in ordered.into_iter().take(count) {
             if weather == Weather::Sand {

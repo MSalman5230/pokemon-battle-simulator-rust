@@ -185,6 +185,8 @@ impl Battle {
                 return None;
             }
         }
+        self.weather_ability_changed(source);
+        self.weather_ability_changed(target);
         let a = std::mem::take(&mut self.mon_mut(source).ability);
         let b = std::mem::replace(&mut self.mon_mut(target).ability, a);
         self.mon_mut(source).ability = b;
@@ -232,6 +234,7 @@ impl Battle {
         if mon.ability == "illusion" {
             self.end_illusion(source);
         }
+        self.weather_ability_changed(source);
         self.mon_mut(source).ability.clear();
         self.mon_mut(source).ability.push_str(id);
         self.reset_ability_order(source);

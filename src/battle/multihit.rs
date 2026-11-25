@@ -71,7 +71,9 @@ impl Battle {
         let numerator = i32::from(base) * an * ed;
         let denominator = ad * en;
         let mut accuracy = numerator as f64 / denominator as f64;
-        if self.event_ability(target) == "sandveil" && self.weather() == Some(Weather::Sand) {
+        if self.event_ability(target) == "sandveil"
+            && self.effective_weather() == Some(Weather::Sand)
+        {
             accuracy = ((accuracy * 3277.0).trunc() + 2047.0) / 4096.0;
             accuracy = accuracy.trunc();
         }

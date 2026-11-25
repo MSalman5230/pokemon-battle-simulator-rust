@@ -1,0 +1,2992 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Pelipper\",\"moves\":[\"Weather Ball\",\"Water Gun\",\"Rain Dance\",\"Recover\"],\"gender\":\"F\",\"name\":\"Pelipper\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Drizzle\"},{\"species\":\"Glaceon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Altaria\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Altaria\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Cloud Nine\"},{\"species\":\"Arcanine\",\"moves\":[\"Sandstorm\",\"Recover\"],\"gender\":\"F\",\"name\":\"Arcanine\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Intimidate\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Pelipper, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Altaria, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Pelipper, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Altaria, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Pelipper, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Altaria, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 90,
+                  "spe": 85
+                },
+                "moves": [
+                  "weatherball",
+                  "watergun",
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Altaria",
+                "details": "Altaria, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 110,
+                  "spa": 90,
+                  "spd": 125,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "sandstorm",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 120,
+              "spa": 115,
+              "spd": 90,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "weatherball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Altaria",
+            "species": "Altaria",
+            "details": "Altaria, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 110,
+              "spa": 90,
+              "spd": 125,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "sandstorm",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Pelipper|Pelipper, L50, F|100/100",
+          "|switch|p2a: Altaria|Altaria, L50, F|100/100",
+          "|-ability|p2a: Altaria|Cloud Nine",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p1a: Pelipper",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Pelipper|Pelipper, L50, F|135/135",
+          "|switch|p2a: Altaria|Altaria, L50, F|100/100",
+          "|-ability|p2a: Altaria|Cloud Nine",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p1a: Pelipper",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Pelipper|Pelipper, L50, F|100/100",
+          "|switch|p2a: Altaria|Altaria, L50, F|150/150",
+          "|-ability|p2a: Altaria|Cloud Nine",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p1a: Pelipper",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 90,
+                  "spe": 85
+                },
+                "moves": [
+                  "weatherball",
+                  "watergun",
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Altaria",
+                "details": "Altaria, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 110,
+                  "spa": 90,
+                  "spd": 125,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "sandstorm",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 120,
+              "spa": 115,
+              "spd": 90,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "weatherball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Altaria",
+            "species": "Altaria",
+            "details": "Altaria, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 110,
+              "spa": 90,
+              "spd": 125,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "sandstorm",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Altaria|Recover||[still]",
+          "|-fail|p2a: Altaria|heal",
+          "|move|p1a: Pelipper|Weather Ball|p2a: Altaria",
+          "|-damage|p2a: Altaria|87/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Altaria|Recover||[still]",
+          "|-fail|p2a: Altaria|heal",
+          "|move|p1a: Pelipper|Weather Ball|p2a: Altaria",
+          "|-damage|p2a: Altaria|87/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Altaria|Recover||[still]",
+          "|-fail|p2a: Altaria|heal",
+          "|move|p1a: Pelipper|Weather Ball|p2a: Altaria",
+          "|-damage|p2a: Altaria|131/150",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 90,
+                  "spe": 85
+                },
+                "moves": [
+                  "weatherball",
+                  "watergun",
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Altaria",
+                "details": "Altaria, L50, F",
+                "condition": "131/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 110,
+                  "spa": 90,
+                  "spd": 125,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "sandstorm",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 120,
+              "spa": 115,
+              "spd": 90,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "weatherball",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Altaria",
+            "species": "Altaria",
+            "details": "Altaria, L50, F",
+            "hp": 131,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 110,
+              "spa": 90,
+              "spd": 125,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "sandstorm",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Altaria|Recover|p2a: Altaria",
+          "|-heal|p2a: Altaria|100/100",
+          "|move|p1a: Pelipper|Rain Dance||[still]",
+          "|-fail|p1a: Pelipper",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Altaria|Recover|p2a: Altaria",
+          "|-heal|p2a: Altaria|100/100",
+          "|move|p1a: Pelipper|Rain Dance||[still]",
+          "|-fail|p1a: Pelipper",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Altaria|Recover|p2a: Altaria",
+          "|-heal|p2a: Altaria|150/150",
+          "|move|p1a: Pelipper|Rain Dance||[still]",
+          "|-fail|p1a: Pelipper",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 90,
+                  "spe": 85
+                },
+                "moves": [
+                  "weatherball",
+                  "watergun",
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Altaria",
+                "details": "Altaria, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 110,
+                  "spa": 90,
+                  "spd": 125,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "sandstorm",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 120,
+              "spa": 115,
+              "spd": 90,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "weatherball",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Altaria",
+            "species": "Altaria",
+            "details": "Altaria, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 110,
+              "spa": 90,
+              "spd": 125,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "sandstorm",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 switch 2"
+      ],
+      "turn": 4,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|100/100",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Pelipper|atk|1",
+          "|move|p1a: Pelipper|Water Gun|p2a: Arcanine",
+          "|-supereffective|p2a: Arcanine|1",
+          "|-damage|p2a: Arcanine|45/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|100/100",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Pelipper|atk|1",
+          "|move|p1a: Pelipper|Water Gun|p2a: Arcanine",
+          "|-supereffective|p2a: Arcanine|1",
+          "|-damage|p2a: Arcanine|45/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Pelipper|atk|1",
+          "|move|p1a: Pelipper|Water Gun|p2a: Arcanine",
+          "|-supereffective|p2a: Arcanine|1",
+          "|-damage|p2a: Arcanine|75/165",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 90,
+                  "spe": 85
+                },
+                "moves": [
+                  "weatherball",
+                  "watergun",
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sandstorm",
+                  "id": "sandstorm",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "75/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "sandstorm",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Altaria",
+                "details": "Altaria, L50, F",
+                "condition": "150/150",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 110,
+                  "spa": 90,
+                  "spd": 125,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 120,
+              "spa": 115,
+              "spd": 90,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "weatherball",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 75,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "sandstorm",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Altaria",
+            "species": "Altaria",
+            "details": "Altaria, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 110,
+              "spa": 90,
+              "spd": 125,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Arcanine|Sandstorm|p2a: Arcanine",
+          "|-weather|Sandstorm",
+          "|move|p1a: Pelipper|Recover||[still]",
+          "|-fail|p1a: Pelipper|heal",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Arcanine|39/100|[from] Sandstorm",
+          "|-damage|p1a: Pelipper|94/100|[from] Sandstorm",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Arcanine|Sandstorm|p2a: Arcanine",
+          "|-weather|Sandstorm",
+          "|move|p1a: Pelipper|Recover||[still]",
+          "|-fail|p1a: Pelipper|heal",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Arcanine|39/100|[from] Sandstorm",
+          "|-damage|p1a: Pelipper|127/135|[from] Sandstorm",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Arcanine|Sandstorm|p2a: Arcanine",
+          "|-weather|Sandstorm",
+          "|move|p1a: Pelipper|Recover||[still]",
+          "|-fail|p1a: Pelipper|heal",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Arcanine|65/165|[from] Sandstorm",
+          "|-damage|p1a: Pelipper|94/100|[from] Sandstorm",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L50, F",
+                "condition": "127/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 90,
+                  "spe": 85
+                },
+                "moves": [
+                  "weatherball",
+                  "watergun",
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sandstorm",
+                  "id": "sandstorm",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "65/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "sandstorm",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Altaria",
+                "details": "Altaria, L50, F",
+                "condition": "150/150",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 110,
+                  "spa": 90,
+                  "spd": 125,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L50, F",
+            "hp": 127,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 120,
+              "spa": 115,
+              "spd": 90,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "weatherball",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 65,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "sandstorm",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Altaria",
+            "species": "Altaria",
+            "details": "Altaria, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 110,
+              "spa": 90,
+              "spd": 125,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 2"
+      ],
+      "turn": 6,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Altaria|Altaria, L50, F|100/100",
+          "|-ability|p2a: Altaria|Cloud Nine",
+          "|move|p1a: Pelipper|Weather Ball|p2a: Altaria",
+          "|-damage|p2a: Altaria|87/100",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p2a: Altaria|Altaria, L50, F|100/100",
+          "|-ability|p2a: Altaria|Cloud Nine",
+          "|move|p1a: Pelipper|Weather Ball|p2a: Altaria",
+          "|-damage|p2a: Altaria|87/100",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p2a: Altaria|Altaria, L50, F|150/150",
+          "|-ability|p2a: Altaria|Cloud Nine",
+          "|move|p1a: Pelipper|Weather Ball|p2a: Altaria",
+          "|-damage|p2a: Altaria|131/150",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L50, F",
+                "condition": "127/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 90,
+                  "spe": 85
+                },
+                "moves": [
+                  "weatherball",
+                  "watergun",
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Altaria",
+                "details": "Altaria, L50, F",
+                "condition": "131/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 110,
+                  "spa": 90,
+                  "spd": 125,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "65/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "sandstorm",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L50, F",
+            "hp": 127,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 120,
+              "spa": 115,
+              "spd": 90,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "weatherball",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Altaria",
+            "species": "Altaria",
+            "details": "Altaria, L50, F",
+            "hp": 131,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 110,
+              "spa": 90,
+              "spd": 125,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 65,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "sandstorm",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 switch 2"
+      ],
+      "turn": 7,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|39/100",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Pelipper|atk|1",
+          "|move|p1a: Pelipper|Recover|p1a: Pelipper",
+          "|-heal|p1a: Pelipper|100/100",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Arcanine|33/100|[from] Sandstorm",
+          "|-damage|p1a: Pelipper|94/100|[from] Sandstorm",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|39/100",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Pelipper|atk|1",
+          "|move|p1a: Pelipper|Recover|p1a: Pelipper",
+          "|-heal|p1a: Pelipper|135/135",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Arcanine|33/100|[from] Sandstorm",
+          "|-damage|p1a: Pelipper|127/135|[from] Sandstorm",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|65/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Pelipper|atk|1",
+          "|move|p1a: Pelipper|Recover|p1a: Pelipper",
+          "|-heal|p1a: Pelipper|100/100",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Arcanine|55/165|[from] Sandstorm",
+          "|-damage|p1a: Pelipper|94/100|[from] Sandstorm",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Weather Ball",
+                  "id": "weatherball",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L50, F",
+                "condition": "127/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 90,
+                  "spe": 85
+                },
+                "moves": [
+                  "weatherball",
+                  "watergun",
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "drizzle",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sandstorm",
+                  "id": "sandstorm",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "55/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "sandstorm",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Altaria",
+                "details": "Altaria, L50, F",
+                "condition": "131/150",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 110,
+                  "spa": 90,
+                  "spd": 125,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L50, F",
+            "hp": 127,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 120,
+              "spa": 115,
+              "spd": 90,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "weatherball",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 55,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "sandstorm",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Altaria",
+            "species": "Altaria",
+            "details": "Altaria, L50, F",
+            "hp": 131,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 110,
+              "spa": 90,
+              "spd": 125,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
