@@ -495,3 +495,8 @@ fn vgc_illusion_can_use_the_active_ally_to_its_right() {
 fn bss_white_herb_clears_negative_stages_after_move_and_entry_effects() {
     replay(include_str!("fixtures/bss-white-herb.json"));
 }
+
+#[test]
+fn bss_sucker_punch_and_thunderclap_require_a_pending_damaging_move() {
+    replay(include_str!("fixtures/bss-conditional-priority.json"));
+}

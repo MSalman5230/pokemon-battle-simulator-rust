@@ -772,6 +772,8 @@ impl Battle {
                     | "geomancy"
                     | "expandingforce"
                     | "dive"
+                    | "suckerpunch"
+                    | "thunderclap"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -2012,6 +2014,22 @@ impl Battle {
             self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
             self.add(format!("|-fail|{source_name}"));
             return true;
+        }
+        if matches!(move_data.name.as_str(), "Sucker Punch" | "Thunderclap") {
+            let target = spread_targets[0];
+            let pending_attack = self.mon(target).recharge == 0
+                && Self::queued_move(queue, target).is_some_and(|slot| {
+                    slot != RECHARGE_SLOT
+                        && self.move_data(target, slot).category != Category::Status
+                });
+            if !pending_attack {
+                self.log[base].public = format!(
+                    "|move|{source_name}|{}|{called_from}|[still]",
+                    move_data.name
+                );
+                self.add(format!("|-fail|{source_name}"));
+                return true;
+            }
         }
         self.protean_prepare(source, move_type);
         let spread = spread_targets.len() > 1;
