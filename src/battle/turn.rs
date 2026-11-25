@@ -540,15 +540,29 @@ impl Battle {
         while !queue.is_empty() {
             let action = queue.remove(0);
             match action.kind {
-                ActionKind::BeforeTurn => self.each_event(),
+                ActionKind::BeforeTurn => {
+                    self.ordered_actives(false);
+                }
                 ActionKind::RunSwitch => {
                     // Simultaneous entry effects use a fresh speed order over the field.
                     let batch_len = queue
                         .iter()
                         .take_while(|q| matches!(q.kind, ActionKind::RunSwitch))
                         .count();
-                    queue.drain(..batch_len);
-                    self.sort_actives(true);
+                    let mut switching = [None; 4];
+                    switching[0] = action.actor;
+                    for (i, action) in queue.drain(..batch_len).enumerate() {
+                        switching[i + 1] = action.actor;
+                    }
+                    let (order, count) = self.ordered_actives(true);
+                    for (pos, _) in order.into_iter().take(count) {
+                        if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
+                            if self.mon(pos).ability == "pressure" {
+                                self.add(format!("|-ability|{}|Pressure", self.ident(pos)));
+                            }
+                            self.on_switch_in_item(pos);
+                        }
+                    }
                 }
                 ActionKind::Switch { bench_slot, .. } => {
                     let outgoing = action.actor.unwrap();
@@ -635,19 +649,26 @@ impl Battle {
             .flat_map(move |player| (0..slots).map(move |slot| Position { player, slot }))
     }
 
-    fn sort_actives(&mut self, include_fainted: bool) {
+    fn ordered_actives(&mut self, include_fainted: bool) -> ([(Position, u32); 4], usize) {
         // Even a field-wide event with no matching handler performs this
         // selection and consumes every speed-tie draw.
-        let mut speeds = [0; 4];
+        let mut actives = [(
+            Position {
+                player: Player::P1,
+                slot: 0,
+            },
+            0,
+        ); 4];
         let mut count = 0;
         for pos in self.positions() {
             let pokemon = self.mon(pos);
             if include_fainted || !pokemon.fainted {
-                speeds[count] = pokemon.speed;
+                actives[count] = (pos, pokemon.speed);
                 count += 1;
             }
         }
-        speed_sort_by(&mut speeds[..count], &mut self.rng, |a, b| b.cmp(a));
+        speed_sort_by(&mut actives[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        (actives, count)
     }
 
     fn update_speed(&mut self) {
@@ -659,7 +680,10 @@ impl Battle {
     }
 
     fn each_event(&mut self) {
-        self.sort_actives(false);
+        let (order, count) = self.ordered_actives(false);
+        for (pos, _) in order.into_iter().take(count) {
+            self.on_update_item(pos);
+        }
     }
 
     fn residual(&mut self) {
@@ -669,6 +693,7 @@ impl Battle {
             Protect,
             Stall,
             Flinch,
+            Leftovers,
         }
         self.add("|");
         self.update_speed();
@@ -683,6 +708,9 @@ impl Battle {
             };
             if let Some((order, _, _)) = mon.status.residual() {
                 timers.push((pos, Effect::Status, priority(order, 0)));
+            }
+            if mon.item == "leftovers" {
+                timers.push((pos, Effect::Leftovers, priority(5, 4)));
             }
             if mon.protected {
                 timers.push((pos, Effect::Protect, priority(0, 2)));
@@ -701,6 +729,10 @@ impl Battle {
                 continue;
             }
             match effect {
+                Effect::Leftovers => {
+                    let amount = mon.max_hp.get() / 16;
+                    self.item_heal(pos, amount, "Leftovers");
+                }
                 Effect::Protect => mon.protected = false,
                 Effect::Flinch => mon.flinched = false,
                 Effect::Stall => {
@@ -727,7 +759,7 @@ impl Battle {
         self.winner = match alive {
             [true, false] => Some(Player::P1),
             [false, true] => Some(Player::P2),
-            _ => None,
+            _ => self.last_faint,
         };
         self.add("|");
         if let Some(winner) = self.winner {
@@ -796,6 +828,15 @@ impl Battle {
             return;
         }
 
+        if move_data.target != TargetKind::User {
+            let pressure_targets = spread_targets
+                .iter()
+                .filter(|pos| pos.player != source.player && self.mon(**pos).ability == "pressure")
+                .count();
+            self.mon_mut(source).moves[slot].pp = self.mon(source).moves[slot]
+                .pp
+                .saturating_sub(pressure_targets as u8);
+        }
         if move_data.name == "Protect" {
             let stall = self.mon(source).stall.map_or(1, |(counter, _)| counter);
             if !more_actions || (stall > 1 && !self.rng.chance(1, u32::from(stall))) {
@@ -822,6 +863,15 @@ impl Battle {
             if self.mon(mut_pos).protected && move_data.flags.contains_key("protect") {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
                 false
+            } else if move_data.category == Category::Status
+                && source != mut_pos
+                && self.mon(mut_pos).ability == "goodasgold"
+            {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Good as Gold",
+                    self.ident(mut_pos)
+                ));
+                false
             } else {
                 true
             }
@@ -831,7 +881,19 @@ impl Battle {
                 .ignore_immunity
                 .as_bool()
                 .unwrap_or(move_data.category == Category::Status);
-            if (!ignores_type && self.effectiveness(move_data, pos).is_none())
+            if !ignores_type
+                && move_data.move_type == "Ground"
+                && self.mon(pos).ability == "levitate"
+                && !self.mon(pos).species.types.iter().any(|t| t == "Flying")
+            {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Levitate",
+                    self.ident(pos)
+                ));
+                false
+            } else if (!ignores_type
+                && (self.effectiveness(move_data, pos).is_none()
+                    || (move_data.move_type == "Ground" && self.mon(pos).item == "airballoon")))
                 || (move_data.flags.contains_key("powder")
                     && source != pos
                     && self.status_immune(pos, "powder"))
@@ -901,7 +963,11 @@ impl Battle {
             let crit = crit_ratio != 0
                 && self
                     .rng
-                    .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)]);
+                    .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)])
+                && !matches!(
+                    self.mon(target).ability.as_str(),
+                    "battlearmor" | "shellarmor"
+                );
             let user = self.mon(source);
             let mon = self.mon(target);
             let (atk, atk_stage, def, def_stage) = if move_data.category == Category::Physical {
@@ -929,7 +995,10 @@ impl Battle {
             let stab = user.species.types.contains(&move_data.move_type);
             let value = Damage {
                 level: user.level,
-                power: u32::from(move_data.base_power),
+                power: tr.modify(
+                    u32::from(move_data.base_power),
+                    user.item_power_modifier(&move_data.move_type),
+                ),
                 attack: atk,
                 defense: NonZeroU32::new(def.max(1)).unwrap(),
                 spread_or_bond: if spread { 3072 } else { 4096 },
@@ -938,7 +1007,7 @@ impl Battle {
                 stab: if stab { 6144 } else { 4096 },
                 effectiveness: effect,
                 burned: user.status == Status::Burn && move_data.category == Category::Physical,
-                final_modifier: 4096,
+                final_modifier: if user.item == "lifeorb" { 5324 } else { 4096 },
                 bypassed_protect: false,
             }
             .roll(tr, &mut self.rng);
@@ -961,6 +1030,7 @@ impl Battle {
             damage.push((target, value));
         }
         for &(target, value) in &damage {
+            let value = self.focus_sash(target, value);
             let mon = self.mon_mut(target);
             mon.hp = mon.hp.saturating_sub(value);
             self.add_health_line("-damage", target, false);
@@ -998,13 +1068,48 @@ impl Battle {
                 self.cure_status(target, "[msg]");
             }
         }
+        if move_data.flags.contains_key("contact") {
+            for &(target, _) in &damage {
+                if self.mon(target).ability == "roughskin" {
+                    self.indirect_damage(
+                        source,
+                        8,
+                        &format!("|[from] ability: Rough Skin|[of] {}", self.ident(target)),
+                    );
+                }
+            }
+            for &(target, _) in &damage {
+                if self.mon(target).item == "rockyhelmet" {
+                    self.indirect_damage(
+                        source,
+                        6,
+                        &format!("|[from] item: Rocky Helmet|[of] {}", self.ident(target)),
+                    );
+                }
+            }
+        }
+        for &(target, _) in &damage {
+            if self.mon(target).item == "airballoon" {
+                self.consume(target, "Air Balloon", false);
+            }
+        }
         self.each_event();
         for (target, _) in damage {
             if self.mon(target).hp == 0 {
                 self.mark_fainted(target);
             }
         }
+        if self.mon(source).hp == 0 {
+            self.mark_fainted(source);
+            self.check_win();
+        }
         self.each_event();
+        if self.mon(source).item == "lifeorb" && !self.mon(source).fainted {
+            self.indirect_damage(source, 10, "|[from] item: Life Orb");
+            if self.mon(source).hp == 0 {
+                self.mark_fainted(source);
+            }
+        }
         if spread {
             let labels: Vec<_> = spread_targets.into_iter().map(Position::label).collect();
             self.log[base]
@@ -1014,6 +1119,7 @@ impl Battle {
     }
 
     pub(super) fn mark_fainted(&mut self, target: Position) {
+        self.last_faint = Some(target.player);
         let mon = self.mon_mut(target);
         mon.fainted = true;
         mon.stall = None;
@@ -1107,14 +1213,39 @@ impl Pokemon {
     pub(super) fn entry_error(&self) -> Option<BattleError> {
         if !matches!(
             self.ability.as_str(),
-            "" | "blaze" | "torrent" | "overgrow" | "swarm"
+            "" | "blaze"
+                | "torrent"
+                | "overgrow"
+                | "swarm"
+                | "pressure"
+                | "levitate"
+                | "shellarmor"
+                | "battlearmor"
+                | "goodasgold"
+                | "roughskin"
+                | "runaway"
         ) {
             return Some(BattleError::Unsupported(format!(
                 "ability {}",
                 self.ability
             )));
         }
-        if !self.item.is_empty() {
+        if !matches!(
+            self.item.as_str(),
+            "" | "leftovers"
+                | "sitrusberry"
+                | "focussash"
+                | "airballoon"
+                | "lifeorb"
+                | "rockyhelmet"
+                | "lumberry"
+                | "chestoberry"
+                | "mysticwater"
+                | "miracleseed"
+                | "charcoal"
+                | "fairyfeather"
+                | "spelltag"
+        ) {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));
         }
         if self.species.has_condition {

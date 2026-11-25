@@ -89,11 +89,19 @@ const statusRosters = [
     [named('Vaporeon', ['Thunder Wave', 'Recover', 'Surf', 'Ice Beam']),
         named('Flareon', ['Will-O-Wisp', 'Tackle']), named('Jolteon', ['Nuzzle'])],
     [named('Umbreon', ['Toxic', 'Tackle', 'Protect', 'Hypnosis']),
-        named('Glaceon', ['Tackle', 'Ice Beam', 'Recover', 'Protect']), named('Espeon', ['Swift'])],
+        {...named('Glaceon', ['Tackle', 'Ice Beam', 'Recover', 'Protect']), item: 'Leftovers'}, named('Espeon', ['Swift'])],
 ];
 const sleepFreezeRosters = [
     [named('Jolteon', ['Ice Beam', 'Recover']), named('Flareon', ['Flamethrower'])],
     [named('Umbreon', ['Tackle', 'Hypnosis', 'Recover']), named('Vaporeon', ['Recover'])],
+];
+const itemRosters = [
+    [{...named('Flareon', ['Tackle']), item: 'Life Orb'},
+        {...named('Vaporeon', ['Surf']), item: 'Mystic Water'},
+        {...named('Jolteon', ['Earthquake', 'Water Gun', 'Toxic', 'Recover']), item: 'Sitrus Berry'}],
+    [{...named('Garchomp', ['Protect', 'Tackle']), ability: 'Rough Skin', item: 'Rocky Helmet'},
+        {...named('Camerupt', ['Protect', 'Tackle']), item: 'Focus Sash'},
+        {...named('Gholdengo', ['Shadow Ball', 'Recover']), ability: 'Good as Gold', item: 'Air Balloon'}],
 ];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
@@ -112,6 +120,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 2'],
         ...Array(3).fill(['move 2', 'move 2']), ...Array(3).fill(['move 2', 'move 1'])],
         sleepFreezeRosters, 'bss-sleep-freeze', '1,2,3,22'],
+    ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 2'],
+        ['switch 2', 'switch 2'], ['move 1', 'move 2'], ['move 1', 'move 2'],
+        [null, 'switch 3'], ['switch 3', 'move 2'], ['move 1', 'move 1'],
+        ['move 3', 'move 2'], ['move 2', 'move 2'], ['move 4', 'move 1']], itemRosters, 'bss-items'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

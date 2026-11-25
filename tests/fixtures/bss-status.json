@@ -6,7 +6,7 @@
       "lines": [
         ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
         ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Thunder Wave\",\"Recover\",\"Surf\",\"Ice Beam\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Flareon\",\"moves\":[\"Will-O-Wisp\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Flareon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Jolteon\",\"moves\":[\"Nuzzle\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
-        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Toxic\",\"Tackle\",\"Protect\",\"Hypnosis\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Glaceon\",\"moves\":[\"Tackle\",\"Ice Beam\",\"Recover\",\"Protect\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Espeon\",\"moves\":[\"Swift\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Toxic\",\"Tackle\",\"Protect\",\"Hypnosis\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Glaceon\",\"moves\":[\"Tackle\",\"Ice Beam\",\"Recover\",\"Protect\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Leftovers\"},{\"species\":\"Espeon\",\"moves\":[\"Swift\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
       ],
       "turn": 0,
       "seed": "1,2,3,4",
@@ -196,7 +196,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -427,7 +427,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": false,
             "moves": [
               {
@@ -730,7 +730,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -961,7 +961,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": false,
             "moves": [
               {
@@ -1270,7 +1270,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -1501,7 +1501,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": false,
             "moves": [
               {
@@ -1810,7 +1810,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -2041,7 +2041,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": false,
             "moves": [
               {
@@ -2325,7 +2325,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -2556,7 +2556,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": false,
             "moves": [
               {
@@ -2821,7 +2821,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -3028,7 +3028,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": true,
             "moves": [
               {
@@ -3155,7 +3155,8 @@
           "|move|p2a: Glaceon|Tackle|p1a: Flareon",
           "|-damage|p1a: Flareon|94/100",
           "|",
-          "|-damage|p2a: Glaceon|75/100 brn|[from] brn",
+          "|-heal|p2a: Glaceon|87/100 brn|[from] item: Leftovers",
+          "|-damage|p2a: Glaceon|81/100 brn|[from] brn",
           "|upkeep",
           "|turn|6"
         ],
@@ -3166,7 +3167,8 @@
           "|move|p2a: Glaceon|Tackle|p1a: Flareon",
           "|-damage|p1a: Flareon|132/140",
           "|",
-          "|-damage|p2a: Glaceon|75/100 brn|[from] brn",
+          "|-heal|p2a: Glaceon|87/100 brn|[from] item: Leftovers",
+          "|-damage|p2a: Glaceon|81/100 brn|[from] brn",
           "|upkeep",
           "|turn|6"
         ],
@@ -3177,7 +3179,8 @@
           "|move|p2a: Glaceon|Tackle|p1a: Flareon",
           "|-damage|p1a: Flareon|94/100",
           "|",
-          "|-damage|p2a: Glaceon|106/140 brn|[from] brn",
+          "|-heal|p2a: Glaceon|122/140 brn|[from] item: Leftovers",
+          "|-damage|p2a: Glaceon|114/140 brn|[from] brn",
           "|upkeep",
           "|turn|6"
         ]
@@ -3329,7 +3332,7 @@
               {
                 "ident": "p2: Glaceon",
                 "details": "Glaceon, L50, F",
-                "condition": "106/140 brn",
+                "condition": "114/140 brn",
                 "active": true,
                 "stats": {
                   "atk": 80,
@@ -3345,7 +3348,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -3532,7 +3535,7 @@
             "name": "Glaceon",
             "species": "Glaceon",
             "details": "Glaceon, L50, F",
-            "hp": 106,
+            "hp": 114,
             "maxhp": 140,
             "status": "brn",
             "stats": {
@@ -3552,7 +3555,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": true,
             "moves": [
               {
@@ -3885,7 +3888,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -4092,7 +4095,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": true,
             "moves": [
               {
@@ -4221,8 +4224,9 @@
           "|-resisted|p1a: Vaporeon|1",
           "|-damage|p1a: Vaporeon|55/100 tox",
           "|",
+          "|-heal|p2a: Glaceon|83/100 brn|[from] item: Leftovers",
           "|-damage|p1a: Vaporeon|43/100 tox|[from] psn",
-          "|-damage|p2a: Glaceon|72/100 brn|[from] brn",
+          "|-damage|p2a: Glaceon|77/100 brn|[from] brn",
           "|upkeep",
           "|turn|8"
         ],
@@ -4235,8 +4239,9 @@
           "|-resisted|p1a: Vaporeon|1",
           "|-damage|p1a: Vaporeon|114/205 tox",
           "|",
+          "|-heal|p2a: Glaceon|83/100 brn|[from] item: Leftovers",
           "|-damage|p1a: Vaporeon|90/205 tox|[from] psn",
-          "|-damage|p2a: Glaceon|72/100 brn|[from] brn",
+          "|-damage|p2a: Glaceon|77/100 brn|[from] brn",
           "|upkeep",
           "|turn|8"
         ],
@@ -4249,8 +4254,9 @@
           "|-resisted|p1a: Vaporeon|1",
           "|-damage|p1a: Vaporeon|55/100 tox",
           "|",
+          "|-heal|p2a: Glaceon|117/140 brn|[from] item: Leftovers",
           "|-damage|p1a: Vaporeon|43/100 tox|[from] psn",
-          "|-damage|p2a: Glaceon|101/140 brn|[from] brn",
+          "|-damage|p2a: Glaceon|109/140 brn|[from] brn",
           "|upkeep",
           "|turn|8"
         ]
@@ -4418,7 +4424,7 @@
               {
                 "ident": "p2: Glaceon",
                 "details": "Glaceon, L50, F",
-                "condition": "101/140 brn",
+                "condition": "109/140 brn",
                 "active": true,
                 "stats": {
                   "atk": 80,
@@ -4434,7 +4440,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -4621,7 +4627,7 @@
             "name": "Glaceon",
             "species": "Glaceon",
             "details": "Glaceon, L50, F",
-            "hp": 101,
+            "hp": 109,
             "maxhp": 140,
             "status": "brn",
             "stats": {
@@ -4641,7 +4647,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": true,
             "moves": [
               {
@@ -4769,8 +4775,9 @@
           "|-resisted|p1a: Vaporeon|1",
           "|-damage|p1a: Vaporeon|75/100 tox",
           "|",
+          "|-heal|p2a: Glaceon|83/100 brn|[from] item: Leftovers",
           "|-damage|p1a: Vaporeon|58/100 tox|[from] psn",
-          "|-damage|p2a: Glaceon|66/100 brn|[from] brn",
+          "|-damage|p2a: Glaceon|77/100 brn|[from] brn",
           "|upkeep",
           "|turn|9"
         ],
@@ -4782,8 +4789,9 @@
           "|-resisted|p1a: Vaporeon|1",
           "|-damage|p1a: Vaporeon|155/205 tox",
           "|",
+          "|-heal|p2a: Glaceon|83/100 brn|[from] item: Leftovers",
           "|-damage|p1a: Vaporeon|119/205 tox|[from] psn",
-          "|-damage|p2a: Glaceon|66/100 brn|[from] brn",
+          "|-damage|p2a: Glaceon|77/100 brn|[from] brn",
           "|upkeep",
           "|turn|9"
         ],
@@ -4795,8 +4803,9 @@
           "|-resisted|p1a: Vaporeon|1",
           "|-damage|p1a: Vaporeon|75/100 tox",
           "|",
+          "|-heal|p2a: Glaceon|117/140 brn|[from] item: Leftovers",
           "|-damage|p1a: Vaporeon|58/100 tox|[from] psn",
-          "|-damage|p2a: Glaceon|93/140 brn|[from] brn",
+          "|-damage|p2a: Glaceon|109/140 brn|[from] brn",
           "|upkeep",
           "|turn|9"
         ]
@@ -4964,7 +4973,7 @@
               {
                 "ident": "p2: Glaceon",
                 "details": "Glaceon, L50, F",
-                "condition": "93/140 brn",
+                "condition": "109/140 brn",
                 "active": true,
                 "stats": {
                   "atk": 80,
@@ -4980,7 +4989,7 @@
                   "protect"
                 ],
                 "baseAbility": "",
-                "item": "",
+                "item": "leftovers",
                 "pokeball": "pokeball",
                 "ability": "",
                 "commanding": false,
@@ -5167,7 +5176,7 @@
             "name": "Glaceon",
             "species": "Glaceon",
             "details": "Glaceon, L50, F",
-            "hp": 93,
+            "hp": 109,
             "maxhp": 140,
             "status": "brn",
             "stats": {
@@ -5187,7 +5196,7 @@
               "evasion": 0
             },
             "ability": "",
-            "item": "",
+            "item": "leftovers",
             "active": true,
             "moves": [
               {

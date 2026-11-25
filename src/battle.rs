@@ -10,6 +10,7 @@ use crate::{
 };
 use serde::Serialize;
 
+mod items;
 mod status;
 mod turn;
 pub use status::Status;
@@ -100,6 +101,7 @@ pub struct Battle {
     phase: Phase,
     turn: u32,
     winner: Option<Player>,
+    last_faint: Option<Player>,
     pending_actions: [Option<Vec<Action>>; 2],
 }
 
@@ -231,6 +233,7 @@ impl Battle {
             phase: Phase::Setup,
             turn: 0,
             winner: None,
+            last_faint: None,
             pending_actions: [None, None],
         };
         battle.add(format!(

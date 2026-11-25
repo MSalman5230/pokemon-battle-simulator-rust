@@ -1,0 +1,5760 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Flareon\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Flareon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Life Orb\"},{\"species\":\"Vaporeon\",\"moves\":[\"Surf\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Mystic Water\"},{\"species\":\"Jolteon\",\"moves\":[\"Earthquake\",\"Water Gun\",\"Toxic\",\"Recover\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Sitrus Berry\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Garchomp\",\"moves\":[\"Protect\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Garchomp\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Rough Skin\",\"item\":\"Rocky Helmet\"},{\"species\":\"Camerupt\",\"moves\":[\"Protect\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Camerupt\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Focus Sash\"},{\"species\":\"Gholdengo\",\"moves\":[\"Shadow Ball\",\"Recover\"],\"gender\":\"F\",\"name\":\"Gholdengo\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Good as Gold\",\"item\":\"Air Balloon\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p2|Garchomp, L50, F|",
+          "|poke|p2|Camerupt, L50, F|",
+          "|poke|p2|Gholdengo, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p2|Garchomp, L50, F|",
+          "|poke|p2|Camerupt, L50, F|",
+          "|poke|p2|Gholdengo, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p2|Garchomp, L50, F|",
+          "|poke|p2|Camerupt, L50, F|",
+          "|poke|p2|Gholdengo, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "focussash",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "focussash",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": false,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 123",
+        ">p2 team 123"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|3",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|100/100",
+          "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|3",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|140/140",
+          "|switch|p2a: Garchomp|Garchomp, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|3",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|100/100",
+          "|switch|p2a: Garchomp|Garchomp, L50, F|183/183",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "focussash",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "focussash",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": false,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Garchomp|Tackle|p1a: Flareon",
+          "|-damage|p1a: Flareon|77/100",
+          "|move|p1a: Flareon|Tackle|p2a: Garchomp",
+          "|-damage|p2a: Garchomp|85/100",
+          "|-damage|p1a: Flareon|65/100|[from] ability: Rough Skin|[of] p2a: Garchomp",
+          "|-damage|p1a: Flareon|49/100|[from] item: Rocky Helmet|[of] p2a: Garchomp",
+          "|-damage|p1a: Flareon|39/100|[from] item: Life Orb",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Garchomp|Tackle|p1a: Flareon",
+          "|-damage|p1a: Flareon|109/140",
+          "|move|p1a: Flareon|Tackle|p2a: Garchomp",
+          "|-damage|p2a: Garchomp|85/100",
+          "|-damage|p1a: Flareon|92/140|[from] ability: Rough Skin|[of] p2a: Garchomp",
+          "|-damage|p1a: Flareon|69/140|[from] item: Rocky Helmet|[of] p2a: Garchomp",
+          "|-damage|p1a: Flareon|55/140|[from] item: Life Orb",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Garchomp|Tackle|p1a: Flareon",
+          "|-damage|p1a: Flareon|77/100",
+          "|move|p1a: Flareon|Tackle|p2a: Garchomp",
+          "|-damage|p2a: Garchomp|156/183",
+          "|-damage|p1a: Flareon|65/100|[from] ability: Rough Skin|[of] p2a: Garchomp",
+          "|-damage|p1a: Flareon|49/100|[from] item: Rocky Helmet|[of] p2a: Garchomp",
+          "|-damage|p1a: Flareon|39/100|[from] item: Life Orb",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "focussash",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "focussash",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": false,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 switch 2"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Camerupt|Camerupt, L50, F|100/100",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Camerupt|Camerupt, L50, F|100/100",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Camerupt|Camerupt, L50, F|145/145",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Surf",
+                  "id": "surf",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "focussash",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": true,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "focussash",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": false,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vaporeon|Surf|p2a: Camerupt",
+          "|-supereffective|p2a: Camerupt|2",
+          "|-enditem|p2a: Camerupt|Focus Sash",
+          "|-damage|p2a: Camerupt|1/100",
+          "|move|p2a: Camerupt|Tackle|p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|86/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Surf|p2a: Camerupt",
+          "|-supereffective|p2a: Camerupt|2",
+          "|-enditem|p2a: Camerupt|Focus Sash",
+          "|-damage|p2a: Camerupt|1/100",
+          "|move|p2a: Camerupt|Tackle|p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|178/205",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Surf|p2a: Camerupt",
+          "|-supereffective|p2a: Camerupt|2",
+          "|-enditem|p2a: Camerupt|Focus Sash",
+          "|-damage|p2a: Camerupt|1/145",
+          "|move|p2a: Camerupt|Tackle|p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|86/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Surf",
+                  "id": "surf",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "178/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "1/145",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 178,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": true,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 1,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": false,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "switch",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vaporeon|Surf|p2a: Camerupt",
+          "|-supereffective|p2a: Camerupt|2",
+          "|-damage|p2a: Camerupt|0 fnt",
+          "|faint|p2a: Camerupt",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Surf|p2a: Camerupt",
+          "|-supereffective|p2a: Camerupt|2",
+          "|-damage|p2a: Camerupt|0 fnt",
+          "|faint|p2a: Camerupt",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Surf|p2a: Camerupt",
+          "|-supereffective|p2a: Camerupt|2",
+          "|-damage|p2a: Camerupt|0 fnt",
+          "|faint|p2a: Camerupt",
+          "|",
+          "|upkeep"
+        ]
+      ],
+      "requests": [
+        {
+          "wait": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "178/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 178,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": true,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "fnt",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": false,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p2 switch 3"
+      ],
+      "turn": 5,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Gholdengo|Gholdengo, L50, F|100/100",
+          "|-item|p2a: Gholdengo|Air Balloon",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|switch|p2a: Gholdengo|Gholdengo, L50, F|100/100",
+          "|-item|p2a: Gholdengo|Air Balloon",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|switch|p2a: Gholdengo|Gholdengo, L50, F|162/162",
+          "|-item|p2a: Gholdengo|Air Balloon",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Surf",
+                  "id": "surf",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "178/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 178,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": true,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 3",
+        ">p2 move 2"
+      ],
+      "turn": 6,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|100/100",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|140/140",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|100/100",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "178/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 178,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 7,
+      "seed": "9621,18248,53276,33281",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Jolteon|Earthquake|p2a: Gholdengo",
+          "|-immune|p2a: Gholdengo",
+          "|move|p2a: Gholdengo|Shadow Ball|p1a: Jolteon",
+          "|-damage|p1a: Jolteon|56/100",
+          "|-unboost|p1a: Jolteon|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Earthquake|p2a: Gholdengo",
+          "|-immune|p2a: Gholdengo",
+          "|move|p2a: Gholdengo|Shadow Ball|p1a: Jolteon",
+          "|-damage|p1a: Jolteon|79/140",
+          "|-unboost|p1a: Jolteon|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Earthquake|p2a: Gholdengo",
+          "|-immune|p2a: Gholdengo",
+          "|move|p2a: Gholdengo|Shadow Ball|p1a: Jolteon",
+          "|-damage|p1a: Jolteon|56/100",
+          "|-unboost|p1a: Jolteon|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "79/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "178/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 79,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": -1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 178,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 8,
+      "seed": "9621,18248,53276,33281",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Jolteon|Toxic|p2a: Gholdengo",
+          "|-immune|p2a: Gholdengo|[from] ability: Good as Gold",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Toxic|p2a: Gholdengo",
+          "|-immune|p2a: Gholdengo|[from] ability: Good as Gold",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Toxic|p2a: Gholdengo",
+          "|-immune|p2a: Gholdengo|[from] ability: Good as Gold",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "79/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "178/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "airballoon",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 79,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": -1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 178,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "airballoon",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 9,
+      "seed": "32453,44464,39082,34970",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Jolteon|Water Gun|p2a: Gholdengo",
+          "|-damage|p2a: Gholdengo|87/100",
+          "|-enditem|p2a: Gholdengo|Air Balloon",
+          "|move|p2a: Gholdengo|Recover|p2a: Gholdengo",
+          "|-heal|p2a: Gholdengo|100/100",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Water Gun|p2a: Gholdengo",
+          "|-damage|p2a: Gholdengo|87/100",
+          "|-enditem|p2a: Gholdengo|Air Balloon",
+          "|move|p2a: Gholdengo|Recover|p2a: Gholdengo",
+          "|-heal|p2a: Gholdengo|100/100",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Water Gun|p2a: Gholdengo",
+          "|-damage|p2a: Gholdengo|142/162",
+          "|-enditem|p2a: Gholdengo|Air Balloon",
+          "|move|p2a: Gholdengo|Recover|p2a: Gholdengo",
+          "|-heal|p2a: Gholdengo|162/162",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "79/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "178/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 79,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": -1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 178,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 move 1"
+      ],
+      "turn": 10,
+      "seed": "56150,61,58353,25742",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Jolteon|Recover|p1a: Jolteon",
+          "|-heal|p1a: Jolteon|100/100",
+          "|move|p2a: Gholdengo|Shadow Ball|p1a: Jolteon",
+          "|-damage|p1a: Jolteon|26/100",
+          "|-enditem|p1a: Jolteon|Sitrus Berry|[eat]",
+          "|-heal|p1a: Jolteon|51/100|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Recover|p1a: Jolteon",
+          "|-heal|p1a: Jolteon|140/140",
+          "|move|p2a: Gholdengo|Shadow Ball|p1a: Jolteon",
+          "|-damage|p1a: Jolteon|37/140",
+          "|-enditem|p1a: Jolteon|Sitrus Berry|[eat]",
+          "|-heal|p1a: Jolteon|72/140|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Recover|p1a: Jolteon",
+          "|-heal|p1a: Jolteon|100/100",
+          "|move|p2a: Gholdengo|Shadow Ball|p1a: Jolteon",
+          "|-damage|p1a: Jolteon|26/100",
+          "|-enditem|p1a: Jolteon|Sitrus Berry|[eat]",
+          "|-heal|p1a: Jolteon|51/100|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "72/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "earthquake",
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "55/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "178/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "surf"
+                ],
+                "baseAbility": "",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Shadow Ball",
+                  "id": "shadowball",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50, F",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "shadowball",
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "156/183",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "roughskin",
+                "item": "rockyhelmet",
+                "pokeball": "pokeball",
+                "ability": "roughskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Camerupt",
+                "details": "Camerupt, L50, F",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 125,
+                  "spd": 95,
+                  "spe": 60
+                },
+                "moves": [
+                  "protect",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 72,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": -1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 55,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 178,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50, F",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "shadowball",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 156,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "roughskin",
+            "item": "rockyhelmet",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Camerupt",
+            "species": "Camerupt",
+            "details": "Camerupt, L50, F",
+            "hp": 0,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 125,
+              "spd": 95,
+              "spe": 60
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

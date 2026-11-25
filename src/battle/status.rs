@@ -149,6 +149,7 @@ impl Battle {
         };
         self.mon_mut(pos).status = status;
         self.add(format!("|-status|{}|{id}{reason}", self.ident(pos)));
+        self.cure_with_berry(pos);
         true
     }
 

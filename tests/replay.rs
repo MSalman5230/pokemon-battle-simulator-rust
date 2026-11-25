@@ -116,3 +116,8 @@ fn bss_replay_with_paralysis_burn_and_toxic_reset() {
 fn bss_replay_with_champions_sleep_and_freeze_timers() {
     replay(include_str!("fixtures/bss-sleep-freeze.json"));
 }
+
+#[test]
+fn bss_replay_with_held_items_and_ability_interactions() {
+    replay(include_str!("fixtures/bss-items.json"));
+}
