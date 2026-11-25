@@ -79,6 +79,11 @@ skip preview for supplied rosters and retain level-based stats and Illusion.
 Their team generation remains to be ported. Continue testing more rosters,
 seeds, and formats and record focused native fixtures for gaps.
 
+The Random Battle roster-selection fixtures isolate species and forme
+sampling, compatibility rules, lead order, and context passed into individual
+set construction. The test harness replays the reference set builder's RNG
+consumption until move, ability, and item selection are also native.
+
 The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
 markers. Its hypothetical damage calculator runs in an isolated battle and
 reuses the native damage formula. Tests compare each enumerated damage roll,

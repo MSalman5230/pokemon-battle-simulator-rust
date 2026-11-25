@@ -1,6 +1,8 @@
 //! Seeded Champions team generators, independent of the battle PRNG.
 
 mod ranch;
+#[cfg(test)]
+mod random;
 
 use crate::{
     choice::to_id,
