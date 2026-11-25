@@ -749,6 +749,11 @@ impl Battle {
                     | "alluringvoice"
                     | "direclaw"
                     | "leechseed"
+                    | "fissure"
+                    | "guillotine"
+                    | "horndrill"
+                    | "sheercold"
+                    | "destinybond"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -970,6 +975,7 @@ impl Battle {
         party[outgoing.slot].rampage = None;
         party[outgoing.slot].attention = None;
         party[outgoing.slot].glaive_drawback = false;
+        party[outgoing.slot].destiny_bond = false;
         party[outgoing.slot].volatile_order.clear();
         party[outgoing.slot].imprisoned = false;
         party[outgoing.slot].choice_lock = None;
@@ -1530,6 +1536,12 @@ impl Battle {
         let move_data = self.move_data(source, slot);
         let struggle = slot == STRUGGLE_SLOT;
         let retaliation = matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
+        let sheer_cold = move_data.name == "Sheer Cold";
+        let ohko = sheer_cold
+            || matches!(
+                move_data.name.as_str(),
+                "Fissure" | "Guillotine" | "Horn Drill"
+            );
         let retaliation_hit = if retaliation {
             self.mon(source).last_foe_hit
         } else {
@@ -1556,6 +1568,7 @@ impl Battle {
         let original_target = self.resolve_target(source, move_data.target, loc);
         let target = retaliation_hit.map(|hit| hit.source).or(original_target);
         if !self.before_status_move(source, move_data) {
+            self.clear_destiny_bond(source, false);
             return false;
         }
         if !struggle && self.mon(source).disabled_by_choice(slot) {
@@ -1564,7 +1577,11 @@ impl Battle {
                 self.add("|debug|Disabled by Choice item lock");
             }
             self.add(format!("|-fail|{source_name}"));
+            self.clear_destiny_bond(source, false);
             return false;
+        }
+        if move_data.name != "Destiny Bond" {
+            self.clear_destiny_bond(source, true);
         }
         let accuracy = match (move_data.name.as_str(), weather) {
             ("Blizzard", Some(Weather::Snow)) => Accuracy::Bypass(true),
@@ -1823,6 +1840,21 @@ impl Battle {
             self.each_event();
             return true;
         }
+        if move_data.name == "Destiny Bond" {
+            if self.clear_destiny_bond(source, false) {
+                self.log[base].public = format!("|move|{source_name}|Destiny Bond||[still]");
+                self.add(format!("|-fail|{source_name}"));
+            } else {
+                self.protean_prepare(source, move_type);
+                let mon = self.mon_mut(source);
+                mon.destiny_bond = true;
+                mon.track_volatile("destinybond");
+                self.add(format!("|-singlemove|{source_name}|Destiny Bond"));
+                self.each_event();
+                self.each_event();
+            }
+            return true;
+        }
 
         if let Some(attention) = match move_data.name.as_str() {
             "Follow Me" => Some(Attention::FollowMe),
@@ -1885,6 +1917,12 @@ impl Battle {
             }
             if self.mon(mut_pos).protected && move_data.flags.contains_key("protect") {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
+                false
+            } else if ohko && self.mon(mut_pos).ability == "sturdy" {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Sturdy",
+                    self.ident(mut_pos)
+                ));
                 false
             } else if source != mut_pos
                 && move_data.flags.contains_key("powder")
@@ -1976,6 +2014,13 @@ impl Battle {
             return true;
         }
         spread_targets.retain(|&pos| {
+            if ohko
+                && (self.mon(source).level < self.mon(pos).level
+                    || (sheer_cold && self.mon(pos).has_type("Ice")))
+            {
+                self.add(format!("|-immune|{}|[ohko]", self.ident(pos)));
+                return false;
+            }
             if let Accuracy::Percent(accuracy) = accuracy
                 && !move_data.always_hit
                 && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
@@ -1983,7 +2028,19 @@ impl Battle {
                 && self.mon(source).ability != "noguard"
                 && self.mon(pos).ability != "noguard"
                 && !self.mon(pos).glaive_drawback
-                && !self.rng.chance(self.accuracy(source, pos, accuracy), 100)
+                && !self.rng.chance(
+                    if ohko {
+                        let base = if sheer_cold && !self.mon(source).has_type("Ice") {
+                            20
+                        } else {
+                            30
+                        };
+                        base + u32::from(self.mon(source).level - self.mon(pos).level)
+                    } else {
+                        self.accuracy(source, pos, accuracy)
+                    },
+                    100,
+                )
             {
                 if !spread {
                     self.log[base].public.push_str("|[miss]");
@@ -2213,6 +2270,10 @@ impl Battle {
             };
             damage.clear();
             for &target in &spread_targets {
+                if ohko {
+                    damage.push((target, self.mon(target).max_hp.get()));
+                    continue;
+                }
                 let fixed_damage = match move_data.name.as_str() {
                     "Metal Burst" | "Comeuppance" => {
                         retaliation_hit.map(|hit| (hit.damage * 3 / 2).max(1))
@@ -2593,7 +2654,17 @@ impl Battle {
         let mut fainted = 0;
         for (target, direct_damage) in damage {
             if self.mon(target).hp == 0 {
+                let linked = self.mon(target).destiny_bond
+                    && target.player != source.player
+                    && self.mon(source).hp > 0;
                 self.mark_fainted(target);
+                if linked {
+                    self.add(format!(
+                        "|-activate|{}|move: Destiny Bond",
+                        self.ident(target)
+                    ));
+                    self.mon_mut(source).hp = 0;
+                }
                 fainted += 1;
             }
             if target != source {
@@ -2610,6 +2681,9 @@ impl Battle {
         if self.mon(source).hp == 0 {
             self.mark_fainted(source);
             self.check_win();
+        }
+        if ohko && self.mon(spread_targets[0]).hp == 0 {
+            self.add("|-ohko");
         }
         if move_data.multihit.is_some() && hits_landed > 0 {
             let target = spread_targets[0];
@@ -2692,6 +2766,7 @@ impl Battle {
         mon.rampage = None;
         mon.attention = None;
         mon.glaive_drawback = false;
+        mon.destiny_bond = false;
         mon.volatile_order.clear();
         mon.imprisoned = false;
         mon.choice_lock = None;
@@ -2708,6 +2783,18 @@ impl Battle {
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
         self.add(format!("|faint|{}", self.ident(target)));
+    }
+
+    fn clear_destiny_bond(&mut self, pos: Position, notify_debug: bool) -> bool {
+        let mon = self.mon_mut(pos);
+        if !std::mem::take(&mut mon.destiny_bond) {
+            return false;
+        }
+        mon.untrack_volatile("destinybond");
+        if notify_debug && self.format.report_exact_hp {
+            self.add("|debug|removing Destiny Bond before attack");
+        }
+        true
     }
 
     pub(super) fn boost(

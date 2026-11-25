@@ -325,6 +325,14 @@ const gluttonyRosters = [
     [named('Heracross', ['Drain Punch']), named('Umbreon', ['Recover'])],
     [{...named('Snorlax', ['Tackle']), ability: 'Gluttony', item: 'Salac Berry'}, named('Vaporeon', ['Recover'])],
 ];
+const ohkoRosters = [
+    [{...named('Dugtrio', ['Fissure', 'Sheer Cold']), ability: 'No Guard'}, named('Vaporeon', ['Recover'])],
+    [{...named('Geodude', ['Recover']), ability: 'Sturdy'}, named('Umbreon', ['Recover']), named('Glaceon', ['Recover'])],
+];
+const destinyBondRosters = [
+    [named('Gengar', ['Destiny Bond', 'Tackle']), named('Vaporeon', ['Recover'])],
+    [{...named('Slowking-Galar', ['Recover', 'Psychic']), evs: {spa: 32}, nature: 'Modest'}, named('Torkoal', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -478,6 +486,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12', 'team 12'], ['move 1, move 1', 'move 1 1, move 1']],
         symbiosisRosters, 'vgc-symbiosis'],
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1']], gluttonyRosters, 'bss-gluttony'],
+    ['bssregmc', [['team 12', 'team 123'], ['move 1', 'move 1'], ['move 1', 'switch 2'], [null, 'switch 3'],
+        ['move 2', 'move 1']], ohkoRosters, 'bss-ohko'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 1'], ['move 1', 'move 2'],
+        ['switch 2', 'switch 2']], destinyBondRosters, 'bss-destiny-bond'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

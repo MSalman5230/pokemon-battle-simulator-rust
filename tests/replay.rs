@@ -410,3 +410,13 @@ fn vgc_symbiosis_transfers_after_the_consumed_item_resolves() {
 fn bss_gluttony_activates_a_pinch_berry_at_half_hp() {
     replay(include_str!("fixtures/bss-gluttony.json"));
 }
+
+#[test]
+fn bss_ohko_bypasses_regular_damage_and_respects_sturdy_and_type_immunity() {
+    replay(include_str!("fixtures/bss-ohko.json"));
+}
+
+#[test]
+fn bss_destiny_bond_disallows_repetition_and_resolves_the_faint_chain() {
+    replay(include_str!("fixtures/bss-destiny-bond.json"));
+}
