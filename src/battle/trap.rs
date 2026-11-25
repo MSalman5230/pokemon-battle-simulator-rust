@@ -140,6 +140,7 @@ impl Battle {
         let actual = !self.ignores_trapping(pos)
             && (mon.volatile_ids().contains(&"trapped")
                 || mon.volatile_ids().contains(&"ingrain")
+                || self.fairy_lock != 0
                 || self.is_bound(pos)
                 || self.octolock_source(pos).is_some()
                 || foe_can_trap);
@@ -173,6 +174,7 @@ impl Battle {
         let mon = self.mon(pos);
         let visible_trap = (mon.volatile_ids().contains(&"trapped")
             || mon.volatile_ids().contains(&"ingrain")
+            || self.fairy_lock != 0
             || self.is_bound(pos)
             || self.octolock_source(pos).is_some())
             && !self.ignores_trapping(pos);

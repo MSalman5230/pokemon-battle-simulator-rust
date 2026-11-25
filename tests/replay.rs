@@ -1643,6 +1643,21 @@ fn shed_tail_skips_the_pre_switch_update_even_during_a_speed_tie() {
 }
 
 #[test]
+fn lock_on_reaches_the_original_airborne_target() {
+    replay(include_str!("fixtures/bss-lock-on-fly.json"));
+}
+
+#[test]
+fn syrup_bomb_slows_each_turn_until_expiry_or_source_switch() {
+    replay(include_str!("fixtures/bss-syrup-bomb.json"));
+}
+
+#[test]
+fn fairy_lock_traps_for_the_following_turn_with_ghost_immunity() {
+    replay(include_str!("fixtures/bss-fairy-lock.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

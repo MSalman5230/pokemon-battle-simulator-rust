@@ -57,7 +57,9 @@ impl Battle {
         let always_hits = data.always_hit
             || user.ability == "noguard"
             || mon.ability == "noguard"
-            || mon.glaive_drawback;
+            || mon.glaive_drawback
+            || self.locked_on_to(source, target)
+            || mon.trampled_by(data);
         let stage_factor = |stage: i8| {
             if stage > 0 {
                 (3 + i32::from(stage), 3)

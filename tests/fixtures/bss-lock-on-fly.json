@@ -1,0 +1,1150 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Dragapult\",\"moves\":[\"Lock-On\",\"Water Gun\"],\"gender\":\"F\",\"name\":\"Dragapult\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Noivern\",\"moves\":[\"Fly\",\"Recover\"],\"gender\":\"F\",\"name\":\"Noivern\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Dragapult, L50, F|",
+          "|poke|p2|Noivern, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Dragapult, L50, F|",
+          "|poke|p2|Noivern, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Dragapult, L50, F|",
+          "|poke|p2|Noivern, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Dragapult",
+                "details": "Dragapult, L50, F",
+                "condition": "163/163",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 95,
+                  "spa": 120,
+                  "spd": 95,
+                  "spe": 162
+                },
+                "moves": [
+                  "lockon",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Dragapult",
+            "species": "Dragapult",
+            "details": "Dragapult, L50, F",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 95,
+              "spa": 120,
+              "spd": 95,
+              "spe": 162
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "lockon",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Dragapult|Dragapult, L50, F|100/100",
+          "|switch|p2a: Noivern|Noivern, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Dragapult|Dragapult, L50, F|163/163",
+          "|switch|p2a: Noivern|Noivern, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Dragapult|Dragapult, L50, F|100/100",
+          "|switch|p2a: Noivern|Noivern, L50, F|160/160",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Lock-On",
+                  "id": "lockon",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Dragapult",
+                "details": "Dragapult, L50, F",
+                "condition": "163/163",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 95,
+                  "spa": 120,
+                  "spd": 95,
+                  "spe": 162
+                },
+                "moves": [
+                  "lockon",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Dragapult",
+            "species": "Dragapult",
+            "details": "Dragapult, L50, F",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 95,
+              "spa": 120,
+              "spd": 95,
+              "spe": 162
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lockon",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Dragapult|Lock-On|p2a: Noivern",
+          "|-activate|p1a: Dragapult|move: Lock-On|[of] p2a: Noivern",
+          "|move|p2a: Noivern|Fly||[still]",
+          "|-prepare|p2a: Noivern|Fly",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Dragapult|Lock-On|p2a: Noivern",
+          "|-activate|p1a: Dragapult|move: Lock-On|[of] p2a: Noivern",
+          "|move|p2a: Noivern|Fly||[still]",
+          "|-prepare|p2a: Noivern|Fly",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Dragapult|Lock-On|p2a: Noivern",
+          "|-activate|p1a: Dragapult|move: Lock-On|[of] p2a: Noivern",
+          "|move|p2a: Noivern|Fly||[still]",
+          "|-prepare|p2a: Noivern|Fly",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Lock-On",
+                  "id": "lockon",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Dragapult",
+                "details": "Dragapult, L50, F",
+                "condition": "163/163",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 95,
+                  "spa": 120,
+                  "spd": 95,
+                  "spe": 162
+                },
+                "moves": [
+                  "lockon",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly"
+                }
+              ],
+              "trapped": true
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Dragapult",
+            "species": "Dragapult",
+            "details": "Dragapult, L50, F",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 95,
+              "spa": 120,
+              "spd": 95,
+              "spe": 162
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lockon",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Dragapult|Water Gun|p2a: Noivern",
+          "|-resisted|p2a: Noivern|1",
+          "|-damage|p2a: Noivern|93/100",
+          "|move|p2a: Noivern|Fly|p1a: Dragapult|[from] lockedmove",
+          "|-damage|p1a: Dragapult|68/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Dragapult|Water Gun|p2a: Noivern",
+          "|-resisted|p2a: Noivern|1",
+          "|-damage|p2a: Noivern|93/100",
+          "|move|p2a: Noivern|Fly|p1a: Dragapult|[from] lockedmove",
+          "|-damage|p1a: Dragapult|111/163",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Dragapult|Water Gun|p2a: Noivern",
+          "|-resisted|p2a: Noivern|1",
+          "|-damage|p2a: Noivern|150/160",
+          "|move|p2a: Noivern|Fly|p1a: Dragapult|[from] lockedmove",
+          "|-damage|p1a: Dragapult|68/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Lock-On",
+                  "id": "lockon",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Dragapult",
+                "details": "Dragapult, L50, F",
+                "condition": "111/163",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 95,
+                  "spa": 120,
+                  "spd": 95,
+                  "spe": 162
+                },
+                "moves": [
+                  "lockon",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "150/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Dragapult",
+            "species": "Dragapult",
+            "details": "Dragapult, L50, F",
+            "hp": 111,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 95,
+              "spa": 120,
+              "spd": 95,
+              "spe": 162
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lockon",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 150,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Dragapult|Lock-On|p2a: Noivern",
+          "|-activate|p1a: Dragapult|move: Lock-On|[of] p2a: Noivern",
+          "|move|p2a: Noivern|Recover|p2a: Noivern",
+          "|-heal|p2a: Noivern|100/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Dragapult|Lock-On|p2a: Noivern",
+          "|-activate|p1a: Dragapult|move: Lock-On|[of] p2a: Noivern",
+          "|move|p2a: Noivern|Recover|p2a: Noivern",
+          "|-heal|p2a: Noivern|100/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Dragapult|Lock-On|p2a: Noivern",
+          "|-activate|p1a: Dragapult|move: Lock-On|[of] p2a: Noivern",
+          "|move|p2a: Noivern|Recover|p2a: Noivern",
+          "|-heal|p2a: Noivern|160/160",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Lock-On",
+                  "id": "lockon",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Dragapult",
+                "details": "Dragapult, L50, F",
+                "condition": "111/163",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 95,
+                  "spa": 120,
+                  "spd": 95,
+                  "spe": 162
+                },
+                "moves": [
+                  "lockon",
+                  "watergun"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fly",
+                  "id": "fly",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Noivern",
+                "details": "Noivern, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 100,
+                  "spa": 117,
+                  "spd": 100,
+                  "spe": 143
+                },
+                "moves": [
+                  "fly",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Dragapult",
+            "species": "Dragapult",
+            "details": "Dragapult, L50, F",
+            "hp": 111,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 95,
+              "spa": 120,
+              "spd": 95,
+              "spe": 162
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lockon",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Noivern",
+            "species": "Noivern",
+            "details": "Noivern, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 100,
+              "spa": 117,
+              "spd": 100,
+              "spe": 143
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fly",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

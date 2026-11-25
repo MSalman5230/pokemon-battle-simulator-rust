@@ -32,6 +32,7 @@ pub(super) enum BoostOrigin {
     MirrorArmor,
     Hazard,
     Octolock,
+    SyrupBomb,
 }
 
 impl BoostOrigin {

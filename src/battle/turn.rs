@@ -360,7 +360,7 @@ impl Battle {
         }
     }
 
-    fn slots(&self) -> usize {
+    pub(super) fn slots(&self) -> usize {
         self.format.game_type.active_slots()
     }
 
@@ -1144,6 +1144,10 @@ impl Battle {
                     | "corrosivegas"
                     | "stuffcheeks"
                     | "teatime"
+                    | "fairylock"
+                    | "lockon"
+                    | "mindreader"
+                    | "syrupbomb"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -1719,6 +1723,8 @@ impl Battle {
         party[outgoing.slot].magnet_rise = 0;
         party[outgoing.slot].dragon_cheer = 0;
         party[outgoing.slot].gem_boost = false;
+        party[outgoing.slot].lock_on = None;
+        party[outgoing.slot].syrup_bomb = None;
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -2198,6 +2204,7 @@ impl Battle {
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
             self.attract_update(pos);
+            self.update_syrup_bomb(pos);
             if self.mon(pos).fling_pending {
                 self.finish_fling(pos);
             }
@@ -2303,6 +2310,9 @@ impl Battle {
             MagnetRise,
             Moody,
             Gem,
+            FairyLock,
+            LockOn,
+            SyrupBomb,
         }
         self.add("|");
         self.update_speed();
@@ -2377,6 +2387,19 @@ impl Battle {
                 },
             ));
         }
+        if self.fairy_lock != 0 {
+            timers.push((
+                Position {
+                    player: Player::P1,
+                    slot: 0,
+                },
+                Effect::FairyLock,
+                Priority {
+                    sub_order: 5,
+                    ..Priority::default()
+                },
+            ));
+        }
         for player in Player::ALL {
             if self.sides[player.index()].as_ref().unwrap().safeguard > 0 {
                 timers.push((
@@ -2447,8 +2470,13 @@ impl Battle {
             if mon.volatile_ids().contains(&"ingrain") {
                 timers.push((pos, Effect::Ingrain, priority(7, 2)));
             }
-            if mon.octolock.is_some() {
-                timers.push((pos, Effect::Octolock, priority(14, 2)));
+            for id in mon.volatile_ids() {
+                let effect = match *id {
+                    "octolock" => Effect::Octolock,
+                    "syrupbomb" => Effect::SyrupBomb,
+                    _ => continue,
+                };
+                timers.push((pos, effect, priority(14, 2)));
             }
             if mon.ability == "speedboost" {
                 timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
@@ -2566,6 +2594,9 @@ impl Battle {
             if mon.gem_boost {
                 timers.push((pos, Effect::Gem, priority(0, 2)));
             }
+            if mon.lock_on.is_some() {
+                timers.push((pos, Effect::LockOn, priority(0, 2)));
+            }
             if mon.recharge != 0 {
                 timers.push((pos, Effect::Recharge, priority(0, 2)));
             }
@@ -2657,6 +2688,10 @@ impl Battle {
                 }
                 continue;
             }
+            if matches!(effect, Effect::FairyLock) {
+                self.fairy_lock -= 1;
+                continue;
+            }
             if matches!(effect, Effect::WonderRoom) {
                 self.wonder_room -= 1;
                 if self.wonder_room == 0 {
@@ -2737,13 +2772,20 @@ impl Battle {
                 | Effect::Terrain
                 | Effect::Wish
                 | Effect::FutureMove
-                | Effect::Tailwind => {
+                | Effect::Tailwind
+                | Effect::FairyLock => {
                     unreachable!()
                 }
                 Effect::GrassyHeal => self.grassy_heal(pos),
                 Effect::AquaRing => self.rooting_heal(pos, "Aqua Ring"),
                 Effect::Ingrain => self.rooting_heal(pos, "Ingrain"),
                 Effect::Octolock => self.tick_octolock(pos),
+                Effect::SyrupBomb => self.tick_syrup_bomb(pos),
+                Effect::LockOn => {
+                    if super::target_effects::TargetTimer::tick(&mut mon.lock_on) {
+                        mon.untrack_volatile("lockon");
+                    }
+                }
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::LeechSeed => {
                     self.tick_leech_seed(pos);
@@ -3713,6 +3755,18 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Fairy Lock" {
+            self.protean_prepare(source, move_type);
+            if self.fairy_lock == 0 {
+                self.fairy_lock = 2;
+                self.add("|-fieldactivate|move: Fairy Lock");
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+            }
+            return true;
+        }
         if move_data.name == "Safeguard" {
             self.protean_prepare(source, move_type);
             if !self.start_safeguard(source.player) {
@@ -4215,6 +4269,7 @@ impl Battle {
                 .mon(target)
                 .semi_invulnerability()
                 .is_none_or(|state| state.exposed_to(&move_data.name))
+                || self.locked_on_to(source, target)
                 || self.mon(source).ability == "noguard"
                 || self.mon(target).ability == "noguard"
                 || (move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
@@ -4486,6 +4541,7 @@ impl Battle {
                 && self.mon(pos).ability != "noguard"
                 && !self.mon(pos).glaive_drawback
                 && !self.mon(pos).trampled_by(move_data)
+                && !self.locked_on_to(source, pos)
                 && !self.rng.chance(
                     if ohko && !self.mon(pos).semi_invulnerable() {
                         let base = if sheer_cold && !self.mon(source).has_type("Ice") {
@@ -5098,6 +5154,14 @@ impl Battle {
                 if move_data.name == "Corrosive Gas" {
                     self.corrode_item(source, target);
                     succeeded = true;
+                }
+                if matches!(move_data.name.as_str(), "Lock-On" | "Mind Reader") {
+                    if self.start_lock_on(source, target, &move_data.name) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
                 }
                 if move_data.name == "Stuff Cheeks"
                     && self.boost_from(
@@ -5856,6 +5920,9 @@ impl Battle {
                         if move_data.name == "Eerie Spell" {
                             self.reduce_last_move_pp(target, "Eerie Spell", 3);
                         }
+                        if move_data.name == "Syrup Bomb" {
+                            self.start_syrup_bomb(source, target);
+                        }
                         if matches!(move_data.name.as_str(), "Anchor Shot" | "Spirit Shackle") {
                             self.start_linked_trap(source, target);
                         }
@@ -6434,6 +6501,8 @@ impl Battle {
         mon.magnet_rise = 0;
         mon.dragon_cheer = 0;
         mon.gem_boost = false;
+        mon.lock_on = None;
+        mon.syrup_bomb = None;
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();

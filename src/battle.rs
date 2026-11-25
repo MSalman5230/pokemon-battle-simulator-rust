@@ -43,6 +43,7 @@ mod substitute;
 mod support;
 mod switch_copy;
 mod tactical;
+mod target_effects;
 mod terrain;
 mod transform;
 mod trap;
@@ -173,6 +174,7 @@ pub struct Battle {
     trick_room: u8,
     gravity: u8,
     wonder_room: u8,
+    fairy_lock: u8,
     ability_order: u32,
     ability_breaker: Option<Position>,
     possible_unaware: bool,
@@ -234,6 +236,8 @@ pub struct Pokemon {
     magnet_rise: u8,
     dragon_cheer: u8,
     gem_boost: bool,
+    lock_on: Option<target_effects::TargetTimer>,
+    syrup_bomb: Option<target_effects::TargetTimer>,
     opportunist: boost_copy::PendingBoostCopy,
     counter: Option<turn::PreparedCounter>,
     volatile_order: Vec<&'static str>,
@@ -477,6 +481,7 @@ impl Battle {
             trick_room: 0,
             gravity: 0,
             wonder_room: 0,
+            fairy_lock: 0,
             ability_order: 0,
             ability_breaker: None,
             possible_unaware: false,
@@ -939,6 +944,8 @@ impl Pokemon {
             magnet_rise: 0,
             dragon_cheer: 0,
             gem_boost: false,
+            lock_on: None,
+            syrup_bomb: None,
             opportunist: boost_copy::PendingBoostCopy::default(),
             counter: None,
             volatile_order: Vec::new(),
