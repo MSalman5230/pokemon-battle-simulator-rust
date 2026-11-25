@@ -42,6 +42,38 @@ impl Hazard {
 }
 
 impl Battle {
+    pub(super) fn rapid_spin(&mut self, pos: Position) {
+        if self.mon(pos).hp == 0 {
+            return;
+        }
+        let source = self.ident(pos);
+        let suffix = format!("|[from] move: Rapid Spin|[of] {source}");
+        if self.mon_mut(pos).seeded_from.take().is_some() {
+            self.mon_mut(pos).untrack_volatile("leechseed");
+            self.add(format!("|-end|{source}|Leech Seed{suffix}"));
+        }
+        for hazard in [
+            Hazard::Spikes,
+            Hazard::ToxicSpikes,
+            Hazard::StealthRock,
+            Hazard::StickyWeb,
+        ] {
+            let hazards = &mut self.sides[pos.player.index()].as_mut().unwrap().hazards;
+            let len = hazards.len();
+            hazards.retain(|&(h, _)| h != hazard);
+            if hazards.len() != len {
+                let label = hazard
+                    .label()
+                    .strip_prefix("move: ")
+                    .unwrap_or(hazard.label());
+                self.add(format!(
+                    "|-sideend|{}|{label}{suffix}",
+                    self.side_ident(pos.player)
+                ));
+            }
+        }
+    }
+
     pub(super) fn grounded(&self, pos: Position) -> bool {
         let mon = self.mon(pos);
         !mon.has_type("Flying")

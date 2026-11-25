@@ -825,6 +825,10 @@ impl Battle {
                     | "lastrespects"
                     | "ragefist"
                     | "saltcure"
+                    | "detect"
+                    | "rapidspin"
+                    | "whirlwind"
+                    | "roar"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1269,6 +1273,24 @@ impl Battle {
             self.run_switch_batch(target, queue);
         }
         Ok(())
+    }
+
+    fn schedule_drag(&mut self, source: Position, target: Position) -> bool {
+        if self.mon(target).hp == 0
+            || self.mon(source).hp == 0
+            || self.first_bench(target.player, 0).is_none()
+        {
+            return false;
+        }
+        if self.event_ability(target) == "suctioncups" {
+            self.add(format!(
+                "|-activate|{}|ability: Suction Cups",
+                self.ident(target)
+            ));
+        } else {
+            self.drag_flags |= target.mask();
+        }
+        true
     }
 
     pub(super) fn start_ability(&mut self, pos: Position) {
@@ -2146,7 +2168,10 @@ impl Battle {
             }
             return true;
         }
-        if matches!(move_data.name.as_str(), "Protect" | "King's Shield") {
+        if matches!(
+            move_data.name.as_str(),
+            "Protect" | "Detect" | "King's Shield"
+        ) {
             let more_actions = queue
                 .iter()
                 .any(|q| matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. }));
@@ -2162,10 +2187,10 @@ impl Battle {
             }
             self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
-            let protect = if move_data.name == "Protect" {
-                Protection::Protect
-            } else {
+            let protect = if move_data.name == "King's Shield" {
                 Protection::KingsShield
+            } else {
+                Protection::Protect
             };
             mon.protection = Some(protect);
             mon.track_volatile(protect.volatile());
@@ -2468,6 +2493,14 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if matches!(move_data.name.as_str(), "Whirlwind" | "Roar") {
+                    if self.schedule_drag(source, target) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if move_data.name == "Wish" {
                     if self.start_wish(source) {
                         succeeded = true;
@@ -3082,19 +3115,8 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
-                if matches!(move_data.name.as_str(), "Dragon Tail" | "Circle Throw")
-                    && self.mon(target).hp > 0
-                    && self.mon(source).hp > 0
-                    && self.first_bench(target.player, 0).is_some()
-                {
-                    if self.event_ability(target) == "suctioncups" {
-                        self.add(format!(
-                            "|-activate|{}|ability: Suction Cups",
-                            self.ident(target)
-                        ));
-                    } else {
-                        self.drag_flags |= target.mask();
-                    }
+                if matches!(move_data.name.as_str(), "Dragon Tail" | "Circle Throw") {
+                    self.schedule_drag(source, target);
                 }
                 if (move_type == "Fire" || move_data.thaws_target)
                     && matches!(self.mon(target).status, Status::Freeze(_))
@@ -3172,6 +3194,9 @@ impl Battle {
                 if self.mon(target).item == "airballoon" {
                     self.consume(target, "Air Balloon", false);
                 }
+            }
+            if move_data.name == "Rapid Spin" && !damage.is_empty() {
+                self.rapid_spin(source);
             }
             if move_data.name == "Knock Off" {
                 for &(target, _) in &damage {

@@ -625,3 +625,13 @@ fn bss_disguise_survives_mold_breaker_then_busts_permanently_on_an_ordinary_hit(
 fn bss_multihit_breaks_disguise_before_resolving_the_remaining_strikes() {
     replay(include_str!("fixtures/bss-disguise-multihit.json"));
 }
+
+#[test]
+fn bss_rapid_spin_requires_a_hit_and_clears_leech_seed_and_entry_hazards() {
+    replay(include_str!("fixtures/bss-rapid-spin.json"));
+}
+
+#[test]
+fn bss_status_phazing_respects_suction_cups_and_roar_respects_soundproof() {
+    replay(include_str!("fixtures/bss-status-drag.json"));
+}
