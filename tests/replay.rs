@@ -717,3 +717,9 @@ fn revival_blessing_selects_a_fainted_teammate_without_switching_the_user() {
     replay(include_str!("fixtures/bss-revive-fails.json"));
     replay(include_str!("fixtures/vgc-revive-active.json"));
 }
+
+#[test]
+fn chilly_reception_announces_before_flinch_and_works_with_existing_snow() {
+    replay(include_str!("fixtures/bss-chilly-reception.json"));
+    replay(include_str!("fixtures/vgc-chilly-reception.json"));
+}

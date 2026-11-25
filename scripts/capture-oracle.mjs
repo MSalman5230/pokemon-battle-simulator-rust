@@ -579,6 +579,10 @@ const reviveActiveRosters = [
     [named('Magikarp', ['Tackle']), named('Pawmot', ['Revival Blessing', 'Tackle'])],
     [named('Jolteon', ['Thunderbolt']), named('Vaporeon', ['Protect', 'Water Gun'])],
 ];
+const chillyRosters = [
+    [named('Slowking', ['Chilly Reception', 'Recover']), named('Glaceon', ['Recover'])],
+    [named('Vaporeon', ['Fake Out', 'Water Gun']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -870,6 +874,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 21','team 12'], ['move 1','move 1']], reviveBenchRosters, 'bss-revive-fails'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1','move 1 1, move 1'],
         ['pass, switch 1',null]], reviveActiveRosters, 'vgc-revive-active'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['switch 2',null],
+        ['switch 2','move 2'], ['move 1','move 2'], ['switch 2',null]], chillyRosters, 'bss-chilly-reception'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 2 1, move 1'],
+        ['move 1, move 1','move 2 1, move 1']], chillyRosters, 'vgc-chilly-reception'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

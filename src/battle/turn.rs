@@ -77,7 +77,7 @@ enum ActionKind {
     },
     RunSwitch,
     MegaEvolve,
-    FocusPunchCharge,
+    PriorityCharge(&'static str),
     BeforeTurn,
     Residual,
 }
@@ -105,7 +105,7 @@ impl Action {
                 immediate: false, ..
             } => 103,
             ActionKind::MegaEvolve => 104,
-            ActionKind::FocusPunchCharge => 107,
+            ActionKind::PriorityCharge(_) => 107,
             ActionKind::Move { .. } => 200,
             ActionKind::Residual => 300,
         };
@@ -431,12 +431,21 @@ impl Battle {
                     if self.phase == Phase::Move
                         && let ActionKind::Move { move_slot, .. } = action.kind
                         && move_slot != RECHARGE_SLOT
-                        && self.move_data(action.actor.unwrap(), move_slot).name == "Focus Punch"
+                        && let Some(id) = match self
+                            .move_data(action.actor.unwrap(), move_slot)
+                            .name
+                            .as_str()
+                        {
+                            "Focus Punch" => Some("focuspunch"),
+                            "Chilly Reception" => Some("chillyreception"),
+                            _ => None,
+                        }
                     {
-                        let mut charge = Action::new(action.actor, ActionKind::FocusPunchCharge);
+                        let mut charge = Action::new(action.actor, ActionKind::PriorityCharge(id));
                         // The separate charge action has no explicit target even
-                        // when the actual punch does. Showdown resolves both.
-                        self.random_target(action.actor.unwrap(), TargetKind::Normal);
+                        // when the actual move does. Showdown resolves both.
+                        let actor = action.actor.unwrap();
+                        self.random_target(actor, self.move_data(actor, move_slot).target);
                         self.prioritize(&mut charge);
                         queue.push(charge);
                     }
@@ -904,6 +913,7 @@ impl Battle {
                     | "focusenergy"
                     | "focuspunch"
                     | "revivalblessing"
+                    | "chillyreception"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1198,18 +1208,20 @@ impl Battle {
                 ActionKind::BeforeTurn => {
                     self.ordered_actives(false);
                 }
-                ActionKind::FocusPunchCharge => {
+                ActionKind::PriorityCharge(id) => {
                     let pos = action.actor.unwrap();
                     if self.mon(pos).hp > 0 {
                         if self.format.report_exact_hp {
-                            self.add("|debug|priority charge callback: focuspunch");
+                            self.add(format!("|debug|priority charge callback: {id}"));
                         }
-                        self.mon_mut(pos).track_volatile("focuspunch");
-                        self.mon_mut(pos).lost_focus = false;
-                        self.add(format!(
-                            "|-singleturn|{}|move: Focus Punch",
-                            self.ident(pos)
-                        ));
+                        self.mon_mut(pos).track_volatile(id);
+                        if id == "focuspunch" {
+                            self.mon_mut(pos).lost_focus = false;
+                            self.add(format!(
+                                "|-singleturn|{}|move: Focus Punch",
+                                self.ident(pos)
+                            ));
+                        }
                     }
                 }
                 ActionKind::RunSwitch => self.run_switch_batch(action.actor.unwrap(), &mut queue),
@@ -1521,6 +1533,7 @@ impl Battle {
             Stall,
             Flinch,
             FocusPunch,
+            ChillyReception,
             Recharge,
             Charge,
             SemiInvulnerableTimer,
@@ -1657,6 +1670,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"focuspunch") {
                 timers.push((pos, Effect::FocusPunch, priority(0, 2)));
             }
+            if mon.volatile_ids().contains(&"chillyreception") {
+                timers.push((pos, Effect::ChillyReception, priority(0, 2)));
+            }
             if mon.roosted {
                 timers.push((pos, Effect::Roost, priority(25, 2)));
             }
@@ -1735,6 +1751,7 @@ impl Battle {
                     mon.lost_focus = false;
                     mon.untrack_volatile("focuspunch");
                 }
+                Effect::ChillyReception => mon.untrack_volatile("chillyreception"),
                 Effect::Leftovers => {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
@@ -1981,6 +1998,13 @@ impl Battle {
         let original_target =
             forced_target.or_else(|| self.resolve_target(source, move_data.target, loc));
         let mut target = retaliation_hit.map(|hit| hit.source).or(original_target);
+        if move_data.name == "Chilly Reception"
+            && self.mon(source).volatile_ids().contains(&"chillyreception")
+        {
+            self.add(format!(
+                "|-prepare|{source_name}|Chilly Reception|[premajor]"
+            ));
+        }
         if !reflected && !self.before_status_move(source, move_data) {
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
@@ -2279,6 +2303,19 @@ impl Battle {
         if let Some(weather) = Weather::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !self.set_weather(source, weather, None) {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+            }
+            return true;
+        }
+        if move_data.name == "Chilly Reception" {
+            self.protean_prepare(source, move_type);
+            let snow_started = self.set_weather(source, Weather::Snow, None);
+            if self.first_bench(source.player, 0).is_some() {
+                self.mon_mut(source).pivot_move = Some("Chilly Reception");
+                self.each_event();
+                self.each_event();
+            } else if !snow_started {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             }
