@@ -615,3 +615,13 @@ fn bss_keen_eye_protects_accuracy_and_reckless_boosts_damage_before_recoil() {
 fn bss_purifying_salt_blocks_status_and_salt_cure_uses_champions_residual_damage() {
     replay(include_str!("fixtures/bss-purifying-salt.json"));
 }
+
+#[test]
+fn bss_disguise_survives_mold_breaker_then_busts_permanently_on_an_ordinary_hit() {
+    replay(include_str!("fixtures/bss-disguise.json"));
+}
+
+#[test]
+fn bss_multihit_breaks_disguise_before_resolving_the_remaining_strikes() {
+    replay(include_str!("fixtures/bss-disguise-multihit.json"));
+}

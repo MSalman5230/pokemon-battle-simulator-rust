@@ -1357,6 +1357,7 @@ impl Battle {
         for (pos, _) in order.into_iter().take(count) {
             self.attract_update(pos);
             self.try_trace(pos);
+            self.disguise_update(pos);
             if self.event_ability(pos) == "owntempo" && self.mon(pos).confusion > 0 {
                 self.add(format!("|-activate|{}|ability: Own Tempo", self.ident(pos)));
                 self.cure_confusion(pos);
@@ -2781,7 +2782,12 @@ impl Battle {
                         item.effect.name
                     ));
                 }
-                let effect = self.effectiveness_of(move_data, move_type, target).unwrap();
+                let disguised = self.disguise_form(target).is_some();
+                let effect = if disguised {
+                    0
+                } else {
+                    self.effectiveness_of(move_data, move_type, target).unwrap()
+                };
                 let crit_ratio = move_data.crit_ratio.unwrap_or(1).min(4);
                 let crit_roll = move_data.will_crit.unwrap_or_else(|| {
                     crit_ratio != 0
@@ -2790,6 +2796,7 @@ impl Battle {
                             .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)])
                 });
                 let crit = crit_roll
+                    && !disguised
                     && !matches!(self.event_ability(target), "battlearmor" | "shellarmor");
                 if solar_weak && self.format.report_exact_hp {
                     self.add("|debug|weakened by weather");
@@ -2957,7 +2964,16 @@ impl Battle {
             }
             for (target, hit_damage) in &mut damage {
                 let target = *target;
-                let value = *hit_damage;
+                let value = if self.disguise_form(target).is_some() {
+                    self.mon_mut(target).disguise_pending = true;
+                    self.add(format!(
+                        "|-activate|{}|ability: Disguise",
+                        self.ident(target)
+                    ));
+                    0
+                } else {
+                    *hit_damage
+                };
                 let mon = self.mon(target);
                 let value = if self.event_ability(target) == "sturdy"
                     && mon.hp == mon.max_hp.get()
@@ -3294,6 +3310,7 @@ impl Battle {
         mon.reset_forme(rules);
         mon.fainted = true;
         mon.illusion = None;
+        mon.disguise_pending = false;
         mon.reset_ability();
         mon.pivot_move = None;
         mon.stall = None;
@@ -3593,6 +3610,7 @@ impl Pokemon {
                 | "frisk"
                 | "reckless"
                 | "purifyingsalt"
+                | "disguise"
         )
     }
 

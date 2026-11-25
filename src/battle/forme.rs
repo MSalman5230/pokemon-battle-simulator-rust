@@ -26,6 +26,42 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn disguise_form(&self, pos: Position) -> Option<&'static str> {
+        if self.event_ability(pos) != "disguise" {
+            return None;
+        }
+        match self.mon(pos).species.name.as_str() {
+            "Mimikyu" => Some("mimikyubusted"),
+            "Mimikyu-Totem" => Some("mimikyubustedtotem"),
+            _ => None,
+        }
+    }
+
+    pub(super) fn disguise_update(&mut self, pos: Position) {
+        if !self.mon(pos).disguise_pending || self.mon(pos).hp == 0 {
+            return;
+        }
+        let Some(form) = self.disguise_form(pos) else {
+            return;
+        };
+        let species = DEX.species(self.format.dex_mod, form).unwrap();
+        let rules = self.stat_rules;
+        let mon = self.mon_mut(pos);
+        mon.disguise_pending = false;
+        let old_speed = mon.speed;
+        mon.set_current_species(species, rules);
+        mon.speed = old_speed;
+        mon.base_species = species;
+        let details_suffix = mon.details.find(',').unwrap_or(mon.details.len());
+        mon.details.replace_range(..details_suffix, &species.name);
+        self.add(format!(
+            "|detailschange|{}|{}",
+            self.ident(pos),
+            self.mon(pos).details
+        ));
+        self.indirect_damage(pos, 8, &format!("|[from] pokemon: {}", species.name));
+    }
+
     pub(super) fn stance_change(&mut self, pos: Position, data: &Move) {
         let mon = self.mon(pos);
         if mon.ability != "stancechange" || mon.species.base_species != "Aegislash" {
