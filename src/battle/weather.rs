@@ -184,7 +184,10 @@ impl Battle {
     }
 
     pub(super) fn switch_in_weather(&mut self, pos: Position) {
-        let (weather, label) = match self.mon(pos).active_ability() {
+        let mon = self.mon(pos);
+        let (weather, label) = match mon.active_ability() {
+            "drizzle" if mon.species.name == "Kyogre" && mon.item == "blueorb" => return,
+            "drought" if mon.species.name == "Groudon" && mon.item == "redorb" => return,
             "drizzle" => (Weather::Rain, "Drizzle"),
             "drought" => (Weather::Sun, "Drought"),
             "sandstream" => (Weather::Sand, "Sand Stream"),

@@ -19,8 +19,9 @@ const {values, positionals: [path]} = parseArgs({allowPositionals: true, options
     'max-turns': {type: 'string', default: '30'},
     format: {type: 'string', multiple: true, default: []},
     teams: {type: 'string'},
+    'special-actions': {type: 'boolean', default: false},
 }});
-assert(path, 'Usage: node scripts/capture-wide-native.mjs OUTPUT.jsonl [--games 8] [--first-game 1] [--max-turns 30] [--format FORMAT] [--teams MANIFEST.json]');
+assert(path, 'Usage: node scripts/capture-wide-native.mjs OUTPUT.jsonl [--games 8] [--first-game 1] [--max-turns 30] [--format FORMAT] [--teams MANIFEST.json] [--special-actions]');
 const submitted = values.teams && JSON.parse(readFileSync(values.teams, 'utf8'));
 const formats = values.format.length ? values.format : submitted ? Object.keys(submitted) : [
     'gen9championsrandombattle', 'gen9championsrandomdoublesbattle', 'gen9championsrosterranchrumble',
@@ -74,14 +75,15 @@ function choice(side, rng) {
         }).join(', ');
     }
     let megaUsed = false;
+    let zMoveUsed = false;
+    let ultraUsed = false;
     const choices = request.active.map((active, slot) => {
         const mon = side.active[slot];
         if (!active || mon.fainted) return 'pass';
         if (bench.length && !active.trapped && !active.maybeTrapped && rng.random(20) === 0) {
             return 'switch ' + bench.splice(rng.random(bench.length), 1)[0];
         }
-        const moves = active.moves.flatMap((m, index) => {
-            if (m.disabled || m.pp === 0) return [];
+        function targetMove(m, index) {
             let choice = 'move ' + (index + 1);
             if (request.active.length > 1 && selectableTargets.has(m.target)) {
                 const possible = [...side.foe.active, ...side.active].filter(p => p && p.hp &&
@@ -92,12 +94,25 @@ function choice(side, rng) {
                 } else if (possible.length) {
                     choice += ' ' + mon.getLocOf(rng.sample(possible));
                 } else {
-                    return [];
+                    return null;
                 }
             }
-            return [choice];
-        });
+            return choice;
+        }
+        if (values['special-actions'] && !zMoveUsed && active.canZMove && rng.random(3) === 0) {
+            const powered = active.canZMove.map((m, index) => m && targetMove(m, index)).filter(Boolean);
+            if (powered.length) {
+                zMoveUsed = true;
+                return rng.sample(powered) + ' zmove';
+            }
+        }
+        const moves = active.moves.map((m, index) => m.disabled || m.pp === 0 ? null : targetMove(m, index))
+            .filter(Boolean);
         if (!moves.length) return null;
+        if (values['special-actions'] && !ultraUsed && active.canUltraBurst && rng.random(3) === 0) {
+            ultraUsed = true;
+            return rng.sample(moves) + ' ultra';
+        }
         const mega = active.canMegaEvo && !megaUsed && rng.random(3) === 0;
         megaUsed ||= mega;
         return rng.sample(moves) + (mega ? ' mega' : '');

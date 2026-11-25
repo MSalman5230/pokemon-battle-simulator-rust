@@ -2867,6 +2867,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         natDexRayquazaRosters, 'natdex-rayquaza-delta-stream'],
     ['natdexdraft', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['switch 2','move 1'],
         ['switch 2','move 1']], natDexPrimalSunRosters, 'natdex-primal-sunlight'],
+    ['natdexdraft', [['team 1','team 1']], [[primalGroudon],
+        [{...named('Arcanine', ['Protect']), ability:'Intimidate'}]], 'natdex-primal-switch-in-order'],
     ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1'],
         ['switch 2','move 1']], customPrimalRainRosters, 'custom-primal-rain'],
     ['doublescustomgame', [['team 12','team 12'], ['move 2, move 2','move 1, move 1']],

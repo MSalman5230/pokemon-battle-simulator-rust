@@ -1773,10 +1773,6 @@ impl Battle {
                 if self.mon(pos).hp == 0 {
                     continue;
                 }
-                if self.primal_reversion(pos) {
-                    self.on_switch_in_item(pos);
-                    continue;
-                }
                 if let Some(label) = self.weather_suppressor(pos) {
                     self.add(format!("|-ability|{}|{label}", self.ident(pos)));
                 }
@@ -1791,6 +1787,7 @@ impl Battle {
         }
         for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
+                self.primal_reversion(pos);
                 if self.mon(pos).active_ability() == "mimicry" {
                     self.apply_mimicry(pos);
                 }
@@ -7574,6 +7571,7 @@ impl Battle {
             match types.get(move_type) {
                 Some(1)
                     if typing == "Flying"
+                        && move_data.category != Category::Status
                         && self.weather() == Some(Weather::StrongWinds)
                         && self.effective_weather() == Some(Weather::StrongWinds) => {}
                 Some(1) => modifier += 1,
