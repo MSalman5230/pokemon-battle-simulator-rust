@@ -505,3 +505,13 @@ fn bss_sucker_punch_and_thunderclap_require_a_pending_damaging_move() {
 fn bss_weight_moves_use_effective_weight_and_attacker_to_defender_ratio() {
     replay(include_str!("fixtures/bss-weight-moves.json"));
 }
+
+#[test]
+fn bss_scale_shot_boosts_once_after_a_successful_hit_sequence() {
+    replay(include_str!("fixtures/bss-scale-shot.json"));
+}
+
+#[test]
+fn bss_endeavor_checks_current_hp_and_natural_type_immunity() {
+    replay(include_str!("fixtures/bss-endeavor.json"));
+}

@@ -173,6 +173,8 @@ pub struct Move {
     pub self_boosts: Vec<(BoostStat, i8)>,
     pub self_chance: Option<u8>,
     #[serde(default)]
+    pub after_hit_boosts: Vec<(BoostStat, i8)>,
+    #[serde(default)]
     pub self_recharge: bool,
     #[serde(default)]
     pub self_rampage: bool,

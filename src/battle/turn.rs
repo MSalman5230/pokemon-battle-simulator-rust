@@ -778,6 +778,7 @@ impl Battle {
                     | "lowkick"
                     | "heavyslam"
                     | "heatcrash"
+                    | "endeavor"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -2152,6 +2153,7 @@ impl Battle {
                     && source != pos
                     && self.status_immune(pos, "powder"))
                 || (move_data.name == "Leech Seed" && self.mon(pos).has_type("Grass"))
+                || (move_data.name == "Endeavor" && self.mon(source).hp >= self.mon(pos).hp)
                 || (matches!(move_data.name.as_str(), "Trick" | "Switcheroo")
                     && self.event_ability(pos) == "stickyhold")
             {
@@ -2481,6 +2483,7 @@ impl Battle {
                     }
                     "Seismic Toss" | "Night Shade" => Some(u32::from(self.mon(source).level)),
                     "Super Fang" => Some((self.mon(target).hp / 2).max(1)),
+                    "Endeavor" => Some(self.mon(target).hp - self.mon(source).hp),
                     _ => None,
                 };
                 if let Some(value) = fixed_damage {
@@ -2946,6 +2949,9 @@ impl Battle {
             );
         }
         self.each_event();
+        if hits_landed > 0 && !move_data.after_hit_boosts.is_empty() {
+            self.boost(source, &move_data.after_hit_boosts, true);
+        }
         if self.mon(source).hp == 0 && !self.mon(source).fainted {
             self.mark_fainted(source);
         }
