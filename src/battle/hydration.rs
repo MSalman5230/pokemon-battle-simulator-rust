@@ -565,6 +565,10 @@ impl WorldSide {
                     mon.track_volatile("gastroacid");
                 }
                 "aquaring" => mon.track_volatile("aquaring"),
+                "micleberry" => {
+                    mon.micle_berry = remaining(2);
+                    mon.track_volatile("micleberry");
+                }
                 "torment" => mon.track_volatile("torment"),
                 "taunt" => {
                     mon.taunt = remaining(3);

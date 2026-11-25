@@ -85,11 +85,16 @@ impl Battle {
         let denominator = ad * en;
         let mut accuracy = numerator as f64 / denominator as f64;
         self.prepare_accuracy_modifiers(source, target, true, zoom);
+        let micle = !data.ohko && !data.always_hit && self.consume_micle_accuracy(source);
         if always_hits {
             return true;
         }
         let (weather_evasion, _) = self.active_weather_evasion(target);
-        let modifier = self.accuracy_modifier(source, target, weather_evasion, data.category, zoom);
+        let mut modifier =
+            self.accuracy_modifier(source, target, weather_evasion, data.category, zoom);
+        if micle {
+            modifier = crate::mechanics::chain(modifier, 4915);
+        }
         // The native event applies chained integer modifiers only when its
         // post-stage relay is an integer.
         if modifier != 4096 && accuracy.fract() == 0.0 {

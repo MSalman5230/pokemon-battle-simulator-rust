@@ -391,6 +391,42 @@ impl Battle {
         }
     }
 
+    pub(super) fn micle_berry_residual(&mut self, pos: Position) {
+        if self.mon(pos).item == "micleberry"
+            && !self.debug_ignored_item(pos, "Residual")
+            && self.pinch_berry_ready(pos)
+        {
+            self.eat_effect_berry(pos, "micleberry", false);
+        }
+    }
+
+    pub(super) fn consume_micle_accuracy(&mut self, pos: Position) -> bool {
+        let mon = self.mon_mut(pos);
+        if mon.micle_berry == 0 {
+            return false;
+        }
+        mon.micle_berry = 0;
+        mon.untrack_volatile("micleberry");
+        self.add(format!("|-enditem|{}|Micle Berry", self.ident(pos)));
+        true
+    }
+
+    pub(super) fn sticky_barb_hit(&mut self, holder: Position, attacker: Position, contact: bool) {
+        if self.mon(holder).item != "stickybarb"
+            || self.debug_ignored_item(holder, "Hit")
+            || !contact
+            || holder == attacker
+            || !self.mon(attacker).item.is_empty()
+        {
+            return;
+        }
+        let item = self.lose_held_item(holder);
+        if self.mon(attacker).hp != 0 {
+            self.mon_mut(attacker).item = item;
+            self.on_gained_item(attacker);
+        }
+    }
+
     pub(super) fn throat_spray(&mut self, pos: Position, move_data: &Move) {
         if move_data.flags.contains_key("sound") && self.mon(pos).effective_item() == "throatspray"
         {
@@ -1214,6 +1250,13 @@ impl Battle {
             }
             "keeberry" => self.apply_stat_berry(pos, &item.effect.name, BoostStat::Def, 1),
             "marangaberry" => self.apply_stat_berry(pos, &item.effect.name, BoostStat::Spd, 1),
+            "micleberry" => {
+                let mon = self.mon_mut(pos);
+                if mon.micle_berry == 0 {
+                    mon.micle_berry = 2;
+                    mon.track_volatile("micleberry");
+                }
+            }
             "persimberry" if self.mon(pos).confusion > 0 => self.cure_confusion(pos),
             "leppaberry" => self.replenish_pp_with_leppa(pos),
             "lumberry" => {

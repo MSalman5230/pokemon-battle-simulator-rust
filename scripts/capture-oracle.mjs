@@ -2018,6 +2018,22 @@ const hitRetaliationBerryRosters = [
     [{...named('Applin', ['Recover']), item:'Jaboca Berry', ability:'Ripen'},
         {...named('Flareon', ['Recover']), item:'Rowap Berry'}],
 ];
+const micleBerryRosters = [
+    [{...named('Shuckle', ['Stone Edge', 'Recover', 'Protect']), item:'Micle Berry', ivs:{hp:25}}],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
+const micleExpiredRosters = [
+    [{...named('Shuckle', ['Stone Edge', 'Protect', 'Splash']), item:'Micle Berry', ivs:{hp:25}}],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
+const stickyBarbRosters = [
+    [named('Umbreon', ['Swift', 'Tackle'])],
+    [{...named('Snorlax', ['Recover']), item:'Sticky Barb'}],
+];
+const destinyKnotRosters = [
+    [named('Espeon', ['Attract', 'Recover'], 'M'), named('Umbreon', ['Recover'])],
+    [{...named('Snorlax', ['Tackle']), item:'Destiny Knot'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3542,6 +3558,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         enigmaBerryRosters, 'custom-enigma-heals-after-super-effective-hit'],
     ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2']],
         hitRetaliationBerryRosters, 'custom-jaboca-ripen-and-rowap-retaliation'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 3','move 2'], ['move 1','move 2']],
+        micleBerryRosters, 'custom-micle-reads-the-next-accuracy-event'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 2','move 2'],
+        ['move 3','move 2'], ['move 1','move 2']], micleExpiredRosters, 'custom-unused-micle-expires-silently'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        stickyBarbRosters, 'custom-sticky-barb-transfers-on-contact-without-a-message'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1']],
+        destinyKnotRosters, 'custom-destiny-knot-mirrors-attract-by-roster'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

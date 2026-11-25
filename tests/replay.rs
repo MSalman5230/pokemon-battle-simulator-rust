@@ -2188,6 +2188,22 @@ fn hit_berries_run_at_their_distinct_native_damage_events() {
 }
 
 #[test]
+fn inherited_item_conditions_follow_native_accuracy_contact_and_attraction() {
+    replay(include_str!(
+        "fixtures/custom-micle-reads-the-next-accuracy-event.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-unused-micle-expires-silently.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-sticky-barb-transfers-on-contact-without-a-message.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-destiny-knot-mirrors-attract-by-roster.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

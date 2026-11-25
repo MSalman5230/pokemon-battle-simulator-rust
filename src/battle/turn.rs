@@ -2048,6 +2048,7 @@ impl Battle {
         party[outgoing.slot].sky_drop_target = None;
         party[outgoing.slot].sky_drop_rider = false;
         party[outgoing.slot].confusion = 0;
+        party[outgoing.slot].micle_berry = 0;
         party[outgoing.slot].rampage = None;
         party[outgoing.slot].uproar = None;
         party[outgoing.slot].attention = None;
@@ -2764,6 +2765,9 @@ impl Battle {
             Attention,
             Leftovers,
             BlackSludge,
+            StickyBarb,
+            MicleBerry,
+            MicleDuration,
             StatusOrb,
             WhiteHerb,
             ShedSkin,
@@ -3177,6 +3181,15 @@ impl Battle {
             if mon.item == "blacksludge" {
                 timers.push((pos, Effect::BlackSludge, priority(5, 4)));
             }
+            if mon.item == "stickybarb" {
+                timers.push((pos, Effect::StickyBarb, priority(28, 3)));
+            }
+            if mon.item == "micleberry" {
+                timers.push((pos, Effect::MicleBerry, priority(0, 8)));
+            }
+            if mon.micle_berry != 0 {
+                timers.push((pos, Effect::MicleDuration, priority(0, 2)));
+            }
             if matches!(mon.item.as_str(), "toxicorb" | "flameorb") {
                 timers.push((pos, Effect::StatusOrb, priority(28, 3)));
             }
@@ -3463,7 +3476,11 @@ impl Battle {
                         mon.untrack_volatile(counter.move_kind.id());
                     }
                 }
-                Effect::Leftovers | Effect::BlackSludge | Effect::StatusOrb | Effect::WhiteHerb
+                Effect::Leftovers
+                | Effect::BlackSludge
+                | Effect::StatusOrb
+                | Effect::WhiteHerb
+                | Effect::StickyBarb
                     if mon.ignores_held_item() =>
                 {
                     self.debug_ignored_item(pos, "Residual");
@@ -3488,6 +3505,22 @@ impl Battle {
                 }
                 Effect::StatusOrb => self.activate_status_orb(pos),
                 Effect::WhiteHerb => self.white_herb(pos),
+                Effect::StickyBarb => {
+                    self.indirect_damage(pos, 8, "|[from] item: Sticky Barb");
+                    if self.mon(pos).hp == 0 {
+                        self.mark_fainted(pos);
+                        if self.check_win() {
+                            return;
+                        }
+                    }
+                }
+                Effect::MicleBerry => self.micle_berry_residual(pos),
+                Effect::MicleDuration => {
+                    mon.micle_berry = mon.micle_berry.saturating_sub(1);
+                    if mon.micle_berry == 0 {
+                        mon.untrack_volatile("micleberry");
+                    }
+                }
                 Effect::Weather
                 | Effect::Screen(_)
                 | Effect::SideGuard(_)
@@ -3672,6 +3705,7 @@ impl Battle {
                     | Effect::Counter
                     | Effect::Electrify => true,
                     Effect::Stall => mon.stall.is_none(),
+                    Effect::MicleDuration => mon.micle_berry == 0,
                     Effect::AllySwitchStall => mon.ally_switch_stall.is_none(),
                     Effect::Bide => mon.bide.is_none(),
                     Effect::Charge | Effect::SemiInvulnerableTimer => mon.charge.is_none(),
@@ -6372,10 +6406,12 @@ impl Battle {
                     self.sort_unaware_handlers();
                 }
             }
+            let bypass_accuracy = move_data.always_hit
+                || move_data.target == TargetKind::User && move_data.category == Category::Status
+                || move_data.name == "Toxic" && self.mon(source).has_type("Poison");
+            let micle_accuracy = !ohko && !bypass_accuracy && self.consume_micle_accuracy(source);
             if let Accuracy::Percent(accuracy) = accuracy
-                && !move_data.always_hit
-                && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
-                && !(move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
+                && !bypass_accuracy
                 && self.mon(source).active_ability() != "noguard"
                 && self.mon(pos).active_ability() != "noguard"
                 && !self.mon(pos).glaive_drawback
@@ -6391,7 +6427,12 @@ impl Battle {
                         };
                         base + u32::from(self.mon(source).level - self.mon(pos).level)
                     } else {
-                        self.accuracy(source, pos, move_data, accuracy, zoom)
+                        let accuracy = self.accuracy(source, pos, move_data, accuracy, zoom);
+                        if micle_accuracy {
+                            self.stat_rules.truncation.modify(accuracy, 4915)
+                        } else {
+                            accuracy
+                        }
                     },
                     100,
                 )
@@ -8293,6 +8334,7 @@ impl Battle {
                 }
                 self.debug_suppressed_hook(target, "onHit");
                 self.enigma_berry_hit(target, source, super_effective_targets & target.mask() != 0);
+                self.sticky_barb_hit(target, source, contact);
             }
             for &(target, _) in &damage {
                 if damaging_z
@@ -9143,6 +9185,7 @@ impl Battle {
         mon.sky_drop_target = None;
         mon.sky_drop_rider = false;
         mon.confusion = 0;
+        mon.micle_berry = 0;
         mon.rampage = None;
         mon.uproar = None;
         mon.attention = None;
@@ -9976,6 +10019,9 @@ impl Pokemon {
                 | "keeberry"
                 | "marangaberry"
                 | "rowapberry"
+                | "destinyknot"
+                | "micleberry"
+                | "stickybarb"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)
