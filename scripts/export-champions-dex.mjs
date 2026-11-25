@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync, writeFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
+import {speciesIncludingCosmetics} from './showdown-species.mjs';
 
 const stage = new URL('../.tools/poke-rl-simulator/', import.meta.url);
 const require = createRequire(new URL('worker.cjs', stage));
@@ -53,7 +54,7 @@ function runsOnGenericPipeline(raw, move) {
 const data = mod => {
     const dex = Dex.mod(mod);
     return {
-        species: table(dex.species.all(), e => {
+        species: table(speciesIncludingCosmetics(dex), e => {
             const packedSlots = Dex.species.get(e.name).abilities;
             return {
             ...props(e, ['name', 'baseSpecies', 'types', 'baseStats', 'weighthg', 'gender', 'abilities',

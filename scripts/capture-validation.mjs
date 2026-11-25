@@ -31,6 +31,7 @@ const sets = [
     ['level bounds', {level: 1000}],
     ['species nickname', {name: 'Bulbasaur'}],
     ['starting form of Mega', {species: 'Venusaur-Mega', item: 'Venusaurite', ability: 'Thick Fat'}],
+    ['cosmetic forme inherits learnset', {species:'Furfrou-Heart', ability:'Fur Coat', moves:['Protect']}],
     ['modern event can use mints', {...eternal, level: 50, nature: 'Timid'}],
     ['shiny-locked event', {...eternal, level: 50, shiny: true}],
     ['underlevel event', {...eternal, level: 70}],

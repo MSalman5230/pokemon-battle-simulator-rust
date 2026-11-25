@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync, writeFileSync} from 'node:fs';
 import {createRequire} from 'node:module';
+import {speciesIncludingCosmetics} from './showdown-species.mjs';
 
 const stage = new URL('../.tools/poke-rl-simulator/', import.meta.url);
 const require = createRequire(new URL('worker.cjs', stage));
@@ -17,7 +18,7 @@ function byID(records) {
 
 function project(dex) {
     const learnsets = new Map();
-    const species = byID(dex.species.all().map(s => {
+    const species = byID(speciesIncludingCosmetics(dex).map(s => {
         let parents;
         try {
             parents = dex.species.getFullLearnset(s.id).map(data => {

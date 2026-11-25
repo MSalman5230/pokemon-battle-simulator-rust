@@ -1094,6 +1094,11 @@ fn rivalry_distinguishes_same_opposite_and_genderless_targets() {
 }
 
 #[test]
+fn cosmetic_formes_preserve_party_identity_and_switch_details() {
+    replay(include_str!("fixtures/bss-cosmetic-forms.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

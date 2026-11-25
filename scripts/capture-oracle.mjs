@@ -997,6 +997,11 @@ const rivalryRosters = [
     [named('Umbreon', ['Recover'], 'M'), named('Vaporeon', ['Recover'], 'F'),
         named('Metagross', ['Recover'], 'N')],
 ];
+const cosmeticRosters = [
+    [{...named('Furfrou-Heart', ['Tackle']), name:'Furfrou', ability:'Fur Coat'},
+        named('Vivillon-Polar', ['Gust'])],
+    [named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1515,6 +1520,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         airborneRosters, 'bss-airborne-charge'],
     ['bssregmc', [['team 1','team 123'], ['move 1','move 1'], ['move 1','switch 2'],
         ['move 1','switch 3']], rivalryRosters, 'bss-rivalry'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1'],
+        ['move 1','move 1']], cosmeticRosters, 'bss-cosmetic-forms'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
