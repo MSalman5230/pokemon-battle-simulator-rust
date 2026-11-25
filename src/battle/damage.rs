@@ -676,7 +676,12 @@ impl Battle {
             screen_handlers,
         );
         if bypassed_protect {
-            self.add(format!("|-ability|{}|Unseen Fist", self.ident(source)));
+            let ability = if self.event_ability(source) == "piercingdrill" {
+                "Piercing Drill"
+            } else {
+                "Unseen Fist"
+            };
+            self.add(format!("|-ability|{}|{ability}", self.ident(source)));
             self.add(format!("|-zbroken|{}", self.ident(target)));
         }
         hit_damage.roll_with_randomness(tr, randomness)

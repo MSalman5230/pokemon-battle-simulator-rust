@@ -3772,7 +3772,7 @@ impl Battle {
             if move_data.flags.contains_key("protect")
                 && let Some(guard) = self.blocking_side_guard(mut_pos.player, kind, priority)
             {
-                if self.event_ability(source) == "unseenfist"
+                if matches!(self.event_ability(source), "unseenfist" | "piercingdrill")
                     && move_data.flags.contains_key("contact")
                 {
                     bypassed |= mut_pos.mask();
@@ -3803,7 +3803,7 @@ impl Battle {
                 && (protect.blocks_status() || move_data.category != Category::Status)
                 && move_data.flags.contains_key("protect")
             {
-                if self.event_ability(source) == "unseenfist"
+                if matches!(self.event_ability(source), "unseenfist" | "piercingdrill")
                     && move_data.flags.contains_key("contact")
                 {
                     bypassed |= mut_pos.mask();
@@ -6075,6 +6075,7 @@ impl Pokemon {
                 | "forecast"
                 | "hungerswitch"
                 | "unseenfist"
+                | "piercingdrill"
                 | "quickdraw"
                 | "poisontouch"
                 | "cheekpouch"

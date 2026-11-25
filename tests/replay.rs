@@ -1414,6 +1414,11 @@ fn solar_power_boosts_special_damage_and_drains_hp_except_under_an_umbrella() {
 }
 
 #[test]
+fn piercing_drill_bypasses_protect_only_for_contact_moves() {
+    replay(include_str!("fixtures/bss-piercing-drill.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
