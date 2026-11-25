@@ -1001,6 +1001,14 @@ impl Battle {
                     | "spectralthief"
                     | "thousandarrows"
                     | "thousandwaves"
+                    | "captivate"
+                    | "filletaway"
+                    | "flowershield"
+                    | "gearup"
+                    | "holdhands"
+                    | "powershift"
+                    | "rototiller"
+                    | "venomdrench"
                     | "round"
                     | "swift"
                     | "surf"
@@ -4654,6 +4662,22 @@ impl Battle {
             }
             return true;
         }
+        if matches!(
+            move_data.name.as_str(),
+            "Flower Shield" | "Rototiller" | "Gear Up"
+        ) {
+            self.protean_prepare(source, move_type);
+            if self.apply_field_stage_move(source, move_data) {
+                self.each_event();
+                self.each_event();
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
+                result.failed = true;
+            }
+            return true;
+        }
         if move_data.name == "Lucky Chant" {
             self.protean_prepare(source, move_type);
             if !self.start_lucky_chant(source.player) {
@@ -5145,7 +5169,15 @@ impl Battle {
         let ignores_type = !delayed && self.move_ignores_immunity(source, move_data, move_type);
         let potential = spread_targets.len();
         spread_targets.retain(|&pos| {
-            if !ignores_type
+            if move_data.name == "Captivate"
+                && !matches!(
+                    (self.mon(source).gender, self.mon(pos).gender),
+                    (b'F', b'M') | (b'M', b'F')
+                )
+            {
+                self.add(format!("|-immune|{}", self.ident(pos)));
+                false
+            } else if !ignores_type
                 && move_type == "Ground"
                 && !self.mon(pos).has_type("Flying")
                 && let Some(label) = self.airborne_ability(pos)
@@ -5389,11 +5421,13 @@ impl Battle {
             let mut any_success = false;
             let mut hit_labels = Vec::new();
             let life_dew = move_data.name == "Life Dew";
+            let venom_drench = move_data.name == "Venom Drench";
+            let fillet_away = move_data.name == "Fillet Away";
             let group_recovery =
                 matches!(move_data.name.as_str(), "Jungle Healing" | "Lunar Blessing");
             let teeter_dance = move_data.name == "Teeter Dance";
             let memento = move_data.name == "Memento";
-            let list_all_targets = life_dew || teeter_dance || group_recovery;
+            let list_all_targets = life_dew || teeter_dance || group_recovery || venom_drench;
             let mut confusion_failed = false;
             for target in spread_targets {
                 if move_data.name == "Autotomize"
@@ -5476,6 +5510,33 @@ impl Battle {
                     "Splash" => {
                         self.add("|-nothing");
                         succeeded = true;
+                    }
+                    "Hold Hands" => succeeded = true,
+                    "Fillet Away" => {
+                        let user = self.mon(source);
+                        if user.hp * 2 <= user.max_hp.get() || user.max_hp.get() == 1 {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                        } else if self.boost(source, &move_data.boosts, true) {
+                            let user = self.mon_mut(source);
+                            user.hp -= user.max_hp.get() / 2;
+                            self.add_health_line("-damage", source, false);
+                            succeeded = true;
+                        }
+                    }
+                    "Venom Drench"
+                        if matches!(self.mon(target).status, Status::Poison | Status::Toxic(_)) =>
+                    {
+                        succeeded = self.boost_from(
+                            target,
+                            source,
+                            &[
+                                (BoostStat::Atk, -1),
+                                (BoostStat::Spa, -1),
+                                (BoostStat::Spe, -1),
+                            ],
+                            BoostOrigin::from_move(move_data),
+                        );
                     }
                     "Refresh" => {
                         if matches!(
@@ -6293,7 +6354,7 @@ impl Battle {
                 } else {
                     move_data.boosts.as_slice()
                 };
-                if !boosts.is_empty() && !confusing_boost {
+                if !boosts.is_empty() && !confusing_boost && !fillet_away {
                     if self.boost_from(target, source, boosts, BoostOrigin::from_move(move_data)) {
                         succeeded = true;
                     } else if !succeeded && !move_data.self_effect {
@@ -6369,7 +6430,7 @@ impl Battle {
                     self.add("|debug|move failed because it did nothing");
                 }
             }
-            if group_recovery && !any_success {
+            if (group_recovery || venom_drench) && !any_success {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
                 self.report_no_move_effect();

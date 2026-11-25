@@ -33,6 +33,45 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn apply_field_stage_move(&mut self, source: Position, data: &Move) -> bool {
+        let rototiller = data.name == "Rototiller";
+        let gear = data.name == "Gear Up";
+        let mut eligible = 0;
+        let mut airborne = false;
+        for pos in self.positions() {
+            if self.mon(pos).hp == 0 {
+                continue;
+            }
+            if rototiller && !self.grounded(pos) {
+                self.add(format!("|-immune|{}", self.ident(pos)));
+                airborne = true;
+            } else if (gear
+                && pos.player == source.player
+                && matches!(self.event_ability(pos), "plus" | "minus"))
+                || (!gear && self.mon(pos).has_type("Grass"))
+            {
+                eligible |= pos.mask();
+            }
+        }
+        let changes = if rototiller || gear {
+            &[(BoostStat::Atk, 1), (BoostStat::Spa, 1)][..]
+        } else {
+            &[(BoostStat::Def, 1)][..]
+        };
+        let mut changed = false;
+        for pos in self.positions() {
+            if eligible & pos.mask() != 0 {
+                changed |= self.boost_from(
+                    pos,
+                    source,
+                    changes,
+                    super::abilities::BoostOrigin::from_move(data),
+                );
+            }
+        }
+        changed || rototiller && (eligible != 0 || airborne)
+    }
+
     pub(super) fn steal_positive_stages(
         &mut self,
         source: Position,
@@ -138,17 +177,22 @@ impl Battle {
     ) -> bool {
         use BoostStat::{Atk, Def, Spa, Spd};
         match name {
-            "Power Trick" => {
+            "Power Trick" | "Power Shift" => {
+                let id = if name == "Power Shift" {
+                    "powershift"
+                } else {
+                    "powertrick"
+                };
                 let mon = self.mon_mut(target);
                 mon.swap_attack_defense();
-                let event = if mon.volatile_ids().contains(&"powertrick") {
-                    mon.untrack_volatile("powertrick");
+                let event = if mon.volatile_ids().contains(&id) {
+                    mon.untrack_volatile(id);
                     "-end"
                 } else {
-                    mon.track_volatile("powertrick");
+                    mon.track_volatile(id);
                     "-start"
                 };
-                self.add(format!("|{event}|{}|Power Trick", self.ident(target)));
+                self.add(format!("|{event}|{}|{name}", self.ident(target)));
                 return true;
             }
             "Psych Up" => {

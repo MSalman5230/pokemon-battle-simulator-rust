@@ -1706,6 +1706,20 @@ const legacyFlameBurstRosters = [
     [{...named('Smeargle', ['Flame Burst', 'Protect']), ability:'Own Tempo'}, named('Glaceon', ['Protect'])],
     [named('Vaporeon', ['Substitute', 'Recover']), named('Jolteon', ['Tail Whip', 'Protect'])],
 ];
+const legacyFieldStageRosters = [
+    [{...named('Smeargle', ['Flower Shield', 'Rototiller', 'Gear Up']), ability:'Own Tempo'},
+        {...named('Bayleef', ['Protect']), ability:'Plus'}],
+    [{...named('Jumpluff', ['Tail Whip']), ability:'Chlorophyll'}, named('Vaporeon', ['Tail Whip'])],
+];
+const legacyCaptivateRosters = [
+    [{...named('Smeargle', ['Captivate', 'Venom Drench']), ability:'Own Tempo'},
+        named('Glaceon', ['Hold Hands'])],
+    [{...named('Vaporeon', ['Tail Whip'], 'M'), item:'Toxic Orb'}, named('Jolteon', ['Tail Whip'])],
+];
+const legacyFilletRosters = [
+    [{...named('Veluza', ['Fillet Away', 'Power Shift']), ability:'Mold Breaker'}],
+    [named('Vaporeon', ['Tail Whip'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3058,6 +3072,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','switch 2'], ['move 1','move 1']], legacyCoreRosters, 'natdex-core-enforcer-substitute'],
     ['doublescustomgame', [['team 12','team 12'], ['move 2, move 1','move 1, move 1'],
         ['move 1 1, move 1','move 2, move 2']], legacyFlameBurstRosters, 'custom-flame-burst-splash'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['move 2, move 1','move 1, move 1'], ['move 3, move 1','move 1, move 1']],
+        legacyFieldStageRosters, 'custom-inherited-field-stages'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 2, move 1 -1','move 1, move 1'],
+        ['move 1, move 1 -1','move 1, move 1'], ['move 2, move 1 -1','move 1, move 1']],
+        legacyCaptivateRosters, 'custom-captivate-and-venom-drench'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['move 2','move 1'], ['move 2','move 1']], legacyFilletRosters, 'custom-fillet-away-and-power-shift'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -38,7 +38,7 @@ impl Pokemon {
                 "laserfocus" => self.laser_focus = source.laser_focus,
                 "furycutter" => self.fury_cutter = source.fury_cutter,
                 "gem" => self.gem_boost = source.gem_boost,
-                "powertrick" => self.swap_attack_defense(),
+                "powertrick" | "powershift" => self.swap_attack_defense(),
                 "aquaring" | "ingrain" | "tarshot" => {}
                 "roost" => self.roosted = source.roosted,
                 "followme" | "ragepowder" => self.attention = source.attention,

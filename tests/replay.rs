@@ -1916,6 +1916,17 @@ fn inherited_damage_hooks_preserve_suppression_grounding_and_stage_order() {
 }
 
 #[test]
+fn inherited_stage_moves_keep_target_filters_and_hit_costs() {
+    replay(include_str!("fixtures/custom-inherited-field-stages.json"));
+    replay(include_str!(
+        "fixtures/custom-captivate-and-venom-drench.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-fillet-away-and-power-shift.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
