@@ -70,7 +70,7 @@ impl Battle {
             species.required_item.as_deref().unwrap_or("")
         ));
         self.sides[pos.player.index()].as_mut().unwrap().mega_used = true;
-        self.weather_ability_changed(pos);
+        self.end_ability(pos);
         let mon = self.mon_mut(pos);
         mon.ability = species
             .abilities

@@ -1042,7 +1042,7 @@ impl Battle {
         }
         if !self.mon(outgoing).fainted {
             self.switch_out_ability(outgoing);
-            self.weather_ability_changed(outgoing);
+            self.end_ability(outgoing);
         }
         let rules = self.stat_rules;
         let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
@@ -1285,6 +1285,9 @@ impl Battle {
         self.switch_in_terrain(pos);
         if self.mon(pos).ability == "intimidate" {
             self.intimidate(pos);
+        }
+        if self.mon(pos).ability == "frisk" {
+            self.frisk(pos);
         }
         self.try_trace(pos);
     }
@@ -1818,7 +1821,7 @@ impl Battle {
         if !reflected && move_data.name != "Destiny Bond" {
             self.clear_destiny_bond(source, true);
         }
-        let accuracy = match (move_data.name.as_str(), weather) {
+        let mut accuracy = match (move_data.name.as_str(), weather) {
             ("Blizzard", Some(Weather::Snow)) => Accuracy::Bypass(true),
             ("Hurricane" | "Thunder", Some(Weather::Rain)) if target.is_some() => {
                 Accuracy::Bypass(true)
@@ -2317,6 +2320,13 @@ impl Battle {
                     move_data.name
                 ));
                 false
+            } else if source != mut_pos
+                && move_type == "Fire"
+                && self.event_ability(mut_pos) == "flashfire"
+            {
+                accuracy = Accuracy::Bypass(true);
+                self.flash_fire(mut_pos);
+                false
             } else if self.absorb_elemental(mut_pos, source, move_type) {
                 false
             } else if self.event_ability(mut_pos) == "oblivious" && move_data.name == "Taunt" {
@@ -2766,6 +2776,19 @@ impl Battle {
                 }
                 let terrain_power =
                     self.terrain_power_modifier(source, target, move_data, move_type);
+                let dry_skin = move_type == "Fire" && self.event_ability(target) == "dryskin";
+                let flash_fire = move_type == "Fire"
+                    && self.mon(source).ability == "flashfire"
+                    && self.mon(source).volatile_ids().contains(&"flashfire");
+                if flash_fire && self.format.report_exact_hp {
+                    self.add("|debug|Flash Fire boost");
+                }
+                if self.mon(source).ability == "reckless"
+                    && self.format.report_exact_hp
+                    && (move_data.recoil.is_some() || super::abilities::crash_move(&move_data.name))
+                {
+                    self.add("|debug|Reckless boost");
+                }
                 let stakeout =
                     self.mon(source).ability == "stakeout" && self.mon(target).active_turns == 0;
                 if stakeout && self.format.report_exact_hp {
@@ -2819,6 +2842,9 @@ impl Battle {
                 if stakeout {
                     attack_modifier = crate::mechanics::chain(8192, attack_modifier);
                 }
+                if flash_fire {
+                    attack_modifier = crate::mechanics::chain(6144, attack_modifier);
+                }
                 if (self.event_ability(target) == "heatproof" && move_type == "Fire")
                     || (self.event_ability(target) == "thickfat"
                         && matches!(move_type, "Fire" | "Ice"))
@@ -2839,6 +2865,9 @@ impl Battle {
                 }
                 if converted && (hit == 1 || user.converted_move_type(&move_data.move_type).1) {
                     power_modifier = crate::mechanics::chain(4915, power_modifier);
+                }
+                if dry_skin {
+                    power_modifier = crate::mechanics::chain(5120, power_modifier);
                 }
                 if move_data.name == "Knock Off"
                     && mon.transferable_item(self.format.dex_mod).is_some()
@@ -3322,7 +3351,7 @@ impl Battle {
         } else {
             i32::from(accuracy)
         };
-        let evasion = if self.mon(source).ability == "illuminate" {
+        let evasion = if matches!(self.mon(source).ability.as_str(), "illuminate" | "keeneye") {
             0
         } else {
             self.mon(target).boosts.get(BoostStat::Evasion)
@@ -3526,6 +3555,11 @@ impl Pokemon {
                 | "magicbounce"
                 | "naturalcure"
                 | "regenerator"
+                | "flashfire"
+                | "dryskin"
+                | "keeneye"
+                | "frisk"
+                | "reckless"
         )
     }
 

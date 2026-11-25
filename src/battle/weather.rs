@@ -149,6 +149,18 @@ impl Battle {
                 }
             } else if weather == Weather::Snow && self.mon(pos).ability == "icebody" {
                 self.ability_heal(pos, 16, "Ice Body", None);
+            } else if self.mon(pos).ability == "dryskin" {
+                match weather {
+                    Weather::Rain => {
+                        self.ability_heal(pos, 8, "Dry Skin", None);
+                    }
+                    Weather::Sun => self.indirect_damage(
+                        pos,
+                        8,
+                        &format!("|[from] ability: Dry Skin|[of] {}", self.ident(pos)),
+                    ),
+                    _ => {}
+                }
             }
         }
         self.each_event();

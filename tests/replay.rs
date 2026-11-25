@@ -600,3 +600,13 @@ fn vgc_static_and_poison_point_roll_only_on_contact_and_reveal_the_holder() {
 fn ranch_generates_independent_rosters_then_plays_native_pick_four_doubles() {
     replay(include_str!("fixtures/ranch-start.json"));
 }
+
+#[test]
+fn vgc_flash_fire_and_dry_skin_handle_elemental_hits_and_frisk_reveals_both_items() {
+    replay(include_str!("fixtures/vgc-flash-dry-frisk.json"));
+}
+
+#[test]
+fn bss_keen_eye_protects_accuracy_and_reckless_boosts_damage_before_recoil() {
+    replay(include_str!("fixtures/bss-keen-reckless.json"));
+}

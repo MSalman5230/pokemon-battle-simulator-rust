@@ -57,7 +57,7 @@ enum DropHook {
     FlowerVeil,
     Block(&'static str),
     IntimidateBlock(&'static str),
-    Illuminate,
+    ProtectAccuracy(&'static str),
     MirrorArmor,
 }
 
@@ -77,6 +77,7 @@ impl Pokemon {
             "strongjaw" if flags.contains_key("bite") => 6144,
             "megalauncher" if flags.contains_key("pulse") => 6144,
             "ironfist" if flags.contains_key("punch") => 4915,
+            "reckless" if move_data.recoil.is_some() || crash_move(&move_data.name) => 4915,
             "sandforce"
                 if weather == Some(Weather::Sand)
                     && matches!(move_type, "Rock" | "Ground" | "Steel") =>
@@ -156,6 +157,52 @@ impl Battle {
         }
     }
 
+    pub(super) fn end_ability(&mut self, pos: Position) {
+        if self.mon(pos).volatile_ids().contains(&"flashfire") {
+            self.mon_mut(pos).untrack_volatile("flashfire");
+            self.add(format!(
+                "|-end|{}|ability: Flash Fire|[silent]",
+                self.ident(pos)
+            ));
+        }
+        self.weather_ability_changed(pos);
+    }
+
+    pub(super) fn flash_fire(&mut self, target: Position) {
+        if self.mon(target).volatile_ids().contains(&"flashfire") {
+            self.add(format!(
+                "|-immune|{}|[from] ability: Flash Fire",
+                self.ident(target)
+            ));
+        } else {
+            self.mon_mut(target).track_volatile("flashfire");
+            self.add(format!(
+                "|-start|{}|ability: Flash Fire",
+                self.ident(target)
+            ));
+        }
+    }
+
+    pub(super) fn frisk(&mut self, pos: Position) {
+        let holder = self.ident(pos);
+        for target in self
+            .positions()
+            .filter(|target| target.player != pos.player)
+        {
+            let mon = self.mon(target);
+            if let Some(item) = DEX
+                .item(self.format.dex_mod, &mon.item)
+                .filter(|_| mon.hp != 0)
+            {
+                self.add(format!(
+                    "|-item|{}|{}|[from] ability: Frisk|[of] {holder}",
+                    self.ident(target),
+                    item.effect.name
+                ));
+            }
+        }
+    }
+
     pub(super) fn ignores_ability_of(&self, target: Position) -> bool {
         self.ability_breaker.is_some_and(|source| source != target)
             && self.mon(target).item != "abilityshield"
@@ -210,8 +257,8 @@ impl Battle {
                 return None;
             }
         }
-        self.weather_ability_changed(source);
-        self.weather_ability_changed(target);
+        self.end_ability(source);
+        self.end_ability(target);
         let a = std::mem::take(&mut self.mon_mut(source).ability);
         let b = std::mem::replace(&mut self.mon_mut(target).ability, a);
         self.mon_mut(source).ability = b;
@@ -259,7 +306,7 @@ impl Battle {
         if mon.ability == "illusion" {
             self.end_illusion(source);
         }
-        self.weather_ability_changed(source);
+        self.end_ability(source);
         self.mon_mut(source).ability.clear();
         self.mon_mut(source).ability.push_str(id);
         self.reset_ability_order(source);
@@ -385,6 +432,7 @@ impl Battle {
         }
         let (label, boost) = match (move_type, self.event_ability(target)) {
             ("Water", "waterabsorb") => ("Water Absorb", None),
+            ("Water", "dryskin") => ("Dry Skin", None),
             ("Water", "stormdrain") => ("Storm Drain", Some((BoostStat::Spa, 1))),
             ("Electric", "lightningrod") => ("Lightning Rod", Some((BoostStat::Spa, 1))),
             ("Electric", "motordrive") => ("Motor Drive", Some((BoostStat::Spe, 1))),
@@ -560,7 +608,8 @@ impl Battle {
         let mut hooks = [(target, 0, DropHook::FlowerVeil); 3];
         let own = match mon.ability.as_str() {
             "mirrorarmor" => Some(DropHook::MirrorArmor),
-            "illuminate" => Some(DropHook::Illuminate),
+            "illuminate" => Some(DropHook::ProtectAccuracy("Illuminate")),
+            "keeneye" => Some(DropHook::ProtectAccuracy("Keen Eye")),
             "innerfocus" => Some(DropHook::IntimidateBlock("Inner Focus")),
             "oblivious" => Some(DropHook::IntimidateBlock("Oblivious")),
             "owntempo" => Some(DropHook::IntimidateBlock("Own Tempo")),
@@ -595,7 +644,8 @@ impl Battle {
                     if removed & (1 << i) != 0
                         || amount >= 0
                         || current <= -6
-                        || matches!(hook, DropHook::Illuminate) && stat != BoostStat::Accuracy
+                        || matches!(hook, DropHook::ProtectAccuracy(_))
+                            && stat != BoostStat::Accuracy
                         || matches!(hook, DropHook::IntimidateBlock(_))
                             && (stat != BoostStat::Atk || origin != BoostOrigin::Intimidate)
                     {
@@ -623,9 +673,9 @@ impl Battle {
                                 "|-fail|{ident}|unboost|atk|[from] ability: {ability}|[of] {ident}"
                             ));
                         }
-                        DropHook::Illuminate => {
+                        DropHook::ProtectAccuracy(ability) => {
                             let ident = self.ident(target);
-                            self.add(format!("|-fail|{ident}|unboost|accuracy|[from] ability: Illuminate|[of] {ident}"));
+                            self.add(format!("|-fail|{ident}|unboost|accuracy|[from] ability: {ability}|[of] {ident}"));
                         }
                         DropHook::MirrorArmor => {}
                     }
@@ -727,6 +777,13 @@ impl Battle {
             self.add(format!("|-boost|{}|spe|1", self.ident(pos)));
         }
     }
+}
+
+pub(super) fn crash_move(name: &str) -> bool {
+    matches!(
+        name,
+        "Supercell Slam" | "High Jump Kick" | "Jump Kick" | "Axe Kick"
+    )
 }
 
 impl Pokemon {

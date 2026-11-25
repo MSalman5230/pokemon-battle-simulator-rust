@@ -482,6 +482,17 @@ const contactStatusRosters = [
     [{...named('Ampharos', ['Recover']), ability: 'Static'},
         {...named('Clodsire', ['Recover']), ability: 'Poison Point'}],
 ];
+const flashDryRosters = [
+    [{...named('Ninetales', ['Flamethrower', 'Recover']), ability: 'Flash Fire', item: 'Leftovers'},
+        {...named('Heliolisk', ['Water Gun', 'Sunny Day', 'Rain Dance', 'Tackle']), ability: 'Dry Skin', item: 'Magnet'},
+        named('Flareon', ['Tackle'])],
+    [{...named('Umbreon', ['Tackle', 'Will-O-Wisp', 'Water Gun', 'Flamethrower']), item: 'Leftovers'},
+        {...named('Banette', ['Protect', 'Recover']), ability: 'Frisk', item: 'Rocky Helmet'}],
+];
+const keenRecklessRosters = [
+    [{...named('Staraptor', ['Brave Bird', 'Sand Attack', 'Double Team']), ability: 'Reckless'}, named('Vaporeon', ['Recover'])],
+    [{...named('Skarmory', ['Iron Head', 'Roost']), ability: 'Keen Eye'}, named('Glaceon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -722,6 +733,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         contactStatusRosters, 'vgc-contact-status'],
     ['rosterranchrumble', [['team 1,2,5,10', 'team 4,8,9,3'], ['move 1 1, move 2', 'move 1 2, move 4 2']],
         ['0,0,0,0', '4,3,2,1'], 'ranch-start'],
+    ['vgc2026regmc', [['team 123', 'team 12'], ['move 2, move 2', 'move 2 1, move 1'],
+        ['move 1 1, move 3', 'move 3 2, move 2'], ['move 1 -2, move 4 1', 'move 4 1, move 2'],
+        ['switch 3, move 4 1', 'move 1 1, move 2']], flashDryRosters, 'vgc-flash-dry-frisk'],
+    ['bssregmc', [['team 12','team 12'], ['move 2','move 2'], ['move 3','move 1'], ['move 1','move 1']],
+        keenRecklessRosters, 'bss-keen-reckless'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
