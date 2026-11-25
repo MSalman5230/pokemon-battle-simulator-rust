@@ -1756,6 +1756,17 @@ fn baton_pass_skips_the_pre_switch_update_even_during_a_speed_tie() {
 }
 
 #[test]
+fn custom_game_debug_explains_technician_weather_and_protect_rolls() {
+    replay(include_str!("fixtures/custom-damage-debug.json"));
+}
+
+#[test]
+fn sparkling_aria_bypasses_covert_cloak_only_when_it_hits_multiple_targets() {
+    replay(include_str!("fixtures/bss-sparkling-aria-cloak.json"));
+    replay(include_str!("fixtures/vgc-sparkling-aria-cloak.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

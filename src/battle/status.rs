@@ -346,6 +346,10 @@ impl Battle {
         let corrosion =
             matches!(id, "tox" | "psn") && self.mon(source).active_ability() == "corrosion";
         if !corrosion && self.status_immune(pos, if id == "tox" { "psn" } else { id }) {
+            if self.format.report_exact_hp {
+                self.add("|debug|natural status immunity");
+                self.add("|debug|immune to status");
+            }
             if primary {
                 self.add(format!("|-immune|{}", self.ident(pos)));
             }
@@ -359,9 +363,6 @@ impl Battle {
             if self.format.report_exact_hp {
                 self.add("|debug|artificial status immunity");
                 self.add("|debug|immune to status");
-                if !primary {
-                    self.add("|debug|move failed because it did nothing");
-                }
             }
             if primary {
                 self.add(format!("|-immune|{}", self.ident(pos)));

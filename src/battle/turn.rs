@@ -411,6 +411,12 @@ impl Battle {
         line.push_str("|[still]");
     }
 
+    fn report_no_move_effect(&mut self) {
+        if self.format.report_exact_hp {
+            self.add("|debug|move failed because it did nothing");
+        }
+    }
+
     fn protection_contact(
         &mut self,
         protect: Protection,
@@ -2316,6 +2322,7 @@ impl Battle {
     pub(super) fn each_event(&mut self) {
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
+            self.debug_suppressed_hook(pos, "onUpdate");
             self.attract_update(pos);
             self.update_syrup_bomb(pos);
             if self.mon(pos).fling_pending {
@@ -3568,7 +3575,10 @@ impl Battle {
             TargetKind::AllAdjacentFoes
         } else if curse {
             if self.format.report_exact_hp {
-                self.add("|debug|Curse onModifyMove triggered");
+                let recipient = target.map_or_else(|| "null".into(), |pos| self.ident(pos));
+                self.add(format!(
+                    "|debug|Curse onModifyMove triggered|{source_name}|{recipient}"
+                ));
             }
             let kind = if !self.mon(source).has_type("Ghost") {
                 TargetKind::User
@@ -4140,6 +4150,7 @@ impl Battle {
             if !self.add_hazard(source.player.foe(), hazard) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
                 result.failed = true;
             }
             return true;
@@ -4258,6 +4269,7 @@ impl Battle {
             } else if !snow_started {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
                 result.failed = true;
             }
             return true;
@@ -4404,6 +4416,12 @@ impl Battle {
                 .iter()
                 .any(|q| matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. }));
             let stall = self.mon(source).stall.map_or(1, |(counter, _)| counter);
+            if more_actions && stall > 1 && self.format.report_exact_hp {
+                self.add(format!(
+                    "|debug|Success chance: {}%",
+                    (100 + stall / 2) / stall
+                ));
+            }
             if !more_actions || (stall > 1 && !self.rng.chance(1, u32::from(stall))) {
                 if more_actions {
                     self.mon_mut(source).stall = None;
@@ -5352,6 +5370,7 @@ impl Battle {
                         } else {
                             self.add(format!("|-fail|{}", self.ident(target)));
                         }
+                        self.report_no_move_effect();
                     } else {
                         let mon = self.mon_mut(target);
                         mon.set_temporary_type(Some(ty));
@@ -5414,6 +5433,7 @@ impl Battle {
                     } else {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        self.report_no_move_effect();
                     }
                 }
                 if move_data.name == "Recycle" {
@@ -5435,11 +5455,17 @@ impl Battle {
                 if curse {
                     let ghost = self.mon(source).has_type("Ghost");
                     if self.format.report_exact_hp {
-                        self.add("|debug|Curse onTryHit triggered");
+                        self.add(format!(
+                            "|debug|Curse onTryHit triggered|{}|{source_name}",
+                            self.ident(target)
+                        ));
                     }
                     if !ghost || !self.mon(target).volatile_ids().contains(&"curse") {
                         if self.format.report_exact_hp {
-                            self.add("|debug|Curse onHit triggered");
+                            self.add(format!(
+                                "|debug|Curse onHit triggered|{source_name}|{}",
+                                self.ident(target)
+                            ));
                         }
                         succeeded = if ghost {
                             self.apply_curse(source, target)
@@ -5490,6 +5516,7 @@ impl Battle {
                     } else {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        self.report_no_move_effect();
                     }
                 }
                 if move_data.name == "Tidy Up" {
@@ -5516,6 +5543,7 @@ impl Battle {
                     } else {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        self.report_no_move_effect();
                     }
                 }
                 if move_data.name == "Pain Split" {
@@ -5553,6 +5581,7 @@ impl Battle {
                     } else {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        self.report_no_move_effect();
                     }
                 }
                 if move_data.name == "Disable" {
@@ -5625,12 +5654,16 @@ impl Battle {
                 }
                 if move_data.name == "Yawn" {
                     let mon = self.mon(target);
+                    let already_yawning = mon.yawn.is_some() && mon.status == Status::Healthy;
                     if mon.yawn.is_some()
                         || mon.status != Status::Healthy
                         || self.status_immune(target, "slp")
                     {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        if already_yawning {
+                            self.report_no_move_effect();
+                        }
                         continue;
                     }
                     if self.yawn_blocked_by_ability(target) {
@@ -5691,7 +5724,11 @@ impl Battle {
                     succeeded = true;
                 }
                 if let Some(status) = &move_data.status {
-                    succeeded |= self.try_status(target, status, source, move_data, true, base);
+                    if self.try_status(target, status, source, move_data, true, base) {
+                        succeeded = true;
+                    } else {
+                        self.report_no_move_effect();
+                    }
                 }
                 if move_data.name == "Heal Pulse" {
                     self.heal_pulse(source, target);
@@ -5703,6 +5740,9 @@ impl Battle {
                     if mon.hp == mon.max_hp.get() {
                         self.move_still(base);
                         self.add(format!("|-fail|{}|heal", self.ident(target)));
+                        if !move_data.self_effect {
+                            self.report_no_move_effect();
+                        }
                         continue;
                     }
                     if mon.heal_block > 0 {
@@ -5731,8 +5771,11 @@ impl Battle {
                     move_data.boosts.as_slice()
                 };
                 if !boosts.is_empty() && !confusing_boost {
-                    succeeded |=
-                        self.boost_from(target, source, boosts, BoostOrigin::from_move(move_data));
+                    if self.boost_from(target, source, boosts, BoostOrigin::from_move(move_data)) {
+                        succeeded = true;
+                    } else if !succeeded && !move_data.self_effect {
+                        self.report_no_move_effect();
+                    }
                 }
                 if memento {
                     self.mon_mut(source).hp = 0;
@@ -5769,6 +5812,7 @@ impl Battle {
                     self.charge_electric(target, None);
                     succeeded = true;
                 }
+                self.debug_suppressed_hook(target, "onHit");
                 if succeeded {
                     any_success = true;
                     if spread && !list_all_targets {
@@ -5890,6 +5934,7 @@ impl Battle {
             Hazard::from_attack(&move_data.name)
         };
         let mut hit_substitute = false;
+        let mut sparkling_aria_targets = 0;
         let binding = super::partial_trap::binding_move(&move_data.name);
         for hit in 1..=max_hits {
             if (self.mon(source).hp == 0 && !sacrifice && !smart_target && !delayed)
@@ -6244,6 +6289,7 @@ impl Battle {
                 if move_data.name == "Steel Roller" {
                     self.clear_terrain();
                 }
+                self.debug_suppressed_hook(target, "onHit");
             }
             for &(target, _) in &damage {
                 if contact && self.mon(target).volatile_ids().contains(&"beakblast") {
@@ -6391,8 +6437,10 @@ impl Battle {
                         if move_data.name == "Burning Jealousy" && self.mon(target).stats_raised {
                             self.try_status(target, "brn", source, move_data, false, base);
                         }
-                        if let Some(status) = &effect.status {
-                            self.try_status(target, status, source, move_data, false, base);
+                        if let Some(status) = &effect.status
+                            && !self.try_status(target, status, source, move_data, false, base)
+                        {
+                            self.report_no_move_effect();
                         }
                         if !effect.boosts.is_empty() {
                             self.boost_from(target, source, &effect.boosts, BoostOrigin::Secondary);
@@ -6405,14 +6453,24 @@ impl Battle {
                         }
                         if effect.volatile_status.as_deref() == Some("confusion")
                             && !self.safeguard_blocks(target, source, true, false, true)
+                            && !self.apply_confusion(target, false)
                         {
-                            self.apply_confusion(target, false);
+                            self.report_no_move_effect();
                         }
                         if effect.volatile_status.as_deref() == Some("healblock") {
                             self.start_heal_block(target, 2);
                         }
-                        if effect.volatile_status.as_deref() == Some("saltcure") {
-                            self.start_salt_cure(target);
+                        if effect.volatile_status.as_deref() == Some("saltcure")
+                            && !self.start_salt_cure(target)
+                        {
+                            self.report_no_move_effect();
+                        }
+                        if effect.volatile_status.as_deref() == Some("sparklingaria") {
+                            if self.mon(target).hp == 0 {
+                                self.report_no_move_effect();
+                            } else {
+                                sparkling_aria_targets |= target.mask();
+                            }
                         }
                         if move_data.name == "Throat Chop"
                             && self.mon(target).hp > 0
@@ -6759,7 +6817,11 @@ impl Battle {
         self.emergency_exit(source, original_source_hp);
         if !suppress_after_move && move_data.name == "Sparkling Aria" && self.mon(source).hp > 0 {
             for &target in &spread_targets {
-                if target != source && self.mon(target).status == Status::Burn {
+                if target != source
+                    && self.mon(target).hp != 0
+                    && self.mon(target).status == Status::Burn
+                    && (spread_targets.len() > 1 || sparkling_aria_targets & target.mask() != 0)
+                {
                     self.cure_status(target, "[msg]");
                 }
             }
@@ -7298,14 +7360,6 @@ impl Pokemon {
         } else {
             stat
         }
-    }
-
-    pub(super) fn attack_boosts_type(&self, move_type: &str) -> bool {
-        self.hp * 3 <= self.max_hp.get()
-            && matches!(
-                (self.active_ability(), move_type),
-                ("blaze", "Fire") | ("torrent", "Water") | ("overgrow", "Grass") | ("swarm", "Bug")
-            )
     }
 
     pub(super) fn supported_ability(ability: &str) -> bool {

@@ -363,6 +363,12 @@ impl Battle {
             roll,
         } = args;
         let tr = self.stat_rules.truncation;
+        if self.format.report_exact_hp && self.event_ability(source) == "technician" {
+            self.add(format!("|debug|Base Power: {power}"));
+            if power <= 60 {
+                self.add("|debug|Technician boost");
+            }
+        }
         let mut spirit_handlers = [0; 2];
         let mut spirit_count = 0;
         let mut aura_handlers = [0; 4];
@@ -498,9 +504,6 @@ impl Battle {
         if gem_boost && self.format.report_exact_hp {
             self.add("|debug|Gem Boost");
         }
-        if move_data.ignore_defensive && self.format.report_exact_hp {
-            self.add("|debug|Negating (sp)def boost/penalty.");
-        }
         self.sort_unaware_handlers();
         self.sort_unaware_handlers();
         let user = self.mon(source);
@@ -551,6 +554,22 @@ impl Battle {
                 mon.boosts.get(BoostStat::Spd),
             )
         };
+        if self.format.report_exact_hp {
+            let attack_boost = source_active
+                .then(|| user.low_hp_attack_boost(move_type))
+                .flatten();
+            if crit && atk_stage < 0 {
+                self.add("|debug|Negating (sp)atk boost/penalty.");
+            }
+            if move_data.ignore_defensive || crit && def_stage > 0 {
+                self.add("|debug|Negating (sp)def boost/penalty.");
+            }
+            if let Some(label) = attack_boost {
+                self.add(format!("|debug|{label}"));
+            }
+        }
+        let user = self.mon(source);
+        let mon = self.mon(target);
         if source != target && self.event_ability(target) == "unaware" {
             atk_stage = 0;
         }
@@ -740,6 +759,17 @@ impl Battle {
             self.add("|debug|Spread modifier: 0.75");
         } else if parental_second_hit && self.format.report_exact_hp {
             self.add("|debug|Parental Bond modifier: 0.25");
+        }
+        if self.format.report_exact_hp && hit_damage.weather != 4096 {
+            let msg = match (damage_weather, move_type, hit_damage.weather) {
+                (Some(Weather::Rain), "Water", _) => "rain water boost",
+                (Some(Weather::Rain), "Fire", _) => "rain fire suppress",
+                (Some(Weather::Sun), "Fire", _) => "Sunny Day fire boost",
+                (Some(Weather::Sun), "Water", 6144) => "Sunny Day Hydro Steam boost",
+                (Some(Weather::Sun), "Water", _) => "Sunny Day water suppress",
+                _ => unreachable!(),
+            };
+            self.add(format!("|debug|{msg}"));
         }
         if effect > 0 {
             self.add(format!(

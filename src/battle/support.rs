@@ -199,11 +199,13 @@ impl Battle {
             .replacement_heals[pos.slot] = pending;
     }
 
-    pub(super) fn start_salt_cure(&mut self, pos: Position) {
+    pub(super) fn start_salt_cure(&mut self, pos: Position) -> bool {
         if self.mon(pos).hp > 0 && !self.mon(pos).volatile_ids().contains(&"saltcure") {
             self.mon_mut(pos).track_volatile("saltcure");
             self.add(format!("|-start|{}|Salt Cure", self.ident(pos)));
+            return true;
         }
+        false
     }
 
     pub(super) fn tick_salt_cure(&mut self, pos: Position) {

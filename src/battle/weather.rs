@@ -191,14 +191,14 @@ impl Battle {
                     )
                 {
                     self.indirect_damage(pos, 16, "|[from] Sandstorm");
+                } else {
+                    self.log_weather_immunity(pos, "sandstorm");
                 }
             } else if weather == Weather::Hail {
                 let ability = self.event_ability(pos);
                 let ice_body = ability == "icebody";
                 if ice_body || ability == "snowcloak" || self.status_immune(pos, "hail") {
-                    if self.format.report_exact_hp {
-                        self.add("|debug|weather immunity");
-                    }
+                    self.log_weather_immunity(pos, "hail");
                     if ice_body {
                         self.ability_heal(pos, 16, "Ice Body", None);
                     }
@@ -242,6 +242,22 @@ impl Battle {
             if self.mon(pos).hp == 0 && !self.mon(pos).fainted {
                 self.mark_fainted(pos);
             }
+        }
+    }
+
+    fn log_weather_immunity(&mut self, pos: Position, kind: &str) {
+        if self.format.report_exact_hp {
+            if self
+                .mon(pos)
+                .types()
+                .filter(|ty| *ty != "???")
+                .any(|ty| DEX.type_data(&to_id(ty)).unwrap().damage_taken.get(kind) == Some(&3))
+            {
+                self.add("|debug|natural status immunity");
+            } else {
+                self.add("|debug|artificial status immunity");
+            }
+            self.add("|debug|weather immunity");
         }
     }
 }

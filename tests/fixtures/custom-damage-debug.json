@@ -1,0 +1,1843 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Scizor\",\"moves\":[\"Bullet Punch\",\"Swords Dance\",\"Protect\"],\"gender\":\"F\",\"name\":\"Scizor\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Technician\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Slowbro\",\"moves\":[\"Rain Dance\",\"Scald\",\"Recover\"],\"gender\":\"F\",\"name\":\"Slowbro\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Scizor, L50, F|",
+          "|poke|p2|Slowbro, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Scizor, L50, F|",
+          "|poke|p2|Slowbro, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Scizor, L50, F|",
+          "|poke|p2|Slowbro, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 120,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 85
+                },
+                "moves": [
+                  "bulletpunch",
+                  "swordsdance",
+                  "protect"
+                ],
+                "baseAbility": "technician",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "raindance",
+                  "scald",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 120,
+              "spa": 75,
+              "spd": 100,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bulletpunch",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "scald",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Scizor|Scizor, L50, F|145/145",
+          "|switch|p2a: Slowbro|Slowbro, L50, F|170/170",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Scizor|Scizor, L50, F|145/145",
+          "|switch|p2a: Slowbro|Slowbro, L50, F|170/170",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Scizor|Scizor, L50, F|145/145",
+          "|switch|p2a: Slowbro|Slowbro, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bullet Punch",
+                  "id": "bulletpunch",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 120,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 85
+                },
+                "moves": [
+                  "bulletpunch",
+                  "swordsdance",
+                  "protect"
+                ],
+                "baseAbility": "technician",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Scald",
+                  "id": "scald",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "raindance",
+                  "scald",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 120,
+              "spa": 75,
+              "spd": 100,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bulletpunch",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "scald",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scizor|Bullet Punch|p2a: Slowbro",
+          "|debug|Base Power: 40",
+          "|debug|Technician boost",
+          "|-resisted|p2a: Slowbro|1",
+          "|-damage|p2a: Slowbro|149/170",
+          "|move|p2a: Slowbro|Rain Dance|p2a: Slowbro",
+          "|-weather|RainDance",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Bullet Punch|p2a: Slowbro",
+          "|debug|Base Power: 40",
+          "|debug|Technician boost",
+          "|-resisted|p2a: Slowbro|1",
+          "|-damage|p2a: Slowbro|149/170",
+          "|move|p2a: Slowbro|Rain Dance|p2a: Slowbro",
+          "|-weather|RainDance",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Bullet Punch|p2a: Slowbro",
+          "|debug|Base Power: 40",
+          "|debug|Technician boost",
+          "|-resisted|p2a: Slowbro|1",
+          "|-damage|p2a: Slowbro|149/170",
+          "|move|p2a: Slowbro|Rain Dance|p2a: Slowbro",
+          "|-weather|RainDance",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bullet Punch",
+                  "id": "bulletpunch",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 120,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 85
+                },
+                "moves": [
+                  "bulletpunch",
+                  "swordsdance",
+                  "protect"
+                ],
+                "baseAbility": "technician",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Scald",
+                  "id": "scald",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "149/170",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "raindance",
+                  "scald",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 120,
+              "spa": 75,
+              "spd": 100,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bulletpunch",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 149,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "scald",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scizor|Protect|p1a: Scizor",
+          "|-singleturn|p1a: Scizor|Protect",
+          "|move|p2a: Slowbro|Scald|p1a: Scizor",
+          "|-activate|p1a: Scizor|move: Protect",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Protect|p1a: Scizor",
+          "|-singleturn|p1a: Scizor|Protect",
+          "|move|p2a: Slowbro|Scald|p1a: Scizor",
+          "|-activate|p1a: Scizor|move: Protect",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Protect|p1a: Scizor",
+          "|-singleturn|p1a: Scizor|Protect",
+          "|move|p2a: Slowbro|Scald|p1a: Scizor",
+          "|-activate|p1a: Scizor|move: Protect",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bullet Punch",
+                  "id": "bulletpunch",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 120,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 85
+                },
+                "moves": [
+                  "bulletpunch",
+                  "swordsdance",
+                  "protect"
+                ],
+                "baseAbility": "technician",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Scald",
+                  "id": "scald",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "149/170",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "raindance",
+                  "scald",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 120,
+              "spa": 75,
+              "spd": 100,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bulletpunch",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 149,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "scald",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scizor|Protect||[still]",
+          "|debug|Success chance: 33%",
+          "|-fail|p1a: Scizor",
+          "|move|p2a: Slowbro|Scald|p1a: Scizor",
+          "|debug|rain water boost",
+          "|-damage|p1a: Scizor|52/145",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Protect||[still]",
+          "|debug|Success chance: 33%",
+          "|-fail|p1a: Scizor",
+          "|move|p2a: Slowbro|Scald|p1a: Scizor",
+          "|debug|rain water boost",
+          "|-damage|p1a: Scizor|52/145",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Protect||[still]",
+          "|debug|Success chance: 33%",
+          "|-fail|p1a: Scizor",
+          "|move|p2a: Slowbro|Scald|p1a: Scizor",
+          "|debug|rain water boost",
+          "|-damage|p1a: Scizor|52/145",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bullet Punch",
+                  "id": "bulletpunch",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L50, F",
+                "condition": "52/145",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 120,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 85
+                },
+                "moves": [
+                  "bulletpunch",
+                  "swordsdance",
+                  "protect"
+                ],
+                "baseAbility": "technician",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Scald",
+                  "id": "scald",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "149/170",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "raindance",
+                  "scald",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L50, F",
+            "hp": 52,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 120,
+              "spa": 75,
+              "spd": 100,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bulletpunch",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 149,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "scald",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 3"
+      ],
+      "turn": 5,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scizor|Swords Dance|p1a: Scizor",
+          "|-boost|p1a: Scizor|atk|2",
+          "|move|p2a: Slowbro|Recover|p2a: Slowbro",
+          "|-heal|p2a: Slowbro|170/170",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Swords Dance|p1a: Scizor",
+          "|-boost|p1a: Scizor|atk|2",
+          "|move|p2a: Slowbro|Recover|p2a: Slowbro",
+          "|-heal|p2a: Slowbro|170/170",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Swords Dance|p1a: Scizor",
+          "|-boost|p1a: Scizor|atk|2",
+          "|move|p2a: Slowbro|Recover|p2a: Slowbro",
+          "|-heal|p2a: Slowbro|170/170",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bullet Punch",
+                  "id": "bulletpunch",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L50, F",
+                "condition": "52/145",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 120,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 85
+                },
+                "moves": [
+                  "bulletpunch",
+                  "swordsdance",
+                  "protect"
+                ],
+                "baseAbility": "technician",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Scald",
+                  "id": "scald",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "raindance",
+                  "scald",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L50, F",
+            "hp": 52,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 120,
+              "spa": 75,
+              "spd": 100,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bulletpunch",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "scald",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 6,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Scizor|Bullet Punch|p2a: Slowbro",
+          "|debug|Base Power: 40",
+          "|debug|Technician boost",
+          "|-resisted|p2a: Slowbro|1",
+          "|-damage|p2a: Slowbro|125/170",
+          "|move|p2a: Slowbro|Recover|p2a: Slowbro",
+          "|-heal|p2a: Slowbro|170/170",
+          "|",
+          "|-weather|none",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Bullet Punch|p2a: Slowbro",
+          "|debug|Base Power: 40",
+          "|debug|Technician boost",
+          "|-resisted|p2a: Slowbro|1",
+          "|-damage|p2a: Slowbro|125/170",
+          "|move|p2a: Slowbro|Recover|p2a: Slowbro",
+          "|-heal|p2a: Slowbro|170/170",
+          "|",
+          "|-weather|none",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Scizor|Bullet Punch|p2a: Slowbro",
+          "|debug|Base Power: 40",
+          "|debug|Technician boost",
+          "|-resisted|p2a: Slowbro|1",
+          "|-damage|p2a: Slowbro|125/170",
+          "|move|p2a: Slowbro|Recover|p2a: Slowbro",
+          "|-heal|p2a: Slowbro|170/170",
+          "|",
+          "|-weather|none",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bullet Punch",
+                  "id": "bulletpunch",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L50, F",
+                "condition": "52/145",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 120,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 85
+                },
+                "moves": [
+                  "bulletpunch",
+                  "swordsdance",
+                  "protect"
+                ],
+                "baseAbility": "technician",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Scald",
+                  "id": "scald",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "raindance",
+                  "scald",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L50, F",
+            "hp": 52,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 120,
+              "spa": 75,
+              "spd": 100,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bulletpunch",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "scald",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

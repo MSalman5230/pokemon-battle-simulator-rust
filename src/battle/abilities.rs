@@ -123,7 +123,7 @@ impl Pokemon {
     pub(super) fn attack_modifier(&self, category: Category, move_type: &str) -> u32 {
         let ability = if self.active_ability() == "waterbubble" && move_type == "Water" {
             8192
-        } else if self.attack_boosts_type(move_type)
+        } else if self.low_hp_attack_boost(move_type).is_some()
             || (self.active_ability() == "firemane" && move_type == "Fire")
             || (category == Category::Physical
                 && self.active_ability() == "guts"
@@ -153,6 +153,19 @@ impl Pokemon {
         } else {
             native
         }
+    }
+
+    pub(super) fn low_hp_attack_boost(&self, move_type: &str) -> Option<&'static str> {
+        if self.hp * 3 > self.max_hp.get() {
+            return None;
+        }
+        Some(match (self.active_ability(), move_type) {
+            ("blaze", "Fire") => "Blaze boost",
+            ("torrent", "Water") => "Torrent boost",
+            ("overgrow", "Grass") => "Overgrow boost",
+            ("swarm", "Bug") => "Swarm boost",
+            _ => return None,
+        })
     }
 
     pub(super) fn transferable_item(
@@ -652,6 +665,17 @@ impl Battle {
             "Mold Breaker"
         };
         self.add(format!("|debug|{event} handler suppressed by {label}"));
+    }
+
+    pub(super) fn debug_suppressed_hook(&mut self, holder: Position, hook: &str) {
+        if self.format.report_exact_hp
+            && self.ability_suppressed(holder)
+            && DEX
+                .ability(&self.mon(holder).ability)
+                .is_some_and(|a| a.handlers.iter().any(|h| h == hook))
+        {
+            self.log_suppressed_ability(holder, &hook[2..]);
+        }
     }
 
     pub(super) fn event_ability(&self, holder: Position) -> &str {
