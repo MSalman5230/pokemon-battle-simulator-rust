@@ -59,11 +59,11 @@ steps/s for Showdown and 1,460 for Rust across five replays (4.37×). The
 [previous trace run](verified-trace-bss-result.json) measured 4.45× on the
 same workload hash.
 
-The [latest BSS trace milestone](verified-192-bss-result.json) at commit
-`3b50228` matched all 32 traces and 673 step replies. On the same workload,
-Showdown ran at 341.9 steps/s and Rust at 1,495.3 steps/s (4.37×). It also
+The [latest BSS trace milestone](verified-288-bss-result.json) at commit
+`2ca74fe` matched all 32 traces and 673 step replies. On the same workload,
+Showdown ran at 342.9 steps/s and Rust at 1,495.3 steps/s (4.36×). It also
 matched 2,856 steps in a separate 160-game diagnostic. The
-[previous run](verified-late-bss-result.json) at `97c3e03` measured 4.31×. The
+[previous run](verified-192-bss-result.json) at `3b50228` measured 4.37×. The
 [earlier expanded-audit run](verified-expanded-bss-result.json) at `48ac725`
 measured 4.32× and matched the same traces and replies.
 
@@ -132,6 +132,9 @@ The [expanded sample](verified-native-expanded-parity.json) matches all
 2,541 checkpoints in 96 completed games (`--games 32 --max-turns 60`).
 The [next sample](verified-native-192-parity.json) matches 5,585 checkpoints
 in 192 completed games (`--first-game 33 --games 64 --max-turns 90`).
+The [288-game sample](verified-native-288-parity.json) matches all 7,929
+checkpoints (`--first-game 97 --games 96 --max-turns 100`), with every game
+finishing naturally.
 This is a native parity sample and does not measure throughput or establish
 coverage of every move, ability, or item.
 
