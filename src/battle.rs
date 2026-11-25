@@ -229,6 +229,7 @@ pub struct Pokemon {
     pub ability: String,
     base_ability: String,
     ability_order: u32,
+    berserk_waits_for_hit: bool,
     pub pokeball: String,
     fallen_allies: u8,
     pub moves: Vec<MoveSlot>,
@@ -852,6 +853,7 @@ impl Pokemon {
             base_ability: ability.clone(),
             ability,
             ability_order: 0,
+            berserk_waits_for_hit: false,
             fallen_allies: 0,
             moves,
             pokeball: if pokeball.is_empty() {

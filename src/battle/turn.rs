@@ -14,7 +14,7 @@ pub(super) struct Position {
 }
 
 impl Position {
-    fn index(self) -> usize {
+    pub(super) fn index(self) -> usize {
         self.player.index() * 2 + self.slot
     }
 
@@ -1667,6 +1667,9 @@ impl Battle {
     }
 
     pub(super) fn start_ability(&mut self, pos: Position) {
+        if self.mon(pos).ability == "berserk" {
+            self.mon_mut(pos).berserk_waits_for_hit = false;
+        }
         if let Some(label) = match self.mon(pos).ability.as_str() {
             "pressure" => Some("Pressure"),
             "moldbreaker" => Some("Mold Breaker"),
@@ -3926,8 +3929,12 @@ impl Battle {
                     value
                 };
                 let value = self.focus_sash(target, value);
+                let berserk_waits = self.mon(target).ability == "berserk"
+                    && move_data.multihit.is_none()
+                    && !(sheer_force_removed && self.event_ability(source) == "sheerforce");
                 let turn = self.turn;
                 let mon = self.mon_mut(target);
+                mon.berserk_waits_for_hit = berserk_waits;
                 let landed = value.min(mon.hp);
                 mon.hp -= landed;
                 if landed > 0 {
@@ -4326,6 +4333,12 @@ impl Battle {
         self.each_event();
         let suppress_after_move = sheer_force_removed && self.event_ability(source) == "sheerforce";
         if !suppress_after_move {
+            self.berserk_after_move(
+                source,
+                &spread_targets,
+                landed_by_target,
+                (move_data.multihit.is_some() && !smart_target).then_some(total),
+            );
             for &target in &spread_targets {
                 let index = target.index();
                 self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
@@ -4855,6 +4868,7 @@ impl Pokemon {
                 | "sheerforce"
                 | "harvest"
                 | "pickup"
+                | "berserk"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

@@ -1063,6 +1063,11 @@ fn pickup_samples_adjacent_pokemon_that_consumed_items_this_turn() {
 }
 
 #[test]
+fn berserk_checks_half_hp_before_a_single_hit_triggers_sitrus_berry() {
+    replay(include_str!("fixtures/bss-berserk.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

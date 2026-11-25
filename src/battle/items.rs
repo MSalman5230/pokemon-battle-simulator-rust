@@ -146,7 +146,10 @@ impl Battle {
         if mon.hp == 0 || self.foe_unnerve(pos) {
             return;
         }
-        if mon.item == "sitrusberry" && mon.hp * 2 <= mon.max_hp.get() {
+        if mon.item == "sitrusberry"
+            && mon.hp * 2 <= mon.max_hp.get()
+            && (mon.ability != "berserk" || !mon.berserk_waits_for_hit)
+        {
             let amount = mon.max_hp.get() / 4;
             self.consume(pos, "Sitrus Berry", true);
             self.item_heal(pos, amount, "Sitrus Berry");

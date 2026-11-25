@@ -968,6 +968,10 @@ const pickupRosters = [
     [named('Espeon', ['Super Fang', 'Recover']),
         {...named('Vaporeon', ['Recover']), item:'Sitrus Berry'}],
 ];
+const berserkRosters = [
+    [{...named('Flareon', ['Seismic Toss', 'Double Kick']), item:'Life Orb'}],
+    [{...named('Drampa', ['Calm Mind', 'Recover']), ability:'Berserk', item:'Sitrus Berry'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1471,6 +1475,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         harvestRosters, 'bss-harvest'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1 2','move 1 2, move 1'],
         ['move 1, move 2','move 2, move 1']], pickupRosters, 'vgc-pickup'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['move 2','move 2']], berserkRosters, 'bss-berserk'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

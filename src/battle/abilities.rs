@@ -137,6 +137,33 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn berserk_after_move(
+        &mut self,
+        source: Position,
+        targets: &[Position],
+        damage: [u32; 4],
+        multihit_total: Option<u32>,
+    ) {
+        let mut holders = [(source, 0); 4];
+        let mut count = 0;
+        for &target in targets {
+            if self.mon(target).ability == "berserk" && self.active_effects(target) {
+                holders[count] = (target, self.mon(target).speed);
+                count += 1;
+            }
+        }
+        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for &(target, _) in &holders[..count] {
+            let mon = self.mon_mut(target);
+            mon.berserk_waits_for_hit = false;
+            let sustained = multihit_total.unwrap_or(damage[target.index()]);
+            let half = mon.max_hp.get() / 2;
+            if source != target && mon.hp != 0 && mon.hp <= half && mon.hp + sustained > half {
+                self.ability_boost(target, "Berserk", BoostStat::Spa, 1, false);
+            }
+        }
+    }
+
     pub(super) fn sheer_force_removes_secondaries(&self, source: Position, data: &Move) -> bool {
         !data.secondaries.is_empty()
             && !data.has_sheer_force_boost
