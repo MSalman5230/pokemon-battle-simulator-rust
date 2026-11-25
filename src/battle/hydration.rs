@@ -371,6 +371,7 @@ impl WorldSide {
             };
             match e.id.as_str() {
                 "typechange" | "stall" | "lightscreen" | "reflect" => {}
+                "curse" => mon.track_volatile("curse"),
                 "taunt" => {
                     mon.taunt = remaining(3);
                     mon.track_volatile("taunt");

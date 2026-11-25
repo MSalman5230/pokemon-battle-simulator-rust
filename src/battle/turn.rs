@@ -239,7 +239,7 @@ impl Battle {
                         mon.moves.iter().enumerate().map(|(move_slot, m)| {
                             let mut request = json!({
                                 "move": m.move_data.name, "id": m.id, "pp": m.pp, "maxpp": m.max_pp,
-                                "target": m.move_data.target, "disabled": self.move_disabled_in_request(player, slot, move_slot),
+                                "target": mon.requested_target(m.move_data), "disabled": self.move_disabled_in_request(player, slot, move_slot),
                             });
                             if let Some(source) = self.disable_source(pos, move_slot) {
                                 request["disabledSource"] = json!(source);
@@ -566,7 +566,9 @@ impl Battle {
                         && !self.mon(action.actor.unwrap()).hard_locked()
                     {
                         let source = action.actor.unwrap();
-                        let kind = self.move_data(source, move_slot).target;
+                        let kind = self
+                            .mon(source)
+                            .requested_target(self.move_data(source, move_slot));
                         let target = self
                             .random_target(source, kind)
                             .map_or(0, |p| p.loc(source));
@@ -960,6 +962,7 @@ impl Battle {
                     | "ceaselessedge"
                     | "defog"
                     | "pollenpuff"
+                    | "curse"
                     | "grassyglide"
                     | "encore"
                     | "tidyup"
@@ -1061,7 +1064,7 @@ impl Battle {
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
-        let kind = info.move_data.target;
+        let kind = self.mon(actor).requested_target(info.move_data);
         let target = target.unwrap_or(0);
         if kind.is_choosable() {
             if (target == 0 && self.slots() > 1 && !matches!(selection, MoveChoice::Auto))
@@ -1100,7 +1103,7 @@ impl Battle {
                     action.priority.priority = action.fractional_priority;
                 } else {
                     let data = self.move_data(source, move_slot);
-                    self.resolve_target(source, data.target, target);
+                    self.resolve_target(source, move_base_target(data, source, target), target);
                     action.priority.priority =
                         f64::from(self.move_priority(source, data)) + action.fractional_priority;
                 }
@@ -1207,7 +1210,9 @@ impl Battle {
     fn replace_queued_move(&mut self, queue: &mut Vec<Action>, actor: Position, move_slot: usize) {
         queue.retain(|q| q.actor != Some(actor) || matches!(q.kind, ActionKind::RunSwitch));
         self.mon_mut(actor).speed = self.field_speed(actor);
-        let kind = self.move_data(actor, move_slot).target;
+        let kind = self
+            .mon(actor)
+            .requested_target(self.move_data(actor, move_slot));
         let target = self
             .random_target(actor, kind)
             .map_or(0, |pos| pos.loc(actor));
@@ -1793,6 +1798,7 @@ impl Battle {
             Yawn,
             Wish,
             LeechSeed,
+            Curse,
             SaltCure,
             PartialTrap,
             Taunt,
@@ -1909,6 +1915,9 @@ impl Battle {
             }
             if mon.seeded_from.is_some() {
                 timers.push((pos, Effect::LeechSeed, priority(8, 2)));
+            }
+            if mon.volatile_ids().contains(&"curse") {
+                timers.push((pos, Effect::Curse, priority(12, 2)));
             }
             for &id in mon.volatile_ids() {
                 let effect = match id {
@@ -2037,6 +2046,15 @@ impl Battle {
                     self.tick_leech_seed(pos);
                     if self.check_win() {
                         return;
+                    }
+                }
+                Effect::Curse => {
+                    self.indirect_damage(pos, 4, "|[from] Curse");
+                    if self.mon(pos).hp == 0 {
+                        self.mark_fainted(pos);
+                        if self.check_win() {
+                            return;
+                        }
                     }
                 }
                 Effect::SaltCure => {
@@ -2267,8 +2285,10 @@ impl Battle {
             }
         };
         let source_name = self.ident(source);
+        let curse = move_data.name == "Curse";
+        let base_target = move_base_target(move_data, source, loc);
         let original_target =
-            forced_target.or_else(|| self.resolve_target(source, move_data.target, loc));
+            forced_target.or_else(|| self.resolve_target(source, base_target, loc));
         let mut target = retaliation_hit.map(|hit| hit.source).or(original_target);
         if move_data.name == "Chilly Reception"
             && self.mon(source).volatile_ids().contains(&"chillyreception")
@@ -2350,6 +2370,22 @@ impl Battle {
             self.random_target(source, TargetKind::AllAdjacentFoes);
             target = self.random_target(source, TargetKind::AllAdjacentFoes);
             TargetKind::AllAdjacentFoes
+        } else if curse {
+            if self.format.report_exact_hp {
+                self.add("|debug|Curse onModifyMove triggered");
+            }
+            let kind = if !self.mon(source).has_type("Ghost") {
+                TargetKind::User
+            } else if target.is_none_or(|pos| pos.player == source.player && pos != source) {
+                TargetKind::RandomNormal
+            } else {
+                base_target
+            };
+            if kind != base_target {
+                self.random_target(source, kind);
+                target = self.random_target(source, kind);
+            }
+            kind
         } else {
             move_data.target
         };
@@ -3188,6 +3224,34 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
+                if curse {
+                    let ghost = self.mon(source).has_type("Ghost");
+                    if self.format.report_exact_hp {
+                        self.add("|debug|Curse onTryHit triggered");
+                    }
+                    if !ghost || !self.mon(target).volatile_ids().contains(&"curse") {
+                        if self.format.report_exact_hp {
+                            self.add("|debug|Curse onHit triggered");
+                        }
+                        succeeded = if ghost {
+                            self.apply_curse(source, target)
+                        } else {
+                            self.boost(
+                                source,
+                                &[
+                                    (BoostStat::Spe, -1),
+                                    (BoostStat::Atk, 1),
+                                    (BoostStat::Def, 1),
+                                ],
+                                false,
+                            )
+                        };
+                    }
+                    if !succeeded {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if move_data.name == "Defog" {
                     if self.defog(source, target, move_data) {
                         succeeded = true;
@@ -3417,6 +3481,9 @@ impl Battle {
             }
             if any_success {
                 self.each_event();
+                if curse && self.mon(source).hp == 0 {
+                    self.mark_fainted(source);
+                }
                 self.each_event();
             }
             return true;
@@ -4066,6 +4133,28 @@ impl Battle {
         }
     }
 
+    fn apply_curse(&mut self, source: Position, mut target: Position) -> bool {
+        let mon = self.mon_mut(source);
+        let cost = (mon.max_hp.get() / 2).max(1);
+        mon.hp = mon.hp.saturating_sub(cost);
+        self.add_health_line("-damage", source, false);
+        if source.player == target.player {
+            let Some(foe) = self.random_target(source, TargetKind::Normal) else {
+                return false;
+            };
+            target = foe;
+        }
+        let mon = self.mon_mut(target);
+        mon.untrack_volatile("curse");
+        mon.track_volatile("curse");
+        self.add(format!(
+            "|-start|{}|Curse|[of] {}",
+            self.ident(target),
+            self.ident(source)
+        ));
+        true
+    }
+
     pub(super) fn half_max_hp_recoil(&mut self, pos: Position, effect: &str) {
         let mon = self.mon_mut(pos);
         if mon.hp != 0 && mon.ability != "magicguard" {
@@ -4280,7 +4369,25 @@ impl Battle {
     }
 }
 
+fn move_base_target(data: &Move, source: Position, loc: i8) -> TargetKind {
+    if data.name == "Curse" && loc == source.loc(source) {
+        // Champions locks in this self target while resolving the action.
+        // The hit callback still checks the user's type at its own step.
+        TargetKind::User
+    } else {
+        data.target
+    }
+}
+
 impl Pokemon {
+    fn requested_target(&self, data: &Move) -> TargetKind {
+        if data.name == "Curse" && !self.has_type("Ghost") {
+            TargetKind::User
+        } else {
+            data.target
+        }
+    }
+
     fn forced_move(&self) -> Option<(usize, &str, &str)> {
         if self.recharge > 0 {
             Some((RECHARGE_SLOT, "Recharge", "recharge"))

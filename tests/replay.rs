@@ -897,6 +897,12 @@ fn beak_blast_burns_contact_only_while_preparing() {
 }
 
 #[test]
+fn curse_retargets_by_type_and_persists_until_the_victim_leaves() {
+    replay(include_str!("fixtures/bss-ghost-curse.json"));
+    replay(include_str!("fixtures/vgc-curse-targets.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
