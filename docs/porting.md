@@ -119,6 +119,11 @@ entry points and repeated BSS and VGC controls. This includes Custom Game
 debug output, but uses a modern roster pool. It does not establish complete
 National Dex transfer or legacy battle coverage.
 
+A separate [72-game NatDex Draft sample](../benchmarks/verified-native-legacy-72-parity.json)
+uses six native-validated legacy rosters. It matched all 3,609 checkpoints,
+including 79 Z-Move uses, 46 Primal Reversions, 16 Ultra Bursts, and 32 Mega
+Evolutions. All games finished naturally.
+
 The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
 markers. Its hypothetical damage calculator runs in an isolated battle and
 reuses the native damage formula. Tests compare each enumerated damage roll,

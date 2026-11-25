@@ -172,6 +172,19 @@ turn caps. Replaying the four non-overlapping samples together matches all
 These are native parity samples and do not measure throughput or establish
 coverage of every move, ability, or item.
 
+The [legacy NatDex Draft sample](verified-native-legacy-72-parity.json)
+matches 3,609 checkpoints in 72 completed games. It uses six native-validated
+rosters and an opt-in choice sampler that also chooses Z-Moves and Ultra Burst
+from the native request. Regenerate and replay it with the pinned oracle.
+
+```sh
+node scripts/capture-wide-native.mjs .tools/wide-native-legacy-72.jsonl \
+  --teams benchmarks/native-legacy-rosters.json --special-actions \
+  --games 72 --first-game 65 --max-turns 180
+CHAMPIONS_NATIVE_CORPUS=.tools/wide-native-legacy-72.jsonl \
+  cargo test --locked --test replay wide_native -- --ignored --nocapture
+```
+
 ## Profile adapter overhead
 
 `benchmarks/profile-oracle.mjs` runs the locked worker's `Game` in-process
