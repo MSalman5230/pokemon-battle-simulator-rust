@@ -458,6 +458,14 @@ const openSheetRosters = [[
     {...named('Rotom-Wash', ['Protect', 'Thunderbolt'], 'N'), ability: 'Levitate', nature: 'Timid'},
     ...rosters[0].slice(2),
 ], rosters[1]];
+const wishRosters = [
+    [named('Vaporeon', ['Wish']), named('Glaceon', ['Wish', 'Recover'])],
+    [named('Snorlax', ['Tackle']), named('Umbreon', ['Recover'])],
+];
+const tailwindRosters = [
+    [named('Whimsicott', ['Tailwind', 'Recover']), named('Snorlax', ['Tackle'])],
+    [named('Umbreon', ['Tackle']), named('Espeon', ['Recover', 'Court Change'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -682,6 +690,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['>show-openteamsheets'], ['team 1234', 'team 1234'], ['>show-openteamsheets']],
         openSheetRosters, 'vgc-open-sheets'],
     ['vgc2026regmcbo3', [['team 1234', 'team 1234']], openSheetRosters, 'vgc-forced-open-sheets'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['switch 2', 'move 1'],
+        ['move 1', 'move 1'], ['move 1', 'move 1']], wishRosters, 'bss-wish'],
+    ['vgc2026regmc', [['team 12', 'team 12'], ['move 1, move 1 1', 'move 1 2, move 1'],
+        ['move 2, move 1 1', 'move 1 2, move 2'], ['move 2, move 1 1', 'move 1 2, move 1'],
+        ['move 2, move 1 1', 'move 1 2, move 1']], tailwindRosters, 'vgc-tailwind'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

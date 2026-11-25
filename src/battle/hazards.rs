@@ -88,11 +88,14 @@ impl Battle {
             .all(|&duration| duration == 0)
             && p1.hazards.is_empty()
             && p2.hazards.is_empty()
+            && p1.tailwind == 0
+            && p2.tailwind == 0
         {
             return false;
         }
         std::mem::swap(&mut p1.screens, &mut p2.screens);
         std::mem::swap(&mut p1.hazards, &mut p2.hazards);
+        std::mem::swap(&mut p1.tailwind, &mut p2.tailwind);
         self.add("|-swapsideconditions");
         self.add(format!(
             "|-activate|{}|move: Court Change",

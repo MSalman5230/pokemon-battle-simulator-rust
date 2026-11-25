@@ -30,6 +30,7 @@ use hazards::Hazard;
 use rampage::Rampage;
 use screens::Screen;
 mod status;
+mod support;
 mod terrain;
 mod trap;
 mod turn;
@@ -148,6 +149,8 @@ struct Side {
     hazards: Vec<(Hazard, u8)>,
     mega_used: bool,
     screens: [u8; 3],
+    wishes: [Option<support::Wish>; 2],
+    tailwind: u8,
 }
 
 pub struct Pokemon {
@@ -470,6 +473,8 @@ impl Battle {
             hazards: Vec::new(),
             mega_used: false,
             screens: [0; 3],
+            wishes: [None; 2],
+            tailwind: 0,
         });
         self.rng = rng;
         if self.sides.iter().all(Option::is_some) {

@@ -820,6 +820,8 @@ impl Battle {
                     | "eruption"
                     | "waterspout"
                     | "dragonenergy"
+                    | "wish"
+                    | "tailwind"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1326,7 +1328,10 @@ impl Battle {
 
     pub(super) fn field_speed(&self, pos: Position) -> i32 {
         self.stat_rules.truncation.action_speed(
-            self.mon(pos).current_speed(self.effective_weather()),
+            self.mon(pos).current_speed(
+                self.effective_weather(),
+                self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0,
+            ),
             (self.trick_room > 0) ^ self.twisted_dimension,
         )
     }
@@ -1372,11 +1377,13 @@ impl Battle {
             SpeedBoost,
             Roost,
             Yawn,
+            Wish,
             LeechSeed,
             Taunt,
             Encore,
             Disable,
             Screen(Screen),
+            Tailwind,
             TrickRoom,
             Terrain,
             GrassyHeal,
@@ -1427,6 +1434,17 @@ impl Battle {
             ));
         }
         for player in Player::ALL {
+            if self.sides[player.index()].as_ref().unwrap().tailwind > 0 {
+                timers.push((
+                    Position { player, slot: 0 },
+                    Effect::Tailwind,
+                    Priority {
+                        order: 26,
+                        sub_order: 5,
+                        ..Priority::default()
+                    },
+                ));
+            }
             for screen in Screen::ALL {
                 if self.has_screen(player, screen) {
                     timers.push((
@@ -1469,6 +1487,9 @@ impl Battle {
             }
             if mon.yawn.is_some() {
                 timers.push((pos, Effect::Yawn, priority(23, 2)));
+            }
+            if self.sides[pos.player.index()].as_ref().unwrap().wishes[pos.slot].is_some() {
+                timers.push((pos, Effect::Wish, priority(4, 3)));
             }
             if mon.seeded_from.is_some() {
                 timers.push((pos, Effect::LeechSeed, priority(8, 2)));
@@ -1523,6 +1544,14 @@ impl Battle {
                 self.tick_screen(pos.player, screen);
                 continue;
             }
+            if matches!(effect, Effect::Tailwind) {
+                self.tick_tailwind(pos.player);
+                continue;
+            }
+            if matches!(effect, Effect::Wish) {
+                self.tick_wish(pos);
+                continue;
+            }
             if matches!(effect, Effect::TrickRoom) {
                 self.trick_room -= 1;
                 if self.trick_room == 0 {
@@ -1544,7 +1573,12 @@ impl Battle {
                     self.item_heal(pos, amount, "Leftovers");
                 }
                 Effect::WhiteHerb => self.white_herb(pos),
-                Effect::Weather | Effect::Screen(_) | Effect::TrickRoom | Effect::Terrain => {
+                Effect::Weather
+                | Effect::Screen(_)
+                | Effect::TrickRoom
+                | Effect::Terrain
+                | Effect::Wish
+                | Effect::Tailwind => {
                     unreachable!()
                 }
                 Effect::GrassyHeal => self.grassy_heal(pos),
@@ -1951,6 +1985,14 @@ impl Battle {
                 self.protean_prepare(source, move_type);
             }
             if !self.set_screen(source, screen) {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+            }
+            return true;
+        }
+        if move_data.name == "Tailwind" {
+            self.protean_prepare(source, move_type);
+            if !self.start_tailwind(source.player) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             }
@@ -2387,6 +2429,14 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Wish" {
+                    if self.start_wish(source) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if matches!(
                     move_data.name.as_str(),
                     "Skill Swap" | "Trick" | "Switcheroo"
@@ -3308,8 +3358,11 @@ impl Pokemon {
         }
     }
 
-    fn current_speed(&self, weather: Option<Weather>) -> u32 {
+    fn current_speed(&self, weather: Option<Weather>, tailwind: bool) -> u32 {
         let mut stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
+        if tailwind {
+            stat *= 2;
+        }
         if matches!(
             (self.ability.as_str(), weather),
             ("swiftswim", Some(Weather::Rain))

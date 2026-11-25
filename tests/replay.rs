@@ -570,3 +570,13 @@ fn vgc_open_sheets_show_no_private_stats_and_only_before_turn_one() {
 fn vgc_bo3_battle_emits_forced_open_sheets_in_preview() {
     replay(include_str!("fixtures/vgc-forced-open-sheets.json"));
 }
+
+#[test]
+fn bss_wish_heals_the_incoming_slot_from_the_original_wishers_hp() {
+    replay(include_str!("fixtures/bss-wish.json"));
+}
+
+#[test]
+fn vgc_tailwind_reorders_pending_moves_and_court_change_transfers_it() {
+    replay(include_str!("fixtures/vgc-tailwind.json"));
+}
