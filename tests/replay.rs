@@ -1937,6 +1937,15 @@ fn inherited_damage_callbacks_keep_roll_timing_and_current_state() {
 }
 
 #[test]
+fn inherited_typed_items_supply_power_and_respect_suppression_and_consumption() {
+    replay(include_str!("fixtures/natdex-judgment-and-plate.json"));
+    replay(include_str!("fixtures/natdex-multi-attack-memory.json"));
+    replay(include_str!("fixtures/natdex-techno-blast-drive.json"));
+    replay(include_str!("fixtures/natdex-masked-ivy-cudgel.json"));
+    replay(include_str!("fixtures/custom-natural-gift-recycle.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

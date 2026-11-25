@@ -1736,6 +1736,26 @@ const legacySecretRosters = [
     [{...named('Smeargle', ['Secret Power', 'Grassy Terrain', 'Misty Terrain', 'Psychic Terrain']), ability:'Own Tempo'}],
     [{...named('Chansey', ['Life Dew']), ability:'Natural Cure'}],
 ];
+const legacyPlateRosters = [
+    [{...named('Arceus-Water', ['Judgment', 'Recover']), ability:'Multitype', item:'Splash Plate'}],
+    [{...named('Porygon2', ['Magic Room', 'Trick', 'Recover']), ability:'Analytic'}],
+];
+const legacyMemoryRosters = [
+    [{...named('Silvally-Water', ['Multi-Attack']), ability:'RKS System', item:'Water Memory'}],
+    [{...named('Vaporeon', ['Magic Room', 'Recover']), ability:'Water Absorb'}],
+];
+const legacyDriveRosters = [
+    [{...named('Genesect-Douse', ['Techno Blast']), ability:'Download', item:'Douse Drive'}],
+    [named('Flareon', ['Recover'])],
+];
+const legacyIvyRosters = [
+    [{...named('Ogerpon-Hearthflame', ['Ivy Cudgel']), ability:'Mold Breaker', item:'Hearthflame Mask'}],
+    [named('Leafeon', ['Recover'])],
+];
+const legacyGiftRosters = [
+    [{...named('Smeargle', ['Natural Gift', 'Recycle']), ability:'Own Tempo', item:'Apicot Berry'}],
+    [named('Jolteon', ['Protect', 'Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3108,6 +3128,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['natdexdraft', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1'], ['move 1','move 1'],
         ['move 3','move 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 4','move 1'], ['move 1','move 1'], ['move 1','move 1']],
         legacySecretRosters, 'natdex-secret-power-terrain'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 2','move 1'],
+        ['move 1','move 3']], legacyPlateRosters, 'natdex-judgment-and-plate'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        legacyMemoryRosters, 'natdex-multi-attack-memory'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1']], legacyDriveRosters, 'natdex-techno-blast-drive'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1']], legacyIvyRosters, 'natdex-masked-ivy-cudgel'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'],
+        ['move 2','move 2'], ['move 1','move 2']], legacyGiftRosters, 'custom-natural-gift-recycle'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

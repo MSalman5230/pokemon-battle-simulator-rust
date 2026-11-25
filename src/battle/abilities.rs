@@ -183,6 +183,7 @@ impl Pokemon {
 
     pub(super) fn can_transfer_item(&self, item: &crate::dex::Item) -> bool {
         !item.unremovable
+            && item.protected_form_base.as_deref() != Some(self.base_species.base_species.as_str())
             && !(item.is_primal_orb
                 && item
                     .item_user
@@ -197,6 +198,29 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn download_boost(&mut self, source: Position) {
+        let (def_stage, spd_stage) = if self.wonder_room != 0 {
+            (BoostStat::Spd, BoostStat::Def)
+        } else {
+            (BoostStat::Def, BoostStat::Spd)
+        };
+        let (def, spd) = self
+            .positions()
+            .filter(|&pos| pos.player != source.player && self.mon(pos).hp > 0)
+            .fold((0, 0), |(def, spd), pos| {
+                let mon = self.mon(pos);
+                (
+                    def + crate::mechanics::boosted_stat(mon.stats.def, mon.boosts.get(def_stage)),
+                    spd + crate::mechanics::boosted_stat(mon.stats.spd, mon.boosts.get(spd_stage)),
+                )
+            });
+        if def != 0 && def >= spd {
+            self.ability_boost(source, "Download", BoostStat::Spa, 1, true);
+        } else if spd != 0 {
+            self.ability_boost(source, "Download", BoostStat::Atk, 1, true);
+        }
+    }
+
     pub(super) fn move_makes_contact(&self, source: Position, data: &Move) -> bool {
         data.flags.contains_key("contact")
             && (self.mon(source).active_ability() != "longreach"

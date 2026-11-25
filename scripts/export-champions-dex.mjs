@@ -121,13 +121,23 @@ const data = mod => {
                 noEntrain: !!e.flags?.noentrain || undefined,
                 noRolePlay: !!e.flags?.failroleplay || undefined,
                 noSkillSwap: !!e.flags?.failskillswap || undefined})),
-        items: table(dex.items.all(), e =>
-            ({...props(e, ['name', 'isNonstandard', 'megaStone', 'zMoveType', 'zMoveFrom', 'itemUser']),
+        items: table(dex.items.all(), e => {
+            const mask = ['wellspringmask', 'hearthflamemask', 'cornerstonemask'].includes(e.id);
+            const plate = e.onPlate && !e.zMove;
+            return {...props(e, ['name', 'isNonstandard', 'megaStone', 'zMoveType', 'zMoveFrom', 'itemUser']),
                 isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined, fling: flingData(e),
                 inertHeldItem: inertHeldItem(e) || undefined,
                 zMove: e.zMove || undefined, unremovable: e.onTakeItem === false || undefined,
                 isPrimalOrb: e.isPrimalOrb || undefined,
-                handlers: handlers(e)})),
+                plateType: plate ? e.onPlate : undefined,
+                plateBoost: plate && typeof e.onBasePower === 'function' || undefined,
+                driveType: e.onDrive || undefined,
+                memoryType: e.onMemory || undefined,
+                maskForm: mask ? e.forcedForme : undefined,
+                protectedFormBase: plate ? 'Arceus' : e.onDrive ? 'Genesect' : e.onMemory ? 'Silvally' : mask ? 'Ogerpon' : undefined,
+                naturalGift: e.naturalGift || undefined,
+                handlers: handlers(e)};
+        }),
         natures: table(dex.natures.all(), e => props(e, ['plus', 'minus'])),
         types: table(dex.types.all(), e => props(e, ['damageTaken'])),
         aliases: sorted([...Dex.loadAliases()]),

@@ -1015,6 +1015,11 @@ impl Battle {
                     | "punishment"
                     | "trumpcard"
                     | "secretpower"
+                    | "judgment"
+                    | "multiattack"
+                    | "technoblast"
+                    | "ivycudgel"
+                    | "naturalgift"
                     | "round"
                     | "swift"
                     | "surf"
@@ -2347,6 +2352,7 @@ impl Battle {
             self.frisk(pos);
         }
         match self.event_ability(pos) {
+            "download" => self.download_boost(pos),
             "anticipation" => self.anticipation(pos),
             "forewarn" => self.forewarn(pos),
             _ => {}
@@ -3649,6 +3655,15 @@ impl Battle {
             "Spit Up" => u16::from(self.mon(source).stockpile.layers) * 100,
             _ => move_data.base_power,
         };
+        let typed_item = matches!(
+            move_data.name.as_str(),
+            "Judgment" | "Multi-Attack" | "Techno Blast" | "Natural Gift"
+        )
+        .then(|| DEX.item(self.format.dex_mod, self.mon(source).effective_item()))
+        .flatten();
+        let gift = typed_item
+            .and_then(|item| item.natural_gift.as_ref())
+            .filter(|_| move_data.name == "Natural Gift");
         let (mut move_type, converted) = if damaging_z {
             (move_data.move_type.as_str(), false)
         } else if struggle {
@@ -3661,6 +3676,39 @@ impl Battle {
             (self.mon(source).hidden_power_type(), false)
         } else if move_data.name == "Revelation Dance" {
             (self.mon(source).types().next().unwrap_or("Normal"), false)
+        } else if move_data.name == "Judgment" {
+            (
+                typed_item
+                    .and_then(|item| item.plate_type.as_deref())
+                    .unwrap_or("Normal"),
+                false,
+            )
+        } else if move_data.name == "Multi-Attack" {
+            (
+                typed_item
+                    .and_then(|item| item.memory_type.as_deref())
+                    .unwrap_or("Normal"),
+                false,
+            )
+        } else if move_data.name == "Techno Blast" {
+            (
+                typed_item
+                    .and_then(|item| item.drive_type.as_deref())
+                    .unwrap_or("Normal"),
+                false,
+            )
+        } else if move_data.name == "Natural Gift" {
+            (gift.map_or("Normal", |gift| gift.typing.as_str()), false)
+        } else if move_data.name == "Ivy Cudgel" {
+            (
+                match self.mon(source).species.name.as_str() {
+                    "Ogerpon-Wellspring" | "Ogerpon-Wellspring-Tera" => "Water",
+                    "Ogerpon-Hearthflame" | "Ogerpon-Hearthflame-Tera" => "Fire",
+                    "Ogerpon-Cornerstone" | "Ogerpon-Cornerstone-Tera" => "Rock",
+                    _ => "Grass",
+                },
+                false,
+            )
         } else if move_data.name == "Aura Wheel"
             && self.mon(source).species.name == "Morpeko-Hangry"
         {
@@ -5004,7 +5052,7 @@ impl Battle {
         } else {
             None
         };
-        let power = thrown_item
+        let mut power = thrown_item
             .and_then(|item| item.fling.as_ref())
             .map_or(power, |fling| fling.base_power);
         let fling_secondary = thrown_item
@@ -5013,6 +5061,24 @@ impl Battle {
             .filter(|effect| effect.status.is_some() || effect.volatile_status.is_some());
         if !delayed {
             self.protean_prepare(source, move_type);
+        }
+        if move_data.name == "Natural Gift" {
+            let Some(gift) = gift else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+                return true;
+            };
+            power = gift.base_power;
+            if self.format.report_exact_hp {
+                self.add(format!("|debug|BP: {power}"));
+            }
+            self.use_natural_gift_item(source);
+        }
+        if move_data.name == "Ivy Cudgel" && move_type != "Grass" {
+            self.log[base]
+                .public
+                .push_str(&format!("|[anim] Ivy Cudgel {move_type}"));
         }
         if shell_side_arm && spread_targets[0].player != source.player {
             self.log[base]
@@ -8419,6 +8485,9 @@ impl Pokemon {
                 | "cloudnine"
                 | "airlock"
                 | "deltastream"
+                | "multitype"
+                | "rkssystem"
+                | "download"
                 | "desolateland"
                 | "primordialsea"
                 | "stancechange"
@@ -8564,6 +8633,7 @@ impl Pokemon {
                 .is_none_or(|item| {
                     item.mega_stone.is_none()
                         && item.z_move.is_none()
+                        && item.protected_form_base.is_none()
                         && !item.is_primal_orb
                         && !item.inert_held_item
                 })

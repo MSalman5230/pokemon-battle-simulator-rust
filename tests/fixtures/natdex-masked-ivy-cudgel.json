@@ -1,0 +1,638 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Ogerpon-Hearthflame\",\"moves\":[\"Ivy Cudgel\"],\"gender\":\"F\",\"name\":\"Ogerpon-Hearthflame\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Mold Breaker\",\"item\":\"Hearthflame Mask\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Leafeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Leafeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Ogerpon-Hearthflame, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Ogerpon-Hearthflame, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Ogerpon-Hearthflame, L50, F|",
+          "|poke|p2|Leafeon, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ogerpon",
+                "details": "Ogerpon-Hearthflame, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 104,
+                  "spa": 80,
+                  "spd": 116,
+                  "spe": 130
+                },
+                "moves": [
+                  "ivycudgel"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "hearthflamemask",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ogerpon",
+            "species": "Ogerpon-Hearthflame",
+            "details": "Ogerpon-Hearthflame, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 104,
+              "spa": 80,
+              "spd": 116,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "hearthflamemask",
+            "active": false,
+            "moves": [
+              {
+                "id": "ivycudgel",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Ogerpon|Ogerpon-Hearthflame, L50, F|100/100",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|100/100",
+          "|-ability|p1a: Ogerpon|Mold Breaker",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Ogerpon|Ogerpon-Hearthflame, L50, F|155/155",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|100/100",
+          "|-ability|p1a: Ogerpon|Mold Breaker",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Ogerpon|Ogerpon-Hearthflame, L50, F|100/100",
+          "|switch|p2a: Leafeon|Leafeon, L50, F|140/140",
+          "|-ability|p1a: Ogerpon|Mold Breaker",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ivy Cudgel",
+                  "id": "ivycudgel",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ogerpon",
+                "details": "Ogerpon-Hearthflame, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 104,
+                  "spa": 80,
+                  "spd": 116,
+                  "spe": 130
+                },
+                "moves": [
+                  "ivycudgel"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "hearthflamemask",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ogerpon",
+            "species": "Ogerpon-Hearthflame",
+            "details": "Ogerpon-Hearthflame, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 104,
+              "spa": 80,
+              "spd": 116,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "hearthflamemask",
+            "active": true,
+            "moves": [
+              {
+                "id": "ivycudgel",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Ogerpon|Ivy Cudgel|p2a: Leafeon|[anim] Ivy Cudgel Fire",
+          "|-supereffective|p2a: Leafeon|1",
+          "|-damage|p2a: Leafeon|4/100",
+          "|move|p2a: Leafeon|Recover|p2a: Leafeon",
+          "|-heal|p2a: Leafeon|54/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Ogerpon|Ivy Cudgel|p2a: Leafeon|[anim] Ivy Cudgel Fire",
+          "|-supereffective|p2a: Leafeon|1",
+          "|-damage|p2a: Leafeon|4/100",
+          "|move|p2a: Leafeon|Recover|p2a: Leafeon",
+          "|-heal|p2a: Leafeon|54/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Ogerpon|Ivy Cudgel|p2a: Leafeon|[anim] Ivy Cudgel Fire",
+          "|-supereffective|p2a: Leafeon|1",
+          "|-damage|p2a: Leafeon|6/140",
+          "|move|p2a: Leafeon|Recover|p2a: Leafeon",
+          "|-heal|p2a: Leafeon|76/140",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ivy Cudgel",
+                  "id": "ivycudgel",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ogerpon",
+                "details": "Ogerpon-Hearthflame, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 104,
+                  "spa": 80,
+                  "spd": 116,
+                  "spe": 130
+                },
+                "moves": [
+                  "ivycudgel"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "hearthflamemask",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Leafeon",
+                "details": "Leafeon, L50, F",
+                "condition": "76/140",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 150,
+                  "spa": 80,
+                  "spd": 85,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ogerpon",
+            "species": "Ogerpon-Hearthflame",
+            "details": "Ogerpon-Hearthflame, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 104,
+              "spa": 80,
+              "spd": 116,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "hearthflamemask",
+            "active": true,
+            "moves": [
+              {
+                "id": "ivycudgel",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Leafeon",
+            "species": "Leafeon",
+            "details": "Leafeon, L50, F",
+            "hp": 76,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 150,
+              "spa": 80,
+              "spd": 85,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

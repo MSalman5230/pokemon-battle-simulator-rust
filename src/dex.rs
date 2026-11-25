@@ -299,11 +299,27 @@ pub struct Item {
     pub unremovable: bool,
     #[serde(default)]
     pub is_primal_orb: bool,
+    pub plate_type: Option<String>,
+    #[serde(default)]
+    pub plate_boost: bool,
+    pub drive_type: Option<String>,
+    pub memory_type: Option<String>,
+    pub mask_form: Option<String>,
+    pub protected_form_base: Option<String>,
+    pub natural_gift: Option<NaturalGift>,
     pub z_move: Option<ItemZMove>,
     pub z_move_type: Option<String>,
     pub z_move_from: Option<String>,
     pub item_user: Option<Vec<String>>,
     pub fling: Option<Fling>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct NaturalGift {
+    pub base_power: u16,
+    #[serde(rename = "type")]
+    pub typing: String,
 }
 
 #[derive(Debug, Clone, Deserialize)]

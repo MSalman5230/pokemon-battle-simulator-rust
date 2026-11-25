@@ -1049,6 +1049,14 @@ impl Battle {
         item
     }
 
+    pub(super) fn use_natural_gift_item(&mut self, pos: Position) {
+        let item = self.lose_held_item(pos);
+        let mon = self.mon_mut(pos);
+        mon.last_item = item;
+        mon.used_item_this_turn = true;
+        self.symbiosis_after_item(pos);
+    }
+
     pub(super) fn recycle_item(&mut self, pos: Position) -> bool {
         let mon = self.mon(pos);
         if !mon.item.is_empty() {
@@ -1189,13 +1197,14 @@ impl Pokemon {
         category: crate::dex::Category,
     ) -> u32 {
         use crate::dex::Category;
+        let held = self.effective_item();
         if matches!(
-            (self.effective_item(), category),
+            (held, category),
             ("wiseglasses", Category::Special) | ("muscleband", Category::Physical)
         ) {
             4505
         } else if matches!(
-            (self.effective_item(), move_type),
+            (held, move_type),
             ("mysticwater", "Water")
                 | ("miracleseed", "Grass")
                 | ("charcoal", "Fire")
@@ -1214,7 +1223,17 @@ impl Pokemon {
                 | ("silkscarf", "Normal")
                 | ("silverpowder", "Bug")
                 | ("twistedspoon", "Psychic")
-        ) {
+        ) || (held.ends_with("plate") || held.ends_with("mask"))
+            && DEX
+                .item(crate::dex::Mod::Champions, held)
+                .is_some_and(|item| {
+                    item.plate_boost && item.plate_type.as_deref() == Some(move_type)
+                        || item
+                            .mask_form
+                            .as_ref()
+                            .is_some_and(|form| self.base_species.name.starts_with(form))
+                })
+        {
             4915
         } else {
             4096

@@ -1,0 +1,889 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Silvally-Water\",\"moves\":[\"Multi-Attack\"],\"gender\":\"F\",\"name\":\"Silvally-Water\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"RKS System\",\"item\":\"Water Memory\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Magic Room\",\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Water Absorb\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Silvally-Water, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Silvally-Water, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Silvally-Water, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Silvally",
+                "details": "Silvally-Water, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "watermemory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "magicroom",
+                  "recover"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally-Water",
+            "details": "Silvally-Water, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "watermemory",
+            "active": false,
+            "moves": [
+              {
+                "id": "multiattack",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "magicroom",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Silvally|Silvally-Water, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Silvally|Silvally-Water, L50, F|170/170",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Silvally|Silvally-Water, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Multi-Attack",
+                  "id": "multiattack",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Silvally",
+                "details": "Silvally-Water, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "watermemory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magic Room",
+                  "id": "magicroom",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "magicroom",
+                  "recover"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally-Water",
+            "details": "Silvally-Water, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "watermemory",
+            "active": true,
+            "moves": [
+              {
+                "id": "multiattack",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magicroom",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Silvally|Multi-Attack|p2a: Vaporeon",
+          "|-immune|p2a: Vaporeon|[from] ability: Water Absorb",
+          "|move|p2a: Vaporeon|Magic Room|p2a: Vaporeon",
+          "|-fieldstart|move: Magic Room|[of] p2a: Vaporeon",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Silvally|Multi-Attack|p2a: Vaporeon",
+          "|-immune|p2a: Vaporeon|[from] ability: Water Absorb",
+          "|move|p2a: Vaporeon|Magic Room|p2a: Vaporeon",
+          "|-fieldstart|move: Magic Room|[of] p2a: Vaporeon",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Silvally|Multi-Attack|p2a: Vaporeon",
+          "|-immune|p2a: Vaporeon|[from] ability: Water Absorb",
+          "|move|p2a: Vaporeon|Magic Room|p2a: Vaporeon",
+          "|-fieldstart|move: Magic Room|[of] p2a: Vaporeon",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Multi-Attack",
+                  "id": "multiattack",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Silvally",
+                "details": "Silvally-Water, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "watermemory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magic Room",
+                  "id": "magicroom",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "magicroom",
+                  "recover"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally-Water",
+            "details": "Silvally-Water, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "watermemory",
+            "active": true,
+            "moves": [
+              {
+                "id": "multiattack",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magicroom",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Silvally|Multi-Attack|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|66/100",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Silvally|Multi-Attack|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|66/100",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Silvally|Multi-Attack|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|136/205",
+          "|move|p2a: Vaporeon|Recover|p2a: Vaporeon",
+          "|-heal|p2a: Vaporeon|205/205",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Multi-Attack",
+                  "id": "multiattack",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Silvally",
+                "details": "Silvally-Water, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 115,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "multiattack"
+                ],
+                "baseAbility": "rkssystem",
+                "item": "watermemory",
+                "pokeball": "pokeball",
+                "ability": "rkssystem",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Magic Room",
+                  "id": "magicroom",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "magicroom",
+                  "recover"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Silvally",
+            "species": "Silvally-Water",
+            "details": "Silvally-Water, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 115,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rkssystem",
+            "item": "watermemory",
+            "active": true,
+            "moves": [
+              {
+                "id": "multiattack",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "magicroom",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
