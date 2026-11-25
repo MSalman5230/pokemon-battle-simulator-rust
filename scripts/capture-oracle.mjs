@@ -2152,6 +2152,31 @@ const soulHeartRosters = [
         named('Magikarp', ['Splash']), named('Chansey', ['Recover'])],
     [named('Nidoking', ['Thunder Punch'], 'M'), named('Shuckle', ['Recover'])],
 ];
+const ironBarbsRosters = [
+    [named('Jolteon', ['Swift', 'Tackle'])],
+    [{...named('Ferrothorn', ['Recover']), ability:'Iron Barbs'}],
+];
+const cottonDownRosters = [
+    [{...named('Jolteon', ['Tackle']), item:'Clear Amulet'}, named('Conkeldurr', ['Recover'])],
+    [{...named('Eldegoss', ['Tackle']), ability:'Cotton Down'}, named('Venusaur', ['Recover'])],
+];
+const waterHitAbilityRosters = [
+    [named('Magikarp', ['Surf']), named('Chansey', ['Recover'])],
+    [{...named('Coalossal', ['Tackle']), ability:'Steam Engine'},
+        {...named('Palossand', ['Recover']), ability:'Water Compaction'}],
+];
+const toxicChainRosters = [
+    [{...named('Okidogi', ['Swift'], 'M'), ability:'Toxic Chain'}, named('Umbreon', ['Recover'])],
+    [named('Snorlax', ['Recover']), {...named('Venusaur', ['Recover']), item:'Covert Cloak'}],
+];
+const perishBodyRosters = [
+    [named('Wartortle', ['Bite']), named('Chansey', ['Recover'])],
+    [{...named('Cursola', ['Recover']), ability:'Perish Body'}],
+];
+const colorChangeRosters = [
+    [named('Charizard', ['Ember', 'Water Gun'])],
+    [{...named('Kecleon', ['Recover']), ability:'Color Change'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3740,6 +3765,19 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         beastBoostRosters, 'custom-beast-boost-selects-highest-unboosted-stat'],
     ['doublescustomgame', [['team 123','team 12'], ['move 1, move 1','move 1 2, move 1']],
         soulHeartRosters, 'custom-soul-heart-triggers-on-ally-faint'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        ironBarbsRosters, 'custom-iron-barbs-retaliates-only-on-contact'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1','move 1 2, move 1']],
+        cottonDownRosters, 'custom-cotton-down-hits-every-other-active'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1']],
+        waterHitAbilityRosters, 'custom-water-hit-triggers-steam-engine-and-water-compaction'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['move 1, move 1','move 1, move 1'], ['move 1, move 1','move 1, move 1']],
+        toxicChainRosters, 'custom-toxic-chain-can-poison-on-non-contact-and-respects-covert-cloak', '3,2,3,4'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1'], ['move 1','move 1']],
+        perishBodyRosters, 'custom-perish-body-starts-separate-countdowns'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 2','move 1']],
+        colorChangeRosters, 'custom-color-change-applies-after-damage'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

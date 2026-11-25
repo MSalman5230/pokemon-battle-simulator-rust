@@ -1,0 +1,1031 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Jolteon\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Clear Amulet\"},{\"species\":\"Conkeldurr\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Conkeldurr\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Eldegoss\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Eldegoss\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Cotton Down\"},{\"species\":\"Venusaur\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Venusaur\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p1|Conkeldurr, L50, F|",
+          "|poke|p2|Eldegoss, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p1|Conkeldurr, L50, F|",
+          "|poke|p2|Eldegoss, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p1|Conkeldurr, L50, F|",
+          "|poke|p2|Eldegoss, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "clearamulet",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Conkeldurr",
+                "details": "Conkeldurr, L50, F",
+                "condition": "180/180",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Eldegoss",
+                "details": "Eldegoss, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 110,
+                  "spa": 100,
+                  "spd": 140,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "cottondown",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cottondown",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "clearamulet",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Conkeldurr",
+            "species": "Conkeldurr",
+            "details": "Conkeldurr, L50, F",
+            "hp": 180,
+            "maxhp": 180,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 115,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Eldegoss",
+            "species": "Eldegoss",
+            "details": "Eldegoss, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 110,
+              "spa": 100,
+              "spd": 140,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cottondown",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|140/140",
+          "|switch|p1b: Conkeldurr|Conkeldurr, L50, F|180/180",
+          "|switch|p2a: Eldegoss|Eldegoss, L50, F|135/135",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|140/140",
+          "|switch|p1b: Conkeldurr|Conkeldurr, L50, F|180/180",
+          "|switch|p2a: Eldegoss|Eldegoss, L50, F|135/135",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|140/140",
+          "|switch|p1b: Conkeldurr|Conkeldurr, L50, F|180/180",
+          "|switch|p2a: Eldegoss|Eldegoss, L50, F|135/135",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "clearamulet",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Conkeldurr",
+                "details": "Conkeldurr, L50, F",
+                "condition": "180/180",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Eldegoss",
+                "details": "Eldegoss, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 110,
+                  "spa": 100,
+                  "spd": 140,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "cottondown",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cottondown",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "clearamulet",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Conkeldurr",
+            "species": "Conkeldurr",
+            "details": "Conkeldurr, L50, F",
+            "hp": 180,
+            "maxhp": 180,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 115,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Eldegoss",
+            "species": "Eldegoss",
+            "details": "Eldegoss, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 110,
+              "spa": 100,
+              "spd": 140,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cottondown",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 1",
+        ">p2 move 1 2, move 1"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Jolteon|Tackle|p2a: Eldegoss",
+          "|-damage|p2a: Eldegoss|122/135",
+          "|-ability|p2a: Eldegoss|Cotton Down",
+          "|-fail|p1a: Jolteon|unboost|[from] item: Clear Amulet|[of] p1a: Jolteon",
+          "|-unboost|p1b: Conkeldurr|spe|1",
+          "|-unboost|p2b: Venusaur|spe|1",
+          "|move|p2a: Eldegoss|Tackle|p1b: Conkeldurr",
+          "|-damage|p1b: Conkeldurr|170/180",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Conkeldurr|Recover|p1b: Conkeldurr",
+          "|-heal|p1b: Conkeldurr|180/180",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Tackle|p2a: Eldegoss",
+          "|-damage|p2a: Eldegoss|122/135",
+          "|-ability|p2a: Eldegoss|Cotton Down",
+          "|-fail|p1a: Jolteon|unboost|[from] item: Clear Amulet|[of] p1a: Jolteon",
+          "|-unboost|p1b: Conkeldurr|spe|1",
+          "|-unboost|p2b: Venusaur|spe|1",
+          "|move|p2a: Eldegoss|Tackle|p1b: Conkeldurr",
+          "|-damage|p1b: Conkeldurr|170/180",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Conkeldurr|Recover|p1b: Conkeldurr",
+          "|-heal|p1b: Conkeldurr|180/180",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Tackle|p2a: Eldegoss",
+          "|-damage|p2a: Eldegoss|122/135",
+          "|-ability|p2a: Eldegoss|Cotton Down",
+          "|-fail|p1a: Jolteon|unboost|[from] item: Clear Amulet|[of] p1a: Jolteon",
+          "|-unboost|p1b: Conkeldurr|spe|1",
+          "|-unboost|p2b: Venusaur|spe|1",
+          "|move|p2a: Eldegoss|Tackle|p1b: Conkeldurr",
+          "|-damage|p1b: Conkeldurr|170/180",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Conkeldurr|Recover|p1b: Conkeldurr",
+          "|-heal|p1b: Conkeldurr|180/180",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "clearamulet",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Conkeldurr",
+                "details": "Conkeldurr, L50, F",
+                "condition": "180/180",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 85,
+                  "spe": 65
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Eldegoss",
+                "details": "Eldegoss, L50, F",
+                "condition": "122/135",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 110,
+                  "spa": 100,
+                  "spd": 140,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "cottondown",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cottondown",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "clearamulet",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Conkeldurr",
+            "species": "Conkeldurr",
+            "details": "Conkeldurr, L50, F",
+            "hp": 180,
+            "maxhp": 180,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 115,
+              "spa": 75,
+              "spd": 85,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": -1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Eldegoss",
+            "species": "Eldegoss",
+            "details": "Eldegoss, L50, F",
+            "hp": 122,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 110,
+              "spa": 100,
+              "spd": 140,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cottondown",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": -1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

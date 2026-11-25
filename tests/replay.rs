@@ -2309,6 +2309,28 @@ fn legendary_entry_and_faint_events_keep_native_forms_and_boost_history() {
 }
 
 #[test]
+fn inherited_hit_reaction_abilities_follow_contact_type_and_secondary_rules() {
+    replay(include_str!(
+        "fixtures/custom-iron-barbs-retaliates-only-on-contact.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-cotton-down-hits-every-other-active.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-water-hit-triggers-steam-engine-and-water-compaction.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-toxic-chain-can-poison-on-non-contact-and-respects-covert-cloak.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-perish-body-starts-separate-countdowns.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-color-change-applies-after-damage.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

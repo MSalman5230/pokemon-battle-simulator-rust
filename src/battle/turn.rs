@@ -8703,19 +8703,23 @@ impl Battle {
                     }
                 }
                 for &(target, _) in &damage {
-                    if self.mon(target).active_ability() == "roughskin" {
+                    if let Some(label) = match self.mon(target).active_ability() {
+                        "roughskin" => Some("Rough Skin"),
+                        "ironbarbs" => Some("Iron Barbs"),
+                        _ => None,
+                    } {
                         if self.mon(source).hp > 0
                             && self.mon(source).active_ability() == "magicguard"
                         {
                             self.add(format!(
-                                "|-activate|{}|ability: Rough Skin",
+                                "|-activate|{}|ability: {label}",
                                 self.ident(target)
                             ));
                         } else {
                             self.indirect_damage(
                                 source,
                                 8,
-                                &format!("|[from] ability: Rough Skin|[of] {}", self.ident(target)),
+                                &format!("|[from] ability: {label}|[of] {}", self.ident(target)),
                             );
                         }
                     }
@@ -8755,6 +8759,7 @@ impl Battle {
                         "wanderingspirit" => {
                             self.skill_swap(source, target);
                         }
+                        "perishbody" => self.perish_body(target, source),
                         _ => {}
                     }
                 }
@@ -8769,6 +8774,16 @@ impl Battle {
                 }
                 if self.event_ability(target) == "thermalexchange" && move_type == "Fire" {
                     self.ability_boost(target, "Thermal Exchange", BoostStat::Atk, 1, false);
+                }
+                match self.event_ability(target) {
+                    "cottondown" => self.cotton_down(target),
+                    "steamengine" if matches!(move_type, "Fire" | "Water") => {
+                        self.ability_boost(target, "Steam Engine", BoostStat::Spe, 6, false);
+                    }
+                    "watercompaction" if move_type == "Water" => {
+                        self.ability_boost(target, "Water Compaction", BoostStat::Def, 2, false);
+                    }
+                    _ => {}
                 }
                 self.charge_after_damage(target, move_data);
                 if self.event_ability(target) == "stamina" {
@@ -8807,8 +8822,10 @@ impl Battle {
                 if self.mon(target).effective_item() == "airballoon" {
                     self.consume(target, "Air Balloon", false);
                 }
-                if contact && self.event_ability(source) == "poisontouch" {
-                    self.poison_touch(source, target, base);
+                match self.event_ability(source) {
+                    "poisontouch" if contact => self.poison_touch(source, target, base),
+                    "toxicchain" => self.toxic_chain(source, target, base),
+                    _ => {}
                 }
             }
             if !sheer_force_removed
@@ -8980,7 +8997,7 @@ impl Battle {
         // Champions runs the target-side AfterMoveSecondary and EmergencyExit
         // hooks even when Sheer Force removes the move's secondary effects.
         if bide_strike.is_none() {
-            self.target_effects_after_move(
+            let retarget_curse = self.target_effects_after_move(
                 source,
                 &damage,
                 landed_by_target,
@@ -8990,8 +9007,24 @@ impl Battle {
                     smart_target,
                     delayed,
                     category: move_data.category,
+                    move_type,
                 },
             );
+            if retarget_curse != 0 {
+                for action in queue.iter_mut() {
+                    if let Some(actor) = action.actor
+                        && retarget_curse & actor.mask() != 0
+                        && action.move_data.is_some_and(|data| data.name == "Curse")
+                        && let ActionKind::Move { target, .. } = &mut action.kind
+                    {
+                        *target = -1;
+                        action.original_target = Some((
+                            actor.player,
+                            self.mon(actor.other_slot()).roster_index as u8,
+                        ));
+                    }
+                }
+            }
             for &target in &spread_targets {
                 let index = target.index();
                 self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
@@ -9761,6 +9794,13 @@ impl Pokemon {
                 | "chillingneigh"
                 | "grimneigh"
                 | "soulheart"
+                | "colorchange"
+                | "cottondown"
+                | "ironbarbs"
+                | "perishbody"
+                | "steamengine"
+                | "toxicchain"
+                | "watercompaction"
                 | "runaway"
                 | "drizzle"
                 | "drought"

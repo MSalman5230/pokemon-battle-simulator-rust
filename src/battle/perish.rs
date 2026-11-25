@@ -3,6 +3,20 @@
 use super::{turn::Position, *};
 
 impl Battle {
+    pub(super) fn perish_body(&mut self, holder: Position, attacker: Position) {
+        if self.mon(attacker).perish_count != 0 {
+            return;
+        }
+        self.add(format!("|-ability|{}|Perish Body", self.ident(holder)));
+        for pos in [attacker, holder] {
+            let mon = self.mon_mut(pos);
+            if mon.perish_count == 0 && mon.hp != 0 {
+                mon.perish_count = 4;
+                mon.track_volatile("perishsong");
+            }
+        }
+    }
+
     pub(super) fn perish_song(&mut self, source: Position, priority: i8) -> bool {
         let mut resolved = false;
         let mut added = false;

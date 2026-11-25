@@ -1,0 +1,874 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Jolteon\",\"moves\":[\"Swift\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Ferrothorn\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Ferrothorn\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Iron Barbs\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p2|Ferrothorn, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p2|Ferrothorn, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Jolteon, L50, F|",
+          "|poke|p2|Ferrothorn, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ferrothorn",
+                "details": "Ferrothorn, L50, F",
+                "condition": "149/149",
+                "active": true,
+                "stats": {
+                  "atk": 114,
+                  "def": 151,
+                  "spa": 74,
+                  "spd": 136,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "ironbarbs",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ironbarbs",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ferrothorn",
+            "species": "Ferrothorn",
+            "details": "Ferrothorn, L50, F",
+            "hp": 149,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 114,
+              "def": 151,
+              "spa": 74,
+              "spd": 136,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ironbarbs",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|140/140",
+          "|switch|p2a: Ferrothorn|Ferrothorn, L50, F|149/149",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|140/140",
+          "|switch|p2a: Ferrothorn|Ferrothorn, L50, F|149/149",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Jolteon|Jolteon, L50, F|140/140",
+          "|switch|p2a: Ferrothorn|Ferrothorn, L50, F|149/149",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ferrothorn",
+                "details": "Ferrothorn, L50, F",
+                "condition": "149/149",
+                "active": true,
+                "stats": {
+                  "atk": 114,
+                  "def": 151,
+                  "spa": 74,
+                  "spd": 136,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "ironbarbs",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ironbarbs",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ferrothorn",
+            "species": "Ferrothorn",
+            "details": "Ferrothorn, L50, F",
+            "hp": 149,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 114,
+              "def": 151,
+              "spa": 74,
+              "spd": 136,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ironbarbs",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Jolteon|Swift|p2a: Ferrothorn",
+          "|-resisted|p2a: Ferrothorn|1",
+          "|-damage|p2a: Ferrothorn|138/149",
+          "|move|p2a: Ferrothorn|Recover|p2a: Ferrothorn",
+          "|-heal|p2a: Ferrothorn|149/149",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Swift|p2a: Ferrothorn",
+          "|-resisted|p2a: Ferrothorn|1",
+          "|-damage|p2a: Ferrothorn|138/149",
+          "|move|p2a: Ferrothorn|Recover|p2a: Ferrothorn",
+          "|-heal|p2a: Ferrothorn|149/149",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Swift|p2a: Ferrothorn",
+          "|-resisted|p2a: Ferrothorn|1",
+          "|-damage|p2a: Ferrothorn|138/149",
+          "|move|p2a: Ferrothorn|Recover|p2a: Ferrothorn",
+          "|-heal|p2a: Ferrothorn|149/149",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ferrothorn",
+                "details": "Ferrothorn, L50, F",
+                "condition": "149/149",
+                "active": true,
+                "stats": {
+                  "atk": 114,
+                  "def": 151,
+                  "spa": 74,
+                  "spd": 136,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "ironbarbs",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ironbarbs",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ferrothorn",
+            "species": "Ferrothorn",
+            "details": "Ferrothorn, L50, F",
+            "hp": 149,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 114,
+              "def": 151,
+              "spa": 74,
+              "spd": 136,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ironbarbs",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Jolteon|Tackle|p2a: Ferrothorn",
+          "|-resisted|p2a: Ferrothorn|1",
+          "|-damage|p2a: Ferrothorn|145/149",
+          "|-damage|p1a: Jolteon|123/140|[from] ability: Iron Barbs|[of] p2a: Ferrothorn",
+          "|move|p2a: Ferrothorn|Recover|p2a: Ferrothorn",
+          "|-heal|p2a: Ferrothorn|149/149",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Tackle|p2a: Ferrothorn",
+          "|-resisted|p2a: Ferrothorn|1",
+          "|-damage|p2a: Ferrothorn|145/149",
+          "|-damage|p1a: Jolteon|123/140|[from] ability: Iron Barbs|[of] p2a: Ferrothorn",
+          "|move|p2a: Ferrothorn|Recover|p2a: Ferrothorn",
+          "|-heal|p2a: Ferrothorn|149/149",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Jolteon|Tackle|p2a: Ferrothorn",
+          "|-resisted|p2a: Ferrothorn|1",
+          "|-damage|p2a: Ferrothorn|145/149",
+          "|-damage|p1a: Jolteon|123/140|[from] ability: Iron Barbs|[of] p2a: Ferrothorn",
+          "|move|p2a: Ferrothorn|Recover|p2a: Ferrothorn",
+          "|-heal|p2a: Ferrothorn|149/149",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "123/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ferrothorn",
+                "details": "Ferrothorn, L50, F",
+                "condition": "149/149",
+                "active": true,
+                "stats": {
+                  "atk": 114,
+                  "def": 151,
+                  "spa": 74,
+                  "spd": 136,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "ironbarbs",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "ironbarbs",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 123,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ferrothorn",
+            "species": "Ferrothorn",
+            "details": "Ferrothorn, L50, F",
+            "hp": 149,
+            "maxhp": 149,
+            "status": "",
+            "stats": {
+              "atk": 114,
+              "def": 151,
+              "spa": 74,
+              "spd": 136,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "ironbarbs",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

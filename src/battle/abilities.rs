@@ -6,12 +6,13 @@ use super::{
     *,
 };
 
-pub(super) struct PostHit {
+pub(super) struct PostHit<'a> {
     pub contact: bool,
     pub multihit: bool,
     pub smart_target: bool,
     pub delayed: bool,
     pub category: Category,
+    pub move_type: &'a str,
 }
 use crate::{
     choice::TargetKind,
@@ -48,6 +49,7 @@ pub(super) enum BoostOrigin {
     Hazard,
     Octolock,
     SyrupBomb,
+    CottonDown,
     ZPower,
 }
 
@@ -67,6 +69,7 @@ impl BoostOrigin {
                 | Self::SupersweetSyrup
                 | Self::MirrorArmor
                 | Self::MagneticFlux
+                | Self::CottonDown
         )
     }
 
@@ -335,8 +338,8 @@ impl Battle {
         source: Position,
         hits: &[(Position, u32)],
         damage: [u32; 4],
-        hit: PostHit,
-    ) {
+        hit: PostHit<'_>,
+    ) -> u8 {
         #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
         enum Kind {
             Ability,
@@ -353,7 +356,7 @@ impl Battle {
             let mon = self.mon(target);
             if matches!(
                 mon.ability.as_str(),
-                "berserk" | "angershell" | "pickpocket"
+                "berserk" | "angershell" | "pickpocket" | "colorchange"
             ) {
                 holders[count] = (target, mon.speed, Kind::Ability);
                 count += 1;
@@ -376,6 +379,7 @@ impl Battle {
                 .then_with(|| a.2.cmp(&b.2))
         });
         let total: u32 = damage.iter().sum();
+        let mut retarget_curse = 0;
         for &(target, _, item) in &holders[..count] {
             match item {
                 Kind::CategoryBerry => {
@@ -395,6 +399,25 @@ impl Battle {
                 Kind::Ability => {}
             }
             match self.event_ability(target) {
+                "colorchange" => {
+                    let mon = self.mon(target);
+                    if mon.hp != 0
+                        && hit.move_type != "???"
+                        && !mon.has_type(hit.move_type)
+                        && !matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally")
+                    {
+                        self.mon_mut(target).set_temporary_type(Some(hit.move_type));
+                        self.add(format!(
+                            "|-start|{}|typechange|{}|[from] ability: Color Change",
+                            self.ident(target),
+                            hit.move_type
+                        ));
+                        if target.slot == 1 && self.slots() == 2 {
+                            retarget_curse |= target.mask();
+                        }
+                    }
+                    continue;
+                }
                 "pickpocket" => {
                     if hit.contact {
                         self.pickpocket_after_move(target, source);
@@ -432,6 +455,7 @@ impl Battle {
                 }
             }
         }
+        retarget_curse
     }
 
     pub(super) fn sheer_force_removes_secondaries(&self, source: Position, data: &Move) -> bool {
@@ -1405,6 +1429,34 @@ impl Battle {
             && self.rng.chance(3, 10)
         {
             self.apply_contact_status(holder, target, "psn", "Poison Touch", move_log);
+        }
+    }
+
+    pub(super) fn toxic_chain(&mut self, holder: Position, target: Position, move_log: usize) {
+        if self.event_ability(target) != "shielddust"
+            && self.mon(target).effective_item() != "covertcloak"
+            && self.rng.chance(3, 10)
+        {
+            self.apply_contact_status(holder, target, "tox", "Toxic Chain", move_log);
+        }
+    }
+
+    pub(super) fn cotton_down(&mut self, holder: Position) {
+        let mut announced = false;
+        for pos in self.positions().filter(|&pos| pos != holder) {
+            if self.mon(pos).fainted {
+                continue;
+            }
+            if !announced {
+                self.add(format!("|-ability|{}|Cotton Down", self.ident(holder)));
+                announced = true;
+            }
+            self.boost_from(
+                pos,
+                holder,
+                &[(BoostStat::Spe, -1)],
+                BoostOrigin::CottonDown,
+            );
         }
     }
 
