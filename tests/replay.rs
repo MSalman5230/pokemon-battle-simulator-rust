@@ -1043,6 +1043,16 @@ fn feint_breaks_protect_and_exposes_the_target_to_later_attacks() {
 }
 
 #[test]
+fn sheer_force_removes_secondaries_but_preserves_electro_shot_preparation_and_recoil() {
+    replay(include_str!("fixtures/bss-sheer-force.json"));
+}
+
+#[test]
+fn facade_doubles_power_without_the_standard_burn_penalty() {
+    replay(include_str!("fixtures/bss-facade.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

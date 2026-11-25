@@ -1044,6 +1044,7 @@ impl Battle {
                     | "brickbreak"
                     | "psychicfangs"
                     | "feint"
+                    | "facade"
                     | "focusenergy"
                     | "helpinghand"
                     | "focuspunch"
@@ -3714,7 +3715,13 @@ impl Battle {
         let mut hp_after_damage = [0u32; 4];
         let mut hits_landed = 0;
         let mut split_darts = [None; 2];
-        let attack_hazard = Hazard::from_attack(&move_data.name);
+        let sheer_force_removed =
+            !delayed && self.sheer_force_removes_secondaries(source, move_data);
+        let attack_hazard = if sheer_force_removed {
+            None
+        } else {
+            Hazard::from_attack(&move_data.name)
+        };
         let mut hit_substitute = false;
         let binding = super::partial_trap::binding_move(&move_data.name);
         for hit in 1..=max_hits {
@@ -3861,6 +3868,7 @@ impl Battle {
                         effect,
                         crit,
                         screen_handlers,
+                        sheer_force_removed,
                         roll: None,
                     },
                 )
@@ -3978,7 +3986,7 @@ impl Battle {
                     );
                 }
             }
-            if !move_data.self_boosts.is_empty() {
+            if !sheer_force_removed && !move_data.self_boosts.is_empty() {
                 let roll = self.rng.below(100);
                 if move_data
                     .self_chance
@@ -4000,13 +4008,13 @@ impl Battle {
                     move_data.name
                 ));
             }
-            if move_data.self_recharge && self.mon(source).hp > 0 {
+            if !sheer_force_removed && move_data.self_recharge && self.mon(source).hp > 0 {
                 let mon = self.mon_mut(source);
                 mon.recharge = 2;
                 mon.track_volatile("mustrecharge");
                 self.add(format!("|-mustrecharge|{source_name}"));
             }
-            if move_data.self_rampage {
+            if !sheer_force_removed && move_data.self_rampage {
                 self.rampage_hit(source, slot.expect("rampage moves are not reflectable"));
             }
             if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 {
@@ -4016,7 +4024,7 @@ impl Battle {
                 self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
             }
             for &target in strike_targets {
-                if move_data.secondaries.is_empty() {
+                if sheer_force_removed || move_data.secondaries.is_empty() {
                     break;
                 }
                 let dust = self.event_ability(target) == "shielddust";
@@ -4173,7 +4181,9 @@ impl Battle {
                     self.consume(target, "Air Balloon", false);
                 }
             }
-            if matches!(move_data.name.as_str(), "Rapid Spin" | "Mortal Spin") && !damage.is_empty()
+            if !sheer_force_removed
+                && matches!(move_data.name.as_str(), "Rapid Spin" | "Mortal Spin")
+                && !damage.is_empty()
             {
                 self.clear_spinning_hazards(source, &move_data.name);
             }
@@ -4302,9 +4312,12 @@ impl Battle {
             self.half_max_hp_recoil(source, recoil);
         }
         self.each_event();
-        for &target in &spread_targets {
-            let index = target.index();
-            self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
+        let suppress_after_move = sheer_force_removed && self.event_ability(source) == "sheerforce";
+        if !suppress_after_move {
+            for &target in &spread_targets {
+                let index = target.index();
+                self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
+            }
         }
         if hits_landed > 0 && !move_data.after_hit_boosts.is_empty() {
             self.boost(source, &move_data.after_hit_boosts, true);
@@ -4313,17 +4326,18 @@ impl Battle {
             self.mark_fainted(source);
         }
         let original_source_hp = self.mon(source).hp;
-        if self.mon(source).item == "lifeorb" && self.active_effects(source) {
+        if !suppress_after_move && self.mon(source).item == "lifeorb" && self.active_effects(source)
+        {
             self.indirect_damage(source, 10, "|[from] item: Life Orb");
             if self.mon(source).hp == 0 {
                 self.mark_fainted(source);
             }
         }
-        if hits_landed > 0 {
+        if !suppress_after_move && hits_landed > 0 {
             self.magician_after_hit(source, &spread_targets);
         }
         self.emergency_exit(source, original_source_hp);
-        if move_data.name == "Sparkling Aria" && self.mon(source).hp > 0 {
+        if !suppress_after_move && move_data.name == "Sparkling Aria" && self.mon(source).hp > 0 {
             for &target in &spread_targets {
                 if target != source && self.mon(target).status == Status::Burn {
                     self.cure_status(target, "[msg]");
@@ -4826,6 +4840,7 @@ impl Pokemon {
                 | "armortail"
                 | "dazzling"
                 | "queenlymajesty"
+                | "sheerforce"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

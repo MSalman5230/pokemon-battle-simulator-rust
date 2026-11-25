@@ -355,6 +355,7 @@ impl Battle {
                     | "wickedblow"
                     | "scald"
                     | "glaiverush"
+                    | "facade"
             )
         {
             return Err(unsupported(format!("move {move_id}")));
@@ -422,6 +423,7 @@ impl Battle {
             .filter(|&turns| turns > 0)
             .count() as u32;
         result.rows.clear();
+        let sheer_force_removed = self.sheer_force_removes_secondaries(ACTOR, data);
         for roll in (0..16).rev() {
             let value = self.regular_hit(
                 ACTOR,
@@ -436,6 +438,7 @@ impl Battle {
                     effect,
                     crit,
                     screen_handlers,
+                    sheer_force_removed,
                     converted: false,
                     roll: Some(roll),
                     solar_weak: matches!(move_id, "solarbeam" | "solarblade")

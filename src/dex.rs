@@ -178,6 +178,8 @@ pub struct Move {
     pub tracks_target: bool,
     #[serde(default)]
     pub cant_use_twice: bool,
+    #[serde(default)]
+    pub has_sheer_force_boost: bool,
     pub boosts: Vec<(BoostStat, i8)>,
     pub self_boosts: Vec<(BoostStat, i8)>,
     pub self_chance: Option<u8>,

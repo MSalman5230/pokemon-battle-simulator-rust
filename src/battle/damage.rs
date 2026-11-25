@@ -191,6 +191,7 @@ pub(super) struct RegularHit<'a> {
     pub effect: i8,
     pub crit: bool,
     pub screen_handlers: u32,
+    pub sheer_force_removed: bool,
     /// When provided by a hypothetical query, use this native 0–15 roll
     /// instead of consuming the battle PRNG.
     pub roll: Option<u32>,
@@ -216,6 +217,7 @@ impl Battle {
             effect,
             crit,
             screen_handlers,
+            sheer_force_removed,
             roll,
         } = args;
         let tr = self.stat_rules.truncation;
@@ -373,6 +375,11 @@ impl Battle {
         if expanded {
             power_modifier = crate::mechanics::chain(6144, power_modifier);
         }
+        if (sheer_force_removed || move_data.has_sheer_force_boost)
+            && self.event_ability(source) == "sheerforce"
+        {
+            power_modifier = chain(5325, power_modifier);
+        }
         if converted && (hit == 1 || user.converted_move_type(&move_data.move_type).1) {
             power_modifier = crate::mechanics::chain(4915, power_modifier);
         }
@@ -389,6 +396,10 @@ impl Battle {
             power_modifier = chain(power_modifier, (multiplier * 4096.0) as u32);
         }
         power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
+        if move_data.name == "Facade" && !matches!(user.status, Status::Healthy | Status::Sleep(_))
+        {
+            power_modifier = chain(power_modifier, 8192);
+        }
         let mut hit_damage = Damage {
             level: user.level,
             power: tr.modify(u32::from(power), power_modifier),
@@ -406,6 +417,7 @@ impl Battle {
             },
             effectiveness: effect,
             burned: user.status == Status::Burn
+                && move_data.name != "Facade"
                 && user.ability != "guts"
                 && move_data.category == Category::Physical,
             final_modifier: 4096,

@@ -949,6 +949,15 @@ const feintRosters = [
     [named('Flareon', ['Feint']), named('Vaporeon', ['Tackle'])],
     [named('Umbreon', ['Protect', 'Recover']), named('Espeon', ['Recover'])],
 ];
+const sheerForceRosters = [
+    [{...named('Nidoking', ['Ice Beam', 'Tackle', 'Stone Axe', 'Electro Shot'], 'M'),
+        ability:'Sheer Force', item:'Life Orb'}],
+    [named('Umbreon', ['Recover', 'Rain Dance', 'Substitute'])],
+];
+const facadeRosters = [
+    [{...named('Umbreon', ['Facade', 'Tackle']), item:'Flame Orb'}],
+    [named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1444,6 +1453,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         priorityGuardRosters, 'vgc-priority-guards'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 1','move 1, move 1'],
         ['move 1 1, move 1 1','move 2, move 1']], feintRosters, 'vgc-feint'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 3','move 3'],
+        ['move 4','move 1']], sheerForceRosters, 'bss-sheer-force'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 2','move 1']],
+        facadeRosters, 'bss-facade'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

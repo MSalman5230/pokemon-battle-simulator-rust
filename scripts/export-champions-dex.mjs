@@ -69,6 +69,7 @@ const data = mod => {
             return {...move, ignoreDefensive: e.ignoreDefensive || undefined,
                 ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
                 cantUseTwice: !!e.flags?.cantusetwice || undefined,
+                hasSheerForceBoost: e.hasSheerForceBoost || undefined,
                 generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
                 selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,

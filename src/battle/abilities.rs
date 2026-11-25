@@ -137,6 +137,12 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn sheer_force_removes_secondaries(&self, source: Position, data: &Move) -> bool {
+        !data.secondaries.is_empty()
+            && !data.has_sheer_force_boost
+            && self.event_ability(source) == "sheerforce"
+    }
+
     pub(super) fn active_effects(&self, pos: Position) -> bool {
         pos.slot < self.format.game_type.active_slots() && !self.mon(pos).fainted
     }
