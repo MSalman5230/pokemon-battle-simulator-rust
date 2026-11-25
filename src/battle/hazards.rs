@@ -180,7 +180,8 @@ impl Battle {
                         && !self.status_immune(pos, "psn")
                     {
                         let id = if layers >= 2 { "tox" } else { "psn" };
-                        let prevented = self.flower_veil_status(pos, foe, id, false);
+                        let prevented = self.status_blocked_by_ability(pos, id, false)
+                            || self.flower_veil_status(pos, foe, id, false);
                         if !prevented && !self.field_blocks_status(pos, id, foe.player, false) {
                             self.apply_status(pos, id, foe.player, None);
                         }

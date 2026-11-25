@@ -36,7 +36,7 @@ impl Status {
         }
     }
 
-    fn from_id(id: &str) -> Self {
+    pub(super) fn from_id(id: &str) -> Self {
         match id {
             "brn" => Self::Burn,
             "psn" => Self::Poison,
@@ -246,21 +246,36 @@ impl Battle {
             return false;
         }
 
-        let mut prevented =
-            self.flower_veil_status(pos, source, id, primary && data.secondaries.is_empty());
-        if !prevented && id == "brn" && self.event_ability(pos) == "thermalexchange" {
-            if primary {
-                self.add(format!(
-                    "|-immune|{}|[from] ability: Thermal Exchange",
-                    self.ident(pos)
-                ));
-            }
-            prevented = true;
-        }
+        let prevented = self.status_blocked_by_ability(pos, id, primary)
+            || self.flower_veil_status(pos, source, id, primary && data.secondaries.is_empty());
         if prevented || self.field_blocks_status(pos, id, source.player, primary) {
             return false;
         }
         self.apply_status(pos, id, source.player, Some(&data.name));
+        true
+    }
+
+    pub(super) fn status_blocked_by_ability(
+        &mut self,
+        pos: Position,
+        id: &str,
+        reveal: bool,
+    ) -> bool {
+        let label = match (self.event_ability(pos), id) {
+            ("immunity", "psn" | "tox") => "Immunity",
+            ("thermalexchange", "brn") => "Thermal Exchange",
+            _ => return false,
+        };
+        if reveal {
+            self.add(format!(
+                "|-immune|{}|[from] ability: {label}",
+                self.ident(pos)
+            ));
+        }
+        if self.format.report_exact_hp {
+            self.add(format!("|debug|interrupting setStatus with {label}"));
+            self.add(format!("|debug|set status [{id}] interrupted"));
+        }
         true
     }
 

@@ -469,22 +469,34 @@ impl Battle {
         }
     }
 
-    pub(super) fn flame_body(&mut self, holder: Position, attacker: Position) {
+    pub(super) fn contact_status(&mut self, holder: Position, attacker: Position) {
+        let (id, label) = match self.event_ability(holder) {
+            "flamebody" => ("brn", "Flame Body"),
+            "static" => ("par", "Static"),
+            "poisonpoint" => ("psn", "Poison Point"),
+            _ => return,
+        };
         if !self.rng.chance(3, 10)
             || self.mon(attacker).hp == 0
             || self.mon(attacker).status != Status::Healthy
-            || self.status_immune(attacker, "brn")
         {
             return;
         }
-        let prevented = self.flower_veil_status(attacker, holder, "brn", false)
-            || self.event_ability(attacker) == "thermalexchange";
-        if prevented || self.field_blocks_status(attacker, "brn", holder.player, false) {
+        if self.status_immune(attacker, id) {
+            if self.format.report_exact_hp {
+                self.add("|debug|natural status immunity");
+                self.add("|debug|immune to status");
+            }
             return;
         }
-        self.mon_mut(attacker).status = Status::Burn;
+        let prevented = self.status_blocked_by_ability(attacker, id, false)
+            || self.flower_veil_status(attacker, holder, id, false);
+        if prevented || self.field_blocks_status(attacker, id, holder.player, false) {
+            return;
+        }
+        self.mon_mut(attacker).status = Status::from_id(id);
         self.add(format!(
-            "|-status|{}|brn|[from] ability: Flame Body|[of] {}",
+            "|-status|{}|{id}|[from] ability: {label}|[of] {}",
             self.ident(attacker),
             self.ident(holder)
         ));

@@ -3058,7 +3058,9 @@ impl Battle {
                 }
                 if move_data.flags.contains_key("contact") {
                     match self.event_ability(target) {
-                        "flamebody" => self.flame_body(target, source),
+                        "flamebody" | "static" | "poisonpoint" => {
+                            self.contact_status(target, source)
+                        }
                         "cutecharm" => self.cute_charm(target, source),
                         "mummy" | "lingeringaroma" => self.contact_ability(target, source),
                         "wanderingspirit" => {
@@ -3490,6 +3492,8 @@ impl Pokemon {
                 | "immunity"
                 | "cutecharm"
                 | "flamebody"
+                | "static"
+                | "poisonpoint"
                 | "strongjaw"
                 | "megalauncher"
                 | "sandveil"

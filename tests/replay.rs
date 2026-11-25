@@ -590,3 +590,8 @@ fn bss_last_respects_counts_faints_and_rage_fist_counts_hits_this_stint() {
 fn bss_regenerator_and_natural_cure_work_on_pivots_drags_and_voluntary_switches() {
     replay(include_str!("fixtures/bss-switch-abilities.json"));
 }
+
+#[test]
+fn vgc_static_and_poison_point_roll_only_on_contact_and_reveal_the_holder() {
+    replay(include_str!("fixtures/vgc-contact-status.json"));
+}
