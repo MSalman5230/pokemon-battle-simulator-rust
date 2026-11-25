@@ -323,6 +323,7 @@ pub(super) struct RegularHit<'a> {
     pub sheer_force_removed: bool,
     pub analytic_last: bool,
     pub bypassed_protect: bool,
+    pub parental_second_hit: bool,
     /// When provided by a hypothetical query, use this native 0–15 roll
     /// instead of consuming the battle PRNG.
     pub roll: Option<u32>,
@@ -351,6 +352,7 @@ impl Battle {
             sheer_force_removed,
             analytic_last,
             bypassed_protect,
+            parental_second_hit,
             roll,
         } = args;
         let tr = self.stat_rules.truncation;
@@ -676,7 +678,13 @@ impl Battle {
             power: tr.modify(u32::from(power), power_modifier),
             attack: atk,
             defense: NonZeroU32::new(def.max(1)).unwrap(),
-            spread_or_bond: if spread { 3072 } else { 4096 },
+            spread_or_bond: if spread {
+                3072
+            } else if parental_second_hit {
+                1024
+            } else {
+                4096
+            },
             weather: if move_data.name == "Hydro Steam"
                 && damage_weather == Some(Weather::Sun)
                 && (mega_sun || user.personal_weather(damage_weather) == Some(Weather::Sun))
@@ -707,6 +715,8 @@ impl Battle {
         let randomness = roll.unwrap_or_else(|| self.rng.below(16));
         if spread && self.format.report_exact_hp {
             self.add("|debug|Spread modifier: 0.75");
+        } else if parental_second_hit && self.format.report_exact_hp {
+            self.add("|debug|Parental Bond modifier: 0.25");
         }
         if effect > 0 {
             self.add(format!(

@@ -4905,11 +4905,21 @@ impl Battle {
             && self.mon(source).species.name == "Greninja-Ash"
             && self.mon(source).transformed.is_none()
             && self.event_ability(source) == "battlebond";
-        let multihit = move_data.multihit.is_some() || beat_up.is_some();
+        let parental = !delayed
+            && !spread
+            && move_data.multihit.is_none()
+            && beat_up.is_none()
+            && !move_data.flags.contains_key("noparentalbond")
+            && !move_data.flags.contains_key("charge")
+            && !move_data.flags.contains_key("futuremove")
+            && self.event_ability(source) == "parentalbond";
+        let multihit = move_data.multihit.is_some() || beat_up.is_some() || parental;
         let (max_hits, per_strike_accuracy) = if let Some(allies) = &beat_up {
             (allies.len() as u8, false)
         } else if ash_shuriken {
             (3, false)
+        } else if parental {
+            (2, false)
         } else {
             self.hits(source, move_data)
         };
@@ -4936,7 +4946,7 @@ impl Battle {
                 break;
             }
             if hit > 1
-                && (matches!(self.mon(source).status, Status::Sleep(_))
+                && ((sleep_talk.is_none() && matches!(self.mon(source).status, Status::Sleep(_)))
                     || (per_strike_accuracy
                         && !self.next_strike_hits(
                             source,
@@ -5154,6 +5164,7 @@ impl Battle {
                                     })
                             }),
                         bypassed_protect: bypassed & target.mask() != 0,
+                        parental_second_hit: parental && hit > 1,
                         roll: None,
                     },
                 )
@@ -5298,7 +5309,8 @@ impl Battle {
                     );
                 }
             }
-            if !sheer_force_removed && !move_data.self_boosts.is_empty() {
+            if !sheer_force_removed && !move_data.self_boosts.is_empty() && (!parental || hit == 1)
+            {
                 let roll = self.rng.below(100);
                 if move_data
                     .self_chance
@@ -5648,7 +5660,7 @@ impl Battle {
         if ohko && self.mon(spread_targets[0]).hp == 0 {
             self.add("|-ohko");
         }
-        if multihit && hits_landed > 0 && !darts {
+        if multihit && hits_landed > u32::from(parental) && !darts {
             let target = spread_targets[0];
             let ident = if self.mon(target).fainted {
                 format!("{}: {}", target.player.id(), self.mon(target).name)
@@ -6320,6 +6332,7 @@ impl Pokemon {
                 | "cudchew"
                 | "solarpower"
                 | "megasol"
+                | "parentalbond"
                 | "fairyaura"
                 | "darkaura"
                 | "aurabreak"

@@ -1511,6 +1511,12 @@ fn wonder_room_swaps_base_defenses_but_uses_special_defense_stages_for_body_pres
 }
 
 #[test]
+fn parental_bond_repeats_single_target_moves_with_a_weaker_second_hit() {
+    replay(include_str!("fixtures/bss-parental-bond.json"));
+    replay(include_str!("fixtures/vgc-parental-bond-spread.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

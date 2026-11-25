@@ -484,6 +484,7 @@ impl Battle {
                     sheer_force_removed,
                     analytic_last,
                     bypassed_protect: false,
+                    parental_second_hit: false,
                     converted: false,
                     roll: Some(roll),
                     solar_weak: self.event_ability(ACTOR) != "megasol"
