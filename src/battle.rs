@@ -33,6 +33,7 @@ mod terrain;
 mod trap;
 mod turn;
 mod weather;
+mod weight;
 pub use status::Status;
 use std::{error::Error, fmt, num::NonZeroU32};
 pub use terrain::Terrain;

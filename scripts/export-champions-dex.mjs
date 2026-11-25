@@ -54,7 +54,7 @@ const data = mod => {
         species: table(dex.species.all(), e => {
             const packedSlots = Dex.species.get(e.name).abilities;
             return {
-            ...props(e, ['name', 'baseSpecies', 'types', 'baseStats', 'gender', 'abilities',
+            ...props(e, ['name', 'baseSpecies', 'types', 'baseStats', 'weighthg', 'gender', 'abilities',
                 'isNonstandard', 'maxHP', 'requiredItem']),
             hasCondition: dex.conditions.getByID(e.id).exists,
             unreleasedHidden: !!e.unreleasedHidden,

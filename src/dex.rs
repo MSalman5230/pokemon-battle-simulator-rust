@@ -106,6 +106,7 @@ pub struct Species {
     pub base_species: String,
     pub types: Vec<String>,
     pub base_stats: Stats,
+    pub weighthg: u16,
     pub gender: Option<String>,
     pub abilities: Table<String>,
     pub is_nonstandard: Option<String>,

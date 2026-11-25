@@ -500,3 +500,8 @@ fn bss_white_herb_clears_negative_stages_after_move_and_entry_effects() {
 fn bss_sucker_punch_and_thunderclap_require_a_pending_damaging_move() {
     replay(include_str!("fixtures/bss-conditional-priority.json"));
 }
+
+#[test]
+fn bss_weight_moves_use_effective_weight_and_attacker_to_defender_ratio() {
+    replay(include_str!("fixtures/bss-weight-moves.json"));
+}

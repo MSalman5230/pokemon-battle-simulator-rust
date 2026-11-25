@@ -774,6 +774,10 @@ impl Battle {
                     | "dive"
                     | "suckerpunch"
                     | "thunderclap"
+                    | "grassknot"
+                    | "lowkick"
+                    | "heavyslam"
+                    | "heatcrash"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -2486,6 +2490,12 @@ impl Battle {
                 if stacked_power && self.format.report_exact_hp {
                     self.add(format!("|debug|BP: {power}"));
                 }
+                let power = if power == 0 {
+                    self.weight_move_power(&move_data.name, source, target)
+                        .unwrap_or(power)
+                } else {
+                    power
+                };
                 if move_data.name == "Poltergeist" {
                     let item = DEX
                         .item(self.format.dex_mod, &self.mon(target).item)
@@ -3251,6 +3261,8 @@ impl Pokemon {
                 | "teravolt"
                 | "turboblaze"
                 | "illusion"
+                | "heavymetal"
+                | "lightmetal"
         )
     }
 
@@ -3303,6 +3315,7 @@ impl Pokemon {
                 | "powerherb"
                 | "abilityshield"
                 | "whiteherb"
+                | "floatstone"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)
