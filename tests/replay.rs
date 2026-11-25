@@ -275,3 +275,8 @@ fn bss_recharge_locks_the_request_only_when_the_hit_succeeds() {
 fn vgc_recharge_keeps_the_ally_choice_and_rng_order() {
     replay(include_str!("fixtures/vgc-recharge.json"));
 }
+
+#[test]
+fn bss_weather_attacks_modify_type_power_and_accuracy_and_replay_confusion() {
+    replay(include_str!("fixtures/bss-weather-attacks.json"));
+}

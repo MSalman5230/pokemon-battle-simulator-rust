@@ -150,6 +150,19 @@ pub fn action_speed(stat: u32, trick_room: bool, twisted_dimension: bool) -> i32
     }
 }
 
+pub(crate) fn confusion_damage(
+    level: u16,
+    attack: u32,
+    defense: u32,
+    truncation: Truncation,
+    rng: &mut Rng,
+) -> u32 {
+    let level_factor = u64::from(level) * 2 / 5 + 2;
+    let base = truncation.word(level_factor * 40 * u64::from(attack));
+    let base = truncation.bits16((base / u64::from(defense.max(1)) / 50 + 2) as u32);
+    ((u64::from(base) * (100 - u64::from(rng.below(16)))) / 100).max(1) as u32
+}
+
 /// The numeric inputs to damage after resolving scripted events for this hit.
 /// Immunities and fixed-damage moves bypass this calculation.
 #[derive(Debug, Copy, Clone)]

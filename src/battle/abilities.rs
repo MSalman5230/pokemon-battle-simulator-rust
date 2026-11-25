@@ -11,11 +11,12 @@ impl Pokemon {
         &self,
         move_data: &Move,
         move_type: &str,
+        base_power: u16,
         weather: Option<Weather>,
     ) -> u32 {
         let flags = &move_data.flags;
         match self.ability.as_str() {
-            "technician" if move_data.base_power <= 60 => 6144,
+            "technician" if base_power <= 60 => 6144,
             "toughclaws" if flags.contains_key("contact") => 5325,
             "sharpness" if flags.contains_key("slicing") => 6144,
             "strongjaw" if flags.contains_key("bite") => 6144,

@@ -95,6 +95,9 @@ impl Battle {
             ));
             return false;
         }
+        if !self.before_confusion_move(pos) {
+            return false;
+        }
         if let Some(source) = self.attract_source(pos) {
             self.add(format!(
                 "|-activate|{}|move: Attract|[of] {}",
@@ -111,6 +114,52 @@ impl Battle {
             return false;
         }
         true
+    }
+
+    pub(super) fn apply_confusion(&mut self, pos: Position, fatigue: bool) -> bool {
+        if self.mon(pos).hp == 0 || self.mon(pos).confusion > 0 {
+            return false;
+        }
+        let reason = if fatigue { "|[fatigue]" } else { "" };
+        self.add(format!("|-start|{}|confusion{reason}", self.ident(pos)));
+        let turns = 2 + self.rng.below(4) as u8;
+        let mon = self.mon_mut(pos);
+        mon.confusion = turns;
+        mon.track_volatile("confusion");
+        true
+    }
+
+    fn before_confusion_move(&mut self, pos: Position) -> bool {
+        use crate::mechanics::{BoostStat, boosted_stat, confusion_damage};
+        let mon = self.mon_mut(pos);
+        if mon.confusion == 0 {
+            return true;
+        }
+        mon.confusion -= 1;
+        if mon.confusion == 0 {
+            mon.untrack_volatile("confusion");
+            self.add(format!("|-end|{}|confusion", self.ident(pos)));
+            return true;
+        }
+        self.add(format!("|-activate|{}|confusion", self.ident(pos)));
+        if !self.rng.chance(33, 100) {
+            return true;
+        }
+        let mon = self.mon(pos);
+        let damage = confusion_damage(
+            mon.level,
+            boosted_stat(mon.stats.atk, mon.boosts.get(BoostStat::Atk)),
+            boosted_stat(mon.stats.def, mon.boosts.get(BoostStat::Def)),
+            self.format.stat_rules().truncation,
+            &mut self.rng,
+        );
+        let mon = self.mon_mut(pos);
+        mon.hp = mon.hp.saturating_sub(damage);
+        self.add_health_line_with("-damage", pos, false, "|[from] confusion");
+        if self.mon(pos).hp == 0 {
+            self.mark_fainted(pos);
+        }
+        false
     }
 
     pub(super) fn cure_status(&mut self, pos: Position, reason: &str) {

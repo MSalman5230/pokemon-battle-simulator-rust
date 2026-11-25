@@ -695,6 +695,10 @@ impl Battle {
                     | "lightscreen"
                     | "disable"
                     | "lastresort"
+                    | "weatherball"
+                    | "hurricane"
+                    | "thunder"
+                    | "blizzard"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -885,6 +889,7 @@ impl Battle {
                     party[outgoing.slot].boosts = Boosts::default();
                     party[outgoing.slot].flinched = false;
                     party[outgoing.slot].recharge = 0;
+                    party[outgoing.slot].confusion = 0;
                     party[outgoing.slot].volatile_order.clear();
                     party[outgoing.slot].imprisoned = false;
                     party[outgoing.slot].choice_lock = None;
@@ -1263,8 +1268,17 @@ impl Battle {
         }
         let move_data = self.move_data(source, slot);
         let struggle = slot == STRUGGLE_SLOT;
+        let weather = self.weather();
+        let weather_ball = move_data.name == "Weather Ball";
+        let power = if weather_ball && weather.is_some() {
+            move_data.base_power * 2
+        } else {
+            move_data.base_power
+        };
         let (move_type, converted) = if struggle {
             ("???", false)
+        } else if weather_ball {
+            (weather.map_or("Normal", Weather::ball_type), false)
         } else {
             self.mon(source).converted_move_type(&move_data.move_type)
         };
@@ -1273,6 +1287,16 @@ impl Battle {
         if !self.before_status_move(source, move_data) {
             return;
         }
+        let accuracy = match (move_data.name.as_str(), weather) {
+            ("Blizzard", Some(Weather::Snow)) => Accuracy::Bypass(true),
+            ("Hurricane" | "Thunder", Some(Weather::Rain)) if target.is_some() => {
+                Accuracy::Bypass(true)
+            }
+            ("Hurricane" | "Thunder", Some(Weather::Sun)) if target.is_some() => {
+                Accuracy::Percent(50)
+            }
+            _ => move_data.accuracy,
+        };
         if matches!(self.mon(source).status, Status::Freeze(_))
             && move_data.flags.contains_key("defrost")
         {
@@ -1320,6 +1344,9 @@ impl Battle {
             spread_targets.last().copied().or(target)
         };
         let target_name = actual_target.map_or_else(|| "null".into(), |pos| self.ident(pos));
+        if weather_ball && self.format.report_exact_hp {
+            self.add(format!("|debug|BP: {power}"));
+        }
         let base = self.log.len();
         self.add(format!(
             "|move|{source_name}|{}|{target_name}",
@@ -1530,7 +1557,7 @@ impl Battle {
             return;
         }
         spread_targets.retain(|&pos| {
-            if let Accuracy::Percent(accuracy) = move_data.accuracy
+            if let Accuracy::Percent(accuracy) = accuracy
                 && !move_data.always_hit
                 && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
                 && !(move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
@@ -1705,7 +1732,7 @@ impl Battle {
             let atk = tr.modify(atk, attack_modifier);
             let stab = user.has_type(move_type);
             let mut power_modifier = crate::mechanics::chain(
-                user.ability_power_modifier(move_data, move_type, self.weather()),
+                user.ability_power_modifier(move_data, move_type, power, weather),
                 user.item_power_modifier(move_type, move_data.category),
             );
             if converted {
@@ -1733,7 +1760,7 @@ impl Battle {
             );
             let value = Damage {
                 level: user.level,
-                power: tr.modify(u32::from(move_data.base_power), power_modifier),
+                power: tr.modify(u32::from(power), power_modifier),
                 attack: atk,
                 defense: NonZeroU32::new(def.max(1)).unwrap(),
                 spread_or_bond: if spread { 3072 } else { 4096 },
@@ -1854,6 +1881,9 @@ impl Battle {
                     {
                         self.mon_mut(target).flinched = true;
                         self.mon_mut(target).track_volatile("flinch");
+                    }
+                    if effect.volatile_status.as_deref() == Some("confusion") {
+                        self.apply_confusion(target, false);
                     }
                 }
             }
@@ -2022,6 +2052,7 @@ impl Battle {
         mon.protected = false;
         mon.flinched = false;
         mon.recharge = 0;
+        mon.confusion = 0;
         mon.volatile_order.clear();
         mon.imprisoned = false;
         mon.choice_lock = None;

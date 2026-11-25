@@ -47,6 +47,15 @@ impl Weather {
             _ => 4096,
         }
     }
+
+    pub(super) fn ball_type(self) -> &'static str {
+        match self {
+            Self::Rain => "Water",
+            Self::Sun => "Fire",
+            Self::Sand => "Rock",
+            Self::Snow => "Ice",
+        }
+    }
 }
 
 impl Battle {

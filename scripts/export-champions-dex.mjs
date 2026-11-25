@@ -41,7 +41,7 @@ function runsOnGenericPipeline(raw, move) {
         if (!hasOnly(effect, ['chance', 'status', 'volatileStatus', 'boosts', 'self']) ||
             (effect.self && (!effect.self.boosts || !hasOnly(effect.self, ['boosts']))) ||
             (effect.status && !supportedStatus.has(effect.status)) ||
-            (effect.volatileStatus && effect.volatileStatus !== 'flinch')) return false;
+            (effect.volatileStatus && !['flinch', 'confusion'].includes(effect.volatileStatus))) return false;
     }
     if (move.category === 'Status') return !!(move.boosts || move.status || move.heal);
     return move.basePower > 0 && !move.status && !move.heal;

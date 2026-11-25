@@ -211,6 +211,11 @@ const rechargeRosters = [
     [{...named('Slaking', ['Hyper Beam', 'Tackle']), ability: 'No Guard'}, named('Vaporeon', ['Recover'])],
     [named('Umbreon', ['Protect', 'Thunder Wave', 'Recover']), named('Glaceon', ['Recover'])],
 ];
+const weatherAttackRosters = [
+    [{...named('Pelipper', ['Hurricane', 'Weather Ball', 'Thunder', 'Sunny Day']), ability: 'Drizzle'},
+        {...named('Wigglytuff', ['Blizzard', 'Weather Ball']), ability: 'Pixilate'}],
+    [named('Goodra', ['Recover', 'Snowscape', 'Rain Dance']), named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -292,6 +297,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move recharge', 'move 3'], ['move 2', 'move 3']], rechargeRosters, 'bss-recharge'],
     ['vgc2026regmc', [['team 12', 'team 12'], ['move 1 1, move 1', 'move 2 1, move 1'],
         ['move 1, move 1', 'move 3, move 1']], rechargeRosters, 'vgc-recharge'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'],
+        ['move 3', 'move 1'], ['move 4', 'move 1'], ['move 1', 'move 1'],
+        ['switch 2', 'move 2'], ['move 1', 'move 1'], ['move 2', 'move 1']],
+        weatherAttackRosters, 'bss-weather-attacks', '1,2,3,6'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
