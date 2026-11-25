@@ -94,9 +94,12 @@ games in each generated format. The
 [next sample](../benchmarks/verified-native-192-parity.json) matched all 5,585
 checkpoints across another 192 completed games, 64 per format. The
 [288-game sample](../benchmarks/verified-native-288-parity.json) matched all
-7,929 checkpoints in 288 completed games, 96 per format. The captures test
-those specific seeds and choices. Keep expanding the corpus to exercise
-other mechanics.
+7,929 checkpoints in 288 completed games, 96 per format. The
+[384-game sample](../benchmarks/verified-native-384-parity.json) matched all
+10,520 checkpoints in 384 completed games, 128 per format. A combined replay
+of these four samples matched 26,575 checkpoints in 960 completed games.
+The captures test those specific seeds and choices. Keep expanding the
+corpus to exercise other mechanics.
 
 The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
 markers. Its hypothetical damage calculator runs in an isolated battle and

@@ -135,7 +135,11 @@ in 192 completed games (`--first-game 33 --games 64 --max-turns 90`).
 The [288-game sample](verified-native-288-parity.json) matches all 7,929
 checkpoints (`--first-game 97 --games 96 --max-turns 100`), with every game
 finishing naturally.
-This is a native parity sample and does not measure throughput or establish
+The [384-game sample](verified-native-384-parity.json) matches all 10,520
+checkpoints (`--first-game 193 --games 128 --max-turns 120`), again with no
+turn caps. Replaying the four non-overlapping samples together matches all
+26,575 checkpoints in 960 completed games.
+These are native parity samples and do not measure throughput or establish
 coverage of every move, ability, or item.
 
 ## Profile adapter overhead
