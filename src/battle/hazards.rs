@@ -147,7 +147,7 @@ impl Pokemon {
         self.species.types.iter().any(|t| t == name)
     }
 
-    fn grounded(&self) -> bool {
+    pub(super) fn grounded(&self) -> bool {
         !self.has_type("Flying") && self.item != "airballoon" && self.ability != "levitate"
     }
 }

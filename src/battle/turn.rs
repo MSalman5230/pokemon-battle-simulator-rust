@@ -8,7 +8,7 @@ use crate::{
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub(super) struct Position {
     pub(super) player: Player,
-    slot: usize,
+    pub(super) slot: usize,
 }
 
 impl Position {
@@ -115,7 +115,8 @@ impl Battle {
         match self.phase {
             Phase::Setup | Phase::Ended => None,
             Phase::Preview => self.preview_request(player).map(|r| to_value(r).unwrap()),
-            Phase::Move => Some(json!({
+            Phase::Move => {
+                let mut request = json!({
                 "active": (0..self.slots()).map(|slot| {
                     let mon = self.mon(Position { player, slot });
                     let moves = if mon.moves.iter().all(|m| m.pp == 0) {
@@ -127,11 +128,25 @@ impl Battle {
                         })).collect()
                     };
                     let mut request = json!({"moves":moves});
+                    let pos = Position { player, slot };
+                    if self.trapped_in_request(player, slot) {
+                        request["trapped"] = json!(true);
+                    } else if self.last_active(pos) && self.first_bench(player, 0).is_some() && self.trap_info(pos).possible {
+                        request["maybeTrapped"] = json!(true);
+                    }
                     if self.can_mega(Position { player, slot }) { request["canMegaEvo"] = json!(true); }
                     request
                 }).collect::<Vec<_>>(),
                 "side": self.side_request(player).unwrap(),
-            })),
+                });
+                if self.party(player).unwrap()[..self.slots()]
+                    .iter()
+                    .any(|p| p.revealed_trap)
+                {
+                    request["update"] = json!(true);
+                }
+                Some(request)
+            }
             Phase::Replace => {
                 let flags = self.force_switch(player);
                 if flags.iter().any(|x| *x) {
@@ -230,6 +245,11 @@ impl Battle {
                 "this player is waiting for the other side",
             ));
         }
+        if self.cant_undo[idx] {
+            return Err(BattleError::Choice(
+                "cannot undo without revealing a hidden effect",
+            ));
+        }
         let choices = match choice {
             Choice::Actions(choices) => choices,
             Choice::Undo => {
@@ -243,12 +263,30 @@ impl Battle {
             Choice::Team(_) => return Err(BattleError::Choice("team preview has finished")),
         };
 
+        self.pending_actions[idx] = None;
         let actions = self.resolve_choices(player, &choices)?;
+        if self.phase == Phase::Move {
+            for action in &actions {
+                if matches!(action.kind, ActionKind::Switch { .. }) {
+                    let pos = action.actor.unwrap();
+                    let trap = self.trap_info(pos);
+                    if trap.actual {
+                        if self.trapped_in_request(player, pos.slot) {
+                            return Err(BattleError::Choice("active Pokémon is trapped"));
+                        }
+                        self.mon_mut(pos).revealed_trap = true;
+                        return Err(BattleError::Unavailable("active Pokémon is trapped"));
+                    }
+                    self.cant_undo[idx] |= self.last_active(pos) && trap.possible;
+                }
+            }
+        }
         self.pending_actions[idx] = Some(actions);
         if Player::ALL.into_iter().all(|p| {
             self.pending_actions[p.index()].is_some()
                 || (self.phase == Phase::Replace && !self.force_switch(p).contains(&true))
         }) {
+            self.cant_undo = [false; 2];
             self.update_speed();
             let mut queue = Vec::new();
             for p in Player::ALL {
@@ -768,6 +806,9 @@ impl Battle {
             }
         }
         self.turn += 1;
+        for pos in self.positions() {
+            self.mon_mut(pos).revealed_trap = false;
+        }
         self.add(format!("|turn|{}", self.turn));
         self.phase = Phase::Move;
     }
@@ -1481,6 +1522,9 @@ impl Pokemon {
                 | "sandrush"
                 | "slushrush"
                 | "sandforce"
+                | "arenatrap"
+                | "magnetpull"
+                | "shadowtag"
         )
     }
 
@@ -1511,6 +1555,7 @@ impl Pokemon {
                 | "smoothrock"
                 | "icyrock"
                 | "heavydutyboots"
+                | "shedshell"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

@@ -1,5 +1,5 @@
 use pokemon_battle_simulator::{
-    battle::{BattleStream, Phase},
+    battle::{BattleError, BattleStream, Phase},
     input::Player,
     mechanics::BoostStat,
 };
@@ -19,9 +19,18 @@ fn replay(raw: &str) {
         let context = format!("{format} checkpoint {index}");
         for line in checkpoint["lines"].as_array().unwrap() {
             let line = line.as_str().unwrap();
-            stream
-                .apply(line.parse().unwrap())
-                .unwrap_or_else(|err| panic!("{context}, {line}: {err}"));
+            let result = stream.apply(line.parse().unwrap());
+            if checkpoint["unavailable"]
+                .as_array()
+                .is_some_and(|entries| entries.iter().any(|entry| entry == line))
+            {
+                assert!(
+                    matches!(result, Err(BattleError::Unavailable(_))),
+                    "{context}: {result:?}"
+                );
+            } else {
+                result.unwrap_or_else(|err| panic!("{context}, {line}: {err}"));
+            }
         }
         let battle = stream.battle().unwrap();
         assert_eq!(
@@ -58,6 +67,12 @@ fn replay(raw: &str) {
         log_cursor = battle.log().len();
         for player in Player::ALL {
             let index = player.index();
+            assert_eq!(
+                json!(battle.waiting(player)),
+                checkpoint["waiting"][index],
+                "{context}, waiting for {}",
+                player.id()
+            );
             assert_eq!(
                 battle.request(player).unwrap_or(Value::Null),
                 checkpoint["requests"][index],
@@ -145,4 +160,19 @@ fn vgc_replay_with_simultaneous_megas_and_permanent_formes() {
 #[test]
 fn bss_replay_with_champions_mega_z_and_levitate() {
     replay(include_str!("fixtures/bss-mega-z.json"));
+}
+
+#[test]
+fn bss_packed_teams_decode_ability_slots() {
+    replay(include_str!("fixtures/bss-packed.json"));
+}
+
+#[test]
+fn bss_reg_m_b_preview_and_pp_overrides() {
+    replay(include_str!("fixtures/bss-reg-mb.json"));
+}
+
+#[test]
+fn bss_hidden_trap_is_discovered_without_revealing_the_other_choice() {
+    replay(include_str!("fixtures/bss-hidden-trap.json"));
 }

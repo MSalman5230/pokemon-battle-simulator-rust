@@ -6,7 +6,7 @@ import {createRequire} from 'node:module';
 
 const stage = new URL('../.tools/poke-rl-simulator/', import.meta.url);
 const require = createRequire(new URL('worker.cjs', stage));
-const {Battle, BattleStream, PRNG, TeamValidator} = require('pokemon-showdown');
+const {Battle, BattleStream, PRNG, TeamValidator, Teams} = require('pokemon-showdown');
 const {extractChannelMessages} = require('pokemon-showdown/dist/sim/battle');
 const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
 const lock = JSON.parse(readFileSync(new URL('package-lock.json', stage)));
@@ -131,6 +131,16 @@ const megaRosters = [
     [{...named('Tyranitar', ['Rock Slide', 'Protect', 'Earthquake']), ability: 'Sand Stream', item: 'Tyranitarite'},
         {...named('Umbreon', ['Tackle']), item: 'Leftovers'}, named('Espeon', ['Swift']), named('Leafeon', ['Tackle'])],
 ];
+const trappedRosters = [
+    [named('Swampert', ['Tackle', 'Protect']), named('Starmie', ['Surf']), named('Umbreon', ['Tackle'])],
+    [{...named('Dugtrio', ['Tackle']), ability: 'Arena Trap'}, named('Leafeon', ['Leaf Blade']),
+        named('Espeon', ['Protect'])],
+];
+const mbRosters = [
+    [{...named('Glaceon', ['Tackle', 'Wish']), shiny: true}, named('Flareon', ['Tackle']),
+        named('Vaporeon', ['Surf']), named('Zacian-Crowned', ['Tackle'])],
+    rosters[1],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -168,6 +178,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         megaRosters, 'vgc-megas'],
     ['bssregmc', [['team 213', 'team 123'], ['move 1 mega', 'move 3'], ['move 2', 'move 2']],
         megaRosters, 'bss-mega-z'],
+    ['bssregmc', [['team 123', 'team 365'], ['move 3', 'move 2']], competitiveRosters, 'bss-packed'],
+    ['bssregmb', [['team 123', 'team 123'], ['move 1', 'move 1']], mbRosters, 'bss-reg-mb'],
+    ['bssregmc', [['team 123', 'team 123'], ['switch 2', 'move 1'], ['move 1', null]], trappedRosters, 'bss-hidden-trap'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
@@ -177,8 +190,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
             JSON.stringify({revision, teams: players.map(team => ({team}))}, null, 2) + '\n');
     }
     const inputs = [
-        '>start ' + JSON.stringify({formatid, seed, strictChoices: true}),
-        ...players.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team})),
+        '>start ' + JSON.stringify({formatid, seed, strictChoices: label !== "bss-hidden-trap"}),
+        ...players.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team: label === 'bss-packed' ?
+            Teams.pack(team).replace('|Blaze|', '|0|').replace('|Torrent|', '||') : team})),
     ];
     const stream = new BattleStream({noCatch: true});
     let logCursor = 0;
@@ -192,11 +206,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         const channels = extractChannelMessages(newLog.join('\n'), [0, 1, 2]);
         checkpoints.push({
             lines,
+            ...(label === 'bss-hidden-trap' && checkpoints.length === 2 && {unavailable: ['>p1 switch 2']}),
             turn: battle.turn,
             seed: battle.prng.getSeed(),
             requestState: battle.requestState,
+            waiting: battle.sides.map(s => s.isChoiceDone()),
             channels: [0, 1, 2].map(id => channels[id].filter(l => !l.startsWith('|uhtml|otsrequest|') && !l.startsWith('|uhtmlchange|otsrequest|'))),
-            requests: battle.sides.map(s => s.activeRequest),
+            requests: battle.sides.map(s => structuredClone(s.activeRequest)),
             teams: battle.sides.map(s => s.pokemon.map(p => ({
                 name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp, status: p.status,
                 stats: {...p.storedStats}, boosts: {...p.boosts}, ability: p.ability, item: p.item, active: p.isActive,

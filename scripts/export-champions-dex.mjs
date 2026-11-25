@@ -20,11 +20,16 @@ const handlers = e => Object.keys(e).filter(k =>
 const data = mod => {
     const dex = Dex.mod(mod);
     return {
-        species: table(dex.species.all(), e => ({
+        species: table(dex.species.all(), e => {
+            const packedSlots = Dex.species.get(e.name).abilities;
+            return {
             ...props(e, ['name', 'baseSpecies', 'types', 'baseStats', 'gender', 'abilities',
                 'isNonstandard', 'maxHP', 'requiredItem']),
             hasCondition: dex.conditions.getByID(e.id).exists,
-        })),
+            unreleasedHidden: !!e.unreleasedHidden,
+            packedAbilitySlots: JSON.stringify(packedSlots) === JSON.stringify(e.abilities) ? undefined : packedSlots,
+            };
+        }),
         moves: table(dex.moves.all(), e => {
             const move = props(e, ['name', 'type', 'category', 'target', 'basePower', 'priority',
                 'pp', 'noPPBoosts', 'accuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity']);

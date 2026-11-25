@@ -111,6 +111,8 @@ pub struct Species {
     pub max_hp: Option<u32>,
     pub required_item: Option<String>,
     pub has_condition: bool,
+    pub unreleased_hidden: bool,
+    pub packed_ability_slots: Option<Table<String>>,
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, Deserialize)]

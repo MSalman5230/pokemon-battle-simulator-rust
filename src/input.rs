@@ -1,5 +1,8 @@
 //! Input messages for the headless subset of Showdown's battle stream.
 
+mod packed;
+pub(crate) use packed::unpack;
+
 use crate::choice::{Choice, ChoiceError};
 use crate::rng::{InvalidSeed, Seed};
 use serde::Deserialize;

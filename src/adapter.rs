@@ -218,6 +218,9 @@ impl Game {
                 }
             }
         }
+        if battle.phase() == Phase::Move && battle.trapped_in_request(player, 0) {
+            return out;
+        }
         for (party_slot, mon) in party.iter().enumerate().skip(1) {
             if mon.hp == 0 {
                 continue;
@@ -273,14 +276,16 @@ impl Game {
         }
         for (player, choice) in Player::ALL.into_iter().zip(choices) {
             if let Some(choice) = choice {
-                self.stream
-                    .apply(Input::Choose(
-                        player,
-                        choice
-                            .parse::<crate::choice::Choice>()
-                            .map_err(|e| e.to_string())?,
-                    ))
-                    .map_err(|e| e.to_string())?;
+                let result = self.stream.apply(Input::Choose(
+                    player,
+                    choice
+                        .parse::<crate::choice::Choice>()
+                        .map_err(|e| e.to_string())?,
+                ));
+                match result {
+                    Err(crate::battle::BattleError::Unavailable(_)) | Ok(()) => {}
+                    Err(err) => return Err(err.to_string()),
+                }
             }
         }
         self.sync()

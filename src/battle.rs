@@ -15,6 +15,7 @@ mod items;
 mod mega;
 use hazards::Hazard;
 mod status;
+mod trap;
 mod turn;
 mod weather;
 pub use status::Status;
@@ -28,12 +29,13 @@ pub enum BattleError {
     Unknown(String),
     Unsupported(String),
     Choice(&'static str),
+    Unavailable(&'static str),
 }
 
 impl fmt::Display for BattleError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            Self::Input(s) | Self::Choice(s) => f.write_str(s),
+            Self::Input(s) | Self::Choice(s) | Self::Unavailable(s) => f.write_str(s),
             Self::Unknown(s) => write!(f, "unknown {s}"),
             Self::Unsupported(s) => write!(f, "not ported: {s}"),
         }
@@ -110,6 +112,7 @@ pub struct Battle {
     weather: Option<(Weather, u8)>,
     pending_actions: [Option<Vec<Action>>; 2],
     suspended: Vec<Action>,
+    cant_undo: [bool; 2],
 }
 
 struct Side {
@@ -144,6 +147,7 @@ pub struct Pokemon {
     stall: Option<(u16, u8)>,
     fainted: bool,
     needs_replacement: bool,
+    revealed_trap: bool,
     pivot_move: Option<&'static str>,
 }
 
@@ -222,11 +226,14 @@ impl Battle {
         let format = DEX
             .format(&start.formatid)
             .ok_or_else(|| BattleError::Unknown(format!("format {}", start.formatid)))?;
-        // Begin with the two format contracts used by the seeded replay
-        // fixtures. Other formats need their own startup and rule hooks.
+        // The flat-rules formats share this startup path. Other formats still
+        // need their own startup and per-battle rule hooks.
         if !matches!(
             start.formatid.as_str(),
-            "gen9championsbssregmc" | "gen9championsvgc2026regmc"
+            "gen9championsbssregmc"
+                | "gen9championsvgc2026regmc"
+                | "gen9championsbssregmb"
+                | "gen9championsvgc2026regmb"
         ) {
             return Err(BattleError::Unsupported(format!(
                 "startup rules for {}",
@@ -252,6 +259,7 @@ impl Battle {
             weather: None,
             pending_actions: [None, None],
             suspended: Vec::new(),
+            cant_undo: [false; 2],
         };
         battle.add(format!(
             "|gametype|{}",
@@ -337,7 +345,9 @@ impl Battle {
         }
         let sets = match options.team {
             Some(Team::Sets(sets)) => sets,
-            Some(Team::Packed(_)) => return Err(BattleError::Unsupported("packed teams".into())),
+            Some(Team::Packed(packed)) => {
+                crate::input::unpack(&packed).map_err(BattleError::Input)?
+            }
             None => return Err(BattleError::Unsupported("generated teams".into())),
         };
         if sets.len() < self.format.game_type.active_slots() || sets.len() > 24 {
@@ -491,28 +501,16 @@ impl Battle {
 }
 
 fn preview_details(details: &str) -> String {
+    // Champions uses its own Team Preview handler. It leaves shiny detail
+    // intact and masks only these three families.
     let (species, suffix) = details
         .split_once(',')
-        .map_or((details, ""), |(a, b)| (a, b));
+        .map_or((details, None), |(a, b)| (a, Some(b)));
     let base = species.split('-').next().unwrap();
-    let masked = match base {
-        "Zacian" | "Zamazenta" if !species.ends_with("-Crowned") => true,
-        "Greninja" | "Gourgeist" | "Pumpkaboo" | "Xerneas" | "Silvally" | "Urshifu"
-        | "Dudunsparce" => true,
-        _ => false,
-    };
-    let suffix = suffix.strip_suffix(", shiny").unwrap_or(suffix);
-    let suffix = if suffix == " shiny" { "" } else { suffix };
-    let mut preview = if masked {
-        format!("{base}-*")
-    } else {
-        species.to_owned()
-    };
-    if !suffix.is_empty() {
-        preview.push(',');
-        preview.push_str(suffix);
+    if !matches!(base, "Xerneas" | "Zacian" | "Zamazenta") {
+        return details.to_owned();
     }
-    preview
+    suffix.map_or_else(|| format!("{base}-*"), |s| format!("{base}-*,{s}"))
 }
 
 impl Pokemon {
@@ -638,6 +636,7 @@ impl Pokemon {
             stall: None,
             fainted: false,
             needs_replacement: false,
+            revealed_trap: false,
             pivot_move: None,
         })
     }
