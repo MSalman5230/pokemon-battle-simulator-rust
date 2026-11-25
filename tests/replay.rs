@@ -186,3 +186,8 @@ fn bss_imprison_discovery_only_updates_the_choosing_owner() {
 fn bss_no_pp_forces_typeless_struggle_and_recoil() {
     replay(include_str!("fixtures/bss-struggle.json"));
 }
+
+#[test]
+fn bss_choice_lock_intimidate_speed_boost_and_knock_off() {
+    replay(include_str!("fixtures/bss-choice-items.json"));
+}

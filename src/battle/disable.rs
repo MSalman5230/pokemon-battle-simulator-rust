@@ -33,18 +33,26 @@ impl Battle {
         move_slot: usize,
     ) -> bool {
         self.is_active(player, party_slot)
-            && self.disabled_by_imprison(
-                Position {
+            && (self
+                .mon(Position {
                     player,
                     slot: party_slot,
-                },
-                move_slot,
-            )
+                })
+                .disabled_by_choice(move_slot)
+                || self.disabled_by_imprison(
+                    Position {
+                        player,
+                        slot: party_slot,
+                    },
+                    move_slot,
+                ))
     }
 
     pub(super) fn actual_disabled(&self, pos: Position, slot: usize) -> bool {
         let mon = self.mon(pos);
-        mon.moves[slot].pp == 0 || self.disabled_by_imprison(pos, slot)
+        mon.moves[slot].pp == 0
+            || mon.disabled_by_choice(slot)
+            || self.disabled_by_imprison(pos, slot)
     }
 
     pub(super) fn disable_source(&self, pos: Position, slot: usize) -> Option<&'static str> {
@@ -72,6 +80,7 @@ impl Battle {
         };
         let mon = self.mon(pos);
         mon.moves[move_slot].pp == 0
+            || mon.disabled_by_choice(move_slot)
             || self.disable_source(pos, move_slot).is_some()
             || ((!self.last_active(pos) || mon.revealed_all_disables)
                 && self.disabled_by_imprison(pos, move_slot))

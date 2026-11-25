@@ -75,6 +75,20 @@ impl Battle {
 }
 
 impl Pokemon {
+    pub(super) fn holds_choice_item(&self) -> bool {
+        matches!(
+            self.item.as_str(),
+            "choicescarf" | "choiceband" | "choicespecs"
+        )
+    }
+
+    pub(super) fn disabled_by_choice(&self, slot: usize) -> bool {
+        self.holds_choice_item()
+            && self
+                .choice_lock
+                .is_some_and(|i| self.moves[i].id != self.moves[slot].id)
+    }
+
     pub(super) fn item_power_modifier(&self, move_type: &str) -> u32 {
         if matches!(
             (self.item.as_str(), move_type),
@@ -83,6 +97,8 @@ impl Pokemon {
                 | ("charcoal", "Fire")
                 | ("fairyfeather", "Fairy")
                 | ("spelltag", "Ghost")
+                | ("softsand", "Ground")
+                | ("magnet", "Electric")
         ) {
             4915
         } else {

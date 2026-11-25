@@ -69,3 +69,12 @@ all responses across 538 steps, 32 completed games, and no truncations. On
 the same Intel i5-6300HQ host, the median across five replays was 474.1
 steps/s for Showdown and 1,673.5 for Rust (3.53×). This is a result on the
 verified subset, not a speed or parity claim about the default Poke-RL corpus.
+
+## Profile adapter overhead
+
+`benchmarks/profile-oracle.mjs` runs the locked worker's `Game` in-process
+so a JavaScript CPU profile attributes time to the actual worker functions.
+It is diagnostic and excludes JSON-lines pipe traffic. On a 120-game subset
+sample, the profiler attributed about 34% of CPU time directly to the worker's
+JSON round-trip `clone` helper. The Rust adapter serializes borrowed views
+and avoids copying either player's observation tree for the critic.

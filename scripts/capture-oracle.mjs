@@ -149,6 +149,13 @@ const struggleRosters = [
     [named('Vaporeon', ['Recover']), named('Flareon', ['Tackle'])],
     [named('Glaceon', ['Protect']), named('Umbreon', ['Recover'])],
 ];
+const choiceRosters = [
+    [{...named('Garchomp', ['Tackle', 'Knock Off', 'Dragon Claw']), ability: 'Rough Skin', item: 'Choice Scarf'},
+        {...named('Blaziken', ['Protect', 'Close Combat']), ability: 'Speed Boost'}, named('Vaporeon', ['Surf'])],
+    [{...named('Espeon', ['Swift', 'Protect']), item: 'Choice Specs'},
+        {...named('Incineroar', ['Knock Off', 'Protect']), ability: 'Intimidate', item: 'Leftovers'},
+        {...named('Dragonite', ['Tackle']), ability: 'Multiscale'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -193,6 +200,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         [null, 'move 2'], ['switch 2', 'move 2']], imprisonRosters, 'bss-imprison'],
     ['bssregmc', [['team 12', 'team 12'], ...Array(10).fill(['move 1', 'move 1'])],
         struggleRosters, 'bss-struggle'],
+    ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 1'], ['switch 2', 'switch 2'],
+        ['move 1', 'move 1'], ['switch 2', 'move 1'], ['move 2', 'switch 3']],
+        choiceRosters, 'bss-choice-items'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

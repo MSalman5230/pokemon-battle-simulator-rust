@@ -10,6 +10,7 @@ use crate::{
 };
 use serde::Serialize;
 
+mod abilities;
 mod disable;
 mod hazards;
 mod items;
@@ -150,6 +151,8 @@ pub struct Pokemon {
     needs_replacement: bool,
     revealed_trap: bool,
     imprisoned: bool,
+    choice_lock: Option<usize>,
+    active_turns: u32,
     revealed_disables: u32,
     revealed_all_disables: bool,
     pivot_move: Option<&'static str>,
@@ -642,6 +645,8 @@ impl Pokemon {
             needs_replacement: false,
             revealed_trap: false,
             imprisoned: false,
+            choice_lock: None,
+            active_turns: 0,
             revealed_disables: 0,
             revealed_all_disables: false,
             pivot_move: None,

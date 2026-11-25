@@ -294,6 +294,9 @@ impl Battle {
                 } else if let ActionKind::Move { move_slot, .. } = action.kind {
                     let pos = action.actor.unwrap();
                     if move_slot != STRUGGLE_SLOT && self.actual_disabled(pos, move_slot) {
+                        if self.mon(pos).disabled_by_choice(move_slot) {
+                            return Err(BattleError::Choice("move is Choice locked"));
+                        }
                         return Err(self.reveal_disabled_move(pos, move_slot));
                     }
                     self.cant_undo[idx] |=
@@ -586,6 +589,21 @@ impl Battle {
                 | "voltswitch"
                 | "flipturn"
                 | "imprison"
+                | "knockoff"
+                | "dragonclaw"
+                | "dragonpulse"
+                | "aurasphere"
+                | "darkpulse"
+                | "psychic"
+                | "crunch"
+                | "ironhead"
+                | "playrough"
+                | "rocktomb"
+                | "airslash"
+                | "icywind"
+                | "discharge"
+                | "disarmingvoice"
+                | "hypervoice"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -762,6 +780,8 @@ impl Battle {
                     party[outgoing.slot].flinched = false;
                     party[outgoing.slot].volatile_order.clear();
                     party[outgoing.slot].imprisoned = false;
+                    party[outgoing.slot].choice_lock = None;
+                    party[outgoing.slot].active_turns = 0;
                     if !party[outgoing.slot].fainted {
                         party[outgoing.slot].times_attacked = 0;
                     }
@@ -866,6 +886,13 @@ impl Battle {
             mon.revealed_trap = false;
             mon.revealed_disables = 0;
             mon.revealed_all_disables = false;
+            if !mon.fainted {
+                mon.active_turns += 1;
+            }
+            if !mon.holds_choice_item() {
+                mon.choice_lock = None;
+                mon.untrack_volatile("choicelock");
+            }
         }
         self.add(format!("|turn|{}", self.turn));
         self.phase = Phase::Move;
@@ -876,6 +903,9 @@ impl Battle {
             self.add(format!("|-ability|{}|Pressure", self.ident(pos)));
         }
         self.switch_in_weather(pos);
+        if self.mon(pos).ability == "intimidate" {
+            self.intimidate(pos);
+        }
     }
 
     fn positions(&self) -> impl Iterator<Item = Position> + use<> {
@@ -934,6 +964,7 @@ impl Battle {
             Flinch,
             Leftovers,
             Weather,
+            SpeedBoost,
         }
         self.add("|");
         self.update_speed();
@@ -962,6 +993,9 @@ impl Battle {
             };
             if let Some((order, _, _)) = mon.status.residual() {
                 timers.push((pos, Effect::Status, priority(order, 0)));
+            }
+            if mon.ability == "speedboost" {
+                timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
             }
             if mon.item == "leftovers" {
                 timers.push((pos, Effect::Leftovers, priority(5, 4)));
@@ -995,6 +1029,7 @@ impl Battle {
                     self.item_heal(pos, amount, "Leftovers");
                 }
                 Effect::Weather => unreachable!(),
+                Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Protect => {
                     mon.protected = false;
                     mon.untrack_volatile("protect");
@@ -1066,7 +1101,12 @@ impl Battle {
         if struggle {
             self.add(format!("|-activate|{source_name}|move: Struggle"));
         } else {
-            self.mon_mut(source).moves[slot].pp -= 1;
+            let mon = self.mon_mut(source);
+            mon.moves[slot].pp -= 1;
+            if mon.holds_choice_item() && mon.choice_lock.is_none() {
+                mon.choice_lock = Some(slot);
+                mon.track_volatile("choicelock");
+            }
         }
         let mut spread_targets = Vec::new();
         match move_data.target {
@@ -1326,18 +1366,18 @@ impl Battle {
             } else {
                 def
             };
-            let atk = if user.attack_boosts_type(move_type) {
-                tr.modify(atk, 6144)
-            } else {
-                atk
-            };
+            let atk = tr.modify(atk, user.attack_modifier(move_data.category, move_type));
             let stab = user.has_type(move_type);
-            let mut power_modifier = user.item_power_modifier(move_type);
-            if self.weather() == Some(Weather::Sand)
-                && user.ability == "sandforce"
-                && matches!(move_data.move_type.as_str(), "Rock" | "Ground" | "Steel")
-            {
-                power_modifier = crate::mechanics::chain(5325, power_modifier);
+            let mut power_modifier = crate::mechanics::chain(
+                user.ability_power_modifier(move_data, move_type, self.weather()),
+                user.item_power_modifier(move_type),
+            );
+            if move_data.name == "Knock Off" && mon.can_take_item(self.format.dex_mod).is_some() {
+                power_modifier = crate::mechanics::chain(power_modifier, 6144);
+            }
+            let mut final_modifier = if user.item == "lifeorb" { 5324 } else { 4096 };
+            if mon.ability == "multiscale" && mon.hp == mon.max_hp.get() {
+                final_modifier = crate::mechanics::chain(final_modifier, 2048);
             }
             let value = Damage {
                 level: user.level,
@@ -1349,10 +1389,18 @@ impl Battle {
                     .weather()
                     .map_or(4096, |w| w.damage_modifier(move_type)),
                 critical: crit,
-                stab: if stab { 6144 } else { 4096 },
+                stab: if !stab {
+                    4096
+                } else if user.ability == "adaptability" {
+                    8192
+                } else {
+                    6144
+                },
                 effectiveness: effect,
-                burned: user.status == Status::Burn && move_data.category == Category::Physical,
-                final_modifier: if user.item == "lifeorb" { 5324 } else { 4096 },
+                burned: user.status == Status::Burn
+                    && user.ability != "guts"
+                    && move_data.category == Category::Physical,
+                final_modifier,
                 bypassed_protect: false,
             }
             .roll(tr, &mut self.rng);
@@ -1439,6 +1487,25 @@ impl Battle {
                 self.consume(target, "Air Balloon", false);
             }
         }
+        if move_data.name == "Knock Off" {
+            for &(target, _) in &damage {
+                if let Some(item) = self.mon(target).can_take_item(self.format.dex_mod) {
+                    self.mon_mut(target).item.clear();
+                    self.add(format!(
+                        "|-enditem|{}|{item}|[from] move: Knock Off|[of] {source_name}",
+                        self.ident(target)
+                    ));
+                } else if self.mon(target).ability == "stickyhold"
+                    && self.mon(target).hp > 0
+                    && !self.mon(target).item.is_empty()
+                {
+                    self.add(format!(
+                        "|-activate|{}|ability: Sticky Hold",
+                        self.ident(target)
+                    ));
+                }
+            }
+        }
         self.each_event();
         for (target, _) in damage {
             if self.mon(target).hp == 0 {
@@ -1495,6 +1562,7 @@ impl Battle {
         mon.flinched = false;
         mon.volatile_order.clear();
         mon.imprisoned = false;
+        mon.choice_lock = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
         self.add(format!("|faint|{}", self.ident(target)));
@@ -1579,6 +1647,9 @@ impl Pokemon {
         ) {
             stat *= 2;
         }
+        if self.item == "choicescarf" {
+            stat = crate::mechanics::Truncation::Cartridge.modify(stat, 6144);
+        }
         if self.status == Status::Paralysis {
             stat / 2
         } else {
@@ -1586,7 +1657,7 @@ impl Pokemon {
         }
     }
 
-    fn attack_boosts_type(&self, move_type: &str) -> bool {
+    pub(super) fn attack_boosts_type(&self, move_type: &str) -> bool {
         self.hp * 3 <= self.max_hp.get()
             && matches!(
                 (self.ability.as_str(), move_type),
@@ -1620,6 +1691,17 @@ impl Pokemon {
                 | "arenatrap"
                 | "magnetpull"
                 | "shadowtag"
+                | "intimidate"
+                | "innerfocus"
+                | "speedboost"
+                | "multiscale"
+                | "guts"
+                | "adaptability"
+                | "technician"
+                | "ironfist"
+                | "sharpness"
+                | "toughclaws"
+                | "stickyhold"
         )
     }
 
@@ -1651,6 +1733,11 @@ impl Pokemon {
                 | "icyrock"
                 | "heavydutyboots"
                 | "shedshell"
+                | "choicescarf"
+                | "choiceband"
+                | "choicespecs"
+                | "softsand"
+                | "magnet"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())
