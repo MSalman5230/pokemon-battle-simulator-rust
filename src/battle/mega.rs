@@ -74,10 +74,12 @@ impl Battle {
             species.required_item.as_deref().unwrap_or("")
         ));
         self.sides[pos.player.index()].as_mut().unwrap().mega_used = true;
-        self.mon_mut(pos).ability = species
+        let mon = self.mon_mut(pos);
+        mon.ability = species
             .abilities
             .get("0")
             .map_or_else(String::new, |name| to_id(name));
+        mon.base_ability.clone_from(&mon.ability);
         self.reset_ability_order(pos);
         self.start_ability(pos);
     }

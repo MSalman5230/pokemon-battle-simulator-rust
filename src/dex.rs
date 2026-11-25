@@ -193,6 +193,10 @@ pub struct Effect {
     pub name: String,
     pub is_nonstandard: Option<String>,
     pub handlers: Vec<String>,
+    #[serde(default)]
+    pub no_trace: bool,
+    #[serde(default)]
+    pub cannot_suppress: bool,
 }
 
 #[derive(Debug, Deserialize)]

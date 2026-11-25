@@ -78,6 +78,69 @@ impl Battle {
         self.mon_mut(pos).ability_order = self.ability_order;
     }
 
+    pub(super) fn contact_ability(&mut self, holder: Position, source: Position) {
+        let (id, label) = match self.mon(holder).ability.as_str() {
+            "mummy" => ("mummy", "Mummy"),
+            "lingeringaroma" => ("lingeringaroma", "Lingering Aroma"),
+            _ => return,
+        };
+        let mon = self.mon(source);
+        let old = DEX.ability(&mon.ability);
+        if mon.hp == 0 || mon.ability == id || old.is_some_and(|ability| ability.cannot_suppress) {
+            return;
+        }
+        let old = old.map_or("", |ability| ability.name.as_str());
+        self.mon_mut(source).ability.clear();
+        self.mon_mut(source).ability.push_str(id);
+        self.reset_ability_order(source);
+        self.add(format!(
+            "|-activate|{}|ability: {label}|{}|[ability] {old}",
+            self.ident(holder),
+            self.ident(source)
+        ));
+    }
+
+    pub(super) fn try_trace(&mut self, pos: Position) {
+        if self.mon(pos).hp == 0 || self.mon(pos).ability != "trace" {
+            return;
+        }
+        let mut candidates = [pos; 2];
+        let mut count = 0;
+        for target in self
+            .positions()
+            .filter(|target| target.player != pos.player)
+        {
+            let mon = self.mon(target);
+            if mon.hp > 0
+                && mon.ability != "noability"
+                && DEX
+                    .ability(&mon.ability)
+                    .is_some_and(|ability| !ability.no_trace)
+            {
+                candidates[count] = target;
+                count += 1;
+            }
+        }
+        if count == 0 {
+            return;
+        }
+        let target = candidates[self.rng.below(count as u32) as usize];
+        let ability = DEX.ability(&self.mon(target).ability).unwrap();
+        if ability.cannot_suppress {
+            return;
+        }
+        let id = self.mon(target).ability.clone();
+        self.mon_mut(pos).ability = id;
+        self.reset_ability_order(pos);
+        self.add(format!(
+            "|-ability|{}|{}|Trace|[from] ability: Trace|[of] {}",
+            self.ident(pos),
+            ability.name,
+            self.ident(target)
+        ));
+        self.start_ability(pos);
+    }
+
     pub(super) fn redirect_elemental(
         &mut self,
         source: Position,
@@ -252,6 +315,19 @@ impl Battle {
         let mirror = self.mon(target).ability == "mirrorarmor" && target != source && !reflected;
         for &(stat, amount) in changes {
             let current = self.mon(target).boosts.get(stat);
+            if amount < 0
+                && stat == BoostStat::Accuracy
+                && target != source
+                && self.mon(target).ability == "illuminate"
+            {
+                if !quiet && current > -6 {
+                    let ident = self.ident(target);
+                    self.add(format!(
+                        "|-fail|{ident}|unboost|accuracy|[from] ability: Illuminate|[of] {ident}"
+                    ));
+                }
+                continue;
+            }
             if amount < 0 && protection.is_some() {
                 continue;
             }
@@ -360,6 +436,12 @@ impl Battle {
 }
 
 impl Pokemon {
+    pub(super) fn reset_ability(&mut self) {
+        if self.ability != self.base_ability {
+            self.ability.clone_from(&self.base_ability);
+        }
+    }
+
     fn stat_drop_protection(&self) -> Option<&'static str> {
         Some(match self.ability.as_str() {
             "clearbody" => "Clear Body",

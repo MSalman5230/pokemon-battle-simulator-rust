@@ -918,6 +918,7 @@ impl Battle {
                     }
                     party[outgoing.slot].needs_replacement = false;
                     party[outgoing.slot].pivot_move = None;
+                    party[outgoing.slot].reset_ability();
                     if party[outgoing.slot].fainted {
                         party[outgoing.slot].status = Status::Healthy;
                     }
@@ -1044,6 +1045,7 @@ impl Battle {
         if self.mon(pos).ability == "intimidate" {
             self.intimidate(pos);
         }
+        self.try_trace(pos);
     }
 
     pub(super) fn positions(&self) -> impl Iterator<Item = Position> + use<> {
@@ -1090,6 +1092,7 @@ impl Battle {
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
             self.attract_update(pos);
+            self.try_trace(pos);
             self.on_update_item(pos);
         }
     }
@@ -2032,6 +2035,7 @@ impl Battle {
                 match self.mon(target).ability.as_str() {
                     "flamebody" => self.flame_body(target, source),
                     "cutecharm" => self.cute_charm(target, source),
+                    "mummy" | "lingeringaroma" => self.contact_ability(target, source),
                     _ => {}
                 }
             }
@@ -2153,6 +2157,7 @@ impl Battle {
         self.last_faint = Some(target.player);
         let mon = self.mon_mut(target);
         mon.fainted = true;
+        mon.reset_ability();
         mon.pivot_move = None;
         mon.stall = None;
         mon.protected = false;
@@ -2223,8 +2228,13 @@ impl Battle {
             } else {
                 i32::from(accuracy)
             };
+        let evasion = if self.mon(source).ability == "illuminate" {
+            0
+        } else {
+            self.mon(target).boosts.get(BoostStat::Evasion)
+        };
         let boost = (i32::from(self.mon(source).boosts.get(BoostStat::Accuracy))
-            - i32::from(self.mon(target).boosts.get(BoostStat::Evasion)))
+            - i32::from(evasion))
         .clamp(-6, 6);
         (accuracy * (3 + boost.max(0)) / (3 - boost.min(0))) as u32
     }
@@ -2351,6 +2361,10 @@ impl Pokemon {
                 | "wellbakedbody"
                 | "magicguard"
                 | "weakarmor"
+                | "mummy"
+                | "lingeringaroma"
+                | "trace"
+                | "illuminate"
                 | "shedskin"
                 | "clearbody"
                 | "whitesmoke"

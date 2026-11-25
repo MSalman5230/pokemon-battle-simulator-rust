@@ -300,3 +300,8 @@ fn bss_taunt_interrupts_selected_status_moves_and_updates_requests() {
 fn bss_court_change_glaive_rush_and_poltergeist() {
     replay(include_str!("fixtures/bss-court-change.json"));
 }
+
+#[test]
+fn bss_temporary_ability_changes_preserve_base_ability_and_reset_on_switch() {
+    replay(include_str!("fixtures/bss-ability-transfer.json"));
+}
