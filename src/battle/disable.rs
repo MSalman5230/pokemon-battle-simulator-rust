@@ -32,20 +32,25 @@ impl Battle {
         party_slot: usize,
         move_slot: usize,
     ) -> bool {
+        let pos = Position {
+            player,
+            slot: party_slot,
+        };
         self.is_active(player, party_slot)
             && (self
-                .mon(Position {
-                    player,
-                    slot: party_slot,
-                })
-                .disabled_by_choice(move_slot)
-                || self.disabled_by_imprison(
-                    Position {
-                        player,
-                        slot: party_slot,
-                    },
-                    move_slot,
-                ))
+                .mon(pos)
+                .disabled_slot
+                .is_some_and(|(slot, _)| slot == move_slot)
+                || self.mon(pos).disabled_by_choice(move_slot)
+                || self.disabled_by_imprison(pos, move_slot))
+    }
+
+    pub(super) fn visible_disable(&self, pos: Position, slot: usize) -> bool {
+        let mon = self.mon(pos);
+        mon.disabled_by_choice(slot)
+            || mon
+                .disabled_slot
+                .is_some_and(|(disabled, _)| disabled == slot)
     }
 
     pub(super) fn actual_disabled(&self, pos: Position, slot: usize) -> bool {
@@ -80,7 +85,7 @@ impl Battle {
         };
         let mon = self.mon(pos);
         mon.moves[move_slot].pp == 0
-            || mon.disabled_by_choice(move_slot)
+            || self.visible_disable(pos, move_slot)
             || self.disable_source(pos, move_slot).is_some()
             || ((!self.last_active(pos) || mon.revealed_all_disables)
                 && self.disabled_by_imprison(pos, move_slot))
@@ -95,5 +100,49 @@ impl Battle {
         mon.revealed_disables |= 1_u32 << slot;
         mon.revealed_all_disables = doubles;
         BattleError::Unavailable("move is disabled")
+    }
+}
+
+impl Battle {
+    pub(super) fn disable_last_move(
+        &mut self,
+        target: Position,
+        source: Position,
+        cursed: bool,
+    ) -> bool {
+        let mon = self.mon(target);
+        if mon.hp == 0 || mon.disabled_slot.is_some() {
+            return false;
+        }
+        let Some(slot) = mon.last_move_slot.filter(|&slot| mon.moves[slot].pp > 0) else {
+            return false;
+        };
+        let duration = if cursed || !mon.acted { 4 } else { 5 };
+        let name = mon.moves[slot].move_data.name.as_str();
+        let mon = self.mon_mut(target);
+        mon.disabled_slot = Some((slot, duration));
+        mon.track_volatile("disable");
+        let reason = if cursed {
+            format!("|[from] ability: Cursed Body|[of] {}", self.ident(source))
+        } else {
+            String::new()
+        };
+        self.add(format!(
+            "|-start|{}|Disable|{name}{reason}",
+            self.ident(target)
+        ));
+        true
+    }
+
+    pub(super) fn tick_disable(&mut self, target: Position) {
+        let mon = self.mon_mut(target);
+        let (slot, turns) = mon.disabled_slot.unwrap();
+        if turns > 1 {
+            mon.disabled_slot = Some((slot, turns - 1));
+            return;
+        }
+        mon.disabled_slot = None;
+        mon.untrack_volatile("disable");
+        self.add(format!("|-end|{}|Disable", self.ident(target)));
     }
 }

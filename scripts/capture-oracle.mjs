@@ -168,6 +168,14 @@ const screenRosters = [
     [{...named('Vaporeon', ['Water Gun', 'Yawn', 'Recover', 'Tackle']), ability: 'Water Absorb'},
         named('Glaceon', ['Freeze-Dry']), named('Jolteon', ['Tackle'])],
 ];
+const cuteCharmRosters = [
+    [named('Espeon', ['Tackle', 'Recover'], 'M'), named('Flareon', ['Tackle'])],
+    [{...named('Sylveon', ['Tackle', 'Recover']), ability: 'Cute Charm'}, named('Umbreon', ['Tackle'])],
+];
+const cursedBodyRosters = [
+    [named('Jolteon', ['Water Gun', 'Recover']), named('Flareon', ['Tackle'])],
+    [{...named('Gengar', ['Recover', 'Disable']), ability: 'Cursed Body'}, named('Umbreon', ['Tackle'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -222,6 +230,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 3', 'move 1'], ['move 3', 'move 1'], ['move 3', 'move 1'],
         ['move 4', 'move 4'], ['switch 2', 'move 4'], ['move 1', 'move 4'], ['move 1', 'move 4']],
         screenRosters, 'bss-screen-rest'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 1'],
+        ['move 1', 'switch 2']], cuteCharmRosters, 'bss-cute-charm', '1,2,3,3'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 2'],
+        ['move 2', 'move 1'], ['move 2', 'move 1'], ['move 1', 'move 1']],
+        cursedBodyRosters, 'bss-cursed-body', '1,2,3,3'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

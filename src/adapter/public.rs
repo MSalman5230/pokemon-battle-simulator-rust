@@ -344,18 +344,23 @@ impl PublicState {
                     mon["types"] = json!(types(name));
                 }
             }
-            "-start" if matches!(get(3), "move: Imprison" | "move: Yawn") => {
+            "-start"
+                if matches!(
+                    get(3),
+                    "move: Imprison" | "move: Yawn" | "Attract" | "Disable"
+                ) =>
+            {
                 if let Some(key) = key {
                     self.mon_mut(key)["volatiles"][effect(get(3))] =
                         json!({"turn":turn,"move":(!get(4).is_empty()).then(|| to_id(get(4)))});
                 }
             }
-            "-end" if get(3) == "move: Yawn" => {
+            "-end" if matches!(get(3), "move: Yawn" | "Attract") => {
                 if let Some(key) = key {
                     self.mon_mut(key)["volatiles"]
                         .as_object_mut()
                         .unwrap()
-                        .remove("yawn");
+                        .remove(&effect(get(3)));
                 }
             }
             "-singleturn" => {

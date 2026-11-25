@@ -11,6 +11,7 @@ use crate::{
 use serde::Serialize;
 
 mod abilities;
+mod attract;
 mod disable;
 mod hazards;
 mod items;
@@ -157,6 +158,11 @@ pub struct Pokemon {
     choice_lock: Option<usize>,
     active_turns: u32,
     roosted: bool,
+    attract: Option<(Player, usize)>,
+    disabled_slot: Option<(usize, u8)>,
+    last_move_slot: Option<usize>,
+    acted: bool,
+    gender: u8,
     yawn: u8,
     revealed_disables: u32,
     revealed_all_disables: bool,
@@ -654,6 +660,11 @@ impl Pokemon {
             choice_lock: None,
             active_turns: 0,
             roosted: false,
+            attract: None,
+            disabled_slot: None,
+            last_move_slot: None,
+            acted: false,
+            gender: gender.as_bytes()[0],
             yawn: 0,
             revealed_disables: 0,
             revealed_all_disables: false,

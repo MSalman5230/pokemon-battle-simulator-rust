@@ -294,8 +294,8 @@ impl Battle {
                 } else if let ActionKind::Move { move_slot, .. } = action.kind {
                     let pos = action.actor.unwrap();
                     if move_slot != STRUGGLE_SLOT && self.actual_disabled(pos, move_slot) {
-                        if self.mon(pos).disabled_by_choice(move_slot) {
-                            return Err(BattleError::Choice("move is Choice locked"));
+                        if self.visible_disable(pos, move_slot) {
+                            return Err(BattleError::Choice("move is disabled"));
                         }
                         return Err(self.reveal_disabled_move(pos, move_slot));
                     }
@@ -648,6 +648,7 @@ impl Battle {
                 | "auroraveil"
                 | "reflect"
                 | "lightscreen"
+                | "disable"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -797,6 +798,14 @@ impl Battle {
                     }
                     let (order, count) = self.ordered_actives(true);
                     for (pos, _) in order.into_iter().take(count) {
+                        if switching.contains(&Some(pos))
+                            && self.mon(pos).hp > 0
+                            && self.mon(pos).ability == "unnerve"
+                        {
+                            self.add(format!("|-ability|{}|Unnerve", self.ident(pos)));
+                        }
+                    }
+                    for (pos, _) in order.into_iter().take(count) {
                         if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
                             self.on_switch_in_hazards(pos);
                             if self.check_win() {
@@ -828,6 +837,10 @@ impl Battle {
                     party[outgoing.slot].active_turns = 0;
                     party[outgoing.slot].roosted = false;
                     party[outgoing.slot].yawn = 0;
+                    party[outgoing.slot].attract = None;
+                    party[outgoing.slot].disabled_slot = None;
+                    party[outgoing.slot].last_move_slot = None;
+                    party[outgoing.slot].acted = false;
                     if !party[outgoing.slot].fainted {
                         party[outgoing.slot].times_attacked = 0;
                     }
@@ -862,6 +875,7 @@ impl Battle {
                     let another_action = queue.iter().any(|q| {
                         matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. })
                     });
+                    self.mon_mut(source).acted = true;
                     self.run_move(source, move_slot, target, another_action);
                 }
                 ActionKind::Residual => self.residual(),
@@ -932,6 +946,7 @@ impl Battle {
             mon.revealed_trap = false;
             mon.revealed_disables = 0;
             mon.revealed_all_disables = false;
+            mon.acted = false;
             if !mon.fainted {
                 mon.active_turns += 1;
             }
@@ -997,6 +1012,7 @@ impl Battle {
     pub(super) fn each_event(&mut self) {
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
+            self.attract_update(pos);
             self.on_update_item(pos);
         }
     }
@@ -1013,6 +1029,7 @@ impl Battle {
             SpeedBoost,
             Roost,
             Yawn,
+            Disable,
             Screen(Screen),
         }
         self.add("|");
@@ -1061,6 +1078,9 @@ impl Battle {
             if mon.ability == "speedboost" {
                 timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
             }
+            if mon.disabled_slot.is_some() {
+                timers.push((pos, Effect::Disable, priority(17, 2)));
+            }
             if mon.yawn > 0 {
                 timers.push((pos, Effect::Yawn, priority(23, 2)));
             }
@@ -1104,6 +1124,7 @@ impl Battle {
                 }
                 Effect::Weather | Effect::Screen(_) => unreachable!(),
                 Effect::Yawn => self.tick_yawn(pos),
+                Effect::Disable => self.tick_disable(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Roost => {
                     mon.roosted = false;
@@ -1178,10 +1199,12 @@ impl Battle {
             self.cure_status(source, &format!("[from] move: {}", move_data.name));
         }
         if struggle {
+            self.mon_mut(source).last_move_slot = None;
             self.add(format!("|-activate|{source_name}|move: Struggle"));
         } else {
             let mon = self.mon_mut(source);
             mon.moves[slot].pp -= 1;
+            mon.last_move_slot = Some(slot);
             if mon.holds_choice_item() && mon.choice_lock.is_none() {
                 mon.choice_lock = Some(slot);
                 mon.track_volatile("choicelock");
@@ -1404,6 +1427,15 @@ impl Battle {
                 true
             }
         });
+        if move_data.name == "Disable"
+            && spread_targets
+                .iter()
+                .any(|&p| self.mon(p).last_move_slot.is_none())
+        {
+            self.log[base].public = format!("|move|{source_name}|Disable||[still]");
+            self.add(format!("|-fail|{source_name}"));
+            return;
+        }
         spread_targets.retain(|&pos| {
             if let Accuracy::Percent(accuracy) = move_data.accuracy
                 && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
@@ -1427,6 +1459,14 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Disable" {
+                    if !self.disable_last_move(target, source, false) {
+                        self.log[base].public = format!("|move|{source_name}|Disable||[still]");
+                        self.add(format!("|-fail|{source_name}"));
+                    } else {
+                        succeeded = true;
+                    }
+                }
                 if move_data.name == "Yawn" {
                     let mon = self.mon(target);
                     if mon.yawn != 0
@@ -1558,7 +1598,13 @@ impl Battle {
             } else {
                 def
             };
-            let atk = tr.modify(atk, user.attack_modifier(move_data.category, move_type));
+            let mut attack_modifier = user.attack_modifier(move_data.category, move_type);
+            if (mon.ability == "heatproof" && move_type == "Fire")
+                || (mon.ability == "thickfat" && matches!(move_type, "Fire" | "Ice"))
+            {
+                attack_modifier = crate::mechanics::chain(attack_modifier, 2048);
+            }
+            let atk = tr.modify(atk, attack_modifier);
             let stab = user.has_type(move_type);
             let mut power_modifier = crate::mechanics::chain(
                 user.ability_power_modifier(move_data, move_type, self.weather()),
@@ -1571,6 +1617,9 @@ impl Battle {
             if (mon.ability == "multiscale" && mon.hp == mon.max_hp.get())
                 || (mon.ability == "auraguard" && move_data.flags.contains_key("contact"))
             {
+                if user.ability == "sniper" && crit {
+                    final_modifier = crate::mechanics::chain(final_modifier, 6144);
+                }
                 final_modifier = crate::mechanics::chain(final_modifier, 2048);
             }
             final_modifier = crate::mechanics::chain(
@@ -1715,6 +1764,20 @@ impl Battle {
             }
         }
         for &(target, _) in &damage {
+            if move_data.flags.contains_key("contact") {
+                match self.mon(target).ability.as_str() {
+                    "flamebody" => self.flame_body(target, source),
+                    "cutecharm" => self.cute_charm(target, source),
+                    _ => {}
+                }
+            }
+            if self.mon(target).ability == "cursedbody"
+                && !struggle
+                && self.mon(source).disabled_slot.is_none()
+                && self.rng.chance(3, 10)
+            {
+                self.disable_last_move(source, target, true);
+            }
             if self.mon(target).ability == "thermalexchange" && move_type == "Fire" {
                 self.ability_boost(target, "Thermal Exchange", BoostStat::Atk, 1, false);
             }
@@ -1745,9 +1808,11 @@ impl Battle {
             }
         }
         self.each_event();
+        let mut fainted = 0;
         for (target, _) in damage {
             if self.mon(target).hp == 0 {
                 self.mark_fainted(target);
+                fainted += 1;
             }
             if target != source {
                 self.mon_mut(target).times_attacked += 1;
@@ -1756,6 +1821,9 @@ impl Battle {
         if self.mon(source).hp == 0 {
             self.mark_fainted(source);
             self.check_win();
+        }
+        if fainted > 0 && !self.mon(source).fainted && self.mon(source).ability == "moxie" {
+            self.ability_boost(source, "Moxie", BoostStat::Atk, fainted, false);
         }
         let recoil = if struggle {
             (self.mon(source).max_hp.get() + 2) / 4
@@ -1821,6 +1889,9 @@ impl Battle {
         mon.choice_lock = None;
         mon.roosted = false;
         mon.yawn = 0;
+        mon.attract = None;
+        mon.disabled_slot = None;
+        mon.last_move_slot = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
         self.add(format!("|faint|{}", self.ident(target)));
@@ -1864,7 +1935,15 @@ impl Battle {
     }
 
     fn accuracy(&self, source: Position, target: Position, accuracy: u8) -> u32 {
-        let accuracy = i32::from(accuracy);
+        let accuracy =
+            if self.mon(target).ability == "sandveil" && self.weather() == Some(Weather::Sand) {
+                self.format
+                    .stat_rules()
+                    .truncation
+                    .modify(u32::from(accuracy), 3277) as i32
+            } else {
+                i32::from(accuracy)
+            };
         let boost = (i32::from(self.mon(source).boosts.get(BoostStat::Accuracy))
             - i32::from(self.mon(target).boosts.get(BoostStat::Evasion)))
         .clamp(-6, 6);
@@ -1978,6 +2057,19 @@ impl Pokemon {
                 | "vitalspirit"
                 | "insomnia"
                 | "immunity"
+                | "cutecharm"
+                | "flamebody"
+                | "strongjaw"
+                | "megalauncher"
+                | "sandveil"
+                | "sniper"
+                | "hugepower"
+                | "purepower"
+                | "moxie"
+                | "heatproof"
+                | "thickfat"
+                | "unnerve"
+                | "cursedbody"
         )
     }
 

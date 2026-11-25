@@ -81,6 +81,12 @@ impl Battle {
             self.add(format!("|cant|{}|flinch", self.ident(pos)));
             return false;
         }
+        if let Some((slot, _)) = self.mon(pos).disabled_slot
+            && self.mon(pos).moves[slot].move_data.name == data.name
+        {
+            self.add(format!("|cant|{}|Disable|{}", self.ident(pos), data.name));
+            return false;
+        }
         if self.imprisoned_move(pos, &data.name) {
             self.add(format!(
                 "|cant|{}|move: Imprison|{}",
@@ -88,6 +94,17 @@ impl Battle {
                 data.name
             ));
             return false;
+        }
+        if let Some(source) = self.attract_source(pos) {
+            self.add(format!(
+                "|-activate|{}|move: Attract|[of] {}",
+                self.ident(pos),
+                self.ident(source)
+            ));
+            if self.rng.chance(1, 2) {
+                self.add(format!("|cant|{}|Attract", self.ident(pos)));
+                return false;
+            }
         }
         if self.mon(pos).status == Status::Paralysis && self.rng.chance(1, 8) {
             self.add(format!("|cant|{}|par", self.ident(pos)));
@@ -186,6 +203,9 @@ impl Battle {
             let stage = (stage + 1).min(15);
             mon.status = Status::Toxic(stage);
             amount *= u32::from(stage);
+        }
+        if mon.status == Status::Burn && mon.ability == "heatproof" {
+            amount = (amount / 2).max(1);
         }
         mon.hp = mon.hp.saturating_sub(amount);
         self.add_health_line_with("-damage", pos, false, &format!("|[from] {label}"));

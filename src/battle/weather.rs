@@ -104,7 +104,10 @@ impl Battle {
         for (pos, _) in ordered.into_iter().take(count) {
             if weather == Weather::Sand {
                 if !self.status_immune(pos, "sandstorm")
-                    && !matches!(self.mon(pos).ability.as_str(), "sandrush" | "sandforce")
+                    && !matches!(
+                        self.mon(pos).ability.as_str(),
+                        "sandrush" | "sandforce" | "sandveil"
+                    )
                 {
                     self.indirect_damage(pos, 16, "|[from] Sandstorm");
                 }

@@ -23,7 +23,7 @@ impl Battle {
 
     pub(super) fn on_update_item(&mut self, pos: Position) {
         let mon = self.mon(pos);
-        if mon.hp == 0 {
+        if mon.hp == 0 || self.foe_unnerve(pos) {
             return;
         }
         if mon.item == "sitrusberry" && mon.hp * 2 <= mon.max_hp.get() {
@@ -36,7 +36,7 @@ impl Battle {
 
     pub(super) fn cure_with_berry(&mut self, pos: Position) {
         let mon = self.mon(pos);
-        if mon.hp == 0 {
+        if mon.hp == 0 || self.foe_unnerve(pos) {
             return;
         }
         let berry = match (mon.item.as_str(), mon.status) {

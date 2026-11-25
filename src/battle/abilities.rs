@@ -18,6 +18,8 @@ impl Pokemon {
             "technician" if move_data.base_power <= 60 => 6144,
             "toughclaws" if flags.contains_key("contact") => 5325,
             "sharpness" if flags.contains_key("slicing") => 6144,
+            "strongjaw" if flags.contains_key("bite") => 6144,
+            "megalauncher" if flags.contains_key("pulse") => 6144,
             "ironfist" if flags.contains_key("punch") => 4915,
             "sandforce"
                 if weather == Some(Weather::Sand)
@@ -47,7 +49,14 @@ impl Pokemon {
         } else {
             4096
         };
-        chain(ability, item)
+        let native = chain(ability, item);
+        if category == Category::Physical
+            && matches!(self.ability.as_str(), "hugepower" | "purepower")
+        {
+            chain(native, 8192)
+        } else {
+            native
+        }
     }
 
     pub(super) fn can_take_item(&self, dex_mod: crate::dex::Mod) -> Option<&'static str> {
@@ -63,6 +72,30 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn foe_unnerve(&self, pos: Position) -> bool {
+        let slots = self.format.game_type.active_slots();
+        self.party(pos.player.foe()).unwrap()[..slots]
+            .iter()
+            .any(|p| p.hp > 0 && p.ability == "unnerve")
+    }
+
+    pub(super) fn flame_body(&mut self, holder: Position, attacker: Position) {
+        if !self.rng.chance(3, 10)
+            || self.mon(attacker).hp == 0
+            || self.mon(attacker).status != Status::Healthy
+            || self.status_immune(attacker, "brn")
+        {
+            return;
+        }
+        self.mon_mut(attacker).status = Status::Burn;
+        self.add(format!(
+            "|-status|{}|brn|[from] ability: Flame Body|[of] {}",
+            self.ident(attacker),
+            self.ident(holder)
+        ));
+        self.cure_with_berry(attacker);
+    }
+
     pub(super) fn ability_heal(
         &mut self,
         pos: Position,

@@ -201,3 +201,13 @@ fn bss_roost_body_press_mirror_armor_and_recoil() {
 fn bss_weather_screens_yawn_rest_and_water_absorb() {
     replay(include_str!("fixtures/bss-screen-rest.json"));
 }
+
+#[test]
+fn bss_cute_charm_probability_and_end_on_source_switch() {
+    replay(include_str!("fixtures/bss-cute-charm.json"));
+}
+
+#[test]
+fn bss_cursed_body_disables_and_expires() {
+    replay(include_str!("fixtures/bss-cursed-body.json"));
+}
