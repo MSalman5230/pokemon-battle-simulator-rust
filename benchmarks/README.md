@@ -120,6 +120,9 @@ cap. It reports the first mismatch in each game. Use
 The [recorded 24-game sample](verified-native-generated-parity.json) matches
 all 574 checkpoints. Eighteen games ended naturally. The other six reached
 the 30-turn cap with exact results through their last recorded checkpoint.
+The [expanded sample](verified-native-expanded-parity.json) matches all
+2,541 checkpoints in 96 completed games (`--games 32 --max-turns 60`).
+Use `--first-game 33` to start at a seed outside that sample.
 This is a native parity sample and does not measure throughput or establish
 coverage of every move, ability, or item.
 

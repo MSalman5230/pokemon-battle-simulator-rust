@@ -15,15 +15,17 @@ const {extractChannelMessages} = require('pokemon-showdown/dist/sim/battle');
 
 const {values, positionals: [path]} = parseArgs({allowPositionals: true, options: {
     games: {type: 'string', default: '8'},
+    'first-game': {type: 'string', default: '1'},
     'max-turns': {type: 'string', default: '30'},
     format: {type: 'string', multiple: true, default: []},
 }});
-assert(path, 'Usage: node scripts/capture-wide-native.mjs .tools/wide-native.jsonl [--games 8] [--max-turns 30] [--format FORMAT]');
+assert(path, 'Usage: node scripts/capture-wide-native.mjs .tools/wide-native.jsonl [--games 8] [--first-game 1] [--max-turns 30] [--format FORMAT]');
 const formats = values.format.length ? values.format : [
     'gen9championsrandombattle', 'gen9championsrandomdoublesbattle', 'gen9championsrosterranchrumble',
 ];
-const games = Number(values.games), limit = Number(values['max-turns']);
-for (const value of [games, limit]) assert(Number.isSafeInteger(value) && value > 0 && value <= 65535);
+const games = Number(values.games), limit = Number(values['max-turns']), first = Number(values['first-game']);
+for (const value of [games, limit, first]) assert(Number.isSafeInteger(value) && value > 0 && value <= 65535);
+assert(first + games - 1 <= 65535, 'Last game must fit in a 16-bit seed word');
 const selectableTargets = new Set(['normal', 'any', 'adjacentFoe', 'adjacentAlly', 'adjacentAllyOrSelf']);
 
 function choice(side, rng) {
@@ -144,7 +146,7 @@ async function capture(formatid, n) {
 
 const out = openSync(path, 'w');
 try {
-    for (const format of formats) for (let n = 1; n <= games; n++) {
+    for (const format of formats) for (let n = first; n < first + games; n++) {
         writeSync(out, JSON.stringify(await capture(format, n)) + '\n');
     }
 } finally {

@@ -88,9 +88,10 @@ values, and the final move shuffle. Additional native replays start and play
 singles and doubles from player seeds with no supplied rosters. An
 opt-in generated-team diagnostic samples longer continuations in Random
 Singles, Random Doubles, and Roster Ranch Rumble. The
-[recorded sample](../benchmarks/verified-native-generated-parity.json)
-matched all 574 checkpoints across 24 games, 18 of them complete. Keep
-expanding the corpus to exercise mechanics not selected by those seeds.
+[expanded sample](../benchmarks/verified-native-expanded-parity.json)
+matched all 2,541 checkpoints across 96 completed games. It includes 32
+games in each generated format. The captures test those specific seeds and
+choices. Keep expanding the corpus to exercise other mechanics.
 
 The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
 markers. Its hypothetical damage calculator runs in an isolated battle and
