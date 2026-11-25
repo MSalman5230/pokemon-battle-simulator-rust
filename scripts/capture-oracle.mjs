@@ -346,6 +346,14 @@ const chargeRosters = [
         {...named('Meganium', ['Solar Beam', 'Sunny Day', 'Recover']), item: 'Power Herb'}],
     [named('Umbreon', ['Recover']), named('Goodra', ['Recover'])],
 ];
+const psychicSpreadRosters = [
+    [{...named('Indeedee-F', ['Expanding Force']), ability: 'Psychic Surge'}, named('Flareon', ['Recover'])],
+    [named('Vaporeon', ['Recover']), named('Glaceon', ['Protect', 'Recover'])],
+];
+const stakeoutRosters = [
+    [{...named('Mabosstiff', ['Tackle', 'Water Gun']), ability: 'Stakeout'}, named('Flareon', ['Recover'])],
+    [named('Umbreon', ['Recover']), named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -511,6 +519,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         chargeRosters, 'bss-charge'],
     ['vgc2026regmc', [['team 12', 'team 12'], ['move 3 2, move 3', 'move 1, move 1'],
         ['move 1, move 3', 'move 1, move 1']], chargeRosters, 'vgc-charge'],
+    ['vgc2026regmc', [['team 12', 'team 12'], ['move 1 2, move 1', 'move 1, move 1'],
+        ['move 1 1, move 1', 'move 1, move 2']], psychicSpreadRosters, 'vgc-expanding-force'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'switch 2'],
+        ['move 2', 'switch 2'], ['move 2', 'move 1']], stakeoutRosters, 'bss-stakeout'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

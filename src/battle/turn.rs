@@ -765,6 +765,7 @@ impl Battle {
                     | "meteorbeam"
                     | "skullbash"
                     | "geomancy"
+                    | "expandingforce"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1590,7 +1591,7 @@ impl Battle {
         };
         let source_name = self.ident(source);
         let original_target = self.resolve_target(source, move_data.target, loc);
-        let target = retaliation_hit.map(|hit| hit.source).or(original_target);
+        let mut target = retaliation_hit.map(|hit| hit.source).or(original_target);
         if !self.before_status_move(source, move_data) {
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
@@ -1639,10 +1640,21 @@ impl Battle {
                 mon.track_volatile("choicelock");
             }
         }
+        let expanded = move_data.name == "Expanding Force"
+            && self.terrain() == Some(Terrain::Psychic)
+            && self.mon(source).grounded();
+        let kind = if expanded {
+            // Both ModifyMove passes retarget a changed target kind.
+            self.random_target(source, TargetKind::AllAdjacentFoes);
+            target = self.random_target(source, TargetKind::AllAdjacentFoes);
+            TargetKind::AllAdjacentFoes
+        } else {
+            move_data.target
+        };
         let mut spread_targets = Vec::new();
-        match move_data.target {
+        match kind {
             TargetKind::AllAdjacent | TargetKind::AllAdjacentFoes => {
-                if move_data.target == TargetKind::AllAdjacent && self.slots() == 2 {
+                if kind == TargetKind::AllAdjacent && self.slots() == 2 {
                     let mate = Position {
                         slot: 1 - source.slot,
                         ..source
@@ -1689,9 +1701,8 @@ impl Battle {
             move_data.name
         ));
         if self.slots() > 1
-            && let Some(target) = actual_target.filter(|_| {
-                move_data.target.is_choosable() || move_data.target == TargetKind::RandomNormal
-            })
+            && let Some(target) =
+                actual_target.filter(|_| kind.is_choosable() || kind == TargetKind::RandomNormal)
             && let Some(redirect) = self.redirect_target(source, target, move_data, move_type)
         {
             spread_targets.clear();
@@ -1710,9 +1721,9 @@ impl Battle {
 
         if !struggle
             && !continuing
-            && (move_data.target.is_choosable()
+            && (kind.is_choosable()
                 || matches!(
-                    move_data.target,
+                    kind,
                     TargetKind::AllAdjacent
                         | TargetKind::AllAdjacentFoes
                         | TargetKind::RandomNormal
@@ -2394,8 +2405,16 @@ impl Battle {
                 if solar_weak && self.format.report_exact_hp {
                     self.add("|debug|weakened by weather");
                 }
+                if expanded && self.format.report_exact_hp {
+                    self.add("|debug|terrain buff");
+                }
                 let terrain_power =
                     self.terrain_power_modifier(source, target, move_data, move_type);
+                let stakeout =
+                    self.mon(source).ability == "stakeout" && self.mon(target).active_turns == 0;
+                if stakeout && self.format.report_exact_hp {
+                    self.add("|debug|Stakeout boost");
+                }
                 let user = self.mon(source);
                 let mon = self.mon(target);
                 let offensive = if move_data.name == "Foul Play" {
@@ -2440,6 +2459,9 @@ impl Battle {
                     def
                 };
                 let mut attack_modifier = user.attack_modifier(move_data.category, move_type);
+                if stakeout {
+                    attack_modifier = crate::mechanics::chain(8192, attack_modifier);
+                }
                 if (mon.ability == "heatproof" && move_type == "Fire")
                     || (mon.ability == "thickfat" && matches!(move_type, "Fire" | "Ice"))
                 {
@@ -2453,6 +2475,9 @@ impl Battle {
                 );
                 if solar_weak {
                     power_modifier = crate::mechanics::chain(2048, power_modifier);
+                }
+                if expanded {
+                    power_modifier = crate::mechanics::chain(6144, power_modifier);
                 }
                 if converted && (hit == 1 || user.converted_move_type(&move_data.move_type).1) {
                     power_modifier = crate::mechanics::chain(4915, power_modifier);
@@ -3055,6 +3080,7 @@ impl Pokemon {
                 | "magician"
                 | "symbiosis"
                 | "gluttony"
+                | "stakeout"
                 | "overcoat"
                 | "speedboost"
                 | "multiscale"

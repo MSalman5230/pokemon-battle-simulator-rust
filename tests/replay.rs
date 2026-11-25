@@ -440,3 +440,13 @@ fn bss_charge_moves_handle_weather_power_herb_and_pp_exactly() {
 fn vgc_charge_preserves_the_selected_target_slot() {
     replay(include_str!("fixtures/vgc-charge.json"));
 }
+
+#[test]
+fn vgc_expanding_force_becomes_a_spread_move_on_psychic_terrain() {
+    replay(include_str!("fixtures/vgc-expanding-force.json"));
+}
+
+#[test]
+fn bss_stakeout_applies_only_on_the_targets_switch_in_turn() {
+    replay(include_str!("fixtures/bss-stakeout.json"));
+}
