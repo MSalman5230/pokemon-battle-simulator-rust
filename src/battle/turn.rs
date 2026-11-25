@@ -647,6 +647,7 @@ impl Battle {
                     | "uturn"
                     | "voltswitch"
                     | "flipturn"
+                    | "partingshot"
                     | "imprison"
                     | "knockoff"
                     | "dragonclaw"
@@ -2257,6 +2258,20 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     }
                     succeeded |= success;
+                }
+                if move_data.name == "Parting Shot" {
+                    let lowered = self.boost_from(
+                        target,
+                        source,
+                        &[(BoostStat::Atk, -1), (BoostStat::Spa, -1)],
+                        BoostOrigin::from_move(move_data),
+                    );
+                    if (lowered || self.mon(target).ability == "mirrorarmor")
+                        && self.first_bench(source.player, 0).is_some()
+                    {
+                        self.mon_mut(source).pivot_move = Some("Parting Shot");
+                    }
+                    succeeded = true;
                 }
                 if move_data.name == "Taunt" {
                     if self.taunt(target, Self::queued_move(queue, target).is_some()) {

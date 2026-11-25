@@ -370,6 +370,11 @@ const flowerVeilRosters = [
     [{...named('Arcanine', ['Recover']), ability: 'Intimidate'},
         named('Espeon', ['Charm', 'Will-O-Wisp', 'Yawn', 'Icy Wind'])],
 ];
+const partingShotRosters = [
+    [named('Jolteon', ['Parting Shot']), named('Vaporeon', ['Recover'])],
+    [{...named('Diancie', ['Recover']), ability: 'Clear Body'},
+        {...named('Corviknight', ['Recover']), ability: 'Mirror Armor'}, named('Snorlax', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -548,6 +553,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1, move 1', 'move 1, move 2 2'], ['move 1, move 1', 'move 1, move 3 2'],
         ['move 1, move 1', 'move 1, move 4'], ['switch 3, move 1', 'move 1, move 2 2']],
         flowerVeilRosters, 'vgc-flower-veil'],
+    ['bssregmc', [['team 12', 'team 123'], ['move 1', 'move 1'], ['move 1', 'switch 2'],
+        ['switch 2', null], ['switch 2', 'switch 3'], ['move 1', 'move 1'], ['switch 2', null]],
+        partingShotRosters, 'bss-parting-shot'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

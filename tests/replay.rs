@@ -465,3 +465,8 @@ fn bss_resist_berries_check_type_effectiveness_and_unnerve() {
 fn vgc_flower_veil_protects_grass_allies_from_status_and_stat_drops() {
     replay(include_str!("fixtures/vgc-flower-veil.json"));
 }
+
+#[test]
+fn bss_parting_shot_switches_after_a_stat_drop_or_mirror_armor() {
+    replay(include_str!("fixtures/bss-parting-shot.json"));
+}
