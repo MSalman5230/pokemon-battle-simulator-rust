@@ -101,3 +101,8 @@ node scripts/verify-bss-teams.mjs .tools/poke-rl-simulator/teams_train.json \
 node benchmarks/throughput.mjs -- ./target/release/pokemon-battle-worker \
   --verified-teams .tools/verified-training-corpus.json
 ```
+
+Add `--diagnose-parity` before `--` to report the first error or mismatch
+for each battle. This runs untimed, isolates games from failures in other
+slots, and exits nonzero if any game fails. The timed benchmark still
+requires parity on the original batched workload.

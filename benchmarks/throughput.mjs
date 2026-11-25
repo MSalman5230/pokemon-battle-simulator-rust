@@ -25,6 +25,7 @@ function options(args) {
             help: {type: 'boolean', short: 'h'},
             'teams-file': {type: 'string'},
             'debug-parity': {type: 'boolean'},
+            'diagnose-parity': {type: 'boolean'},
             'capture-replay': {type: 'string'},
             ...Object.fromEntries(Object.entries(defaults).map(
                 ([name, value]) => [name, {type: 'string', default: String(value)}],
@@ -33,10 +34,13 @@ function options(args) {
     });
     if (values.help) {
         console.log('Usage: node benchmarks/throughput.mjs [--games 32] [--batch-size 16] ' +
-            '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] [--debug-parity] [--capture-replay FILE] [-- CANDIDATE [ARGS...]]');
+            '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] ' +
+            '[--debug-parity | --diagnose-parity | --capture-replay FILE] [-- CANDIDATE [ARGS...]]');
         return null;
     }
     assert(split < 0 || candidate.length, 'Pass a worker command after --');
+    const diagnose = !!values['diagnose-parity'];
+    assert(!diagnose || (candidate.length && !values['capture-replay']), '--diagnose-parity requires a candidate worker');
     const settings = {};
     for (const name of Object.keys(defaults)) {
         const value = Number(values[name]);
@@ -45,7 +49,8 @@ function options(args) {
     }
     assert(settings['batch-size'] <= settings.games, '--batch-size must not exceed --games');
     assert(settings.seed <= 0xffffffff, '--seed must fit in an unsigned 32-bit integer');
-    return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity'], capturePath: values['capture-replay']};
+    return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity'],
+        capturePath: values['capture-replay'], diagnose};
 }
 
 function openWorker([command, ...args]) {
@@ -210,6 +215,44 @@ async function warmAndVerify(worker, frames, name) {
     }
 }
 
+// One failing game must not obscure the first difference in unrelated games.
+// This is deliberately untimed. The benchmark still verifies original batches.
+async function diagnoseParity(worker, workload) {
+    const active = new Map();
+    const games = [];
+    for (const entry of workload.frames) {
+        const request = JSON.parse(entry.wire);
+        const requests = request.op === 'batch' ? request.requests : [request];
+        for (const [i, op] of requests.entries()) {
+            if (op.op === 'close') continue;
+            if (op.op === 'new') {
+                const game = {game: games.length + 1, slot: op.game, first_request: entry.id, verified_steps: 0};
+                games.push(game);
+                active.set(op.game, game);
+            }
+            const game = active.get(op.game);
+            if (game.failure) continue;
+            try {
+                const actual = await worker.exchange(frame(entry.id, op));
+                const expected = request.op === 'batch' ? entry.expected[i] : entry.expected;
+                if (fingerprint(actual) === fingerprint(expected)) {
+                    if (op.op === 'step') game.verified_steps++;
+                } else {
+                    game.failure = {request: entry.id, actions: op.actions, difference: firstDifference(actual, expected)};
+                }
+            } catch (error) {
+                game.failure = {request: entry.id, actions: op.actions, error: error.message};
+            }
+        }
+    }
+    console.log(JSON.stringify({
+        workload_sha256: sha256(workload.frames.map(entry => entry.wire).join('')),
+        passed: games.filter(game => !game.failure).length,
+        games,
+    }, null, 2));
+    if (games.some(game => game.failure)) process.exitCode = 1;
+}
+
 async function timeReplay(worker, workload, games) {
     let stepMs = 0;
     let totalMs = 0;
@@ -237,7 +280,7 @@ function median(values) {
 async function main() {
     const config = options(process.argv.slice(2));
     if (!config) return;
-    const {settings, candidate, teamsPath, debugParity, capturePath} = config;
+    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose} = config;
     const lock = readFileSync(join(oracle, 'package-lock.json'));
     const teamsFile = readFileSync(teamsPath ?? join(oracle, 'teams_train.json'));
     const workerPath = join(oracle, 'worker.cjs');
@@ -252,7 +295,7 @@ async function main() {
         ping = await recorder.exchange(frame(0, {op: 'ping'}));
         assert.equal(ping.format, format);
         assert.equal(ping.revision, revision);
-        workload = await record(recorder, teams, settings, debugParity, !!capturePath);
+        workload = await record(recorder, teams, settings, debugParity || diagnose, !!capturePath);
     } finally {
         recorder.close();
     }
@@ -264,6 +307,15 @@ async function main() {
         writeFileSync(capturePath, workload.frames.map(frame => frame.wire).join(''));
         const digest = sha256(workload.frames.map(frame => frame.wire).join(''));
         console.log(JSON.stringify({digest, coverage, iterations: workload.iterations}, null, 2));
+        return;
+    }
+    if (diagnose) {
+        const worker = openWorker(candidate);
+        try {
+            await diagnoseParity(worker, workload);
+        } finally {
+            worker.close();
+        }
         return;
     }
     const backends = [{name: 'showdown', worker: openWorker(reference), samples: []}];
