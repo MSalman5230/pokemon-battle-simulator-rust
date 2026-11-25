@@ -1,0 +1,3136 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsrandombattle",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsrandombattle\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"seed\":\"1,2,3,4\"}",
+        ">player p2 {\"name\":\"player1\",\"seed\":\"50219,19703,3172,32117\"}"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Ariados|Ariados, L59, M|100/100",
+          "|switch|p2a: Reuniclus|Reuniclus, L55, M|100/100",
+          "|turn|1"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Ariados|Ariados, L59, M|182/182",
+          "|switch|p2a: Reuniclus|Reuniclus, L55, M|100/100",
+          "|turn|1"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Ariados|Ariados, L59, M|100/100",
+          "|switch|p2a: Reuniclus|Reuniclus, L55, M|214/214",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "First Impression",
+                  "id": "firstimpression",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Megahorn",
+                  "id": "megahorn",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Poison Jab",
+                  "id": "poisonjab",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ariados",
+                "details": "Ariados, L59, M",
+                "condition": "182/182",
+                "active": true,
+                "stats": {
+                  "atk": 141,
+                  "def": 118,
+                  "spa": 106,
+                  "spd": 118,
+                  "spe": 82
+                },
+                "moves": [
+                  "stickyweb",
+                  "firstimpression",
+                  "megahorn",
+                  "poisonjab"
+                ],
+                "baseAbility": "swarm",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "swarm",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Tyrantrum",
+                "details": "Tyrantrum, L50, M",
+                "condition": "168/168",
+                "active": false,
+                "stats": {
+                  "atk": 152,
+                  "def": 150,
+                  "spa": 100,
+                  "spd": 90,
+                  "spe": 102
+                },
+                "moves": [
+                  "outrage",
+                  "closecombat",
+                  "earthquake",
+                  "headsmash"
+                ],
+                "baseAbility": "rockhead",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "rockhead",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Gourgeist",
+                "details": "Gourgeist, L55, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 132,
+                  "def": 167,
+                  "spa": 97,
+                  "spd": 116,
+                  "spe": 126
+                },
+                "moves": [
+                  "poltergeist",
+                  "painsplit",
+                  "shadowsneak",
+                  "powerwhip"
+                ],
+                "baseAbility": "frisk",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "frisk",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Pincurchin",
+                "details": "Pincurchin, L56, F",
+                "condition": "148/148",
+                "active": false,
+                "stats": {
+                  "atk": 135,
+                  "def": 140,
+                  "spa": 136,
+                  "spd": 129,
+                  "spe": 50
+                },
+                "moves": [
+                  "toxicspikes",
+                  "recover",
+                  "risingvoltage",
+                  "scald"
+                ],
+                "baseAbility": "electricsurge",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "electricsurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Runerigus",
+                "details": "Runerigus, L54, M",
+                "condition": "154/154",
+                "active": false,
+                "stats": {
+                  "atk": 135,
+                  "def": 189,
+                  "spa": 87,
+                  "spd": 146,
+                  "spe": 65
+                },
+                "moves": [
+                  "poltergeist",
+                  "willowisp",
+                  "stealthrock",
+                  "earthquake"
+                ],
+                "baseAbility": "wanderingspirit",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "wanderingspirit",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Overqwil",
+                "details": "Overqwil, L50, M",
+                "condition": "171/171",
+                "active": false,
+                "stats": {
+                  "atk": 146,
+                  "def": 126,
+                  "spa": 96,
+                  "spd": 96,
+                  "spe": 116
+                },
+                "moves": [
+                  "agility",
+                  "crunch",
+                  "swordsdance",
+                  "gunkshot"
+                ],
+                "baseAbility": "intimidate",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic",
+                  "id": "psychic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Focus Blast",
+                  "id": "focusblast",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Reuniclus",
+                "details": "Reuniclus, L55, M",
+                "condition": "214/214",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 116,
+                  "spa": 171,
+                  "spd": 127,
+                  "spe": 66
+                },
+                "moves": [
+                  "recover",
+                  "psychic",
+                  "focusblast",
+                  "calmmind"
+                ],
+                "baseAbility": "magicguard",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rillaboom",
+                "details": "Rillaboom, L49, F",
+                "condition": "182/182",
+                "active": false,
+                "stats": {
+                  "atk": 152,
+                  "def": 118,
+                  "spa": 89,
+                  "spd": 99,
+                  "spe": 113
+                },
+                "moves": [
+                  "woodhammer",
+                  "grassyglide",
+                  "highhorsepower",
+                  "swordsdance"
+                ],
+                "baseAbility": "grassysurge",
+                "item": "miracleseed",
+                "pokeball": "pokeball",
+                "ability": "grassysurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Emboar",
+                "details": "Emboar, L49, M",
+                "condition": "192/192",
+                "active": false,
+                "stats": {
+                  "atk": 151,
+                  "def": 94,
+                  "spa": 128,
+                  "spd": 94,
+                  "spe": 94
+                },
+                "moves": [
+                  "flamecharge",
+                  "drainpunch",
+                  "bulkup",
+                  "flareblitz"
+                ],
+                "baseAbility": "reckless",
+                "item": "emboarite",
+                "pokeball": "pokeball",
+                "ability": "reckless",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Bastiodon",
+                "details": "Bastiodon, L58, F",
+                "condition": "167/167",
+                "active": false,
+                "stats": {
+                  "atk": 83,
+                  "def": 230,
+                  "spa": 89,
+                  "spd": 195,
+                  "spe": 69
+                },
+                "moves": [
+                  "foulplay",
+                  "stealthrock",
+                  "bodypress",
+                  "rest"
+                ],
+                "baseAbility": "sturdy",
+                "item": "chestoberry",
+                "pokeball": "pokeball",
+                "ability": "sturdy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Emolga",
+                "details": "Emolga, L57, M",
+                "condition": "159/159",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 103,
+                  "spe": 152
+                },
+                "moves": [
+                  "discharge",
+                  "defog",
+                  "roost",
+                  "acrobatics"
+                ],
+                "baseAbility": "motordrive",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "motordrive",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Palafin",
+                "details": "Palafin, L49, F",
+                "condition": "182/182",
+                "active": false,
+                "stats": {
+                  "atk": 99,
+                  "def": 101,
+                  "spa": 82,
+                  "spd": 91,
+                  "spe": 128
+                },
+                "moves": [
+                  "wavecrash",
+                  "drainpunch",
+                  "bulkup",
+                  "jetpunch"
+                ],
+                "baseAbility": "zerotohero",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "zerotohero",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ariados",
+            "species": "Ariados",
+            "details": "Ariados, L59, M",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 141,
+              "def": 118,
+              "spa": 106,
+              "spd": 118,
+              "spe": 82
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swarm",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "stickyweb",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "firstimpression",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "megahorn",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "poisonjab",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Tyrantrum",
+            "species": "Tyrantrum",
+            "details": "Tyrantrum, L50, M",
+            "hp": 168,
+            "maxhp": 168,
+            "status": "",
+            "stats": {
+              "atk": 152,
+              "def": 150,
+              "spa": 100,
+              "spd": 90,
+              "spe": 102
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rockhead",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "outrage",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "headsmash",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gourgeist",
+            "species": "Gourgeist",
+            "details": "Gourgeist, L55, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 132,
+              "def": 167,
+              "spa": 97,
+              "spd": 116,
+              "spe": 126
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "frisk",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "poltergeist",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "painsplit",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "shadowsneak",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "powerwhip",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Pincurchin",
+            "species": "Pincurchin",
+            "details": "Pincurchin, L56, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 140,
+              "spa": 136,
+              "spd": 129,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electricsurge",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "toxicspikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "risingvoltage",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "scald",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Runerigus",
+            "species": "Runerigus",
+            "details": "Runerigus, L54, M",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 189,
+              "spa": 87,
+              "spd": 146,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "wanderingspirit",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "poltergeist",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "willowisp",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Overqwil",
+            "species": "Overqwil",
+            "details": "Overqwil, L50, M",
+            "hp": 171,
+            "maxhp": 171,
+            "status": "",
+            "stats": {
+              "atk": 146,
+              "def": 126,
+              "spa": 96,
+              "spd": 96,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "agility",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "crunch",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Reuniclus",
+            "species": "Reuniclus",
+            "details": "Reuniclus, L55, M",
+            "hp": 214,
+            "maxhp": 214,
+            "status": "",
+            "stats": {
+              "atk": 93,
+              "def": 116,
+              "spa": 171,
+              "spd": 127,
+              "spe": 66
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "focusblast",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "calmmind",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Rillaboom",
+            "species": "Rillaboom",
+            "details": "Rillaboom, L49, F",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 152,
+              "def": 118,
+              "spa": 89,
+              "spd": 99,
+              "spe": 113
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "grassysurge",
+            "item": "miracleseed",
+            "active": false,
+            "moves": [
+              {
+                "id": "woodhammer",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "grassyglide",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "highhorsepower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Emboar",
+            "species": "Emboar",
+            "details": "Emboar, L49, M",
+            "hp": 192,
+            "maxhp": 192,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 94,
+              "spa": 128,
+              "spd": 94,
+              "spe": 94
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "reckless",
+            "item": "emboarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "flamecharge",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "drainpunch",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "bulkup",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "flareblitz",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Bastiodon",
+            "species": "Bastiodon",
+            "details": "Bastiodon, L58, F",
+            "hp": 167,
+            "maxhp": 167,
+            "status": "",
+            "stats": {
+              "atk": 83,
+              "def": 230,
+              "spa": 89,
+              "spd": 195,
+              "spe": 69
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sturdy",
+            "item": "chestoberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "foulplay",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "bodypress",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "rest",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Emolga",
+            "species": "Emolga",
+            "details": "Emolga, L57, M",
+            "hp": 159,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 103,
+              "spa": 120,
+              "spd": 103,
+              "spe": 152
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "motordrive",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "discharge",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "defog",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "acrobatics",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Palafin",
+            "species": "Palafin",
+            "details": "Palafin, L49, F",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 99,
+              "def": 101,
+              "spa": 82,
+              "spd": 91,
+              "spe": 128
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "zerotohero",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "wavecrash",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "drainpunch",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "bulkup",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "jetpunch",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 4"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Ariados|Sticky Web|p2a: Reuniclus",
+          "|-sidestart|p2: player1|move: Sticky Web",
+          "|move|p2a: Reuniclus|Calm Mind|p2a: Reuniclus",
+          "|-boost|p2a: Reuniclus|spa|1",
+          "|-boost|p2a: Reuniclus|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Ariados|Sticky Web|p2a: Reuniclus",
+          "|-sidestart|p2: player1|move: Sticky Web",
+          "|move|p2a: Reuniclus|Calm Mind|p2a: Reuniclus",
+          "|-boost|p2a: Reuniclus|spa|1",
+          "|-boost|p2a: Reuniclus|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Ariados|Sticky Web|p2a: Reuniclus",
+          "|-sidestart|p2: player1|move: Sticky Web",
+          "|move|p2a: Reuniclus|Calm Mind|p2a: Reuniclus",
+          "|-boost|p2a: Reuniclus|spa|1",
+          "|-boost|p2a: Reuniclus|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "First Impression",
+                  "id": "firstimpression",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Megahorn",
+                  "id": "megahorn",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Poison Jab",
+                  "id": "poisonjab",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ariados",
+                "details": "Ariados, L59, M",
+                "condition": "182/182",
+                "active": true,
+                "stats": {
+                  "atk": 141,
+                  "def": 118,
+                  "spa": 106,
+                  "spd": 118,
+                  "spe": 82
+                },
+                "moves": [
+                  "stickyweb",
+                  "firstimpression",
+                  "megahorn",
+                  "poisonjab"
+                ],
+                "baseAbility": "swarm",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "swarm",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Tyrantrum",
+                "details": "Tyrantrum, L50, M",
+                "condition": "168/168",
+                "active": false,
+                "stats": {
+                  "atk": 152,
+                  "def": 150,
+                  "spa": 100,
+                  "spd": 90,
+                  "spe": 102
+                },
+                "moves": [
+                  "outrage",
+                  "closecombat",
+                  "earthquake",
+                  "headsmash"
+                ],
+                "baseAbility": "rockhead",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "rockhead",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Gourgeist",
+                "details": "Gourgeist, L55, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 132,
+                  "def": 167,
+                  "spa": 97,
+                  "spd": 116,
+                  "spe": 126
+                },
+                "moves": [
+                  "poltergeist",
+                  "painsplit",
+                  "shadowsneak",
+                  "powerwhip"
+                ],
+                "baseAbility": "frisk",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "frisk",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Pincurchin",
+                "details": "Pincurchin, L56, F",
+                "condition": "148/148",
+                "active": false,
+                "stats": {
+                  "atk": 135,
+                  "def": 140,
+                  "spa": 136,
+                  "spd": 129,
+                  "spe": 50
+                },
+                "moves": [
+                  "toxicspikes",
+                  "recover",
+                  "risingvoltage",
+                  "scald"
+                ],
+                "baseAbility": "electricsurge",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "electricsurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Runerigus",
+                "details": "Runerigus, L54, M",
+                "condition": "154/154",
+                "active": false,
+                "stats": {
+                  "atk": 135,
+                  "def": 189,
+                  "spa": 87,
+                  "spd": 146,
+                  "spe": 65
+                },
+                "moves": [
+                  "poltergeist",
+                  "willowisp",
+                  "stealthrock",
+                  "earthquake"
+                ],
+                "baseAbility": "wanderingspirit",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "wanderingspirit",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Overqwil",
+                "details": "Overqwil, L50, M",
+                "condition": "171/171",
+                "active": false,
+                "stats": {
+                  "atk": 146,
+                  "def": 126,
+                  "spa": 96,
+                  "spd": 96,
+                  "spe": 116
+                },
+                "moves": [
+                  "agility",
+                  "crunch",
+                  "swordsdance",
+                  "gunkshot"
+                ],
+                "baseAbility": "intimidate",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic",
+                  "id": "psychic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Focus Blast",
+                  "id": "focusblast",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Reuniclus",
+                "details": "Reuniclus, L55, M",
+                "condition": "214/214",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 116,
+                  "spa": 171,
+                  "spd": 127,
+                  "spe": 66
+                },
+                "moves": [
+                  "recover",
+                  "psychic",
+                  "focusblast",
+                  "calmmind"
+                ],
+                "baseAbility": "magicguard",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rillaboom",
+                "details": "Rillaboom, L49, F",
+                "condition": "182/182",
+                "active": false,
+                "stats": {
+                  "atk": 152,
+                  "def": 118,
+                  "spa": 89,
+                  "spd": 99,
+                  "spe": 113
+                },
+                "moves": [
+                  "woodhammer",
+                  "grassyglide",
+                  "highhorsepower",
+                  "swordsdance"
+                ],
+                "baseAbility": "grassysurge",
+                "item": "miracleseed",
+                "pokeball": "pokeball",
+                "ability": "grassysurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Emboar",
+                "details": "Emboar, L49, M",
+                "condition": "192/192",
+                "active": false,
+                "stats": {
+                  "atk": 151,
+                  "def": 94,
+                  "spa": 128,
+                  "spd": 94,
+                  "spe": 94
+                },
+                "moves": [
+                  "flamecharge",
+                  "drainpunch",
+                  "bulkup",
+                  "flareblitz"
+                ],
+                "baseAbility": "reckless",
+                "item": "emboarite",
+                "pokeball": "pokeball",
+                "ability": "reckless",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Bastiodon",
+                "details": "Bastiodon, L58, F",
+                "condition": "167/167",
+                "active": false,
+                "stats": {
+                  "atk": 83,
+                  "def": 230,
+                  "spa": 89,
+                  "spd": 195,
+                  "spe": 69
+                },
+                "moves": [
+                  "foulplay",
+                  "stealthrock",
+                  "bodypress",
+                  "rest"
+                ],
+                "baseAbility": "sturdy",
+                "item": "chestoberry",
+                "pokeball": "pokeball",
+                "ability": "sturdy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Emolga",
+                "details": "Emolga, L57, M",
+                "condition": "159/159",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 103,
+                  "spe": 152
+                },
+                "moves": [
+                  "discharge",
+                  "defog",
+                  "roost",
+                  "acrobatics"
+                ],
+                "baseAbility": "motordrive",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "motordrive",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Palafin",
+                "details": "Palafin, L49, F",
+                "condition": "182/182",
+                "active": false,
+                "stats": {
+                  "atk": 99,
+                  "def": 101,
+                  "spa": 82,
+                  "spd": 91,
+                  "spe": 128
+                },
+                "moves": [
+                  "wavecrash",
+                  "drainpunch",
+                  "bulkup",
+                  "jetpunch"
+                ],
+                "baseAbility": "zerotohero",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "zerotohero",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ariados",
+            "species": "Ariados",
+            "details": "Ariados, L59, M",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 141,
+              "def": 118,
+              "spa": 106,
+              "spd": 118,
+              "spe": 82
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swarm",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "stickyweb",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "firstimpression",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "megahorn",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "poisonjab",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Tyrantrum",
+            "species": "Tyrantrum",
+            "details": "Tyrantrum, L50, M",
+            "hp": 168,
+            "maxhp": 168,
+            "status": "",
+            "stats": {
+              "atk": 152,
+              "def": 150,
+              "spa": 100,
+              "spd": 90,
+              "spe": 102
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rockhead",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "outrage",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "headsmash",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gourgeist",
+            "species": "Gourgeist",
+            "details": "Gourgeist, L55, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 132,
+              "def": 167,
+              "spa": 97,
+              "spd": 116,
+              "spe": 126
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "frisk",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "poltergeist",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "painsplit",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "shadowsneak",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "powerwhip",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Pincurchin",
+            "species": "Pincurchin",
+            "details": "Pincurchin, L56, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 140,
+              "spa": 136,
+              "spd": 129,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electricsurge",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "toxicspikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "risingvoltage",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "scald",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Runerigus",
+            "species": "Runerigus",
+            "details": "Runerigus, L54, M",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 189,
+              "spa": 87,
+              "spd": 146,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "wanderingspirit",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "poltergeist",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "willowisp",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Overqwil",
+            "species": "Overqwil",
+            "details": "Overqwil, L50, M",
+            "hp": 171,
+            "maxhp": 171,
+            "status": "",
+            "stats": {
+              "atk": 146,
+              "def": 126,
+              "spa": 96,
+              "spd": 96,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "agility",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "crunch",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Reuniclus",
+            "species": "Reuniclus",
+            "details": "Reuniclus, L55, M",
+            "hp": 214,
+            "maxhp": 214,
+            "status": "",
+            "stats": {
+              "atk": 93,
+              "def": 116,
+              "spa": 171,
+              "spd": 127,
+              "spe": 66
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "focusblast",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Rillaboom",
+            "species": "Rillaboom",
+            "details": "Rillaboom, L49, F",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 152,
+              "def": 118,
+              "spa": 89,
+              "spd": 99,
+              "spe": 113
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "grassysurge",
+            "item": "miracleseed",
+            "active": false,
+            "moves": [
+              {
+                "id": "woodhammer",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "grassyglide",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "highhorsepower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Emboar",
+            "species": "Emboar",
+            "details": "Emboar, L49, M",
+            "hp": 192,
+            "maxhp": 192,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 94,
+              "spa": 128,
+              "spd": 94,
+              "spe": 94
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "reckless",
+            "item": "emboarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "flamecharge",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "drainpunch",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "bulkup",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "flareblitz",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Bastiodon",
+            "species": "Bastiodon",
+            "details": "Bastiodon, L58, F",
+            "hp": 167,
+            "maxhp": 167,
+            "status": "",
+            "stats": {
+              "atk": 83,
+              "def": 230,
+              "spa": 89,
+              "spd": 195,
+              "spe": 69
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sturdy",
+            "item": "chestoberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "foulplay",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "bodypress",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "rest",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Emolga",
+            "species": "Emolga",
+            "details": "Emolga, L57, M",
+            "hp": 159,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 103,
+              "spa": 120,
+              "spd": 103,
+              "spe": 152
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "motordrive",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "discharge",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "defog",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "acrobatics",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Palafin",
+            "species": "Palafin",
+            "details": "Palafin, L49, F",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 99,
+              "def": 101,
+              "spa": 82,
+              "spd": 91,
+              "spe": 128
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "zerotohero",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "wavecrash",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "drainpunch",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "bulkup",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "jetpunch",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Ariados|Poison Jab|p2a: Reuniclus",
+          "|-damage|p2a: Reuniclus|68/100",
+          "|-status|p2a: Reuniclus|psn",
+          "|move|p2a: Reuniclus|Recover|p2a: Reuniclus",
+          "|-heal|p2a: Reuniclus|100/100 psn",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Ariados|Poison Jab|p2a: Reuniclus",
+          "|-damage|p2a: Reuniclus|68/100",
+          "|-status|p2a: Reuniclus|psn",
+          "|move|p2a: Reuniclus|Recover|p2a: Reuniclus",
+          "|-heal|p2a: Reuniclus|100/100 psn",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Ariados|Poison Jab|p2a: Reuniclus",
+          "|-damage|p2a: Reuniclus|147/214",
+          "|-status|p2a: Reuniclus|psn",
+          "|move|p2a: Reuniclus|Recover|p2a: Reuniclus",
+          "|-heal|p2a: Reuniclus|214/214 psn",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "First Impression",
+                  "id": "firstimpression",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Megahorn",
+                  "id": "megahorn",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Poison Jab",
+                  "id": "poisonjab",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ariados",
+                "details": "Ariados, L59, M",
+                "condition": "182/182",
+                "active": true,
+                "stats": {
+                  "atk": 141,
+                  "def": 118,
+                  "spa": 106,
+                  "spd": 118,
+                  "spe": 82
+                },
+                "moves": [
+                  "stickyweb",
+                  "firstimpression",
+                  "megahorn",
+                  "poisonjab"
+                ],
+                "baseAbility": "swarm",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "swarm",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Tyrantrum",
+                "details": "Tyrantrum, L50, M",
+                "condition": "168/168",
+                "active": false,
+                "stats": {
+                  "atk": 152,
+                  "def": 150,
+                  "spa": 100,
+                  "spd": 90,
+                  "spe": 102
+                },
+                "moves": [
+                  "outrage",
+                  "closecombat",
+                  "earthquake",
+                  "headsmash"
+                ],
+                "baseAbility": "rockhead",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "rockhead",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Gourgeist",
+                "details": "Gourgeist, L55, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 132,
+                  "def": 167,
+                  "spa": 97,
+                  "spd": 116,
+                  "spe": 126
+                },
+                "moves": [
+                  "poltergeist",
+                  "painsplit",
+                  "shadowsneak",
+                  "powerwhip"
+                ],
+                "baseAbility": "frisk",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "frisk",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Pincurchin",
+                "details": "Pincurchin, L56, F",
+                "condition": "148/148",
+                "active": false,
+                "stats": {
+                  "atk": 135,
+                  "def": 140,
+                  "spa": 136,
+                  "spd": 129,
+                  "spe": 50
+                },
+                "moves": [
+                  "toxicspikes",
+                  "recover",
+                  "risingvoltage",
+                  "scald"
+                ],
+                "baseAbility": "electricsurge",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "electricsurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Runerigus",
+                "details": "Runerigus, L54, M",
+                "condition": "154/154",
+                "active": false,
+                "stats": {
+                  "atk": 135,
+                  "def": 189,
+                  "spa": 87,
+                  "spd": 146,
+                  "spe": 65
+                },
+                "moves": [
+                  "poltergeist",
+                  "willowisp",
+                  "stealthrock",
+                  "earthquake"
+                ],
+                "baseAbility": "wanderingspirit",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "wanderingspirit",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Overqwil",
+                "details": "Overqwil, L50, M",
+                "condition": "171/171",
+                "active": false,
+                "stats": {
+                  "atk": 146,
+                  "def": 126,
+                  "spa": 96,
+                  "spd": 96,
+                  "spe": 116
+                },
+                "moves": [
+                  "agility",
+                  "crunch",
+                  "swordsdance",
+                  "gunkshot"
+                ],
+                "baseAbility": "intimidate",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic",
+                  "id": "psychic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Focus Blast",
+                  "id": "focusblast",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Reuniclus",
+                "details": "Reuniclus, L55, M",
+                "condition": "214/214 psn",
+                "active": true,
+                "stats": {
+                  "atk": 93,
+                  "def": 116,
+                  "spa": 171,
+                  "spd": 127,
+                  "spe": 66
+                },
+                "moves": [
+                  "recover",
+                  "psychic",
+                  "focusblast",
+                  "calmmind"
+                ],
+                "baseAbility": "magicguard",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rillaboom",
+                "details": "Rillaboom, L49, F",
+                "condition": "182/182",
+                "active": false,
+                "stats": {
+                  "atk": 152,
+                  "def": 118,
+                  "spa": 89,
+                  "spd": 99,
+                  "spe": 113
+                },
+                "moves": [
+                  "woodhammer",
+                  "grassyglide",
+                  "highhorsepower",
+                  "swordsdance"
+                ],
+                "baseAbility": "grassysurge",
+                "item": "miracleseed",
+                "pokeball": "pokeball",
+                "ability": "grassysurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Emboar",
+                "details": "Emboar, L49, M",
+                "condition": "192/192",
+                "active": false,
+                "stats": {
+                  "atk": 151,
+                  "def": 94,
+                  "spa": 128,
+                  "spd": 94,
+                  "spe": 94
+                },
+                "moves": [
+                  "flamecharge",
+                  "drainpunch",
+                  "bulkup",
+                  "flareblitz"
+                ],
+                "baseAbility": "reckless",
+                "item": "emboarite",
+                "pokeball": "pokeball",
+                "ability": "reckless",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Bastiodon",
+                "details": "Bastiodon, L58, F",
+                "condition": "167/167",
+                "active": false,
+                "stats": {
+                  "atk": 83,
+                  "def": 230,
+                  "spa": 89,
+                  "spd": 195,
+                  "spe": 69
+                },
+                "moves": [
+                  "foulplay",
+                  "stealthrock",
+                  "bodypress",
+                  "rest"
+                ],
+                "baseAbility": "sturdy",
+                "item": "chestoberry",
+                "pokeball": "pokeball",
+                "ability": "sturdy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Emolga",
+                "details": "Emolga, L57, M",
+                "condition": "159/159",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 103,
+                  "spe": 152
+                },
+                "moves": [
+                  "discharge",
+                  "defog",
+                  "roost",
+                  "acrobatics"
+                ],
+                "baseAbility": "motordrive",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "motordrive",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Palafin",
+                "details": "Palafin, L49, F",
+                "condition": "182/182",
+                "active": false,
+                "stats": {
+                  "atk": 99,
+                  "def": 101,
+                  "spa": 82,
+                  "spd": 91,
+                  "spe": 128
+                },
+                "moves": [
+                  "wavecrash",
+                  "drainpunch",
+                  "bulkup",
+                  "jetpunch"
+                ],
+                "baseAbility": "zerotohero",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "zerotohero",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ariados",
+            "species": "Ariados",
+            "details": "Ariados, L59, M",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 141,
+              "def": 118,
+              "spa": 106,
+              "spd": 118,
+              "spe": 82
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swarm",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "stickyweb",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "firstimpression",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "megahorn",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "poisonjab",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Tyrantrum",
+            "species": "Tyrantrum",
+            "details": "Tyrantrum, L50, M",
+            "hp": 168,
+            "maxhp": 168,
+            "status": "",
+            "stats": {
+              "atk": 152,
+              "def": 150,
+              "spa": 100,
+              "spd": 90,
+              "spe": 102
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "rockhead",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "outrage",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "headsmash",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gourgeist",
+            "species": "Gourgeist",
+            "details": "Gourgeist, L55, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 132,
+              "def": 167,
+              "spa": 97,
+              "spd": 116,
+              "spe": 126
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "frisk",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "poltergeist",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "painsplit",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "shadowsneak",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "powerwhip",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Pincurchin",
+            "species": "Pincurchin",
+            "details": "Pincurchin, L56, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 140,
+              "spa": 136,
+              "spd": 129,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electricsurge",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "toxicspikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "risingvoltage",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "scald",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Runerigus",
+            "species": "Runerigus",
+            "details": "Runerigus, L54, M",
+            "hp": 154,
+            "maxhp": 154,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 189,
+              "spa": 87,
+              "spd": 146,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "wanderingspirit",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "poltergeist",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "willowisp",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Overqwil",
+            "species": "Overqwil",
+            "details": "Overqwil, L50, M",
+            "hp": 171,
+            "maxhp": 171,
+            "status": "",
+            "stats": {
+              "atk": 146,
+              "def": 126,
+              "spa": 96,
+              "spd": 96,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "agility",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "crunch",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Reuniclus",
+            "species": "Reuniclus",
+            "details": "Reuniclus, L55, M",
+            "hp": 214,
+            "maxhp": 214,
+            "status": "psn",
+            "stats": {
+              "atk": 93,
+              "def": 116,
+              "spa": 171,
+              "spd": 127,
+              "spe": 66
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "focusblast",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Rillaboom",
+            "species": "Rillaboom",
+            "details": "Rillaboom, L49, F",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 152,
+              "def": 118,
+              "spa": 89,
+              "spd": 99,
+              "spe": 113
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "grassysurge",
+            "item": "miracleseed",
+            "active": false,
+            "moves": [
+              {
+                "id": "woodhammer",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "grassyglide",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "highhorsepower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Emboar",
+            "species": "Emboar",
+            "details": "Emboar, L49, M",
+            "hp": 192,
+            "maxhp": 192,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 94,
+              "spa": 128,
+              "spd": 94,
+              "spe": 94
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "reckless",
+            "item": "emboarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "flamecharge",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "drainpunch",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "bulkup",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "flareblitz",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Bastiodon",
+            "species": "Bastiodon",
+            "details": "Bastiodon, L58, F",
+            "hp": 167,
+            "maxhp": 167,
+            "status": "",
+            "stats": {
+              "atk": 83,
+              "def": 230,
+              "spa": 89,
+              "spd": 195,
+              "spe": 69
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sturdy",
+            "item": "chestoberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "foulplay",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "bodypress",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "rest",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Emolga",
+            "species": "Emolga",
+            "details": "Emolga, L57, M",
+            "hp": 159,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 103,
+              "spa": 120,
+              "spd": 103,
+              "spe": 152
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "motordrive",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "discharge",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "defog",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "acrobatics",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Palafin",
+            "species": "Palafin",
+            "details": "Palafin, L49, F",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 99,
+              "def": 101,
+              "spa": 82,
+              "spd": 91,
+              "spe": 128
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "zerotohero",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "wavecrash",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "drainpunch",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "bulkup",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "jetpunch",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

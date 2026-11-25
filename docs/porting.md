@@ -75,14 +75,14 @@ training corpus. Some origin, special form, and event constraints are still
 unsupported. Roster Ranch Rumble generates ten-member rosters with a separate
 PRNG and supports native pick-four doubles setup. Seeded tests compare complete
 rosters and the final team PRNG state. Random Battle and Random Doubles Battle
-skip preview for supplied rosters and retain level-based stats and Illusion.
-Their team generation remains to be ported. Continue testing more rosters,
-seeds, and formats and record focused native fixtures for gaps.
+generate teams, skip preview, and retain level-based stats and Illusion.
+Continue testing more rosters, seeds, and formats and record focused native
+fixtures for gaps.
 
-The Random Battle roster-selection fixtures cover species and forme sampling,
-compatibility rules, lead order, entry context, abilities, items, effort values,
-and the final move shuffle. The test harness replays the reference move
-selector's RNG consumption until that selector is also native.
+The Random Battle fixtures cover species and forme sampling, compatibility
+rules, lead order, moves and their RNG consumption, abilities, items, effort
+values, and the final move shuffle. Additional native replays start and play
+singles and doubles from player seeds with no supplied rosters.
 
 The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
 markers. Its hypothetical damage calculator runs in an isolated battle and

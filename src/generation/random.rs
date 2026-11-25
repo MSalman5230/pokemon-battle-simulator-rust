@@ -12,14 +12,17 @@ use crate::{
 use serde::Deserialize;
 use std::{collections::HashMap, sync::LazyLock};
 
+mod moves;
 mod set;
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct Catalog {
     revision: String,
     types: Vec<String>,
     moves: HashMap<String, set::MoveFacts>,
     formats: [Vec<Recipe>; 2],
+    status_moves: Vec<String>,
 }
 
 #[derive(Deserialize)]
@@ -33,6 +36,7 @@ struct Recipe {
     other_formes: Option<Vec<String>>,
     move_abilities: Option<Vec<String>>,
     required_items: Option<Vec<String>>,
+    required_move: Option<String>,
     sets: Vec<set::RecipeSet>,
 }
 
@@ -88,6 +92,21 @@ impl TeamDetails {
         self.rapid_spin |= u8::from(moves(&["rapidspin", "mortalspin"]));
         self.screens |= u8::from(moves(&["auroraveil"]));
     }
+}
+
+pub(super) fn generate(format: &Format, rng: &mut Rng) -> Result<Vec<Set>, GenerationError> {
+    assemble(format, rng, |candidate, details, lead, doubles, rng| {
+        Ok(set::build(
+            format,
+            candidate,
+            details,
+            lead,
+            doubles,
+            rng,
+            moves::choose,
+        ))
+    })
+    .map(|members| members.into_iter().map(|m| m.set).collect())
 }
 
 fn assemble(
@@ -327,12 +346,14 @@ fn compatible(id: &str, team: &[Member], doubles: bool) -> bool {
     })
 }
 
+#[cfg(test)]
 #[derive(Deserialize)]
 struct Fixture {
     revision: String,
     cases: Vec<FixtureCase>,
 }
 
+#[cfg(test)]
 #[derive(Deserialize)]
 struct FixtureCase {
     format: String,
@@ -342,6 +363,7 @@ struct FixtureCase {
     order: Vec<String>,
 }
 
+#[cfg(test)]
 #[derive(Deserialize)]
 struct RecordedSet {
     id: String,
@@ -353,6 +375,7 @@ struct RecordedSet {
     moveset: RecordedMoves,
 }
 
+#[cfg(test)]
 #[derive(Deserialize)]
 struct RecordedMoves {
     before: String,
@@ -366,8 +389,18 @@ struct RecordedMoves {
 
 #[test]
 fn team_assembly_preserves_set_context_order_and_rng_across_random_formats() {
-    let data: Fixture =
-        serde_json::from_str(include_str!("../../tests/fixtures/random-assembly.json")).unwrap();
+    verify(include_str!("../../tests/fixtures/random-assembly.json"));
+}
+
+#[test]
+#[ignore = "generate corpus with node scripts/export-random-data.mjs .tools/random-stress.json 1000"]
+fn team_assembly_and_move_selection_match_a_larger_random_corpus() {
+    verify(&std::fs::read_to_string(".tools/random-stress.json").unwrap());
+}
+
+#[cfg(test)]
+fn verify(raw: &str) {
+    let data: Fixture = serde_json::from_str(raw).unwrap();
     assert_eq!(data.revision, DEX.revision);
     for case in data.cases {
         let format = DEX.format(&case.format).unwrap();
@@ -398,10 +431,10 @@ fn team_assembly_preserves_set_context_order_and_rng_across_random_formats() {
                         assert_eq!(state.preferred, record.preferred, "{context}");
                         assert_eq!(state.role, record.role, "{context}");
                         assert_eq!(state.abilities, record.abilities, "{context}");
-                        // Replay only the not-yet-ported move selector, from the test
-                        // harness. Production never loads recorded sets.
-                        *rng = Rng::new(record.after.parse().unwrap());
-                        record.moves.iter().map(|id| set::move_ref(id).0).collect()
+                        let moves = moves::choose(state, rng);
+                        assert_eq!(moves, record.moves, "{context} {}", candidate.recipe.id);
+                        assert_eq!(rng.seed(), record.after.parse().unwrap(), "{context}");
+                        moves
                     },
                 );
                 assert_eq!(ordered, expected.set, "{context} {}", candidate.recipe.id);

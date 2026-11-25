@@ -663,6 +663,14 @@ fn champions_random_formats_with_supplied_teams_skip_preview_and_mask_illusion_l
 }
 
 #[test]
+fn champions_random_formats_generate_and_play_from_native_seeded_inputs() {
+    replay(include_str!("fixtures/random-native-generated.json"));
+    replay(include_str!(
+        "fixtures/random-doubles-native-generated.json"
+    ));
+}
+
+#[test]
 fn natdex_draft_uses_champions_battle_rules_and_sleep_clause() {
     replay(include_str!("fixtures/natdex-draft-native.json"));
 }

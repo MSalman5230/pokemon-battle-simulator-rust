@@ -1,7 +1,6 @@
 //! Seeded Champions team generators, independent of the battle PRNG.
 
 mod ranch;
-#[cfg(test)]
 mod random;
 
 use crate::{
@@ -38,6 +37,7 @@ pub(crate) fn generate_for_format(
 ) -> Result<Vec<Set>, GenerationError> {
     match format.generator.as_deref() {
         Some("randomRRR") => Ok(ranch::generate(format, rng)),
+        Some("random") => random::generate(format, rng),
         Some(_) => Err(GenerationError(format!(
             "not ported: team generation for {}",
             format.name

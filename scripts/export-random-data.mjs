@@ -10,6 +10,9 @@ const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
 const lock = JSON.parse(readFileSync(new URL('package-lock.json', stage)));
 assert(lock.packages['node_modules/pokemon-showdown'].resolved.endsWith('/' + revision));
 const {PRNG, Teams} = require('pokemon-showdown');
+const output = process.argv[2] ?? new URL('../tests/fixtures/random-assembly.json', import.meta.url);
+const count = process.argv[3] ? Number(process.argv[3]) : 28;
+assert(Number.isSafeInteger(count) && count >= 4);
 
 const ids = ['gen9championsrandombattle', 'gen9championsrandomdoublesbattle'];
 const seeded = '1,2,3,4';
@@ -43,13 +46,14 @@ const recipes = ids.map((id, i) => {
 const dex = Teams.getGenerator(ids[0], seeded).dex;
 moveId(dex, 'Tri Attack');
 const types = dex.types.names();
+const statusMoves = dex.moves.all().filter(move => move.category === 'Status').map(move => move.id);
 writeFileSync(new URL('../data/random-champions.json', import.meta.url),
-    `{"revision":${JSON.stringify(revision)},"types":${JSON.stringify(types)},"moves":${JSON.stringify(Object.fromEntries(moves))},"formats":[\n${recipes.map(rows =>
+    `{"revision":${JSON.stringify(revision)},"types":${JSON.stringify(types)},"statusMoves":${JSON.stringify(statusMoves)},"moves":${JSON.stringify(Object.fromEntries(moves))},"formats":[\n${recipes.map(rows =>
         '[\n' + rows.map(row => JSON.stringify(row)).join(',\n') + '\n]').join(',\n')}\n]}\n`);
 
 const seedSource = new PRNG('45825,7,4545,101');
 const seeds = [seeded, '0,0,0,0', 'sodium,a', 'sodium,131415161718191a1b1c1d1e1f202122',
-    ...Array.from({length: 24}, () => Array.from({length: 4}, () => seedSource.random(65536)).join(','))];
+    ...Array.from({length: count - 4}, () => Array.from({length: 4}, () => seedSource.random(65536)).join(','))];
 const cases = ids.flatMap(format => seeds.map(seed => {
     const g = Teams.getGenerator(format, seed);
     const generate = g.randomSet.bind(g);
@@ -73,5 +77,5 @@ const cases = ids.flatMap(format => seeds.map(seed => {
     const order = g.getTeam().map(p => p.speciesId);
     return {format, seed, after: g.prng.getSeed(), sets, order};
 }));
-writeFileSync(new URL('../tests/fixtures/random-assembly.json', import.meta.url),
+writeFileSync(output,
     `{"revision":${JSON.stringify(revision)},"cases":[\n${cases.map(row => JSON.stringify(row)).join(',\n')}\n]}\n`);

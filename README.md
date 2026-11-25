@@ -7,10 +7,10 @@ and mechanics. The experimental Poke-RL worker matched all 673 step replies
 in the default BSS Reg M-C benchmark and ran 4.46× faster in release mode.
 That result covers the fixed 32-game workload. The worker now validates
 ordinary BSS rosters in Rust, without a reference manifest. Unsupported
-mechanics and unimplemented legality constraints return errors. Roster Ranch
-Rumble team generation is native. Full format parity, Random Battle team
-generation, and Poke-RL's lookahead are not complete. The worker implements
-the tactics metadata and a subset of public-state damage queries.
+mechanics and unimplemented legality constraints return errors. Random
+Battle, Random Doubles Battle, and Roster Ranch Rumble generate teams in Rust.
+Full battle parity and Poke-RL's lookahead are not complete. The worker
+implements tactics metadata and a subset of public-state damage queries.
 
 ## Local setup
 

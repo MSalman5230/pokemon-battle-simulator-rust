@@ -1,0 +1,2277 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsrandomdoublesbattle",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsrandomdoublesbattle\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"seed\":\"50219,19703,3172,32117\"}",
+        ">player p2 {\"name\":\"player1\",\"seed\":\"702,13344,30570,22958\"}"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Reuniclus|Reuniclus, L52, M|100/100",
+          "|switch|p1b: Pelipper|Pelipper, L49, F|100/100",
+          "|switch|p2a: Gyarados|Gyarados, L50, F|100/100",
+          "|switch|p2b: Heracross|Heracross, L52, F|100/100",
+          "|-ability|p2a: Gyarados|Intimidate|boost",
+          "|-unboost|p1a: Reuniclus|atk|1",
+          "|-unboost|p1b: Pelipper|atk|1",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p1b: Pelipper",
+          "|turn|1"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Reuniclus|Reuniclus, L52, M|203/203",
+          "|switch|p1b: Pelipper|Pelipper, L49, F|143/143",
+          "|switch|p2a: Gyarados|Gyarados, L50, F|100/100",
+          "|switch|p2b: Heracross|Heracross, L52, F|100/100",
+          "|-ability|p2a: Gyarados|Intimidate|boost",
+          "|-unboost|p1a: Reuniclus|atk|1",
+          "|-unboost|p1b: Pelipper|atk|1",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p1b: Pelipper",
+          "|turn|1"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Reuniclus|Reuniclus, L52, M|100/100",
+          "|switch|p1b: Pelipper|Pelipper, L49, F|100/100",
+          "|switch|p2a: Gyarados|Gyarados, L50, F|181/181",
+          "|switch|p2b: Heracross|Heracross, L52, F|172/172",
+          "|-ability|p2a: Gyarados|Intimidate|boost",
+          "|-unboost|p1a: Reuniclus|atk|1",
+          "|-unboost|p1b: Pelipper|atk|1",
+          "|-weather|RainDance|[from] ability: Drizzle|[of] p1b: Pelipper",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Focus Blast",
+                  "id": "focusblast",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic",
+                  "id": "psychic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Trick Room",
+                  "id": "trickroom",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Muddy Water",
+                  "id": "muddywater",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Wide Guard",
+                  "id": "wideguard",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Tailwind",
+                  "id": "tailwind",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Hurricane",
+                  "id": "hurricane",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Reuniclus",
+                "details": "Reuniclus, L52, M",
+                "condition": "203/203",
+                "active": true,
+                "stats": {
+                  "atk": 88,
+                  "def": 110,
+                  "spa": 162,
+                  "spd": 120,
+                  "spe": 52
+                },
+                "moves": [
+                  "focusblast",
+                  "psychic",
+                  "protect",
+                  "trickroom"
+                ],
+                "baseAbility": "magicguard",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L49, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 69,
+                  "def": 128,
+                  "spa": 123,
+                  "spd": 99,
+                  "spe": 94
+                },
+                "moves": [
+                  "muddywater",
+                  "wideguard",
+                  "tailwind",
+                  "hurricane"
+                ],
+                "baseAbility": "drizzle",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L51, F",
+                "condition": "148/148",
+                "active": false,
+                "stats": {
+                  "atk": 82,
+                  "def": 174,
+                  "spa": 82,
+                  "spd": 174,
+                  "spe": 92
+                },
+                "moves": [
+                  "kingsshield",
+                  "poltergeist",
+                  "flashcannon",
+                  "shadowsneak"
+                ],
+                "baseAbility": "stancechange",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Decidueye",
+                "details": "Decidueye, L55, M",
+                "condition": "179/179",
+                "active": false,
+                "stats": {
+                  "atk": 151,
+                  "def": 116,
+                  "spa": 143,
+                  "spd": 143,
+                  "spe": 110
+                },
+                "moves": [
+                  "spiritshackle",
+                  "leafstorm",
+                  "protect",
+                  "tailwind"
+                ],
+                "baseAbility": "overgrow",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "overgrow",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Garganacl",
+                "details": "Garganacl, L54, M",
+                "condition": "200/200",
+                "active": false,
+                "stats": {
+                  "atk": 141,
+                  "def": 173,
+                  "spa": 81,
+                  "spd": 130,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover",
+                  "stoneedge",
+                  "irondefense",
+                  "bodypress"
+                ],
+                "baseAbility": "purifyingsalt",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "purifyingsalt",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Palafin",
+                "details": "Palafin, L49, M",
+                "condition": "182/182",
+                "active": false,
+                "stats": {
+                  "atk": 99,
+                  "def": 101,
+                  "spa": 82,
+                  "spd": 91,
+                  "spe": 128
+                },
+                "moves": [
+                  "protect",
+                  "jetpunch",
+                  "flipturn",
+                  "wavecrash"
+                ],
+                "baseAbility": "zerotohero",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "zerotohero",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Waterfall",
+                  "id": "waterfall",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Dance",
+                  "id": "dragondance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Temper Flare",
+                  "id": "temperflare",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Knock Off",
+                  "id": "knockoff",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rock Slide",
+                  "id": "rockslide",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Close Combat",
+                  "id": "closecombat",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Megahorn",
+                  "id": "megahorn",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gyarados",
+                "details": "Gyarados, L50, F",
+                "condition": "181/181",
+                "active": true,
+                "stats": {
+                  "atk": 156,
+                  "def": 110,
+                  "spa": 91,
+                  "spd": 131,
+                  "spe": 112
+                },
+                "moves": [
+                  "protect",
+                  "waterfall",
+                  "dragondance",
+                  "temperflare"
+                ],
+                "baseAbility": "intimidate",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Heracross",
+                "details": "Heracross, L52, F",
+                "condition": "172/172",
+                "active": true,
+                "stats": {
+                  "atk": 162,
+                  "def": 110,
+                  "spa": 73,
+                  "spd": 130,
+                  "spe": 120
+                },
+                "moves": [
+                  "knockoff",
+                  "rockslide",
+                  "closecombat",
+                  "megahorn"
+                ],
+                "baseAbility": "moxie",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "moxie",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Samurott",
+                "details": "Samurott-Hisui, L50, M",
+                "condition": "176/176",
+                "active": false,
+                "stats": {
+                  "atk": 139,
+                  "def": 111,
+                  "spa": 131,
+                  "spd": 96,
+                  "spe": 116
+                },
+                "moves": [
+                  "ceaselessedge",
+                  "protect",
+                  "razorshell",
+                  "suckerpunch"
+                ],
+                "baseAbility": "sharpness",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "sharpness",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glalie",
+                "details": "Glalie, L57, F",
+                "condition": "187/187",
+                "active": false,
+                "stats": {
+                  "atk": 113,
+                  "def": 125,
+                  "spa": 125,
+                  "spd": 125,
+                  "spe": 125
+                },
+                "moves": [
+                  "helpinghand",
+                  "icywind",
+                  "disable",
+                  "freezedry"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Emboar",
+                "details": "Emboar, L50, F",
+                "condition": "196/196",
+                "active": false,
+                "stats": {
+                  "atk": 154,
+                  "def": 96,
+                  "spa": 131,
+                  "spd": 96,
+                  "spe": 96
+                },
+                "moves": [
+                  "flareblitz",
+                  "protect",
+                  "closecombat",
+                  "knockoff"
+                ],
+                "baseAbility": "reckless",
+                "item": "emboarite",
+                "pokeball": "pokeball",
+                "ability": "reckless",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rillaboom",
+                "details": "Rillaboom, L50, M",
+                "condition": "186/186",
+                "active": false,
+                "stats": {
+                  "atk": 156,
+                  "def": 121,
+                  "spa": 91,
+                  "spd": 101,
+                  "spe": 116
+                },
+                "moves": [
+                  "uturn",
+                  "grassyglide",
+                  "fakeout",
+                  "woodhammer"
+                ],
+                "baseAbility": "grassysurge",
+                "item": "miracleseed",
+                "pokeball": "pokeball",
+                "ability": "grassysurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Reuniclus",
+            "species": "Reuniclus",
+            "details": "Reuniclus, L52, M",
+            "hp": 203,
+            "maxhp": 203,
+            "status": "",
+            "stats": {
+              "atk": 88,
+              "def": 110,
+              "spa": 162,
+              "spd": 120,
+              "spe": 52
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "focusblast",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "trickroom",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L49, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 69,
+              "def": 128,
+              "spa": 123,
+              "spd": 99,
+              "spe": 94
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "muddywater",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "wideguard",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "hurricane",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Aegislash",
+            "species": "Aegislash",
+            "details": "Aegislash, L51, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 82,
+              "def": 174,
+              "spa": 82,
+              "spd": 174,
+              "spe": 92
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "kingsshield",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "poltergeist",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "flashcannon",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "shadowsneak",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Decidueye",
+            "species": "Decidueye",
+            "details": "Decidueye, L55, M",
+            "hp": 179,
+            "maxhp": 179,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 116,
+              "spa": 143,
+              "spd": 143,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "overgrow",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "spiritshackle",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "leafstorm",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Garganacl",
+            "species": "Garganacl",
+            "details": "Garganacl, L54, M",
+            "hp": 200,
+            "maxhp": 200,
+            "status": "",
+            "stats": {
+              "atk": 141,
+              "def": 173,
+              "spa": 81,
+              "spd": 130,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "purifyingsalt",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "stoneedge",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "irondefense",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "bodypress",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Palafin",
+            "species": "Palafin",
+            "details": "Palafin, L49, M",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 99,
+              "def": 101,
+              "spa": 82,
+              "spd": 91,
+              "spe": 128
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "zerotohero",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "jetpunch",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "flipturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "wavecrash",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gyarados",
+            "species": "Gyarados",
+            "details": "Gyarados, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 156,
+              "def": 110,
+              "spa": 91,
+              "spd": 131,
+              "spe": 112
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "waterfall",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "dragondance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "temperflare",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Heracross",
+            "species": "Heracross",
+            "details": "Heracross, L52, F",
+            "hp": 172,
+            "maxhp": 172,
+            "status": "",
+            "stats": {
+              "atk": 162,
+              "def": 110,
+              "spa": 73,
+              "spd": 130,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moxie",
+            "item": "choicescarf",
+            "active": true,
+            "moves": [
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "rockslide",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "megahorn",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Samurott",
+            "species": "Samurott-Hisui",
+            "details": "Samurott-Hisui, L50, M",
+            "hp": 176,
+            "maxhp": 176,
+            "status": "",
+            "stats": {
+              "atk": 139,
+              "def": 111,
+              "spa": 131,
+              "spd": 96,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sharpness",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "ceaselessedge",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "razorshell",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "suckerpunch",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glalie",
+            "species": "Glalie",
+            "details": "Glalie, L57, F",
+            "hp": 187,
+            "maxhp": 187,
+            "status": "",
+            "stats": {
+              "atk": 113,
+              "def": 125,
+              "spa": 125,
+              "spd": 125,
+              "spe": 125
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "helpinghand",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "disable",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "freezedry",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Emboar",
+            "species": "Emboar",
+            "details": "Emboar, L50, F",
+            "hp": 196,
+            "maxhp": 196,
+            "status": "",
+            "stats": {
+              "atk": 154,
+              "def": 96,
+              "spa": 131,
+              "spd": 96,
+              "spe": 96
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "reckless",
+            "item": "emboarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "flareblitz",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Rillaboom",
+            "species": "Rillaboom",
+            "details": "Rillaboom, L50, M",
+            "hp": 186,
+            "maxhp": 186,
+            "status": "",
+            "stats": {
+              "atk": 156,
+              "def": 121,
+              "spa": 91,
+              "spd": 101,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "grassysurge",
+            "item": "miracleseed",
+            "active": false,
+            "moves": [
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "grassyglide",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "woodhammer",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3, move 3",
+        ">p2 move 3, move 1 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Reuniclus|Protect|p1a: Reuniclus",
+          "|-singleturn|p1a: Reuniclus|Protect",
+          "|move|p2b: Heracross|Knock Off|p1a: Reuniclus",
+          "|-activate|p1a: Reuniclus|move: Protect",
+          "|move|p2a: Gyarados|Dragon Dance|p2a: Gyarados",
+          "|-boost|p2a: Gyarados|atk|1",
+          "|-boost|p2a: Gyarados|spe|1",
+          "|move|p1b: Pelipper|Tailwind|p1b: Pelipper",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Reuniclus|Protect|p1a: Reuniclus",
+          "|-singleturn|p1a: Reuniclus|Protect",
+          "|move|p2b: Heracross|Knock Off|p1a: Reuniclus",
+          "|-activate|p1a: Reuniclus|move: Protect",
+          "|move|p2a: Gyarados|Dragon Dance|p2a: Gyarados",
+          "|-boost|p2a: Gyarados|atk|1",
+          "|-boost|p2a: Gyarados|spe|1",
+          "|move|p1b: Pelipper|Tailwind|p1b: Pelipper",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Reuniclus|Protect|p1a: Reuniclus",
+          "|-singleturn|p1a: Reuniclus|Protect",
+          "|move|p2b: Heracross|Knock Off|p1a: Reuniclus",
+          "|-activate|p1a: Reuniclus|move: Protect",
+          "|move|p2a: Gyarados|Dragon Dance|p2a: Gyarados",
+          "|-boost|p2a: Gyarados|atk|1",
+          "|-boost|p2a: Gyarados|spe|1",
+          "|move|p1b: Pelipper|Tailwind|p1b: Pelipper",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Focus Blast",
+                  "id": "focusblast",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic",
+                  "id": "psychic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Trick Room",
+                  "id": "trickroom",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Muddy Water",
+                  "id": "muddywater",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Wide Guard",
+                  "id": "wideguard",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Tailwind",
+                  "id": "tailwind",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Hurricane",
+                  "id": "hurricane",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Reuniclus",
+                "details": "Reuniclus, L52, M",
+                "condition": "203/203",
+                "active": true,
+                "stats": {
+                  "atk": 88,
+                  "def": 110,
+                  "spa": 162,
+                  "spd": 120,
+                  "spe": 52
+                },
+                "moves": [
+                  "focusblast",
+                  "psychic",
+                  "protect",
+                  "trickroom"
+                ],
+                "baseAbility": "magicguard",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Pelipper",
+                "details": "Pelipper, L49, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 69,
+                  "def": 128,
+                  "spa": 123,
+                  "spd": 99,
+                  "spe": 94
+                },
+                "moves": [
+                  "muddywater",
+                  "wideguard",
+                  "tailwind",
+                  "hurricane"
+                ],
+                "baseAbility": "drizzle",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "drizzle",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Aegislash",
+                "details": "Aegislash, L51, F",
+                "condition": "148/148",
+                "active": false,
+                "stats": {
+                  "atk": 82,
+                  "def": 174,
+                  "spa": 82,
+                  "spd": 174,
+                  "spe": 92
+                },
+                "moves": [
+                  "kingsshield",
+                  "poltergeist",
+                  "flashcannon",
+                  "shadowsneak"
+                ],
+                "baseAbility": "stancechange",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "stancechange",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Decidueye",
+                "details": "Decidueye, L55, M",
+                "condition": "179/179",
+                "active": false,
+                "stats": {
+                  "atk": 151,
+                  "def": 116,
+                  "spa": 143,
+                  "spd": 143,
+                  "spe": 110
+                },
+                "moves": [
+                  "spiritshackle",
+                  "leafstorm",
+                  "protect",
+                  "tailwind"
+                ],
+                "baseAbility": "overgrow",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "overgrow",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Garganacl",
+                "details": "Garganacl, L54, M",
+                "condition": "200/200",
+                "active": false,
+                "stats": {
+                  "atk": 141,
+                  "def": 173,
+                  "spa": 81,
+                  "spd": 130,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover",
+                  "stoneedge",
+                  "irondefense",
+                  "bodypress"
+                ],
+                "baseAbility": "purifyingsalt",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "purifyingsalt",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Palafin",
+                "details": "Palafin, L49, M",
+                "condition": "182/182",
+                "active": false,
+                "stats": {
+                  "atk": 99,
+                  "def": 101,
+                  "spa": 82,
+                  "spd": 91,
+                  "spe": 128
+                },
+                "moves": [
+                  "protect",
+                  "jetpunch",
+                  "flipturn",
+                  "wavecrash"
+                ],
+                "baseAbility": "zerotohero",
+                "item": "mysticwater",
+                "pokeball": "pokeball",
+                "ability": "zerotohero",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Waterfall",
+                  "id": "waterfall",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Dance",
+                  "id": "dragondance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Temper Flare",
+                  "id": "temperflare",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Knock Off",
+                  "id": "knockoff",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rock Slide",
+                  "id": "rockslide",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": true
+                },
+                {
+                  "move": "Close Combat",
+                  "id": "closecombat",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Megahorn",
+                  "id": "megahorn",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gyarados",
+                "details": "Gyarados, L50, F",
+                "condition": "181/181",
+                "active": true,
+                "stats": {
+                  "atk": 156,
+                  "def": 110,
+                  "spa": 91,
+                  "spd": 131,
+                  "spe": 112
+                },
+                "moves": [
+                  "protect",
+                  "waterfall",
+                  "dragondance",
+                  "temperflare"
+                ],
+                "baseAbility": "intimidate",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Heracross",
+                "details": "Heracross, L52, F",
+                "condition": "172/172",
+                "active": true,
+                "stats": {
+                  "atk": 162,
+                  "def": 110,
+                  "spa": 73,
+                  "spd": 130,
+                  "spe": 120
+                },
+                "moves": [
+                  "knockoff",
+                  "rockslide",
+                  "closecombat",
+                  "megahorn"
+                ],
+                "baseAbility": "moxie",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "moxie",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Samurott",
+                "details": "Samurott-Hisui, L50, M",
+                "condition": "176/176",
+                "active": false,
+                "stats": {
+                  "atk": 139,
+                  "def": 111,
+                  "spa": 131,
+                  "spd": 96,
+                  "spe": 116
+                },
+                "moves": [
+                  "ceaselessedge",
+                  "protect",
+                  "razorshell",
+                  "suckerpunch"
+                ],
+                "baseAbility": "sharpness",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "sharpness",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glalie",
+                "details": "Glalie, L57, F",
+                "condition": "187/187",
+                "active": false,
+                "stats": {
+                  "atk": 113,
+                  "def": 125,
+                  "spa": 125,
+                  "spd": 125,
+                  "spe": 125
+                },
+                "moves": [
+                  "helpinghand",
+                  "icywind",
+                  "disable",
+                  "freezedry"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Emboar",
+                "details": "Emboar, L50, F",
+                "condition": "196/196",
+                "active": false,
+                "stats": {
+                  "atk": 154,
+                  "def": 96,
+                  "spa": 131,
+                  "spd": 96,
+                  "spe": 96
+                },
+                "moves": [
+                  "flareblitz",
+                  "protect",
+                  "closecombat",
+                  "knockoff"
+                ],
+                "baseAbility": "reckless",
+                "item": "emboarite",
+                "pokeball": "pokeball",
+                "ability": "reckless",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rillaboom",
+                "details": "Rillaboom, L50, M",
+                "condition": "186/186",
+                "active": false,
+                "stats": {
+                  "atk": 156,
+                  "def": 121,
+                  "spa": 91,
+                  "spd": 101,
+                  "spe": 116
+                },
+                "moves": [
+                  "uturn",
+                  "grassyglide",
+                  "fakeout",
+                  "woodhammer"
+                ],
+                "baseAbility": "grassysurge",
+                "item": "miracleseed",
+                "pokeball": "pokeball",
+                "ability": "grassysurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Reuniclus",
+            "species": "Reuniclus",
+            "details": "Reuniclus, L52, M",
+            "hp": 203,
+            "maxhp": 203,
+            "status": "",
+            "stats": {
+              "atk": 88,
+              "def": 110,
+              "spa": 162,
+              "spd": 120,
+              "spe": 52
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "focusblast",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "trickroom",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Pelipper",
+            "species": "Pelipper",
+            "details": "Pelipper, L49, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 69,
+              "def": 128,
+              "spa": 123,
+              "spd": 99,
+              "spe": 94
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drizzle",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "muddywater",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "wideguard",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tailwind",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "hurricane",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Aegislash",
+            "species": "Aegislash",
+            "details": "Aegislash, L51, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 82,
+              "def": 174,
+              "spa": 82,
+              "spd": 174,
+              "spe": 92
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stancechange",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "kingsshield",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "poltergeist",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "flashcannon",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "shadowsneak",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Decidueye",
+            "species": "Decidueye",
+            "details": "Decidueye, L55, M",
+            "hp": 179,
+            "maxhp": 179,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 116,
+              "spa": 143,
+              "spd": 143,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "overgrow",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "spiritshackle",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "leafstorm",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Garganacl",
+            "species": "Garganacl",
+            "details": "Garganacl, L54, M",
+            "hp": 200,
+            "maxhp": 200,
+            "status": "",
+            "stats": {
+              "atk": 141,
+              "def": 173,
+              "spa": 81,
+              "spd": 130,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "purifyingsalt",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "stoneedge",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "irondefense",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "bodypress",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Palafin",
+            "species": "Palafin",
+            "details": "Palafin, L49, M",
+            "hp": 182,
+            "maxhp": 182,
+            "status": "",
+            "stats": {
+              "atk": 99,
+              "def": 101,
+              "spa": 82,
+              "spd": 91,
+              "spe": 128
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "zerotohero",
+            "item": "mysticwater",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "jetpunch",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "flipturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "wavecrash",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gyarados",
+            "species": "Gyarados",
+            "details": "Gyarados, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 156,
+              "def": 110,
+              "spa": 91,
+              "spd": 131,
+              "spe": 112
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "waterfall",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "dragondance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "temperflare",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Heracross",
+            "species": "Heracross",
+            "details": "Heracross, L52, F",
+            "hp": 172,
+            "maxhp": 172,
+            "status": "",
+            "stats": {
+              "atk": 162,
+              "def": 110,
+              "spa": 73,
+              "spd": 130,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moxie",
+            "item": "choicescarf",
+            "active": true,
+            "moves": [
+              {
+                "id": "knockoff",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "rockslide",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "megahorn",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Samurott",
+            "species": "Samurott-Hisui",
+            "details": "Samurott-Hisui, L50, M",
+            "hp": 176,
+            "maxhp": 176,
+            "status": "",
+            "stats": {
+              "atk": 139,
+              "def": 111,
+              "spa": 131,
+              "spd": 96,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sharpness",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "ceaselessedge",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "razorshell",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "suckerpunch",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glalie",
+            "species": "Glalie",
+            "details": "Glalie, L57, F",
+            "hp": 187,
+            "maxhp": 187,
+            "status": "",
+            "stats": {
+              "atk": 113,
+              "def": 125,
+              "spa": 125,
+              "spd": 125,
+              "spe": 125
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "helpinghand",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "disable",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "freezedry",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Emboar",
+            "species": "Emboar",
+            "details": "Emboar, L50, F",
+            "hp": 196,
+            "maxhp": 196,
+            "status": "",
+            "stats": {
+              "atk": 154,
+              "def": 96,
+              "spa": 131,
+              "spd": 96,
+              "spe": 96
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "reckless",
+            "item": "emboarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "flareblitz",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Rillaboom",
+            "species": "Rillaboom",
+            "details": "Rillaboom, L50, M",
+            "hp": 186,
+            "maxhp": 186,
+            "status": "",
+            "stats": {
+              "atk": 156,
+              "def": 121,
+              "spa": 91,
+              "spd": 101,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "grassysurge",
+            "item": "miracleseed",
+            "active": false,
+            "moves": [
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "grassyglide",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "woodhammer",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

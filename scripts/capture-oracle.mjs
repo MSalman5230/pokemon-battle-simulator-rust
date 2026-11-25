@@ -800,6 +800,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 12'], ['move 2','move 1'], ['move 1','move 1']], chestoRestRosters, 'bss-chesto-rest'],
     ['randombattle', [['move 1','move 1'], ['move 1','move 1']], randomLevelRosters, 'random-native-supplied'],
     ['randomdoublesbattle', [['move 1 1, move 1', 'move 1 1, move 1']], randomLevelRosters, 'random-doubles-native-supplied'],
+    ['randombattle', [['move 1','move 4'], ['move 4','move 1']],
+        ['1,2,3,4', '50219,19703,3172,32117'], 'random-native-generated'],
+    ['randomdoublesbattle', [['move 3, move 3', 'move 3, move 1 1']],
+        ['50219,19703,3172,32117', '702,13344,30570,22958'], 'random-doubles-native-generated'],
     ['natdexdraft', [['team 12','team 123'], ['move 2','move 1'], ['move 1','switch 2'], ['move 1','switch 3']],
         sleepClauseRosters, 'natdex-draft-native'],
 ]) {
