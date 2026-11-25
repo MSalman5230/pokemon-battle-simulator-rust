@@ -364,6 +364,8 @@ impl Battle {
                     | "acrobatics"
                     | "hardpress"
                     | "risingvoltage"
+                    | "thief"
+                    | "covet"
             )
         {
             return Err(unsupported(format!("move {move_id}")));

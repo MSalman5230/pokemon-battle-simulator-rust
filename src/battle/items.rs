@@ -1,6 +1,6 @@
 //! Held-item hooks for the currently supported damage and status pipeline.
 
-use super::turn::Position;
+use super::turn::{Pivot, Position};
 use super::*;
 use crate::mechanics::BoostStat;
 
@@ -413,6 +413,70 @@ impl Battle {
             ));
             break;
         }
+    }
+
+    pub(super) fn thief_after_hit(&mut self, user: Position, target: Position, move_name: &str) {
+        if self.mon(user).hp == 0 || !self.mon(user).item.is_empty() {
+            return;
+        }
+        self.transfer_stolen_item(user, target, move_name == "Thief", move_name, false);
+    }
+
+    pub(super) fn pickpocket_after_move(&mut self, holder: Position, attacker: Position) {
+        let mon = self.mon(holder);
+        if holder == attacker
+            || mon.hp == 0
+            || !mon.item.is_empty()
+            || mon.pivot_move.is_some()
+            || self.drag_flags & holder.mask() != 0
+            || matches!(
+                self.mon(attacker).pivot_move,
+                Some(Pivot::Ability | Pivot::Move("U-turn" | "Volt Switch" | "Flip Turn"))
+            )
+        {
+            return;
+        }
+        self.transfer_stolen_item(holder, attacker, true, "Pickpocket", true);
+    }
+
+    fn transfer_stolen_item(
+        &mut self,
+        recipient: Position,
+        donor: Position,
+        show_loss: bool,
+        effect: &str,
+        ability: bool,
+    ) {
+        let Some(item) = DEX.item(self.format.dex_mod, &self.mon(donor).item) else {
+            return;
+        };
+        if self.mon(donor).hp > 0 && self.event_ability(donor) == "stickyhold" {
+            self.add(format!(
+                "|-activate|{}|ability: Sticky Hold",
+                self.ident(donor)
+            ));
+            return;
+        }
+        if !self.mon(donor).can_transfer_item(item)
+            || !ability && !self.mon(recipient).can_transfer_item(item)
+        {
+            return;
+        }
+        self.mon_mut(recipient).item = self.lose_held_item(donor);
+        self.on_gained_item(recipient);
+        let recipient = self.ident(recipient);
+        let donor = self.ident(donor);
+        let kind = if ability { "ability" } else { "move" };
+        let name = &item.effect.name;
+        if show_loss {
+            let loss_of = if ability { &donor } else { &recipient };
+            self.add(format!(
+                "|-enditem|{donor}|{name}|[silent]|[from] {kind}: {effect}|[of] {loss_of}"
+            ));
+        }
+        self.add(format!(
+            "|-item|{recipient}|{name}|[from] {kind}: {effect}|[of] {donor}"
+        ));
     }
 
     pub(super) fn swap_items(&mut self, user: Position, target: Position, move_name: &str) -> bool {

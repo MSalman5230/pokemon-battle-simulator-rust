@@ -141,19 +141,22 @@ impl Pokemon {
 }
 
 impl Battle {
-    pub(super) fn half_hp_abilities_after_move(
+    pub(super) fn target_abilities_after_move(
         &mut self,
         source: Position,
         targets: &[Position],
         damage: [u32; 4],
+        data: &Move,
         multihit: bool,
         smart_target: bool,
     ) {
         let mut holders = [(source, 0); 4];
         let mut count = 0;
         for &target in targets {
-            if matches!(self.mon(target).ability.as_str(), "berserk" | "angershell")
-                && self.active_effects(target)
+            if matches!(
+                self.mon(target).ability.as_str(),
+                "berserk" | "angershell" | "pickpocket"
+            ) && self.active_effects(target)
             {
                 holders[count] = (target, self.mon(target).speed);
                 count += 1;
@@ -162,6 +165,12 @@ impl Battle {
         speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
         let total: u32 = damage.iter().sum();
         for &(target, _) in &holders[..count] {
+            if self.event_ability(target) == "pickpocket" {
+                if data.flags.contains_key("contact") {
+                    self.pickpocket_after_move(target, source);
+                }
+                continue;
+            }
             let mon = self.mon_mut(target);
             mon.half_hp_berry_deferred = false;
             let anger_shell = mon.ability == "angershell";

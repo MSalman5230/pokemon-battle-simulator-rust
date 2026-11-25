@@ -18,7 +18,7 @@ impl Position {
         self.player.index() * 2 + self.slot
     }
 
-    fn mask(self) -> u8 {
+    pub(super) fn mask(self) -> u8 {
         1 << self.index()
     }
 
@@ -1035,6 +1035,8 @@ impl Battle {
                     | "supersonic"
                     | "bellydrum"
                     | "quash"
+                    | "thief"
+                    | "covet"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -4686,7 +4688,11 @@ impl Battle {
             {
                 self.clear_spinning_hazards(source, &move_data.name);
             }
-            if move_data.name == "Knock Off" {
+            if matches!(move_data.name.as_str(), "Thief" | "Covet") {
+                for &(target, _) in &damage {
+                    self.thief_after_hit(source, target, &move_data.name);
+                }
+            } else if move_data.name == "Knock Off" {
                 for &(target, _) in &damage {
                     if let Some(item) = self.can_take_item(target) {
                         self.lose_held_item(target);
@@ -4816,10 +4822,11 @@ impl Battle {
         self.each_event();
         // Champions runs the target-side AfterMoveSecondary and EmergencyExit
         // hooks even when Sheer Force removes the move's secondary effects.
-        self.half_hp_abilities_after_move(
+        self.target_abilities_after_move(
             source,
             &spread_targets,
             landed_by_target,
+            move_data,
             multihit,
             smart_target,
         );
@@ -5399,6 +5406,7 @@ impl Pokemon {
                 | "fluffy"
                 | "punkrock"
                 | "spicyspray"
+                | "pickpocket"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

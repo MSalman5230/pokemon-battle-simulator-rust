@@ -946,6 +946,16 @@ const quashRosters = [
     [{...named('Sableye', ['Quash']), ability:'Prankster'}, named('Umbreon', ['Tackle'])],
     [named('Jolteon', ['Tackle', 'Quick Attack']), named('Vaporeon', ['Water Gun'])],
 ];
+const theftRosters = [
+    [named('Greninja', ['Thief']), named('Linoone', ['Covet'])],
+    [{...named('Muk', ['Recover']), item:'Leftovers', ability:'Sticky Hold'},
+        {...named('Umbreon', ['Recover']), item:'Rocky Helmet'},
+        {...named('Vaporeon', ['Recover']), item:'Mystic Water'}],
+];
+const pickpocketRosters = [
+    [{...named('Flareon', ['Tackle', 'U-turn']), item:'Leftovers'}, named('Espeon', ['Recover'])],
+    [{...named('Weavile', ['Recover']), ability:'Pickpocket'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1790,6 +1800,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2','move 1'], ['move 1','move 1']], bellyDrumRosters, 'bss-belly-drum'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 1','move 1 2, move 1 2'],
         ['move 1 1, move 1 2','move 2 2, move 1 2']], quashRosters, 'vgc-quash'],
+    ['bssregmc', [['team 12','team 123'], ['move 1','move 1'], ['move 1','switch 2'],
+        ['switch 2','switch 3'], ['move 1','move 1']], theftRosters, 'bss-thief-covet'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 1'],
+        ['switch 2',null]], pickpocketRosters, 'bss-pickpocket'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
