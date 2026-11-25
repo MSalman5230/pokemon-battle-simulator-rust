@@ -1017,6 +1017,7 @@ impl Battle {
                     | "fly"
                     | "flyingpress"
                     | "charge"
+                    | "throatchop"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -1366,6 +1367,7 @@ impl Battle {
         party[outgoing.slot].seeded_from = None;
         party[outgoing.slot].partial_trap = None;
         party[outgoing.slot].perish_count = 0;
+        party[outgoing.slot].throat_chop = 0;
         party[outgoing.slot].taunt = 0;
         party[outgoing.slot].encore = None;
         party[outgoing.slot].attract = None;
@@ -1683,6 +1685,9 @@ impl Battle {
         if self.mon(pos).ability == "berserk" {
             self.mon_mut(pos).berserk_waits_for_hit = false;
         }
+        if self.mon(pos).ability == "zerotohero" {
+            self.announce_hero(pos);
+        }
         if let Some(label) = match self.mon(pos).ability.as_str() {
             "pressure" => Some("Pressure"),
             "moldbreaker" => Some("Mold Breaker"),
@@ -1864,6 +1869,7 @@ impl Battle {
             SaltCure,
             PartialTrap,
             PerishSong,
+            ThroatChop,
             Taunt,
             Encore,
             Disable,
@@ -1976,6 +1982,9 @@ impl Battle {
             }
             if mon.perish_count != 0 {
                 timers.push((pos, Effect::PerishSong, priority(24, 2)));
+            }
+            if mon.throat_chop != 0 {
+                timers.push((pos, Effect::ThroatChop, priority(22, 2)));
             }
             if mon.encore.is_some() {
                 timers.push((pos, Effect::Encore, priority(16, 2)));
@@ -2134,6 +2143,13 @@ impl Battle {
                         // resolve it until the next non-expiring callback.
                         perish_faints.push(pos);
                         continue;
+                    }
+                }
+                Effect::ThroatChop => {
+                    mon.throat_chop -= 1;
+                    if mon.throat_chop == 0 {
+                        mon.untrack_volatile("throatchop");
+                        self.add(format!("|-end|{}|Throat Chop|[silent]", self.ident(pos)));
                     }
                 }
                 Effect::FocusPunch => {
@@ -2489,6 +2505,10 @@ impl Battle {
         if own_action && !self.before_status_move(source, move_data) {
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
+            return false;
+        }
+        if reflected && self.mon(source).throat_chop > 0 && move_data.flags.contains_key("sound") {
+            self.add(format!("|cant|{source_name}|move: Throat Chop"));
             return false;
         }
         *spends_charge = own_action && move_data.name != "Charge" && move_type == "Electric";
@@ -4246,6 +4266,18 @@ impl Battle {
                         if effect.volatile_status.as_deref() == Some("saltcure") {
                             self.start_salt_cure(target);
                         }
+                        if move_data.name == "Throat Chop"
+                            && self.mon(target).hp > 0
+                            && self.mon(target).throat_chop == 0
+                        {
+                            let mon = self.mon_mut(target);
+                            mon.throat_chop = 2;
+                            mon.track_volatile("throatchop");
+                            self.add(format!(
+                                "|-start|{}|Throat Chop|[silent]",
+                                self.ident(target)
+                            ));
+                        }
                     }
                 }
             }
@@ -4652,6 +4684,7 @@ impl Battle {
         mon.seeded_from = None;
         mon.partial_trap = None;
         mon.perish_count = 0;
+        mon.throat_chop = 0;
         mon.taunt = 0;
         mon.encore = None;
         mon.attract = None;
@@ -5039,6 +5072,7 @@ impl Pokemon {
                 | "effectspore"
                 | "electromorphosis"
                 | "windpower"
+                | "zerotohero"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

@@ -303,6 +303,7 @@ impl Battle {
 
     pub(super) fn switch_out_ability(&mut self, pos: Position) {
         match self.event_ability(pos) {
+            "zerotohero" => self.zero_to_hero_on_switch(pos),
             "naturalcure" => {
                 self.cure_status(pos, "[from] ability: Natural Cure|[silent]");
             }

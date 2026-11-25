@@ -1039,6 +1039,16 @@ const windPowerRosters = [
         {...named('Kilowattrel', ['Thunder Shock', 'Recover']), ability:'Wind Power'}],
     [named('Umbreon', ['Gust', 'Recover']), named('Vaporeon', ['Recover'])],
 ];
+const palafinRosters = [
+    [{...named('Palafin', ['Flip Turn', 'Tackle']), ability:'Zero to Hero'},
+        named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Recover'])],
+];
+const throatChopRosters = [
+    [named('Umbreon', ['Throat Chop', 'Tackle', 'Recover'])],
+    [named('Sylveon', ['Hyper Voice', 'Recover']),
+        {...named('Slowbro', ['Hyper Voice', 'Recover']), item:'Covert Cloak'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1580,6 +1590,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         electricChargeRosters, 'bss-electric-charge'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1 1','move 1 2, move 1'],
         ['move 2, move 1 1','move 2, move 1']], windPowerRosters, 'vgc-wind-power'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['switch 2',null], ['switch 2','move 1'],
+        ['move 2','move 1'], ['switch 2','move 1'], ['switch 2','move 1']],
+        palafinRosters, 'bss-zero-to-hero'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 1'],
+        ['move 1','switch 2'], ['move 3','move 1']], throatChopRosters, 'bss-throat-chop'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

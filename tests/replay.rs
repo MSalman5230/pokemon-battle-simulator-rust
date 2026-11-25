@@ -1132,6 +1132,16 @@ fn electric_charge_accumulates_from_moves_and_abilities_until_an_electric_attemp
 }
 
 #[test]
+fn palafin_permanently_changes_forme_and_only_announces_hero_once() {
+    replay(include_str!("fixtures/bss-zero-to-hero.json"));
+}
+
+#[test]
+fn throat_chop_interrupts_pending_sound_moves_and_disables_them_for_a_turn() {
+    replay(include_str!("fixtures/bss-throat-chop.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -31,6 +31,37 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn zero_to_hero_on_switch(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.base_species.base_species != "Palafin" || mon.species.name == "Palafin-Hero" {
+            return;
+        }
+        let hero = DEX.species(self.format.dex_mod, "palafinhero").unwrap();
+        let rules = self.stat_rules;
+        let mon = self.mon_mut(pos);
+        mon.set_current_species(hero, rules);
+        mon.base_species = hero;
+        mon.announced_hero = false;
+        let suffix = mon.details.find(',').unwrap_or(mon.details.len());
+        mon.details.replace_range(..suffix, &hero.name);
+        self.add(format!(
+            "|detailschange|{}|{}",
+            self.ident(pos),
+            self.mon(pos).details
+        ));
+    }
+
+    pub(super) fn announce_hero(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        if mon.species.name == "Palafin-Hero" && !mon.announced_hero {
+            mon.announced_hero = true;
+            self.add(format!(
+                "|-activate|{}|ability: Zero to Hero",
+                self.ident(pos)
+            ));
+        }
+    }
+
     pub(super) fn disguise_form(&self, pos: Position) -> Option<&'static str> {
         if self.event_ability(pos) != "disguise" {
             return None;

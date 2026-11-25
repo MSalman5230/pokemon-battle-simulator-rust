@@ -42,10 +42,11 @@ impl Battle {
     pub(super) fn refresh_observed_disables(&mut self, pos: Position) {
         let mon = self.mon(pos);
         let own_handlers = usize::from(mon.choice_lock.is_some())
+            + usize::from(mon.throat_chop > 0)
             + usize::from(mon.taunt > 0)
             + usize::from(mon.encore.is_some())
             + usize::from(mon.disabled_slot.is_some());
-        let mut handlers = [mon.speed; 6];
+        let mut handlers = [mon.speed; 7];
         let mut count = own_handlers;
         for foe in self.foe_imprison(pos) {
             handlers[count] = foe.speed;
@@ -76,6 +77,7 @@ impl Battle {
     pub(super) fn visible_disable(&self, pos: Position, slot: usize) -> bool {
         let mon = self.mon(pos);
         mon.disabled_by_choice(slot)
+            || (mon.throat_chop > 0 && mon.moves[slot].move_data.flags.contains_key("sound"))
             || mon
                 .disabled_slot
                 .is_some_and(|(disabled, _)| disabled == slot)
