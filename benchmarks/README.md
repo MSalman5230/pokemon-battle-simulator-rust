@@ -59,10 +59,12 @@ steps/s for Showdown and 1,460 for Rust across five replays (4.37×). The
 [previous trace run](verified-trace-bss-result.json) measured 4.45× on the
 same workload hash.
 
-The [latest BSS trace milestone](verified-288-bss-result.json) at commit
-`2ca74fe` matched all 32 traces and 673 step replies. On the same workload,
-Showdown ran at 342.9 steps/s and Rust at 1,495.3 steps/s (4.36×). It also
+The [latest BSS trace milestone](verified-modern-items-bss-result.json) at
+`f5322a6` matched all 32 traces and 673 step replies. On the same workload,
+Showdown ran at 345.9 steps/s and Rust at 1,485.6 steps/s (4.29×). It also
 matched 2,856 steps in a separate 160-game diagnostic. The
+[previous items and mechanics run](verified-288-bss-result.json) measured
+4.36× on the same traces. The
 [previous run](verified-192-bss-result.json) at `3b50228` measured 4.37×. The
 [earlier expanded-audit run](verified-expanded-bss-result.json) at `48ac725`
 measured 4.32× and matched the same traces and replies.
@@ -131,6 +133,11 @@ keyed by format ID with an array of Showdown teams under each format. Each
 team is an array of Showdown sets. The capture validates the rosters against
 the pinned oracle and uses a separate seed to select two distinct rosters
 per game. This does not replace native Rust team validation.
+
+To derive those pools from a Poke-RL training manifest for every submitted
+format, run `node scripts/prepare-native-rosters.mjs INPUT.json OUTPUT.json`
+and use the output with `--teams`. Add format IDs after the output path to
+limit the pool to those formats.
 
 The [submitted-team sample](verified-native-submitted-128-parity.json) uses
 all 128 rosters from `../Poke-RL/data/teams_train.json` as the pool for both
