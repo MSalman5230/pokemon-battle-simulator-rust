@@ -585,3 +585,8 @@ fn vgc_tailwind_reorders_pending_moves_and_court_change_transfers_it() {
 fn bss_last_respects_counts_faints_and_rage_fist_counts_hits_this_stint() {
     replay(include_str!("fixtures/bss-hit-count-power.json"));
 }
+
+#[test]
+fn bss_regenerator_and_natural_cure_work_on_pivots_drags_and_voluntary_switches() {
+    replay(include_str!("fixtures/bss-switch-abilities.json"));
+}

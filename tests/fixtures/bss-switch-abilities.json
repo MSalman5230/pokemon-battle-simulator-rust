@@ -1,0 +1,3274 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Alomomola\",\"moves\":[\"Flip Turn\",\"Recover\"],\"gender\":\"F\",\"name\":\"Alomomola\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Regenerator\"},{\"species\":\"Blissey\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Blissey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Natural Cure\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Toxic\",\"Tackle\",\"Dragon Tail\",\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Glaceon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Alomomola, L50, F|",
+          "|poke|p1|Blissey, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Alomomola, L50, F|",
+          "|poke|p1|Blissey, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Alomomola, L50, F|",
+          "|poke|p1|Blissey, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "240/240",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "330/330",
+                "active": false,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 240,
+            "maxhp": 240,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 330,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Alomomola|Alomomola, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Alomomola|Alomomola, L50, F|240/240",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Alomomola|Alomomola, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Flip Turn",
+                  "id": "flipturn",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "240/240",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "330/330",
+                "active": false,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Tail",
+                  "id": "dragontail",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 240,
+            "maxhp": 240,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 330,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "55173,41332,18014,39666",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Toxic|p1a: Alomomola",
+          "|-status|p1a: Alomomola|tox",
+          "|move|p1a: Alomomola|Recover||[still]",
+          "|-fail|p1a: Alomomola|heal",
+          "|",
+          "|-damage|p1a: Alomomola|93/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Toxic|p1a: Alomomola",
+          "|-status|p1a: Alomomola|tox",
+          "|move|p1a: Alomomola|Recover||[still]",
+          "|-fail|p1a: Alomomola|heal",
+          "|",
+          "|-damage|p1a: Alomomola|225/240 tox|[from] psn",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Toxic|p1a: Alomomola",
+          "|-status|p1a: Alomomola|tox",
+          "|move|p1a: Alomomola|Recover||[still]",
+          "|-fail|p1a: Alomomola|heal",
+          "|",
+          "|-damage|p1a: Alomomola|93/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Flip Turn",
+                  "id": "flipturn",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "225/240 tox",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "330/330",
+                "active": false,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Tail",
+                  "id": "dragontail",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 225,
+            "maxhp": 240,
+            "status": "tox",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 330,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "57671,39327,5062,6093",
+      "requestState": "switch",
+      "waiting": [
+        false,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Alomomola",
+          "|-crit|p1a: Alomomola",
+          "|-damage|p1a: Alomomola|84/100 tox",
+          "|move|p1a: Alomomola|Flip Turn|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|84/100"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Alomomola",
+          "|-crit|p1a: Alomomola",
+          "|-damage|p1a: Alomomola|203/240 tox",
+          "|move|p1a: Alomomola|Flip Turn|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|84/100"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Alomomola",
+          "|-crit|p1a: Alomomola",
+          "|-damage|p1a: Alomomola|84/100 tox",
+          "|move|p1a: Alomomola|Flip Turn|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|143/170"
+        ]
+      ],
+      "requests": [
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "203/240 tox",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "330/330",
+                "active": false,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        },
+        {
+          "wait": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "143/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 203,
+            "maxhp": 240,
+            "status": "tox",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 330,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 143,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2"
+      ],
+      "turn": 3,
+      "seed": "57671,39327,5062,6093",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|-heal|p1a: Alomomola|100/100 tox|[from] ability: Regenerator|[silent]",
+          "|switch|p1a: Blissey|Blissey, L50, F|100/100|[from] Flip Turn",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-heal|p1a: Alomomola|240/240 tox|[from] ability: Regenerator|[silent]",
+          "|switch|p1a: Blissey|Blissey, L50, F|330/330|[from] Flip Turn",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-heal|p1a: Alomomola|100/100 tox|[from] ability: Regenerator|[silent]",
+          "|switch|p1a: Blissey|Blissey, L50, F|100/100|[from] Flip Turn",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "330/330",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "240/240 tox",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Tail",
+                  "id": "dragontail",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "143/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 330,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 240,
+            "maxhp": 240,
+            "status": "tox",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 143,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "34226,36013,62117,47012",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Toxic|p1a: Blissey",
+          "|-status|p1a: Blissey|tox",
+          "|move|p1a: Blissey|Recover||[still]",
+          "|-fail|p1a: Blissey|heal",
+          "|",
+          "|-damage|p1a: Blissey|93/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Toxic|p1a: Blissey",
+          "|-status|p1a: Blissey|tox",
+          "|move|p1a: Blissey|Recover||[still]",
+          "|-fail|p1a: Blissey|heal",
+          "|",
+          "|-damage|p1a: Blissey|310/330 tox|[from] psn",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Toxic|p1a: Blissey",
+          "|-status|p1a: Blissey|tox",
+          "|move|p1a: Blissey|Recover||[still]",
+          "|-fail|p1a: Blissey|heal",
+          "|",
+          "|-damage|p1a: Blissey|93/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "310/330 tox",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "240/240 tox",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Tail",
+                  "id": "dragontail",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "143/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 310,
+            "maxhp": 330,
+            "status": "tox",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 240,
+            "maxhp": 240,
+            "status": "tox",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 143,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 5,
+      "seed": "62033,41776,41034,54903",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Blissey|Recover|p1a: Blissey",
+          "|-heal|p1a: Blissey|100/100 tox",
+          "|move|p2a: Umbreon|Dragon Tail|p1a: Blissey|[miss]",
+          "|-miss|p2a: Umbreon|p1a: Blissey",
+          "|",
+          "|-damage|p1a: Blissey|87/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Blissey|Recover|p1a: Blissey",
+          "|-heal|p1a: Blissey|330/330 tox",
+          "|move|p2a: Umbreon|Dragon Tail|p1a: Blissey|[miss]",
+          "|-miss|p2a: Umbreon|p1a: Blissey",
+          "|",
+          "|-damage|p1a: Blissey|290/330 tox|[from] psn",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Blissey|Recover|p1a: Blissey",
+          "|-heal|p1a: Blissey|100/100 tox",
+          "|move|p2a: Umbreon|Dragon Tail|p1a: Blissey|[miss]",
+          "|-miss|p2a: Umbreon|p1a: Blissey",
+          "|",
+          "|-damage|p1a: Blissey|87/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "290/330 tox",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "240/240 tox",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Tail",
+                  "id": "dragontail",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "143/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 290,
+            "maxhp": 330,
+            "status": "tox",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 240,
+            "maxhp": 240,
+            "status": "tox",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 143,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 6,
+      "seed": "25913,14078,46725,43276",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Blissey|Recover|p1a: Blissey",
+          "|-heal|p1a: Blissey|100/100 tox",
+          "|move|p2a: Umbreon|Dragon Tail|p1a: Blissey",
+          "|-damage|p1a: Blissey|79/100 tox",
+          "|-curestatus|p1a: Blissey|tox|[from] ability: Natural Cure|[silent]",
+          "|drag|p1a: Alomomola|Alomomola, L50, F|100/100 tox",
+          "|",
+          "|-damage|p1a: Alomomola|93/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Blissey|Recover|p1a: Blissey",
+          "|-heal|p1a: Blissey|330/330 tox",
+          "|move|p2a: Umbreon|Dragon Tail|p1a: Blissey",
+          "|-damage|p1a: Blissey|261/330 tox",
+          "|-curestatus|p1a: Blissey|tox|[from] ability: Natural Cure|[silent]",
+          "|drag|p1a: Alomomola|Alomomola, L50, F|240/240 tox",
+          "|",
+          "|-damage|p1a: Alomomola|225/240 tox|[from] psn",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Blissey|Recover|p1a: Blissey",
+          "|-heal|p1a: Blissey|100/100 tox",
+          "|move|p2a: Umbreon|Dragon Tail|p1a: Blissey",
+          "|-damage|p1a: Blissey|79/100 tox",
+          "|-curestatus|p1a: Blissey|tox|[from] ability: Natural Cure|[silent]",
+          "|drag|p1a: Alomomola|Alomomola, L50, F|100/100 tox",
+          "|",
+          "|-damage|p1a: Alomomola|93/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Flip Turn",
+                  "id": "flipturn",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "225/240 tox",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "261/330",
+                "active": false,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Tail",
+                  "id": "dragontail",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "143/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 225,
+            "maxhp": 240,
+            "status": "tox",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 261,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 143,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 4"
+      ],
+      "turn": 7,
+      "seed": "61911,59921,9996,41817",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|-heal|p1a: Alomomola|100/100 tox|[from] ability: Regenerator|[silent]",
+          "|switch|p1a: Blissey|Blissey, L50, F|79/100",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|-heal|p1a: Alomomola|240/240 tox|[from] ability: Regenerator|[silent]",
+          "|switch|p1a: Blissey|Blissey, L50, F|261/330",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|-heal|p1a: Alomomola|100/100 tox|[from] ability: Regenerator|[silent]",
+          "|switch|p1a: Blissey|Blissey, L50, F|79/100",
+          "|move|p2a: Umbreon|Recover|p2a: Umbreon",
+          "|-heal|p2a: Umbreon|170/170",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Blissey",
+                "details": "Blissey, L50, F",
+                "condition": "261/330",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 30,
+                  "spa": 95,
+                  "spd": 155,
+                  "spe": 75
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Alomomola",
+                "details": "Alomomola, L50, F",
+                "condition": "240/240 tox",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 100,
+                  "spa": 60,
+                  "spd": 65,
+                  "spe": 85
+                },
+                "moves": [
+                  "flipturn",
+                  "recover"
+                ],
+                "baseAbility": "regenerator",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "regenerator",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dragon Tail",
+                  "id": "dragontail",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "toxic",
+                  "tackle",
+                  "dragontail",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Blissey",
+            "species": "Blissey",
+            "details": "Blissey, L50, F",
+            "hp": 261,
+            "maxhp": 330,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 30,
+              "spa": 95,
+              "spd": 155,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Alomomola",
+            "species": "Alomomola",
+            "details": "Alomomola, L50, F",
+            "hp": 240,
+            "maxhp": 240,
+            "status": "tox",
+            "stats": {
+              "atk": 95,
+              "def": 100,
+              "spa": 60,
+              "spd": 65,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "regenerator",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "flipturn",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "toxic",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "dragontail",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

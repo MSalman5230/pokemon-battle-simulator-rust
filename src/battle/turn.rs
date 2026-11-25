@@ -1041,6 +1041,7 @@ impl Battle {
             self.each_event();
         }
         if !self.mon(outgoing).fainted {
+            self.switch_out_ability(outgoing);
             self.weather_ability_changed(outgoing);
         }
         let rules = self.stat_rules;
@@ -3519,6 +3520,8 @@ impl Pokemon {
                 | "airlock"
                 | "stancechange"
                 | "magicbounce"
+                | "naturalcure"
+                | "regenerator"
         )
     }
 

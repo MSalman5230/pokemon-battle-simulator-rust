@@ -131,6 +131,31 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn switch_out_ability(&mut self, pos: Position) {
+        match self.event_ability(pos) {
+            "naturalcure" => {
+                self.cure_status(pos, "[from] ability: Natural Cure|[silent]");
+            }
+            "regenerator" => {
+                let mon = self.mon_mut(pos);
+                let max = mon.max_hp.get();
+                // Champions has no Dynamax, so base and current maximum HP
+                // agree for active Pokémon, including Mega Evolutions.
+                let restored = (mon.hp + max / 3).min(max);
+                if mon.hp != restored {
+                    mon.hp = restored;
+                    self.add_health_line_with(
+                        "-heal",
+                        pos,
+                        false,
+                        "|[from] ability: Regenerator|[silent]",
+                    );
+                }
+            }
+            _ => {}
+        }
+    }
+
     pub(super) fn ignores_ability_of(&self, target: Position) -> bool {
         self.ability_breaker.is_some_and(|source| source != target)
             && self.mon(target).item != "abilityshield"
