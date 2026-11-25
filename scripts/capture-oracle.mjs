@@ -1788,6 +1788,18 @@ const legacyMatBlockRosters = [
     [named('Greninja', ['Mat Block', 'Protect']), named('Shuckle', ['Recover'])],
     [named('Chansey', ['Seismic Toss', 'Growl']), named('Snorlax', ['Tackle'])],
 ];
+const legacyMagicCoatRosters = [
+    [{...named('Sableye', ['Magic Coat', 'Recover']), ability:'Prankster'}],
+    [named('Umbreon', ['Toxic', 'Stealth Rock', 'Tackle'])],
+];
+const legacySnatchRosters = [
+    [named('Mew', ['Snatch', 'Tackle'])],
+    [{...named('Chansey', ['Rest', 'Calm Mind', 'Mist']), item:'Icium Z'}],
+];
+const legacySnatchSwallowRosters = [
+    [named('Mew', ['Snatch', 'Recover'])],
+    [named('Chansey', ['Stockpile', 'Tackle', 'Swallow'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3185,6 +3197,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         legacyCraftyRosters, 'custom-crafty-shield-and-spotlight'],
     ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1 2'],
         ['move 1, move 1','move 2, move 1 2']], legacyMatBlockRosters, 'custom-mat-block-first-action'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 2','move 3']],
+        legacyMagicCoatRosters, 'custom-magic-coat-reflection'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'],
+        ['move 1','move 3'], ['move 1','move 3 zmove']], legacySnatchRosters, 'custom-snatch-and-z-status'],
+    ['customgame', [['team 1','team 1'], ['move 2','move 1'], ['move 2','move 2'],
+        ['move 1','move 3']], legacySnatchSwallowRosters, 'custom-snatch-swallow'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -119,7 +119,8 @@ impl Battle {
     pub(super) fn swallow_stockpile(&mut self, pos: Position) {
         let mon = self.mon(pos);
         let max_hp = mon.max_hp.get();
-        let layers = usize::from(mon.stockpile.layers);
+        // Snatch can call Swallow without the thief having used Stockpile.
+        let layers = usize::from(mon.stockpile.layers.max(1));
         if mon.hp == max_hp || mon.heal_block > 0 {
             self.add(format!("|-fail|{}|heal", self.ident(pos)));
         } else {

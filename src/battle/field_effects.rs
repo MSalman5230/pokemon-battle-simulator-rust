@@ -1,4 +1,4 @@
-//! Short-lived inherited field conditions independent of weather and terrain.
+//! Inherited volatile, side and field conditions separate from weather and terrain.
 
 use super::{turn::Position, *};
 
@@ -8,25 +8,25 @@ pub(super) enum LegacyCondition {
     Embargo,
     Powder,
     Spotlight,
+    MagicCoat,
+    Snatch,
 }
 
 #[derive(Clone, Copy, Default)]
-pub(super) struct LegacyConditions(pub(super) [u8; 4]);
+pub(super) struct LegacyConditions {
+    timers: [u8; 6],
+    pub(super) coat_prankster: bool,
+}
 
 impl LegacyCondition {
-    pub(super) const ALL: [Self; 4] = [
-        Self::Telekinesis,
-        Self::Embargo,
-        Self::Powder,
-        Self::Spotlight,
-    ];
-
     pub(super) fn for_move(name: &str) -> Self {
         match name {
             "Telekinesis" => Self::Telekinesis,
             "Embargo" => Self::Embargo,
             "Powder" => Self::Powder,
             "Spotlight" => Self::Spotlight,
+            "Magic Coat" => Self::MagicCoat,
+            "Snatch" => Self::Snatch,
             _ => unreachable!("not a legacy condition"),
         }
     }
@@ -36,6 +36,9 @@ impl LegacyCondition {
             "telekinesis" => Some(Self::Telekinesis),
             "embargo" => Some(Self::Embargo),
             "powder" => Some(Self::Powder),
+            "spotlight" => Some(Self::Spotlight),
+            "magiccoat" => Some(Self::MagicCoat),
+            "snatch" => Some(Self::Snatch),
             _ => None,
         }
     }
@@ -46,6 +49,8 @@ impl LegacyCondition {
             Self::Embargo => ("Embargo", "embargo"),
             Self::Powder => ("Powder", "powder"),
             Self::Spotlight => ("Spotlight", "spotlight"),
+            Self::MagicCoat => ("Magic Coat", "magiccoat"),
+            Self::Snatch => ("Snatch", "snatch"),
         }
     }
 
@@ -53,22 +58,35 @@ impl LegacyCondition {
         match self {
             Self::Telekinesis => 19,
             Self::Embargo => 21,
-            Self::Powder | Self::Spotlight => 0,
+            Self::Powder | Self::Spotlight | Self::MagicCoat | Self::Snatch => 0,
         }
+    }
+
+    fn lasts_one_turn(self) -> bool {
+        self.residual_order() == 0
     }
 }
 
 impl Pokemon {
     pub(super) fn under(&self, condition: LegacyCondition) -> bool {
-        self.legacy_conditions.0[condition as usize] != 0
+        self.legacy_conditions.timers[condition as usize] != 0
     }
 
     pub(super) fn clear_legacy_condition(&mut self, condition: LegacyCondition) -> bool {
-        if std::mem::take(&mut self.legacy_conditions.0[condition as usize]) == 0 {
+        if std::mem::take(&mut self.legacy_conditions.timers[condition as usize]) == 0 {
             return false;
         }
         self.untrack_volatile(condition.labels().1);
         true
+    }
+
+    pub(super) fn copy_legacy_condition(&mut self, source: &Pokemon, id: &str) {
+        let condition = LegacyCondition::from_volatile(id).expect("passed legacy condition");
+        let index = condition as usize;
+        self.legacy_conditions.timers[index] = source.legacy_conditions.timers[index];
+        if matches!(condition, LegacyCondition::MagicCoat) {
+            self.legacy_conditions.coat_prankster = source.legacy_conditions.coat_prankster;
+        }
     }
 }
 
@@ -86,7 +104,10 @@ impl Battle {
         }
         let duration = match condition {
             LegacyCondition::Embargo => 5,
-            LegacyCondition::Powder | LegacyCondition::Spotlight => 1,
+            LegacyCondition::Powder
+            | LegacyCondition::Spotlight
+            | LegacyCondition::MagicCoat
+            | LegacyCondition::Snatch => 1,
             LegacyCondition::Telekinesis => {
                 if matches!(
                     mon.base_species.base_species.as_str(),
@@ -104,19 +125,22 @@ impl Battle {
         };
         let (name, id) = condition.labels();
         let mon = self.mon_mut(pos);
-        mon.legacy_conditions.0[condition as usize] = duration;
+        mon.legacy_conditions.timers[condition as usize] = duration;
         mon.track_volatile(id);
-        let event = match condition {
-            LegacyCondition::Powder => "singleturn",
-            LegacyCondition::Spotlight => "singleturn",
-            _ => "start",
-        };
-        let label = if matches!(condition, LegacyCondition::Spotlight) {
-            "move: Spotlight"
+        let event = if condition.lasts_one_turn() {
+            "singleturn"
         } else {
-            name
+            "start"
         };
-        self.add(format!("|-{event}|{}|{label}", self.ident(pos)));
+        let prefix = if matches!(
+            condition,
+            LegacyCondition::Spotlight | LegacyCondition::MagicCoat
+        ) {
+            "move: "
+        } else {
+            ""
+        };
+        self.add(format!("|-{event}|{}|{prefix}{name}", self.ident(pos)));
         if matches!(condition, LegacyCondition::Embargo) && !self.mon(pos).item.is_empty() {
             self.debug_ignored_item(pos, "End");
         }
@@ -126,14 +150,11 @@ impl Battle {
     pub(super) fn tick_legacy_condition(&mut self, pos: Position, condition: LegacyCondition) {
         let (name, id) = condition.labels();
         let mon = self.mon_mut(pos);
-        let turns = &mut mon.legacy_conditions.0[condition as usize];
+        let turns = &mut mon.legacy_conditions.timers[condition as usize];
         *turns -= 1;
         if *turns == 0 {
             mon.untrack_volatile(id);
-            if !matches!(
-                condition,
-                LegacyCondition::Powder | LegacyCondition::Spotlight
-            ) {
+            if !condition.lasts_one_turn() {
                 self.add(format!("|-end|{}|{name}", self.ident(pos)));
             }
         }

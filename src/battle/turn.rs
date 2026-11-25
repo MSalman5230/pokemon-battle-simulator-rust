@@ -64,6 +64,23 @@ pub(super) enum Protection {
 }
 
 #[derive(Clone, Copy)]
+enum ExternalEffect {
+    MagicBounce,
+    MagicCoat,
+    Snatch,
+}
+
+impl ExternalEffect {
+    fn label(self) -> &'static str {
+        match self {
+            Self::MagicBounce => "|[from] ability: Magic Bounce",
+            Self::MagicCoat => "|[from] Magic Coat",
+            Self::Snatch => "|[from] Snatch",
+        }
+    }
+}
+
+#[derive(Clone, Copy)]
 enum MoveInvocation {
     Choice {
         slot: usize,
@@ -73,9 +90,12 @@ enum MoveInvocation {
         round_followup: bool,
         z_priority: Option<i8>,
     },
-    Reflected {
+    External {
         data: &'static Move,
-        target: Position,
+        target: Option<Position>,
+        effect: ExternalEffect,
+        priority: i8,
+        prankster: bool,
     },
     Future {
         data: &'static Move,
@@ -1224,6 +1244,8 @@ impl Battle {
                     | "craftyshield"
                     | "matblock"
                     | "spotlight"
+                    | "magiccoat"
+                    | "snatch"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -2640,6 +2662,7 @@ impl Battle {
             LockOn,
             SyrupBomb,
         }
+        self.snatch_started = false;
         self.add("|");
         self.update_speed();
         let mut timers = Vec::new();
@@ -2866,7 +2889,16 @@ impl Battle {
                 let effect = match *id {
                     "octolock" => Effect::Octolock,
                     "syrupbomb" => Effect::SyrupBomb,
-                    _ => continue,
+                    _ => {
+                        if let Some(condition) = LegacyCondition::from_volatile(id) {
+                            timers.push((
+                                pos,
+                                Effect::LegacyCondition(condition),
+                                priority(condition.residual_order(), 2),
+                            ));
+                        }
+                        continue;
+                    }
                 };
                 timers.push((pos, effect, priority(14, 2)));
             }
@@ -2897,15 +2929,6 @@ impl Battle {
             }
             if mon.heal_block > 0 {
                 timers.push((pos, Effect::HealBlock, priority(20, 2)));
-            }
-            for condition in LegacyCondition::ALL {
-                if mon.under(condition) {
-                    timers.push((
-                        pos,
-                        Effect::LegacyCondition(condition),
-                        priority(condition.residual_order(), 2),
-                    ));
-                }
             }
             if mon.encore.is_some() {
                 timers.push((pos, Effect::Encore, priority(16, 2)));
@@ -3450,43 +3473,104 @@ impl Battle {
         true
     }
 
-    fn side_magic_bounce(&mut self, player: Player) -> Option<Position> {
-        let mut candidates = [(Position { player, slot: 0 }, 0_u32); 2];
+    fn side_move_reflector(&mut self, player: Player) -> Option<(Position, ExternalEffect)> {
+        let mut candidates = [(
+            Position { player, slot: 0 },
+            ExternalEffect::MagicBounce,
+            0_i32,
+            0_u8,
+        ); 4];
         let mut count = 0;
         for slot in 0..self.slots() {
             let pos = Position { player, slot };
             let mon = self.mon(pos);
-            if !mon.fainted && mon.active_ability() == "magicbounce" {
-                candidates[count] = (pos, mon.stats.spe);
+            if mon.fainted {
+                continue;
+            }
+            if mon.under(LegacyCondition::MagicCoat) {
+                candidates[count] = (pos, ExternalEffect::MagicCoat, mon.speed, 2);
+                count += 1;
+            }
+            if mon.active_ability() == "magicbounce" {
+                // Magic Bounce's side handler uses raw Speed.
+                candidates[count] = (pos, ExternalEffect::MagicBounce, mon.stats.spe as i32, 7);
                 count += 1;
             }
         }
         let candidates = &mut candidates[..count];
-        // Unlike most event handlers, side Magic Bounce uses raw Speed.
-        speed_sort_by(candidates, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        speed_sort_by(candidates, &mut self.rng, |a, b| {
+            b.2.cmp(&a.2).then(a.3.cmp(&b.3))
+        });
         candidates
             .iter()
-            .map(|&(pos, _)| pos)
-            .find(|&pos| !self.ability_suppressed(pos))
+            .map(|&(pos, effect, _, _)| (pos, effect))
+            .find(|&(pos, effect)| {
+                matches!(effect, ExternalEffect::MagicCoat) || !self.ability_suppressed(pos)
+            })
     }
 
-    fn bounce_move(
+    fn run_external_move(
         &mut self,
         holder: Position,
-        source: Position,
-        data: &'static Move,
+        invocation: MoveInvocation,
         queue: &mut Vec<Action>,
     ) {
         let prior_breaker = self.ability_breaker.take();
-        self.run_move(
-            holder,
-            MoveInvocation::Reflected {
-                data,
-                target: source,
-            },
-            queue,
-        );
+        // A rebound or stolen move does not trigger Protean or Libero.
+        let old_type_change = self.mon(holder).type_change_used;
+        self.mon_mut(holder).type_change_used = true;
+        let (_, holder) = self.run_move(holder, invocation, queue);
+        self.mon_mut(holder).type_change_used = old_type_change;
         self.ability_breaker = prior_breaker;
+    }
+
+    fn snatch_prepared(&self, source: Position, data: &Move, queue: &[Action]) -> bool {
+        let mon = self.mon(source);
+        match data.name.as_str() {
+            "Aurora Veil" => matches!(
+                self.effective_weather(),
+                Some(Weather::Snow | Weather::Hail)
+            ),
+            "Clangorous Soul" => mon.max_hp.get() != 1 && mon.hp > mon.max_hp.get() * 33 / 100,
+            "Fillet Away" => mon.max_hp.get() != 1 && mon.hp * 2 > mon.max_hp.get(),
+            "Magnet Rise" => !self.forces_grounded(source),
+            "Mat Block" | "Quick Guard" | "Wide Guard" => {
+                (data.name != "Mat Block" || mon.active_move_actions <= 1)
+                    && queue.iter().any(|action| {
+                        matches!(
+                            action.kind,
+                            ActionKind::Move { .. } | ActionKind::Switch { .. }
+                        )
+                    })
+            }
+            "Rest" => {
+                mon.hp != mon.max_hp.get()
+                    && !matches!(mon.status, Status::Sleep(_))
+                    && !matches!(
+                        self.event_ability(source),
+                        "comatose" | "insomnia" | "vitalspirit"
+                    )
+            }
+            // Stockpile, Stuff Cheeks, No Retreat and Swallow are checked
+            // ahead of PrepareHit for the ordinary action as well.
+            _ => true,
+        }
+    }
+
+    fn snatch_user(&mut self, source: Position) -> Option<Position> {
+        let mut holders = [(source, 0_i32); 4];
+        let mut count = 0;
+        for pos in self.positions() {
+            let mon = self.mon(pos);
+            if mon.hp > 0 && mon.under(LegacyCondition::Snatch) {
+                holders[count] = (pos, mon.speed);
+                count += 1;
+            }
+        }
+        // Showdown sorts the callbacks, including those that later decide
+        // the move cannot be stolen. Equal speeds still consume PRNG draws.
+        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        (count != 0).then_some(holders[0].0)
     }
 
     // Whether this action reached the move attempt, for AfterMove hooks.
@@ -3542,7 +3626,18 @@ impl Battle {
                 prankster,
                 ..
             } => (Some(slot), loc, None, false, prankster),
-            MoveInvocation::Reflected { target, .. } => (None, 0, Some(target), true, false),
+            MoveInvocation::External {
+                target,
+                effect,
+                prankster,
+                ..
+            } => (
+                None,
+                0,
+                target,
+                !matches!(effect, ExternalEffect::Snatch),
+                prankster,
+            ),
             MoveInvocation::Future { target, .. } => (None, 0, Some(target), false, false),
             MoveInvocation::SleepTalk {
                 slot, prankster, ..
@@ -3564,7 +3659,14 @@ impl Battle {
             _ => sleep_talk,
         };
         let delayed = matches!(invocation, MoveInvocation::Future { .. });
-        let own_action = !reflected && !delayed && caller.is_none();
+        let external = match invocation {
+            MoveInvocation::External {
+                effect, priority, ..
+            } => Some((effect, priority)),
+            _ => None,
+        };
+        let snatched = external.is_some_and(|(effect, _)| matches!(effect, ExternalEffect::Snatch));
+        let own_action = !reflected && !snatched && !delayed && caller.is_none();
         if own_action && self.mon(source).glaive_drawback {
             let mon = self.mon_mut(source);
             mon.glaive_drawback = false;
@@ -3591,7 +3693,7 @@ impl Battle {
             MoveInvocation::Choice { slot, .. }
             | MoveInvocation::SleepTalk { slot, .. }
             | MoveInvocation::Copycat { slot, .. } => self.move_data(source, slot),
-            MoveInvocation::Reflected { data, .. } | MoveInvocation::Future { data, .. } => data,
+            MoveInvocation::External { data, .. } | MoveInvocation::Future { data, .. } => data,
         };
         let z_priority = match invocation {
             MoveInvocation::Choice { z_priority, .. } => z_priority,
@@ -3678,8 +3780,8 @@ impl Battle {
         );
         let called_from = if z_weather.is_some() {
             "|[from] move: Weather Ball"
-        } else if reflected {
-            "|[from] ability: Magic Bounce"
+        } else if let Some((effect, _)) = external {
+            effect.label()
         } else if sleep_talk.is_some() {
             "|[from] move: Sleep Talk"
         } else if caller.is_some() {
@@ -4278,9 +4380,11 @@ impl Battle {
         }
         let priority = caller.map_or_else(
             || {
-                z_priority.unwrap_or_else(|| {
-                    self.base_move_priority(source, move_data) + i8::from(prankster)
-                })
+                z_priority
+                    .or(external.map(|(_, priority)| priority))
+                    .unwrap_or_else(|| {
+                        self.base_move_priority(source, move_data) + i8::from(prankster)
+                    })
             },
             |(_, priority)| priority,
         );
@@ -4488,8 +4592,9 @@ impl Battle {
         }
         if matches!(
             (move_data.name.as_str(), self.mon(source).stockpile.layers),
-            ("Stockpile", 3) | ("Spit Up" | "Swallow", 0)
-        ) {
+            ("Stockpile", 3) | ("Spit Up", 0)
+        ) || move_data.name == "Swallow" && !snatched && self.mon(source).stockpile.layers == 0
+        {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             result.failed = true;
@@ -4563,6 +4668,34 @@ impl Battle {
                     return true;
                 }
             }
+        }
+        if self.snatch_started
+            && self.snatch_prepared(source, move_data, queue)
+            && let Some(holder) = self.snatch_user(source)
+            && !snatched
+            && !z_powered
+            && move_data.flags.contains_key("snatch")
+        {
+            self.protean_prepare(source, move_type);
+            self.mon_mut(holder)
+                .clear_legacy_condition(LegacyCondition::Snatch);
+            self.add(format!(
+                "|-activate|{}|move: Snatch|[of] {source_name}",
+                self.ident(holder)
+            ));
+            self.run_external_move(
+                holder,
+                MoveInvocation::External {
+                    data: move_data,
+                    target: None,
+                    effect: ExternalEffect::Snatch,
+                    priority,
+                    prankster,
+                },
+                queue,
+            );
+            result.failed = true;
+            return true;
         }
         if let Some(screen) = Screen::from_move(&move_data.name) {
             if !matches!(screen, Screen::AuroraVeil)
@@ -4699,10 +4832,20 @@ impl Battle {
             self.protean_prepare(source, move_type);
             if !reflected
                 && move_data.flags.contains_key("reflectable")
-                && let Some(holder) = self.side_magic_bounce(source.player.foe())
+                && let Some((holder, effect)) = self.side_move_reflector(source.player.foe())
                 && !self.mon(spread_targets[0]).semi_invulnerable()
             {
-                self.bounce_move(holder, source, move_data, queue);
+                self.run_external_move(
+                    holder,
+                    MoveInvocation::External {
+                        data: move_data,
+                        target: Some(source),
+                        effect,
+                        priority,
+                        prankster: false,
+                    },
+                    queue,
+                );
                 result.failed = true;
                 return true;
             }
@@ -5296,13 +5439,33 @@ impl Battle {
                     return false;
                 }
             }
+            let reflector = if self.mon(mut_pos).under(LegacyCondition::MagicCoat) {
+                Some((
+                    ExternalEffect::MagicCoat,
+                    self.mon(mut_pos).legacy_conditions.coat_prankster,
+                ))
+            } else if self.event_ability(mut_pos) == "magicbounce" {
+                Some((ExternalEffect::MagicBounce, false))
+            } else {
+                None
+            };
             if !reflected
                 && source != mut_pos
                 && move_data.flags.contains_key("reflectable")
                 && !self.mon(mut_pos).semi_invulnerable()
-                && self.event_ability(mut_pos) == "magicbounce"
+                && let Some((effect, prankster)) = reflector
             {
-                self.bounce_move(mut_pos, source, move_data, queue);
+                self.run_external_move(
+                    mut_pos,
+                    MoveInvocation::External {
+                        data: move_data,
+                        target: Some(source),
+                        effect,
+                        priority,
+                        prankster,
+                    },
+                    queue,
+                );
                 false
             } else if ohko && self.event_ability(mut_pos) == "sturdy" {
                 self.add(format!(
@@ -5806,10 +5969,21 @@ impl Battle {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     }
-                    "Telekinesis" | "Embargo" | "Powder" | "Spotlight" => {
+                    "Telekinesis" | "Embargo" | "Powder" | "Spotlight" | "Magic Coat"
+                    | "Snatch" => {
                         let condition = LegacyCondition::for_move(&move_data.name);
                         match self.start_legacy_condition(target, condition) {
-                            Some(true) => succeeded = true,
+                            Some(true) => {
+                                match condition {
+                                    LegacyCondition::MagicCoat => {
+                                        self.mon_mut(target).legacy_conditions.coat_prankster =
+                                            prankster;
+                                    }
+                                    LegacyCondition::Snatch => self.snatch_started = true,
+                                    _ => {}
+                                }
+                                succeeded = true;
+                            }
                             Some(false) => {
                                 self.move_still(base);
                                 self.add(format!("|-fail|{source_name}"));

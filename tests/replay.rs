@@ -1972,6 +1972,13 @@ fn inherited_guards_and_spotlight_apply_at_native_priority() {
 }
 
 #[test]
+fn inherited_reflection_and_snatch_keep_their_distinct_invocation_rules() {
+    replay(include_str!("fixtures/custom-magic-coat-reflection.json"));
+    replay(include_str!("fixtures/custom-snatch-and-z-status.json"));
+    replay(include_str!("fixtures/custom-snatch-swallow.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
