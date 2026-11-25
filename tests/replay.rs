@@ -812,3 +812,9 @@ fn side_and_ally_abilities_match_native_activation_order() {
     replay(include_str!("fixtures/vgc-aroma-veil.json"));
     replay(include_str!("fixtures/vgc-champions-healer.json"));
 }
+
+#[test]
+fn unaware_ignores_relevant_boosts_and_respects_mold_breaker() {
+    replay(include_str!("fixtures/bss-unaware.json"));
+    replay(include_str!("fixtures/vgc-unaware-speed-tie.json"));
+}

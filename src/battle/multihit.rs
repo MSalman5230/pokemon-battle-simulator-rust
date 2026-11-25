@@ -46,6 +46,8 @@ impl Battle {
         let Accuracy::Percent(base) = accuracy else {
             return true;
         };
+        self.sort_unaware_handlers();
+        self.sort_unaware_handlers();
         let user = self.mon(source);
         let mon = self.mon(target);
         if data.always_hit
@@ -62,12 +64,22 @@ impl Battle {
                 (3, 3 - i32::from(stage))
             }
         };
-        let (an, ad) = stage_factor(user.boosts.get(BoostStat::Accuracy));
-        let (en, ed) = stage_factor(if user.ability == "illuminate" {
-            0
-        } else {
-            mon.boosts.get(BoostStat::Evasion)
-        });
+        let (an, ad) = stage_factor(
+            if source != target && self.event_ability(target) == "unaware" {
+                0
+            } else {
+                user.boosts.get(BoostStat::Accuracy)
+            },
+        );
+        let (en, ed) = stage_factor(
+            if (source != target && self.event_ability(source) == "unaware")
+                || user.ability == "illuminate"
+            {
+                0
+            } else {
+                mon.boosts.get(BoostStat::Evasion)
+            },
+        );
         let numerator = i32::from(base) * an * ed;
         let denominator = ad * en;
         let mut accuracy = numerator as f64 / denominator as f64;

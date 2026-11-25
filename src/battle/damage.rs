@@ -213,6 +213,8 @@ impl Battle {
         if stakeout && self.format.report_exact_hp {
             self.add("|debug|Stakeout boost");
         }
+        self.sort_unaware_handlers();
+        self.sort_unaware_handlers();
         let user = self.mon(source);
         let mon = self.mon(target);
         let offensive = if move_data.name == "Foul Play" {
@@ -220,7 +222,7 @@ impl Battle {
         } else {
             user
         };
-        let (atk, atk_stage, def, def_stage) = if move_data.category == Category::Physical {
+        let (atk, mut atk_stage, def, mut def_stage) = if move_data.category == Category::Physical {
             (
                 if move_data.name == "Body Press" {
                     user.stats.def
@@ -243,6 +245,12 @@ impl Battle {
                 mon.boosts.get(BoostStat::Spd),
             )
         };
+        if source != target && self.event_ability(target) == "unaware" {
+            atk_stage = 0;
+        }
+        if source != target && self.event_ability(source) == "unaware" {
+            def_stage = 0;
+        }
         let atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });
         let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
         let damage_weather = self.effective_weather();

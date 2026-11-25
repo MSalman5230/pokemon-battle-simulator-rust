@@ -1679,7 +1679,8 @@ impl Battle {
         }
     }
 
-    pub(super) fn field_speed(&self, pos: Position) -> i32 {
+    pub(super) fn field_speed(&mut self, pos: Position) -> i32 {
+        self.sort_unaware_handlers();
         self.stat_rules.truncation.action_speed(
             self.mon(pos).current_speed(
                 self.effective_weather(),
@@ -2965,6 +2966,10 @@ impl Battle {
                 self.add(format!("|-immune|{}|[ohko]", self.ident(pos)));
                 return false;
             }
+            if matches!(accuracy, Accuracy::Percent(_)) && !ohko {
+                self.sort_unaware_handlers();
+                self.sort_unaware_handlers();
+            }
             if let Accuracy::Percent(accuracy) = accuracy
                 && !move_data.always_hit
                 && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
@@ -4006,14 +4011,19 @@ impl Battle {
         } else {
             i32::from(accuracy)
         };
-        let evasion = if matches!(self.mon(source).ability.as_str(), "illuminate" | "keeneye") {
+        let evasion = if source != target && self.event_ability(source) == "unaware"
+            || matches!(self.mon(source).ability.as_str(), "illuminate" | "keeneye")
+        {
             0
         } else {
             self.mon(target).boosts.get(BoostStat::Evasion)
         };
-        let boost = (i32::from(self.mon(source).boosts.get(BoostStat::Accuracy))
-            - i32::from(evasion))
-        .clamp(-6, 6);
+        let aim = if source != target && self.event_ability(target) == "unaware" {
+            0
+        } else {
+            self.mon(source).boosts.get(BoostStat::Accuracy)
+        };
+        let boost = (i32::from(aim) - i32::from(evasion)).clamp(-6, 6);
         (accuracy * (3 + boost.max(0)) / (3 - boost.min(0))) as u32
     }
 
@@ -4252,6 +4262,7 @@ impl Pokemon {
                 | "aromaveil"
                 | "healer"
                 | "screencleaner"
+                | "unaware"
         )
     }
 

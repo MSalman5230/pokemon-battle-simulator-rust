@@ -77,6 +77,7 @@ impl Battle {
             .get("0")
             .map_or_else(String::new, |name| to_id(name));
         mon.base_ability.clone_from(&mon.ability);
+        self.possible_unaware |= self.mon(pos).ability == "unaware";
         self.mon_mut(pos).speed = self.field_speed(pos);
         self.reset_ability_order(pos);
         self.start_ability(pos);

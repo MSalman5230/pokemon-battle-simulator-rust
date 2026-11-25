@@ -670,6 +670,24 @@ impl Battle {
         }
     }
 
+    /// ModifyBoost observes all Unaware handlers. Even handlers that don't
+    /// change the requested stat are shuffled when their speeds tie.
+    pub(super) fn sort_unaware_handlers(&mut self) {
+        if !self.possible_unaware {
+            return;
+        }
+        let mut speeds = [0; 4];
+        let mut len = 0;
+        for pos in self.positions() {
+            let pokemon = self.mon(pos);
+            if !pokemon.fainted && pokemon.ability_order != 0 && pokemon.ability == "unaware" {
+                speeds[len] = pokemon.speed;
+                len += 1;
+            }
+        }
+        speed_sort_by(&mut speeds[..len], &mut self.rng, |a, b| b.cmp(a));
+    }
+
     pub(super) fn ability_heal(
         &mut self,
         pos: Position,

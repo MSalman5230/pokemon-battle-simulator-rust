@@ -704,6 +704,12 @@ const healerRosters = [
     [named('Gardevoir', ['Will-O-Wisp']), named('Umbreon', ['Recover'])],
     [{...named('Blissey', ['Recover']), ability:'Healer'}, named('Glaceon', ['Recover'])],
 ];
+const unawareRosters = [
+    [{...named('Clefable', ['Swords Dance', 'Tackle', 'Recover']), ability:'Unaware'}, named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Iron Defense', 'Swords Dance', 'Tackle', 'Double Team']),
+        {...named('Haxorus', ['Swords Dance', 'Tackle']), ability:'Mold Breaker'}],
+];
+const doubleUnawareRosters = [unawareRosters[0], [unawareRosters[0][0], named('Espeon', ['Recover'])]];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1064,6 +1070,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         aromaRosters, 'vgc-aroma-veil'],
     ['vgc2026regmc', [['team 12','team 12'], ...Array(4).fill(['move 1 2, move 1','move 1, move 1'])],
         healerRosters, 'vgc-champions-healer'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 3'],
+        ['move 3','switch 2'], ['move 2','move 1'], ['move 2','move 2']], unawareRosters, 'bss-unaware'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['move 2 1, move 1','move 2 1, move 1']], doubleUnawareRosters, 'vgc-unaware-speed-tie'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

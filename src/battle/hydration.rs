@@ -238,6 +238,13 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
         other => return Err(unsupported(format!("terrain {other}"))),
     };
     battle.trick_room = input.field.trickroom;
+    battle.possible_unaware = Player::ALL.into_iter().any(|player| {
+        battle
+            .party(player)
+            .unwrap()
+            .iter()
+            .any(|p| p.ability == "unaware" || p.base_ability == "unaware")
+    });
     battle.update_speed();
     for player in Player::ALL {
         battle.refresh_observed_disables(Position { player, slot: 0 });

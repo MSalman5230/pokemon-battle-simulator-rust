@@ -165,6 +165,7 @@ pub struct Battle {
     trick_room: u8,
     ability_order: u32,
     ability_breaker: Option<Position>,
+    possible_unaware: bool,
     pending_actions: [Option<Vec<Action>>; 2],
     drag_flags: u8,
     suspended: Vec<Action>,
@@ -378,6 +379,7 @@ impl Battle {
             trick_room: 0,
             ability_order: 0,
             ability_breaker: None,
+            possible_unaware: false,
             pending_actions: [None, None],
             drag_flags: 0,
             suspended: Vec::new(),
@@ -503,6 +505,7 @@ impl Battle {
                 return Err(err);
             }
         }
+        self.possible_unaware |= party.iter().any(|p| p.ability == "unaware");
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)
