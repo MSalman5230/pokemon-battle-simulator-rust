@@ -97,6 +97,7 @@ impl Battle {
             {
                 let recoil = (dealt * u32::from(num) + u32::from(den) / 2) / u32::from(den);
                 let mon = self.mon_mut(source);
+                mon.half_hp_berry_deferred = false;
                 mon.hp = mon.hp.saturating_sub(recoil.max(1));
                 self.add_health_line_with("-damage", source, false, "|[from] Recoil");
             }

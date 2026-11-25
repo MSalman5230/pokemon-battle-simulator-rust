@@ -196,6 +196,8 @@ impl Battle {
             &mut self.rng,
         );
         let mon = self.mon_mut(pos);
+        // Showdown represents a confusion self-hit as single-hit Move damage.
+        mon.half_hp_berry_deferred = matches!(mon.ability.as_str(), "berserk" | "angershell");
         mon.hp = mon.hp.saturating_sub(damage);
         self.add_health_line_with("-damage", pos, false, "|[from] confusion");
         if self.mon(pos).hp == 0 {
@@ -499,6 +501,7 @@ impl Battle {
         if mon.status == Status::Burn && mon.ability == "heatproof" {
             amount = (amount / 2).max(1);
         }
+        mon.half_hp_berry_deferred = false;
         mon.hp = mon.hp.saturating_sub(amount);
         self.add_health_line_with("-damage", pos, false, &format!("|[from] {label}"));
         if self.mon(pos).hp == 0 {

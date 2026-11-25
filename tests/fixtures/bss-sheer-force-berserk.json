@@ -1,0 +1,900 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Nidoking\",\"moves\":[\"Ice Beam\",\"Sandstorm\"],\"gender\":\"M\",\"name\":\"Nidoking\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Sheer Force\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Drampa\",\"moves\":[\"Calm Mind\"],\"gender\":\"F\",\"name\":\"Drampa\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Berserk\",\"item\":\"Sitrus Berry\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Nidoking, L50, M|",
+          "|poke|p2|Drampa, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Nidoking, L50, M|",
+          "|poke|p2|Drampa, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Nidoking, L50, M|",
+          "|poke|p2|Drampa, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Nidoking",
+                "details": "Nidoking, L50, M",
+                "condition": "156/156",
+                "active": true,
+                "stats": {
+                  "atk": 122,
+                  "def": 97,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "icebeam",
+                  "sandstorm"
+                ],
+                "baseAbility": "sheerforce",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "sheerforce",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Drampa",
+                "details": "Drampa, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 105,
+                  "spa": 155,
+                  "spd": 111,
+                  "spe": 56
+                },
+                "moves": [
+                  "calmmind"
+                ],
+                "baseAbility": "berserk",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "berserk",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Nidoking",
+            "species": "Nidoking",
+            "details": "Nidoking, L50, M",
+            "hp": 156,
+            "maxhp": 156,
+            "status": "",
+            "stats": {
+              "atk": 122,
+              "def": 97,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sheerforce",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sandstorm",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Drampa",
+            "species": "Drampa",
+            "details": "Drampa, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 105,
+              "spa": 155,
+              "spd": 111,
+              "spe": 56
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "berserk",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Nidoking|Nidoking, L50, M|100/100",
+          "|switch|p2a: Drampa|Drampa, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Nidoking|Nidoking, L50, M|156/156",
+          "|switch|p2a: Drampa|Drampa, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Nidoking|Nidoking, L50, M|100/100",
+          "|switch|p2a: Drampa|Drampa, L50, F|153/153",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sandstorm",
+                  "id": "sandstorm",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Nidoking",
+                "details": "Nidoking, L50, M",
+                "condition": "156/156",
+                "active": true,
+                "stats": {
+                  "atk": 122,
+                  "def": 97,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "icebeam",
+                  "sandstorm"
+                ],
+                "baseAbility": "sheerforce",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "sheerforce",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Drampa",
+                "details": "Drampa, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 105,
+                  "spa": 155,
+                  "spd": 111,
+                  "spe": 56
+                },
+                "moves": [
+                  "calmmind"
+                ],
+                "baseAbility": "berserk",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "berserk",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Nidoking",
+            "species": "Nidoking",
+            "details": "Nidoking, L50, M",
+            "hp": 156,
+            "maxhp": 156,
+            "status": "",
+            "stats": {
+              "atk": 122,
+              "def": 97,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sheerforce",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sandstorm",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Drampa",
+            "species": "Drampa",
+            "details": "Drampa, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 105,
+              "spa": 155,
+              "spd": 111,
+              "spe": 56
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "berserk",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Nidoking|Ice Beam|p2a: Drampa",
+          "|-supereffective|p2a: Drampa|1",
+          "|-damage|p2a: Drampa|41/100",
+          "|-ability|p2a: Drampa|Berserk|boost",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-enditem|p2a: Drampa|Sitrus Berry|[eat]",
+          "|-heal|p2a: Drampa|66/100|[from] item: Sitrus Berry",
+          "|move|p2a: Drampa|Calm Mind|p2a: Drampa",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-boost|p2a: Drampa|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Nidoking|Ice Beam|p2a: Drampa",
+          "|-supereffective|p2a: Drampa|1",
+          "|-damage|p2a: Drampa|41/100",
+          "|-ability|p2a: Drampa|Berserk|boost",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-enditem|p2a: Drampa|Sitrus Berry|[eat]",
+          "|-heal|p2a: Drampa|66/100|[from] item: Sitrus Berry",
+          "|move|p2a: Drampa|Calm Mind|p2a: Drampa",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-boost|p2a: Drampa|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Nidoking|Ice Beam|p2a: Drampa",
+          "|-supereffective|p2a: Drampa|1",
+          "|-damage|p2a: Drampa|63/153",
+          "|-ability|p2a: Drampa|Berserk|boost",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-enditem|p2a: Drampa|Sitrus Berry|[eat]",
+          "|-heal|p2a: Drampa|101/153|[from] item: Sitrus Berry",
+          "|move|p2a: Drampa|Calm Mind|p2a: Drampa",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-boost|p2a: Drampa|spd|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sandstorm",
+                  "id": "sandstorm",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Nidoking",
+                "details": "Nidoking, L50, M",
+                "condition": "156/156",
+                "active": true,
+                "stats": {
+                  "atk": 122,
+                  "def": 97,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "icebeam",
+                  "sandstorm"
+                ],
+                "baseAbility": "sheerforce",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "sheerforce",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Drampa",
+                "details": "Drampa, L50, F",
+                "condition": "101/153",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 105,
+                  "spa": 155,
+                  "spd": 111,
+                  "spe": 56
+                },
+                "moves": [
+                  "calmmind"
+                ],
+                "baseAbility": "berserk",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "berserk",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Nidoking",
+            "species": "Nidoking",
+            "details": "Nidoking, L50, M",
+            "hp": 156,
+            "maxhp": 156,
+            "status": "",
+            "stats": {
+              "atk": 122,
+              "def": 97,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sheerforce",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "sandstorm",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Drampa",
+            "species": "Drampa",
+            "details": "Drampa, L50, F",
+            "hp": 101,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 105,
+              "spa": 155,
+              "spd": 111,
+              "spe": 56
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 2,
+              "spd": 1,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "berserk",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Nidoking|Sandstorm|p1a: Nidoking",
+          "|-weather|Sandstorm",
+          "|move|p2a: Drampa|Calm Mind|p2a: Drampa",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-boost|p2a: Drampa|spd|1",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Drampa|60/100|[from] Sandstorm",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Nidoking|Sandstorm|p1a: Nidoking",
+          "|-weather|Sandstorm",
+          "|move|p2a: Drampa|Calm Mind|p2a: Drampa",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-boost|p2a: Drampa|spd|1",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Drampa|60/100|[from] Sandstorm",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Nidoking|Sandstorm|p1a: Nidoking",
+          "|-weather|Sandstorm",
+          "|move|p2a: Drampa|Calm Mind|p2a: Drampa",
+          "|-boost|p2a: Drampa|spa|1",
+          "|-boost|p2a: Drampa|spd|1",
+          "|",
+          "|-weather|Sandstorm|[upkeep]",
+          "|-damage|p2a: Drampa|92/153|[from] Sandstorm",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sandstorm",
+                  "id": "sandstorm",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Nidoking",
+                "details": "Nidoking, L50, M",
+                "condition": "156/156",
+                "active": true,
+                "stats": {
+                  "atk": 122,
+                  "def": 97,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "icebeam",
+                  "sandstorm"
+                ],
+                "baseAbility": "sheerforce",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "sheerforce",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Calm Mind",
+                  "id": "calmmind",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Drampa",
+                "details": "Drampa, L50, F",
+                "condition": "92/153",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 105,
+                  "spa": 155,
+                  "spd": 111,
+                  "spe": 56
+                },
+                "moves": [
+                  "calmmind"
+                ],
+                "baseAbility": "berserk",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "berserk",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Nidoking",
+            "species": "Nidoking",
+            "details": "Nidoking, L50, M",
+            "hp": 156,
+            "maxhp": 156,
+            "status": "",
+            "stats": {
+              "atk": 122,
+              "def": 97,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "sheerforce",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icebeam",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "sandstorm",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Drampa",
+            "species": "Drampa",
+            "details": "Drampa, L50, F",
+            "hp": 92,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 105,
+              "spa": 155,
+              "spd": 111,
+              "spe": 56
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 3,
+              "spd": 2,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "berserk",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "calmmind",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

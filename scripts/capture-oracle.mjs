@@ -972,6 +972,14 @@ const berserkRosters = [
     [{...named('Flareon', ['Seismic Toss', 'Double Kick']), item:'Life Orb'}],
     [{...named('Drampa', ['Calm Mind', 'Recover']), ability:'Berserk', item:'Sitrus Berry'}],
 ];
+const suppressedBerserkRosters = [
+    [{...named('Nidoking', ['Ice Beam', 'Sandstorm'], 'M'), ability:'Sheer Force'}],
+    [{...named('Drampa', ['Calm Mind']), ability:'Berserk', item:'Sitrus Berry'}],
+];
+const angerShellRosters = [
+    [named('Flareon', ['Seismic Toss'])],
+    [{...named('Klawf', ['Swords Dance']), ability:'Anger Shell', item:'Sitrus Berry'}],
+];
 const noRetreatRosters = [
     [named('Falinks', ['No Retreat', 'Tackle'], 'N'), named('Vaporeon', ['Recover'])],
     [named('Umbreon', ['Recover'])],
@@ -1618,6 +1626,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1, move 2','move 2, move 1']], pickupRosters, 'vgc-pickup'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'],
         ['move 2','move 2']], berserkRosters, 'bss-berserk'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        suppressedBerserkRosters, 'bss-sheer-force-berserk'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        angerShellRosters, 'bss-anger-shell'],
     ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 2','move 1']],
         noRetreatRosters, 'bss-no-retreat'],
     ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 1'],

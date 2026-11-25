@@ -1068,6 +1068,16 @@ fn berserk_checks_half_hp_before_a_single_hit_triggers_sitrus_berry() {
 }
 
 #[test]
+fn champions_resolves_berserk_and_sitrus_even_after_sheer_force_damage() {
+    replay(include_str!("fixtures/bss-sheer-force-berserk.json"));
+}
+
+#[test]
+fn anger_shell_adjusts_five_stats_before_eating_sitrus_berry() {
+    replay(include_str!("fixtures/bss-anger-shell.json"));
+}
+
+#[test]
 fn no_retreat_boosts_once_and_ghosts_can_still_switch() {
     replay(include_str!("fixtures/bss-no-retreat.json"));
     replay(include_str!("fixtures/bss-ghost-no-retreat.json"));

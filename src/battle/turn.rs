@@ -1706,8 +1706,8 @@ impl Battle {
     }
 
     pub(super) fn start_ability(&mut self, pos: Position) {
-        if self.mon(pos).ability == "berserk" {
-            self.mon_mut(pos).berserk_waits_for_hit = false;
+        if matches!(self.mon(pos).ability.as_str(), "berserk" | "angershell") {
+            self.mon_mut(pos).half_hp_berry_deferred = false;
         }
         if self.mon(pos).ability == "zerotohero" {
             self.announce_hero(pos);
@@ -4293,12 +4293,11 @@ impl Battle {
                     value
                 };
                 let value = self.focus_sash(target, value);
-                let berserk_waits = self.mon(target).ability == "berserk"
-                    && !multihit
-                    && !(sheer_force_removed && self.event_ability(source) == "sheerforce");
+                let half_hp_berry_deferred =
+                    matches!(self.event_ability(target), "berserk" | "angershell") && !multihit;
                 let turn = self.turn;
                 let mon = self.mon_mut(target);
-                mon.berserk_waits_for_hit = berserk_waits;
+                mon.half_hp_berry_deferred = half_hp_berry_deferred;
                 let landed = value.min(mon.hp);
                 mon.hp -= landed;
                 if landed > 0 {
@@ -4698,6 +4697,9 @@ impl Battle {
         if recoil > 0 && !self.mon(source).fainted {
             let mon = self.mon_mut(source);
             let original_hp = mon.hp;
+            if !struggle {
+                mon.half_hp_berry_deferred = false;
+            }
             mon.hp = mon.hp.saturating_sub(recoil);
             self.add_health_line_with(
                 "-damage",
@@ -4717,19 +4719,20 @@ impl Battle {
             self.half_max_hp_recoil(source, recoil);
         }
         self.each_event();
-        let suppress_after_move = sheer_force_removed && self.event_ability(source) == "sheerforce";
-        if !suppress_after_move {
-            self.berserk_after_move(
-                source,
-                &spread_targets,
-                landed_by_target,
-                (multihit && !smart_target).then_some(total),
-            );
-            for &target in &spread_targets {
-                let index = target.index();
-                self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
-            }
+        // Champions runs the target-side AfterMoveSecondary and EmergencyExit
+        // hooks even when Sheer Force removes the move's secondary effects.
+        self.half_hp_abilities_after_move(
+            source,
+            &spread_targets,
+            landed_by_target,
+            multihit,
+            smart_target,
+        );
+        for &target in &spread_targets {
+            let index = target.index();
+            self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
         }
+        let suppress_after_move = sheer_force_removed && self.event_ability(source) == "sheerforce";
         if hits_landed > 0 && !move_data.after_hit_boosts.is_empty() {
             self.boost(source, &move_data.after_hit_boosts, true);
         }
@@ -4848,6 +4851,7 @@ impl Battle {
         let mon = self.mon_mut(pos);
         if mon.hp != 0 && mon.ability != "magicguard" {
             let original_hp = mon.hp;
+            mon.half_hp_berry_deferred = false;
             mon.hp = mon.hp.saturating_sub(mon.max_hp.get().div_ceil(2));
             self.add_health_line_with("-damage", pos, false, &format!("|[from] {effect}"));
             self.emergency_exit(pos, original_hp);
@@ -5289,6 +5293,7 @@ impl Pokemon {
                 | "harvest"
                 | "pickup"
                 | "berserk"
+                | "angershell"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

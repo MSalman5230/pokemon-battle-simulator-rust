@@ -140,29 +140,53 @@ impl Pokemon {
 }
 
 impl Battle {
-    pub(super) fn berserk_after_move(
+    pub(super) fn half_hp_abilities_after_move(
         &mut self,
         source: Position,
         targets: &[Position],
         damage: [u32; 4],
-        multihit_total: Option<u32>,
+        multihit: bool,
+        smart_target: bool,
     ) {
         let mut holders = [(source, 0); 4];
         let mut count = 0;
         for &target in targets {
-            if self.mon(target).ability == "berserk" && self.active_effects(target) {
+            if matches!(self.mon(target).ability.as_str(), "berserk" | "angershell")
+                && self.active_effects(target)
+            {
                 holders[count] = (target, self.mon(target).speed);
                 count += 1;
             }
         }
         speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        let total: u32 = damage.iter().sum();
         for &(target, _) in &holders[..count] {
             let mon = self.mon_mut(target);
-            mon.berserk_waits_for_hit = false;
-            let sustained = multihit_total.unwrap_or(damage[target.index()]);
+            mon.half_hp_berry_deferred = false;
+            let anger_shell = mon.ability == "angershell";
+            let sustained = if multihit && (anger_shell || !smart_target) {
+                total
+            } else {
+                damage[target.index()]
+            };
             let half = mon.max_hp.get() / 2;
             if source != target && mon.hp != 0 && mon.hp <= half && mon.hp + sustained > half {
-                self.ability_boost(target, "Berserk", BoostStat::Spa, 1, false);
+                if anger_shell {
+                    self.ability_boosts(
+                        target,
+                        "Anger Shell",
+                        &[
+                            (BoostStat::Atk, 1),
+                            (BoostStat::Spa, 1),
+                            (BoostStat::Spe, 1),
+                            (BoostStat::Def, -1),
+                            (BoostStat::Spd, -1),
+                        ],
+                        false,
+                    );
+                } else {
+                    self.ability_boost(target, "Berserk", BoostStat::Spa, 1, false);
+                }
             }
         }
     }

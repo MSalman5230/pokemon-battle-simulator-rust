@@ -1,0 +1,849 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Flareon\",\"moves\":[\"Seismic Toss\"],\"gender\":\"F\",\"name\":\"Flareon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Klawf\",\"moves\":[\"Swords Dance\"],\"gender\":\"F\",\"name\":\"Klawf\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Anger Shell\",\"item\":\"Sitrus Berry\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p2|Klawf, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p2|Klawf, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p2|Klawf, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "seismictoss"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Klawf",
+                "details": "Klawf, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 135,
+                  "spa": 55,
+                  "spd": 75,
+                  "spe": 95
+                },
+                "moves": [
+                  "swordsdance"
+                ],
+                "baseAbility": "angershell",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "angershell",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "seismictoss",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Klawf",
+            "species": "Klawf",
+            "details": "Klawf, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 135,
+              "spa": 55,
+              "spd": 75,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "angershell",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|100/100",
+          "|switch|p2a: Klawf|Klawf, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|140/140",
+          "|switch|p2a: Klawf|Klawf, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flareon|Flareon, L50, F|100/100",
+          "|switch|p2a: Klawf|Klawf, L50, F|145/145",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Seismic Toss",
+                  "id": "seismictoss",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "seismictoss"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Klawf",
+                "details": "Klawf, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 135,
+                  "spa": 55,
+                  "spd": 75,
+                  "spe": 95
+                },
+                "moves": [
+                  "swordsdance"
+                ],
+                "baseAbility": "angershell",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "angershell",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "seismictoss",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Klawf",
+            "species": "Klawf",
+            "details": "Klawf, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 135,
+              "spa": 55,
+              "spd": 75,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "angershell",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Klawf|Swords Dance|p2a: Klawf",
+          "|-boost|p2a: Klawf|atk|2",
+          "|move|p1a: Flareon|Seismic Toss|p2a: Klawf",
+          "|-damage|p2a: Klawf|65/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Klawf|Swords Dance|p2a: Klawf",
+          "|-boost|p2a: Klawf|atk|2",
+          "|move|p1a: Flareon|Seismic Toss|p2a: Klawf",
+          "|-damage|p2a: Klawf|65/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Klawf|Swords Dance|p2a: Klawf",
+          "|-boost|p2a: Klawf|atk|2",
+          "|move|p1a: Flareon|Seismic Toss|p2a: Klawf",
+          "|-damage|p2a: Klawf|95/145",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Seismic Toss",
+                  "id": "seismictoss",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "seismictoss"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Klawf",
+                "details": "Klawf, L50, F",
+                "condition": "95/145",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 135,
+                  "spa": 55,
+                  "spd": 75,
+                  "spe": 95
+                },
+                "moves": [
+                  "swordsdance"
+                ],
+                "baseAbility": "angershell",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "angershell",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "seismictoss",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Klawf",
+            "species": "Klawf",
+            "details": "Klawf, L50, F",
+            "hp": 95,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 135,
+              "spa": 55,
+              "spd": 75,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "angershell",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Klawf|Swords Dance|p2a: Klawf",
+          "|-boost|p2a: Klawf|atk|2",
+          "|move|p1a: Flareon|Seismic Toss|p2a: Klawf",
+          "|-damage|p2a: Klawf|31/100",
+          "|-ability|p2a: Klawf|Anger Shell|boost",
+          "|-boost|p2a: Klawf|atk|1",
+          "|-boost|p2a: Klawf|spa|1",
+          "|-boost|p2a: Klawf|spe|1",
+          "|-unboost|p2a: Klawf|def|1",
+          "|-unboost|p2a: Klawf|spd|1",
+          "|-enditem|p2a: Klawf|Sitrus Berry|[eat]",
+          "|-heal|p2a: Klawf|55/100|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Klawf|Swords Dance|p2a: Klawf",
+          "|-boost|p2a: Klawf|atk|2",
+          "|move|p1a: Flareon|Seismic Toss|p2a: Klawf",
+          "|-damage|p2a: Klawf|31/100",
+          "|-ability|p2a: Klawf|Anger Shell|boost",
+          "|-boost|p2a: Klawf|atk|1",
+          "|-boost|p2a: Klawf|spa|1",
+          "|-boost|p2a: Klawf|spe|1",
+          "|-unboost|p2a: Klawf|def|1",
+          "|-unboost|p2a: Klawf|spd|1",
+          "|-enditem|p2a: Klawf|Sitrus Berry|[eat]",
+          "|-heal|p2a: Klawf|55/100|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Klawf|Swords Dance|p2a: Klawf",
+          "|-boost|p2a: Klawf|atk|2",
+          "|move|p1a: Flareon|Seismic Toss|p2a: Klawf",
+          "|-damage|p2a: Klawf|45/145",
+          "|-ability|p2a: Klawf|Anger Shell|boost",
+          "|-boost|p2a: Klawf|atk|1",
+          "|-boost|p2a: Klawf|spa|1",
+          "|-boost|p2a: Klawf|spe|1",
+          "|-unboost|p2a: Klawf|def|1",
+          "|-unboost|p2a: Klawf|spd|1",
+          "|-enditem|p2a: Klawf|Sitrus Berry|[eat]",
+          "|-heal|p2a: Klawf|81/145|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Seismic Toss",
+                  "id": "seismictoss",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "seismictoss"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Klawf",
+                "details": "Klawf, L50, F",
+                "condition": "81/145",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 135,
+                  "spa": 55,
+                  "spd": 75,
+                  "spe": 95
+                },
+                "moves": [
+                  "swordsdance"
+                ],
+                "baseAbility": "angershell",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "angershell",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "seismictoss",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Klawf",
+            "species": "Klawf",
+            "details": "Klawf, L50, F",
+            "hp": 81,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 135,
+              "spa": 55,
+              "spd": 75,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 5,
+              "def": -1,
+              "spa": 1,
+              "spd": -1,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "angershell",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

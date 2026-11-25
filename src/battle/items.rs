@@ -195,7 +195,8 @@ impl Battle {
         }
         if mon.effective_item() == "sitrusberry"
             && mon.hp * 2 <= mon.max_hp.get()
-            && (mon.ability != "berserk" || !mon.berserk_waits_for_hit)
+            && (!matches!(self.event_ability(pos), "berserk" | "angershell")
+                || !mon.half_hp_berry_deferred)
         {
             let amount = mon.max_hp.get() / 4;
             self.consume(pos, "Sitrus Berry", true);
@@ -571,6 +572,7 @@ impl Battle {
         if mon.hp == 0 || mon.ability == "magicguard" {
             return;
         }
+        mon.half_hp_berry_deferred = false;
         mon.hp = mon.hp.saturating_sub((mon.max_hp.get() / divisor).max(1));
         self.add_health_line_with("-damage", pos, false, cause);
     }
