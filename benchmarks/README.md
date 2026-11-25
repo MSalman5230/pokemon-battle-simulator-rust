@@ -36,7 +36,7 @@ traffic. It does not run player models, feature encoding, or training.
 node benchmarks/throughput.mjs -- ./target/release/pokemon-battle-worker
 ```
 
-The path is illustrative. This scaffold does not build a worker binary.
+The experimental Rust worker currently supports only the verified subset below.
 For this test the candidate must support `new` and `batch` with
 `step`/`close` entries from Poke-RL's protocol. It must echo the request
 `id` and return the corresponding JSON `result`, in order. Both backends
@@ -46,3 +46,26 @@ a mismatch, the harness fails without reporting a speedup.
 
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,
 seed, turn cap, and repeat options.
+
+## Verified Rust subset
+
+The experimental worker has no JavaScript runtime dependency, but it accepts
+only the exact rosters in the checked-in, oracle-validated BSS corpus. It
+does not yet replace the training worker on the default manifest.
+
+```sh
+source scripts/env.sh
+cargo build --locked --release
+node benchmarks/throughput.mjs --teams-file benchmarks/verified-bss-corpus.json \
+  -- ./target/release/pokemon-battle-worker
+```
+
+Both backends complete the same replay before any timing is reported. Add
+`--debug-parity` to retain reference outputs and print the first differing JSON
+path on an observation mismatch. The report hashes the corpus and replay.
+
+In the [recorded subset run](verified-bss-result.json), both workers matched
+all responses across 538 steps, 32 completed games, and no truncations. On
+the same Intel i5-6300HQ host, the median across five replays was 474.1
+steps/s for Showdown and 1,673.5 for Rust (3.53×). This is a result on the
+verified subset, not a speed or parity claim about the default Poke-RL corpus.

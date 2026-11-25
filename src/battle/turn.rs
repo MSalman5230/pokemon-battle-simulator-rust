@@ -77,6 +77,24 @@ impl Battle {
         self.turn
     }
 
+    pub fn can_mega_in_slot(&self, player: Player, slot: usize) -> bool {
+        self.party(player)
+            .and_then(|p| p.get(slot))
+            .is_some_and(|p| !p.fainted)
+            && self.can_mega(Position { player, slot })
+    }
+
+    pub fn waiting(&self, player: Player) -> bool {
+        matches!(self.phase, Phase::Setup | Phase::Ended)
+            || (self.phase == Phase::Replace && !self.force_switch(player).contains(&true))
+            || self.submitted(player)
+    }
+
+    pub fn submitted(&self, player: Player) -> bool {
+        self.pending_actions[player.index()].is_some()
+            || self.pending_preview[player.index()].is_some()
+    }
+
     pub fn winner(&self) -> Option<Player> {
         self.winner
     }
@@ -650,6 +668,10 @@ impl Battle {
                     party[outgoing.slot].stall = None;
                     party[outgoing.slot].boosts = Boosts::default();
                     party[outgoing.slot].flinched = false;
+                    party[outgoing.slot].volatile_order.clear();
+                    if !party[outgoing.slot].fainted {
+                        party[outgoing.slot].times_attacked = 0;
+                    }
                     party[outgoing.slot].needs_replacement = false;
                     party[outgoing.slot].pivot_move = None;
                     if party[outgoing.slot].fainted {
@@ -874,12 +896,21 @@ impl Battle {
                     self.item_heal(pos, amount, "Leftovers");
                 }
                 Effect::Weather => unreachable!(),
-                Effect::Protect => mon.protected = false,
-                Effect::Flinch => mon.flinched = false,
+                Effect::Protect => {
+                    mon.protected = false;
+                    mon.untrack_volatile("protect");
+                }
+                Effect::Flinch => {
+                    mon.flinched = false;
+                    mon.untrack_volatile("flinch");
+                }
                 Effect::Stall => {
                     mon.stall = mon.stall.and_then(|(counter, duration)| {
                         (duration > 1).then_some((counter, duration - 1))
                     });
+                    if mon.stall.is_none() {
+                        mon.untrack_volatile("stall");
+                    }
                 }
                 Effect::Status => {
                     self.status_residual(pos);
@@ -1013,6 +1044,7 @@ impl Battle {
             if !more_actions || (stall > 1 && !self.rng.chance(1, u32::from(stall))) {
                 if more_actions {
                     self.mon_mut(source).stall = None;
+                    self.mon_mut(source).untrack_volatile("stall");
                 }
                 self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
                 self.add(format!("|-fail|{source_name}"));
@@ -1020,6 +1052,8 @@ impl Battle {
             }
             let mon = self.mon_mut(source);
             mon.protected = true;
+            mon.track_volatile("protect");
+            mon.track_volatile("stall");
             mon.stall = Some(((stall * 3).min(729), 2));
             self.add(format!("|-singleturn|{source_name}|Protect"));
             self.each_event();
@@ -1246,6 +1280,7 @@ impl Battle {
                         && self.mon(target).hp > 0
                     {
                         self.mon_mut(target).flinched = true;
+                        self.mon_mut(target).track_volatile("flinch");
                     }
                 }
             }
@@ -1286,6 +1321,9 @@ impl Battle {
             if self.mon(target).hp == 0 {
                 self.mark_fainted(target);
             }
+            if target != source {
+                self.mon_mut(target).times_attacked += 1;
+            }
         }
         if self.mon(source).hp == 0 {
             self.mark_fainted(source);
@@ -1323,6 +1361,8 @@ impl Battle {
         mon.stall = None;
         mon.protected = false;
         mon.flinched = false;
+        mon.volatile_order.clear();
+        mon.times_attacked = 0;
         mon.boosts = Boosts::default();
         self.add(format!("|faint|{}", self.ident(target)));
     }

@@ -78,7 +78,7 @@ const competitiveSets = [
     ['Infernape', 'Blaze', ['Close Combat', 'Protect', 'Swords Dance', 'Earthquake']],
     ['Empoleon', 'Torrent', ['Surf', 'Aqua Jet', 'Swords Dance', 'Protect']],
     ['Meganium', 'Overgrow', ['Swords Dance', 'Earthquake', 'Leaf Blade', 'Protect']],
-    ['Swampert', 'Torrent', ['Earthquake', 'Surf', 'Protect', 'Dive']],
+    ['Swampert', 'Torrent', ['Earthquake', 'Surf', 'Protect', 'Flip Turn']],
     ['Sceptile', 'Overgrow', ['Leaf Blade', 'Earthquake', 'Swords Dance', 'Protect']],
     ['Blaziken', 'Blaze', ['Close Combat', 'Protect', 'Swords Dance', 'Earthquake']],
 ].map(([species, ability, moves]) => ({
@@ -173,6 +173,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     if (players === competitiveRosters) {
         const validator = new TeamValidator(formatid);
         for (const team of players) assert.equal(validator.validateTeam(structuredClone(team)), null);
+        writeFileSync(new URL('../benchmarks/verified-bss-corpus.json', import.meta.url),
+            JSON.stringify({revision, teams: players.map(team => ({team}))}, null, 2) + '\n');
     }
     const inputs = [
         '>start ' + JSON.stringify({formatid, seed, strictChoices: true}),

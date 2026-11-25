@@ -131,6 +131,8 @@ pub struct Pokemon {
     speed: u32,
     pub hp: u32,
     pub status: Status,
+    pub times_attacked: u32,
+    volatile_order: Vec<&'static str>,
     flinched: bool,
     pub max_hp: NonZeroU32,
     pub item: String,
@@ -514,6 +516,20 @@ fn preview_details(details: &str) -> String {
 }
 
 impl Pokemon {
+    pub fn volatile_ids(&self) -> &[&'static str] {
+        &self.volatile_order
+    }
+
+    fn track_volatile(&mut self, id: &'static str) {
+        if !self.volatile_order.contains(&id) {
+            self.volatile_order.push(id);
+        }
+    }
+
+    fn untrack_volatile(&mut self, id: &str) {
+        self.volatile_order.retain(|v| *v != id);
+    }
+
     fn new(format: &Format, index: usize, set: Set, rng: &mut Rng) -> Result<Self, BattleError> {
         let species_name = if set.species.is_empty() {
             &set.name
@@ -605,6 +621,8 @@ impl Pokemon {
             speed: stats.spe,
             hp: max_hp.get(),
             status: Status::Healthy,
+            times_attacked: 0,
+            volatile_order: Vec::new(),
             flinched: false,
             max_hp,
             item,

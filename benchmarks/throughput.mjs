@@ -23,6 +23,8 @@ function options(args) {
         args: split < 0 ? args : args.slice(0, split),
         options: {
             help: {type: 'boolean', short: 'h'},
+            'teams-file': {type: 'string'},
+            'debug-parity': {type: 'boolean'},
             ...Object.fromEntries(Object.entries(defaults).map(
                 ([name, value]) => [name, {type: 'string', default: String(value)}],
             )),
@@ -30,7 +32,7 @@ function options(args) {
     });
     if (values.help) {
         console.log('Usage: node benchmarks/throughput.mjs [--games 32] [--batch-size 16] ' +
-            '[--max-turns 200] [--repeats 5] [--seed 1731] [-- CANDIDATE [ARGS...]]');
+            '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] [--debug-parity] [-- CANDIDATE [ARGS...]]');
         return null;
     }
     assert(split < 0 || candidate.length, 'Pass a worker command after --');
@@ -42,7 +44,7 @@ function options(args) {
     }
     assert(settings['batch-size'] <= settings.games, '--batch-size must not exceed --games');
     assert(settings.seed <= 0xffffffff, '--seed must fit in an unsigned 32-bit integer');
-    return {settings, candidate};
+    return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity']};
 }
 
 function openWorker([command, ...args]) {
@@ -98,7 +100,7 @@ const fingerprint = result => sha256(JSON.stringify(result, (_, value) =>
     value && typeof value === 'object' && !Array.isArray(value) ?
         Object.fromEntries(Object.keys(value).sort().map(key => [key, value[key]])) : value));
 
-async function record(worker, teams, settings) {
+async function record(worker, teams, settings, debugParity) {
     let rng = settings.seed;
     function word() {
         rng ^= rng << 13;
@@ -119,7 +121,7 @@ async function record(worker, teams, settings) {
     async function capture(request, steps = 0) {
         const entry = frame(frames.length + 1, request, steps);
         const result = await worker.exchange(entry);
-        frames.push({...entry, digest: fingerprint(result)});
+        frames.push({...entry, digest: fingerprint(result), ...(debugParity && {expected: result})});
         return result;
     }
     async function reset(slot) {
@@ -164,9 +166,28 @@ async function record(worker, teams, settings) {
     return {frames, ended, truncated, iterations: frames.reduce((sum, entry) => sum + entry.steps, 0)};
 }
 
+function firstDifference(actual, expected, path = []) {
+    if (actual === expected) return null;
+    if (actual == null || expected == null || typeof actual !== 'object' || typeof expected !== 'object'
+            || Array.isArray(actual) !== Array.isArray(expected)) {
+        return {path, actual, expected};
+    }
+    const keys = new Set([...Object.keys(actual), ...Object.keys(expected)]);
+    for (const key of keys) {
+        const difference = firstDifference(actual[key], expected[key], [...path, key]);
+        if (difference) return difference;
+    }
+    return null;
+}
+
 async function warmAndVerify(worker, frames, name) {
     for (const entry of frames) {
-        const actual = fingerprint(await worker.exchange(entry));
+        const result = await worker.exchange(entry);
+        const actual = fingerprint(result);
+        if (actual !== entry.digest && Object.hasOwn(entry, 'expected')) {
+            const difference = firstDifference(result, entry.expected);
+            throw new Error(JSON.stringify({backend: name, request: JSON.parse(entry.wire), difference}));
+        }
         assert.equal(actual, entry.digest, `${name} differs from the reference at request ${entry.id}`);
     }
 }
@@ -198,9 +219,9 @@ function median(values) {
 async function main() {
     const config = options(process.argv.slice(2));
     if (!config) return;
-    const {settings, candidate} = config;
+    const {settings, candidate, teamsPath, debugParity} = config;
     const lock = readFileSync(join(oracle, 'package-lock.json'));
-    const teamsFile = readFileSync(join(oracle, 'teams_train.json'));
+    const teamsFile = readFileSync(teamsPath ?? join(oracle, 'teams_train.json'));
     const workerPath = join(oracle, 'worker.cjs');
     const locked = JSON.parse(lock).packages['node_modules/pokemon-showdown'];
     assert(locked?.resolved?.endsWith(`/tar.gz/${revision}`), 'Poke-RL lockfile uses a different Showdown revision');
@@ -213,7 +234,7 @@ async function main() {
         ping = await recorder.exchange(frame(0, {op: 'ping'}));
         assert.equal(ping.format, format);
         assert.equal(ping.revision, revision);
-        workload = await record(recorder, teams, settings);
+        workload = await record(recorder, teams, settings, debugParity);
     } finally {
         recorder.close();
     }
@@ -252,6 +273,7 @@ async function main() {
             teams_sha256: sha256(teamsFile),
         },
         settings: {...settings, training: true},
+        ...(teamsPath && {teams_file: teamsPath}),
         workload_sha256: sha256(workload.frames.map(entry => entry.wire).join('')),
         iterations_per_replay: workload.iterations,
         ended_per_replay: workload.ended,
