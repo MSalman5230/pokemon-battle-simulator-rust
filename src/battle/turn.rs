@@ -1114,6 +1114,7 @@ impl Battle {
                     | "anchorshot"
                     | "spiritshackle"
                     | "jawlock"
+                    | "fling"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -1679,6 +1680,7 @@ impl Battle {
         party[outgoing.slot].attackers_this_turn = [0; 2];
         party[outgoing.slot].heal_block = 0;
         party[outgoing.slot].octolock = None;
+        party[outgoing.slot].fling_pending = false;
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -2151,6 +2153,9 @@ impl Battle {
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
             self.attract_update(pos);
+            if self.mon(pos).fling_pending {
+                self.finish_fling(pos);
+            }
             self.try_trace(pos);
             self.disguise_update(pos);
             if self.event_ability(pos) == "owntempo" && self.mon(pos).confusion > 0 {
@@ -4011,6 +4016,24 @@ impl Battle {
                 return true;
             }
         }
+        let thrown_item = if move_data.name == "Fling" {
+            let Some(item) = self.prepare_fling(source) else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+                return true;
+            };
+            Some(item)
+        } else {
+            None
+        };
+        let power = thrown_item
+            .and_then(|item| item.fling.as_ref())
+            .map_or(power, |fling| fling.base_power);
+        let fling_secondary = thrown_item
+            .filter(|item| !item.is_berry)
+            .and_then(|item| item.fling.as_ref())
+            .filter(|effect| effect.status.is_some() || effect.volatile_status.is_some());
         if !delayed {
             self.protean_prepare(source, move_type);
         }
@@ -5404,6 +5427,9 @@ impl Battle {
                 if move_data.name == "Jaw Lock" {
                     self.start_mutual_trap(source, target);
                 }
+                if let Some(item) = thrown_item {
+                    self.fling_hit(source, target, item);
+                }
                 if move_data.name == "Steel Roller" {
                     self.clear_terrain();
                 }
@@ -5492,7 +5518,11 @@ impl Battle {
                 self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
             }
             for &target in strike_targets {
-                if sheer_force_removed || (move_data.secondaries.is_empty() && !stench_flinch) {
+                if sheer_force_removed
+                    || (move_data.secondaries.is_empty()
+                        && !stench_flinch
+                        && fling_secondary.is_none())
+                {
                     break;
                 }
                 let hit_pokemon = shielded & target.mask() == 0;
@@ -5575,6 +5605,20 @@ impl Battle {
                 }
                 if stench_flinch && !dust && !cloak && self.rng.chance(1, 10) && hit_pokemon {
                     self.apply_flinch(target);
+                }
+                if let Some(effect) = fling_secondary
+                    && !dust
+                    && !cloak
+                {
+                    // An unspecified chance is guaranteed but still draws.
+                    self.rng.below(100);
+                    if hit_pokemon {
+                        if let Some(status) = &effect.status {
+                            self.try_status(target, status, source, move_data, false, base);
+                        } else if effect.volatile_status.as_deref() == Some("flinch") {
+                            self.apply_flinch(target);
+                        }
+                    }
                 }
             }
             for &(target, _) in &damage {
@@ -6057,6 +6101,7 @@ impl Battle {
         mon.attackers_this_turn = [0; 2];
         mon.heal_block = 0;
         mon.octolock = None;
+        mon.fling_pending = false;
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();

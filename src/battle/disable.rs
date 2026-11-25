@@ -260,6 +260,10 @@ impl Battle {
     }
 
     pub(super) fn mental_herb(&mut self, target: Position) {
+        self.mental_herb_effect(target, true);
+    }
+
+    pub(super) fn mental_herb_effect(&mut self, target: Position, consume: bool) {
         let mon = self.mon(target);
         let (attract, taunt, encore, torment, disabled, heal_block) = (
             mon.attract.is_some(),
@@ -272,8 +276,10 @@ impl Battle {
         if !(attract || taunt || encore || torment || disabled || heal_block) {
             return;
         }
-        self.consume(target, "Mental Herb", false);
-        self.symbiosis_after_item(target);
+        if consume {
+            self.consume(target, "Mental Herb", false);
+            self.symbiosis_after_item(target);
+        }
         if attract {
             let mon = self.mon_mut(target);
             mon.attract = None;

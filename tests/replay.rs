@@ -1460,6 +1460,13 @@ fn linked_trapping_ends_when_the_other_pokemon_leaves() {
 }
 
 #[test]
+fn fling_uses_the_held_item_and_can_discard_it_without_hitting() {
+    replay(include_str!("fixtures/bss-fling-iron-ball.json"));
+    replay(include_str!("fixtures/bss-fling-poison-barb.json"));
+    replay(include_str!("fixtures/bss-fling-berry.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

@@ -54,6 +54,14 @@ function runsOnGenericPipeline(raw, move) {
     return move.basePower > 0 && !move.status && !move.heal;
 }
 
+function flingData(item) {
+    if (!item.fling) return undefined;
+    const {basePower, status, volatileStatus, effect} = item.fling;
+    const special = effect ? {mentalherb:'mentalHerb', whiteherb:'whiteHerb'}[item.id] : undefined;
+    assert(!effect || special, `Unmapped Fling effect for ${item.id}`);
+    return {basePower, status, volatileStatus, effect:special};
+}
+
 const data = mod => {
     const dex = Dex.mod(mod);
     return {
@@ -97,7 +105,7 @@ const data = mod => {
                 noSkillSwap: !!e.flags?.failskillswap || undefined})),
         items: table(dex.items.all(), e =>
             ({...props(e, ['name', 'isNonstandard', 'megaStone']),
-                isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined,
+                isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined, fling: flingData(e),
                 handlers: handlers(e)})),
         natures: table(dex.natures.all(), e => props(e, ['plus', 'minus'])),
         types: table(dex.types.all(), e => props(e, ['damageTaken'])),

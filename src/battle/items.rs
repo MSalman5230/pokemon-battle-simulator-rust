@@ -3,7 +3,10 @@
 use super::terrain::Terrain;
 use super::turn::{Pivot, Position};
 use super::*;
-use crate::mechanics::BoostStat;
+use crate::{
+    dex::{FlingEffect, Item},
+    mechanics::BoostStat,
+};
 
 #[derive(Clone, Copy)]
 pub(super) struct CudChew {
@@ -366,7 +369,7 @@ impl Battle {
         // Pluck and Bug Bite invoke Eat directly, without replacing the
         // user's held item or recording a consumed item for Recycle.
         if !self.debug_ignored_item(source, "Eat") {
-            self.berry_effect(source, &id, item);
+            self.berry_effect(source, &id, item, None);
             self.after_eating_berry(source, name, true);
         }
         if self.event_ability(source) == "ripen" {
@@ -375,6 +378,72 @@ impl Battle {
         if item.effect.handlers.iter().any(|hook| hook == "onEat") {
             self.mon_mut(source).ate_berry = true;
         }
+    }
+
+    pub(super) fn prepare_fling(&mut self, pos: Position) -> Option<&'static Item> {
+        let mon = self.mon(pos);
+        if self.event_ability(pos) == "klutz" {
+            return None;
+        }
+        let item = mon.transferable_item(self.format.dex_mod)?;
+        let power = item.fling.as_ref()?.base_power;
+        if self.format.report_exact_hp {
+            self.add(format!("|debug|BP: {power}"));
+        }
+        if item.is_berry && self.event_ability(pos) == "cudchew" {
+            self.after_eating_berry(pos, &item.effect.name, false);
+        }
+        self.mon_mut(pos).fling_pending = true;
+        Some(item)
+    }
+
+    pub(super) fn fling_hit(&mut self, source: Position, target: Position, item: &'static Item) {
+        if item.is_berry {
+            let name = &item.effect.name;
+            if !self.debug_ignored_item(target, "Eat") {
+                self.berry_effect(target, &to_id(name), item, Some(source));
+                self.after_eating_berry_from(target, name, false, Some(source));
+            }
+            if item.effect.handlers.iter().any(|hook| hook == "onEat") {
+                self.mon_mut(target).ate_berry = true;
+            }
+        } else {
+            match item.fling.as_ref().and_then(|data| data.effect) {
+                Some(FlingEffect::WhiteHerb) => {
+                    if self.mon_mut(target).boosts.clear_negative() {
+                        self.add(format!(
+                            "|-clearnegativeboost|{}|[silent]",
+                            self.ident(target)
+                        ));
+                    }
+                }
+                Some(FlingEffect::MentalHerb) if self.mon(target).hp > 0 => {
+                    self.mental_herb_effect(target, false);
+                }
+                _ => {}
+            }
+        }
+    }
+
+    pub(super) fn finish_fling(&mut self, pos: Position) {
+        self.mon_mut(pos).fling_pending = false;
+        let Some(item) = DEX.item(self.format.dex_mod, &self.mon(pos).item) else {
+            return;
+        };
+        let id = if self.mon(pos).hp == 0 {
+            self.mon(pos).item.clone()
+        } else {
+            self.lose_held_item(pos)
+        };
+        let mon = self.mon_mut(pos);
+        mon.last_item = id;
+        mon.used_item_this_turn = true;
+        self.add(format!(
+            "|-enditem|{}|{}|[from] move: Fling",
+            self.ident(pos),
+            item.effect.name
+        ));
+        self.symbiosis_after_item(pos);
     }
 
     pub(super) fn symbiosis_after_item(&mut self, recipient: Position) {
@@ -578,6 +647,10 @@ impl Battle {
     }
 
     pub(super) fn item_heal(&mut self, pos: Position, amount: u32, item: &str) {
+        self.item_heal_from(pos, amount, item, None);
+    }
+
+    fn item_heal_from(&mut self, pos: Position, amount: u32, item: &str, source: Option<Position>) {
         if self.mon(pos).heal_block > 0 {
             return;
         }
@@ -596,13 +669,27 @@ impl Battle {
                 1
             };
         mon.hp = (mon.hp + amount).min(mon.max_hp.get());
-        self.add_health_line_with("-heal", pos, false, &format!("|[from] item: {item}"));
+        let mut cause = format!("|[from] item: {item}");
+        if let Some(source) = source.filter(|&source| source != pos) {
+            cause.push_str(&format!("|[of] {}", self.ident(source)));
+        }
+        self.add_health_line_with("-heal", pos, false, &cause);
     }
 
     pub(super) fn after_eating_berry(&mut self, pos: Position, name: &str, stolen: bool) {
+        self.after_eating_berry_from(pos, name, stolen, None);
+    }
+
+    fn after_eating_berry_from(
+        &mut self,
+        pos: Position,
+        name: &str,
+        stolen: bool,
+        source: Option<Position>,
+    ) {
         match self.event_ability(pos) {
             "cheekpouch" => {
-                self.ability_heal(pos, 3, "Cheek Pouch", None);
+                self.ability_heal(pos, 3, "Cheek Pouch", source);
             }
             "cudchew" if !stolen => {
                 if let Some(item) = DEX.item(self.format.dex_mod, &to_id(name)) {
@@ -632,18 +719,24 @@ impl Battle {
         self.add(format!("|-activate|{}|ability: Cud Chew", self.ident(pos)));
         self.add(format!("|-enditem|{}|{name}|[eat]", self.ident(pos)));
         if !self.debug_ignored_item(pos, "Eat") {
-            self.berry_effect(pos, &to_id(name), item);
+            self.berry_effect(pos, &to_id(name), item, None);
         }
         if item.effect.handlers.iter().any(|hook| hook == "onEat") {
             self.mon_mut(pos).ate_berry = true;
         }
     }
 
-    fn berry_effect(&mut self, pos: Position, id: &str, item: &crate::dex::Item) {
+    fn berry_effect(
+        &mut self,
+        pos: Position,
+        id: &str,
+        item: &crate::dex::Item,
+        source: Option<Position>,
+    ) {
         match id {
             "sitrusberry" => {
                 let amount = self.mon(pos).max_hp.get() / 4;
-                self.item_heal(pos, amount, &item.effect.name);
+                self.item_heal_from(pos, amount, &item.effect.name, source);
             }
             "lumberry" => {
                 self.cure_status(pos, "[msg]");

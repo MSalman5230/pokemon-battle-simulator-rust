@@ -259,6 +259,23 @@ pub struct Item {
     pub is_berry: bool,
     #[serde(default)]
     pub ignore_klutz: bool,
+    pub fling: Option<Fling>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Fling {
+    pub base_power: u16,
+    pub status: Option<String>,
+    pub volatile_status: Option<String>,
+    pub effect: Option<FlingEffect>,
+}
+
+#[derive(Debug, Copy, Clone, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum FlingEffect {
+    MentalHerb,
+    WhiteHerb,
 }
 
 #[derive(Debug, Deserialize)]

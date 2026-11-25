@@ -1,0 +1,936 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Farigiraf\",\"moves\":[\"Fling\",\"Recover\"],\"gender\":\"F\",\"name\":\"Farigiraf\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Cud Chew\",\"item\":\"Sitrus Berry\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Greedent\",\"moves\":[\"Tackle\",\"Recover\"],\"gender\":\"F\",\"name\":\"Greedent\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Cheek Pouch\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Farigiraf, L50, F|",
+          "|poke|p2|Greedent, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Farigiraf, L50, F|",
+          "|poke|p2|Greedent, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Farigiraf, L50, F|",
+          "|poke|p2|Greedent, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Farigiraf",
+                "details": "Farigiraf, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 90,
+                  "spe": 80
+                },
+                "moves": [
+                  "fling",
+                  "recover"
+                ],
+                "baseAbility": "cudchew",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "cudchew",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Greedent",
+                "details": "Greedent, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 95,
+                  "spe": 40
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cheekpouch",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cheekpouch",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Farigiraf",
+            "species": "Farigiraf",
+            "details": "Farigiraf, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 90,
+              "spa": 130,
+              "spd": 90,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cudchew",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "fling",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Greedent",
+            "species": "Greedent",
+            "details": "Greedent, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 75,
+              "spd": 95,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cheekpouch",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Farigiraf|Farigiraf, L50, F|100/100",
+          "|switch|p2a: Greedent|Greedent, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Farigiraf|Farigiraf, L50, F|195/195",
+          "|switch|p2a: Greedent|Greedent, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Farigiraf|Farigiraf, L50, F|100/100",
+          "|switch|p2a: Greedent|Greedent, L50, F|195/195",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fling",
+                  "id": "fling",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Farigiraf",
+                "details": "Farigiraf, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 90,
+                  "spe": 80
+                },
+                "moves": [
+                  "fling",
+                  "recover"
+                ],
+                "baseAbility": "cudchew",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "cudchew",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Greedent",
+                "details": "Greedent, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 95,
+                  "spe": 40
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cheekpouch",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cheekpouch",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Farigiraf",
+            "species": "Farigiraf",
+            "details": "Farigiraf, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 90,
+              "spa": 130,
+              "spd": 90,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cudchew",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "fling",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Greedent",
+            "species": "Greedent",
+            "details": "Greedent, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 75,
+              "spd": 95,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cheekpouch",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Farigiraf|Fling|p2a: Greedent",
+          "|-damage|p2a: Greedent|97/100",
+          "|-heal|p2a: Greedent|100/100|[from] item: Sitrus Berry|[of] p1a: Farigiraf",
+          "|-enditem|p1a: Farigiraf|Sitrus Berry|[from] move: Fling",
+          "|move|p2a: Greedent|Tackle|p1a: Farigiraf",
+          "|-damage|p1a: Farigiraf|84/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Farigiraf|Fling|p2a: Greedent",
+          "|-damage|p2a: Greedent|97/100",
+          "|-heal|p2a: Greedent|100/100|[from] item: Sitrus Berry|[of] p1a: Farigiraf",
+          "|-enditem|p1a: Farigiraf|Sitrus Berry|[from] move: Fling",
+          "|move|p2a: Greedent|Tackle|p1a: Farigiraf",
+          "|-damage|p1a: Farigiraf|164/195",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Farigiraf|Fling|p2a: Greedent",
+          "|-damage|p2a: Greedent|190/195",
+          "|-heal|p2a: Greedent|195/195|[from] item: Sitrus Berry|[of] p1a: Farigiraf",
+          "|-enditem|p1a: Farigiraf|Sitrus Berry|[from] move: Fling",
+          "|move|p2a: Greedent|Tackle|p1a: Farigiraf",
+          "|-damage|p1a: Farigiraf|84/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fling",
+                  "id": "fling",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Farigiraf",
+                "details": "Farigiraf, L50, F",
+                "condition": "164/195",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 90,
+                  "spe": 80
+                },
+                "moves": [
+                  "fling",
+                  "recover"
+                ],
+                "baseAbility": "cudchew",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cudchew",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Greedent",
+                "details": "Greedent, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 95,
+                  "spe": 40
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cheekpouch",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cheekpouch",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Farigiraf",
+            "species": "Farigiraf",
+            "details": "Farigiraf, L50, F",
+            "hp": 164,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 90,
+              "spa": 130,
+              "spd": 90,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cudchew",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fling",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Greedent",
+            "species": "Greedent",
+            "details": "Greedent, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 75,
+              "spd": 95,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cheekpouch",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Farigiraf|Recover|p1a: Farigiraf",
+          "|-heal|p1a: Farigiraf|100/100",
+          "|move|p2a: Greedent|Tackle|p1a: Farigiraf",
+          "|-damage|p1a: Farigiraf|84/100",
+          "|",
+          "|-activate|p1a: Farigiraf|ability: Cud Chew",
+          "|-enditem|p1a: Farigiraf|Sitrus Berry|[eat]",
+          "|-heal|p1a: Farigiraf|100/100|[from] item: Sitrus Berry",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Farigiraf|Recover|p1a: Farigiraf",
+          "|-heal|p1a: Farigiraf|195/195",
+          "|move|p2a: Greedent|Tackle|p1a: Farigiraf",
+          "|-damage|p1a: Farigiraf|164/195",
+          "|",
+          "|-activate|p1a: Farigiraf|ability: Cud Chew",
+          "|-enditem|p1a: Farigiraf|Sitrus Berry|[eat]",
+          "|-heal|p1a: Farigiraf|195/195|[from] item: Sitrus Berry",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Farigiraf|Recover|p1a: Farigiraf",
+          "|-heal|p1a: Farigiraf|100/100",
+          "|move|p2a: Greedent|Tackle|p1a: Farigiraf",
+          "|-damage|p1a: Farigiraf|84/100",
+          "|",
+          "|-activate|p1a: Farigiraf|ability: Cud Chew",
+          "|-enditem|p1a: Farigiraf|Sitrus Berry|[eat]",
+          "|-heal|p1a: Farigiraf|100/100|[from] item: Sitrus Berry",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fling",
+                  "id": "fling",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Farigiraf",
+                "details": "Farigiraf, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 90,
+                  "spe": 80
+                },
+                "moves": [
+                  "fling",
+                  "recover"
+                ],
+                "baseAbility": "cudchew",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cudchew",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Greedent",
+                "details": "Greedent, L50, F",
+                "condition": "195/195",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 95,
+                  "spe": 40
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cheekpouch",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cheekpouch",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Farigiraf",
+            "species": "Farigiraf",
+            "details": "Farigiraf, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 90,
+              "spa": 130,
+              "spd": 90,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cudchew",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fling",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Greedent",
+            "species": "Greedent",
+            "details": "Greedent, L50, F",
+            "hp": 195,
+            "maxhp": 195,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 75,
+              "spd": 95,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cheekpouch",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

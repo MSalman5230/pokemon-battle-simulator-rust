@@ -1165,6 +1165,18 @@ const jawLockRosters = [
     [{...named('Mabosstiff', ['Jaw Lock', 'Recover']), ability:'Guard Dog'}, named('Umbreon', ['Recover'])],
     [{...named('Vaporeon', ['Recover']), item:'Shed Shell'}, named('Spiritomb', ['Recover'])],
 ];
+const ironBallFlingRosters = [
+    [{...named('Pinsir', ['Fling', 'Recycle']), item:'Iron Ball', ability:'Mold Breaker'}],
+    [named('Vaporeon', ['Protect', 'Recover'])],
+];
+const poisonBarbFlingRosters = [
+    [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
+    [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
+];
+const berryFlingRosters = [
+    [{...named('Farigiraf', ['Fling', 'Recover']), item:'Sitrus Berry', ability:'Cud Chew'}],
+    [{...named('Greedent', ['Tackle', 'Recover']), ability:'Cheek Pouch'}],
+];
 const cudChewRosters = [
     [{...named('Farigiraf', ['Tackle']), ability:'Cud Chew', item:'Sitrus Berry'}],
     [named('Raticate', ['Super Fang', 'Recover'])],
@@ -2226,6 +2238,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2',null], ['move 1','switch 2']], shackleRosters, 'bss-spirit-shackle'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','switch 2'],
         ['switch 2','move 1']], jawLockRosters, 'bss-jaw-lock'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'],
+        ['move 1','move 2'], ['move 1','move 2']], ironBallFlingRosters, 'bss-fling-iron-ball'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
+        ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        berryFlingRosters, 'bss-fling-berry'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], rattledRosters, 'bss-rattled'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 2']],
         cudChewRosters, 'bss-cud-chew'],
