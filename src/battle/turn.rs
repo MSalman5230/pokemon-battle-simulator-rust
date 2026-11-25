@@ -41,6 +41,11 @@ pub(super) enum Pivot {
 pub(super) enum Protection {
     Protect,
     KingsShield,
+    BanefulBunker,
+    SpikyShield,
+    BurningBulwark,
+    Obstruct,
+    SilkTrap,
 }
 
 #[derive(Clone, Copy)]
@@ -67,10 +72,42 @@ struct MoveResult {
 }
 
 impl Protection {
+    fn from_move(name: &str) -> Option<Self> {
+        Some(match name {
+            "Protect" | "Detect" => Self::Protect,
+            "King's Shield" => Self::KingsShield,
+            "Baneful Bunker" => Self::BanefulBunker,
+            "Spiky Shield" => Self::SpikyShield,
+            "Burning Bulwark" => Self::BurningBulwark,
+            "Obstruct" => Self::Obstruct,
+            "Silk Trap" => Self::SilkTrap,
+            _ => return None,
+        })
+    }
+
     fn volatile(self) -> &'static str {
         match self {
             Self::Protect => "protect",
             Self::KingsShield => "kingsshield",
+            Self::BanefulBunker => "banefulbunker",
+            Self::SpikyShield => "spikyshield",
+            Self::BurningBulwark => "burningbulwark",
+            Self::Obstruct => "obstruct",
+            Self::SilkTrap => "silktrap",
+        }
+    }
+
+    fn blocks_status(self) -> bool {
+        matches!(
+            self,
+            Self::Protect | Self::BanefulBunker | Self::SpikyShield
+        )
+    }
+
+    fn start_label(self) -> &'static str {
+        match self {
+            Self::BanefulBunker | Self::SpikyShield | Self::BurningBulwark => "move: Protect",
+            _ => "Protect",
         }
     }
 }
@@ -329,6 +366,40 @@ impl Battle {
         let end = delimiters.next().map_or(line.len(), |(offset, _)| offset);
         line.replace_range(start..end, "");
         line.push_str("|[still]");
+    }
+
+    fn protection_contact(
+        &mut self,
+        protect: Protection,
+        source: Position,
+        holder: Position,
+        move_log: usize,
+    ) {
+        let data = || DEX.moves(self.format.dex_mod, protect.volatile()).unwrap();
+        let drop = match protect {
+            Protection::Protect => return,
+            Protection::KingsShield => (BoostStat::Atk, -1),
+            Protection::Obstruct => (BoostStat::Def, -2),
+            Protection::SilkTrap => (BoostStat::Spe, -1),
+            Protection::BanefulBunker | Protection::BurningBulwark => {
+                let id = if protect == Protection::BanefulBunker {
+                    "psn"
+                } else {
+                    "brn"
+                };
+                self.try_status(source, id, holder, data(), false, move_log);
+                return;
+            }
+            Protection::SpikyShield => {
+                self.indirect_damage(
+                    source,
+                    8,
+                    &format!("|[from] Spiky Shield|[of] {}", self.ident(holder)),
+                );
+                return;
+            }
+        };
+        self.boost_from(source, holder, &[drop], BoostOrigin::from_move(data()));
     }
 
     fn add_health_line(&mut self, event: &str, target: Position, details: bool) {
@@ -1044,6 +1115,11 @@ impl Battle {
                     | "phantomforce"
                     | "shadowforce"
                     | "skyattack"
+                    | "banefulbunker"
+                    | "spikyshield"
+                    | "burningbulwark"
+                    | "obstruct"
+                    | "silktrap"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -3208,10 +3284,7 @@ impl Battle {
             }
             return true;
         }
-        if matches!(
-            move_data.name.as_str(),
-            "Protect" | "Detect" | "King's Shield"
-        ) {
+        if let Some(protect) = Protection::from_move(&move_data.name) {
             let more_actions = queue
                 .iter()
                 .any(|q| matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. }));
@@ -3228,16 +3301,14 @@ impl Battle {
             }
             self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
-            let protect = if move_data.name == "King's Shield" {
-                Protection::KingsShield
-            } else {
-                Protection::Protect
-            };
             mon.protection = Some(protect);
             mon.track_volatile(protect.volatile());
             mon.track_volatile("stall");
             mon.stall = Some(((stall * 3).min(729), 2));
-            self.add(format!("|-singleturn|{source_name}|Protect"));
+            self.add(format!(
+                "|-singleturn|{source_name}|{}",
+                protect.start_label()
+            ));
             self.each_event();
             self.each_event();
             return true;
@@ -3350,6 +3421,7 @@ impl Battle {
         // checks, then all accuracy rolls, then all damage calculations.
         let potential = spread_targets.len();
         let mut protected = 0;
+        let mut bypassed = 0;
         spread_targets.retain(|&mut_pos| {
             if self.terrain() == Some(Terrain::Psychic)
                 && priority > 0
@@ -3364,30 +3436,29 @@ impl Battle {
                 }
             }
             if let Some(protect) = self.mon(mut_pos).protection
-                && (protect == Protection::Protect || move_data.category != Category::Status)
+                && (protect.blocks_status() || move_data.category != Category::Status)
                 && move_data.flags.contains_key("protect")
             {
-                // Protect and King's Shield return NOT_FAIL, unlike a type
-                // immunity or a stopped move from Psychic Terrain.
-                protected += 1;
-                if smart_target {
-                    smart_target = false;
+                if self.event_ability(source) == "unseenfist"
+                    && move_data.flags.contains_key("contact")
+                {
+                    bypassed |= mut_pos.mask();
                 } else {
-                    self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
+                    // Personal guards return NOT_FAIL.
+                    protected += 1;
+                    if smart_target {
+                        smart_target = false;
+                    } else {
+                        self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
+                    }
+                    self.stop_protected_rampage(source);
+                    if move_data.flags.contains_key("contact") {
+                        self.protection_contact(protect, source, mut_pos, base);
+                    }
+                    return false;
                 }
-                self.stop_protected_rampage(source);
-                if protect == Protection::KingsShield && move_data.flags.contains_key("contact") {
-                    self.boost_from(
-                        source,
-                        mut_pos,
-                        &[(BoostStat::Atk, -1)],
-                        BoostOrigin::from_move(
-                            DEX.moves(self.format.dex_mod, "kingsshield").unwrap(),
-                        ),
-                    );
-                }
-                false
-            } else if !reflected
+            }
+            if !reflected
                 && source != mut_pos
                 && move_data.flags.contains_key("reflectable")
                 && !self.mon(mut_pos).semi_invulnerable()
@@ -3621,6 +3692,9 @@ impl Battle {
                 if self.mon(source).hp == 0 {
                     self.mark_fainted(source);
                 }
+            }
+            if self.mon(source).hp == 0 && !self.mon(source).fainted {
+                self.mark_fainted(source);
             }
             self.note_consecutive_move(consecutive, move_data);
             return true;
@@ -4407,6 +4481,7 @@ impl Battle {
                                         actor != source && !battle.mon(actor).fainted
                                     })
                             }),
+                        bypassed_protect: bypassed & target.mask() != 0,
                         roll: None,
                     },
                 )
@@ -5493,6 +5568,7 @@ impl Pokemon {
                 | "forewarn"
                 | "forecast"
                 | "hungerswitch"
+                | "unseenfist"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

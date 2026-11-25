@@ -267,6 +267,7 @@ pub(super) struct RegularHit<'a> {
     pub screen_handlers: u32,
     pub sheer_force_removed: bool,
     pub analytic_last: bool,
+    pub bypassed_protect: bool,
     /// When provided by a hypothetical query, use this native 0–15 roll
     /// instead of consuming the battle PRNG.
     pub roll: Option<u32>,
@@ -294,6 +295,7 @@ impl Battle {
             screen_handlers,
             sheer_force_removed,
             analytic_last,
+            bypassed_protect,
             roll,
         } = args;
         let tr = self.stat_rules.truncation;
@@ -556,7 +558,7 @@ impl Battle {
                 && user.ability != "guts"
                 && move_data.category == Category::Physical,
             final_modifier: 4096,
-            bypassed_protect: false,
+            bypassed_protect,
         };
         let randomness = roll.unwrap_or_else(|| self.rng.below(16));
         if spread && self.format.report_exact_hp {
@@ -585,6 +587,10 @@ impl Battle {
             (move_type, effect, crit),
             screen_handlers,
         );
+        if bypassed_protect {
+            self.add(format!("|-ability|{}|Unseen Fist", self.ident(source)));
+            self.add(format!("|-zbroken|{}", self.ident(target)));
+        }
         hit_damage.roll_with_randomness(tr, randomness)
     }
 }

@@ -995,6 +995,14 @@ const skyAttackRosters = [
     [{...named('Noivern', ['Sky Attack']), item:'Power Herb'}],
     [named('Vaporeon', ['Recover'])],
 ];
+const personalGuardsRosters = [
+    [named('Flareon', ['Tackle'])],
+    [named('Toxapex', ['Baneful Bunker']), named('Cacturne', ['Spiky Shield'])],
+];
+const unseenFistRosters = [
+    [{...named('Golurk', ['Shadow Punch', 'Shadow Ball'], 'N'), item:'Golurkite'}],
+    [named('Toxapex', ['Protect', 'Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1865,6 +1873,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1, move 1 1','move 2, move 2']], phantomForceRosters, 'vgc-phantom-force'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1']],
         skyAttackRosters, 'bss-sky-attack'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 1','switch 2'], ['move 1','move 1']],
+        personalGuardsRosters, 'bss-personal-guards'],
+    ['bssregmc', [['team 1','team 1'], ['move 1 mega','move 1'], ['move 1','move 2'], ['move 2','move 1']],
+        unseenFistRosters, 'bss-unseen-fist'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

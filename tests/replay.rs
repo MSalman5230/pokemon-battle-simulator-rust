@@ -1302,6 +1302,12 @@ fn phantom_force_breaks_protect_and_sky_attack_consumes_power_herb() {
 }
 
 #[test]
+fn contact_guards_apply_their_effects_and_unseen_fist_deals_quarter_damage() {
+    replay(include_str!("fixtures/bss-personal-guards.json"));
+    replay(include_str!("fixtures/bss-unseen-fist.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

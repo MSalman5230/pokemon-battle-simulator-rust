@@ -455,6 +455,7 @@ impl Battle {
                     screen_handlers,
                     sheer_force_removed,
                     analytic_last,
+                    bypassed_protect: false,
                     converted: false,
                     roll: Some(roll),
                     solar_weak: matches!(move_id, "solarbeam" | "solarblade")
