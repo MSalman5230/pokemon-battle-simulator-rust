@@ -756,3 +756,9 @@ fn double_shock_and_burn_up_spend_only_their_element_until_switching() {
     replay(include_str!("fixtures/bss-double-shock.json"));
     replay(include_str!("fixtures/bss-burn-up.json"));
 }
+
+#[test]
+fn champions_emergency_switching_preserves_other_pivots_and_checks_berries_first() {
+    replay(include_str!("fixtures/bss-wimp-out-double-pivot.json"));
+    replay(include_str!("fixtures/bss-emergency-exit-berry.json"));
+}

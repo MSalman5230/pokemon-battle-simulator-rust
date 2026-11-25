@@ -638,6 +638,14 @@ const burnUpRosters = [
     [named('Arcanine', ['Burn Up', 'Recover']), named('Glaceon', ['Recover'])],
     [named('Vaporeon', ['Will-O-Wisp', 'Recover']), named('Umbreon', ['Recover'])],
 ];
+const exitRosters = [
+    [named('Darmanitan', ['U-turn', 'Flare Blitz']), named('Glaceon', ['Recover'])],
+    [{...named('Wimpod', ['Recover']), ability: 'Wimp Out'}, named('Umbreon', ['Recover'])],
+];
+const exitBerryRosters = [
+    exitRosters[0],
+    [{...named('Golisopod', ['Recover']), ability: 'Emergency Exit', item: 'Sitrus Berry'}, named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -959,6 +967,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         doubleShockRosters, 'bss-double-shock'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2']],
         burnUpRosters, 'bss-burn-up'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['switch 2','switch 2']],
+        exitRosters, 'bss-wimp-out-double-pivot'],
+    ['bssregmc', [['team 12','team 12'], ['move 2','move 1']],
+        exitBerryRosters, 'bss-emergency-exit-berry'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

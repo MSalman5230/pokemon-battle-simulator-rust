@@ -74,6 +74,7 @@ impl Battle {
             self.add(format!("|-end|{ident}|Substitute"));
         }
         if dealt > 0 && self.mon(source).hp > 0 {
+            let original_hp = self.mon(source).hp;
             if move_data.name == "Struggle" {
                 let mon = self.mon_mut(source);
                 mon.hp = mon.hp.saturating_sub((mon.max_hp.get() + 2) / 4);
@@ -86,6 +87,7 @@ impl Battle {
                 mon.hp = mon.hp.saturating_sub(recoil.max(1));
                 self.add_health_line_with("-damage", source, false, "|[from] Recoil");
             }
+            self.emergency_exit(source, original_hp);
         }
         if let Some([num, den]) = move_data.drain {
             let restored = (dealt * u32::from(num)).div_ceil(u32::from(den));

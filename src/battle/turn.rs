@@ -13,8 +13,12 @@ pub(super) struct Position {
 }
 
 impl Position {
+    fn index(self) -> usize {
+        self.player.index() * 2 + self.slot
+    }
+
     fn mask(self) -> u8 {
-        1 << (self.player.index() * 2 + self.slot)
+        1 << self.index()
     }
 
     pub(super) fn loc(self, source: Self) -> i8 {
@@ -24,6 +28,12 @@ impl Position {
     fn label(self) -> String {
         format!("{}{}", self.player.id(), char::from(b'a' + self.slot as u8))
     }
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(super) enum Pivot {
+    Move(&'static str),
+    Ability,
 }
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
@@ -70,7 +80,7 @@ enum ActionKind {
     Switch {
         bench_slot: usize,
         immediate: bool,
-        pivot: Option<&'static str>,
+        pivot: Option<Pivot>,
     },
     Revive {
         party_slot: usize,
@@ -330,6 +340,29 @@ impl Battle {
             .iter()
             .map(|p| p.reviving || bench && (p.needs_replacement || p.pivot_move.is_some()))
             .collect()
+    }
+
+    pub(super) fn emergency_exit(&mut self, pos: Position, original_hp: u32) {
+        let mon = self.mon(pos);
+        let half = mon.max_hp.get() / 2;
+        if original_hp <= half
+            || mon.hp == 0
+            || mon.hp > half
+            || mon.pivot_move.is_some()
+            || self.drag_flags & pos.mask() != 0
+            || mon.reviving
+        {
+            return;
+        }
+        let ability = match self.event_ability(pos) {
+            "emergencyexit" => "Emergency Exit",
+            "wimpout" => "Wimp Out",
+            _ => return,
+        };
+        if self.first_bench(pos.player, 0).is_some() {
+            self.mon_mut(pos).pivot_move = Some(Pivot::Ability);
+            self.add(format!("|-activate|{}|ability: {ability}", self.ident(pos)));
+        }
     }
 
     pub fn is_reviving(&self, player: Player, slot: usize) -> bool {
@@ -1089,7 +1122,7 @@ impl Battle {
         self.insert_action(queue, action);
     }
 
-    fn run_switch_batch(&mut self, first: Position, queue: &mut Vec<Action>) {
+    fn run_switch_batch(&mut self, first: Position, queue: &mut Vec<Action>) -> [u32; 4] {
         // Simultaneous entry effects use a fresh speed order over the field.
         let batch_len = queue
             .iter()
@@ -1099,6 +1132,10 @@ impl Battle {
         switching[0] = Some(first);
         for (i, action) in queue.drain(..batch_len).enumerate() {
             switching[i + 1] = action.actor;
+        }
+        let mut original_hp = [0; 4];
+        for pos in switching.iter().flatten() {
+            original_hp[pos.index()] = self.mon(*pos).hp;
         }
         let (order, count) = self.ordered_actives(true);
         for (pos, _) in order.into_iter().take(count) {
@@ -1113,7 +1150,7 @@ impl Battle {
             if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
                 self.on_switch_in_hazards(pos);
                 if self.check_win() {
-                    return;
+                    return original_hp;
                 }
                 if self.mon(pos).hp == 0 {
                     continue;
@@ -1128,13 +1165,14 @@ impl Battle {
         for (pos, _) in order.into_iter().take(count) {
             self.white_herb(pos);
         }
+        original_hp
     }
 
     fn switch_party_member(
         &mut self,
         outgoing: Position,
         bench_slot: usize,
-        pivot: Option<&str>,
+        pivot: Option<Pivot>,
         drag: bool,
     ) {
         let returning = outgoing.slot == bench_slot;
@@ -1154,7 +1192,7 @@ impl Battle {
         party[outgoing.slot].stats_raised = false;
         party[outgoing.slot].flinched = false;
         party[outgoing.slot].lost_focus = false;
-        let passed_substitute = if pivot == Some("Shed Tail") {
+        let passed_substitute = if pivot == Some(Pivot::Move("Shed Tail")) {
             party[outgoing.slot].substitute_hp
         } else {
             0
@@ -1208,7 +1246,7 @@ impl Battle {
         self.prepare_illusion(outgoing);
         if drag {
             self.add_health_line("drag", outgoing, true);
-        } else if let Some(move_name) = pivot {
+        } else if let Some(Pivot::Move(move_name)) = pivot {
             self.add_health_line_with("switch", outgoing, true, &format!("|[from] {move_name}"));
         } else {
             self.add_health_line("switch", outgoing, true);
@@ -1218,6 +1256,7 @@ impl Battle {
     fn run_queue(&mut self, mut queue: Vec<Action>) -> Result<(), BattleError> {
         while !queue.is_empty() {
             let action = queue.remove(0);
+            let mut original_hp = [0; 4];
             match action.kind {
                 ActionKind::MegaEvolve => {
                     let pos = action.actor.unwrap();
@@ -1245,7 +1284,9 @@ impl Battle {
                         }
                     }
                 }
-                ActionKind::RunSwitch => self.run_switch_batch(action.actor.unwrap(), &mut queue),
+                ActionKind::RunSwitch => {
+                    original_hp = self.run_switch_batch(action.actor.unwrap(), &mut queue);
+                }
                 ActionKind::Switch {
                     bench_slot, pivot, ..
                 } => {
@@ -1315,7 +1356,12 @@ impl Battle {
                         }
                     }
                 }
-                ActionKind::Residual => self.residual(),
+                ActionKind::Residual => {
+                    for pos in self.positions() {
+                        original_hp[pos.index()] = self.mon(pos).hp;
+                    }
+                    self.residual();
+                }
             }
             let drags = if self.drag_flags != 0 {
                 self.apply_drags(&mut queue)
@@ -1351,6 +1397,11 @@ impl Battle {
                 )
             }) {
                 self.each_event();
+            }
+            if matches!(action.kind, ActionKind::Residual | ActionKind::RunSwitch) {
+                for pos in self.positions() {
+                    self.emergency_exit(pos, original_hp[pos.index()]);
+                }
             }
             let mut waiting = false;
             for player in Player::ALL {
@@ -2359,7 +2410,7 @@ impl Battle {
             self.protean_prepare(source, move_type);
             let snow_started = self.set_weather(source, Weather::Snow, None);
             if self.first_bench(source.player, 0).is_some() {
-                self.mon_mut(source).pivot_move = Some("Chilly Reception");
+                self.mon_mut(source).pivot_move = Some(Pivot::Move("Chilly Reception"));
                 self.each_event();
                 self.each_event();
             } else if !snow_started {
@@ -2451,7 +2502,7 @@ impl Battle {
             self.protean_prepare(source, move_type);
             if self.make_substitute(source, shed_tail) {
                 if shed_tail {
-                    self.mon_mut(source).pivot_move = Some("Shed Tail");
+                    self.mon_mut(source).pivot_move = Some(Pivot::Move("Shed Tail"));
                 }
                 self.each_event();
                 self.each_event();
@@ -2775,7 +2826,9 @@ impl Battle {
                 move_data.name.as_str(),
                 "Supercell Slam" | "High Jump Kick" | "Jump Kick"
             ) {
+                let original_hp = self.mon(source).hp;
                 self.indirect_damage(source, 2, &format!("|[from] {}", to_id(&move_data.name)));
+                self.emergency_exit(source, original_hp);
                 if self.mon(source).hp == 0 {
                     self.mark_fainted(source);
                 }
@@ -2942,7 +2995,7 @@ impl Battle {
                     if (lowered || self.mon(target).ability == "mirrorarmor")
                         && self.first_bench(source.player, 0).is_some()
                     {
-                        self.mon_mut(source).pivot_move = Some("Parting Shot");
+                        self.mon_mut(source).pivot_move = Some(Pivot::Move("Parting Shot"));
                     }
                     succeeded = true;
                 }
@@ -3077,6 +3130,8 @@ impl Battle {
         let mut damage = Vec::with_capacity(spread_targets.len());
         let (max_hits, per_strike_accuracy) = self.hits(source, move_data);
         let mut total = 0;
+        let mut landed_by_target = [0u32; 4];
+        let mut hp_after_damage = [0u32; 4];
         let mut hits_landed = 0;
         let mut hit_substitute = false;
         for hit in 1..=max_hits {
@@ -3252,6 +3307,10 @@ impl Battle {
                 let mon = self.mon_mut(target);
                 let landed = value.min(mon.hp);
                 mon.hp -= landed;
+                if landed > 0 {
+                    landed_by_target[target.index()] += landed;
+                    hp_after_damage[target.index()] = mon.hp;
+                }
                 if mon.volatile_ids().contains(&"focuspunch") {
                     mon.lost_focus = true;
                 }
@@ -3276,6 +3335,18 @@ impl Battle {
             }
             if move_data.name == "Ice Spinner" && !damage.is_empty() {
                 self.clear_terrain();
+            }
+            let pivot = match move_data.name.as_str() {
+                "U-turn" => Some(Pivot::Move("U-turn")),
+                "Volt Switch" => Some(Pivot::Move("Volt Switch")),
+                "Flip Turn" => Some(Pivot::Move("Flip Turn")),
+                _ => None,
+            };
+            if pivot.is_some()
+                && self.mon(source).hp != 0
+                && self.first_bench(source.player, 0).is_some()
+            {
+                self.mon_mut(source).pivot_move = pivot;
             }
             if !move_data.boosts.is_empty() {
                 for &(target, _) in &damage {
@@ -3377,6 +3448,7 @@ impl Battle {
                     self.cure_status(target, "[msg]");
                 }
             }
+            let original_source_hp = self.mon(source).hp;
             if move_data.flags.contains_key("contact") {
                 for &(target, _) in &damage {
                     if self.mon(target).ability == "aftermath" {
@@ -3476,6 +3548,7 @@ impl Battle {
                     }
                 }
             }
+            self.emergency_exit(source, original_source_hp);
             self.each_event();
             hits_landed += 1;
         }
@@ -3542,6 +3615,7 @@ impl Battle {
         };
         if recoil > 0 && !self.mon(source).fainted {
             let mon = self.mon_mut(source);
+            let original_hp = mon.hp;
             mon.hp = mon.hp.saturating_sub(recoil);
             self.add_health_line_with(
                 "-damage",
@@ -3553,17 +3627,23 @@ impl Battle {
                     "|[from] Recoil"
                 },
             );
+            self.emergency_exit(source, original_hp);
         }
         if mind_blown && total > 0 {
             self.mind_blown_recoil(source);
         }
         self.each_event();
+        for &target in &spread_targets {
+            let index = target.index();
+            self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
+        }
         if hits_landed > 0 && !move_data.after_hit_boosts.is_empty() {
             self.boost(source, &move_data.after_hit_boosts, true);
         }
         if self.mon(source).hp == 0 && !self.mon(source).fainted {
             self.mark_fainted(source);
         }
+        let original_source_hp = self.mon(source).hp;
         if self.mon(source).item == "lifeorb" && !self.mon(source).fainted {
             self.indirect_damage(source, 10, "|[from] item: Life Orb");
             if self.mon(source).hp == 0 {
@@ -3573,15 +3653,7 @@ impl Battle {
         if hits_landed > 0 {
             self.magician_after_hit(source, &spread_targets);
         }
-        if !self.mon(source).fainted && self.first_bench(source.player, 0).is_some() {
-            let pivot = match move_data.name.as_str() {
-                "U-turn" => Some("U-turn"),
-                "Volt Switch" => Some("Volt Switch"),
-                "Flip Turn" => Some("Flip Turn"),
-                _ => None,
-            };
-            self.mon_mut(source).pivot_move = pivot;
-        }
+        self.emergency_exit(source, original_source_hp);
         if spread {
             let labels: Vec<_> = spread_targets.into_iter().map(Position::label).collect();
             self.log[base]
@@ -3594,8 +3666,10 @@ impl Battle {
     fn mind_blown_recoil(&mut self, pos: Position) {
         let mon = self.mon_mut(pos);
         if mon.hp != 0 && mon.ability != "magicguard" {
+            let original_hp = mon.hp;
             mon.hp = mon.hp.saturating_sub(mon.max_hp.get().div_ceil(2));
             self.add_health_line_with("-damage", pos, false, "|[from] mindblown");
+            self.emergency_exit(pos, original_hp);
         }
     }
 
@@ -3950,6 +4024,8 @@ impl Pokemon {
                 | "superluck"
                 | "synchronize"
                 | "limber"
+                | "emergencyexit"
+                | "wimpout"
         )
     }
 

@@ -228,7 +228,7 @@ pub struct Pokemon {
     encore: Option<(usize, u8)>,
     revealed_disables: u32,
     revealed_all_disables: bool,
-    pivot_move: Option<&'static str>,
+    pivot_move: Option<turn::Pivot>,
 }
 
 #[derive(Clone)]
