@@ -928,6 +928,12 @@ fn transform_preserves_the_original_roster_while_copying_live_combat_state() {
 }
 
 #[test]
+fn dragon_darts_splits_when_possible_and_retargets_to_the_eligible_survivor() {
+    replay(include_str!("fixtures/bss-dragon-darts.json"));
+    replay(include_str!("fixtures/vgc-dragon-darts.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

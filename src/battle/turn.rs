@@ -971,6 +971,7 @@ impl Battle {
                     | "doomdesire"
                     | "belch"
                     | "transform"
+                    | "dragondarts"
                     | "grassyglide"
                     | "encore"
                     | "tidyup"
@@ -2319,11 +2320,15 @@ impl Battle {
             }
         };
         let source_name = self.ident(source);
+        let darts = move_data.name == "Dragon Darts";
         let curse = move_data.name == "Curse";
         let base_target = move_base_target(move_data, source, loc);
         let original_target =
             forced_target.or_else(|| self.resolve_target(source, base_target, loc));
         let mut target = retaliation_hit.map(|hit| hit.source).or(original_target);
+        if darts && target.is_some_and(|pos| self.mon(pos).fainted && pos.player == source.player) {
+            target = self.random_target(source, TargetKind::Normal);
+        }
         if move_data.name == "Chilly Reception"
             && self.mon(source).volatile_ids().contains(&"chillyreception")
         {
@@ -2484,6 +2489,7 @@ impl Battle {
             ));
             base
         };
+        let mut redirected = false;
         if !delayed
             && self.slots() > 1
             && !move_data.tracks_target
@@ -2493,6 +2499,7 @@ impl Battle {
             })
             && let Some(redirect) = self.redirect_target(source, target, move_data, move_type)
         {
+            redirected = true;
             spread_targets.clear();
             spread_targets.push(redirect);
             self.log[base].public = format!(
@@ -2500,6 +2507,21 @@ impl Battle {
                 move_data.name,
                 self.ident(redirect)
             );
+        }
+        let mut smart_target = false;
+        if darts
+            && !redirected
+            && self.slots() == 2
+            && let Some(&first) = spread_targets.first()
+        {
+            let mate = Position {
+                slot: 1 - first.slot,
+                ..first
+            };
+            if mate != source && self.mon(mate).hp > 0 {
+                spread_targets.push(mate);
+                smart_target = true;
+            }
         }
         let sacrifice = matches!(
             move_data.name.as_str(),
@@ -2963,7 +2985,7 @@ impl Battle {
         if !delayed {
             self.protean_prepare(source, move_type);
         }
-        let spread = spread_targets.len() > 1;
+        let spread = !darts && spread_targets.len() > 1;
         let priority = self.move_priority(source, move_data);
         spread_targets.retain(|&target| {
             if self
@@ -2975,6 +2997,10 @@ impl Battle {
                 || (move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
             {
                 return true;
+            }
+            if smart_target {
+                smart_target = false;
+                return false;
             }
             if !spread {
                 self.log[base].public.push_str("|[miss]");
@@ -3001,7 +3027,11 @@ impl Battle {
                 && (protect == Protection::Protect || move_data.category != Category::Status)
                 && move_data.flags.contains_key("protect")
             {
-                self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
+                if smart_target {
+                    smart_target = false;
+                } else {
+                    self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
+                }
                 self.stop_protected_rampage(source);
                 if protect == Protection::KingsShield && move_data.flags.contains_key("contact") {
                     self.boost_from(
@@ -3104,6 +3134,7 @@ impl Battle {
                 true
             }
         });
+        smart_target &= spread_targets.len() > 1;
         let ignores_type = !delayed && self.move_ignores_immunity(source, move_data, move_type);
         spread_targets.retain(|&pos| {
             if !ignores_type
@@ -3129,12 +3160,15 @@ impl Battle {
                 || (matches!(move_data.name.as_str(), "Trick" | "Switcheroo")
                     && self.event_ability(pos) == "stickyhold")
             {
-                self.add(format!("|-immune|{}", self.ident(pos)));
+                if !smart_target {
+                    self.add(format!("|-immune|{}", self.ident(pos)));
+                }
                 false
             } else {
                 true
             }
         });
+        smart_target &= spread_targets.len() > 1;
         if move_data.name == "Disable"
             && spread_targets
                 .iter()
@@ -3183,6 +3217,10 @@ impl Battle {
                     100,
                 )
             {
+                if smart_target {
+                    smart_target = false;
+                    return false;
+                }
                 if !spread {
                     self.log[base].public.push_str("|[miss]");
                 }
@@ -3586,11 +3624,12 @@ impl Battle {
         let mut landed_by_target = [0u32; 4];
         let mut hp_after_damage = [0u32; 4];
         let mut hits_landed = 0;
+        let mut split_darts = [None; 2];
         let attack_hazard = Hazard::from_attack(&move_data.name);
         let mut hit_substitute = false;
         let binding = super::partial_trap::binding_move(&move_data.name);
         for hit in 1..=max_hits {
-            if (self.mon(source).hp == 0 && !sacrifice)
+            if (self.mon(source).hp == 0 && !sacrifice && !smart_target)
                 || spread_targets
                     .iter()
                     .all(|&target| self.mon(target).hp == 0)
@@ -3603,6 +3642,20 @@ impl Battle {
                         && !self.next_strike_hits(source, spread_targets[0], move_data, accuracy)))
             {
                 break;
+            }
+            let strike_targets = if smart_target {
+                &spread_targets[usize::from(hit - 1)..usize::from(hit)]
+            } else {
+                spread_targets.as_slice()
+            };
+            if darts {
+                let target = self.ident(strike_targets[0]);
+                if hit == 1 {
+                    self.log[base].public =
+                        format!("|move|{source_name}|Dragon Darts|{target}{called_from}");
+                } else {
+                    self.add(format!("|-anim|{source_name}|Dragon Darts|{target}"));
+                }
             }
             let power = if matches!(move_data.name.as_str(), "Triple Axel" | "Triple Kick") {
                 power * u16::from(hit)
@@ -3726,7 +3779,7 @@ impl Battle {
             // TryPrimaryHit handles each shield first, before the ordinary
             // spread calculations consume any critical or damage draws.
             let mut shielded = 0;
-            for &target in &spread_targets {
+            for &target in strike_targets {
                 if self.behind_substitute(source, target, move_data) {
                     let value = compute(self, target, true);
                     self.strike_substitute(source, target, move_data, value, ohko);
@@ -3734,7 +3787,7 @@ impl Battle {
                     hit_substitute = true;
                 }
             }
-            for &target in &spread_targets {
+            for &target in strike_targets {
                 if shielded & target.mask() == 0 {
                     let value = compute(self, target, false);
                     damage.push((target, value));
@@ -3882,7 +3935,7 @@ impl Battle {
                 mon.track_volatile("glaiverush");
                 self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
             }
-            for &target in &spread_targets {
+            for &target in strike_targets {
                 if move_data.secondaries.is_empty() {
                     break;
                 }
@@ -4063,7 +4116,14 @@ impl Battle {
             }
             self.emergency_exit(source, original_source_hp);
             self.each_event();
+            if smart_target {
+                split_darts[usize::from(hit - 1)] = damage.first().copied();
+            }
             hits_landed += 1;
+        }
+        if smart_target {
+            damage.clear();
+            damage.extend(split_darts.into_iter().flatten());
         }
         let hint_before_faint = consecutive
             && (self.mon(source).hp == 0
@@ -4091,7 +4151,7 @@ impl Battle {
                 fainted += 1;
             }
             if target != source {
-                self.mon_mut(target).times_attacked += hits_landed;
+                self.mon_mut(target).times_attacked += if smart_target { 1 } else { hits_landed };
             }
             if target.player != source.player && !self.mon(target).fainted {
                 self.mon_mut(target).last_foe_hit = Some(FoeHit {
@@ -4110,7 +4170,7 @@ impl Battle {
         if ohko && self.mon(spread_targets[0]).hp == 0 {
             self.add("|-ohko");
         }
-        if move_data.multihit.is_some() && hits_landed > 0 {
+        if move_data.multihit.is_some() && hits_landed > 0 && !darts {
             let target = spread_targets[0];
             let ident = if self.mon(target).fainted {
                 format!("{}: {}", target.player.id(), self.mon(target).name)

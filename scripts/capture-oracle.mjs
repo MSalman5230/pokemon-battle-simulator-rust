@@ -872,6 +872,10 @@ const imposterDoublesRosters = [
     [imposterRosters[0][0], named('Vaporeon', ['Recover'])],
     [named('Leafeon', ['Recover']), named('Glaceon', ['Ice Shard', 'Recover'])],
 ];
+const dartRosters = [
+    [named('Dragapult', ['Dragon Darts']), named('Umbreon', ['Recover'])],
+    [named('Glaceon', ['Recover', 'Protect', 'Follow Me']), named('Vaporeon', ['Recover']), named('Sylveon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1326,6 +1330,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         transformRosters, 'bss-transform'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1 1']],
         imposterDoublesRosters, 'vgc-imposter'],
+    ['bssregmc', [['team 12','team 123'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','switch 3']],
+        dartRosters, 'bss-dragon-darts'],
+    ['vgc2026regmc', [['team 12','team 123'], ['move 1 2, move 1','move 1, move 1'],
+        ['move 1 1, move 1','move 2, move 1'], ['move 1 2, move 1','move 3, move 1'], ['move 1 1, move 1','switch 3, move 1'],
+        ['move 1 -2, move 1','move 1, move 1']], dartRosters, 'vgc-dragon-darts'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
