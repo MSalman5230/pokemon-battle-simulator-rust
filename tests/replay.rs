@@ -723,3 +723,9 @@ fn chilly_reception_announces_before_flinch_and_works_with_existing_snow() {
     replay(include_str!("fixtures/bss-chilly-reception.json"));
     replay(include_str!("fixtures/vgc-chilly-reception.json"));
 }
+
+#[test]
+fn conditional_base_power_and_field_wide_boost_reset_match_showdown() {
+    replay(include_str!("fixtures/bss-fickle-beam.json"));
+    replay(include_str!("fixtures/bss-status-power-haze.json"));
+}

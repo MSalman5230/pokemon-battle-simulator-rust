@@ -914,6 +914,11 @@ impl Battle {
                     | "focuspunch"
                     | "revivalblessing"
                     | "chillyreception"
+                    | "ficklebeam"
+                    | "barbbarrage"
+                    | "venoshock"
+                    | "hex"
+                    | "haze"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -2289,6 +2294,16 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Haze" {
+            self.protean_prepare(source, move_type);
+            self.add("|-clearallboost");
+            for pos in self.positions() {
+                self.mon_mut(pos).boosts = Boosts::default();
+            }
+            self.each_event();
+            self.each_event();
+            return true;
+        }
         if move_data.name == "Trick Room" {
             self.protean_prepare(source, move_type);
             if self.trick_room > 0 {
@@ -3080,6 +3095,13 @@ impl Battle {
                 } else {
                     self.effectiveness_of(move_data, move_type, target).unwrap()
                 };
+                let mut power = power;
+                if move_data.name == "Hex" && self.mon(target).status != Status::Healthy {
+                    if self.format.report_exact_hp {
+                        self.add("|debug|BP doubled from status condition");
+                    }
+                    power *= 2;
+                }
                 let crit_ratio = self.crit_ratio(source, target, move_data);
                 let crit_roll = move_data.will_crit.unwrap_or_else(|| {
                     crit_ratio != 0
@@ -3090,6 +3112,19 @@ impl Battle {
                 let crit = crit_roll
                     && !disguised
                     && !matches!(self.event_ability(target), "battlearmor" | "shellarmor");
+                // BasePower handlers run after the critical-hit draw, unlike
+                // the earlier basePowerCallback used by Hex.
+                if move_data.name == "Fickle Beam" && self.rng.chance(3, 10) {
+                    power *= 2;
+                    self.log[base]
+                        .public
+                        .push_str("|[anim] Fickle Beam All Out");
+                    self.add(format!("|-activate|{source_name}|move: Fickle Beam"));
+                } else if matches!(move_data.name.as_str(), "Barb Barrage" | "Venoshock")
+                    && matches!(self.mon(target).status, Status::Poison | Status::Toxic(_))
+                {
+                    power *= 2;
+                }
                 let value = self.regular_hit(
                     source,
                     target,
