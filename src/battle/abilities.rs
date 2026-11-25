@@ -657,6 +657,7 @@ impl Battle {
         let mon = self.mon_mut(pos);
         mon.ability_order = order;
         mon.type_change_used = false;
+        mon.cud_chew = None;
     }
 
     pub(super) fn replacement_ability(
@@ -1517,6 +1518,7 @@ impl Pokemon {
             self.ability.clone_from(&self.base_ability);
         }
         self.type_change_used = false;
+        self.cud_chew = None;
     }
 
     fn stat_drop_protection(&self) -> Option<&'static str> {

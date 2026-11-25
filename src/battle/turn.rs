@@ -1646,6 +1646,7 @@ impl Battle {
     fn run_queue(&mut self, mut queue: Vec<Action>) -> Result<(), BattleError> {
         while !queue.is_empty() {
             let action = queue.remove(0);
+            self.turn_queue_empty = queue.is_empty();
             let mut original_hp = [0; 4];
             match action.kind {
                 ActionKind::MegaEvolve => {
@@ -1820,6 +1821,7 @@ impl Battle {
                 )
             });
             if !replacements_pending {
+                self.turn_queue_empty = queue.is_empty();
                 self.each_event();
             }
             if matches!(action.kind, ActionKind::Residual | ActionKind::RunSwitch) {
@@ -2134,6 +2136,7 @@ impl Battle {
             Weather,
             SpeedBoost,
             Harvest,
+            CudChew,
             Pickup,
             Roost,
             Yawn,
@@ -2283,6 +2286,7 @@ impl Battle {
             if !mon.fainted {
                 match mon.ability.as_str() {
                     "harvest" => timers.push((pos, Effect::Harvest, priority(28, 2))),
+                    "cudchew" => timers.push((pos, Effect::CudChew, priority(28, 2))),
                     "pickup" => timers.push((pos, Effect::Pickup, priority(28, 2))),
                     _ => {}
                 }
@@ -2573,6 +2577,7 @@ impl Battle {
                 Effect::Healer => self.healer_residual(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Harvest => self.harvest_item(pos),
+                Effect::CudChew => self.chew_berry(pos),
                 Effect::Pickup => self.pick_up_item(pos),
                 Effect::Roost => {
                     mon.roosted = false;
@@ -6089,6 +6094,7 @@ impl Pokemon {
                 | "quickdraw"
                 | "poisontouch"
                 | "cheekpouch"
+                | "cudchew"
                 | "solarpower"
                 | "fairyaura"
                 | "darkaura"

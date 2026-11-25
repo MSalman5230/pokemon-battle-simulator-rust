@@ -1116,6 +1116,14 @@ const rattledRosters = [
     [{...named('Magikarp', ['Tackle']), ability:'Rattled'}],
     [{...named('Mightyena', ['Snarl']), ability:'Intimidate'}],
 ];
+const cudChewRosters = [
+    [{...named('Farigiraf', ['Tackle']), ability:'Cud Chew', item:'Sitrus Berry'}],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
+const residualBerryRosters = [
+    cudChewRosters[0],
+    [named('Gengar', ['Toxic', 'Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -2048,6 +2056,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         auraRosters, 'vgc-auras'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 2, move 1','move 1, move 1']], stalwartRosters, 'vgc-stalwart'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], rattledRosters, 'bss-rattled'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 2']],
+        cudChewRosters, 'bss-cud-chew'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 2'], ['move 1','move 2'],
+        ['move 1','move 2'], ['move 1','move 2']], residualBerryRosters, 'bss-cud-chew-after-residual'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

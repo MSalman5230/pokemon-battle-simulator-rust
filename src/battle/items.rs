@@ -4,6 +4,12 @@ use super::turn::{Pivot, Position};
 use super::*;
 use crate::mechanics::BoostStat;
 
+#[derive(Clone, Copy)]
+pub(super) struct CudChew {
+    item: &'static crate::dex::Item,
+    ticks: u8,
+}
+
 pub(super) fn resistance_berry(id: &str) -> Option<(&'static str, &'static str)> {
     Some(match id {
         "chilanberry" => ("Normal", "Chilan Berry"),
@@ -232,7 +238,7 @@ impl Battle {
             let amount = mon.max_hp.get() / 4;
             self.consume(pos, "Sitrus Berry", true);
             self.item_heal(pos, amount, "Sitrus Berry");
-            self.cheek_pouch(pos);
+            self.after_eating_berry(pos, "Sitrus Berry", false);
             self.symbiosis_after_item(pos);
         }
         self.pinch_stat_berry(pos);
@@ -256,7 +262,7 @@ impl Battle {
         if berry == "Lum Berry" && self.mon(pos).confusion > 0 {
             self.cure_confusion(pos);
         }
-        self.cheek_pouch(pos);
+        self.after_eating_berry(pos, berry, false);
         self.symbiosis_after_item(pos);
     }
 
@@ -277,7 +283,7 @@ impl Battle {
         }
         self.consume(pos, name, true);
         self.apply_stat_berry(pos, name, stat);
-        self.cheek_pouch(pos);
+        self.after_eating_berry(pos, name, false);
         self.symbiosis_after_item(pos);
     }
 
@@ -334,27 +340,8 @@ impl Battle {
         // Pluck and Bug Bite invoke Eat directly, without replacing the
         // user's held item or recording a consumed item for Recycle.
         if !self.debug_ignored_item(source, "Eat") {
-            match id.as_str() {
-                "sitrusberry" => {
-                    let amount = self.mon(source).max_hp.get() / 4;
-                    self.item_heal(source, amount, name);
-                }
-                "lumberry" => {
-                    self.cure_status(source, "[msg]");
-                    if self.mon(source).confusion > 0 {
-                        self.cure_confusion(source);
-                    }
-                }
-                "chestoberry" if matches!(self.mon(source).status, Status::Sleep(_)) => {
-                    self.cure_status(source, "[msg]");
-                }
-                _ => {
-                    if let Some((name, stat)) = stat_berry(&id) {
-                        self.apply_stat_berry(source, name, stat);
-                    }
-                }
-            }
-            self.cheek_pouch(source);
+            self.berry_effect(source, &id, item);
+            self.after_eating_berry(source, name, true);
         }
         if self.event_ability(source) == "ripen" {
             self.mon_mut(source).ripen_pending = resistance_berry(&id).is_some();
@@ -565,16 +552,67 @@ impl Battle {
         self.add_health_line_with("-heal", pos, false, &format!("|[from] item: {item}"));
     }
 
-    pub(super) fn cheek_pouch(&mut self, pos: Position) {
-        if self.event_ability(pos) != "cheekpouch" {
+    pub(super) fn after_eating_berry(&mut self, pos: Position, name: &str, stolen: bool) {
+        match self.event_ability(pos) {
+            "cheekpouch" => {
+                self.ability_heal(pos, 3, "Cheek Pouch", None);
+            }
+            "cudchew" if !stolen => {
+                if let Some(item) = DEX.item(self.format.dex_mod, &to_id(name)) {
+                    let ticks = if self.turn_queue_empty { 1 } else { 2 };
+                    self.mon_mut(pos).cud_chew = Some(CudChew { item, ticks });
+                }
+            }
+            _ => {}
+        }
+    }
+
+    pub(super) fn chew_berry(&mut self, pos: Position) {
+        if self.event_ability(pos) != "cudchew" || self.mon(pos).hp == 0 {
             return;
         }
         let mon = self.mon_mut(pos);
-        if mon.hp == 0 || mon.hp == mon.max_hp.get() || mon.heal_block > 0 {
+        let Some(state) = mon.cud_chew.as_mut() else {
+            return;
+        };
+        state.ticks -= 1;
+        if state.ticks != 0 {
             return;
         }
-        mon.hp = (mon.hp + (mon.max_hp.get() / 3).max(1)).min(mon.max_hp.get());
-        self.add_health_line_with("-heal", pos, false, "|[from] ability: Cheek Pouch");
+        let item = state.item;
+        mon.cud_chew = None;
+        let name = &item.effect.name;
+        self.add(format!("|-activate|{}|ability: Cud Chew", self.ident(pos)));
+        self.add(format!("|-enditem|{}|{name}|[eat]", self.ident(pos)));
+        if !self.debug_ignored_item(pos, "Eat") {
+            self.berry_effect(pos, &to_id(name), item);
+        }
+        if item.effect.handlers.iter().any(|hook| hook == "onEat") {
+            self.mon_mut(pos).ate_berry = true;
+        }
+    }
+
+    fn berry_effect(&mut self, pos: Position, id: &str, item: &crate::dex::Item) {
+        match id {
+            "sitrusberry" => {
+                let amount = self.mon(pos).max_hp.get() / 4;
+                self.item_heal(pos, amount, &item.effect.name);
+            }
+            "lumberry" => {
+                self.cure_status(pos, "[msg]");
+                if self.mon(pos).confusion > 0 {
+                    self.cure_confusion(pos);
+                }
+            }
+            "chestoberry" if matches!(self.mon(pos).status, Status::Sleep(_)) => {
+                self.cure_status(pos, "[msg]")
+            }
+            _ => {
+                if let Some((name, stat)) = stat_berry(id) {
+                    self.apply_stat_berry(pos, name, stat);
+                }
+            }
+        }
     }
 
     pub(super) fn consume(&mut self, pos: Position, item: &str, eaten: bool) {

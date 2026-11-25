@@ -1434,6 +1434,12 @@ fn rattled_responds_to_intimidate_and_a_dark_attack() {
 }
 
 #[test]
+fn cud_chew_repeats_a_berry_next_turn_even_if_it_was_eaten_after_residuals() {
+    replay(include_str!("fixtures/bss-cud-chew.json"));
+    replay(include_str!("fixtures/bss-cud-chew-after-residual.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
