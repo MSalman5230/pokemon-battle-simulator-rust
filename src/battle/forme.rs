@@ -6,6 +6,7 @@ impl Pokemon {
     pub(super) fn set_current_species(&mut self, species: &'static Species, rules: StatRules) {
         self.species = species;
         self.temporary_type = None;
+        self.added_type = None;
         self.spent_elements = 0;
         self.stats = Stats::map(|stat| {
             rules.stat(

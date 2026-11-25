@@ -1189,6 +1189,12 @@ fn battle_bond_only_triggers_once_and_ash_water_shuriken_always_hits_three_times
 }
 
 #[test]
+fn type_adding_moves_replace_the_previous_added_type_and_retarget_curse() {
+    replay(include_str!("fixtures/bss-added-types.json"));
+    replay(include_str!("fixtures/vgc-added-ghost-curse.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

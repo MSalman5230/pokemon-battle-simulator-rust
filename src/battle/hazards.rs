@@ -360,5 +360,6 @@ impl Pokemon {
                     ty
                 }
             })
+            .chain(self.added_type)
     }
 }

@@ -1033,6 +1033,8 @@ impl Battle {
                     | "pluck"
                     | "beatup"
                     | "watershuriken"
+                    | "trickortreat"
+                    | "forestscurse"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -1377,6 +1379,7 @@ impl Battle {
         party[outgoing.slot].active_move_actions = 0;
         party[outgoing.slot].roosted = false;
         party[outgoing.slot].temporary_type = None;
+        party[outgoing.slot].added_type = None;
         party[outgoing.slot].spent_elements = 0;
         party[outgoing.slot].yawn = None;
         party[outgoing.slot].seeded_from = None;
@@ -3610,8 +3613,50 @@ impl Battle {
                     } else {
                         let mon = self.mon_mut(target);
                         mon.temporary_type = Some("Water");
+                        mon.added_type = None;
                         mon.spent_elements = 0;
                         self.add(format!("|-start|{}|typechange|Water", self.ident(target)));
+                        succeeded = true;
+                    }
+                }
+                if matches!(move_data.name.as_str(), "Trick-or-Treat" | "Forest's Curse") {
+                    let ty = if move_data.name == "Trick-or-Treat" {
+                        "Ghost"
+                    } else {
+                        "Grass"
+                    };
+                    if self.mon(target).has_type(ty) {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    } else {
+                        self.mon_mut(target).added_type = Some(ty);
+                        self.add(format!(
+                            "|-start|{}|typeadd|{ty}|[from] move: {}",
+                            self.ident(target),
+                            move_data.name
+                        ));
+                        if ty == "Ghost" && self.slots() == 2 && target.slot == 1 {
+                            // When the second allied slot gains Ghost before
+                            // Curse resolves, upstream rewrites its target.
+                            for action in queue.iter_mut() {
+                                if action.actor == Some(target)
+                                    && let ActionKind::Move {
+                                        move_slot,
+                                        target: loc,
+                                        ..
+                                    } = &mut action.kind
+                                    && *move_slot != RECHARGE_SLOT
+                                    && self.move_data(target, *move_slot).name == "Curse"
+                                {
+                                    // The queue's resolved self target remains
+                                    // self even when upstream changes its loc.
+                                    if *loc != target.loc(target) {
+                                        *loc = -1;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
                         succeeded = true;
                     }
                 }
@@ -4329,6 +4374,7 @@ impl Battle {
                 let mon = self.mon_mut(source);
                 if !matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally") {
                     mon.spent_elements |= Pokemon::element_bit(ty);
+                    mon.added_type = None;
                 }
                 let types = mon.types().collect::<Vec<_>>().join("/");
                 self.add(format!(
@@ -4824,6 +4870,7 @@ impl Battle {
         mon.choice_lock = None;
         mon.roosted = false;
         mon.temporary_type = None;
+        mon.added_type = None;
         mon.spent_elements = 0;
         mon.yawn = None;
         mon.seeded_from = None;

@@ -54,6 +54,7 @@ impl Battle {
             speed_stat,
         );
         let temporary_type = model.temporary_type;
+        let added_type = model.added_type;
         let spent_elements = model.spent_elements;
         let times_attacked = model.times_attacked;
         let focus = model.volatile_ids().contains(&"focusenergy");
@@ -98,6 +99,7 @@ impl Battle {
         mon.speed = speed as i32;
         mon.boosts = boosts;
         mon.temporary_type = temporary_type;
+        mon.added_type = added_type;
         mon.spent_elements = spent_elements;
         mon.times_attacked = times_attacked;
         mon.used_moves = 0;

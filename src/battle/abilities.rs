@@ -1313,6 +1313,7 @@ impl Battle {
         }
         let mon = self.mon_mut(pos);
         mon.temporary_type = Some(move_type);
+        mon.added_type = None;
         mon.spent_elements = 0;
         self.add(format!(
             "|-start|{}|typechange|{move_type}|[from] ability: {name}",

@@ -1101,6 +1101,14 @@ const ashGreninjaRosters = [
     [{...named('Greninja-Ash', ['Water Shuriken'], 'M'), ability:'Battle Bond'}],
     [named('Umbreon', ['Recover'])],
 ];
+const addedTypeRosters = [
+    [named('Gourgeist', ['Trick-or-Treat', "Forest's Curse", 'Tackle'])],
+    [named('Umbreon', ['Recover'])],
+];
+const curseGlitchRosters = [
+    [named('Jolteon', ['Trick-or-Treat']), named('Umbreon', ['Curse'])],
+    [named('Flareon', ['Recover']), named('Glaceon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1670,6 +1678,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         [null,'switch 3'], ['move 2','move 1']], battleBondRosters, 'bss-battle-bond'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']],
         ashGreninjaRosters, 'bss-ash-water-shuriken'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 3','move 1'],
+        ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 1']],
+        addedTypeRosters, 'bss-added-types'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 -2, move 1','move 1, move 1']],
+        curseGlitchRosters, 'vgc-added-ghost-curse'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
