@@ -60,6 +60,7 @@ const ids = {
     ou: 'gen9championsou', uu: 'gen9championsuu', draft: 'gen9championsdraft',
     doubles: 'gen9championsdoubles', duu: 'gen9champions4v4doublesuu',
     doublesDraft: 'gen9champions4v4doublesdraft',
+    natdex: 'gen9championsnatdexdraft',
 };
 const simple = (species, ability, moves, item = '') => ({species, ability, moves, item, nature: 'Hardy'});
 const leagueTeam = [
@@ -82,6 +83,20 @@ const leagueCases = [
     ['4v4 Doubles UU checks the held Mega Stone forme', ids.duu, 'set', simple('Charizard','Blaze',['Flamethrower'],'Charizardite Y')],
     ['Draft permits Sleep Powder', ids.draft, 'set', base],
     ['Doubles Draft uses Flat Rules', ids.doublesDraft, 'set', base],
+    ['NatDex accepts old transfer TM', ids.natdex, 'set', simple('Charizard','Blaze',['Flamethrower','Toxic','Roost'])],
+    ['NatDex accepts Return and typed Hidden Power', ids.natdex, 'set', simple('Pidgeot','Keen Eye',['Brave Bird','Return','Hidden Power Ice'])],
+    ['NatDex uses Champions fallback for an exclusive move', ids.natdex, 'set', eternal],
+    ['NatDex checks Sketch instead of the ordinary learnset', ids.natdex, 'set', simple('Smeargle','Own Tempo',['Spore','Sticky Web','Celebrate','Protect'])],
+    ['NatDex validates moves from a past event', ids.natdex, 'set', simple('Pikachu','Static',['Volt Tackle','Surf'],'Light Ball')],
+    ['NatDex admits an event-only Pokémon when its origin matches', ids.natdex, 'set', simple('Victini','Victory Star',['V-create'])],
+    ['NatDex retains an obtainable past item', ids.natdex, 'set', simple('Pikachu','Static',['Thunderbolt'],'Normal Gem')],
+    ['NatDex declines an item never obtainable in Gen 7 to 9', ids.natdex, 'set', simple('Pikachu','Static',['Thunderbolt'],'Electric Gem')],
+    ['NatDex permits a past species and move', ids.natdex, 'set', simple('Castform','Forecast',['Weather Ball','Sunny Day','Hail'])],
+    ['NatDex declines an impossible form', ids.natdex, 'set', simple('Eternatus-Eternamax','Pressure',['Recover'])],
+    ['NatDex retains the CAP ban', ids.natdex, 'set', simple('Kitsunoh','Limber',['Shadow Strike'])],
+    ['NatDex declines a move without a valid source', ids.natdex, 'set', simple('Pidgeot','Keen Eye',['Brave Bird','Dragon Ascent'])],
+    ['NatDex checks typed Hidden Power against the explicit type', ids.natdex, 'set',
+        {...simple('Charizard','Blaze',['Hidden Power Ice']), hpType:'Fairy'}],
 ];
 for (const format of Object.values(ids)) {
     leagueCases.push(['ordinary full roster', format, 'team', leagueTeam]);

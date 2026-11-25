@@ -807,7 +807,7 @@ impl Pokemon {
                 .moves(format.dex_mod, &to_id(name))
                 .ok_or_else(|| BattleError::Unknown(format!("move {name}")))?;
             let id = to_id(&data.name);
-            if matches!(id.as_str(), "hiddenpower" | "return" | "frustration") {
+            if id.starts_with("hiddenpower") || matches!(id.as_str(), "return" | "frustration") {
                 return Err(BattleError::Unsupported(format!("request data for {name}")));
             }
             let pp = max_pp(data.pp, data.no_pp_boosts);

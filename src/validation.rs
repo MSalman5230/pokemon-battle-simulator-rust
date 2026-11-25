@@ -12,6 +12,7 @@ use serde_json::Value;
 use std::{collections::HashMap, sync::LazyLock};
 
 mod flat;
+mod natdex;
 pub use flat::{TeamValidator, ValidationError};
 
 type Table<T> = HashMap<String, T>;
@@ -80,6 +81,9 @@ pub struct SpeciesRules {
     pub nfe: bool,
     pub egg_groups: Vec<String>,
     pub parents: Option<Vec<LearnsetParent>>,
+    pub nat_dex_tier: Option<String>,
+    pub gender: Option<String>,
+    pub evo_region: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -193,9 +197,7 @@ impl LegalityCatalog {
         let species_id = DEX
             .species(dex_mod, &to_id(species_name))
             .map(|s| to_id(&s.name));
-        let move_id = DEX
-            .moves(dex_mod, &to_id(move_name))
-            .map(|m| to_id(&m.name));
+        let move_id = DEX.moves(dex_mod, &to_id(move_name)).map(flat::move_id);
         match (species_id, move_id) {
             (Some(species), Some(move_id)) => self.move_sources(dex_mod, &species, &move_id, level),
             _ => MoveSources::Missing,

@@ -72,7 +72,8 @@ It measured a 4.32× release speedup with native validation enabled. A separate
 This is a benchmark milestone, not general parity. Native validation covers
 ordinary modern sets under Flat Rules, OU, UU, Doubles, Draft, 4v4 Doubles UU,
 and 4v4 Doubles Draft, including their corresponding team bans. It admits all
-128 rosters in the locked training corpus. NatDex Draft legality and some
+128 rosters in the locked training corpus. NatDex Draft also checks ordinary
+sets, with National Dex transfer learnsets and a Champions fallback. Some
 origin, special form, and event constraints are still unsupported. Roster
 Ranch Rumble generates ten-member rosters with a separate
 PRNG and supports native pick-four doubles setup. Seeded tests compare complete

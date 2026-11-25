@@ -284,6 +284,11 @@ impl Dex {
     }
 
     pub fn moves(&self, dex_mod: Mod, id: &str) -> Option<&Move> {
+        let id = if id.starts_with("hiddenpower") {
+            id.trim_end_matches(|ch: char| ch.is_ascii_digit())
+        } else {
+            id
+        };
         self.lookup(&self.moves, dex_mod, Some(&self.regmb.moves), id)
     }
 

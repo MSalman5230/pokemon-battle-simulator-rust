@@ -2646,6 +2646,215 @@
       "expected": null
     },
     {
+      "name": "NatDex accepts old transfer TM",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Charizard",
+        "ability": "Blaze",
+        "moves": [
+          "Flamethrower",
+          "Toxic",
+          "Roost"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "NatDex accepts Return and typed Hidden Power",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Pidgeot",
+        "ability": "Keen Eye",
+        "moves": [
+          "Brave Bird",
+          "Return",
+          "Hidden Power Ice"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "NatDex uses Champions fallback for an exclusive move",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Floette-Eternal",
+        "moves": [
+          "Light of Ruin",
+          "Moonblast",
+          "Trick",
+          "Giga Drain"
+        ],
+        "ability": "Flower Veil"
+      },
+      "expected": [
+        "Floette has exactly 0 Stat Points - did you forget to invest it? (If this was intentional, change your Nature to a different neutral Nature, which won't change its stats but will tell us that it wasn't a mistake)."
+      ]
+    },
+    {
+      "name": "NatDex checks Sketch instead of the ordinary learnset",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Smeargle",
+        "ability": "Own Tempo",
+        "moves": [
+          "Spore",
+          "Sticky Web",
+          "Celebrate",
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "NatDex validates moves from a past event",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Pikachu",
+        "ability": "Static",
+        "moves": [
+          "Volt Tackle",
+          "Surf"
+        ],
+        "item": "Light Ball",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "NatDex admits an event-only Pokémon when its origin matches",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Victini",
+        "ability": "Victory Star",
+        "moves": [
+          "V-create"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "NatDex retains an obtainable past item",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Pikachu",
+        "ability": "Static",
+        "moves": [
+          "Thunderbolt"
+        ],
+        "item": "Normal Gem",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "NatDex declines an item never obtainable in Gen 7 to 9",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Pikachu",
+        "ability": "Static",
+        "moves": [
+          "Thunderbolt"
+        ],
+        "item": "Electric Gem",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Pikachu's item Electric Gem does not exist in Gen 9."
+      ]
+    },
+    {
+      "name": "NatDex permits a past species and move",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Castform",
+        "ability": "Forecast",
+        "moves": [
+          "Weather Ball",
+          "Sunny Day",
+          "Hail"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": null
+    },
+    {
+      "name": "NatDex declines an impossible form",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Eternatus-Eternamax",
+        "ability": "Pressure",
+        "moves": [
+          "Recover"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Eternatus does not exist in the National Dex."
+      ]
+    },
+    {
+      "name": "NatDex retains the CAP ban",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Kitsunoh",
+        "ability": "Limber",
+        "moves": [
+          "Shadow Strike"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Kitsunoh is made up for Smogon CAP and does not exist in this game.",
+        "Kitsunoh's move Shadow Strike is made up for Smogon CAP and does not exist in this game."
+      ]
+    },
+    {
+      "name": "NatDex declines a move without a valid source",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Pidgeot",
+        "ability": "Keen Eye",
+        "moves": [
+          "Brave Bird",
+          "Dragon Ascent"
+        ],
+        "item": "",
+        "nature": "Hardy"
+      },
+      "expected": [
+        "Pidgeot can't learn Dragon Ascent."
+      ]
+    },
+    {
+      "name": "NatDex checks typed Hidden Power against the explicit type",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Charizard",
+        "ability": "Blaze",
+        "moves": [
+          "Hidden Power Ice"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "hpType": "Fairy"
+      },
+      "expected": [
+        "Charizard's Hidden Power type (Fairy) is invalid.",
+        "Charizard's Hidden Power type Fairy is incompatible with Hidden Power Ice"
+      ]
+    },
+    {
       "name": "ordinary full roster",
       "format": "gen9championsou",
       "team": [
@@ -2985,6 +3194,73 @@
     {
       "name": "ordinary full roster",
       "format": "gen9champions4v4doublesdraft",
+      "team": [
+        {
+          "species": "Vaporeon",
+          "ability": "Water Absorb",
+          "moves": [
+            "Surf",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Snorlax",
+          "ability": "Thick Fat",
+          "moves": [
+            "Body Slam",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Umbreon",
+          "ability": "Synchronize",
+          "moves": [
+            "Foul Play",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Arcanine",
+          "ability": "Intimidate",
+          "moves": [
+            "Flare Blitz",
+            "Protect"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Clefable",
+          "ability": "Magic Guard",
+          "moves": [
+            "Gravity",
+            "Moonblast"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        },
+        {
+          "species": "Gengar",
+          "ability": "Cursed Body",
+          "moves": [
+            "Shadow Ball",
+            "Sludge Bomb"
+          ],
+          "item": "",
+          "nature": "Hardy"
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "ordinary full roster",
+      "format": "gen9championsnatdexdraft",
       "team": [
         {
           "species": "Vaporeon",

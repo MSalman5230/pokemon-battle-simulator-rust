@@ -67,10 +67,11 @@ const data = mod => {
             packedAbilitySlots: JSON.stringify(packedSlots) === JSON.stringify(e.abilities) ? undefined : packedSlots,
             };
         }),
-        moves: table(dex.moves.all(), e => {
+        moves: sorted(dex.moves.all().map(e => {
             const move = props(e, ['name', 'type', 'category', 'target', 'basePower', 'priority',
                 'pp', 'noPPBoosts', 'accuracy', 'multihit', 'multiaccuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget', 'willCrit', 'alwaysHit']);
-            return {...move, ignoreDefensive: e.ignoreDefensive || undefined,
+            const key = e.id === 'hiddenpower' ? Dex.toID(e.name) : e.id;
+            return [key, {...move, ignoreDefensive: e.ignoreDefensive || undefined,
                 targetsDefense: e.overrideDefensiveStat === 'def' || undefined,
                 ohko: !!e.ohko || undefined,
                 ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
@@ -84,8 +85,8 @@ const data = mod => {
                 selfRampage: e.self?.volatileStatus === 'lockedmove' || undefined,
                 secondaries: (e.secondaries ?? []).map(s => ({chance: s.chance, status: s.status,
                     volatileStatus: s.volatileStatus, boosts: Object.entries(s.boosts ?? {}),
-                    selfBoosts: s.self?.boosts && Object.entries(s.self.boosts)}))};
-        }),
+                    selfBoosts: s.self?.boosts && Object.entries(s.self.boosts)}))}];
+        })),
         abilities: table(dex.abilities.all(), e =>
             ({...props(e, ['name', 'isNonstandard']), handlers: handlers(e),
                 noTrace: !!e.flags?.notrace || undefined, cannotSuppress: !!e.flags?.cantsuppress || undefined,

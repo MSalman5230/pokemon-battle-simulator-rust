@@ -1,9 +1,12 @@
 //! Team and set validation for the standard Champions competitive formats.
 
-use super::{FormatRules, LEGALITY, MoveSources};
+use super::{
+    FormatRules, LEGALITY, MoveSources,
+    natdex::{NATDEX, NatDexCatalog},
+};
 use crate::{
     choice::to_id,
-    dex::{DEX, Format, Species},
+    dex::{DEX, Format, Move, Species},
 };
 use serde_json::Value;
 use std::{
@@ -25,6 +28,7 @@ impl std::error::Error for ValidationError {}
 pub struct TeamValidator {
     format: &'static Format,
     rules: &'static FormatRules,
+    natdex: Option<&'static NatDexCatalog>,
 }
 
 struct CheckedSet {
@@ -51,6 +55,14 @@ impl CheckedSet {
 
 fn string<'a>(set: &'a Value, key: &str) -> &'a str {
     set.get(key).and_then(Value::as_str).unwrap_or_default()
+}
+
+pub(super) fn move_id(data: &Move) -> String {
+    if data.name.starts_with("Hidden Power") {
+        "hiddenpower".into()
+    } else {
+        to_id(&data.name)
+    }
 }
 
 fn nickname(name: &str) -> String {
@@ -98,17 +110,21 @@ impl TeamValidator {
         let rules = LEGALITY
             .format(&id)
             .expect("Champions legality rules are projected");
-        if format.has_rule("natdexmod")
-            || !["flatrules", "standard", "standarddraft", "standarddoubles"]
-                .into_iter()
-                .any(|r| format.has_rule(r))
+        if !["flatrules", "standard", "standarddraft", "standarddoubles"]
+            .into_iter()
+            .any(|r| format.has_rule(r))
         {
             return Err(ValidationError(format!(
                 "team validation for {}",
                 format.name
             )));
         }
-        Ok(Self { format, rules })
+        let natdex = format.has_rule("natdexmod").then(|| &*NATDEX);
+        Ok(Self {
+            format,
+            rules,
+            natdex,
+        })
     }
 
     pub fn validate_set(&self, value: &Value) -> Result<Option<Vec<String>>, ValidationError> {
@@ -234,6 +250,10 @@ impl TeamValidator {
         })
     }
 
+    fn allows_nonstandard(&self, label: &str) -> bool {
+        self.natdex.is_some() && matches!(label, "Past" | "Unobtainable")
+    }
+
     fn species_ban(&self, species: &Species, tier: &Species, display: &str) -> Option<String> {
         for forme in [species, tier] {
             if let Some(reason) = self.ban_reason(&format!("pokemon:{}", to_id(&forme.name))) {
@@ -274,6 +294,7 @@ impl TeamValidator {
         }
         tier.is_nonstandard
             .as_ref()
+            .filter(|label| !self.allows_nonstandard(label))
             .map(|label| nonexistent(display, label))
     }
 
@@ -327,7 +348,6 @@ impl TeamValidator {
         }
         if set["gigantamax"] == true
             || original_id.ends_with("gmax")
-            || !string(set, "hpType").is_empty()
             || !set["dynamaxLevel"].is_null()
         {
             return Err(ValidationError(format!(
@@ -350,6 +370,18 @@ impl TeamValidator {
         } else {
             original.name.clone()
         };
+        let mut hp_type = string(set, "hpType").to_owned();
+        if !hp_type.is_empty() {
+            let id = to_id(&hp_type);
+            if matches!(id.as_str(), "normal" | "fairy" | "stellar") || DEX.type_data(&id).is_none()
+            {
+                problems.push(format!(
+                    "{display}'s Hidden Power type ({hp_type}) is invalid."
+                ));
+            } else {
+                hp_type = capitalize(&id);
+            }
+        }
         let mut level = set["level"]
             .as_i64()
             .filter(|&n| n != 0)
@@ -464,6 +496,7 @@ impl TeamValidator {
             }
         } else if let Some(item) = item
             && let Some(label) = &item.effect.is_nonstandard
+            && !self.allows_nonstandard(label)
         {
             problems.push(nonexistent(&format!("{name}'s item {item_label}"), label));
         }
@@ -482,7 +515,9 @@ impl TeamValidator {
         }
         if let Some(reason) = self.ban_reason(&format!("ability:{}", to_id(&ability.name))) {
             problems.push(format!("{name}'s ability {} is {reason}.", ability.name));
-        } else if let Some(label) = &ability.is_nonstandard {
+        } else if let Some(label) = &ability.is_nonstandard
+            && !self.allows_nonstandard(label)
+        {
             problems.push(nonexistent(
                 &format!("{name}'s ability {}", ability.name),
                 label,
@@ -503,6 +538,18 @@ impl TeamValidator {
                 self.format.max_move_count
             ));
         } else {
+            for data in &moves {
+                if data.name.starts_with("Hidden Power ") {
+                    if hp_type.is_empty() {
+                        hp_type.clone_from(&data.move_type);
+                    } else if hp_type != data.move_type {
+                        problems.push(format!(
+                            "{display}'s Hidden Power type {hp_type} is incompatible with Hidden Power {}",
+                            data.move_type
+                        ));
+                    }
+                }
+            }
             self.check_stats(set, &name, level, &nature, &mut problems)?;
             let mut seen = HashSet::new();
             for data in &moves {
@@ -511,17 +558,26 @@ impl TeamValidator {
                 }
             }
             for data in &moves {
-                if let Some(reason) = self.ban_reason(&format!("move:{}", to_id(&data.name))) {
+                if let Some(reason) = self.ban_reason(&format!("move:{}", move_id(data))) {
                     problems.push(format!("{name}'s move {} is {reason}.", data.name));
-                } else if let Some(label) = &data.is_nonstandard {
+                } else if let Some(label) = &data.is_nonstandard
+                    && !self.allows_nonstandard(label)
+                {
                     problems.push(nonexistent(&format!("{name}'s move {}", data.name), label));
                 }
             }
             for data in &moves {
+                let id = move_id(data);
+                if self
+                    .natdex
+                    .is_some_and(|natdex| natdex.can_learn(&species_id, &id, level))
+                {
+                    continue;
+                }
                 match LEGALITY.move_sources(
                     dex,
                     &species_id,
-                    &to_id(&data.name),
+                    &id,
                     level.clamp(1, i64::from(u16::MAX)) as u16,
                 ) {
                     MoveSources::Unrestricted => {}
@@ -547,7 +603,7 @@ impl TeamValidator {
                 format!("item:{item_id}"),
                 format!("ability:{}", to_id(&ability.name)),
             ]);
-            facts.extend(moves.iter().map(|m| format!("move:{}", to_id(&m.name))));
+            facts.extend(moves.iter().map(|m| format!("move:{}", move_id(m))));
             facts.extend(species.types.iter().map(|ty| format!("type:{}", to_id(ty))));
             let rules = self.species_rules(tier_species);
             facts.push(format!("tag:{}", to_id(&rules.tier)));
@@ -601,6 +657,27 @@ impl TeamValidator {
         }
         if let Some(events) = self.event_for(species)? {
             self.check_modern_events(set, species, &display, level, events, &mut problems)?;
+        }
+        if let Some(natdex) = self.natdex {
+            if self.species_rules(species).tier == "Illegal"
+                && natdex.tier(&species_id) == Some("Illegal")
+            {
+                problems.push(format!("{name} does not exist in the National Dex."));
+            } else if let Some(data) = moves
+                .iter()
+                .find(|data| natdex.missing_move(&move_id(data)))
+            {
+                problems.push(format!(
+                    "{name}'s move {} does not exist in the National Dex.",
+                    data.name
+                ));
+            } else if item.is_some_and(|item| {
+                item.effect.is_nonstandard.is_some() && !natdex.can_transfer_item(&item_id)
+            }) {
+                problems.push(format!(
+                    "{name}'s item {item_label} does not exist in Gen 9."
+                ));
+            }
         }
         Ok(CheckedSet {
             problems,
@@ -656,11 +733,13 @@ impl TeamValidator {
             if generation > 9 {
                 continue;
             }
-            if generation < 8
-                || event["japan"] == true
-                || !event["from"].is_null()
-                || !event["ivs"].is_null()
-                || !event["perfectIVs"].is_null()
+            let can_hyper_train = level >= 50
+                && string(set, "hpType").is_empty()
+                && set["ivs"]
+                    .as_object()
+                    .is_none_or(|ivs| ivs.values().all(|v| v.as_i64() == Some(31)));
+            if event["japan"] == true
+                || ((!event["ivs"].is_null() || !event["perfectIVs"].is_null()) && !can_hyper_train)
             {
                 unresolved = true;
                 continue;
@@ -776,6 +855,13 @@ impl TeamValidator {
         }
         Ok(())
     }
+}
+
+fn capitalize(id: &str) -> String {
+    let mut first = id.chars();
+    first.next().map_or_else(String::new, |c| {
+        c.to_ascii_uppercase().to_string() + first.as_str()
+    })
 }
 
 fn rule_suffix(source: &str) -> String {
