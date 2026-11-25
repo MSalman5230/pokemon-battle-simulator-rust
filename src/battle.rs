@@ -3,6 +3,7 @@
 use crate::{
     choice::{Choice, SlotChoice, to_id},
     dex::{DEX, Format, Move, Species},
+    generation::{GenerationError, generate_for_format},
     input::{Input, Player, PlayerOptions, Set, SetStats, Start, Team},
     mechanics::{Boosts, Nature, StatRules, Stats, health, max_pp},
     order::{Priority, speed_sort_by},
@@ -49,6 +50,7 @@ pub enum BattleError {
     Unsupported(String),
     Choice(&'static str),
     Unavailable(&'static str),
+    Generation(GenerationError),
 }
 
 impl fmt::Display for BattleError {
@@ -57,6 +59,7 @@ impl fmt::Display for BattleError {
             Self::Input(s) | Self::Choice(s) | Self::Unavailable(s) => f.write_str(s),
             Self::Unknown(s) => write!(f, "unknown {s}"),
             Self::Unsupported(s) => write!(f, "not ported: {s}"),
+            Self::Generation(err) => err.fmt(f),
         }
     }
 }
@@ -291,8 +294,7 @@ impl Battle {
         let format = DEX
             .format(&start.formatid)
             .ok_or_else(|| BattleError::Unknown(format!("format {}", start.formatid)))?;
-        // These formats use the common preview/start path. Generated teams
-        // and local series require separate support.
+        // These formats use the common preview/start path.
         if !matches!(
             start.formatid.as_str(),
             "gen9championsbssregmc"
@@ -309,6 +311,7 @@ impl Battle {
                 | "gen9champions4v4doublesuu"
                 | "gen9championsdraft"
                 | "gen9champions4v4doublesdraft"
+                | "gen9championsrosterranchrumble"
         ) {
             return Err(BattleError::Unsupported(format!(
                 "startup rules for {}",
@@ -318,9 +321,7 @@ impl Battle {
         if start.debug || start.force_random_chance.is_some() {
             return Err(BattleError::Unsupported("debug battle options".into()));
         }
-        let seed = start
-            .seed
-            .ok_or_else(|| BattleError::Unsupported("implicit seed generation".into()))?;
+        let seed = resolve_seed(start.seed)?;
         let mut battle = Self {
             format,
             stat_rules: format.stat_rules(),
@@ -430,7 +431,13 @@ impl Battle {
             Some(Team::Packed(packed)) => {
                 crate::input::unpack(&packed).map_err(BattleError::Input)?
             }
-            None => return Err(BattleError::Unsupported("generated teams".into())),
+            None => {
+                // A missing team uses the player's independent seed, never a
+                // draw from the ordering or damage PRNG of the battle.
+                let seed = resolve_seed(options.seed)?;
+                generate_for_format(self.format, &mut Rng::new(seed))
+                    .map_err(BattleError::Generation)?
+            }
         };
         if sets.len() < self.format.game_type.active_slots() || sets.len() > 24 {
             return Err(BattleError::Input(
@@ -615,6 +622,11 @@ impl Battle {
                 .collect();
         }
     }
+}
+
+fn resolve_seed(seed: Option<Seed>) -> Result<Seed, BattleError> {
+    seed.map_or_else(Seed::from_entropy, Ok)
+        .map_err(|_| BattleError::Input("could not read system randomness for a Showdown seed"))
 }
 
 fn preview_details(details: &str) -> String {

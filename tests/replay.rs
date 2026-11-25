@@ -595,3 +595,8 @@ fn bss_regenerator_and_natural_cure_work_on_pivots_drags_and_voluntary_switches(
 fn vgc_static_and_poison_point_roll_only_on_contact_and_reveal_the_holder() {
     replay(include_str!("fixtures/vgc-contact-status.json"));
 }
+
+#[test]
+fn ranch_generates_independent_rosters_then_plays_native_pick_four_doubles() {
+    replay(include_str!("fixtures/ranch-start.json"));
+}

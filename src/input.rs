@@ -77,7 +77,7 @@ pub enum Team {
     Packed(String),
 }
 
-#[derive(Debug, Default, Deserialize)]
+#[derive(Debug, Default, PartialEq, Eq, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
 pub struct Set {
     pub name: String,
@@ -100,7 +100,7 @@ pub struct Set {
     pub dynamax_level: Option<u8>,
 }
 
-#[derive(Debug, Copy, Clone, Default, Deserialize)]
+#[derive(Debug, Copy, Clone, Default, PartialEq, Eq, Deserialize)]
 #[serde(default)]
 pub struct SetStats {
     pub hp: i32,
@@ -112,6 +112,18 @@ pub struct SetStats {
 }
 
 impl SetStats {
+    pub(crate) fn map(f: impl Fn(crate::mechanics::Stat) -> i32) -> Self {
+        use crate::mechanics::Stat::*;
+        Self {
+            hp: f(Hp),
+            atk: f(Atk),
+            def: f(Def),
+            spa: f(Spa),
+            spd: f(Spd),
+            spe: f(Spe),
+        }
+    }
+
     pub fn raw(self, stat: crate::mechanics::Stat) -> i32 {
         use crate::mechanics::Stat::*;
         match stat {

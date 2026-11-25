@@ -72,6 +72,9 @@ This is a benchmark milestone, not general parity. Native Flat Rules
 validation covers BSS and VGC Reg M-B/M-C, including Bo3, for ordinary modern
 sets. The worker uses it by default and admits the 128 rosters in the locked
 training corpus. Some origin, special form, and event constraints are still
-unsupported. Team generation is not implemented. Continue testing more
-rosters, seeds, and formats and record focused native fixtures for gaps.
+unsupported. Roster Ranch Rumble generates ten-member rosters with a separate
+PRNG and supports native pick-four doubles setup. Seeded tests compare complete
+rosters and the final team PRNG state. Random Battle and Random Doubles Battle
+generation remain to be ported. Continue testing more rosters, seeds, and
+formats and record focused native fixtures for gaps.
 The benchmark rejects any mismatch before timing the adapter.

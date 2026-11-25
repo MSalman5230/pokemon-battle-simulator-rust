@@ -7,8 +7,9 @@ and mechanics. The experimental Poke-RL worker matched all 673 step replies
 in the default BSS Reg M-C benchmark and ran 4.46× faster in release mode.
 That result covers the fixed 32-game workload. The worker now validates
 ordinary BSS rosters in Rust, without a reference manifest. Unsupported
-mechanics and unimplemented legality constraints return errors. Full format
-parity, team generation, and Poke-RL's tactics and lookahead are not complete.
+mechanics and unimplemented legality constraints return errors. Roster Ranch
+Rumble team generation is native. Full format parity, Random Battle team
+generation, and Poke-RL's tactics and lookahead are not complete.
 
 ## Local setup
 
@@ -51,8 +52,10 @@ After setup, regenerate the checked-in fixtures and dex data with:
 source scripts/env.sh
 node scripts/export-champions-dex.mjs
 node scripts/export-champions-legality.mjs
+node scripts/export-ranch-data.mjs
 node scripts/capture-oracle.mjs
 node scripts/capture-validation.mjs
+node scripts/capture-generate-teams.mjs
 ```
 
 The tests use checked-in fixtures and do not need Node. The fixture generator

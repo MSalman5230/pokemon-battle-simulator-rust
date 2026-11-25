@@ -12,6 +12,17 @@ pub enum Seed {
     Sodium([u8; 32]),
 }
 
+impl Seed {
+    /// Showdown seeds a new Sodium PRNG with 128 random bits, zero-padded
+    /// to the 32-byte key. Explicit replay seeds never use system entropy.
+    pub fn from_entropy() -> std::io::Result<Self> {
+        use std::io::Read;
+        let mut key = [0; 32];
+        std::fs::File::open("/dev/urandom")?.read_exact(&mut key[..16])?;
+        Ok(Self::Sodium(key))
+    }
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct InvalidSeed;
 

@@ -720,6 +720,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1 1, move 1 2', 'move 1, move 1'], ['move 1 1, move 1 2', 'move 1, move 1'],
         ['move 1 1, move 1 2', 'move 1, move 1'], ['move 1 1, move 1 2', 'move 1, move 1']],
         contactStatusRosters, 'vgc-contact-status'],
+    ['rosterranchrumble', [['team 1,2,5,10', 'team 4,8,9,3'], ['move 1 1, move 2', 'move 1 2, move 4 2']],
+        ['0,0,0,0', '4,3,2,1'], 'ranch-start'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
@@ -730,8 +732,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     }
     const inputs = [
         '>start ' + JSON.stringify({formatid, seed, strictChoices: !["bss-hidden-trap", "bss-imprison"].includes(label)}),
-        ...players.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team: label === 'bss-packed' ?
-            Teams.pack(team).replace('|Blaze|', '|0|').replace('|Torrent|', '||') : team})),
+        ...players.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i,
+            ...(typeof team === 'string' ? {seed: team} : {team: label === 'bss-packed' ?
+                Teams.pack(team).replace('|Blaze|', '|0|').replace('|Torrent|', '||') : team})})),
     ];
     const stream = new BattleStream({noCatch: true});
     let logCursor = 0;

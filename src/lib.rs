@@ -4,6 +4,7 @@
 pub mod battle;
 pub mod choice;
 pub mod dex;
+pub mod generation;
 pub mod input;
 pub mod mechanics;
 pub mod order;
