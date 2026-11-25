@@ -237,6 +237,8 @@ pub struct Item {
     #[serde(flatten)]
     pub effect: Effect,
     pub mega_stone: Option<Table<String>>,
+    #[serde(default)]
+    pub is_berry: bool,
 }
 
 #[derive(Debug, Deserialize)]

@@ -1053,6 +1053,16 @@ fn facade_doubles_power_without_the_standard_burn_penalty() {
 }
 
 #[test]
+fn harvest_rolls_even_when_holding_a_berry_and_restores_it_in_sun() {
+    replay(include_str!("fixtures/bss-harvest.json"));
+}
+
+#[test]
+fn pickup_samples_adjacent_pokemon_that_consumed_items_this_turn() {
+    replay(include_str!("fixtures/vgc-pickup.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

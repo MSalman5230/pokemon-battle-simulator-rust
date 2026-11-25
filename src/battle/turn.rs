@@ -1606,6 +1606,7 @@ impl Battle {
             mon.revealed_all_disables = false;
             mon.acted = false;
             mon.stats_raised = false;
+            mon.used_item_this_turn = false;
             if !mon.fainted {
                 mon.active_turns += 1;
             }
@@ -1831,6 +1832,8 @@ impl Battle {
             Healer,
             Weather,
             SpeedBoost,
+            Harvest,
+            Pickup,
             Roost,
             Yawn,
             Wish,
@@ -1935,6 +1938,13 @@ impl Battle {
             }
             if mon.ability == "speedboost" {
                 timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
+            }
+            if !mon.fainted {
+                match mon.ability.as_str() {
+                    "harvest" => timers.push((pos, Effect::Harvest, priority(28, 2))),
+                    "pickup" => timers.push((pos, Effect::Pickup, priority(28, 2))),
+                    _ => {}
+                }
             }
             if mon.disabled_slot.is_some() {
                 timers.push((pos, Effect::Disable, priority(17, 2)));
@@ -2140,6 +2150,8 @@ impl Battle {
                 Effect::ShedSkin => self.shed_skin(pos),
                 Effect::Healer => self.healer_residual(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
+                Effect::Harvest => self.harvest_item(pos),
+                Effect::Pickup => self.pick_up_item(pos),
                 Effect::Roost => {
                     mon.roosted = false;
                     mon.untrack_volatile("roost");
@@ -4841,6 +4853,8 @@ impl Pokemon {
                 | "dazzling"
                 | "queenlymajesty"
                 | "sheerforce"
+                | "harvest"
+                | "pickup"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

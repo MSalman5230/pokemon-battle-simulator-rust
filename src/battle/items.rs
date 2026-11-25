@@ -366,6 +366,7 @@ impl Battle {
         if !id.is_empty() && id != "airballoon" {
             let mon = self.mon_mut(pos);
             mon.last_item = id;
+            mon.used_item_this_turn = true;
             mon.ate_berry |= eaten;
         }
         let reason = if eaten { "|[eat]" } else { "" };
@@ -398,6 +399,60 @@ impl Battle {
         ));
         self.on_gained_item(pos);
         true
+    }
+
+    pub(super) fn harvest_item(&mut self, pos: Position) {
+        // Harvest flips its coin before checking the holder's item.
+        if self.effective_weather() != Some(Weather::Sun) && !self.rng.chance(1, 2) {
+            return;
+        }
+        let mon = self.mon(pos);
+        if mon.hp == 0 || !mon.item.is_empty() {
+            return;
+        }
+        let Some(item) = DEX
+            .item(self.format.dex_mod, &mon.last_item)
+            .filter(|item| item.is_berry)
+        else {
+            return;
+        };
+        let mon = self.mon_mut(pos);
+        mon.item = std::mem::take(&mut mon.last_item);
+        self.on_gained_item(pos);
+        self.add(format!(
+            "|-item|{}|{}|[from] ability: Harvest",
+            self.ident(pos),
+            item.effect.name
+        ));
+    }
+
+    pub(super) fn pick_up_item(&mut self, pos: Position) {
+        if !self.mon(pos).item.is_empty() {
+            return;
+        }
+        let mut candidates = [pos; 3];
+        let mut count = 0;
+        for donor in self.positions() {
+            let mon = self.mon(donor);
+            if donor != pos && !mon.fainted && mon.used_item_this_turn && !mon.last_item.is_empty()
+            {
+                candidates[count] = donor;
+                count += 1;
+            }
+        }
+        if count == 0 {
+            return;
+        }
+        let donor = candidates[self.rng.below(count as u32) as usize];
+        let id = std::mem::take(&mut self.mon_mut(donor).last_item);
+        let item = DEX.item(self.format.dex_mod, &id).unwrap();
+        self.add(format!(
+            "|-item|{}|{}|[from] ability: Pickup",
+            self.ident(pos),
+            item.effect.name
+        ));
+        self.mon_mut(pos).item = id;
+        self.on_gained_item(pos);
     }
 
     pub(super) fn indirect_damage(&mut self, pos: Position, divisor: u32, cause: &str) {
