@@ -370,6 +370,7 @@ pub(super) struct RegularHit<'a> {
     /// When provided by a hypothetical query, use this native 0–15 roll
     /// instead of consuming the battle PRNG.
     pub roll: Option<u32>,
+    pub ruin_cache: &'a mut super::ruin::RuinCache,
 }
 
 impl Battle {
@@ -399,6 +400,7 @@ impl Battle {
             parental_second_hit,
             contact,
             roll,
+            ruin_cache,
         } = args;
         let tr = self.stat_rules.truncation;
         if self.format.report_exact_hp && self.event_ability(source) == "technician" {
@@ -669,6 +671,24 @@ impl Battle {
         } else {
             4096
         };
+        let field_ability_attack = if source_active
+            && matches!(
+                self.mon(source).ability.as_str(),
+                "hadronengine" | "orichalcumpulse"
+            ) {
+            self.field_power_ability(source, physical)
+        } else {
+            4096
+        };
+        let ruin_attack = self.ruin_modifier(
+            source,
+            if physical {
+                BoostStat::Atk
+            } else {
+                BoostStat::Spa
+            },
+            ruin_cache,
+        );
         let paradox_defense = if self.mon(target).paradox_boost.is_some() {
             self.paradox_modifier(
                 target,
@@ -681,6 +701,15 @@ impl Battle {
         } else {
             4096
         };
+        let ruin_defense = self.ruin_modifier(
+            target,
+            if defense_uses_def {
+                BoostStat::Def
+            } else {
+                BoostStat::Spd
+            },
+            ruin_cache,
+        );
         let user = self.mon(source);
         let mon = self.mon(target);
         if source != target && self.event_ability(target) == "unaware" {
@@ -713,7 +742,7 @@ impl Battle {
         };
         let mut attack_modifier = if source_active {
             chain(
-                paradox_attack,
+                chain(paradox_attack, field_ability_attack),
                 user.attack_modifier(move_data.category, move_type),
             )
         } else {
@@ -758,7 +787,7 @@ impl Battle {
                     chain(paradox_defense, defense_weather_modifier),
                     defense_ability_modifier,
                 ),
-                defense_item_modifier,
+                chain(defense_item_modifier, ruin_defense),
             ),
         );
         if stakeout {
@@ -774,6 +803,7 @@ impl Battle {
         {
             attack_modifier = crate::mechanics::chain(attack_modifier, 2048);
         }
+        attack_modifier = chain(attack_modifier, ruin_attack);
         let atk = tr.modify(atk, attack_modifier);
         let stab = force_stab || user.has_type(move_type);
         let mut power_modifier = if source_active {

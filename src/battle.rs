@@ -38,6 +38,7 @@ mod partial_trap;
 mod perish;
 mod pledges;
 mod rampage;
+mod ruin;
 mod screens;
 mod stat_moves;
 use charge::Charge;
@@ -196,6 +197,7 @@ pub struct Battle {
     possible_unaware: bool,
     possible_boost_copy: bool,
     possible_eject_pack: bool,
+    possible_ruin: bool,
     unsupported_called_move: Option<(&'static str, &'static str)>,
     last_battle_move: Option<&'static Move>,
     last_battle_move_z: bool,
@@ -548,6 +550,7 @@ impl Battle {
             possible_unaware: false,
             possible_boost_copy: false,
             possible_eject_pack: false,
+            possible_ruin: false,
             unsupported_called_move: None,
             last_battle_move: None,
             last_battle_move_z: false,
@@ -683,6 +686,7 @@ impl Battle {
             .iter()
             .any(|p| p.ability == "opportunist" || p.item == "mirrorherb");
         self.possible_eject_pack |= party.iter().any(|p| p.item == "ejectpack");
+        self.possible_ruin |= party.iter().any(|p| ruin::ruin_label(&p.ability).is_some());
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)

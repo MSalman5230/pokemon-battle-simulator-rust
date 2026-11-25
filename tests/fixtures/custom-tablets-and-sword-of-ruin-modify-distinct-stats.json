@@ -1,0 +1,620 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Wo-Chien\",\"moves\":[\"Tackle\"],\"gender\":\"N\",\"name\":\"Wo-Chien\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Tablets of Ruin\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chien-Pao\",\"moves\":[\"Bite\"],\"gender\":\"N\",\"name\":\"Chien-Pao\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Sword of Ruin\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Wo-Chien, L50|",
+          "|poke|p2|Chien-Pao, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Wo-Chien, L50|",
+          "|poke|p2|Chien-Pao, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Wo-Chien, L50|",
+          "|poke|p2|Chien-Pao, L50|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Wo-Chien",
+                "details": "Wo-Chien, L50",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 155,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "tabletsofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "tabletsofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chien-Pao",
+                "details": "Chien-Pao, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 100,
+                  "spa": 110,
+                  "spd": 85,
+                  "spe": 155
+                },
+                "moves": [
+                  "bite"
+                ],
+                "baseAbility": "swordofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swordofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Wo-Chien",
+            "species": "Wo-Chien",
+            "details": "Wo-Chien, L50",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 120,
+              "spa": 115,
+              "spd": 155,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "tabletsofruin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chien-Pao",
+            "species": "Chien-Pao",
+            "details": "Chien-Pao, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 100,
+              "spa": 110,
+              "spd": 85,
+              "spe": 155
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swordofruin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Wo-Chien|Wo-Chien, L50|160/160",
+          "|switch|p2a: Chien-Pao|Chien-Pao, L50|155/155",
+          "|-ability|p2a: Chien-Pao|Sword of Ruin",
+          "|-ability|p1a: Wo-Chien|Tablets of Ruin",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Wo-Chien|Wo-Chien, L50|160/160",
+          "|switch|p2a: Chien-Pao|Chien-Pao, L50|155/155",
+          "|-ability|p2a: Chien-Pao|Sword of Ruin",
+          "|-ability|p1a: Wo-Chien|Tablets of Ruin",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Wo-Chien|Wo-Chien, L50|160/160",
+          "|switch|p2a: Chien-Pao|Chien-Pao, L50|155/155",
+          "|-ability|p2a: Chien-Pao|Sword of Ruin",
+          "|-ability|p1a: Wo-Chien|Tablets of Ruin",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Wo-Chien",
+                "details": "Wo-Chien, L50",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 155,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "tabletsofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "tabletsofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chien-Pao",
+                "details": "Chien-Pao, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 100,
+                  "spa": 110,
+                  "spd": 85,
+                  "spe": 155
+                },
+                "moves": [
+                  "bite"
+                ],
+                "baseAbility": "swordofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swordofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Wo-Chien",
+            "species": "Wo-Chien",
+            "details": "Wo-Chien, L50",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 120,
+              "spa": 115,
+              "spd": 155,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "tabletsofruin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chien-Pao",
+            "species": "Chien-Pao",
+            "details": "Chien-Pao, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 100,
+              "spa": 110,
+              "spd": 85,
+              "spe": 155
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swordofruin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Chien-Pao|Bite|p1a: Wo-Chien",
+          "|debug|Tablets of Ruin Atk drop",
+          "|debug|Sword of Ruin Def drop",
+          "|-resisted|p1a: Wo-Chien|1",
+          "|-damage|p1a: Wo-Chien|139/160",
+          "|cant|p1a: Wo-Chien|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Chien-Pao|Bite|p1a: Wo-Chien",
+          "|debug|Tablets of Ruin Atk drop",
+          "|debug|Sword of Ruin Def drop",
+          "|-resisted|p1a: Wo-Chien|1",
+          "|-damage|p1a: Wo-Chien|139/160",
+          "|cant|p1a: Wo-Chien|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Chien-Pao|Bite|p1a: Wo-Chien",
+          "|debug|Tablets of Ruin Atk drop",
+          "|debug|Sword of Ruin Def drop",
+          "|-resisted|p1a: Wo-Chien|1",
+          "|-damage|p1a: Wo-Chien|139/160",
+          "|cant|p1a: Wo-Chien|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Wo-Chien",
+                "details": "Wo-Chien, L50",
+                "condition": "139/160",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 155,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "tabletsofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "tabletsofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chien-Pao",
+                "details": "Chien-Pao, L50",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 100,
+                  "spa": 110,
+                  "spd": 85,
+                  "spe": 155
+                },
+                "moves": [
+                  "bite"
+                ],
+                "baseAbility": "swordofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "swordofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Wo-Chien",
+            "species": "Wo-Chien",
+            "details": "Wo-Chien, L50",
+            "hp": 139,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 120,
+              "spa": 115,
+              "spd": 155,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "tabletsofruin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chien-Pao",
+            "species": "Chien-Pao",
+            "details": "Chien-Pao, L50",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 100,
+              "spa": 110,
+              "spd": 85,
+              "spe": 155
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "swordofruin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

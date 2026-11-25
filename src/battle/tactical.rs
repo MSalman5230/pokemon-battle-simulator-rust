@@ -496,6 +496,7 @@ impl Battle {
                     converted: false,
                     force_stab: false,
                     roll: Some(roll),
+                    ruin_cache: &mut super::ruin::RuinCache::default(),
                     solar_weak: self.event_ability(ACTOR) != "megasol"
                         && matches!(move_id, "solarbeam" | "solarblade")
                         && weather.is_some_and(|w| w != Weather::Sun),

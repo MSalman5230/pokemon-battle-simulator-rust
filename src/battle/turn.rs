@@ -7,6 +7,7 @@ use super::{
     field_effects::{LegacyCondition, LegacyField},
     leech::DrainKind,
     pledges::Pledge,
+    ruin::RuinCache,
 };
 use crate::{
     choice::{MoveChoice, SpecialChoice, TargetKind},
@@ -2499,6 +2500,12 @@ impl Battle {
             return;
         }
         self.possible_boost_copy |= self.mon(pos).ability == "opportunist";
+        if let Some(label) = super::ruin::ruin_label(&self.mon(pos).ability) {
+            self.possible_ruin = true;
+            if !self.ignores_ability_of(pos) {
+                self.add(format!("|-ability|{}|{label}", self.ident(pos)));
+            }
+        }
         if matches!(self.mon(pos).ability.as_str(), "berserk" | "angershell") {
             self.mon_mut(pos).half_hp_berry_deferred = false;
         }
@@ -2523,11 +2530,27 @@ impl Battle {
             self.add(format!("|-ability|{}|{label}", self.ident(pos)));
         }
         self.switch_in_weather(pos);
+        if self.mon(pos).ability == "orichalcumpulse" {
+            let ident = self.ident(pos);
+            if self.set_weather(pos, Weather::Sun, Some("Orichalcum Pulse")) {
+                self.add(format!("|-activate|{ident}|Orichalcum Pulse|[source]"));
+            } else if self.effective_weather() == Some(Weather::Sun) {
+                self.add(format!("|-activate|{ident}|ability: Orichalcum Pulse"));
+            }
+        }
         self.weather_ability_changed(pos, false);
         if self.mon(pos).ability == "forecast" {
             self.forecast(pos, self.effective_weather());
         }
         self.switch_in_terrain(pos);
+        if self.mon(pos).ability == "hadronengine"
+            && !self.set_terrain(pos, Terrain::Electric, Some("Hadron Engine"))
+        {
+            self.add(format!(
+                "|-activate|{}|ability: Hadron Engine",
+                self.ident(pos)
+            ));
+        }
         if matches!(
             self.mon(pos).ability.as_str(),
             "protosynthesis" | "quarkdrive"
@@ -7879,6 +7902,7 @@ impl Battle {
         let mut splash_faints = 0;
         let mut sparkling_aria_targets = 0;
         let binding = super::partial_trap::binding_move(&move_data.name);
+        let mut ruin_cache = RuinCache::default();
         for hit in 1..=max_hits {
             if (self.mon(source).hp == 0 && !sacrifice && !smart_target && !delayed)
                 || spread_targets
@@ -8204,6 +8228,7 @@ impl Battle {
                         parental_second_hit: parental && hit > 1,
                         contact,
                         roll: None,
+                        ruin_cache: &mut ruin_cache,
                     },
                 )
             };
@@ -9691,6 +9716,12 @@ impl Pokemon {
                 | "tintedlens"
                 | "toxicboost"
                 | "transistor"
+                | "beadsofruin"
+                | "hadronengine"
+                | "orichalcumpulse"
+                | "swordofruin"
+                | "tabletsofruin"
+                | "vesselofruin"
                 | "runaway"
                 | "drizzle"
                 | "drought"

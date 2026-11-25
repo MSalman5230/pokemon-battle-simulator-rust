@@ -323,6 +323,12 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .iter()
             .any(|p| p.item == "ejectpack")
     });
+    battle.possible_ruin = Player::ALL.into_iter().any(|player| {
+        battle.party(player).unwrap().iter().any(|p| {
+            super::ruin::ruin_label(&p.ability).is_some()
+                || super::ruin::ruin_label(&p.base_ability).is_some()
+        })
+    });
     battle.update_speed();
     for player in Player::ALL {
         battle.refresh_observed_disables(Position { player, slot: 0 });

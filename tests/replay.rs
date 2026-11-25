@@ -2274,6 +2274,22 @@ fn inherited_damage_abilities_modify_the_correct_stat_power_or_final_damage() {
 }
 
 #[test]
+fn field_stat_abilities_use_the_correct_stat_and_ruin_does_not_stack() {
+    replay(include_str!(
+        "fixtures/custom-tablets-and-sword-of-ruin-modify-distinct-stats.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-beads-and-vessel-of-ruin-modify-distinct-stats.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-two-swords-of-ruin-do-not-stack.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-hadron-engine-and-orichalcum-pulse-boost-with-field.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

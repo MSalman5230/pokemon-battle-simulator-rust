@@ -2111,6 +2111,23 @@ const tintedLensRosters = [
     [{...named('Butterfree', ['Gust']), ability:'Tinted Lens'}],
     [named('Jolteon', ['Recover'])],
 ];
+const physicalRuinRosters = [
+    [{...named('Wo-Chien', ['Tackle'], 'N'), ability:'Tablets of Ruin'}],
+    [{...named('Chien-Pao', ['Bite'], 'N'), ability:'Sword of Ruin'}],
+];
+const specialRuinRosters = [
+    [{...named('Chi-Yu', ['Ember'], 'N'), ability:'Beads of Ruin'}],
+    [{...named('Ting-Lu', ['Mud Shot'], 'N'), ability:'Vessel of Ruin'}],
+];
+const doubleSwordRuinRosters = [
+    [{...named('Chien-Pao', ['Tackle'], 'N'), ability:'Sword of Ruin', nature:'Jolly'},
+        {...named('Chien-Pao', ['Recover'], 'N'), name:'Second Sword', ability:'Sword of Ruin'}],
+    [named('Snorlax', ['Recover']), named('Venusaur', ['Recover'])],
+];
+const fieldEngineRosters = [
+    [{...named('Miraidon', ['Thunder Shock'], 'N'), ability:'Hadron Engine', nature:'Timid'}],
+    [{...named('Koraidon', ['Tackle'], 'N'), ability:'Orichalcum Pulse'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3680,6 +3697,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         alliedPowerRosters, 'custom-battery-and-power-spot-boost-the-correct-ally'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1']],
         tintedLensRosters, 'custom-tinted-lens-doubles-otherwise-resisted-damage'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        physicalRuinRosters, 'custom-tablets-and-sword-of-ruin-modify-distinct-stats'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        specialRuinRosters, 'custom-beads-and-vessel-of-ruin-modify-distinct-stats'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1']],
+        doubleSwordRuinRosters, 'custom-two-swords-of-ruin-do-not-stack'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        fieldEngineRosters, 'custom-hadron-engine-and-orichalcum-pulse-boost-with-field'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -1,0 +1,632 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Miraidon\",\"moves\":[\"Thunder Shock\"],\"gender\":\"N\",\"name\":\"Miraidon\",\"level\":50,\"nature\":\"Timid\",\"ability\":\"Hadron Engine\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Koraidon\",\"moves\":[\"Tackle\"],\"gender\":\"N\",\"name\":\"Koraidon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Orichalcum Pulse\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Miraidon, L50|",
+          "|poke|p2|Koraidon, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Miraidon, L50|",
+          "|poke|p2|Koraidon, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Miraidon, L50|",
+          "|poke|p2|Koraidon, L50|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Miraidon",
+                "details": "Miraidon, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 94,
+                  "def": 120,
+                  "spa": 155,
+                  "spd": 135,
+                  "spe": 170
+                },
+                "moves": [
+                  "thundershock"
+                ],
+                "baseAbility": "hadronengine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hadronengine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Koraidon",
+                "details": "Koraidon, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 135,
+                  "spa": 105,
+                  "spd": 120,
+                  "spe": 155
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "orichalcumpulse",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "orichalcumpulse",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Miraidon",
+            "species": "Miraidon",
+            "details": "Miraidon, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 94,
+              "def": 120,
+              "spa": 155,
+              "spd": 135,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hadronengine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "thundershock",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Koraidon",
+            "species": "Koraidon",
+            "details": "Koraidon, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 135,
+              "spa": 105,
+              "spd": 120,
+              "spe": 155
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "orichalcumpulse",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Miraidon|Miraidon, L50|175/175",
+          "|switch|p2a: Koraidon|Koraidon, L50|175/175",
+          "|-fieldstart|move: Electric Terrain|[from] ability: Hadron Engine|[of] p1a: Miraidon",
+          "|-weather|SunnyDay|[from] ability: Orichalcum Pulse|[of] p2a: Koraidon",
+          "|-activate|p2a: Koraidon|Orichalcum Pulse|[source]",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Miraidon|Miraidon, L50|175/175",
+          "|switch|p2a: Koraidon|Koraidon, L50|175/175",
+          "|-fieldstart|move: Electric Terrain|[from] ability: Hadron Engine|[of] p1a: Miraidon",
+          "|-weather|SunnyDay|[from] ability: Orichalcum Pulse|[of] p2a: Koraidon",
+          "|-activate|p2a: Koraidon|Orichalcum Pulse|[source]",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Miraidon|Miraidon, L50|175/175",
+          "|switch|p2a: Koraidon|Koraidon, L50|175/175",
+          "|-fieldstart|move: Electric Terrain|[from] ability: Hadron Engine|[of] p1a: Miraidon",
+          "|-weather|SunnyDay|[from] ability: Orichalcum Pulse|[of] p2a: Koraidon",
+          "|-activate|p2a: Koraidon|Orichalcum Pulse|[source]",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thunder Shock",
+                  "id": "thundershock",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Miraidon",
+                "details": "Miraidon, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 94,
+                  "def": 120,
+                  "spa": 155,
+                  "spd": 135,
+                  "spe": 170
+                },
+                "moves": [
+                  "thundershock"
+                ],
+                "baseAbility": "hadronengine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hadronengine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Koraidon",
+                "details": "Koraidon, L50",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 135,
+                  "spa": 105,
+                  "spd": 120,
+                  "spe": 155
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "orichalcumpulse",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "orichalcumpulse",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Miraidon",
+            "species": "Miraidon",
+            "details": "Miraidon, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 94,
+              "def": 120,
+              "spa": 155,
+              "spd": 135,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hadronengine",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "thundershock",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Koraidon",
+            "species": "Koraidon",
+            "details": "Koraidon, L50",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 135,
+              "spa": 105,
+              "spd": 120,
+              "spe": 155
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "orichalcumpulse",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Miraidon|Thunder Shock|p2a: Koraidon",
+          "|debug|electric terrain boost",
+          "|debug|Hadron Engine boost",
+          "|-resisted|p2a: Koraidon|1",
+          "|-damage|p2a: Koraidon|148/175",
+          "|move|p2a: Koraidon|Tackle|p1a: Miraidon",
+          "|debug|Orichalcum boost",
+          "|-damage|p1a: Miraidon|148/175",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Miraidon|Thunder Shock|p2a: Koraidon",
+          "|debug|electric terrain boost",
+          "|debug|Hadron Engine boost",
+          "|-resisted|p2a: Koraidon|1",
+          "|-damage|p2a: Koraidon|148/175",
+          "|move|p2a: Koraidon|Tackle|p1a: Miraidon",
+          "|debug|Orichalcum boost",
+          "|-damage|p1a: Miraidon|148/175",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Miraidon|Thunder Shock|p2a: Koraidon",
+          "|debug|electric terrain boost",
+          "|debug|Hadron Engine boost",
+          "|-resisted|p2a: Koraidon|1",
+          "|-damage|p2a: Koraidon|148/175",
+          "|move|p2a: Koraidon|Tackle|p1a: Miraidon",
+          "|debug|Orichalcum boost",
+          "|-damage|p1a: Miraidon|148/175",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thunder Shock",
+                  "id": "thundershock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Miraidon",
+                "details": "Miraidon, L50",
+                "condition": "148/175",
+                "active": true,
+                "stats": {
+                  "atk": 94,
+                  "def": 120,
+                  "spa": 155,
+                  "spd": 135,
+                  "spe": 170
+                },
+                "moves": [
+                  "thundershock"
+                ],
+                "baseAbility": "hadronengine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hadronengine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Koraidon",
+                "details": "Koraidon, L50",
+                "condition": "148/175",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 135,
+                  "spa": 105,
+                  "spd": 120,
+                  "spe": 155
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "orichalcumpulse",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "orichalcumpulse",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Miraidon",
+            "species": "Miraidon",
+            "details": "Miraidon, L50",
+            "hp": 148,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 94,
+              "def": 120,
+              "spa": 155,
+              "spd": 135,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hadronengine",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "thundershock",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Koraidon",
+            "species": "Koraidon",
+            "details": "Koraidon, L50",
+            "hp": 148,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 135,
+              "spa": 105,
+              "spd": 120,
+              "spe": 155
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "orichalcumpulse",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

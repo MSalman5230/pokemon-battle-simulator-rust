@@ -1,0 +1,626 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Chi-Yu\",\"moves\":[\"Ember\"],\"gender\":\"N\",\"name\":\"Chi-Yu\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Beads of Ruin\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Ting-Lu\",\"moves\":[\"Mud Shot\"],\"gender\":\"N\",\"name\":\"Ting-Lu\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Vessel of Ruin\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Chi-Yu, L50|",
+          "|poke|p2|Ting-Lu, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Chi-Yu, L50|",
+          "|poke|p2|Ting-Lu, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Chi-Yu, L50|",
+          "|poke|p2|Ting-Lu, L50|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Chi-Yu",
+                "details": "Chi-Yu, L50",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 100,
+                  "spa": 155,
+                  "spd": 140,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember"
+                ],
+                "baseAbility": "beadsofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "beadsofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ting-Lu",
+                "details": "Ting-Lu, L50",
+                "condition": "230/230",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 145,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 65
+                },
+                "moves": [
+                  "mudshot"
+                ],
+                "baseAbility": "vesselofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "vesselofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Chi-Yu",
+            "species": "Chi-Yu",
+            "details": "Chi-Yu, L50",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 100,
+              "spa": 155,
+              "spd": 140,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "beadsofruin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ting-Lu",
+            "species": "Ting-Lu",
+            "details": "Ting-Lu, L50",
+            "hp": 230,
+            "maxhp": 230,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 145,
+              "spa": 75,
+              "spd": 100,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "vesselofruin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "mudshot",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Chi-Yu|Chi-Yu, L50|130/130",
+          "|switch|p2a: Ting-Lu|Ting-Lu, L50|230/230",
+          "|-ability|p1a: Chi-Yu|Beads of Ruin",
+          "|-ability|p2a: Ting-Lu|Vessel of Ruin",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Chi-Yu|Chi-Yu, L50|130/130",
+          "|switch|p2a: Ting-Lu|Ting-Lu, L50|230/230",
+          "|-ability|p1a: Chi-Yu|Beads of Ruin",
+          "|-ability|p2a: Ting-Lu|Vessel of Ruin",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Chi-Yu|Chi-Yu, L50|130/130",
+          "|switch|p2a: Ting-Lu|Ting-Lu, L50|230/230",
+          "|-ability|p1a: Chi-Yu|Beads of Ruin",
+          "|-ability|p2a: Ting-Lu|Vessel of Ruin",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Chi-Yu",
+                "details": "Chi-Yu, L50",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 100,
+                  "spa": 155,
+                  "spd": 140,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember"
+                ],
+                "baseAbility": "beadsofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "beadsofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Mud Shot",
+                  "id": "mudshot",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ting-Lu",
+                "details": "Ting-Lu, L50",
+                "condition": "230/230",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 145,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 65
+                },
+                "moves": [
+                  "mudshot"
+                ],
+                "baseAbility": "vesselofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "vesselofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Chi-Yu",
+            "species": "Chi-Yu",
+            "details": "Chi-Yu, L50",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 100,
+              "spa": 155,
+              "spd": 140,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "beadsofruin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ting-Lu",
+            "species": "Ting-Lu",
+            "details": "Ting-Lu, L50",
+            "hp": 230,
+            "maxhp": 230,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 145,
+              "spa": 75,
+              "spd": 100,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "vesselofruin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "mudshot",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "25495,32001,50713,50540",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Chi-Yu|Ember|p2a: Ting-Lu",
+          "|debug|Vessel of Ruin SpA drop",
+          "|debug|Beads of Ruin SpD drop",
+          "|-damage|p2a: Ting-Lu|191/230",
+          "|move|p2a: Ting-Lu|Mud Shot|p1a: Chi-Yu",
+          "|-supereffective|p1a: Chi-Yu|1",
+          "|-damage|p1a: Chi-Yu|98/130",
+          "|-unboost|p1a: Chi-Yu|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Chi-Yu|Ember|p2a: Ting-Lu",
+          "|debug|Vessel of Ruin SpA drop",
+          "|debug|Beads of Ruin SpD drop",
+          "|-damage|p2a: Ting-Lu|191/230",
+          "|move|p2a: Ting-Lu|Mud Shot|p1a: Chi-Yu",
+          "|-supereffective|p1a: Chi-Yu|1",
+          "|-damage|p1a: Chi-Yu|98/130",
+          "|-unboost|p1a: Chi-Yu|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Chi-Yu|Ember|p2a: Ting-Lu",
+          "|debug|Vessel of Ruin SpA drop",
+          "|debug|Beads of Ruin SpD drop",
+          "|-damage|p2a: Ting-Lu|191/230",
+          "|move|p2a: Ting-Lu|Mud Shot|p1a: Chi-Yu",
+          "|-supereffective|p1a: Chi-Yu|1",
+          "|-damage|p1a: Chi-Yu|98/130",
+          "|-unboost|p1a: Chi-Yu|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Chi-Yu",
+                "details": "Chi-Yu, L50",
+                "condition": "98/130",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 100,
+                  "spa": 155,
+                  "spd": 140,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember"
+                ],
+                "baseAbility": "beadsofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "beadsofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Mud Shot",
+                  "id": "mudshot",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ting-Lu",
+                "details": "Ting-Lu, L50",
+                "condition": "191/230",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 145,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 65
+                },
+                "moves": [
+                  "mudshot"
+                ],
+                "baseAbility": "vesselofruin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "vesselofruin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Chi-Yu",
+            "species": "Chi-Yu",
+            "details": "Chi-Yu, L50",
+            "hp": 98,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 100,
+              "spa": 155,
+              "spd": 140,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": -1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "beadsofruin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ting-Lu",
+            "species": "Ting-Lu",
+            "details": "Ting-Lu, L50",
+            "hp": 191,
+            "maxhp": 230,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 145,
+              "spa": 75,
+              "spd": 100,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "vesselofruin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "mudshot",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
