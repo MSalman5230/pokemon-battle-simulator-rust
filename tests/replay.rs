@@ -1728,6 +1728,18 @@ fn oran_and_leppa_berries_apply_their_own_ripened_recovery() {
 }
 
 #[test]
+fn champions_eject_button_replaces_the_holder_without_canceling_the_attackers_pivot() {
+    replay(include_str!("fixtures/bss-eject-button.json"));
+}
+
+#[test]
+fn shell_bell_heals_from_real_damage_and_focus_band_rolls_on_every_damage_event() {
+    replay(include_str!("fixtures/bss-shell-bell.json"));
+    replay(include_str!("fixtures/bss-focus-band-draws.json"));
+    replay(include_str!("fixtures/bss-focus-band-save.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

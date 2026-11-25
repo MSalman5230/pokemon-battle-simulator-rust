@@ -96,9 +96,10 @@ impl Battle {
                 && !matches!(self.mon(source).active_ability(), "rockhead" | "magicguard")
             {
                 let recoil = (dealt * u32::from(num) + u32::from(den) / 2) / u32::from(den);
+                let recoil = self.focus_survival(source, recoil.max(1), false);
                 let mon = self.mon_mut(source);
                 mon.half_hp_berry_deferred = false;
-                mon.damage_hp(recoil.max(1));
+                mon.damage_hp(recoil);
                 self.add_health_line_with("-damage", source, false, "|[from] Recoil");
             }
             self.emergency_exit(source, original_hp);

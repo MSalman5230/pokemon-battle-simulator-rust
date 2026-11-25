@@ -1,6 +1,13 @@
 //! Shared ability hooks used by move effects and held-item modifiers.
 
 use super::{boost_copy::PendingBoostCopy, turn::Position, *};
+
+pub(super) struct PostHit {
+    pub contact: bool,
+    pub multihit: bool,
+    pub smart_target: bool,
+    pub delayed: bool,
+}
 use crate::{
     choice::TargetKind,
     dex::Category,
@@ -247,11 +254,15 @@ impl Battle {
         source: Position,
         hits: &[(Position, u32)],
         damage: [u32; 4],
-        contact: bool,
-        multihit: bool,
-        smart_target: bool,
+        hit: PostHit,
     ) {
-        let mut holders = [(source, 0, false); 8];
+        #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+        enum Kind {
+            Ability,
+            RedCard,
+            EjectButton,
+        }
+        let mut holders = [(source, 0, Kind::Ability); 8];
         let mut count = 0;
         for &(target, _) in hits {
             if !self.active_effects(target) {
@@ -262,26 +273,43 @@ impl Battle {
                 mon.ability.as_str(),
                 "berserk" | "angershell" | "pickpocket"
             ) {
-                holders[count] = (target, mon.speed, false);
+                holders[count] = (target, mon.speed, Kind::Ability);
                 count += 1;
             }
-            if mon.item == "redcard" {
-                holders[count] = (target, mon.speed, true);
+            let item = match mon.item.as_str() {
+                "redcard" => Some(Kind::RedCard),
+                "ejectbutton" => Some(Kind::EjectButton),
+                _ => None,
+            };
+            if let Some(item) = item {
+                holders[count] = (target, mon.speed, item);
                 count += 1;
             }
         }
         speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| {
-            b.1.cmp(&a.1).then_with(|| a.2.cmp(&b.2))
+            (b.2 == Kind::EjectButton)
+                .cmp(&(a.2 == Kind::EjectButton))
+                .then_with(|| b.1.cmp(&a.1))
+                .then_with(|| a.2.cmp(&b.2))
         });
         let total: u32 = damage.iter().sum();
         for &(target, _, item) in &holders[..count] {
-            if item {
-                self.red_card_after_move(target, source);
-                continue;
+            match item {
+                Kind::EjectButton => {
+                    if !hit.delayed {
+                        self.eject_button_after_move(target, source);
+                    }
+                    continue;
+                }
+                Kind::RedCard => {
+                    self.red_card_after_move(target, source);
+                    continue;
+                }
+                Kind::Ability => {}
             }
             match self.event_ability(target) {
                 "pickpocket" => {
-                    if contact {
+                    if hit.contact {
                         self.pickpocket_after_move(target, source);
                     }
                     continue;
@@ -292,7 +320,7 @@ impl Battle {
             let mon = self.mon_mut(target);
             mon.half_hp_berry_deferred = false;
             let anger_shell = mon.active_ability() == "angershell";
-            let sustained = if multihit && (anger_shell || !smart_target) {
+            let sustained = if hit.multihit && (anger_shell || !hit.smart_target) {
                 total
             } else {
                 damage[target.index()]
@@ -1189,6 +1217,7 @@ impl Battle {
             }
             return;
         }
+        let damage = self.focus_survival(attacker, damage, false);
         let mon = self.mon_mut(attacker);
         mon.half_hp_berry_deferred = false;
         mon.damage_hp(damage);

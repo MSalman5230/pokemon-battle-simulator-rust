@@ -1,6 +1,11 @@
 use super::boost_copy::PendingBoostCopy;
 use super::*;
-use super::{abilities::BoostOrigin, charge::ChargeSpec, damage::RegularHit, leech::DrainKind};
+use super::{
+    abilities::{BoostOrigin, PostHit},
+    charge::ChargeSpec,
+    damage::RegularHit,
+    leech::DrainKind,
+};
 use crate::{
     choice::{MoveChoice, SpecialChoice, TargetKind},
     dex::{Accuracy, Category},
@@ -42,7 +47,7 @@ impl Position {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub(super) enum Pivot {
     Move(&'static str),
-    Ability,
+    Reactive,
 }
 
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
@@ -529,7 +534,7 @@ impl Battle {
             _ => return,
         };
         if self.first_bench(pos.player, 0).is_some() {
-            self.mon_mut(pos).pivot_move = Some(Pivot::Ability);
+            self.mon_mut(pos).pivot_move = Some(Pivot::Reactive);
             self.add(format!("|-activate|{}|ability: {ability}", self.ident(pos)));
         }
     }
@@ -3703,6 +3708,7 @@ impl Battle {
             result.failed = true;
             return true;
         }
+        let after_move_target = spread_targets.last().copied().or(actual_target);
 
         if let Some(slot) = caller.map(|(caller, _)| caller).or(slot)
             && !struggle
@@ -6126,7 +6132,7 @@ impl Battle {
                 } else {
                     value
                 };
-                let value = self.focus_sash(target, value);
+                let value = self.focus_survival(target, value, true);
                 let half_hp_berry_deferred =
                     matches!(self.event_ability(target), "berserk" | "angershell") && !multihit;
                 let turn = self.turn;
@@ -6627,6 +6633,11 @@ impl Battle {
             0
         };
         if recoil > 0 && !self.mon(source).fainted {
+            let recoil = if struggle {
+                recoil
+            } else {
+                self.focus_survival(source, recoil, false)
+            };
             let mon = self.mon_mut(source);
             let original_hp = mon.hp;
             if !struggle {
@@ -6661,9 +6672,12 @@ impl Battle {
             source,
             &damage,
             landed_by_target,
-            contact,
-            multihit,
-            smart_target,
+            PostHit {
+                contact,
+                multihit,
+                smart_target,
+                delayed,
+            },
         );
         for &target in &spread_targets {
             let index = target.index();
@@ -6682,6 +6696,7 @@ impl Battle {
         let original_source_hp = self.mon(source).hp;
         if !suppress_after_move && !delayed {
             self.pay_life_orb_recoil(source);
+            self.shell_bell_after_move(source, after_move_target, total);
         }
         if !suppress_after_move && !delayed && hits_landed > 0 {
             self.magician_after_hit(source, &spread_targets);
@@ -6830,11 +6845,14 @@ impl Battle {
     }
 
     pub(super) fn half_max_hp_recoil(&mut self, pos: Position, effect: &str) {
-        let mon = self.mon_mut(pos);
+        let mon = self.mon(pos);
         if mon.hp != 0 && mon.active_ability() != "magicguard" {
             let original_hp = mon.hp;
+            let damage = mon.max_hp.get().div_ceil(2);
+            let damage = self.focus_survival(pos, damage, false);
+            let mon = self.mon_mut(pos);
             mon.half_hp_berry_deferred = false;
-            mon.damage_hp(mon.max_hp.get().div_ceil(2));
+            mon.damage_hp(damage);
             self.add_health_line_with("-damage", pos, false, &format!("|[from] {effect}"));
             self.emergency_exit(pos, original_hp);
         }
@@ -7491,6 +7509,9 @@ impl Pokemon {
             "" | "leftovers"
                 | "sitrusberry"
                 | "focussash"
+                | "focusband"
+                | "ejectbutton"
+                | "shellbell"
                 | "airballoon"
                 | "lifeorb"
                 | "rockyhelmet"

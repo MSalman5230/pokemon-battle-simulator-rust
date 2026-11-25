@@ -46,6 +46,7 @@ impl Battle {
                 }
                 return false;
             }
+            let amount = self.focus_survival(recipient, amount, false);
             let mon = self.mon_mut(recipient);
             let original_hp = mon.hp;
             mon.half_hp_berry_deferred = false;
@@ -104,11 +105,13 @@ impl Battle {
             }
             return;
         }
-        let mon = self.mon_mut(target);
+        let mon = self.mon(target);
         if mon.active_ability() == "magicguard" {
             return;
         }
         let loss = (mon.max_hp.get() / 8).max(1).min(mon.hp);
+        let loss = self.focus_survival(target, loss, false);
+        let mon = self.mon_mut(target);
         mon.half_hp_berry_deferred = false;
         mon.damage_hp(loss);
         self.add_health_line_with(

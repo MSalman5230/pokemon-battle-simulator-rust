@@ -235,7 +235,7 @@ impl Combatant {
         }
         mon.ability = to_id(self.ability.as_deref().unwrap_or_default());
         mon.item = to_id(self.item.as_deref().unwrap_or_default());
-        if let Some(error) = mon.entry_error().filter(|_| mon.item != "focusband") {
+        if let Some(error) = mon.entry_error() {
             return Err(error);
         }
         if !Pokemon::supported_ability(&mon.ability) {

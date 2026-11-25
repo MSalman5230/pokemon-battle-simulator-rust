@@ -1423,6 +1423,22 @@ const leppaBerryRosters = [
     [named('Dragapult', ['Spite', 'Leer'])],
     [{...named('Appletun', ['Recover']), item:'Leppa Berry', ability:'Ripen'}],
 ];
+const ejectButtonRosters = [
+    [named('Dragapult', ['U-turn']), named('Jolteon', ['Recover'])],
+    [{...named('Vaporeon', ['Recover']), item:'Eject Button'}, named('Umbreon', ['Recover'])],
+];
+const shellBellRosters = [
+    [{...named('Vaporeon', ['Water Gun']), item:'Shell Bell'}],
+    [named('Jolteon', ['Tackle'])],
+];
+const focusBandRosters = [
+    [named('Gengar', ['Toxic', 'Tackle'])],
+    [{...named('Clefable', ['Recover']), item:'Focus Band'}],
+];
+const focusBandSaveRosters = [
+    [named('Talonflame', ['Brave Bird'])],
+    [{...named('Pichu', ['Tackle']), item:'Focus Band'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2627,6 +2643,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         oranBerryRosters, 'bss-oran-berry'],
     ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1'], ['move 1','move 1']],
         leppaBerryRosters, 'bss-leppa-berry'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['switch 2','switch 2']],
+        ejectButtonRosters, 'bss-eject-button'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], shellBellRosters, 'bss-shell-bell'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        focusBandRosters, 'bss-focus-band-draws'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], focusBandSaveRosters, 'bss-focus-band-save', '1,2,3,13'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

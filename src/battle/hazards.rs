@@ -342,12 +342,13 @@ impl Battle {
     }
 
     fn hazard_damage(&mut self, pos: Position, damage: u32, reason: &str) {
-        let mon = self.mon_mut(pos);
-        if mon.active_ability() == "magicguard" {
+        if self.mon(pos).active_ability() == "magicguard" {
             return;
         }
+        let damage = self.focus_survival(pos, damage.max(1), false);
+        let mon = self.mon_mut(pos);
         mon.half_hp_berry_deferred = false;
-        mon.damage_hp(damage.max(1));
+        mon.damage_hp(damage);
         self.add_health_line_with("-damage", pos, false, reason);
         if self.mon(pos).hp == 0 {
             self.mark_fainted(pos);

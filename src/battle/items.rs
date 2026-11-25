@@ -252,12 +252,22 @@ impl Battle {
         }
     }
 
-    pub(super) fn focus_sash(&mut self, pos: Position, damage: u32) -> u32 {
-        if self.mon(pos).item == "focussash" && self.debug_ignored_item(pos, "Damage") {
+    pub(super) fn focus_survival(&mut self, pos: Position, damage: u32, move_damage: bool) -> u32 {
+        if !matches!(self.mon(pos).item.as_str(), "focussash" | "focusband")
+            || self.debug_ignored_item(pos, "Damage")
+        {
+            return damage;
+        }
+        if self.mon(pos).item == "focusband" {
+            // Native Focus Band checks its roll even on nonfatal and indirect damage.
+            if self.rng.chance(1, 10) && move_damage && damage >= self.mon(pos).hp {
+                self.add(format!("|-activate|{}|item: Focus Band", self.ident(pos)));
+                return self.mon(pos).hp - 1;
+            }
             return damage;
         }
         let mon = self.mon(pos);
-        if mon.item == "focussash" && mon.hp == mon.max_hp.get() && damage >= mon.hp {
+        if move_damage && mon.hp == mon.max_hp.get() && damage >= mon.hp {
             let remaining = mon.hp - 1;
             self.consume(pos, "Focus Sash", false);
             self.symbiosis_after_item(pos);
@@ -297,7 +307,12 @@ impl Battle {
         let mon = self.mon(pos);
         let id = mon.effective_item();
         let ready = match id {
-            "oranberry" => mon.hp * 2 <= mon.max_hp.get() && mon.heal_block == 0,
+            "oranberry" => {
+                mon.hp * 2 <= mon.max_hp.get()
+                    && mon.heal_block == 0
+                    && (!matches!(self.event_ability(pos), "berserk" | "angershell")
+                        || !mon.half_hp_berry_deferred)
+            }
             "persimberry" => mon.confusion > 0,
             "leppaberry" => mon.moves.iter().any(|slot| slot.pp == 0),
             _ => status_berry_matches(id, mon.status),
@@ -392,6 +407,22 @@ impl Battle {
             if self.mon(source).hp == 0 {
                 self.mark_fainted(source);
             }
+        }
+    }
+
+    pub(super) fn shell_bell_after_move(
+        &mut self,
+        source: Position,
+        target: Option<Position>,
+        total: u32,
+    ) {
+        if self.mon(source).item == "shellbell"
+            && self.active_effects(source)
+            && !self.debug_ignored_item(source, "AfterMoveSecondarySelf")
+            && self.drag_flags & source.mask() == 0
+            && total > 0
+        {
+            self.item_heal_from(source, total / 8, "Shell Bell", target);
         }
     }
 
@@ -657,7 +688,7 @@ impl Battle {
             || !mon.item.is_empty()
             || mon.pivot_move.is_some()
             || self.drag_flags & holder.mask() != 0
-            || self.mon(attacker).pivot_move == Some(Pivot::Ability)
+            || self.mon(attacker).pivot_move == Some(Pivot::Reactive)
         {
             return;
         }
@@ -683,6 +714,25 @@ impl Battle {
         );
         self.symbiosis_after_item(holder);
         self.schedule_drag(holder, attacker);
+    }
+
+    pub(super) fn eject_button_after_move(&mut self, holder: Position, attacker: Position) {
+        if holder == attacker
+            || self.mon(holder).hp == 0
+            || self.debug_ignored_item(holder, "AfterMoveSecondary")
+            || self.mon(holder).effective_item() != "ejectbutton"
+            || self.drag_flags & holder.mask() != 0
+            || self.first_bench(holder.player, 0).is_none()
+            || self
+                .positions()
+                .any(|pos| self.mon(pos).pivot_move == Some(Pivot::Reactive))
+        {
+            return;
+        }
+        self.mon_mut(holder).pivot_move = Some(Pivot::Reactive);
+        self.consume(holder, "Eject Button", false);
+        self.symbiosis_after_item(holder);
+        // Champions keeps the attacker's own U-turn-style switch pending.
     }
 
     fn transfer_stolen_item(
@@ -1009,12 +1059,15 @@ impl Battle {
     }
 
     pub(super) fn indirect_damage(&mut self, pos: Position, divisor: u32, cause: &str) {
-        let mon = self.mon_mut(pos);
+        let mon = self.mon(pos);
         if mon.hp == 0 || mon.active_ability() == "magicguard" {
             return;
         }
+        let amount = (mon.max_hp.get() / divisor).max(1);
+        let amount = self.focus_survival(pos, amount, false);
+        let mon = self.mon_mut(pos);
         mon.half_hp_berry_deferred = false;
-        mon.damage_hp((mon.max_hp.get() / divisor).max(1));
+        mon.damage_hp(amount);
         self.add_health_line_with("-damage", pos, false, cause);
     }
 }

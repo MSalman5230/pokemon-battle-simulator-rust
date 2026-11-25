@@ -220,6 +220,7 @@ impl Battle {
             self.stat_rules.truncation,
             &mut self.rng,
         );
+        let damage = self.focus_survival(pos, damage, true);
         let mon = self.mon_mut(pos);
         // Showdown represents a confusion self-hit as single-hit Move damage.
         mon.half_hp_berry_deferred = matches!(mon.active_ability(), "berserk" | "angershell");
@@ -635,6 +636,8 @@ impl Battle {
         if mon.status == Status::Burn && mon.active_ability() == "heatproof" {
             amount = (amount / 2).max(1);
         }
+        let amount = self.focus_survival(pos, amount, false);
+        let mon = self.mon_mut(pos);
         mon.half_hp_berry_deferred = false;
         mon.damage_hp(amount);
         self.add_health_line_with("-damage", pos, false, &format!("|[from] {label}"));
