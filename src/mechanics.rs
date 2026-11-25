@@ -276,6 +276,16 @@ pub enum BoostStat {
 }
 
 impl BoostStat {
+    pub(crate) const ALL: [Self; 7] = [
+        Self::Atk,
+        Self::Def,
+        Self::Spa,
+        Self::Spd,
+        Self::Spe,
+        Self::Accuracy,
+        Self::Evasion,
+    ];
+
     pub fn id(self) -> &'static str {
         match self {
             Self::Atk => "atk",

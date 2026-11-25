@@ -25,6 +25,7 @@ impl Attention {
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub(super) enum BoostOrigin {
     Move { has_secondaries: bool },
+    MagneticFlux,
     Secondary,
     Intimidate,
     SupersweetSyrup,
@@ -43,7 +44,11 @@ impl BoostOrigin {
     fn quiet(self) -> bool {
         matches!(
             self,
-            Self::Secondary | Self::Intimidate | Self::SupersweetSyrup | Self::MirrorArmor
+            Self::Secondary
+                | Self::Intimidate
+                | Self::SupersweetSyrup
+                | Self::MirrorArmor
+                | Self::MagneticFlux
         )
     }
 

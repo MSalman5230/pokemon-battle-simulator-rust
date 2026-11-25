@@ -954,6 +954,12 @@ fn plus_minus_and_curious_medicine_observe_the_live_partner() {
 }
 
 #[test]
+fn acupressure_samples_a_stat_and_magnetic_flux_checks_each_ally() {
+    replay(include_str!("fixtures/vgc-acupressure.json"));
+    replay(include_str!("fixtures/vgc-magnetic-flux.json"));
+}
+
+#[test]
 fn delayed_attacks_use_original_source_and_current_slot_occupant() {
     replay(include_str!("fixtures/bss-future-sight.json"));
     replay(include_str!("fixtures/vgc-delayed-attacks.json"));

@@ -856,6 +856,15 @@ const allyAbilitiesRosters = [
         {...named('Slowking-Galar', ['Recover']), ability:'Curious Medicine'}],
     [named('Vaporeon', ['Recover']), named('Umbreon', ['Recover'])],
 ];
+const acupressureRosters = [
+    [named('Pincurchin', ['Acupressure']), named('Arbok', ['Recover'])],
+    [named('Umbreon', ['Recover']), named('Glaceon', ['Recover'])],
+];
+const magneticFluxRosters = [
+    [{...named('Ampharos', ['Magnetic Flux']), ability:'Plus'},
+        {...named('Manectric', ['Recover']), ability:'Minus'}],
+    [named('Umbreon', ['Magnetic Flux']), named('Glaceon', ['Recover'])],
+];
 const futureSightRosters = [
     [{...named('Slowbro', ['Future Sight', 'Recover']), item:'Choice Specs'}, named('Jolteon', ['Recover'])],
     [named('Umbreon', ['Recover']), named('Vaporeon', ['Recover', 'Protect'])],
@@ -1920,6 +1929,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1, move 1'],
         ['move 2 2, move 1','move 1, move 1'], ['move 2 2, switch 3','move 1, move 1']],
         allyAbilitiesRosters, 'vgc-plus-minus-curious-medicine'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 -2, move 1','move 1, move 1'],
+        ['move 1 -1, move 1','move 1, move 1']], acupressureRosters, 'vgc-acupressure'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1']],
+        magneticFluxRosters, 'vgc-magnetic-flux'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','switch 2'],
         ['switch 2','move 2'], ['switch 2','move 1'], ['move 1','switch 2'],
         ['move 1','move 1'], ['move 1','move 1']], futureSightRosters, 'bss-future-sight'],

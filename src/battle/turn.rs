@@ -1112,6 +1112,8 @@ impl Battle {
                     | "torment"
                     | "octolock"
                     | "safeguard"
+                    | "acupressure"
+                    | "magneticflux"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -3585,6 +3587,30 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Magnetic Flux" {
+            self.protean_prepare(source, move_type);
+            let mut raised = false;
+            for slot in 0..self.slots() {
+                let target = Position { slot, ..source };
+                if matches!(self.event_ability(target), "plus" | "minus") {
+                    raised |= self.boost_from(
+                        target,
+                        source,
+                        &[(BoostStat::Def, 1), (BoostStat::Spd, 1)],
+                        BoostOrigin::MagneticFlux,
+                    );
+                }
+            }
+            if !raised {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                if self.format.report_exact_hp {
+                    self.add("|debug|move failed because it did nothing");
+                }
+                result.failed = true;
+            }
+            return true;
+        }
         if let Some(hazard) = Hazard::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !reflected
@@ -4365,6 +4391,33 @@ impl Battle {
                 }
                 let mut succeeded = false;
                 succeeded |= self.apply_stat_move(source, target, &move_data.name);
+                if move_data.name == "Acupressure" {
+                    let boosts = self.mon(target).boosts;
+                    let mut eligible = BoostStat::ALL;
+                    let mut count = 0;
+                    for stat in BoostStat::ALL {
+                        if boosts.get(stat) < 6 {
+                            eligible[count] = stat;
+                            count += 1;
+                        }
+                    }
+                    if count == 0 {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|move failed because it did nothing");
+                        }
+                    } else {
+                        let stat = eligible[self.rng.below(count as u32) as usize];
+                        self.boost_from(
+                            target,
+                            source,
+                            &[(stat, 2)],
+                            BoostOrigin::from_move(move_data),
+                        );
+                        succeeded = true;
+                    }
+                }
                 if spread && life_dew {
                     hit_labels.push(target.label());
                 }
