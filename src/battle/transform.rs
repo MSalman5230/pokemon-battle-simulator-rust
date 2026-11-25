@@ -53,7 +53,7 @@ impl Battle {
             original.nature,
             speed_stat,
         );
-        let temporary_type = model.temporary_type;
+        let temporary_types = model.temporary_types;
         let added_type = model.added_type;
         let spent_elements = model.spent_elements;
         let times_attacked = model.times_attacked;
@@ -98,7 +98,7 @@ impl Battle {
         mon.stats = stats;
         mon.speed = speed as i32;
         mon.boosts = boosts;
-        mon.temporary_type = temporary_type;
+        mon.temporary_types = temporary_types;
         mon.added_type = added_type;
         mon.spent_elements = spent_elements;
         mon.times_attacked = times_attacked;

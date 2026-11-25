@@ -653,7 +653,10 @@ impl Battle {
 
     pub(super) fn reset_ability_order(&mut self, pos: Position) {
         self.ability_order += 1;
-        self.mon_mut(pos).ability_order = self.ability_order;
+        let order = self.ability_order;
+        let mon = self.mon_mut(pos);
+        mon.ability_order = order;
+        mon.type_change_used = false;
     }
 
     pub(super) fn replacement_ability(
@@ -1510,6 +1513,7 @@ impl Pokemon {
         if self.ability != self.base_ability {
             self.ability.clone_from(&self.base_ability);
         }
+        self.type_change_used = false;
     }
 
     fn stat_drop_protection(&self) -> Option<&'static str> {
@@ -1539,12 +1543,15 @@ impl Pokemon {
 impl Battle {
     pub(super) fn protean_prepare(&mut self, pos: Position, move_type: &'static str) {
         let mon = self.mon(pos);
-        let name = match mon.ability.as_str() {
+        let name = match self.event_ability(pos) {
             "protean" => "Protean",
             "libero" => "Libero",
             _ => return,
         };
-        if move_type == "???" || mon.temporary_type.is_some() {
+        if move_type == "???"
+            || mon.type_change_used
+            || matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally")
+        {
             return;
         }
         let already_type = {
@@ -1555,9 +1562,8 @@ impl Battle {
             return;
         }
         let mon = self.mon_mut(pos);
-        mon.temporary_type = Some(move_type);
-        mon.added_type = None;
-        mon.spent_elements = 0;
+        mon.set_temporary_type(Some(move_type));
+        mon.type_change_used = true;
         self.add(format!(
             "|-start|{}|typechange|{move_type}|[from] ability: {name}",
             self.ident(pos)

@@ -81,11 +81,6 @@ pub(super) const BOOSTS: [BoostStat; 7] = [
     BoostStat::Accuracy,
     BoostStat::Evasion,
 ];
-pub(super) const TYPES: &[&str] = &[
-    "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground",
-    "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy",
-];
-
 fn unsupported(detail: impl fmt::Display) -> BattleError {
     BattleError::Unsupported(format!("hypothetical damage {detail}"))
 }
@@ -253,15 +248,8 @@ impl Combatant {
             *base = value.into();
         }
         if let Some(types) = self.types.filter(|types| *types != mon.species.types) {
-            let [single] = types.as_slice() else {
-                return Err(unsupported("dual type override"));
-            };
-            mon.temporary_type = Some(
-                *TYPES
-                    .iter()
-                    .find(|&&t| t == single)
-                    .ok_or_else(|| unsupported(single))?,
-            );
+            mon.temporary_types = super::types::TypeOverride::from_types(&types)
+                .ok_or_else(|| unsupported(format!("type override {types:?}")))?;
         }
         mon.times_attacked = self.times_attacked;
         mon.volatile_order.clear();

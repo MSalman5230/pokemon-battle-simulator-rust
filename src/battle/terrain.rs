@@ -113,9 +113,7 @@ impl Battle {
             return;
         }
         let mon = self.mon_mut(pos);
-        mon.temporary_type = terrain_type;
-        mon.added_type = None;
-        mon.spent_elements = 0;
+        mon.set_temporary_type(terrain_type);
         if let Some(form) = &mut mon.transformed {
             form.uses_base_types = terrain_type.is_none();
         }

@@ -45,6 +45,7 @@ mod terrain;
 mod transform;
 mod trap;
 mod turn;
+mod types;
 mod weather;
 mod weight;
 pub use status::Status;
@@ -262,7 +263,8 @@ pub struct Pokemon {
     active_turns: u32,
     active_move_actions: u32,
     roosted: bool,
-    temporary_type: Option<&'static str>,
+    temporary_types: types::TypeOverride,
+    type_change_used: bool,
     added_type: Option<&'static str>,
     spent_elements: u8,
     attract: Option<(Player, usize)>,
@@ -908,7 +910,8 @@ impl Pokemon {
             active_turns: 0,
             active_move_actions: 0,
             roosted: false,
-            temporary_type: None,
+            temporary_types: types::TypeOverride::default(),
+            type_change_used: false,
             added_type: None,
             spent_elements: 0,
             attract: None,

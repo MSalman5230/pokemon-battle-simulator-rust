@@ -4,7 +4,7 @@
 use super::{
     charge::ChargeSpec,
     support::{FutureMove, Wish},
-    tactical::{BOOSTS, TYPES},
+    tactical::BOOSTS,
     *,
 };
 use serde::Deserialize;
@@ -71,6 +71,7 @@ pub(crate) struct WorldMon {
     status: String,
     ability: String,
     base_ability: String,
+    type_ability_used: Option<String>,
     item: String,
     moves: Vec<WorldMove>,
     #[serde(default)]
@@ -365,18 +366,15 @@ impl WorldMon {
         mon.fainted = self.hp == 0;
         mon.ability = to_id(&self.ability);
         mon.base_ability = to_id(&self.base_ability);
+        mon.type_change_used = self.type_ability_used.as_deref().is_some_and(|name| {
+            let id = to_id(name);
+            matches!(id.as_str(), "protean" | "libero") && id == mon.ability
+        });
         mon.item = to_id(&self.item);
         mon.times_attacked = self.times_attacked;
         if mon.species.types != self.types {
-            let [ty] = self.types.as_slice() else {
-                return Err(unsupported("dual type override"));
-            };
-            mon.temporary_type = Some(
-                *TYPES
-                    .iter()
-                    .find(|&&t| t == ty)
-                    .ok_or_else(|| unsupported(ty))?,
-            );
+            mon.temporary_types = types::TypeOverride::from_types(&self.types)
+                .ok_or_else(|| unsupported(format!("type override {:?}", self.types)))?;
         }
         mon.status = match self.status.as_str() {
             "" => Status::Healthy,

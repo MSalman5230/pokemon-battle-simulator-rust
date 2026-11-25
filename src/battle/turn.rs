@@ -1587,9 +1587,7 @@ impl Battle {
         party[outgoing.slot].active_turns = 0;
         party[outgoing.slot].active_move_actions = 0;
         party[outgoing.slot].roosted = false;
-        party[outgoing.slot].temporary_type = None;
-        party[outgoing.slot].added_type = None;
-        party[outgoing.slot].spent_elements = 0;
+        party[outgoing.slot].set_temporary_type(None);
         party[outgoing.slot].yawn = None;
         party[outgoing.slot].seeded_from = None;
         party[outgoing.slot].partial_trap = None;
@@ -4251,9 +4249,7 @@ impl Battle {
                         self.add(format!("|-fail|{}", self.ident(target)));
                     } else {
                         let mon = self.mon_mut(target);
-                        mon.temporary_type = Some("Water");
-                        mon.added_type = None;
-                        mon.spent_elements = 0;
+                        mon.set_temporary_type(Some("Water"));
                         self.add(format!("|-start|{}|typechange|Water", self.ident(target)));
                         succeeded = true;
                     }
@@ -5627,9 +5623,7 @@ impl Battle {
         mon.imprisoned = false;
         mon.choice_lock = None;
         mon.roosted = false;
-        mon.temporary_type = None;
-        mon.added_type = None;
-        mon.spent_elements = 0;
+        mon.set_temporary_type(None);
         mon.yawn = None;
         mon.seeded_from = None;
         mon.partial_trap = None;
@@ -6004,6 +5998,7 @@ impl Pokemon {
                 | "infiltrator"
                 | "vitalspirit"
                 | "insomnia"
+                | "simple"
                 | "leafguard"
                 | "earlybird"
                 | "scrappy"

@@ -49,6 +49,8 @@ add('psychic terrain boosts grounded attackers', 'psychic', electric, normal, {t
 add('grassy terrain weakens targeted Earthquake', 'earthquake', normal, electric, {terrain: 'grassyterrain'});
 add('specified material survives without private game state', 'quickattack',
     {...normal, types: ['Steel']}, {...water, types: ['Ghost'], max_hp: 123});
+add('dual typing and typeless components are preserved by the isolated damage probe', 'rockslide',
+    {...normal, types: ['Rock', '???']}, {...fire, types: ['Fire', 'Flying', 'Fighting']});
 add('rage fist uses hypothetical hit count', 'ragefist', {...normal, times_attacked: 3}, water);
 add('eruption uses hypothetical remaining HP', 'eruption', {...fire, hp: .4, max_hp: 101}, normal);
 add('cracked disguise takes one eighth of its full HP', 'shadowball', normal,
