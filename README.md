@@ -1,10 +1,10 @@
 # Pokémon Battle Simulator (Rust)
 
 A headless Rust port of Pokémon Showdown's Gen 9 Champions singles and
-doubles for Poke-RL, in progress. The crate currently contains the seeded RNG,
-action and event ordering, Champions stat and damage primitives, native choice
-parsing, and static dex data. It does not yet resolve battles. The benchmark
-still runs Showdown.
+doubles for Poke-RL, in progress. The Rust core can replay a limited set of
+native singles and doubles battles, including preview, damage, Protect,
+switches, and partial replacements. Unsupported mechanics return errors. Team
+legality, most effects, and the Poke-RL worker are not yet ported.
 
 ## Local setup
 
@@ -50,8 +50,9 @@ node scripts/capture-oracle.mjs
 ```
 
 The tests use checked-in fixtures and do not need Node. The fixture generator
-records native singles and doubles replays for later turn-by-turn comparison.
-The current Rust tests compare isolated mechanics against the locked simulator.
+records seeded native battles from the locked simulator. Replay tests compare
+player requests, all three battle-log views, party state, and the RNG state at
+each checkpoint. Separate fixtures isolate RNG, ordering, stats, and HP display.
 
 ## Benchmark
 

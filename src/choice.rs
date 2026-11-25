@@ -217,7 +217,7 @@ pub fn to_id(name: &str) -> String {
         .collect()
 }
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq, serde::Deserialize)]
+#[derive(Debug, Copy, Clone, PartialEq, Eq, serde::Deserialize, serde::Serialize)]
 #[serde(rename_all = "camelCase")]
 pub enum TargetKind {
     Normal,
@@ -239,6 +239,16 @@ pub enum TargetKind {
 }
 
 impl TargetKind {
+    pub fn is_choosable(self) -> bool {
+        matches!(
+            self,
+            Self::Normal
+                | Self::AdjacentAlly
+                | Self::AdjacentAllyOrSelf
+                | Self::AdjacentFoe
+                | Self::Any
+        )
+    }
     /// Test the geometry of a chosen location, not whether a Pokémon is there.
     pub fn valid_location(self, slots: u8, user_slot: u8, target: i8) -> bool {
         if target == 0 {

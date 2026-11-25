@@ -69,15 +69,23 @@ const rosters = [
     [named('Umbreon', ['Tackle']), named('Espeon', ['Swift', 'Protect']), named('Leafeon', ['Tackle', 'Protect']),
         named('Sylveon', ['Quick Attack'])],
 ];
-for (const [suffix, play] of [
+const replacementRosters = [
+    [{...named('Vaporeon', ['Surf']), evs: {spa: 32}, nature: 'Modest'}, named('Jolteon', ['Protect']),
+        named('Glaceon', ['Ice Shard'])],
+    [named('Camerupt', ['Tackle']), named('Rhydon', ['Tackle']), named('Flareon', ['Quick Attack'])],
+];
+for (const [suffix, play, players = rosters, label = suffix] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
         ['move 2 2, switch 4', 'move 1, move 1 1']]],
+    ['vgc2026regmc', [['team 123', 'team 123'], ['move 1, move 1', 'move 1 1, move 1 1'],
+        [null, 'pass, switch 3'], ['move 1, move 1', 'move 1 1'],
+        ['move 1, move 1', 'move 1 1']], replacementRosters, 'vgc-replacements'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     const inputs = [
         '>start ' + JSON.stringify({formatid, seed: seeds[1], strictChoices: true}),
-        ...rosters.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team})),
+        ...players.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team})),
     ];
     const stream = new BattleStream({noCatch: true});
     let logCursor = 0;
@@ -87,13 +95,14 @@ for (const [suffix, play] of [
         const battle = stream.battle;
         const newLog = battle.log.slice(logCursor).filter(l => !l.startsWith('|t:|'));
         logCursor = battle.log.length;
+        // Open Team Sheet prompts are UI, outside the headless engine.
         const channels = extractChannelMessages(newLog.join('\n'), [0, 1, 2]);
         checkpoints.push({
             lines,
             turn: battle.turn,
             seed: battle.prng.getSeed(),
             requestState: battle.requestState,
-            channels: [channels[0], channels[1], channels[2]],
+            channels: [0, 1, 2].map(id => channels[id].filter(l => !l.startsWith('|uhtml|otsrequest|') && !l.startsWith('|uhtmlchange|otsrequest|'))),
             requests: battle.sides.map(s => s.activeRequest),
             teams: battle.sides.map(s => s.pokemon.map(p => ({
                 name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp,
@@ -103,7 +112,7 @@ for (const [suffix, play] of [
         });
     }
     await checkpoint(inputs);
-    for (const [p1, p2] of play) await checkpoint(['>p1 ' + p1, '>p2 ' + p2]);
+    for (const choices of play) await checkpoint(choices.flatMap((c, i) => c ? ['>p' + (i + 1) + ' ' + c] : []));
     await stream.writeEnd();
-    save(suffix + '.json', {formatid, checkpoints});
+    save(label + '.json', {formatid, checkpoints});
 }
