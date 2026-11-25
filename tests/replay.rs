@@ -530,3 +530,18 @@ fn vgc_eruption_and_water_spout_use_current_hp_after_priority_damage() {
 fn bss_stance_change_switches_form_before_attack_and_kings_shield() {
     replay(include_str!("fixtures/bss-stance-change.json"));
 }
+
+#[test]
+fn bss_magic_bounce_reflects_status_and_hazards_only_once_without_pp() {
+    replay(include_str!("fixtures/bss-magic-bounce.json"));
+}
+
+#[test]
+fn vgc_magic_bounce_reflects_hazards_aimed_at_the_holders_side() {
+    replay(include_str!("fixtures/vgc-magic-bounce.json"));
+}
+
+#[test]
+fn bss_magic_bounce_pivot_cancels_the_reflectors_original_action() {
+    replay(include_str!("fixtures/bss-magic-bounce-pivot.json"));
+}

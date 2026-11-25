@@ -32,6 +32,18 @@ pub(super) enum Protection {
     KingsShield,
 }
 
+#[derive(Clone, Copy)]
+enum MoveInvocation {
+    Choice {
+        slot: usize,
+        loc: i8,
+    },
+    Reflected {
+        data: &'static Move,
+        target: Position,
+    },
+}
+
 impl Protection {
     fn volatile(self) -> &'static str {
         match self {
@@ -231,6 +243,15 @@ impl Battle {
             .disguise(position)
             .unwrap_or_else(|| self.mon(position));
         format!("{}: {}", position.label(), display.name)
+    }
+
+    pub(super) fn move_still(&mut self, index: usize) {
+        let line = &mut self.log[index].public;
+        let mut delimiters = line.match_indices('|');
+        let start = delimiters.nth(3).unwrap().0 + 1;
+        let end = delimiters.next().map_or(line.len(), |(offset, _)| offset);
+        line.replace_range(start..end, "");
+        line.push_str("|[still]");
     }
 
     fn add_health_line(&mut self, event: &str, target: Position, details: bool) {
@@ -1093,6 +1114,11 @@ impl Battle {
                     bench_slot, pivot, ..
                 } => {
                     let outgoing = action.actor.unwrap();
+                    if pivot.is_some() {
+                        queue.retain(|q| {
+                            q.actor != Some(outgoing) || matches!(q.kind, ActionKind::RunSwitch)
+                        });
+                    }
                     self.switch_party_member(outgoing, bench_slot, pivot, false);
                     self.insert_run_switch(outgoing, &mut queue);
                 }
@@ -1106,7 +1132,14 @@ impl Battle {
                     self.mon_mut(source).acted = true;
                     self.mon_mut(source).active_move_actions += 1;
                     let recharging = move_slot == RECHARGE_SLOT || self.mon(source).recharge > 0;
-                    if self.run_move(source, move_slot, target, &mut queue) {
+                    if self.run_move(
+                        source,
+                        MoveInvocation::Choice {
+                            slot: move_slot,
+                            loc: target,
+                        },
+                        &mut queue,
+                    ) {
                         self.end_rampage_attempt(source);
                         if !recharging {
                             self.white_herbs_after_action();
@@ -1597,23 +1630,67 @@ impl Battle {
         true
     }
 
+    fn side_magic_bounce(&mut self, player: Player) -> Option<Position> {
+        let mut candidates = [(Position { player, slot: 0 }, 0_u32); 2];
+        let mut count = 0;
+        for slot in 0..self.slots() {
+            let pos = Position { player, slot };
+            let mon = self.mon(pos);
+            if !mon.fainted && mon.ability == "magicbounce" {
+                candidates[count] = (pos, mon.stats.spe);
+                count += 1;
+            }
+        }
+        let candidates = &mut candidates[..count];
+        // Unlike most event handlers, side Magic Bounce uses raw Speed.
+        speed_sort_by(candidates, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        candidates
+            .iter()
+            .map(|&(pos, _)| pos)
+            .find(|&pos| !self.ability_suppressed(pos))
+    }
+
+    fn bounce_move(
+        &mut self,
+        holder: Position,
+        source: Position,
+        data: &'static Move,
+        queue: &mut Vec<Action>,
+    ) {
+        let prior_breaker = self.ability_breaker.take();
+        self.run_move(
+            holder,
+            MoveInvocation::Reflected {
+                data,
+                target: source,
+            },
+            queue,
+        );
+        self.ability_breaker = prior_breaker;
+    }
+
     // Whether this action reached the move attempt, for AfterMove hooks.
     fn run_move(
         &mut self,
         source: Position,
-        slot: usize,
-        loc: i8,
+        invocation: MoveInvocation,
         queue: &mut Vec<Action>,
     ) -> bool {
-        let mon = self.mon_mut(source);
-        if mon.glaive_drawback {
+        let (slot, loc, forced_target, reflected) = match invocation {
+            MoveInvocation::Choice { slot, loc } => (Some(slot), loc, None, false),
+            MoveInvocation::Reflected { target, .. } => (None, 0, Some(target), true),
+        };
+        if !reflected && self.mon(source).glaive_drawback {
+            let mon = self.mon_mut(source);
             mon.glaive_drawback = false;
             mon.untrack_volatile("glaiverush");
             if self.format.report_exact_hp {
                 self.add("|debug|removing Glaive Rush drawback before attack");
             }
         }
-        if slot == RECHARGE_SLOT || self.mon(source).recharge > 0 {
+        if let Some(slot) = slot
+            && (slot == RECHARGE_SLOT || self.mon(source).recharge > 0)
+        {
             if slot == RECHARGE_SLOT {
                 self.random_target(source, TargetKind::Normal);
             } else {
@@ -1625,10 +1702,13 @@ impl Battle {
             mon.untrack_volatile("mustrecharge");
             return true;
         }
-        let move_data = self.move_data(source, slot);
-        let struggle = slot == STRUGGLE_SLOT;
+        let move_data = match invocation {
+            MoveInvocation::Choice { slot, .. } => self.move_data(source, slot),
+            MoveInvocation::Reflected { data, .. } => data,
+        };
+        let struggle = slot == Some(STRUGGLE_SLOT);
         let charge_spec = ChargeSpec::for_move(&move_data.name);
-        let releasing_charge = self.mon(source).charge.is_some();
+        let releasing_charge = !reflected && self.mon(source).charge.is_some();
         let weather = self.effective_weather();
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
             && matches!(weather, Some(Weather::Rain | Weather::Sand | Weather::Snow));
@@ -1644,8 +1724,14 @@ impl Battle {
         } else {
             None
         };
-        let continuing = self.mon(source).rampage.is_some() || releasing_charge;
-        let called_from = if continuing { "|[from] lockedmove" } else { "" };
+        let continuing = !reflected && (self.mon(source).rampage.is_some() || releasing_charge);
+        let called_from = if reflected {
+            "|[from] ability: Magic Bounce"
+        } else if continuing {
+            "|[from] lockedmove"
+        } else {
+            ""
+        };
         let weather_ball = move_data.name == "Weather Ball";
         let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
         let power = match (weather_ball && weather.is_some(), stacked_power) {
@@ -1661,14 +1747,15 @@ impl Battle {
             self.mon(source).converted_move_type(&move_data.move_type)
         };
         let source_name = self.ident(source);
-        let original_target = self.resolve_target(source, move_data.target, loc);
+        let original_target =
+            forced_target.or_else(|| self.resolve_target(source, move_data.target, loc));
         let mut target = retaliation_hit.map(|hit| hit.source).or(original_target);
-        if !self.before_status_move(source, move_data) {
+        if !reflected && !self.before_status_move(source, move_data) {
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
             return false;
         }
-        if !struggle && self.mon(source).disabled_by_choice(slot) {
+        if !struggle && slot.is_some_and(|slot| self.mon(source).disabled_by_choice(slot)) {
             self.add(format!("|move|{source_name}|{}||[still]", move_data.name));
             if self.format.report_exact_hp {
                 self.add("|debug|Disabled by Choice item lock");
@@ -1678,7 +1765,7 @@ impl Battle {
             self.clear_destiny_bond(source, false);
             return false;
         }
-        if move_data.name != "Destiny Bond" {
+        if !reflected && move_data.name != "Destiny Bond" {
             self.clear_destiny_bond(source, true);
         }
         let accuracy = match (move_data.name.as_str(), weather) {
@@ -1691,7 +1778,8 @@ impl Battle {
             }
             _ => move_data.accuracy,
         };
-        if matches!(self.mon(source).status, Status::Freeze(_))
+        if !reflected
+            && matches!(self.mon(source).status, Status::Freeze(_))
             && move_data.flags.contains_key("defrost")
         {
             self.cure_status(source, &format!("[from] move: {}", move_data.name));
@@ -1699,7 +1787,7 @@ impl Battle {
         if struggle {
             self.mon_mut(source).last_move_slot = None;
             self.add(format!("|-activate|{source_name}|move: Struggle"));
-        } else {
+        } else if let Some(slot) = slot {
             let mon = self.mon_mut(source);
             if !continuing {
                 mon.moves[slot].pp -= 1;
@@ -1797,7 +1885,8 @@ impl Battle {
             return true;
         }
 
-        if !struggle
+        if let Some(slot) = slot
+            && !struggle
             && !continuing
             && (kind.is_choosable()
                 || matches!(
@@ -1826,7 +1915,7 @@ impl Battle {
                 }
                 let weather_skip = spec.instant.is_some() && spec.instant == weather;
                 let herb_skip = !weather_skip && self.mon(source).item == "powerherb";
-                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.move_still(base);
                 if weather_skip || herb_skip {
                     if herb_skip {
                         self.consume(source, "Power Herb", false);
@@ -1844,7 +1933,11 @@ impl Battle {
                         self.ident(spread_targets[0])
                     ));
                 } else {
-                    self.mon_mut(source).begin_charge(spec, slot, loc);
+                    self.mon_mut(source).begin_charge(
+                        spec,
+                        slot.expect("charge moves are not reflectable"),
+                        loc,
+                    );
                     self.protean_prepare(source, move_type);
                     return true;
                 }
@@ -1857,14 +1950,16 @@ impl Battle {
                 self.protean_prepare(source, move_type);
             }
             if !self.set_screen(source, screen) {
-                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             }
             return true;
         }
         if let Some(hazard) = Hazard::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
-            if move_data.flags.contains_key("mustpressure") {
+            if let Some(slot) = slot
+                && move_data.flags.contains_key("mustpressure")
+            {
                 let pressure = (0..self.slots())
                     .map(|slot| Position {
                         player: source.player.foe(),
@@ -1875,8 +1970,16 @@ impl Battle {
                 self.mon_mut(source).moves[slot].pp =
                     self.mon(source).moves[slot].pp.saturating_sub(pressure);
             }
+            if !reflected
+                && move_data.flags.contains_key("reflectable")
+                && let Some(holder) = self.side_magic_bounce(source.player.foe())
+                && !self.mon(spread_targets[0]).diving()
+            {
+                self.bounce_move(holder, source, move_data, queue);
+                return true;
+            }
             if !self.add_hazard(source.player.foe(), hazard) {
-                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             }
             return true;
@@ -1884,7 +1987,7 @@ impl Battle {
         if move_data.name == "Court Change" {
             self.protean_prepare(source, move_type);
             if !self.court_change(source) {
-                self.log[base].public = format!("|move|{source_name}|Court Change||[still]");
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             }
             return true;
@@ -1903,7 +2006,7 @@ impl Battle {
         if let Some(weather) = Weather::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !self.set_weather(source, weather, None) {
-                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             }
             return true;
@@ -1912,7 +2015,7 @@ impl Battle {
             self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
             if mon.imprisoned {
-                self.log[base].public = format!("|move|{source_name}|Imprison||[still]");
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             } else {
                 mon.imprisoned = true;
@@ -1926,7 +2029,7 @@ impl Battle {
         if let Some(terrain) = Terrain::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !self.set_terrain(source, terrain, None) {
-                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             }
             return true;
@@ -1950,7 +2053,7 @@ impl Battle {
                     if terrain == Terrain::Electric {
                         self.terrain_activate(source, terrain);
                     }
-                    self.log[base].public = format!("|move|{source_name}|Rest||[still]");
+                    self.move_still(base);
                     self.add(format!("|-fail|{source_name}"));
                     return true;
                 }
@@ -1976,7 +2079,7 @@ impl Battle {
                     self.mon_mut(source).stall = None;
                     self.mon_mut(source).untrack_volatile("stall");
                 }
-                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
                 return true;
             }
@@ -1998,7 +2101,7 @@ impl Battle {
         }
         if move_data.name == "Destiny Bond" {
             if self.clear_destiny_bond(source, false) {
-                self.log[base].public = format!("|move|{source_name}|Destiny Bond||[still]");
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             } else {
                 self.protean_prepare(source, move_type);
@@ -2018,7 +2121,7 @@ impl Battle {
             _ => None,
         } {
             if self.slots() == 1 {
-                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
             } else {
                 self.protean_prepare(source, move_type);
@@ -2040,17 +2143,17 @@ impl Battle {
                 "|-hint|{} only works on your first turn out.",
                 move_data.name
             ));
-            self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+            self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             return true;
         }
         if move_data.name == "Poltergeist" && self.mon(spread_targets[0]).item.is_empty() {
-            self.log[base].public = format!("|move|{source_name}|Poltergeist||[still]");
+            self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             return true;
         }
         if retaliation && !retaliation_hit.is_some_and(|hit| hit.turn == self.turn) {
-            self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+            self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             return true;
         }
@@ -2062,10 +2165,7 @@ impl Battle {
                         && self.move_data(target, slot).category != Category::Status
                 });
             if !pending_attack {
-                self.log[base].public = format!(
-                    "|move|{source_name}|{}|{called_from}|[still]",
-                    move_data.name
-                );
+                self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
                 return true;
             }
@@ -2120,6 +2220,14 @@ impl Battle {
                         ),
                     );
                 }
+                false
+            } else if !reflected
+                && source != mut_pos
+                && move_data.flags.contains_key("reflectable")
+                && !self.mon(mut_pos).diving()
+                && self.event_ability(mut_pos) == "magicbounce"
+            {
+                self.bounce_move(mut_pos, source, move_data, queue);
                 false
             } else if ohko && self.event_ability(mut_pos) == "sturdy" {
                 self.add(format!(
@@ -2216,7 +2324,7 @@ impl Battle {
                 .iter()
                 .any(|&p| self.mon(p).last_move_slot.is_none())
         {
-            self.log[base].public = format!("|move|{source_name}|Disable||[still]");
+            self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             return true;
         }
@@ -2287,8 +2395,7 @@ impl Battle {
                     if swapped == Some(true) {
                         succeeded = true;
                     } else if swapped == Some(false) {
-                        self.log[base].public =
-                            format!("|move|{source_name}|{}||[still]", move_data.name);
+                        self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
@@ -2296,7 +2403,7 @@ impl Battle {
                     if self.leech_seed(source, target) {
                         succeeded = true;
                     } else {
-                        self.log[base].public = format!("|move|{source_name}|Leech Seed||[still]");
+                        self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
@@ -2307,7 +2414,7 @@ impl Battle {
                     if removed || raised {
                         succeeded = true;
                     } else {
-                        self.log[base].public = format!("|move|{source_name}|Tidy Up||[still]");
+                        self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
@@ -2322,7 +2429,7 @@ impl Battle {
                         }
                         succeeded = true;
                     } else {
-                        self.log[base].public = format!("|move|{source_name}|Encore||[still]");
+                        self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
@@ -2361,8 +2468,7 @@ impl Battle {
                         }
                     }
                     if !success {
-                        self.log[base].public =
-                            format!("|move|{source_name}|Strength Sap||[still]");
+                        self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     }
                     succeeded |= success;
@@ -2385,13 +2491,13 @@ impl Battle {
                     if self.taunt(target, Self::queued_move(queue, target).is_some()) {
                         succeeded = true;
                     } else {
-                        self.log[base].public = format!("|move|{source_name}|Taunt||[still]");
+                        self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
                 if move_data.name == "Disable" {
                     if !self.disable_last_move(target, source, false) {
-                        self.log[base].public = format!("|move|{source_name}|Disable||[still]");
+                        self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     } else {
                         succeeded = true;
@@ -2403,7 +2509,7 @@ impl Battle {
                         || mon.status != Status::Healthy
                         || self.status_immune(target, "slp")
                     {
-                        self.log[base].public = format!("|move|{source_name}|Yawn||[still]");
+                        self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                         continue;
                     }
@@ -2453,8 +2559,7 @@ impl Battle {
                 if let Some([num, den]) = move_data.heal {
                     let mon = self.mon_mut(target);
                     if mon.hp == mon.max_hp.get() {
-                        self.log[base].public =
-                            format!("|move|{source_name}|{}||[still]", move_data.name);
+                        self.move_still(base);
                         self.add(format!("|-fail|{}|heal", self.ident(target)));
                         continue;
                     }
@@ -2786,7 +2891,7 @@ impl Battle {
                 self.add(format!("|-mustrecharge|{source_name}"));
             }
             if move_data.self_rampage {
-                self.rampage_hit(source, slot);
+                self.rampage_hit(source, slot.expect("rampage moves are not reflectable"));
             }
             if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 {
                 let mon = self.mon_mut(source);
@@ -3337,6 +3442,7 @@ impl Pokemon {
                 | "cloudnine"
                 | "airlock"
                 | "stancechange"
+                | "magicbounce"
         )
     }
 

@@ -228,8 +228,7 @@ impl Battle {
                     self.add(format!("|-fail|{}|{id}", self.ident(pos)));
                 } else {
                     self.add(format!("|-fail|{}", self.ident(source)));
-                    self.log[move_log].public =
-                        format!("|move|{}|{}||[still]", self.ident(source), data.name);
+                    self.move_still(move_log);
                 }
             }
             return false;

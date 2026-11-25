@@ -430,6 +430,18 @@ const stanceRosters = [
     [{...named('Aegislash', ['Shadow Ball', "King's Shield", 'Recover'], 'M'), ability: 'Stance Change'}, named('Vaporeon', ['Recover'])],
     [named('Umbreon', ['Bite', 'Toxic', 'Recover']), named('Glaceon', ['Recover'])],
 ];
+const bounceRosters = [
+    [{...named('Espeon', ['Toxic', 'Stealth Rock', 'Recover']), ability: 'Magic Bounce'}, named('Glaceon', ['Recover'])],
+    [{...named('Hatterene', ['Yawn', 'Recover']), ability: 'Magic Bounce'}, named('Vaporeon', ['Recover'])],
+];
+const bounceAllyRosters = [
+    [named('Glaceon', ['Spikes', 'Recover']), named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Recover']), bounceRosters[1][0]],
+];
+const bouncePivotRosters = [
+    [named('Jolteon', ['Parting Shot', 'Recover']), named('Glaceon', ['Recover'])],
+    [{...bounceRosters[1][0], moves: ['Tackle']}, named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -639,6 +651,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'],
         ['move 1', 'move 3'], ['move 2', 'move 2'], ['move 1', 'move 3'], ['switch 2', 'move 3'],
         ['switch 2', 'move 3']], stanceRosters, 'bss-stance-change'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 2'], ['move 2', 'move 1'],
+        ['move 1', 'move 2'], ['switch 2', 'move 2']], bounceRosters, 'bss-magic-bounce'],
+    ['vgc2026regmc', [['team 12', 'team 12'], ['move 1, move 1', 'move 1, move 2']],
+        bounceAllyRosters, 'vgc-magic-bounce'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], [null, 'switch 2'], ['move 2', 'move 1']],
+        bouncePivotRosters, 'bss-magic-bounce-pivot'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
