@@ -6,6 +6,21 @@ use crate::{
     mechanics::{BoostStat, chain},
 };
 
+#[derive(Clone, Copy, Eq, PartialEq)]
+pub(super) enum Attention {
+    FollowMe,
+    RagePowder,
+}
+
+impl Attention {
+    pub(super) fn name_id(self) -> (&'static str, &'static str) {
+        match self {
+            Self::FollowMe => ("Follow Me", "followme"),
+            Self::RagePowder => ("Rage Powder", "ragepowder"),
+        }
+    }
+}
+
 impl Pokemon {
     pub(super) fn ability_power_modifier(
         &self,
@@ -141,7 +156,7 @@ impl Battle {
         self.start_ability(pos);
     }
 
-    pub(super) fn redirect_elemental(
+    pub(super) fn redirect_target(
         &mut self,
         source: Position,
         target: Position,
@@ -149,6 +164,30 @@ impl Battle {
         move_type: &str,
     ) -> Option<Position> {
         use crate::choice::TargetKind;
+        if let Some(follower) = self
+            .positions()
+            .filter(|&candidate| {
+                let mon = self.mon(candidate);
+                candidate.player != source.player
+                    && mon.hp > 0
+                    && mon.attention.is_some_and(|kind| {
+                        kind != Attention::RagePowder || !self.status_immune(source, "powder")
+                    })
+                    && move_data
+                        .target
+                        .valid_location(2, source.slot as u8, candidate.loc(source))
+            })
+            .min_by_key(|&candidate| {
+                let mon = self.mon(candidate);
+                (std::cmp::Reverse(mon.speed), mon.ability_order)
+            })
+        {
+            if self.format.report_exact_hp {
+                let (name, _) = self.mon(follower).attention.unwrap().name_id();
+                self.add(format!("|debug|{name} redirected target of move"));
+            }
+            return Some(follower);
+        }
         let (ability, label) = match move_type {
             "Electric" => ("lightningrod", "Lightning Rod"),
             "Water" => ("stormdrain", "Storm Drain"),
@@ -389,6 +428,9 @@ impl Battle {
         let mut success = false;
         for &(stat, amount) in boosts {
             let change = self.mon_mut(pos).boosts.add(stat, amount);
+            if change > 0 {
+                self.mon_mut(pos).stats_raised = true;
+            }
             if change != 0 || quiet {
                 if change != 0 && !success {
                     self.add(format!("|-ability|{}|{label}|boost", self.ident(pos)));
@@ -431,6 +473,7 @@ impl Battle {
         }
         let change = mon.boosts.add(BoostStat::Spe, 1);
         if change > 0 {
+            mon.stats_raised = true;
             self.add(format!("|-ability|{}|Speed Boost|boost", self.ident(pos)));
             self.add(format!("|-boost|{}|spe|1", self.ident(pos)));
         }

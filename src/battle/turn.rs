@@ -744,6 +744,10 @@ impl Battle {
                     | "seismictoss"
                     | "nightshade"
                     | "superfang"
+                    | "followme"
+                    | "ragepowder"
+                    | "alluringvoice"
+                    | "direclaw"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -958,10 +962,12 @@ impl Battle {
         party[outgoing.slot].protected = false;
         party[outgoing.slot].stall = None;
         party[outgoing.slot].boosts = Boosts::default();
+        party[outgoing.slot].stats_raised = false;
         party[outgoing.slot].flinched = false;
         party[outgoing.slot].recharge = 0;
         party[outgoing.slot].confusion = 0;
         party[outgoing.slot].rampage = None;
+        party[outgoing.slot].attention = None;
         party[outgoing.slot].glaive_drawback = false;
         party[outgoing.slot].volatile_order.clear();
         party[outgoing.slot].imprisoned = false;
@@ -1108,6 +1114,7 @@ impl Battle {
             mon.revealed_disables = 0;
             mon.revealed_all_disables = false;
             mon.acted = false;
+            mon.stats_raised = false;
             if !mon.fainted {
                 mon.active_turns += 1;
             }
@@ -1239,6 +1246,7 @@ impl Battle {
             Flinch,
             Recharge,
             Rampage,
+            Attention,
             Leftovers,
             ShedSkin,
             Weather,
@@ -1366,6 +1374,9 @@ impl Battle {
             if mon.rampage.is_some() {
                 timers.push((pos, Effect::Rampage, priority(0, 2)));
             }
+            if mon.attention.is_some() {
+                timers.push((pos, Effect::Attention, priority(0, 2)));
+            }
         }
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
         for (pos, effect, _) in timers {
@@ -1429,6 +1440,11 @@ impl Battle {
                     }
                 }
                 Effect::Rampage => self.tick_rampage(pos),
+                Effect::Attention => {
+                    if let Some(kind) = mon.attention.take() {
+                        mon.untrack_volatile(kind.name_id().1);
+                    }
+                }
                 Effect::Stall => {
                     mon.stall = mon.stall.and_then(|(counter, duration)| {
                         (duration > 1).then_some((counter, duration - 1))
@@ -1621,7 +1637,7 @@ impl Battle {
             && let Some(target) = actual_target.filter(|_| {
                 move_data.target.is_choosable() || move_data.target == TargetKind::RandomNormal
             })
-            && let Some(redirect) = self.redirect_elemental(source, target, move_data, move_type)
+            && let Some(redirect) = self.redirect_target(source, target, move_data, move_type)
         {
             spread_targets.clear();
             spread_targets.push(redirect);
@@ -1796,6 +1812,27 @@ impl Battle {
             return true;
         }
 
+        if let Some(attention) = match move_data.name.as_str() {
+            "Follow Me" => Some(Attention::FollowMe),
+            "Rage Powder" => Some(Attention::RagePowder),
+            _ => None,
+        } {
+            if self.slots() == 1 {
+                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.add(format!("|-fail|{source_name}"));
+            } else {
+                self.protean_prepare(source, move_type);
+                let (name, id) = attention.name_id();
+                let mon = self.mon_mut(source);
+                mon.attention = Some(attention);
+                mon.track_volatile(id);
+                self.add(format!("|-singleturn|{source_name}|move: {name}"));
+                self.each_event();
+                self.each_event();
+            }
+            return true;
+        }
+
         if self.mon(source).active_move_actions > 1
             && matches!(move_data.name.as_str(), "Fake Out" | "First Impression")
         {
@@ -1836,6 +1873,27 @@ impl Battle {
             }
             if self.mon(mut_pos).protected && move_data.flags.contains_key("protect") {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
+                false
+            } else if source != mut_pos
+                && move_data.flags.contains_key("powder")
+                && !self.mon(mut_pos).has_type("Grass")
+                && self.mon(mut_pos).ability == "overcoat"
+            {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Overcoat",
+                    self.ident(mut_pos)
+                ));
+                false
+            } else if source != mut_pos
+                && move_data.flags.contains_key("powder")
+                && !self.mon(mut_pos).has_type("Grass")
+                && self.mon(mut_pos).item == "safetygoggles"
+            {
+                self.add(format!(
+                    "|-activate|{}|item: Safety Goggles|{}",
+                    self.ident(mut_pos),
+                    move_data.name
+                ));
                 false
             } else if self.absorb_elemental(mut_pos, source, move_type) {
                 false
@@ -2375,6 +2433,13 @@ impl Battle {
                 for effect in &move_data.secondaries {
                     let roll = self.rng.below(100);
                     if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
+                        if move_data.name == "Dire Claw" {
+                            let status = ["psn", "par", "slp"][self.rng.below(3) as usize];
+                            self.try_status(target, status, source, move_data, false, base);
+                        }
+                        if move_data.name == "Alluring Voice" && self.mon(target).stats_raised {
+                            self.apply_confusion(target, false);
+                        }
                         if let Some(status) = &effect.status {
                             self.try_status(target, status, source, move_data, false, base);
                         }
@@ -2600,6 +2665,7 @@ impl Battle {
         mon.recharge = 0;
         mon.confusion = 0;
         mon.rampage = None;
+        mon.attention = None;
         mon.glaive_drawback = false;
         mon.volatile_order.clear();
         mon.imprisoned = false;
@@ -2637,6 +2703,9 @@ impl Battle {
         for &(stat, amount) in boosts {
             let mon = self.mon_mut(pos);
             let changed = mon.boosts.add(stat, amount);
+            if changed > 0 {
+                mon.stats_raised = true;
+            }
             let event = if amount < 0 || mon.boosts.get(stat) == -6 {
                 "-unboost"
             } else {
@@ -2773,6 +2842,7 @@ impl Pokemon {
                 | "innerfocus"
                 | "oblivious"
                 | "owntempo"
+                | "overcoat"
                 | "speedboost"
                 | "multiscale"
                 | "guts"
@@ -2882,6 +2952,7 @@ impl Pokemon {
                 | "loadeddice"
                 | "terrainextender"
                 | "mentalherb"
+                | "safetygoggles"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

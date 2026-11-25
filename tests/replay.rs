@@ -380,3 +380,13 @@ fn vgc_phazing_cancels_the_removed_pokemons_queued_move() {
 fn bss_retaliation_uses_damage_from_this_turn_and_follows_the_attackers_slot() {
     replay(include_str!("fixtures/bss-retaliation.json"));
 }
+
+#[test]
+fn vgc_follow_me_preempts_ability_redirection_and_powder_respects_typing() {
+    replay(include_str!("fixtures/vgc-attention.json"));
+}
+
+#[test]
+fn bss_conditional_secondaries_follow_same_turn_boosts_and_sample_status() {
+    replay(include_str!("fixtures/bss-conditional-secondary.json"));
+}

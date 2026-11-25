@@ -299,6 +299,15 @@ const retaliationRosters = [
     [named('Meowscarada', ['Tackle', 'Recover', 'U-turn']), named('Vaporeon', ['Seismic Toss', 'Recover'])],
     [named('Slowbro', ['Metal Burst', 'Recover', 'Super Fang']), named('Umbreon', ['Recover'])],
 ];
+const attentionRosters = [
+    [named('Weavile', ['Thunderbolt']), {...named('Raichu', ['Thunderbolt', 'Recover']), ability: 'Lightning Rod'},
+        named('Meowscarada', ['Thunderbolt'])],
+    [named('Umbreon', ['Follow Me', 'Rage Powder', 'Recover']), named('Vaporeon', ['Recover'])],
+];
+const conditionalSecondaryRosters = [
+    [named('Wigglytuff', ['Alluring Voice', 'Follow Me', 'Dire Claw', 'Recover']), named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Calm Mind', 'Recover']), named('Glaceon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -440,6 +449,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'], ['move 3', 'move 1'],
         ['switch 2', null], ['move 1', 'move 3'], ['move 1', 'move 2']],
         retaliationRosters, 'bss-retaliation'],
+    ['vgc2026regmc', [['team 123', 'team 12'], ['move 1 2, move 2', 'move 1, move 1'],
+        ['switch 3, move 1 2', 'move 2, move 1'], ['move 1 2, move 2', 'move 2, move 1']],
+        attentionRosters, 'vgc-attention'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 2'],
+        ['move 3', 'move 2'], ['move 3', 'move 2'], ['move 3', 'move 2'], ['move 4', 'move 2']],
+        conditionalSecondaryRosters, 'bss-conditional-secondary', '1,2,3,6'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

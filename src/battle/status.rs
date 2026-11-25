@@ -196,9 +196,12 @@ impl Battle {
     }
 
     pub(super) fn status_immune(&self, pos: Position, key: &str) -> bool {
-        self.mon(pos)
-            .types()
-            .any(|typing| DEX.type_data(&to_id(typing)).unwrap().damage_taken.get(key) == Some(&3))
+        let mon = self.mon(pos);
+        (matches!(key, "powder" | "sandstorm")
+            && (mon.item == "safetygoggles" || mon.ability == "overcoat"))
+            || mon.types().any(|typing| {
+                DEX.type_data(&to_id(typing)).unwrap().damage_taken.get(key) == Some(&3)
+            })
     }
 
     pub(super) fn try_status(

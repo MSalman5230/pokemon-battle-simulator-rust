@@ -11,6 +11,7 @@ use crate::{
 use serde::Serialize;
 
 mod abilities;
+use abilities::Attention;
 mod attract;
 mod disable;
 mod hazards;
@@ -148,6 +149,7 @@ pub struct Pokemon {
     nature: Nature,
     pub stats: Stats,
     pub boosts: Boosts,
+    stats_raised: bool,
     speed: i32,
     pub hp: u32,
     pub status: Status,
@@ -158,6 +160,7 @@ pub struct Pokemon {
     recharge: u8,
     confusion: u8,
     rampage: Option<Rampage>,
+    attention: Option<Attention>,
     glaive_drawback: bool,
     pub max_hp: NonZeroU32,
     pub item: String,
@@ -679,6 +682,7 @@ impl Pokemon {
             nature,
             stats,
             boosts: Boosts::default(),
+            stats_raised: false,
             speed: stats.spe as i32,
             hp: max_hp.get(),
             status: Status::Healthy,
@@ -689,6 +693,7 @@ impl Pokemon {
             recharge: 0,
             confusion: 0,
             rampage: None,
+            attention: None,
             glaive_drawback: false,
             max_hp,
             item,
