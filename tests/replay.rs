@@ -335,3 +335,13 @@ fn vgc_grassy_terrain_modifies_grounded_power_priority_and_healing() {
 fn bss_terrain_protects_grounded_pokemon_from_status_and_priority() {
     replay(include_str!("fixtures/bss-terrain-protection.json"));
 }
+
+#[test]
+fn vgc_encore_replaces_and_retargets_a_queued_action() {
+    replay(include_str!("fixtures/vgc-encore.json"));
+}
+
+#[test]
+fn bss_mental_herb_cures_encore_before_the_selected_move_executes() {
+    replay(include_str!("fixtures/bss-mental-herb.json"));
+}

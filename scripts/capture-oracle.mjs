@@ -264,6 +264,11 @@ const otherTerrainRosters = [
     [named('Slowbro', ['Electric Terrain', 'Misty Terrain', 'Psychic Terrain', 'Recover']), named('Vaporeon', ['Recover'])],
     [named('Umbreon', ['Yawn', 'Thunder Wave', 'Quick Attack', 'Tackle']), named('Jolteon', ['Recover'])],
 ];
+const encoreRosters = [
+    [named('Weavile', ['Encore', 'Recover']), named('Jolteon', ['Recover'])],
+    [named('Umbreon', ['Quick Attack', 'Recover']), named('Glaceon', ['Recover'])],
+];
+const mentalHerbRosters = [encoreRosters[0], [{...encoreRosters[1][0], item: 'Mental Herb'}, encoreRosters[1][1]]];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -383,6 +388,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 4', 'move 4'],
         ['move 2', 'move 1'], ['move 3', 'move 2'], ['move 4', 'move 3']],
         otherTerrainRosters, 'bss-terrain-protection'],
+    ['vgc2026regmc', [['team 12', 'team 12'], ['move 2, move 1', 'move 1 1, move 1'],
+        ['move 1 1, move 1', 'move 2, move 1'], ['move 2, move 1', 'move 1 1, move 1'],
+        ['move 2, move 1', 'move 1 1, move 1'], ['move 2, move 1', 'move 2, move 1']],
+        encoreRosters, 'vgc-encore'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 2', 'move 1'], ['move 1', 'move 2'], ['move 2', 'move 1']],
+        mentalHerbRosters, 'bss-mental-herb'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

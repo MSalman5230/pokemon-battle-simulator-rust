@@ -719,6 +719,7 @@ impl Battle {
                     | "psychicterrain"
                     | "icespinner"
                     | "grassyglide"
+                    | "encore"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -838,6 +839,10 @@ impl Battle {
         let mut action = Action::new(Some(incoming), ActionKind::RunSwitch);
         self.mon_mut(incoming).speed = self.field_speed(incoming);
         self.prioritize(&mut action);
+        self.insert_action(queue, action);
+    }
+
+    fn insert_action(&mut self, queue: &mut Vec<Action>, action: Action) {
         let first = queue.partition_point(|q| q.priority.compare(action.priority).is_lt());
         let last =
             first + queue[first..].partition_point(|q| q.priority.compare(action.priority).is_eq());
@@ -847,6 +852,37 @@ impl Battle {
             first + self.rng.below((last - first + 1) as u32) as usize
         };
         queue.insert(index, action);
+    }
+
+    fn queued_move(queue: &[Action], target: Position) -> Option<usize> {
+        queue.iter().find_map(|q| {
+            if q.actor == Some(target)
+                && let ActionKind::Move { move_slot, .. } = q.kind
+            {
+                Some(move_slot)
+            } else {
+                None
+            }
+        })
+    }
+
+    fn replace_queued_move(&mut self, queue: &mut Vec<Action>, actor: Position, move_slot: usize) {
+        queue.retain(|q| q.actor != Some(actor) || matches!(q.kind, ActionKind::RunSwitch));
+        self.mon_mut(actor).speed = self.field_speed(actor);
+        let kind = self.move_data(actor, move_slot).target;
+        let target = self
+            .random_target(actor, kind)
+            .map_or(0, |pos| pos.loc(actor));
+        let mut action = Action::new(
+            Some(actor),
+            ActionKind::Move {
+                move_slot,
+                target,
+                mega: false,
+            },
+        );
+        self.prioritize(&mut action);
+        self.insert_action(queue, action);
     }
 
     fn run_queue(&mut self, mut queue: Vec<Action>) {
@@ -921,6 +957,7 @@ impl Battle {
                     party[outgoing.slot].temporary_type = None;
                     party[outgoing.slot].yawn = 0;
                     party[outgoing.slot].taunt = 0;
+                    party[outgoing.slot].encore = None;
                     party[outgoing.slot].attract = None;
                     party[outgoing.slot].disabled_slot = None;
                     party[outgoing.slot].last_move_slot = None;
@@ -958,12 +995,9 @@ impl Battle {
                     if self.mon(source).fainted {
                         continue;
                     }
-                    let another_action = queue.iter().any(|q| {
-                        matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. })
-                    });
                     self.mon_mut(source).acted = true;
                     self.mon_mut(source).active_move_actions += 1;
-                    if self.run_move(source, move_slot, target, another_action) {
+                    if self.run_move(source, move_slot, target, &mut queue) {
                         self.end_rampage_attempt(source);
                     }
                 }
@@ -1142,6 +1176,7 @@ impl Battle {
             Roost,
             Yawn,
             Taunt,
+            Encore,
             Disable,
             Screen(Screen),
             TrickRoom,
@@ -1231,6 +1266,9 @@ impl Battle {
             if mon.taunt > 0 {
                 timers.push((pos, Effect::Taunt, priority(15, 2)));
             }
+            if mon.encore.is_some() {
+                timers.push((pos, Effect::Encore, priority(16, 2)));
+            }
             if mon.yawn > 0 {
                 timers.push((pos, Effect::Yawn, priority(23, 2)));
             }
@@ -1299,6 +1337,7 @@ impl Battle {
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::Disable => self.tick_disable(pos),
                 Effect::Taunt => self.tick_taunt(pos),
+                Effect::Encore => self.tick_encore(pos),
                 Effect::ShedSkin => self.shed_skin(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Roost => {
@@ -1363,7 +1402,13 @@ impl Battle {
     }
 
     // Whether this action reached the move attempt, for AfterMove hooks.
-    fn run_move(&mut self, source: Position, slot: usize, loc: i8, more_actions: bool) -> bool {
+    fn run_move(
+        &mut self,
+        source: Position,
+        slot: usize,
+        loc: i8,
+        queue: &mut Vec<Action>,
+    ) -> bool {
         let mon = self.mon_mut(source);
         if mon.glaive_drawback {
             mon.glaive_drawback = false;
@@ -1372,8 +1417,12 @@ impl Battle {
                 self.add("|debug|removing Glaive Rush drawback before attack");
             }
         }
-        if slot == RECHARGE_SLOT {
-            self.random_target(source, TargetKind::Normal);
+        if slot == RECHARGE_SLOT || self.mon(source).recharge > 0 {
+            if slot == RECHARGE_SLOT {
+                self.random_target(source, TargetKind::Normal);
+            } else {
+                self.resolve_target(source, self.move_data(source, slot).target, loc);
+            }
             self.add(format!("|cant|{}|recharge", self.ident(source)));
             let mon = self.mon_mut(source);
             mon.recharge = 0;
@@ -1401,6 +1450,14 @@ impl Battle {
         let source_name = self.ident(source);
         let target = self.resolve_target(source, move_data.target, loc);
         if !self.before_status_move(source, move_data) {
+            return false;
+        }
+        if !struggle && self.mon(source).disabled_by_choice(slot) {
+            self.add(format!("|move|{source_name}|{}||[still]", move_data.name));
+            if self.format.report_exact_hp {
+                self.add("|debug|Disabled by Choice item lock");
+            }
+            self.add(format!("|-fail|{source_name}"));
             return false;
         }
         let accuracy = match (move_data.name.as_str(), weather) {
@@ -1623,6 +1680,9 @@ impl Battle {
             return true;
         }
         if move_data.name == "Protect" {
+            let more_actions = queue
+                .iter()
+                .any(|q| matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. }));
             let stall = self.mon(source).stall.map_or(1, |(counter, _)| counter);
             if !more_actions || (stall > 1 && !self.rng.chance(1, u32::from(stall))) {
                 if more_actions {
@@ -1774,6 +1834,21 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Encore" {
+                    let queued = Self::queued_move(queue, target);
+                    if let Some(slot) = self.start_encore(target, queued.is_some()) {
+                        if let Some(before) = queued
+                            && before != slot
+                            && self.mon(target).item != "mentalherb"
+                        {
+                            self.replace_queued_move(queue, target, slot);
+                        }
+                        succeeded = true;
+                    } else {
+                        self.log[base].public = format!("|move|{source_name}|Encore||[still]");
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if move_data.name == "Pain Split" {
                     let average = ((self.mon(source).hp + self.mon(target).hp) / 2).max(1);
                     let mon = self.mon_mut(target);
@@ -1812,7 +1887,7 @@ impl Battle {
                     succeeded |= success;
                 }
                 if move_data.name == "Taunt" {
-                    if self.taunt(target) {
+                    if self.taunt(target, Self::queued_move(queue, target).is_some()) {
                         succeeded = true;
                     } else {
                         self.log[base].public = format!("|move|{source_name}|Taunt||[still]");
@@ -2378,6 +2453,7 @@ impl Battle {
         mon.temporary_type = None;
         mon.yawn = 0;
         mon.taunt = 0;
+        mon.encore = None;
         mon.attract = None;
         mon.disabled_slot = None;
         mon.last_move_slot = None;
@@ -2647,6 +2723,7 @@ impl Pokemon {
                 | "muscleband"
                 | "loadeddice"
                 | "terrainextender"
+                | "mentalherb"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

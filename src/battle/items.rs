@@ -23,6 +23,10 @@ impl Battle {
 
     pub(super) fn on_update_item(&mut self, pos: Position) {
         let mon = self.mon(pos);
+        if mon.hp > 0 && mon.item == "mentalherb" {
+            self.mental_herb(pos);
+            return;
+        }
         if mon.hp == 0 || self.foe_unnerve(pos) {
             return;
         }

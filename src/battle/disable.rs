@@ -61,6 +61,9 @@ impl Battle {
             || (mon.taunt > 0
                 && mon.moves[slot].move_data.category == crate::dex::Category::Status
                 && mon.moves[slot].id != "mefirst")
+            || mon
+                .encore
+                .is_some_and(|(locked, _)| mon.moves[locked].id != mon.moves[slot].id)
     }
 
     pub(super) fn actual_disabled(&self, pos: Position, slot: usize) -> bool {
@@ -125,12 +128,12 @@ impl Pokemon {
 }
 
 impl Battle {
-    pub(super) fn taunt(&mut self, target: Position) -> bool {
+    pub(super) fn taunt(&mut self, target: Position, will_move: bool) -> bool {
         let mon = self.mon_mut(target);
         if mon.taunt > 0 {
             return false;
         }
-        mon.taunt = 3 + u8::from(mon.active_turns > 0 && mon.acted);
+        mon.taunt = 3 + u8::from(mon.active_turns > 0 && !will_move);
         mon.track_volatile("taunt");
         self.add(format!("|-start|{}|move: Taunt", self.ident(target)));
         true
@@ -140,8 +143,80 @@ impl Battle {
         let mon = self.mon_mut(target);
         mon.taunt -= 1;
         if mon.taunt == 0 {
-            mon.untrack_volatile("taunt");
-            self.add(format!("|-end|{}|move: Taunt", self.ident(target)));
+            self.end_taunt(target);
+        }
+    }
+
+    fn end_taunt(&mut self, target: Position) {
+        let mon = self.mon_mut(target);
+        mon.taunt = 0;
+        mon.untrack_volatile("taunt");
+        self.add(format!("|-end|{}|move: Taunt", self.ident(target)));
+    }
+
+    pub(super) fn start_encore(&mut self, target: Position, will_move: bool) -> Option<usize> {
+        let mon = self.mon(target);
+        if mon.encore.is_some() || mon.hp == 0 {
+            return None;
+        }
+        let slot = mon.last_move_slot.filter(|&slot| {
+            let m = &mon.moves[slot];
+            m.pp > 0 && !m.move_data.flags.contains_key("failencore")
+        })?;
+        let mon = self.mon_mut(target);
+        mon.encore = Some((slot, 3 + u8::from(!will_move)));
+        mon.track_volatile("encore");
+        self.add(format!("|-start|{}|Encore", self.ident(target)));
+        Some(slot)
+    }
+
+    pub(super) fn tick_encore(&mut self, target: Position) {
+        let mon = self.mon_mut(target);
+        let (slot, turns) = mon.encore.unwrap();
+        if turns > 1 && mon.moves[slot].pp > 0 {
+            mon.encore = Some((slot, turns - 1));
+        } else {
+            self.end_encore(target);
+        }
+    }
+
+    fn end_encore(&mut self, target: Position) {
+        let mon = self.mon_mut(target);
+        mon.encore = None;
+        mon.untrack_volatile("encore");
+        self.add(format!("|-end|{}|Encore", self.ident(target)));
+    }
+
+    pub(super) fn mental_herb(&mut self, target: Position) {
+        let mon = self.mon(target);
+        let (attract, taunt, encore, disabled) = (
+            mon.attract.is_some(),
+            mon.taunt > 0,
+            mon.encore.is_some(),
+            mon.disabled_slot.is_some(),
+        );
+        if !(attract || taunt || encore || disabled) {
+            return;
+        }
+        self.consume(target, "Mental Herb", false);
+        if attract {
+            let mon = self.mon_mut(target);
+            mon.attract = None;
+            mon.untrack_volatile("attract");
+            let ident = self.ident(target);
+            self.add(format!("|-end|{ident}|Attract|[silent]"));
+            self.add(format!(
+                "|-end|{ident}|move: Attract|[from] item: Mental Herb"
+            ));
+        }
+        if taunt {
+            self.end_taunt(target);
+        }
+        if encore {
+            self.end_encore(target);
+        }
+        if disabled {
+            self.end_disable(target);
         }
     }
 
@@ -182,6 +257,11 @@ impl Battle {
             mon.disabled_slot = Some((slot, turns - 1));
             return;
         }
+        self.end_disable(target);
+    }
+
+    fn end_disable(&mut self, target: Position) {
+        let mon = self.mon_mut(target);
         mon.disabled_slot = None;
         mon.untrack_volatile("disable");
         self.add(format!("|-end|{}|Disable", self.ident(target)));
