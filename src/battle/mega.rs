@@ -41,10 +41,10 @@ impl Battle {
         let species = self.mega_species(pos).expect("validated Mega form");
         let rules = self.stat_rules;
         let mon = self.mon_mut(pos);
-        let old_speed = mon.speed;
+        // Forme change stores the new raw Speed. The queue applies Speed
+        // stages later, after the evolution and Update events have run.
         mon.set_current_species(species, rules);
         mon.base_species = species;
-        mon.speed = old_speed;
         let suffix = mon.details.split_once(',').map(|(_, suffix)| suffix);
         mon.details =
             suffix.map_or_else(|| species.name.clone(), |s| format!("{},{s}", species.name));
@@ -78,7 +78,6 @@ impl Battle {
             .map_or_else(String::new, |name| to_id(name));
         mon.base_ability.clone_from(&mon.ability);
         self.possible_unaware |= self.mon(pos).ability == "unaware";
-        self.mon_mut(pos).speed = self.field_speed(pos);
         self.reset_ability_order(pos);
         self.start_ability(pos);
     }

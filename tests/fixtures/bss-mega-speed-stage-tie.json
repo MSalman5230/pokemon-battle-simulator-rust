@@ -1,0 +1,851 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Eelektross\",\"moves\":[\"Coil\"],\"gender\":\"F\",\"name\":\"Eelektross\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Levitate\",\"item\":\"Eelektrossite\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Bellibolt\",\"moves\":[\"Icy Wind\"],\"gender\":\"F\",\"name\":\"Bellibolt\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Electromorphosis\",\"evs\":{\"spe\":1}}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p2|Bellibolt, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p2|Bellibolt, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p2|Bellibolt, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "coil"
+                ],
+                "baseAbility": "levitate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 66
+                },
+                "moves": [
+                  "icywind"
+                ],
+                "baseAbility": "electromorphosis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "electromorphosis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "eelektrossite",
+            "active": false,
+            "moves": [
+              {
+                "id": "coil",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 66
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electromorphosis",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|100/100",
+          "|switch|p2a: Bellibolt|Bellibolt, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|160/160",
+          "|switch|p2a: Bellibolt|Bellibolt, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|100/100",
+          "|switch|p2a: Bellibolt|Bellibolt, L50, F|184/184",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Coil",
+                  "id": "coil",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canMegaEvo": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "coil"
+                ],
+                "baseAbility": "levitate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Icy Wind",
+                  "id": "icywind",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 66
+                },
+                "moves": [
+                  "icywind"
+                ],
+                "baseAbility": "electromorphosis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "electromorphosis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "eelektrossite",
+            "active": true,
+            "moves": [
+              {
+                "id": "coil",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 66
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electromorphosis",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Eelektross|Coil|p1a: Eelektross",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|-boost|p1a: Eelektross|def|1",
+          "|-boost|p1a: Eelektross|accuracy|1",
+          "|move|p2a: Bellibolt|Icy Wind|p1a: Eelektross",
+          "|-damage|p1a: Eelektross|83/100",
+          "|-unboost|p1a: Eelektross|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Eelektross|Coil|p1a: Eelektross",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|-boost|p1a: Eelektross|def|1",
+          "|-boost|p1a: Eelektross|accuracy|1",
+          "|move|p2a: Bellibolt|Icy Wind|p1a: Eelektross",
+          "|-damage|p1a: Eelektross|133/160",
+          "|-unboost|p1a: Eelektross|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Eelektross|Coil|p1a: Eelektross",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|-boost|p1a: Eelektross|def|1",
+          "|-boost|p1a: Eelektross|accuracy|1",
+          "|move|p2a: Bellibolt|Icy Wind|p1a: Eelektross",
+          "|-damage|p1a: Eelektross|83/100",
+          "|-unboost|p1a: Eelektross|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Coil",
+                  "id": "coil",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canMegaEvo": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "133/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "coil"
+                ],
+                "baseAbility": "levitate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Icy Wind",
+                  "id": "icywind",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 66
+                },
+                "moves": [
+                  "icywind"
+                ],
+                "baseAbility": "electromorphosis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "electromorphosis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 133,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 1,
+              "spa": 0,
+              "spd": 0,
+              "spe": -1,
+              "accuracy": 1,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "eelektrossite",
+            "active": true,
+            "moves": [
+              {
+                "id": "coil",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 66
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electromorphosis",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 mega",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|detailschange|p1a: Eelektross|Eelektross-Mega, L50, F",
+          "|-mega|p1a: Eelektross|Eelektross|Eelektrossite",
+          "|move|p1a: Eelektross|Coil|p1a: Eelektross",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|-boost|p1a: Eelektross|def|1",
+          "|-boost|p1a: Eelektross|accuracy|1",
+          "|move|p2a: Bellibolt|Icy Wind|p1a: Eelektross",
+          "|-damage|p1a: Eelektross|65/100",
+          "|-unboost|p1a: Eelektross|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|detailschange|p1a: Eelektross|Eelektross-Mega, L50, F",
+          "|-mega|p1a: Eelektross|Eelektross|Eelektrossite",
+          "|move|p1a: Eelektross|Coil|p1a: Eelektross",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|-boost|p1a: Eelektross|def|1",
+          "|-boost|p1a: Eelektross|accuracy|1",
+          "|move|p2a: Bellibolt|Icy Wind|p1a: Eelektross",
+          "|-damage|p1a: Eelektross|105/160",
+          "|-unboost|p1a: Eelektross|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|detailschange|p1a: Eelektross|Eelektross-Mega, L50, F",
+          "|-mega|p1a: Eelektross|Eelektross|Eelektrossite",
+          "|move|p1a: Eelektross|Coil|p1a: Eelektross",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|-boost|p1a: Eelektross|def|1",
+          "|-boost|p1a: Eelektross|accuracy|1",
+          "|move|p2a: Bellibolt|Icy Wind|p1a: Eelektross",
+          "|-damage|p1a: Eelektross|65/100",
+          "|-unboost|p1a: Eelektross|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Coil",
+                  "id": "coil",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross-Mega, L50, F",
+                "condition": "105/160",
+                "active": true,
+                "stats": {
+                  "atk": 165,
+                  "def": 100,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 100
+                },
+                "moves": [
+                  "coil"
+                ],
+                "baseAbility": "eelevate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "eelevate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Icy Wind",
+                  "id": "icywind",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 66
+                },
+                "moves": [
+                  "icywind"
+                ],
+                "baseAbility": "electromorphosis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "electromorphosis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross-Mega",
+            "details": "Eelektross-Mega, L50, F",
+            "hp": 105,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 165,
+              "def": 100,
+              "spa": 155,
+              "spd": 110,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": -2,
+              "accuracy": 2,
+              "evasion": 0
+            },
+            "ability": "eelevate",
+            "item": "eelektrossite",
+            "active": true,
+            "moves": [
+              {
+                "id": "coil",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 66
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electromorphosis",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 14,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

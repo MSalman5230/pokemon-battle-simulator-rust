@@ -1554,6 +1554,11 @@ fn haze_does_not_run_individual_hit_updates_during_speed_ties() {
 }
 
 #[test]
+fn mega_uses_raw_speed_until_the_action_queue_recalculates_speed() {
+    replay(include_str!("fixtures/bss-mega-speed-stage-tie.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
