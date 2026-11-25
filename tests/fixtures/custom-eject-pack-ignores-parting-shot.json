@@ -1,0 +1,1232 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Snorlax\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Eject Pack\"},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Persian-Alola\",\"moves\":[\"Parting Shot\"],\"gender\":\"F\",\"name\":\"Persian-Alola\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Flareon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Flareon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Snorlax, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Persian-Alola, L50, F|",
+          "|poke|p2|Flareon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Snorlax, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Persian-Alola, L50, F|",
+          "|poke|p2|Flareon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Snorlax, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Persian-Alola, L50, F|",
+          "|poke|p2|Flareon, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "ejectpack",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Persian",
+                "details": "Persian-Alola, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 95,
+                  "spd": 85,
+                  "spe": 135
+                },
+                "moves": [
+                  "partingshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ejectpack",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Persian",
+            "species": "Persian-Alola",
+            "details": "Persian-Alola, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 95,
+              "spd": 85,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "partingshot",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2a: Persian|Persian-Alola, L50, F|140/140",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2a: Persian|Persian-Alola, L50, F|140/140",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2a: Persian|Persian-Alola, L50, F|140/140",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "ejectpack",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Parting Shot",
+                  "id": "partingshot",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Persian",
+                "details": "Persian-Alola, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 95,
+                  "spd": 85,
+                  "spe": 135
+                },
+                "moves": [
+                  "partingshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ejectpack",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Persian",
+            "species": "Persian-Alola",
+            "details": "Persian-Alola, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 95,
+              "spd": 85,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "partingshot",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 1,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "switch",
+      "waiting": [
+        true,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Persian|Parting Shot|p1a: Snorlax",
+          "|-unboost|p1a: Snorlax|atk|1",
+          "|-unboost|p1a: Snorlax|spa|1"
+        ],
+        [
+          "|",
+          "|move|p2a: Persian|Parting Shot|p1a: Snorlax",
+          "|-unboost|p1a: Snorlax|atk|1",
+          "|-unboost|p1a: Snorlax|spa|1"
+        ],
+        [
+          "|",
+          "|move|p2a: Persian|Parting Shot|p1a: Snorlax",
+          "|-unboost|p1a: Snorlax|atk|1",
+          "|-unboost|p1a: Snorlax|spa|1"
+        ]
+      ],
+      "requests": [
+        {
+          "wait": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "ejectpack",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Persian",
+                "details": "Persian-Alola, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 95,
+                  "spd": 85,
+                  "spe": 135
+                },
+                "moves": [
+                  "partingshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": -1,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ejectpack",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Persian",
+            "species": "Persian-Alola",
+            "details": "Persian-Alola, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 95,
+              "spd": 85,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "partingshot",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p2 switch 2"
+      ],
+      "turn": 2,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Flareon|Flareon, L50, F|140/140|[from] Parting Shot",
+          "|move|p1a: Snorlax|Tackle|p2a: Flareon",
+          "|-damage|p2a: Flareon|115/140",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|switch|p2a: Flareon|Flareon, L50, F|140/140|[from] Parting Shot",
+          "|move|p1a: Snorlax|Tackle|p2a: Flareon",
+          "|-damage|p2a: Flareon|115/140",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|switch|p2a: Flareon|Flareon, L50, F|140/140|[from] Parting Shot",
+          "|move|p1a: Snorlax|Tackle|p2a: Flareon",
+          "|-damage|p2a: Flareon|115/140",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "ejectpack",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "115/140",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Persian",
+                "details": "Persian-Alola, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 80,
+                  "spa": 95,
+                  "spd": 85,
+                  "spe": 135
+                },
+                "moves": [
+                  "partingshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": -1,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ejectpack",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 115,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Persian",
+            "species": "Persian-Alola",
+            "details": "Persian-Alola, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 80,
+              "spa": 95,
+              "spd": 85,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "partingshot",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

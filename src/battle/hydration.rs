@@ -311,12 +311,17 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .iter()
             .any(|p| p.ability == "unaware" || p.base_ability == "unaware")
     });
-    battle.possible_opportunist = Player::ALL.into_iter().any(|player| {
+    battle.possible_boost_copy = Player::ALL.into_iter().any(|player| {
+        battle.party(player).unwrap().iter().any(|p| {
+            p.ability == "opportunist" || p.base_ability == "opportunist" || p.item == "mirrorherb"
+        })
+    });
+    battle.possible_eject_pack = Player::ALL.into_iter().any(|player| {
         battle
             .party(player)
             .unwrap()
             .iter()
-            .any(|p| p.ability == "opportunist" || p.base_ability == "opportunist")
+            .any(|p| p.item == "ejectpack")
     });
     battle.update_speed();
     for player in Player::ALL {

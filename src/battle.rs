@@ -193,7 +193,8 @@ pub struct Battle {
     ability_order: u32,
     ability_breaker: Option<Position>,
     possible_unaware: bool,
-    possible_opportunist: bool,
+    possible_boost_copy: bool,
+    possible_eject_pack: bool,
     unsupported_called_move: Option<(&'static str, &'static str)>,
     last_battle_move: Option<&'static Move>,
     last_battle_move_z: bool,
@@ -300,6 +301,8 @@ pub struct Pokemon {
     ate_berry: bool,
     ripen_pending: bool,
     cud_chew: Option<items::CudChew>,
+    mirror_herb: boost_copy::PendingBoostCopy,
+    eject_pack_ready: bool,
     pub ability: String,
     base_ability: String,
     ability_order: u32,
@@ -541,7 +544,8 @@ impl Battle {
             ability_order: 0,
             ability_breaker: None,
             possible_unaware: false,
-            possible_opportunist: false,
+            possible_boost_copy: false,
+            possible_eject_pack: false,
             unsupported_called_move: None,
             last_battle_move: None,
             last_battle_move_z: false,
@@ -673,7 +677,10 @@ impl Battle {
             }
         }
         self.possible_unaware |= party.iter().any(|p| p.ability == "unaware");
-        self.possible_opportunist |= party.iter().any(|p| p.ability == "opportunist");
+        self.possible_boost_copy |= party
+            .iter()
+            .any(|p| p.ability == "opportunist" || p.item == "mirrorherb");
+        self.possible_eject_pack |= party.iter().any(|p| p.item == "ejectpack");
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)
@@ -1049,6 +1056,8 @@ impl Pokemon {
             ate_berry: false,
             ripen_pending: false,
             cud_chew: None,
+            mirror_herb: boost_copy::PendingBoostCopy::default(),
+            eject_pack_ready: false,
             base_ability: ability.clone(),
             ability,
             ability_order: 0,

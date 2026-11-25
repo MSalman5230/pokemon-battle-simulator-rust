@@ -6,6 +6,12 @@ use crate::mechanics::BoostStat;
 #[derive(Clone, Copy, Default)]
 pub(super) struct PendingBoostCopy([Option<(BoostStat, i8)>; 7]);
 
+#[derive(Clone, Copy, Eq, Ord, PartialEq, PartialOrd)]
+enum CopyHook {
+    Opportunist,
+    MirrorHerb,
+}
+
 impl PendingBoostCopy {
     pub(super) fn accumulate(&mut self, stat: BoostStat, amount: i8) {
         if amount <= 0 {
@@ -33,7 +39,7 @@ impl PendingBoostCopy {
 
 impl Battle {
     pub(super) fn note_foe_boost(&mut self, target: Position, stat: BoostStat, amount: i8) {
-        if self.possible_opportunist {
+        if self.possible_boost_copy {
             let mut changes = PendingBoostCopy::default();
             changes.accumulate(stat, amount);
             self.note_foe_boosts(target, changes);
@@ -41,17 +47,23 @@ impl Battle {
     }
 
     pub(super) fn note_foe_boosts(&mut self, target: Position, changes: PendingBoostCopy) {
-        if !self.possible_opportunist {
+        if !self.possible_boost_copy {
             return;
         }
         let (holders, count) =
             self.boost_copy_listeners(self.positions().filter(|p| p.player != target.player));
-        for &(holder, _) in &holders[..count] {
-            if self.event_ability(holder) == "opportunist" {
-                let pending = &mut self.mon_mut(holder).opportunist;
-                for (stat, amount) in changes.entries() {
-                    pending.accumulate(stat, amount);
+        for &(holder, _, hook) in &holders[..count] {
+            let pending = match hook {
+                CopyHook::Opportunist if self.event_ability(holder) == "opportunist" => {
+                    &mut self.mon_mut(holder).opportunist
                 }
+                CopyHook::MirrorHerb if self.mon(holder).effective_item() == "mirrorherb" => {
+                    &mut self.mon_mut(holder).mirror_herb
+                }
+                _ => continue,
+            };
+            for (stat, amount) in changes.entries() {
+                pending.accumulate(stat, amount);
             }
         }
     }
@@ -72,36 +84,65 @@ impl Battle {
         }
     }
 
+    pub(super) fn apply_pending_mirror_herb(&mut self, pos: Position) {
+        if self.mon(pos).effective_item() != "mirrorherb" || self.mon(pos).hp == 0 {
+            return;
+        }
+        let pending = std::mem::take(&mut self.mon_mut(pos).mirror_herb);
+        let mut changes = [(BoostStat::Atk, 0); 7];
+        let mut count = 0;
+        for change in pending.entries() {
+            changes[count] = change;
+            count += 1;
+        }
+        if count != 0 {
+            self.use_boosting_item(pos, "Mirror Herb", &changes[..count]);
+        }
+    }
+
     pub(super) fn apply_pending_boost_copies(&mut self) {
-        if !self.possible_opportunist {
+        if !self.possible_boost_copy {
             return;
         }
         let (holders, count) = self.boost_copy_listeners(self.positions());
-        for &(holder, _) in &holders[..count] {
-            self.apply_pending_boost_copy(holder);
+        for &(holder, _, hook) in &holders[..count] {
+            match hook {
+                CopyHook::Opportunist => self.apply_pending_boost_copy(holder),
+                CopyHook::MirrorHerb => self.apply_pending_mirror_herb(holder),
+            }
         }
     }
 
     fn boost_copy_listeners(
         &mut self,
         candidates: impl Iterator<Item = Position>,
-    ) -> ([(Position, i32); 4], usize) {
+    ) -> ([(Position, i32, CopyHook); 8], usize) {
         let mut events = [(
             Position {
                 player: Player::P1,
                 slot: 0,
             },
             0,
-        ); 4];
+            CopyHook::Opportunist,
+        ); 8];
         let mut count = 0;
         for pos in candidates {
             let mon = self.mon(pos);
-            if !mon.fainted && mon.ability == "opportunist" {
-                events[count] = (pos, mon.speed);
+            if mon.fainted {
+                continue;
+            }
+            if mon.ability == "opportunist" {
+                events[count] = (pos, mon.speed, CopyHook::Opportunist);
+                count += 1;
+            }
+            if mon.item == "mirrorherb" {
+                events[count] = (pos, mon.speed, CopyHook::MirrorHerb);
                 count += 1;
             }
         }
-        speed_sort_by(&mut events[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        speed_sort_by(&mut events[..count], &mut self.rng, |a, b| {
+            b.1.cmp(&a.1).then_with(|| a.2.cmp(&b.2))
+        });
         (events, count)
     }
 }

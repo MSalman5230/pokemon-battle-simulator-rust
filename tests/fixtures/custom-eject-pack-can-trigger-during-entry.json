@@ -1,0 +1,746 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Lucario\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Lucario\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Eject Pack\"},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Arcanine\",\"moves\":[\"Growl\"],\"gender\":\"F\",\"name\":\"Arcanine\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Intimidate\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Lucario, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Lucario, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Lucario, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Lucario",
+                "details": "Lucario, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 90,
+                  "spa": 135,
+                  "spd": 90,
+                  "spe": 110
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "ejectpack",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "growl"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Lucario",
+            "species": "Lucario",
+            "details": "Lucario, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 90,
+              "spa": 135,
+              "spd": 90,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ejectpack",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "switch",
+      "waiting": [
+        false,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Lucario|Lucario, L50, F|145/145",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Lucario|atk|1",
+          "|-enditem|p1a: Lucario|Eject Pack"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Lucario|Lucario, L50, F|145/145",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Lucario|atk|1",
+          "|-enditem|p1a: Lucario|Eject Pack"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Lucario|Lucario, L50, F|145/145",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Lucario|atk|1",
+          "|-enditem|p1a: Lucario|Eject Pack"
+        ]
+      ],
+      "requests": [
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Lucario",
+                "details": "Lucario, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 90,
+                  "spa": 135,
+                  "spd": 90,
+                  "spe": 110
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        },
+        {
+          "wait": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "growl"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Lucario",
+            "species": "Lucario",
+            "details": "Lucario, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 90,
+              "spa": 135,
+              "spd": 90,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": -1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Lucario",
+                "details": "Lucario, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 90,
+                  "spa": 135,
+                  "spd": 90,
+                  "spe": 110
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "growl"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Lucario",
+            "species": "Lucario",
+            "details": "Lucario, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 90,
+              "spa": 135,
+              "spd": 90,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

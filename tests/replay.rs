@@ -2204,6 +2204,25 @@ fn inherited_item_conditions_follow_native_accuracy_contact_and_attraction() {
 }
 
 #[test]
+fn boost_reaction_items_run_only_at_their_native_event_boundaries() {
+    replay(include_str!(
+        "fixtures/custom-mirror-herb-does-not-feed-opportunist.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-mirror-herb-copies-entry-boost.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-eject-pack-switches-before-the-next-move.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-eject-pack-can-trigger-during-entry.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-eject-pack-ignores-parting-shot.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

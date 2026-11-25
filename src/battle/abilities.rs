@@ -36,7 +36,10 @@ impl Attention {
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub(super) enum BoostOrigin {
-    Move { has_secondaries: bool },
+    Move {
+        has_secondaries: bool,
+        parting_shot: bool,
+    },
     MagneticFlux,
     Secondary,
     Intimidate,
@@ -52,6 +55,7 @@ impl BoostOrigin {
     pub(super) fn from_move(data: &Move) -> Self {
         Self::Move {
             has_secondaries: !data.secondaries.is_empty(),
+            parting_shot: data.name == "Parting Shot",
         }
     }
 
@@ -72,7 +76,8 @@ impl BoostOrigin {
             Self::Secondary
                 | Self::Octolock
                 | Self::Move {
-                    has_secondaries: true
+                    has_secondaries: true,
+                    ..
                 }
         )
     }
@@ -1686,7 +1691,8 @@ impl Battle {
                         origin,
                         BoostOrigin::Secondary
                             | BoostOrigin::Move {
-                                has_secondaries: true
+                                has_secondaries: true,
+                                ..
                             }
                     )
                 {
@@ -1752,7 +1758,8 @@ impl Battle {
             }
         }
         let mut success = false;
-        let record = self.possible_opportunist;
+        let mut dropped = false;
+        let record = self.possible_boost_copy;
         let mut observed = PendingBoostCopy::default();
         for (i, &(stat, amount)) in changes.iter().enumerate() {
             if removed & (1 << i) != 0 {
@@ -1772,6 +1779,7 @@ impl Battle {
                 false,
             ) {
                 success = true;
+                dropped |= amount < 0;
                 if record {
                     observed.accumulate(stat, self.mon(target).boosts.get(stat) - before);
                 }
@@ -1790,6 +1798,17 @@ impl Battle {
         }
         if record {
             self.note_foe_boosts(target, observed);
+        }
+        if dropped
+            && !matches!(
+                origin,
+                BoostOrigin::Move {
+                    parting_shot: true,
+                    ..
+                }
+            )
+        {
+            self.note_eject_pack_drop(target);
         }
         if origin == BoostOrigin::Intimidate {
             if success && self.event_ability(target) == "rattled" {
@@ -1828,7 +1847,8 @@ impl Battle {
             return false;
         }
         let mut success = false;
-        let record = self.possible_opportunist && label != "Opportunist";
+        let record = self.possible_boost_copy && label != "Opportunist";
+        let mut dropped = false;
         let mut observed = PendingBoostCopy::default();
         let factor = match self.event_ability(pos) {
             "contrary" => -1,
@@ -1845,6 +1865,7 @@ impl Battle {
                 self.mon_mut(pos).stats_raised = true;
             } else if change < 0 {
                 self.mon_mut(pos).stats_lowered = true;
+                dropped = true;
             }
             if change != 0 && label == "Anger Point" {
                 let stage = self.mon(pos).boosts.get(stat);
@@ -1872,6 +1893,9 @@ impl Battle {
         }
         if record {
             self.note_foe_boosts(pos, observed);
+        }
+        if dropped {
+            self.note_eject_pack_drop(pos);
         }
         success
     }

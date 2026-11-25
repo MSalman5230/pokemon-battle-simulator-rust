@@ -296,7 +296,7 @@ impl Battle {
             false,
             invert,
             Some(BoostLabel::Item(name)),
-            true,
+            name != "Mirror Herb",
         );
         self.symbiosis_after_item(pos);
     }
@@ -424,6 +424,56 @@ impl Battle {
         if self.mon(attacker).hp != 0 {
             self.mon_mut(attacker).item = item;
             self.on_gained_item(attacker);
+        }
+    }
+
+    pub(super) fn note_eject_pack_drop(&mut self, pos: Position) {
+        if self.possible_eject_pack && self.mon(pos).effective_item() == "ejectpack" {
+            self.mon_mut(pos).eject_pack_ready = true;
+        }
+    }
+
+    pub(super) fn apply_pending_eject_pack(&mut self, pos: Position) {
+        if self.mon(pos).effective_item() != "ejectpack"
+            || !std::mem::take(&mut self.mon_mut(pos).eject_pack_ready)
+            || self.mon(pos).hp == 0
+            || self.mon(pos).is_command_locked()
+            || self.first_bench(pos.player, 0).is_none()
+            || self.positions().any(|active| {
+                self.mon(active)
+                    .pivot_move
+                    .is_some_and(|pivot| !matches!(pivot, Pivot::Move("Baton Pass" | "Shed Tail")))
+            })
+        {
+            return;
+        }
+        self.consume(pos, "Eject Pack", false);
+        self.mon_mut(pos).pivot_move = Some(Pivot::Reactive);
+        self.symbiosis_after_item(pos);
+    }
+
+    pub(super) fn apply_pending_eject_packs(&mut self) {
+        if !self.possible_eject_pack {
+            return;
+        }
+        let mut holders = [(
+            Position {
+                player: Player::P1,
+                slot: 0,
+            },
+            0,
+        ); 4];
+        let mut count = 0;
+        for pos in self.positions() {
+            let mon = self.mon(pos);
+            if mon.item == "ejectpack" && !mon.fainted {
+                holders[count] = (pos, mon.speed);
+                count += 1;
+            }
+        }
+        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for (pos, _) in holders.into_iter().take(count) {
+            self.apply_pending_eject_pack(pos);
         }
     }
 
@@ -1325,6 +1375,11 @@ impl Battle {
     pub(super) fn lose_held_item(&mut self, pos: Position) -> String {
         let mon = self.mon_mut(pos);
         let item = std::mem::take(&mut mon.item);
+        if item == "mirrorherb" {
+            mon.mirror_herb = Default::default();
+        } else if item == "ejectpack" {
+            mon.eject_pack_ready = false;
+        }
         if !item.is_empty() && mon.active_ability() == "unburden" {
             mon.track_volatile("unburden");
         }

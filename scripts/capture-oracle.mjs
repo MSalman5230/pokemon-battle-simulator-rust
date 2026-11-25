@@ -2034,6 +2034,26 @@ const destinyKnotRosters = [
     [named('Espeon', ['Attract', 'Recover'], 'M'), named('Umbreon', ['Recover'])],
     [{...named('Snorlax', ['Tackle']), item:'Destiny Knot'}],
 ];
+const mirrorHerbRosters = [
+    [{...named('Chansey', ['Recover']), item:'Mirror Herb'}],
+    [{...named('Espathra', ['Shell Smash', 'Tackle']), ability:'Opportunist'}],
+];
+const mirrorHerbEntryRosters = [
+    [{...named('Chansey', ['Recover']), item:'Mirror Herb'}],
+    [{...named('Porygon2', ['Tackle'], 'N'), ability:'Download'}],
+];
+const ejectPackSelfRosters = [
+    [{...named('Lucario', ['Close Combat']), item:'Eject Pack'}, named('Umbreon', ['Recover'])],
+    [named('Snorlax', ['Tackle'])],
+];
+const ejectPackIntimidateRosters = [
+    [{...named('Lucario', ['Tackle']), item:'Eject Pack'}, named('Umbreon', ['Recover'])],
+    [{...named('Arcanine', ['Growl']), ability:'Intimidate'}],
+];
+const ejectPackPartingShotRosters = [
+    [{...named('Snorlax', ['Tackle']), item:'Eject Pack'}, named('Umbreon', ['Recover'])],
+    [named('Persian-Alola', ['Parting Shot']), named('Flareon', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3566,6 +3586,16 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         stickyBarbRosters, 'custom-sticky-barb-transfers-on-contact-without-a-message'],
     ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1']],
         destinyKnotRosters, 'custom-destiny-knot-mirrors-attract-by-roster'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        mirrorHerbRosters, 'custom-mirror-herb-does-not-feed-opportunist'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        mirrorHerbEntryRosters, 'custom-mirror-herb-copies-entry-boost'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2',null]],
+        ejectPackSelfRosters, 'custom-eject-pack-switches-before-the-next-move'],
+    ['customgame', [['team 12','team 1'], ['switch 2',null]],
+        ejectPackIntimidateRosters, 'custom-eject-pack-can-trigger-during-entry'],
+    ['customgame', [['team 12','team 12'], ['move 1','move 1'], [null,'switch 2']],
+        ejectPackPartingShotRosters, 'custom-eject-pack-ignores-parting-shot'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

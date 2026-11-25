@@ -370,7 +370,7 @@ impl Battle {
     }
 
     pub fn is_active(&self, player: Player, party_slot: usize) -> bool {
-        self.turn > 0
+        (self.turn > 0 || self.phase == Phase::Replace)
             && party_slot < self.slots()
             && self
                 .party(player)
@@ -1995,11 +1995,13 @@ impl Battle {
             }
             queue.retain(|action| !action.actor.is_some_and(|pos| self.mon(pos).commanding));
         }
-        if self.possible_opportunist {
+        if self.possible_boost_copy {
             for (pos, _) in order.into_iter().take(count) {
                 self.apply_pending_boost_copy(pos);
+                self.apply_pending_mirror_herb(pos);
             }
         }
+        self.apply_pending_eject_packs();
         for (pos, _) in order.into_iter().take(count) {
             self.white_herb(pos);
         }
@@ -2137,6 +2139,7 @@ impl Battle {
                     if !self.mon(pos).fainted {
                         self.mega_evolve(pos);
                         self.apply_pending_boost_copies();
+                        self.apply_pending_eject_packs();
                         self.white_herbs_after_action();
                     }
                 }
@@ -2494,7 +2497,7 @@ impl Battle {
             }
             return;
         }
-        self.possible_opportunist |= self.mon(pos).ability == "opportunist";
+        self.possible_boost_copy |= self.mon(pos).ability == "opportunist";
         if matches!(self.mon(pos).ability.as_str(), "berserk" | "angershell") {
             self.mon_mut(pos).half_hp_berry_deferred = false;
         }
@@ -2819,6 +2822,8 @@ impl Battle {
             Ingrain,
             Octolock,
             Opportunist,
+            MirrorHerb,
+            EjectPack,
             MagnetRise,
             Moody,
             Gem,
@@ -3195,6 +3200,12 @@ impl Battle {
             }
             if mon.item == "whiteherb" {
                 timers.push((pos, Effect::WhiteHerb, priority(29, 8)));
+            }
+            if mon.item == "mirrorherb" {
+                timers.push((pos, Effect::MirrorHerb, priority(29, 8)));
+            }
+            if mon.item == "ejectpack" {
+                timers.push((pos, Effect::EjectPack, priority(29, 8)));
             }
             if mon.ability == "shedskin" {
                 timers.push((pos, Effect::ShedSkin, priority(5, 3)));
@@ -3611,6 +3622,8 @@ impl Battle {
                 Effect::CudChew => self.chew_berry(pos),
                 Effect::Pickup => self.pick_up_item(pos),
                 Effect::Opportunist => self.apply_pending_boost_copy(pos),
+                Effect::MirrorHerb => self.apply_pending_mirror_herb(pos),
+                Effect::EjectPack => self.apply_pending_eject_pack(pos),
                 Effect::Moody => self.moody(pos),
                 Effect::Gem => {
                     mon.gem_boost = false;
@@ -4073,6 +4086,7 @@ impl Battle {
         }
         if result.ran_after_move {
             self.apply_pending_boost_copies();
+            self.apply_pending_eject_packs();
         }
         if !matches!(
             invocation,
@@ -9308,7 +9322,8 @@ impl Battle {
             return false;
         }
         let mut succeeded = false;
-        let record = notify_copy && self.possible_opportunist;
+        let record = notify_copy && self.possible_boost_copy;
+        let mut dropped = false;
         let mut observed = PendingBoostCopy::default();
         for &(stat, amount) in boosts {
             let amount = if invert {
@@ -9325,6 +9340,7 @@ impl Battle {
                 mon.stats_raised = true;
             } else if changed < 0 {
                 mon.stats_lowered = true;
+                dropped = true;
             }
             let event = if amount < 0 || mon.boosts.get(stat) == -6 {
                 "-unboost"
@@ -9354,6 +9370,9 @@ impl Battle {
         }
         if record {
             self.note_foe_boosts(pos, observed);
+        }
+        if dropped && notify_copy {
+            self.note_eject_pack_drop(pos);
         }
         succeeded
     }
@@ -10020,7 +10039,9 @@ impl Pokemon {
                 | "marangaberry"
                 | "rowapberry"
                 | "destinyknot"
+                | "ejectpack"
                 | "micleberry"
+                | "mirrorherb"
                 | "stickybarb"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
