@@ -1500,6 +1500,10 @@ const natDexJuiceRosters = [
     oranBerryRosters[0],
     [{...oranBerryRosters[1][0], item:'Berry Juice'}],
 ];
+const natDexZCrystalRosters = [
+    [{...named('Smeargle', ['Tackle', 'Protect', 'Water Gun']), ability:'Own Tempo', item:'Normalium Z'}],
+    [{...named('Pikachu', ['Volt Tackle', 'Trick']), ability:'Static', item:'Pikanium Z'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2742,6 +2746,7 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['natdexdraft', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 2'],
         ['switch 2','move 2'], ['move 1','move 1']], natDexDefenseItemRosters, 'natdex-defense-items'],
     ['natdexdraft', [['team 1','team 1'], ['move 1','move 1']], natDexJuiceRosters, 'natdex-berry-juice'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 2']], natDexZCrystalRosters, 'natdex-z-crystal-requests'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -129,6 +129,8 @@ pub struct Species {
     pub has_condition: bool,
     #[serde(default)]
     pub can_evolve: bool,
+    #[serde(default)]
+    pub transformed_z_restricted: bool,
     pub unreleased_hidden: bool,
     pub packed_ability_slots: Option<Table<String>>,
 }
@@ -198,6 +200,9 @@ pub struct Move {
     pub cant_use_twice: bool,
     #[serde(default)]
     pub calls_move: bool,
+    pub z_power: Option<ZPower>,
+    #[serde(default)]
+    pub is_z_move: bool,
     #[serde(default)]
     pub has_sheer_force_boost: bool,
     pub boosts: Vec<(BoostStat, i8)>,
@@ -267,7 +272,29 @@ pub struct Item {
     pub ignore_klutz: bool,
     #[serde(default)]
     pub inert_held_item: bool,
+    #[serde(default)]
+    pub unremovable: bool,
+    pub z_move: Option<ItemZMove>,
+    pub z_move_type: Option<String>,
+    pub z_move_from: Option<String>,
+    pub item_user: Option<Vec<String>>,
     pub fling: Option<Fling>,
+}
+
+#[derive(Debug, Clone, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ZPower {
+    pub base_power: Option<u16>,
+    #[serde(default)]
+    pub boost: Vec<(BoostStat, i8)>,
+    pub effect: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+pub enum ItemZMove {
+    Generic(bool),
+    Signature(String),
 }
 
 #[derive(Debug, Deserialize)]

@@ -52,6 +52,7 @@ mod turn;
 mod types;
 mod weather;
 mod weight;
+mod z_move;
 pub use status::Status;
 use std::{borrow::Cow, error::Error, fmt, num::NonZeroU32};
 pub use tactical::{DamagePreview, DamageProbe};
@@ -198,6 +199,7 @@ struct Side {
     open_sheet: String,
     hazards: Vec<(Hazard, u8)>,
     mega_used: bool,
+    z_move_used: bool,
     screens: [u8; 3],
     guards: [Option<SideGuard>; 2],
     safeguard: u8,
@@ -660,6 +662,7 @@ impl Battle {
             open_sheet,
             hazards: Vec::new(),
             mega_used: false,
+            z_move_used: false,
             screens: [0; 3],
             guards: [None; 2],
             safeguard: 0,

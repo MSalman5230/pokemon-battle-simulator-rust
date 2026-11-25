@@ -1790,6 +1790,11 @@ fn magic_room_temporarily_ignores_but_does_not_remove_a_choice_lock() {
 }
 
 #[test]
+fn national_dex_projects_both_generic_and_signature_crystal_requests() {
+    replay(include_str!("fixtures/natdex-z-crystal-requests.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

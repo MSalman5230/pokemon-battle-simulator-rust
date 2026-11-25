@@ -81,6 +81,7 @@ const data = mod => {
                 'isNonstandard', 'maxHP', 'requiredItem']),
             hasCondition: dex.conditions.getByID(e.id).exists,
             canEvolve: !!e.nfe || undefined,
+            transformedZRestricted: (e.isMega || e.isPrimal || e.forme === 'Ultra') || undefined,
             unreleasedHidden: !!e.unreleasedHidden,
             packedAbilitySlots: JSON.stringify(packedSlots) === JSON.stringify(e.abilities) ? undefined : packedSlots,
             };
@@ -95,6 +96,8 @@ const data = mod => {
                 ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
                 cantUseTwice: !!e.flags?.cantusetwice || undefined,
                 callsMove: e.callsMove || undefined,
+                zPower: e.zMove && {basePower:e.zMove.basePower, boost:e.zMove.boost && Object.entries(e.zMove.boost), effect:e.zMove.effect},
+                isZMove: !!e.isZ || undefined,
                 hasSheerForceBoost: e.hasSheerForceBoost || undefined,
                 generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
@@ -116,9 +119,10 @@ const data = mod => {
                 noRolePlay: !!e.flags?.failroleplay || undefined,
                 noSkillSwap: !!e.flags?.failskillswap || undefined})),
         items: table(dex.items.all(), e =>
-            ({...props(e, ['name', 'isNonstandard', 'megaStone']),
+            ({...props(e, ['name', 'isNonstandard', 'megaStone', 'zMoveType', 'zMoveFrom', 'itemUser']),
                 isBerry: e.isBerry || undefined, ignoreKlutz: e.ignoreKlutz || undefined, fling: flingData(e),
                 inertHeldItem: inertHeldItem(e) || undefined,
+                zMove: e.zMove || undefined, unremovable: e.onTakeItem === false || undefined,
                 handlers: handlers(e)})),
         natures: table(dex.natures.all(), e => props(e, ['plus', 'minus'])),
         types: table(dex.types.all(), e => props(e, ['damageTaken'])),

@@ -355,6 +355,9 @@ impl Battle {
                         // It can advertise the form even though it cannot act.
                         request["canMegaEvo"] = json!(true);
                     }
+                    if let Some(z_moves) = self.z_move_requests(pos) {
+                        request["canZMove"] = json!(z_moves);
+                    }
                     request
                 }).collect::<Vec<_>>(),
                 "side": self.side_request(player).unwrap(),
@@ -7789,7 +7792,9 @@ impl Pokemon {
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)
-                .is_none_or(|item| item.mega_stone.is_none() && !item.inert_held_item)
+                .is_none_or(|item| {
+                    item.mega_stone.is_none() && item.z_move.is_none() && !item.inert_held_item
+                })
         {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));
         }
