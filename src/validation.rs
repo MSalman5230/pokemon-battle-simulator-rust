@@ -13,6 +13,7 @@ use std::{collections::HashMap, sync::LazyLock};
 
 mod flat;
 mod natdex;
+mod origins;
 pub use flat::{TeamValidator, ValidationError};
 
 type Table<T> = HashMap<String, T>;
@@ -84,6 +85,12 @@ pub struct SpeciesRules {
     pub nat_dex_tier: Option<String>,
     pub gender: Option<String>,
     pub evo_region: Option<String>,
+    pub pokemon_go: Option<PokemonGo>,
+}
+
+#[derive(Deserialize)]
+pub struct PokemonGo {
+    pub encounters: Vec<String>,
 }
 
 #[derive(Deserialize)]

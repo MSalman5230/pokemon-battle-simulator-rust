@@ -42,12 +42,14 @@ function project(dex, legacy = false) {
             if (!String(error).startsWith('Error: Species with no learnset data: ')) throw error;
             parents = null;
         }
+        const go = !legacy && dex.species.getPokemonGoData(s.id);
         return [s.id, {
             num: s.num, gen: s.gen, tags: s.tags, tier: s.tier, doublesTier: s.doublesTier,
             forme: s.forme, baseForme: s.baseForme, battleOnly: s.battleOnly,
             changesFrom: s.changesFrom, requiredAbility: s.requiredAbility, requiredItems: s.requiredItems,
             requiredMove: s.requiredMove, evoLevel: s.evoLevel, canHatch: s.canHatch, mother: s.mother,
             prevo: s.prevo, nfe: s.nfe, eggGroups: s.eggGroups, parents,
+            ...(go && {pokemonGo: go}),
             ...(legacy && {natDexTier: s.natDexTier, gender: s.gender, evoRegion: s.evoRegion}),
         }];
     }));

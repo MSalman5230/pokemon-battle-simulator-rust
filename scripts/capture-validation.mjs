@@ -132,6 +132,17 @@ const leagueCases = [
         ['Rayquaza must know Dragon Ascent to Mega Evolve', simple('Rayquaza-Mega','Delta Stream',['Protect'])],
         ['Darkrai learns its signature sleep move', simple('Darkrai','Bad Dreams',['Dark Void'])],
         ['Smeargle cannot Sketch Dark Void', simple('Smeargle','Own Tempo',['Dark Void'])],
+        ['Terapagos event is male', {...simple('Terapagos','Tera Shift',['Tera Starstorm']), gender:'F'}],
+        ['Terapagos event fixes Hidden Power type', {...simple('Terapagos','Tera Shift',['Tera Starstorm']), hpType:'Fighting'}],
+        ['Terapagos requires the event level and IVs before Hyper Training', {...simple('Terapagos','Tera Shift',['Tera Starstorm']), level:30}],
+        ['event validates each specified IV', {...simple('Terapagos','Tera Shift',['Tera Starstorm']), ivs:{atk:15}}],
+        ['Greninja-Bond cannot Hyper Train below level fifty', {...simple('Greninja-Bond','Battle Bond',['Water Shuriken']), level:45}],
+        ['Greninja-Bond always has Hidden Power Ghost', {...simple('Greninja-Bond','Battle Bond',['Water Shuriken']), hpType:'Ice'}],
+        ['low-level Genesect fails event and GO origins', {...simple('Genesect','Download',['Techno Blast']), level:10}],
+        ['Victini cannot be shiny even when transferred from GO', {...simple('Victini','Victory Star',['V-create']), level:5, shiny:true}],
+        ['underlevel Darkrai can originate in GO', {...simple('Darkrai','Bad Dreams',['Dark Void']), level:15}],
+        ['Darkrai is too low for any origin', {...simple('Darkrai','Bad Dreams',['Dark Void']), level:1}],
+        ['Meltan has a mandatory GO origin', {...simple('Meltan','Magnet Pull',['Protect']), level:50, ivs:{hp:30, atk:20, spa:0}}],
     ].map(([name, set]) => [name, ids.natdex, 'set', set]),
 ];
 for (const format of Object.values(ids)) {

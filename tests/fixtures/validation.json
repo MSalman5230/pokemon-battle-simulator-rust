@@ -3371,6 +3371,261 @@
       ]
     },
     {
+      "name": "Terapagos event is male",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Terapagos",
+        "ability": "Tera Shift",
+        "moves": [
+          "Tera Starstorm"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "gender": "F"
+      },
+      "expected": [
+        "Terapagos is only obtainable from an event - it needs to match its event:",
+        "Terapagos's gender must be M to be from its event."
+      ]
+    },
+    {
+      "name": "Terapagos event fixes Hidden Power type",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Terapagos",
+        "ability": "Tera Shift",
+        "moves": [
+          "Tera Starstorm"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "hpType": "Fighting"
+      },
+      "expected": [
+        "Terapagos is only obtainable from an event - it needs to match its event:",
+        "Terapagos can only have Hidden Power Dark to be from its event."
+      ]
+    },
+    {
+      "name": "Terapagos requires the event level and IVs before Hyper Training",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Terapagos",
+        "ability": "Tera Shift",
+        "moves": [
+          "Tera Starstorm"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 30
+      },
+      "expected": [
+        "Terapagos is only obtainable from an event - it needs to match its event:",
+        "Terapagos must be at least level 85 to be from its event.",
+        "Terapagos must have 15 Attack IVs to be from its event."
+      ]
+    },
+    {
+      "name": "event validates each specified IV",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Terapagos",
+        "ability": "Tera Shift",
+        "moves": [
+          "Tera Starstorm"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "ivs": {
+          "atk": 15
+        }
+      },
+      "expected": [
+        "Terapagos's IVs are not maxed out, but this format requires all IVs to be 31.",
+        "Terapagos is only obtainable from an event - it needs to match its event:",
+        "Terapagos must have 31 HP IVs to be from its event.",
+        "Terapagos must have 31 Defense IVs to be from its event.",
+        "Terapagos must have 31 Special Attack IVs to be from its event.",
+        "Terapagos must have 31 Special Defense IVs to be from its event.",
+        "Terapagos must have 31 Speed IVs to be from its event."
+      ]
+    },
+    {
+      "name": "Greninja-Bond cannot Hyper Train below level fifty",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Greninja-Bond",
+        "ability": "Battle Bond",
+        "moves": [
+          "Water Shuriken"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 45
+      },
+      "expected": [
+        "Greninja-Bond is only obtainable from an event - it needs to match its event:",
+        "Greninja-Bond must have 20 HP IVs to be from its event.",
+        "Greninja-Bond must have 20 Defense IVs to be from its event.",
+        "Greninja-Bond must have 20 Special Defense IVs to be from its event."
+      ]
+    },
+    {
+      "name": "Greninja-Bond always has Hidden Power Ghost",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Greninja-Bond",
+        "ability": "Battle Bond",
+        "moves": [
+          "Water Shuriken"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "hpType": "Ice"
+      },
+      "expected": [
+        "Greninja-Bond is only obtainable from an event - it needs to match its event:",
+        "Greninja-Bond can only have Hidden Power Ghost to be from its event."
+      ]
+    },
+    {
+      "name": "low-level Genesect fails event and GO origins",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Genesect",
+        "ability": "Download",
+        "moves": [
+          "Techno Blast"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 10
+      },
+      "expected": [
+        "Genesect is only obtainable from events - it needs to match one of its events:",
+        "Genesect must be at least level 50 to be from its event #1.",
+        "Genesect must be at least level 15 to be from its event #2.",
+        "Genesect must be at least level 100 to be from its event #3.",
+        "Genesect must be shiny to be from its event #3.",
+        "Genesect must be at least level 100 to be from its event #4.",
+        "Genesect must be at least level 60 to be from its event #5.",
+        "Additionally, it failed to validate as a Pokemon from Pokemon GO because:",
+        "Genesect must be at least level 15 to be from Pokemon GO."
+      ]
+    },
+    {
+      "name": "Victini cannot be shiny even when transferred from GO",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Victini",
+        "ability": "Victory Star",
+        "moves": [
+          "V-create"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 5,
+        "shiny": true
+      },
+      "expected": [
+        "Victini is only obtainable from events - it needs to match one of its events:",
+        "Victini must be at least level 15 to be from its event #1.",
+        "Victini must not be shiny to be from its event #1.",
+        "Victini must be at least level 50 to be from its event #2.",
+        "Victini must not be shiny to be from its event #2.",
+        "Victini must be at least level 100 to be from its event #3.",
+        "Victini must not be shiny to be from its event #3.",
+        "Victini must be at least level 15 to be from its event #4.",
+        "Victini must not be shiny to be from its event #4.",
+        "Victini must be at least level 100 to be from its event #5.",
+        "Victini must not be shiny to be from its event #5.",
+        "Victini must be at least level 15 to be from its event #6.",
+        "Victini must not be shiny to be from its event #6.",
+        "Victini must be at least level 15 to be from its event #7.",
+        "Victini must not be shiny to be from its event #7.",
+        "Victini must be at least level 50 to be from its event #8.",
+        "Victini must not be shiny to be from its event #8.",
+        "Additionally, it failed to validate as a Pokemon from Pokemon GO because:",
+        "Shiny Victini is not obtainable from Pokemon GO."
+      ]
+    },
+    {
+      "name": "underlevel Darkrai can originate in GO",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Darkrai",
+        "ability": "Bad Dreams",
+        "moves": [
+          "Dark Void"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 15
+      },
+      "expected": null
+    },
+    {
+      "name": "Darkrai is too low for any origin",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Darkrai",
+        "ability": "Bad Dreams",
+        "moves": [
+          "Dark Void"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 1
+      },
+      "expected": [
+        "Darkrai is only obtainable from events - it needs to match one of its events:",
+        "Darkrai must be at least level 40 to be from its event #1.",
+        "Darkrai must be at least level 50 to be from its event #2.",
+        "Darkrai must be at least level 50 to be from its event #3.",
+        "Darkrai must be at least level 50 to be from its event #4.",
+        "Darkrai must be at least level 50 to be from its event #5.",
+        "Darkrai must be at least level 50 to be from its event #6.",
+        "Darkrai must be at least level 100 to be from its event #7.",
+        "Darkrai must be at least level 50 to be from its event #8.",
+        "Darkrai must be at least level 50 to be from its event #9.",
+        "Darkrai must be at least level 70 to be from its event #10.",
+        "Darkrai must be at least level 50 to be from its event #11.",
+        "Additionally, it failed to validate as a Pokemon from Pokemon GO because:",
+        "Darkrai must be at least level 15 to be from Pokemon GO."
+      ]
+    },
+    {
+      "name": "Meltan has a mandatory GO origin",
+      "format": "gen9championsnatdexdraft",
+      "set": {
+        "species": "Meltan",
+        "ability": "Magnet Pull",
+        "moves": [
+          "Protect"
+        ],
+        "item": "",
+        "nature": "Hardy",
+        "level": 50,
+        "ivs": {
+          "hp": 30,
+          "atk": 20,
+          "spa": 0
+        }
+      },
+      "expected": [
+        "Meltan's IVs are not maxed out, but this format requires all IVs to be 31.",
+        "Meltan must have at least three perfect IVs because it's a legendary in Gen 6 or later.",
+        "Additionally, it failed to validate as a Pokemon from Pokemon GO because:",
+        "Meltan must have at least 1 IV in non-Speed stats to be from Pokemon GO.",
+        "Meltan must have odd non-Speed IVs to be from Pokemon GO.",
+        "Meltan's Atk and Sp. Atk IVs must match to be from Pokemon GO.",
+        "Meltan is only obtainable from Pokemon GO, and failed to validate because:",
+        "Meltan must have at least 1 IV in non-Speed stats to be from Pokemon GO.",
+        "Meltan must have odd non-Speed IVs to be from Pokemon GO.",
+        "Meltan's Atk and Sp. Atk IVs must match to be from Pokemon GO."
+      ]
+    },
+    {
       "name": "ordinary full roster",
       "format": "gen9championsou",
       "team": [

@@ -6,6 +6,20 @@ use crate::rng::Rng;
 use serde::{Deserialize, Serialize};
 use std::num::NonZeroU32;
 
+pub(crate) const HIDDEN_POWER_TYPES: [&str; 16] = [
+    "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel", "Fire", "Water",
+    "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark",
+];
+
+/// The six IVs are ordered HP, Attack, Defense, Speed, Special Attack, Special Defense.
+pub(crate) fn hidden_power_type_index(ivs: [i64; 6]) -> u8 {
+    let parity = ivs
+        .into_iter()
+        .enumerate()
+        .fold(0, |bits, (idx, iv)| bits | ((iv & 1) << idx));
+    (parity * 15 / 63) as u8
+}
+
 #[derive(Debug, Copy, Clone, Eq, PartialEq, Deserialize)]
 #[serde(rename_all = "lowercase")]
 pub enum Stat {

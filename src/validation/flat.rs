@@ -3,6 +3,7 @@
 use super::{
     FormatRules, LEGALITY, MoveSources,
     natdex::{NATDEX, NatDexCatalog},
+    origins::{Origin, STATS, go_problems, hidden_power, perfect_ivs},
 };
 use crate::{
     choice::to_id,
@@ -680,7 +681,21 @@ impl TeamValidator {
                     }
                 }
             }
-            self.check_stats(set, &name, level, &nature, &mut problems)?;
+            if hp_type.is_empty() && moves.iter().any(|data| data.name == "Hidden Power") {
+                hp_type = hidden_power(&set["ivs"]).into();
+            }
+            self.check_stats(
+                &Origin {
+                    set,
+                    display: &name,
+                    gender: None,
+                    hp_type: &hp_type,
+                    level,
+                },
+                species,
+                &nature,
+                &mut problems,
+            )?;
             let mut seen = HashSet::new();
             for data in &moves {
                 if !seen.insert(data.name.as_str()) {
@@ -730,6 +745,36 @@ impl TeamValidator {
                     }
                 }
             }
+        }
+        let event_display = if name == species.name || name == species.base_species {
+            species.name.clone()
+        } else {
+            format!("{name} ({})", species.name)
+        };
+        let origin = Origin {
+            set,
+            display: &event_display,
+            gender: species
+                .gender
+                .as_deref()
+                .filter(|gender| !gender.is_empty())
+                .or_else(|| Some(string(set, "gender")).filter(|g| matches!(*g, "M" | "F"))),
+            hp_type: &hp_type,
+            level,
+        };
+        if let Some(events) = self.event_for(species)? {
+            self.check_event_only(species, &origin, events, &mut problems);
+        }
+        if matches!(
+            species_id.as_str(),
+            "meltan" | "melmetal" | "gimmighoulroaming"
+        ) && let Some(go) = go_problems(dex, species, set, level, &species.name)
+            .filter(|problems| !problems.is_empty())
+        {
+            problems.push(format!(
+                "{display} is only obtainable from Pokemon GO, and failed to validate because:"
+            ));
+            problems.extend(go);
         }
         let mut facts = Vec::new();
         if !self.rules.complex_team_bans.is_empty() || !self.rules.complex_bans.is_empty() {
@@ -792,14 +837,6 @@ impl TeamValidator {
                 species.name
             )));
         }
-        if let Some(events) = self.event_for(species)? {
-            let event_display = if name == species.name || name == species.base_species {
-                species.name.clone()
-            } else {
-                format!("{name} ({})", species.name)
-            };
-            self.check_modern_events(set, species, &event_display, level, events, &mut problems)?;
-        }
         if let Some(natdex) = self.natdex {
             if self.species_rules(species).tier == "Illegal"
                 && natdex.tier(&species_id) == Some("Illegal")
@@ -859,76 +896,56 @@ impl TeamValidator {
         Ok(Some(events))
     }
 
-    fn check_modern_events(
+    fn check_event_only(
         &self,
-        set: &Value,
         species: &Species,
-        display: &str,
-        level: i64,
+        origin: &Origin<'_>,
         events: &[Value],
         problems: &mut Vec<String>,
-    ) -> Result<(), ValidationError> {
+    ) {
         let mut reasons = Vec::new();
-        let mut unresolved = false;
         for (index, event) in events.iter().enumerate() {
-            let generation = event["generation"].as_u64().unwrap_or(0);
-            if generation > 9 {
-                continue;
-            }
-            let can_hyper_train = level >= 50
-                && string(set, "hpType").is_empty()
-                && set["ivs"]
-                    .as_object()
-                    .is_none_or(|ivs| ivs.values().all(|v| v.as_i64() == Some(31)));
-            if event["japan"] == true
-                || ((!event["ivs"].is_null() || !event["perfectIVs"].is_null()) && !can_hyper_train)
+            if event["generation"]
+                .as_u64()
+                .is_some_and(|generation| generation > 9)
             {
-                unresolved = true;
                 continue;
             }
-            let suffix = if events.len() > 1 {
-                format!(" to be from its event #{}", index + 1)
+            let name = if events.len() == 1 {
+                "its event".into()
             } else {
-                " to be from its event".into()
+                format!("its event #{}", index + 1)
             };
-            let mut reasons_for_event = Vec::new();
-            if let Some(required) = event["level"].as_i64().filter(|&required| level < required) {
-                reasons_for_event.push(format!(
-                    "{display} must be at least level {required}{suffix}."
-                ));
-            }
-            let shiny = set["shiny"] == true;
-            if event["shiny"] == true && !shiny {
-                reasons_for_event.push(format!("{display} must be shiny{suffix}."));
-            } else if (event["shiny"].is_null() || event["shiny"] == false) && shiny {
-                reasons_for_event.push(format!("{display} must not be shiny{suffix}."));
-            }
-            let gender = species
-                .gender
-                .as_deref()
-                .filter(|gender| !gender.is_empty())
-                .or_else(|| Some(string(set, "gender")).filter(|g| matches!(*g, "M" | "F")));
-            if let (Some(actual), Some(required)) = (gender, event["gender"].as_str())
-                && actual != required
-            {
-                reasons_for_event.push(format!("{display}'s gender must be {required}{suffix}."));
-            }
+            let reasons_for_event = origin.event_problems(event, " to be", &name);
             if reasons_for_event.is_empty() {
-                return Ok(());
+                return;
             }
             reasons.extend(reasons_for_event);
         }
-        if unresolved {
-            return Err(ValidationError(format!(
-                "event constraints for {}",
-                species.name
-            )));
+        if self.species_rules(species).generation <= 2 {
+            let source = match species.name.as_str() {
+                "Mew" => serde_json::json!({"generation":2, "level":5, "perfectIVs":5}),
+                "Celebi" => {
+                    serde_json::json!({"generation":2, "level":30, "perfectIVs":5, "shiny":1})
+                }
+                _ => serde_json::json!({"generation":2, "level":3, "perfectIVs":3, "shiny":1}),
+            };
+            if origin
+                .event_problems(&source, " to be", "Gen 1-2 Virtual Console transfer")
+                .is_empty()
+            {
+                return;
+            }
         }
-        if reasons.is_empty() {
-            return Err(ValidationError(format!(
-                "event-only origin for {}",
-                species.name
-            )));
+        let go = go_problems(
+            self.format.dex_mod,
+            species,
+            origin.set,
+            origin.level,
+            &species.name,
+        );
+        if go.as_ref().is_some_and(Vec::is_empty) {
+            return;
         }
         problems.push(format!(
             "{} is only obtainable from {}:",
@@ -940,17 +957,28 @@ impl TeamValidator {
             }
         ));
         problems.extend(reasons);
-        Ok(())
+        if let Some(go) = go {
+            problems.push(
+                "Additionally, it failed to validate as a Pokemon from Pokemon GO because:".into(),
+            );
+            problems.extend(go);
+        }
     }
 
     fn check_stats(
         &self,
-        set: &Value,
-        name: &str,
-        level: i64,
+        origin: &Origin<'_>,
+        species: &Species,
         nature: &str,
         problems: &mut Vec<String>,
     ) -> Result<(), ValidationError> {
+        let Origin {
+            set,
+            display: name,
+            level,
+            hp_type,
+            ..
+        } = *origin;
         if set["ivs"]
             .as_object()
             .is_some_and(|ivs| ivs.values().any(|value| value.as_i64() != Some(31)))
@@ -959,14 +987,50 @@ impl TeamValidator {
                 "{name}'s IVs are not maxed out, but this format requires all IVs to be 31."
             ));
         }
-        const STATS: [(&str, &str); 6] = [
-            ("hp", "HP"),
-            ("atk", "Attack"),
-            ("def", "Defense"),
-            ("spa", "Special Attack"),
-            ("spd", "Special Defense"),
-            ("spe", "Speed"),
-        ];
+        let rules = self.species_rules(species);
+        let legendary = (rules
+            .egg_groups
+            .first()
+            .is_some_and(|group| group == "Undiscovered")
+            && rules.prevo.is_empty()
+            && !rules.nfe
+            && !rules.tags.iter().any(|tag| tag == "Paradox")
+            && !matches!(
+                species.base_species.as_str(),
+                "Pikachu"
+                    | "Unown"
+                    | "Dracozolt"
+                    | "Arctozolt"
+                    | "Dracovish"
+                    | "Arctovish"
+                    | "Gouging Fire"
+                    | "Raging Bolt"
+                    | "Iron Boulder"
+                    | "Iron Crown"
+                    | "Terapagos"
+            ))
+            || matches!(
+                species.base_species.as_str(),
+                "Manaphy" | "Cosmog" | "Cosmoem" | "Solgaleo" | "Lunala"
+            );
+        if legendary
+            && rules.generation.max(self.rules.min_source_gen) >= 6
+            && (species.name != "Diancie" || set["shiny"] == true)
+        {
+            if hp_type == "Fighting" {
+                problems.push(format!("{name} must not have Hidden Power Fighting because it starts with 3 perfect IVs because it's a Gen 6+ legendary."));
+            }
+            if perfect_ivs(&set["ivs"]) < 3 {
+                let go = go_problems(self.format.dex_mod, species, set, level, &species.name);
+                if go.as_ref().is_none_or(|reasons| !reasons.is_empty()) {
+                    problems.push(format!("{name} must have at least three perfect IVs because it's a legendary in Gen 6 or later."));
+                    if let Some(go) = go {
+                        problems.push("Additionally, it failed to validate as a Pokemon from Pokemon GO because:".into());
+                        problems.extend(go);
+                    }
+                }
+            }
+        }
         let mut points = [0_i64; 6];
         for (i, (id, _)) in STATS.iter().enumerate() {
             if let Some(value) = set.get("evs").and_then(|evs| evs.get(*id)) {

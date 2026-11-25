@@ -1,15 +1,11 @@
 //! Base, changed, and added Pokémon typing.
 
 use super::{Battle, BattleError, DEX, Pokemon, SetStats, to_id, turn::Position};
+use crate::mechanics::{HIDDEN_POWER_TYPES, hidden_power_type_index};
 
 pub(super) const TYPES: &[&str] = &[
     "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground",
     "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy",
-];
-
-pub(super) const HIDDEN_POWER_TYPES: [&str; 16] = [
-    "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel", "Fire", "Water",
-    "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark",
 ];
 
 pub(super) fn hidden_power_index(
@@ -25,13 +21,9 @@ pub(super) fn hidden_power_index(
             .ok_or_else(|| BattleError::Unsupported(format!("Hidden Power type {explicit}")));
     }
     let Some(ivs) = ivs else { return Ok(15) };
-    let parity = [ivs.hp, ivs.atk, ivs.def, ivs.spe, ivs.spa, ivs.spd]
-        .into_iter()
-        .enumerate()
-        .fold(0, |bits, (idx, value)| {
-            bits | ((value.clamp(0, 31) & 1) << idx)
-        });
-    Ok((parity * 15 / 63) as u8)
+    Ok(hidden_power_type_index(
+        [ivs.hp, ivs.atk, ivs.def, ivs.spe, ivs.spa, ivs.spd].map(|iv| i64::from(iv.clamp(0, 31))),
+    ))
 }
 
 // A copied or reconstructed type list may include three types. Store type
