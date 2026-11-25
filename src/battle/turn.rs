@@ -1974,6 +1974,7 @@ impl Battle {
                     self.apply_mimicry(pos);
                 }
                 self.use_matching_terrain_seed(pos);
+                self.use_room_service(pos);
             }
         }
         for (pos, _) in order.into_iter().take(count) {
@@ -5418,6 +5419,7 @@ impl Battle {
             if self.cure_team(source, move_data) {
                 self.each_event();
                 self.each_event();
+                self.throat_spray(source, move_data);
             } else {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
@@ -5563,6 +5565,8 @@ impl Battle {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
                 result.failed = true;
+            } else {
+                self.throat_spray(source, move_data);
             }
             return true;
         }
@@ -5574,6 +5578,15 @@ impl Battle {
             } else {
                 self.trick_room = 5;
                 self.add(format!("|-fieldstart|move: Trick Room|[of] {source_name}"));
+                if self
+                    .positions()
+                    .any(|pos| self.mon(pos).effective_item() == "roomservice")
+                {
+                    let (order, count) = self.ordered_actives(false);
+                    for (pos, _) in order.into_iter().take(count) {
+                        self.use_room_service(pos);
+                    }
+                }
             }
             return true;
         }
@@ -5801,6 +5814,7 @@ impl Battle {
                 self.add_health_line("-damage", source, false);
                 self.each_event();
                 self.each_event();
+                self.throat_spray(source, move_data);
             } else {
                 result.failed = true;
             }
@@ -7674,6 +7688,7 @@ impl Battle {
                     self.mark_fainted(source);
                 }
                 self.each_event();
+                self.throat_spray(source, move_data);
             } else {
                 result.failed = true;
             }
@@ -7837,6 +7852,7 @@ impl Battle {
             damage.clear();
             let previous_strike_damage = total;
             let mut critical_hits = 0;
+            let mut super_effective_targets = 0;
             let mut compute = |battle: &mut Self, target: Position, shield: bool| {
                 if let Some(damage) = bide_strike {
                     return damage;
@@ -7963,6 +7979,9 @@ impl Battle {
                         .effectiveness_of(move_data, move_type, target, ignores_type)
                         .unwrap()
                 };
+                if effect > 0 && !shield {
+                    super_effective_targets |= target.mask();
+                }
                 if !disguised && battle.delta_stream_weakens(target, move_type) {
                     battle.add("|-fieldactivate|Delta Stream");
                 }
@@ -8530,6 +8549,14 @@ impl Battle {
                 }
             }
             let original_source_hp = self.mon(source).hp;
+            for &(target, _) in &damage {
+                self.reactive_stat_item(
+                    target,
+                    move_data,
+                    move_type,
+                    super_effective_targets & target.mask() != 0,
+                );
+            }
             for &(target, landed) in &damage {
                 if self.mon(target).hp == 0 && self.event_ability(target) == "innardsout" {
                     let previous = if smart_target {
@@ -8856,6 +8883,7 @@ impl Battle {
         }
         if !suppress_after_move && !unannounced && hits_landed > 0 {
             self.magician_after_hit(source, &spread_targets);
+            self.throat_spray(source, move_data);
         }
         self.emergency_exit(source, original_source_hp);
         if !suppress_after_move && move_data.name == "Sparkling Aria" && self.mon(source).hp > 0 {
@@ -9922,6 +9950,15 @@ impl Pokemon {
                 | "powerbracer"
                 | "powerlens"
                 | "powerweight"
+                | "absorbbulb"
+                | "adrenalineorb"
+                | "cellbattery"
+                | "clearamulet"
+                | "luminousmoss"
+                | "roomservice"
+                | "snowball"
+                | "throatspray"
+                | "weaknesspolicy"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)

@@ -98,6 +98,7 @@ const data = mod => {
                 ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
                 cantUseTwice: !!e.flags?.cantusetwice || undefined,
                 callsMove: e.callsMove || undefined,
+                fixedDamage: !!(e.damage || e.damageCallback) || undefined,
                 zPower: e.zMove && {basePower:e.zMove.basePower, boost:e.zMove.boost && Object.entries(e.zMove.boost), effect:e.zMove.effect},
                 isZMove: !!e.isZ || undefined,
                 ignoreAbility: e.ignoreAbility || undefined,

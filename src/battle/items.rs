@@ -239,6 +239,7 @@ impl Battle {
         }
         self.on_switch_in_item(pos);
         self.use_matching_terrain_seed(pos);
+        self.use_room_service(pos);
         self.white_herb(pos);
     }
 
@@ -253,21 +254,75 @@ impl Battle {
         if self.terrain() != Some(terrain) || self.mon(pos).hp == 0 {
             return;
         }
-        self.consume(pos, name, false);
-        let (amount, invert) = match self.event_ability(pos) {
-            "simple" => (2, false),
-            "contrary" => (1, true),
-            _ => (1, false),
+        self.use_boosting_item(pos, name, &[(stat, 1)]);
+    }
+
+    pub(super) fn use_boosting_item(
+        &mut self,
+        pos: Position,
+        name: &str,
+        boosts: &[(BoostStat, i8)],
+    ) {
+        if self.mon(pos).hp == 0 {
+            return;
+        }
+        let ability = self.event_ability(pos);
+        let amplified;
+        let boosts = if ability == "simple" {
+            amplified = boosts
+                .iter()
+                .map(|&(stat, amount)| (stat, amount * 2))
+                .collect::<Vec<_>>();
+            &amplified
+        } else {
+            boosts
         };
+        let invert = ability == "contrary";
+        self.consume(pos, name, false);
         self.apply_boosts_labeled(
             pos,
-            &[(stat, amount)],
+            boosts,
             false,
             invert,
             Some(BoostLabel::Item(name)),
             true,
         );
         self.symbiosis_after_item(pos);
+    }
+
+    pub(super) fn use_room_service(&mut self, pos: Position) {
+        if self.trick_room > 0 && self.mon(pos).effective_item() == "roomservice" {
+            self.use_boosting_item(pos, "Room Service", &[(BoostStat::Spe, -1)]);
+        }
+    }
+
+    pub(super) fn reactive_stat_item(
+        &mut self,
+        target: Position,
+        move_data: &Move,
+        move_type: &str,
+        super_effective: bool,
+    ) {
+        let (name, boosts): (&str, &[(BoostStat, i8)]) =
+            match (self.mon(target).effective_item(), move_type) {
+                ("absorbbulb", "Water") => ("Absorb Bulb", &[(BoostStat::Spa, 1)]),
+                ("cellbattery", "Electric") => ("Cell Battery", &[(BoostStat::Atk, 1)]),
+                ("luminousmoss", "Water") => ("Luminous Moss", &[(BoostStat::Spd, 1)]),
+                ("snowball", "Ice") => ("Snowball", &[(BoostStat::Atk, 1)]),
+                ("weaknesspolicy", _) if super_effective && !move_data.fixed_damage => (
+                    "Weakness Policy",
+                    &[(BoostStat::Atk, 2), (BoostStat::Spa, 2)],
+                ),
+                _ => return,
+            };
+        self.use_boosting_item(target, name, boosts);
+    }
+
+    pub(super) fn throat_spray(&mut self, pos: Position, move_data: &Move) {
+        if move_data.flags.contains_key("sound") && self.mon(pos).effective_item() == "throatspray"
+        {
+            self.use_boosting_item(pos, "Throat Spray", &[(BoostStat::Spa, 1)]);
+        }
     }
 
     pub(super) fn white_herb(&mut self, pos: Position) {

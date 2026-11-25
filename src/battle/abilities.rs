@@ -1508,18 +1508,26 @@ impl Battle {
                 continue;
             }
             if self.event_ability(target) == "guarddog" {
+                let attack_capped = self.mon(target).boosts.get(BoostStat::Atk) == -6;
                 self.ability_boost(target, "Guard Dog", BoostStat::Atk, 1, false);
+                self.adrenaline_orb(target, attack_capped);
                 continue;
             }
-            let lowered = self.boost_from(
+            self.boost_from(
                 target,
                 pos,
                 &[(BoostStat::Atk, -1)],
                 BoostOrigin::Intimidate,
             );
-            if lowered && self.event_ability(target) == "rattled" {
-                self.ability_boost(target, "Rattled", BoostStat::Spe, 1, false);
-            }
+        }
+    }
+
+    fn adrenaline_orb(&mut self, pos: Position, attack_capped: bool) {
+        if !attack_capped
+            && self.mon(pos).boosts.get(BoostStat::Spe) < 6
+            && self.mon(pos).effective_item() == "adrenalineorb"
+        {
+            self.use_boosting_item(pos, "Adrenaline Orb", &[(BoostStat::Spe, 1)]);
         }
     }
 
@@ -1633,18 +1641,40 @@ impl Battle {
         let hooks = &mut hooks[..count];
         speed_sort_by(hooks, &mut self.rng, |a, b| b.1.cmp(&a.1));
         let mut removed = 0_u8;
+        let attack_capped = origin == BoostOrigin::Intimidate
+            && changes.iter().any(|&(stat, amount)| {
+                stat == BoostStat::Atk
+                    && ((amount < 0 && self.mon(target).boosts.get(stat) == -6)
+                        || (amount > 0 && self.mon(target).boosts.get(stat) == 6))
+            });
+        let clear_amulet =
+            self.mon(target).item == "clearamulet" && !self.debug_ignored_item(target, "TryBoost");
         if target != source {
+            if clear_amulet {
+                for (i, &(stat, amount)) in changes.iter().enumerate() {
+                    if amount < 0 && self.mon(target).boosts.get(stat) > -6 {
+                        removed |= 1 << i;
+                    }
+                }
+                if removed != 0 && origin.reveal_protection() {
+                    let ident = self.ident(target);
+                    self.add(format!(
+                        "|-fail|{ident}|unboost|[from] item: Clear Amulet|[of] {ident}"
+                    ));
+                }
+            }
             if self.mist_active(target.player)
                 && !(target.player != source.player
                     && matches!(origin, BoostOrigin::Move { .. } | BoostOrigin::Secondary)
                     && self.event_ability(source) == "infiltrator")
             {
+                let before_mist = removed;
                 for (i, &(_, amount)) in changes.iter().enumerate() {
                     if amount < 0 {
                         removed |= 1 << i;
                     }
                 }
-                if removed != 0
+                if removed != before_mist
                     && !matches!(
                         origin,
                         BoostOrigin::Secondary
@@ -1655,11 +1685,9 @@ impl Battle {
                 {
                     self.add(format!("|-activate|{}|move: Mist", self.ident(target)));
                 }
-                if origin == BoostOrigin::Secondary
-                    && removed.count_ones() as usize == changes.len()
-                {
-                    self.report_no_move_effect();
-                }
+            }
+            if origin == BoostOrigin::Secondary && removed.count_ones() as usize == changes.len() {
+                self.report_no_move_effect();
             }
             for &(holder, _, hook) in hooks.iter() {
                 if self.ability_suppressed(holder) {
@@ -1755,6 +1783,12 @@ impl Battle {
         }
         if record {
             self.note_foe_boosts(target, observed);
+        }
+        if origin == BoostOrigin::Intimidate {
+            if success && self.event_ability(target) == "rattled" {
+                self.ability_boost(target, "Rattled", BoostStat::Spe, 1, false);
+            }
+            self.adrenaline_orb(target, attack_capped);
         }
         success
     }

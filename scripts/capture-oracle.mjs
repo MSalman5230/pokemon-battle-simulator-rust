@@ -1956,6 +1956,39 @@ const legacySlowEquipmentRosters = [
         {...named('Jolteon', ['Tackle']), item:'Lagging Tail'}],
     [named('Chansey', ['Tackle']), named('Porygon2', ['Tackle'])],
 ];
+const reactiveWaterEquipmentRosters = [
+    [named('Starmie', ['Surf'], 'N'), {...named('Flareon', ['Protect']), item:'Luminous Moss'}],
+    [{...named('Snorlax', ['Tackle']), item:'Absorb Bulb'}, named('Venusaur', ['Tackle'])],
+];
+const reactiveElectricIceEquipmentRosters = [
+    [named('Jolteon', ['Thunder Shock']), named('Glaceon', ['Ice Shard'])],
+    [{...named('Snorlax', ['Tackle']), item:'Cell Battery'}, {...named('Meganium', ['Tackle']), item:'Snowball'}],
+];
+const weaknessPolicyRosters = [
+    [{...named('Bibarel', ['Recover', 'Tackle']), item:'Weakness Policy', ability:'Simple'}],
+    [named('Jolteon', ['Thunder Shock', 'Water Gun'])],
+];
+const clearAmuletRosters = [
+    [{...named('Lucario', ['Close Combat', 'Mist']), item:'Clear Amulet'}],
+    [{...named('Arcanine', ['Growl', 'Thunder Fang']), ability:'Intimidate'}],
+];
+const adrenalineOrbRosters = [
+    [{...named('Kingler', ['Tackle']), item:'Adrenaline Orb', ability:'Hyper Cutter'}],
+    [{...named('Arcanine', ['Tackle']), ability:'Intimidate'}],
+];
+const roomServiceRosters = [
+    [{...named('Malamar', ['Trick Room', 'Tackle']), item:'Room Service', ability:'Contrary'},
+        {...named('Shuckle', ['Tackle']), item:'Room Service'}],
+    [named('Chansey', ['Recover'])],
+];
+const throatSprayDamageRosters = [
+    [{...named('Sylveon', ['Hyper Voice']), item:'Throat Spray', ability:'Pixilate'}],
+    [named('Chansey', ['Protect', 'Tackle'])],
+];
+const throatSprayStatusRosters = [
+    [{...named('Lapras', ['Perish Song']), item:'Throat Spray'}, named('Snorlax', ['Recover'])],
+    [named('Chansey', ['Tackle']), named('Porygon2', ['Tackle'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3448,6 +3481,22 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         legacyGloveRosters, 'custom-punching-glove-prevents-contact'],
     ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1 1','move 1 1, move 1 2']],
         legacySlowEquipmentRosters, 'custom-speed-items-and-fractional-priority'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1 2']],
+        reactiveWaterEquipmentRosters, 'custom-water-triggers-only-exposed-reactive-items'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1 2','move 1 1, move 1 2']],
+        reactiveElectricIceEquipmentRosters, 'custom-thunder-shock-cell-battery-ice-shard-snowball'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 2'], ['move 2','move 1']],
+        weaknessPolicyRosters, 'custom-weakness-policy-doubles-stages-with-simple'],
+    ['customgame', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1']],
+        clearAmuletRosters, 'custom-clear-amulet-blocks-external-not-self-drops'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        adrenalineOrbRosters, 'custom-adrenaline-orb-after-blocked-intimidate'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1']],
+        roomServiceRosters, 'custom-room-service-start-and-switch-in'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        throatSprayDamageRosters, 'custom-throat-spray-only-after-successful-sound'],
+    ['customgame', [['team 12','team 12'], ['move 1','move 1']],
+        throatSprayStatusRosters, 'custom-throat-spray-after-perish-song'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -2132,6 +2132,34 @@ fn inherited_equipment_checks_the_species_and_changes_the_correct_stat_or_event(
 }
 
 #[test]
+fn reactive_equipment_fires_at_the_native_hit_boost_field_and_move_events() {
+    replay(include_str!(
+        "fixtures/custom-water-triggers-only-exposed-reactive-items.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-thunder-shock-cell-battery-ice-shard-snowball.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-weakness-policy-doubles-stages-with-simple.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-clear-amulet-blocks-external-not-self-drops.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-adrenaline-orb-after-blocked-intimidate.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-room-service-start-and-switch-in.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-throat-spray-only-after-successful-sound.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-throat-spray-after-perish-song.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

@@ -1,0 +1,620 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Kingler\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Kingler\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Hyper Cutter\",\"item\":\"Adrenaline Orb\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Arcanine\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Arcanine\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Intimidate\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kingler, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kingler, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kingler, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kingler",
+                "details": "Kingler, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 135,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 95
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "hypercutter",
+                "item": "adrenalineorb",
+                "pokeball": "pokeball",
+                "ability": "hypercutter",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kingler",
+            "species": "Kingler",
+            "details": "Kingler, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 135,
+              "spa": 70,
+              "spd": 70,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hypercutter",
+            "item": "adrenalineorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Kingler|Kingler, L50, F|130/130",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-fail|p1a: Kingler|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Kingler",
+          "|-enditem|p1a: Kingler|Adrenaline Orb",
+          "|-boost|p1a: Kingler|spe|1|[from] item: Adrenaline Orb",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Kingler|Kingler, L50, F|130/130",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-fail|p1a: Kingler|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Kingler",
+          "|-enditem|p1a: Kingler|Adrenaline Orb",
+          "|-boost|p1a: Kingler|spe|1|[from] item: Adrenaline Orb",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Kingler|Kingler, L50, F|130/130",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-fail|p1a: Kingler|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Kingler",
+          "|-enditem|p1a: Kingler|Adrenaline Orb",
+          "|-boost|p1a: Kingler|spe|1|[from] item: Adrenaline Orb",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kingler",
+                "details": "Kingler, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 135,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 95
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "hypercutter",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hypercutter",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kingler",
+            "species": "Kingler",
+            "details": "Kingler, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 135,
+              "spa": 70,
+              "spd": 70,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hypercutter",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Kingler|Tackle|p2a: Arcanine",
+          "|-damage|p2a: Arcanine|140/165",
+          "|move|p2a: Arcanine|Tackle|p1a: Kingler",
+          "|-damage|p1a: Kingler|114/130",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Kingler|Tackle|p2a: Arcanine",
+          "|-damage|p2a: Arcanine|140/165",
+          "|move|p2a: Arcanine|Tackle|p1a: Kingler",
+          "|-damage|p1a: Kingler|114/130",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Kingler|Tackle|p2a: Arcanine",
+          "|-damage|p2a: Arcanine|140/165",
+          "|move|p2a: Arcanine|Tackle|p1a: Kingler",
+          "|-damage|p1a: Kingler|114/130",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kingler",
+                "details": "Kingler, L50, F",
+                "condition": "114/130",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 135,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 95
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "hypercutter",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hypercutter",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "140/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kingler",
+            "species": "Kingler",
+            "details": "Kingler, L50, F",
+            "hp": 114,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 135,
+              "spa": 70,
+              "spd": 70,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hypercutter",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 140,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
