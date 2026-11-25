@@ -295,3 +295,8 @@ fn vgc_rampage_replays_random_targeting_across_forced_moves() {
 fn bss_taunt_interrupts_selected_status_moves_and_updates_requests() {
     replay(include_str!("fixtures/bss-taunt.json"));
 }
+
+#[test]
+fn bss_court_change_glaive_rush_and_poltergeist() {
+    replay(include_str!("fixtures/bss-court-change.json"));
+}

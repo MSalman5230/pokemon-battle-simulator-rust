@@ -704,6 +704,9 @@ impl Battle {
                     | "taunt"
                     | "fakeout"
                     | "firstimpression"
+                    | "glaiverush"
+                    | "poltergeist"
+                    | "courtchange"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -896,6 +899,7 @@ impl Battle {
                     party[outgoing.slot].recharge = 0;
                     party[outgoing.slot].confusion = 0;
                     party[outgoing.slot].rampage = None;
+                    party[outgoing.slot].glaive_drawback = false;
                     party[outgoing.slot].volatile_order.clear();
                     party[outgoing.slot].imprisoned = false;
                     party[outgoing.slot].choice_lock = None;
@@ -1280,6 +1284,14 @@ impl Battle {
 
     // Whether this action reached the move attempt, for AfterMove hooks.
     fn run_move(&mut self, source: Position, slot: usize, loc: i8, more_actions: bool) -> bool {
+        let mon = self.mon_mut(source);
+        if mon.glaive_drawback {
+            mon.glaive_drawback = false;
+            mon.untrack_volatile("glaiverush");
+            if self.format.report_exact_hp {
+                self.add("|debug|removing Glaive Rush drawback before attack");
+            }
+        }
         if slot == RECHARGE_SLOT {
             self.random_target(source, TargetKind::Normal);
             self.add(format!("|cant|{}|recharge", self.ident(source)));
@@ -1445,6 +1457,14 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Court Change" {
+            self.protean_prepare(source, move_type);
+            if !self.court_change(source) {
+                self.log[base].public = format!("|move|{source_name}|Court Change||[still]");
+                self.add(format!("|-fail|{source_name}"));
+            }
+            return true;
+        }
         if let Some(weather) = Weather::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !self.set_weather(source, weather, None) {
@@ -1526,6 +1546,11 @@ impl Battle {
                 move_data.name
             ));
             self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+            self.add(format!("|-fail|{source_name}"));
+            return true;
+        }
+        if move_data.name == "Poltergeist" && self.mon(spread_targets[0]).item.is_empty() {
+            self.log[base].public = format!("|move|{source_name}|Poltergeist||[still]");
             self.add(format!("|-fail|{source_name}"));
             return true;
         }
@@ -1611,6 +1636,7 @@ impl Battle {
                 && !(move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
                 && self.mon(source).ability != "noguard"
                 && self.mon(pos).ability != "noguard"
+                && !self.mon(pos).glaive_drawback
                 && !self.rng.chance(self.accuracy(source, pos, accuracy), 100)
             {
                 if !spread {
@@ -1728,6 +1754,16 @@ impl Battle {
             .count() as u32;
         let mut damage = Vec::with_capacity(spread_targets.len());
         for &target in &spread_targets {
+            if move_data.name == "Poltergeist" {
+                let item = DEX
+                    .item(self.format.dex_mod, &self.mon(target).item)
+                    .unwrap();
+                self.add(format!(
+                    "|-activate|{}|move: Poltergeist|{}",
+                    self.ident(target),
+                    item.effect.name
+                ));
+            }
             let effect = self.effectiveness_of(move_data, move_type, target).unwrap();
             let crit_ratio = move_data.crit_ratio.unwrap_or(1).min(4);
             let crit_roll = move_data.will_crit.unwrap_or_else(|| {
@@ -1802,6 +1838,9 @@ impl Battle {
                 "expertbelt" if effect > 0 => 4915,
                 _ => 4096,
             };
+            if mon.glaive_drawback {
+                final_modifier = crate::mechanics::chain(final_modifier, 8192);
+            }
             if (mon.ability == "multiscale" && mon.hp == mon.max_hp.get())
                 || (mon.ability == "auraguard" && move_data.flags.contains_key("contact"))
             {
@@ -1921,6 +1960,12 @@ impl Battle {
         }
         if move_data.self_rampage {
             self.rampage_hit(source, slot);
+        }
+        if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 {
+            let mon = self.mon_mut(source);
+            mon.glaive_drawback = true;
+            mon.track_volatile("glaiverush");
+            self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
         }
         for &(target, _) in &damage {
             for effect in &move_data.secondaries {
@@ -2115,6 +2160,7 @@ impl Battle {
         mon.recharge = 0;
         mon.confusion = 0;
         mon.rampage = None;
+        mon.glaive_drawback = false;
         mon.volatile_order.clear();
         mon.imprisoned = false;
         mon.choice_lock = None;

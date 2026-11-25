@@ -42,6 +42,30 @@ impl Hazard {
 }
 
 impl Battle {
+    pub(super) fn court_change(&mut self, source: Position) -> bool {
+        let [p1, p2] = &mut self.sides;
+        let p1 = p1.as_mut().unwrap();
+        let p2 = p2.as_mut().unwrap();
+        if p1
+            .screens
+            .iter()
+            .chain(&p2.screens)
+            .all(|&duration| duration == 0)
+            && p1.hazards.is_empty()
+            && p2.hazards.is_empty()
+        {
+            return false;
+        }
+        std::mem::swap(&mut p1.screens, &mut p2.screens);
+        std::mem::swap(&mut p1.hazards, &mut p2.hazards);
+        self.add("|-swapsideconditions");
+        self.add(format!(
+            "|-activate|{}|move: Court Change",
+            self.ident(source)
+        ));
+        true
+    }
+
     pub(super) fn add_hazard(&mut self, player: Player, hazard: Hazard) -> bool {
         let side = self.sides[player.index()].as_mut().unwrap();
         if let Some((_, layers)) = side.hazards.iter_mut().find(|(h, _)| *h == hazard) {
