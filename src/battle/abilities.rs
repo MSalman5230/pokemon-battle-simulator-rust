@@ -75,6 +75,17 @@ enum DropHook {
 }
 
 impl Pokemon {
+    pub(super) fn active_ability(&self) -> &str {
+        if self.gastro_acid
+            && !DEX
+                .ability(&self.ability)
+                .is_some_and(|ability| ability.cannot_suppress)
+        {
+            ""
+        } else {
+            &self.ability
+        }
+    }
     pub(super) fn ability_power_modifier(
         &self,
         move_data: &Move,
@@ -83,7 +94,7 @@ impl Pokemon {
         weather: Option<Weather>,
     ) -> u32 {
         let flags = &move_data.flags;
-        match self.ability.as_str() {
+        match self.active_ability() {
             "technician" if base_power <= 60 => 6144,
             "toughclaws" if flags.contains_key("contact") => 5325,
             "sharpness" if flags.contains_key("slicing") => 6144,
@@ -103,12 +114,12 @@ impl Pokemon {
     }
 
     pub(super) fn attack_modifier(&self, category: Category, move_type: &str) -> u32 {
-        let ability = if self.ability == "waterbubble" && move_type == "Water" {
+        let ability = if self.active_ability() == "waterbubble" && move_type == "Water" {
             8192
         } else if self.attack_boosts_type(move_type)
-            || (self.ability == "firemane" && move_type == "Fire")
+            || (self.active_ability() == "firemane" && move_type == "Fire")
             || (category == Category::Physical
-                && self.ability == "guts"
+                && self.active_ability() == "guts"
                 && self.status != Status::Healthy)
         {
             6144
@@ -129,7 +140,7 @@ impl Pokemon {
         };
         let native = chain(ability, item);
         if category == Category::Physical
-            && matches!(self.ability.as_str(), "hugepower" | "purepower")
+            && matches!(self.active_ability(), "hugepower" | "purepower")
         {
             chain(native, 8192)
         } else {
@@ -157,7 +168,7 @@ impl Pokemon {
 impl Battle {
     pub(super) fn move_makes_contact(&self, source: Position, data: &Move) -> bool {
         data.flags.contains_key("contact")
-            && (self.mon(source).ability != "longreach"
+            && (self.mon(source).active_ability() != "longreach"
                 || self.event_ability(source) != "longreach")
     }
 
@@ -280,7 +291,7 @@ impl Battle {
             }
             let mon = self.mon_mut(target);
             mon.half_hp_berry_deferred = false;
-            let anger_shell = mon.ability == "angershell";
+            let anger_shell = mon.active_ability() == "angershell";
             let sustained = if multihit && (anger_shell || !smart_target) {
                 total
             } else {
@@ -323,7 +334,7 @@ impl Battle {
         if !self.active_effects(source) {
             return data.crit_ratio.unwrap_or(1);
         }
-        if user.ability == "merciless"
+        if user.active_ability() == "merciless"
             && matches!(self.mon(target).status, Status::Poison | Status::Toxic(_))
         {
             return 4;
@@ -343,7 +354,7 @@ impl Battle {
         data.crit_ratio
             .unwrap_or(1)
             .saturating_add(
-                item + u8::from(user.ability == "superluck")
+                item + u8::from(user.active_ability() == "superluck")
                     + user.dragon_cheer
                     + 2 * u8::from(user.volatile_ids().contains(&"focusenergy")),
             )
@@ -370,7 +381,7 @@ impl Battle {
         for &(pos, _) in &holders[..count] {
             if self.ability_suppressed(pos) {
                 if self.format.report_exact_hp {
-                    self.add(format!("|debug|{event} handler suppressed by Mold Breaker"));
+                    self.log_suppressed_ability(pos, event);
                 }
             } else if interrupts {
                 return Some(pos);
@@ -418,7 +429,7 @@ impl Battle {
         for &(pos, _, name) in guards.iter() {
             if self.ability_suppressed(pos) {
                 if self.format.report_exact_hp {
-                    self.add("|debug|TryMove handler suppressed by Mold Breaker");
+                    self.log_suppressed_ability(pos, "TryMove");
                 }
             } else if if name == "Damp" {
                 explosive
@@ -519,7 +530,7 @@ impl Battle {
             ..fainted
         };
         let recipient = self.mon(holder);
-        let label = match recipient.ability.as_str() {
+        let label = match recipient.active_ability() {
             "receiver" => "Receiver",
             "powerofalchemy" => "Power of Alchemy",
             _ => return,
@@ -594,13 +605,25 @@ impl Battle {
             && self.mon(target).effective_item() != "abilityshield"
     }
 
-    /// Mold Breaker skips breakable event handlers. It does not change the
-    /// Pokémon's ability or the answer to direct checks such as hasAbility.
+    /// Direct ability checks account for Gastro Acid. Mold Breaker only
+    /// skips breakable handlers while that attack is being resolved.
     pub(super) fn ability_suppressed(&self, holder: Position) -> bool {
-        self.ignores_ability_of(holder)
-            && DEX
-                .ability(&self.mon(holder).ability)
-                .is_some_and(|ability| ability.breakable)
+        let mon = self.mon(holder);
+        (mon.gastro_acid && mon.active_ability().is_empty())
+            || self.ignores_ability_of(holder)
+                && DEX
+                    .ability(&mon.ability)
+                    .is_some_and(|ability| ability.breakable)
+    }
+
+    pub(super) fn log_suppressed_ability(&mut self, holder: Position, event: &str) {
+        let mon = self.mon(holder);
+        let label = if mon.gastro_acid && mon.active_ability().is_empty() {
+            "Gastro Acid or Neutralizing Gas"
+        } else {
+            "Mold Breaker"
+        };
+        self.add(format!("|debug|{event} handler suppressed by {label}"));
     }
 
     pub(super) fn event_ability(&self, holder: Position) -> &str {
@@ -613,7 +636,7 @@ impl Battle {
         {
             ""
         } else {
-            &self.mon(holder).ability
+            self.mon(holder).active_ability()
         }
     }
 
@@ -622,7 +645,7 @@ impl Battle {
         if mon.effective_item() == "ironball" || self.forces_grounded(holder) {
             return None;
         }
-        let label = match mon.ability.as_str() {
+        let label = match mon.active_ability() {
             "levitate" => "Levitate",
             "eelevate" => "Eelevate",
             _ => return None,
@@ -752,6 +775,21 @@ impl Battle {
             Some(target),
             "Role Play",
         )
+    }
+
+    pub(super) fn inhibit_ability(&mut self, pos: Position) -> bool {
+        if self.mon(pos).gastro_acid {
+            return false;
+        }
+        self.add(format!("|-endability|{}", self.ident(pos)));
+        if self.mon(pos).illusion.is_some() {
+            self.end_illusion(pos);
+        }
+        self.end_ability(pos);
+        let mon = self.mon_mut(pos);
+        mon.gastro_acid = true;
+        mon.track_volatile("gastroacid");
+        true
     }
 
     fn gain_move_ability(
@@ -1038,7 +1076,7 @@ impl Battle {
         let slots = self.format.game_type.active_slots();
         self.party(pos.player.foe()).unwrap()[..slots]
             .iter()
-            .any(|p| p.hp > 0 && p.ability == "unnerve")
+            .any(|p| p.hp > 0 && p.active_ability() == "unnerve")
     }
 
     pub(super) fn flower_veil_holder(&mut self, target: Position) -> Option<Position> {
@@ -1745,7 +1783,7 @@ impl Pokemon {
     }
 
     fn stat_drop_protection(&self) -> Option<&'static str> {
-        Some(match self.ability.as_str() {
+        Some(match self.active_ability() {
             "clearbody" => "Clear Body",
             "whitesmoke" => "White Smoke",
             "fullmetalbody" => "Full Metal Body",
@@ -1757,7 +1795,7 @@ impl Pokemon {
         if original != "Normal" {
             return (original, false);
         }
-        match self.ability.as_str() {
+        match self.active_ability() {
             "aerilate" => ("Flying", true),
             "pixilate" => ("Fairy", true),
             "galvanize" => ("Electric", true),

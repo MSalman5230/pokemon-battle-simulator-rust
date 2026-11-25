@@ -23,6 +23,13 @@ impl Pokemon {
                 "stall" => self.stall = source.stall,
                 "allyswitch" => self.ally_switch_stall = source.ally_switch_stall,
                 "electrify" => self.electrified = source.electrified,
+                "gastroacid"
+                    if !DEX
+                        .ability(&self.base_ability)
+                        .is_some_and(|a| a.cannot_suppress) =>
+                {
+                    self.gastro_acid = source.gastro_acid;
+                }
                 "protect" | "kingsshield" | "banefulbunker" | "spikyshield" | "burningbulwark"
                 | "obstruct" | "silktrap" => self.protection = source.protection,
                 "healblock" => self.heal_block = source.heal_block,

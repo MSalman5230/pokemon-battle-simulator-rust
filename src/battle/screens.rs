@@ -86,7 +86,7 @@ impl Battle {
         category: Category,
         critical: bool,
     ) -> (u32, &'static str) {
-        if source == target || critical || self.mon(source).ability == "infiltrator" {
+        if source == target || critical || self.mon(source).active_ability() == "infiltrator" {
             return (4096, "");
         }
         let own = &self.sides[target.player.index()].as_ref().unwrap().screens;

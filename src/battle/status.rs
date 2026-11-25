@@ -65,7 +65,7 @@ impl Battle {
         let status = self.mon(pos).status;
         match status {
             Status::Sleep(turns) => {
-                let decrement = 1 + u8::from(self.mon(pos).ability == "earlybird");
+                let decrement = 1 + u8::from(self.mon(pos).active_ability() == "earlybird");
                 if turns <= decrement {
                     self.cure_status(pos, "[msg]");
                 } else {
@@ -222,7 +222,7 @@ impl Battle {
         );
         let mon = self.mon_mut(pos);
         // Showdown represents a confusion self-hit as single-hit Move damage.
-        mon.half_hp_berry_deferred = matches!(mon.ability.as_str(), "berserk" | "angershell");
+        mon.half_hp_berry_deferred = matches!(mon.active_ability(), "berserk" | "angershell");
         mon.damage_hp(damage);
         self.add_health_line_with("-damage", pos, false, "|[from] confusion");
         if self.mon(pos).hp == 0 {
@@ -342,7 +342,8 @@ impl Battle {
             }
             return false;
         }
-        let corrosion = matches!(id, "tox" | "psn") && self.mon(source).ability == "corrosion";
+        let corrosion =
+            matches!(id, "tox" | "psn") && self.mon(source).active_ability() == "corrosion";
         if !corrosion && self.status_immune(pos, if id == "tox" { "psn" } else { id }) {
             if primary {
                 self.add(format!("|-immune|{}", self.ident(pos)));
@@ -619,17 +620,19 @@ impl Battle {
             mon.status = Status::Toxic(stage);
             amount *= u32::from(stage);
         }
-        if mon.ability == "poisonheal" && matches!(mon.status, Status::Poison | Status::Toxic(_)) {
+        if mon.active_ability() == "poisonheal"
+            && matches!(mon.status, Status::Poison | Status::Toxic(_))
+        {
             self.ability_heal(pos, 8, "Poison Heal", None);
             if self.format.report_exact_hp {
                 self.add("|debug|damage event failed");
             }
             return;
         }
-        if mon.ability == "magicguard" {
+        if mon.active_ability() == "magicguard" {
             return;
         }
-        if mon.status == Status::Burn && mon.ability == "heatproof" {
+        if mon.status == Status::Burn && mon.active_ability() == "heatproof" {
             amount = (amount / 2).max(1);
         }
         mon.half_hp_berry_deferred = false;

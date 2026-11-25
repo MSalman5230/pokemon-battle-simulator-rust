@@ -93,7 +93,7 @@ impl Battle {
             } else if matches!(move_data.name.as_str(), "Mind Blown" | "Steel Beam") {
                 self.half_max_hp_recoil(source, &to_id(&move_data.name));
             } else if let Some([num, den]) = move_data.recoil
-                && !matches!(self.mon(source).ability.as_str(), "rockhead" | "magicguard")
+                && !matches!(self.mon(source).active_ability(), "rockhead" | "magicguard")
             {
                 let recoil = (dealt * u32::from(num) + u32::from(den) / 2) / u32::from(den);
                 let mon = self.mon_mut(source);

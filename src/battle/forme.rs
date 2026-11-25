@@ -158,7 +158,7 @@ impl Battle {
 
     pub(super) fn stance_change(&mut self, pos: Position, data: &Move) {
         let mon = self.mon(pos);
-        if mon.ability != "stancechange"
+        if mon.active_ability() != "stancechange"
             || mon.species.base_species != "Aegislash"
             || mon.transformed.is_some()
         {

@@ -105,7 +105,7 @@ impl Battle {
             return;
         }
         let mon = self.mon_mut(target);
-        if mon.ability == "magicguard" {
+        if mon.active_ability() == "magicguard" {
             return;
         }
         let loss = (mon.max_hp.get() / 8).max(1).min(mon.hp);

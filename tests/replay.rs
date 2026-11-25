@@ -1691,6 +1691,12 @@ fn reflect_type_copies_base_and_added_types_with_correct_reveal_timing() {
 }
 
 #[test]
+fn gastro_acid_disables_an_ability_until_switch_out_and_respects_ability_shield() {
+    replay(include_str!("fixtures/bss-gastro-acid.json"));
+    replay(include_str!("fixtures/bss-gastro-acid-shield.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

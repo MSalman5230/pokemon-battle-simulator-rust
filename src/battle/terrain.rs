@@ -46,7 +46,7 @@ impl Battle {
     }
 
     pub(super) fn switch_in_terrain(&mut self, pos: Position) {
-        let (terrain, ability) = match self.mon(pos).ability.as_str() {
+        let (terrain, ability) = match self.mon(pos).active_ability() {
             "electricsurge" => (Terrain::Electric, "Electric Surge"),
             "grassysurge" => (Terrain::Grassy, "Grassy Surge"),
             "mistysurge" => (Terrain::Misty, "Misty Surge"),
@@ -96,7 +96,7 @@ impl Battle {
     fn terrain_changed(&mut self) {
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
-            if self.mon(pos).ability == "mimicry" {
+            if self.mon(pos).active_ability() == "mimicry" {
                 self.apply_mimicry(pos);
             }
             self.use_matching_terrain_seed(pos);

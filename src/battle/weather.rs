@@ -128,7 +128,7 @@ impl Battle {
     }
 
     pub(super) fn switch_in_weather(&mut self, pos: Position) {
-        let (weather, label) = match self.mon(pos).ability.as_str() {
+        let (weather, label) = match self.mon(pos).active_ability() {
             "drizzle" => (Weather::Rain, "Drizzle"),
             "drought" => (Weather::Sun, "Drought"),
             "sandstream" => (Weather::Sand, "Sand Stream"),
@@ -181,13 +181,13 @@ impl Battle {
             if weather == Weather::Sand {
                 if !self.status_immune(pos, "sandstorm")
                     && !matches!(
-                        self.mon(pos).ability.as_str(),
+                        self.mon(pos).active_ability(),
                         "sandrush" | "sandforce" | "sandveil"
                     )
                 {
                     self.indirect_damage(pos, 16, "|[from] Sandstorm");
                 }
-            } else if weather == Weather::Snow && self.mon(pos).ability == "icebody" {
+            } else if weather == Weather::Snow && self.mon(pos).active_ability() == "icebody" {
                 self.ability_heal(pos, 16, "Ice Body", None);
             } else if weather == Weather::Rain
                 && self.event_ability(pos) == "raindish"
@@ -203,7 +203,7 @@ impl Battle {
                     8,
                     &format!("|[from] ability: Solar Power|[of] {}", self.ident(pos)),
                 );
-            } else if self.mon(pos).ability == "dryskin"
+            } else if self.mon(pos).active_ability() == "dryskin"
                 && self.mon(pos).effective_item() != "utilityumbrella"
             {
                 match weather {

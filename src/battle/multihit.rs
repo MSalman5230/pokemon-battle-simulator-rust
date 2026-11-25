@@ -10,7 +10,7 @@ use crate::{
 impl Battle {
     pub(super) fn hits(&mut self, source: Position, data: &Move) -> (u8, bool) {
         let user = self.mon(source);
-        let skill_link = user.ability == "skilllink";
+        let skill_link = user.active_ability() == "skilllink";
         let loaded_dice = user.effective_item() == "loadeddice";
         let mut count = match data.multihit {
             None => 1,
@@ -55,8 +55,8 @@ impl Battle {
         let user = self.mon(source);
         let mon = self.mon(target);
         let always_hits = data.always_hit
-            || user.ability == "noguard"
-            || mon.ability == "noguard"
+            || user.active_ability() == "noguard"
+            || mon.active_ability() == "noguard"
             || mon.glaive_drawback
             || self.locked_on_to(source, target)
             || mon.trampled_by(data);

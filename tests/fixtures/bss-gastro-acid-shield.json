@@ -1,0 +1,873 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Eelektross\",\"moves\":[\"Gastro Acid\",\"Earthquake\"],\"gender\":\"F\",\"name\":\"Eelektross\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Levitate\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Bronzong\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Bronzong\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Levitate\",\"item\":\"Ability Shield\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p2|Bronzong, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p2|Bronzong, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p2|Bronzong, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "gastroacid",
+                  "earthquake"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Bronzong",
+                "details": "Bronzong, L50, F",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "abilityshield",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gastroacid",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50, F",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "abilityshield",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|100/100",
+          "|switch|p2a: Bronzong|Bronzong, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|160/160",
+          "|switch|p2a: Bronzong|Bronzong, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|100/100",
+          "|switch|p2a: Bronzong|Bronzong, L50, F|142/142",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gastro Acid",
+                  "id": "gastroacid",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "gastroacid",
+                  "earthquake"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Bronzong",
+                "details": "Bronzong, L50, F",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "abilityshield",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gastroacid",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50, F",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "abilityshield",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Eelektross|Gastro Acid|p2a: Bronzong",
+          "|-block|p2a: Bronzong|item: Ability Shield",
+          "|move|p2a: Bronzong|Recover||[still]",
+          "|-fail|p2a: Bronzong|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Eelektross|Gastro Acid|p2a: Bronzong",
+          "|-block|p2a: Bronzong|item: Ability Shield",
+          "|move|p2a: Bronzong|Recover||[still]",
+          "|-fail|p2a: Bronzong|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Eelektross|Gastro Acid|p2a: Bronzong",
+          "|-block|p2a: Bronzong|item: Ability Shield",
+          "|move|p2a: Bronzong|Recover||[still]",
+          "|-fail|p2a: Bronzong|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gastro Acid",
+                  "id": "gastroacid",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "gastroacid",
+                  "earthquake"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Bronzong",
+                "details": "Bronzong, L50, F",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "abilityshield",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gastroacid",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50, F",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "abilityshield",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Eelektross|Earthquake|p2a: Bronzong",
+          "|-immune|p2a: Bronzong|[from] ability: Levitate",
+          "|move|p2a: Bronzong|Recover||[still]",
+          "|-fail|p2a: Bronzong|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Eelektross|Earthquake|p2a: Bronzong",
+          "|-immune|p2a: Bronzong|[from] ability: Levitate",
+          "|move|p2a: Bronzong|Recover||[still]",
+          "|-fail|p2a: Bronzong|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Eelektross|Earthquake|p2a: Bronzong",
+          "|-immune|p2a: Bronzong|[from] ability: Levitate",
+          "|move|p2a: Bronzong|Recover||[still]",
+          "|-fail|p2a: Bronzong|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Gastro Acid",
+                  "id": "gastroacid",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "gastroacid",
+                  "earthquake"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Bronzong",
+                "details": "Bronzong, L50, F",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "abilityshield",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gastroacid",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50, F",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "abilityshield",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@ impl Battle {
             "heavymetal" => weight *= 2,
             "lightmetal" => weight /= 2,
             _ if self.format.report_exact_hp
-                && matches!(mon.ability.as_str(), "heavymetal" | "lightmetal") =>
+                && matches!(mon.active_ability(), "heavymetal" | "lightmetal") =>
             {
                 self.add("|debug|ModifyWeight handler suppressed by Mold Breaker");
             }

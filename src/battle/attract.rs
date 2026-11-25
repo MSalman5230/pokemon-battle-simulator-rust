@@ -25,7 +25,7 @@ impl Battle {
     pub(super) fn cute_charm(&mut self, holder: Position, attacker: Position) {
         if !self.rng.chance(3, 10)
             || self.mon(attacker).hp == 0
-            || self.mon(attacker).ability == "oblivious"
+            || self.mon(attacker).active_ability() == "oblivious"
             || self.mon(attacker).attract.is_some()
         {
             return;

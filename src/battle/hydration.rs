@@ -550,6 +550,10 @@ impl WorldSide {
             match e.id.as_str() {
                 "typechange" | "stall" | "lightscreen" | "reflect" => {}
                 "curse" => mon.track_volatile("curse"),
+                "gastroacid" => {
+                    mon.gastro_acid = true;
+                    mon.track_volatile("gastroacid");
+                }
                 "aquaring" => mon.track_volatile("aquaring"),
                 "torment" => mon.track_volatile("torment"),
                 "taunt" => {

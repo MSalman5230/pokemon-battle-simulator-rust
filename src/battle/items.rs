@@ -570,7 +570,7 @@ impl Battle {
 
     pub(super) fn magician_after_hit(&mut self, user: Position, targets: &[Position]) {
         let mon = self.mon(user);
-        if mon.ability != "magician" || mon.hp == 0 || !mon.item.is_empty() {
+        if mon.active_ability() != "magician" || mon.hp == 0 || !mon.item.is_empty() {
             return;
         }
         let mut ordered: Vec<_> = targets
@@ -870,7 +870,7 @@ impl Battle {
     pub(super) fn lose_held_item(&mut self, pos: Position) -> String {
         let mon = self.mon_mut(pos);
         let item = std::mem::take(&mut mon.item);
-        if !item.is_empty() && mon.ability == "unburden" {
+        if !item.is_empty() && mon.active_ability() == "unburden" {
             mon.track_volatile("unburden");
         }
         item
@@ -951,7 +951,7 @@ impl Battle {
 
     pub(super) fn indirect_damage(&mut self, pos: Position, divisor: u32, cause: &str) {
         let mon = self.mon_mut(pos);
-        if mon.hp == 0 || mon.ability == "magicguard" {
+        if mon.hp == 0 || mon.active_ability() == "magicguard" {
             return;
         }
         mon.half_hp_berry_deferred = false;
@@ -962,7 +962,7 @@ impl Battle {
 
 impl Pokemon {
     pub(super) fn ignores_held_item(&self) -> bool {
-        self.ability == "klutz"
+        self.active_ability() == "klutz"
             && !DEX
                 .item(crate::dex::Mod::Champions, &self.item)
                 .is_some_and(|item| item.ignore_klutz)

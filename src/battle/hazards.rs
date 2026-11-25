@@ -343,7 +343,7 @@ impl Battle {
 
     fn hazard_damage(&mut self, pos: Position, damage: u32, reason: &str) {
         let mon = self.mon_mut(pos);
-        if mon.ability == "magicguard" {
+        if mon.active_ability() == "magicguard" {
             return;
         }
         mon.half_hp_berry_deferred = false;

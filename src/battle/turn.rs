@@ -868,6 +868,7 @@ impl Battle {
                     | "electrify"
                     | "roleplay"
                     | "reflecttype"
+                    | "gastroacid"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1625,7 +1626,7 @@ impl Battle {
         for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos))
                 && self.mon(pos).hp > 0
-                && self.mon(pos).ability == "unnerve"
+                && self.mon(pos).active_ability() == "unnerve"
             {
                 self.start_ability(pos);
             }
@@ -1644,7 +1645,7 @@ impl Battle {
                 if let Some(label) = self.weather_suppressor(pos) {
                     self.add(format!("|-ability|{}|{label}", self.ident(pos)));
                 }
-                match self.mon(pos).ability.as_str() {
+                match self.mon(pos).active_ability() {
                     "hospitality" => deferred_hospitality |= pos.mask(),
                     "imposter" => self.imposter_on_entry(pos),
                     "unnerve" | "mimicry" => {}
@@ -1655,7 +1656,7 @@ impl Battle {
         }
         for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
-                if self.mon(pos).ability == "mimicry" {
+                if self.mon(pos).active_ability() == "mimicry" {
                     self.apply_mimicry(pos);
                 }
                 self.use_matching_terrain_seed(pos);
@@ -1748,6 +1749,7 @@ impl Battle {
         party[outgoing.slot].dragon_cheer = 0;
         party[outgoing.slot].gem_boost = false;
         party[outgoing.slot].electrified = false;
+        party[outgoing.slot].gastro_acid = false;
         party[outgoing.slot].lock_on = None;
         party[outgoing.slot].syrup_bomb = None;
         party[outgoing.slot].counter = None;
@@ -2088,6 +2090,16 @@ impl Battle {
     }
 
     pub(super) fn start_ability(&mut self, pos: Position) {
+        if self.mon(pos).gastro_acid && self.mon(pos).active_ability().is_empty() {
+            if self.format.report_exact_hp
+                && DEX
+                    .ability(&self.mon(pos).ability)
+                    .is_some_and(|a| a.handlers.iter().any(|h| h == "onStart"))
+            {
+                self.add("|debug|Start handler suppressed by Gastro Acid or Neutralizing Gas");
+            }
+            return;
+        }
         self.possible_opportunist |= self.mon(pos).ability == "opportunist";
         if matches!(self.mon(pos).ability.as_str(), "berserk" | "angershell") {
             self.mon_mut(pos).half_hp_berry_deferred = false;
@@ -2134,7 +2146,7 @@ impl Battle {
         if self.mon(pos).ability == "screencleaner" {
             self.screen_cleaner(pos);
         }
-        if self.mon(pos).ability == "mimicry" {
+        if self.mon(pos).active_ability() == "mimicry" {
             self.apply_mimicry(pos);
         }
         if self.mon(pos).ability == "hospitality" {
@@ -2794,6 +2806,29 @@ impl Battle {
             if mon.fainted {
                 continue;
             }
+            if mon.gastro_acid
+                && mon.active_ability().is_empty()
+                && matches!(
+                    effect,
+                    Effect::ShedSkin
+                        | Effect::Hydration
+                        | Effect::HungerSwitch
+                        | Effect::Healer
+                        | Effect::SpeedBoost
+                        | Effect::Harvest
+                        | Effect::CudChew
+                        | Effect::Pickup
+                        | Effect::Opportunist
+                        | Effect::Moody
+                )
+            {
+                if self.format.report_exact_hp {
+                    self.add(
+                        "|debug|Residual handler suppressed by Gastro Acid or Neutralizing Gas",
+                    );
+                }
+                continue;
+            }
             let uproar_expired = matches!(effect, Effect::Uproar)
                 && mon.uproar.is_some_and(|state| state.remaining == 1);
             match effect {
@@ -3040,7 +3075,7 @@ impl Battle {
         for slot in 0..self.slots() {
             let pos = Position { player, slot };
             let mon = self.mon(pos);
-            if !mon.fainted && mon.ability == "magicbounce" {
+            if !mon.fainted && mon.active_ability() == "magicbounce" {
                 candidates[count] = (pos, mon.stats.spe);
                 count += 1;
             }
@@ -3262,7 +3297,7 @@ impl Battle {
             } else {
                 &move_data.move_type
             };
-            if mon.ability == "liquidvoice" && move_data.flags.contains_key("sound") {
+            if mon.active_ability() == "liquidvoice" && move_data.flags.contains_key("sound") {
                 ("Water", false)
             } else {
                 mon.converted_move_type(base)
@@ -3278,7 +3313,7 @@ impl Battle {
                 ..
             } if move_data.tracks_target
                 || (matches!(
-                    self.mon(source).ability.as_str(),
+                    self.mon(source).active_ability(),
                     "stalwart" | "propellertail"
                 ) && matches!(self.event_ability(source), "stalwart" | "propellertail")) =>
             {
@@ -3415,7 +3450,7 @@ impl Battle {
         }
         if !delayed
             && matches!(
-                self.mon(source).ability.as_str(),
+                self.mon(source).active_ability(),
                 "moldbreaker" | "teravolt" | "turboblaze"
             )
         {
@@ -3446,7 +3481,8 @@ impl Battle {
             !delayed && self.sheer_force_removes_secondaries(source, move_data);
         let added_flinch = if !delayed && move_data.category != Category::Status {
             let user = self.mon(source);
-            let stench = user.ability == "stench" && self.event_ability(source) == "stench";
+            let stench =
+                user.active_ability() == "stench" && self.event_ability(source) == "stench";
             if stench && self.format.report_exact_hp {
                 self.add("|debug|Adding Stench flinch");
             }
@@ -3626,7 +3662,7 @@ impl Battle {
                 if kind == TargetKind::All || move_data.flags.contains_key("mustpressure") {
                     self.party(source.player.foe()).unwrap()[..self.slots()]
                         .iter()
-                        .filter(|mon| mon.hp != 0 && mon.ability == "pressure")
+                        .filter(|mon| mon.hp != 0 && mon.active_ability() == "pressure")
                         .count()
                 } else if kind.is_choosable()
                     || matches!(
@@ -3640,7 +3676,8 @@ impl Battle {
                     spread_targets
                         .iter()
                         .filter(|pos| {
-                            pos.player != source.player && self.mon(**pos).ability == "pressure"
+                            pos.player != source.player
+                                && self.mon(**pos).active_ability() == "pressure"
                         })
                         .count()
                 } else {
@@ -4429,8 +4466,8 @@ impl Battle {
                 .semi_invulnerability()
                 .is_none_or(|state| state.exposed_to(&move_data.name))
                 || self.locked_on_to(source, target)
-                || self.mon(source).ability == "noguard"
-                || self.mon(target).ability == "noguard"
+                || self.mon(source).active_ability() == "noguard"
+                || self.mon(target).active_ability() == "noguard"
                 || (move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
             {
                 return true;
@@ -4644,7 +4681,7 @@ impl Battle {
                 } else if move_data.name == "Attract" {
                     !self.compatible_attraction(source, target)
                 } else {
-                    matches!(self.mon(target).ability.as_str(), "insomnia" | "truant")
+                    matches!(self.mon(target).active_ability(), "insomnia" | "truant")
                 } {
                     self.add(format!("|-immune|{}", self.ident(target)));
                     false
@@ -4696,8 +4733,8 @@ impl Battle {
                 && !move_data.always_hit
                 && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
                 && !(move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
-                && self.mon(source).ability != "noguard"
-                && self.mon(pos).ability != "noguard"
+                && self.mon(source).active_ability() != "noguard"
+                && self.mon(pos).active_ability() != "noguard"
                 && !self.mon(pos).glaive_drawback
                 && !self.mon(pos).trampled_by(move_data)
                 && !self.locked_on_to(source, pos)
@@ -4792,11 +4829,27 @@ impl Battle {
                 "Worry Seed" | "Simple Beam" | "Entrainment"
             );
             spread_targets.retain(|&target| {
+                if move_data.name == "Gastro Acid"
+                    && !DEX
+                        .ability(&self.mon(target).ability)
+                        .is_some_and(|a| a.cannot_suppress)
+                    && self.mon(target).effective_item() == "abilityshield"
+                {
+                    self.add(format!(
+                        "|-block|{}|item: Ability Shield",
+                        self.ident(target)
+                    ));
+                    return false;
+                }
                 if (!ability_replacement
                     || self
                         .replacement_ability(source, target, &move_data.name)
                         .is_some())
                     && (move_data.name != "Role Play" || self.can_role_play(source, target))
+                    && (move_data.name != "Gastro Acid"
+                        || !DEX
+                            .ability(&self.mon(target).ability)
+                            .is_some_and(|a| a.cannot_suppress))
                     && (move_data.name != "Electrify"
                         || self.mon(target).active_turns == 0
                         || Self::queued_move(queue, target).is_some())
@@ -4825,6 +4878,17 @@ impl Battle {
                     continue;
                 }
                 let mut succeeded = false;
+                if move_data.name == "Gastro Acid" {
+                    if self.inhibit_ability(target) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|move failed because it did nothing");
+                        }
+                    }
+                }
                 if move_data.name == "Reflect Type" {
                     if self.reflect_type(source, target) {
                         succeeded = true;
@@ -5305,7 +5369,7 @@ impl Battle {
                         &[(BoostStat::Atk, -1), (BoostStat::Spa, -1)],
                         BoostOrigin::from_move(move_data),
                     );
-                    if (lowered || self.mon(target).ability == "mirrorarmor")
+                    if (lowered || self.mon(target).active_ability() == "mirrorarmor")
                         && self.first_bench(source.player, 0).is_some()
                     {
                         self.mon_mut(source).pivot_move = Some(Pivot::Move("Parting Shot"));
@@ -6106,7 +6170,7 @@ impl Battle {
                 if hit_pokemon && self.format.report_exact_hp {
                     if dust {
                         self.add("|debug|Shield Dust prevent secondary");
-                    } else if self.mon(target).ability == "shielddust" {
+                    } else if self.mon(target).active_ability() == "shielddust" {
                         self.add("|debug|ModifySecondaries handler suppressed by Mold Breaker");
                     }
                     if cloak {
@@ -6234,13 +6298,15 @@ impl Battle {
             }
             if contact {
                 for &(target, _) in &damage {
-                    if self.mon(target).ability == "aftermath" {
+                    if self.mon(target).active_ability() == "aftermath" {
                         self.aftermath(target, source);
                     }
                 }
                 for &(target, _) in &damage {
-                    if self.mon(target).ability == "roughskin" {
-                        if self.mon(source).hp > 0 && self.mon(source).ability == "magicguard" {
+                    if self.mon(target).active_ability() == "roughskin" {
+                        if self.mon(source).hp > 0
+                            && self.mon(source).active_ability() == "magicguard"
+                        {
                             self.add(format!(
                                 "|-activate|{}|ability: Rough Skin",
                                 self.ident(target)
@@ -6292,7 +6358,7 @@ impl Battle {
                         _ => {}
                     }
                 }
-                if self.mon(target).ability == "cursedbody"
+                if self.mon(target).active_ability() == "cursedbody"
                     && !struggle
                     && !delayed
                     && self.mon(source).disabled_slot.is_none()
@@ -6444,7 +6510,7 @@ impl Battle {
             (self.mon(source).max_hp.get() + 2) / 4
         } else if let Some([num, den]) = move_data.recoil
             && total > 0
-            && !matches!(self.mon(source).ability.as_str(), "rockhead" | "magicguard")
+            && !matches!(self.mon(source).active_ability(), "rockhead" | "magicguard")
         {
             ((total * u32::from(num) + u32::from(den) / 2) / u32::from(den)).max(1)
         } else {
@@ -6655,7 +6721,7 @@ impl Battle {
 
     pub(super) fn half_max_hp_recoil(&mut self, pos: Position, effect: &str) {
         let mon = self.mon_mut(pos);
-        if mon.hp != 0 && mon.ability != "magicguard" {
+        if mon.hp != 0 && mon.active_ability() != "magicguard" {
             let original_hp = mon.hp;
             mon.half_hp_berry_deferred = false;
             mon.damage_hp(mon.max_hp.get().div_ceil(2));
@@ -6724,6 +6790,7 @@ impl Battle {
         mon.dragon_cheer = 0;
         mon.gem_boost = false;
         mon.electrified = false;
+        mon.gastro_acid = false;
         mon.lock_on = None;
         mon.syrup_bomb = None;
         mon.counter = None;
@@ -7014,19 +7081,19 @@ impl Pokemon {
             stat *= 2;
         }
         if matches!(
-            (self.ability.as_str(), self.personal_weather(weather)),
+            (self.active_ability(), self.personal_weather(weather)),
             ("swiftswim", Some(Weather::Rain))
                 | ("chlorophyll", Some(Weather::Sun))
                 | ("sandrush", Some(Weather::Sand))
                 | ("slushrush", Some(Weather::Snow))
-        ) || self.ability == "surgesurfer" && terrain == Some(Terrain::Electric)
-            || self.ability == "unburden"
+        ) || self.active_ability() == "surgesurfer" && terrain == Some(Terrain::Electric)
+            || self.active_ability() == "unburden"
                 && self.item.is_empty()
                 && self.volatile_ids().contains(&"unburden")
         {
             stat *= 2;
         }
-        let quick_feet = self.ability == "quickfeet" && self.status != Status::Healthy;
+        let quick_feet = self.active_ability() == "quickfeet" && self.status != Status::Healthy;
         let multiplier = match (self.effective_item(), quick_feet) {
             ("choicescarf", true) => 9216,
             ("ironball", true) => 3072,
@@ -7047,7 +7114,7 @@ impl Pokemon {
     pub(super) fn attack_boosts_type(&self, move_type: &str) -> bool {
         self.hp * 3 <= self.max_hp.get()
             && matches!(
-                (self.ability.as_str(), move_type),
+                (self.active_ability(), move_type),
                 ("blaze", "Fire") | ("torrent", "Water") | ("overgrow", "Grass") | ("swarm", "Bug")
             )
     }

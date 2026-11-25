@@ -130,13 +130,13 @@ impl Battle {
         let affected = |ability: &str| match ability {
             "arenatrap" => self.grounded(pos),
             "magnetpull" => mon.has_type("Steel"),
-            "shadowtag" => mon.ability != "shadowtag",
+            "shadowtag" => mon.active_ability() != "shadowtag",
             _ => false,
         };
         let foe = self.party(pos.player.foe()).unwrap();
         let active = &foe[..self.format.game_type.active_slots()];
         let live = active.iter().filter(|mon| !mon.fainted);
-        let foe_can_trap = live.clone().any(|foe| affected(&foe.ability));
+        let foe_can_trap = live.clone().any(|foe| affected(foe.active_ability()));
         let actual = !self.ignores_trapping(pos)
             && (mon.volatile_ids().contains(&"trapped")
                 || mon.volatile_ids().contains(&"ingrain")

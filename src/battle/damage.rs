@@ -124,7 +124,7 @@ impl Battle {
             hooks[count] = (speed, suborder, hook);
             count += 1;
         };
-        if source_active && user.ability == "sniper" {
+        if source_active && user.active_ability() == "sniper" {
             add(
                 user.speed,
                 7,
@@ -249,7 +249,7 @@ impl Battle {
                 Hook::Ability(holder, value, debug) => {
                     if self.ability_suppressed(holder) {
                         if self.format.report_exact_hp {
-                            self.add("|debug|ModifyDamage handler suppressed by Mold Breaker");
+                            self.log_suppressed_ability(holder, "ModifyDamage");
                         }
                         continue;
                     }
@@ -400,7 +400,7 @@ impl Battle {
             self.add("|debug|Analytic boost");
         }
         let source_active = self.active_effects(source);
-        let rivalry = if source_active && self.mon(source).ability == "rivalry" {
+        let rivalry = if source_active && self.mon(source).active_ability() == "rivalry" {
             match (self.mon(source).gender, self.mon(target).gender) {
                 (b'N', _) | (_, b'N') => 4096,
                 (a, b) if a == b => 5120,
@@ -424,7 +424,7 @@ impl Battle {
             self.add(format!("|debug|Boosting from Helping Hand: {multiplier}"));
         }
         if source_active
-            && self.mon(source).ability == "punkrock"
+            && self.mon(source).active_ability() == "punkrock"
             && move_data.flags.contains_key("sound")
             && self.format.report_exact_hp
         {
@@ -450,14 +450,14 @@ impl Battle {
         }
         let purifying_salt = move_type == "Ghost" && self.event_ability(target) == "purifyingsalt";
         let flash_fire = move_type == "Fire"
-            && self.mon(source).ability == "flashfire"
+            && self.mon(source).active_ability() == "flashfire"
             && self.mon(source).volatile_ids().contains(&"flashfire");
         if flash_fire && self.format.report_exact_hp {
             self.add("|debug|Flash Fire boost");
         }
         if move_type == "Fire"
             && source_active
-            && self.mon(source).ability == "firemane"
+            && self.mon(source).active_ability() == "firemane"
             && self.format.report_exact_hp
         {
             self.add("|debug|Fire Mane boost");
@@ -465,14 +465,14 @@ impl Battle {
         if purifying_salt && self.format.report_exact_hp {
             self.add("|debug|Purifying Salt weaken");
         }
-        if self.mon(source).ability == "reckless"
+        if self.mon(source).active_ability() == "reckless"
             && self.format.report_exact_hp
             && (move_data.recoil.is_some() || super::abilities::crash_move(&move_data.name))
         {
             self.add("|debug|Reckless boost");
         }
         let stakeout = source_active
-            && self.mon(source).ability == "stakeout"
+            && self.mon(source).active_ability() == "stakeout"
             && self.mon(target).active_turns == 0;
         if stakeout && self.format.report_exact_hp {
             self.add("|debug|Stakeout boost");
@@ -712,7 +712,7 @@ impl Battle {
             critical: crit,
             stab: if !stab {
                 4096
-            } else if source_active && user.ability == "adaptability" {
+            } else if source_active && user.active_ability() == "adaptability" {
                 8192
             } else {
                 6144
@@ -720,7 +720,7 @@ impl Battle {
             effectiveness: effect,
             burned: user.status == Status::Burn
                 && move_data.name != "Facade"
-                && user.ability != "guts"
+                && user.active_ability() != "guts"
                 && move_data.category == Category::Physical,
             final_modifier: 4096,
             bypassed_protect,
