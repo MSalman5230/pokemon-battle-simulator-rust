@@ -710,6 +710,8 @@ impl Battle {
                     | "growth"
                     | "strengthsap"
                     | "painsplit"
+                    | "tripleaxel"
+                    | "triplekick"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1801,334 +1803,362 @@ impl Battle {
             .filter(|turns| *turns != 0)
             .count() as u32;
         let mut damage = Vec::with_capacity(spread_targets.len());
-        for &target in &spread_targets {
-            if move_data.name == "Poltergeist" {
-                let item = DEX
-                    .item(self.format.dex_mod, &self.mon(target).item)
-                    .unwrap();
-                self.add(format!(
-                    "|-activate|{}|move: Poltergeist|{}",
-                    self.ident(target),
-                    item.effect.name
-                ));
-            }
-            let effect = self.effectiveness_of(move_data, move_type, target).unwrap();
-            let crit_ratio = move_data.crit_ratio.unwrap_or(1).min(4);
-            let crit_roll = move_data.will_crit.unwrap_or_else(|| {
-                crit_ratio != 0
-                    && self
-                        .rng
-                        .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)])
-            });
-            let crit = crit_roll
-                && !matches!(
-                    self.mon(target).ability.as_str(),
-                    "battlearmor" | "shellarmor"
-                );
-            let user = self.mon(source);
-            let mon = self.mon(target);
-            let (atk, atk_stage, def, def_stage) = if move_data.category == Category::Physical {
-                (
-                    if move_data.name == "Body Press" {
-                        user.stats.def
-                    } else {
-                        user.stats.atk
-                    },
-                    user.boosts.get(if move_data.name == "Body Press" {
-                        BoostStat::Def
-                    } else {
-                        BoostStat::Atk
-                    }),
-                    mon.stats.def,
-                    mon.boosts.get(BoostStat::Def),
-                )
-            } else {
-                (
-                    user.stats.spa,
-                    user.boosts.get(BoostStat::Spa),
-                    mon.stats.spd,
-                    mon.boosts.get(BoostStat::Spd),
-                )
-            };
-            let atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });
-            let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
-            let def = if (self.weather() == Some(Weather::Sand)
-                && move_data.category == Category::Special
-                && mon.has_type("Rock"))
-                || (self.weather() == Some(Weather::Snow)
-                    && move_data.category == Category::Physical
-                    && mon.has_type("Ice"))
-            {
-                tr.modify(def, 6144)
-            } else {
-                def
-            };
-            let mut attack_modifier = user.attack_modifier(move_data.category, move_type);
-            if (mon.ability == "heatproof" && move_type == "Fire")
-                || (mon.ability == "thickfat" && matches!(move_type, "Fire" | "Ice"))
-            {
-                attack_modifier = crate::mechanics::chain(attack_modifier, 2048);
-            }
-            let atk = tr.modify(atk, attack_modifier);
-            let stab = user.has_type(move_type);
-            let mut power_modifier = crate::mechanics::chain(
-                user.ability_power_modifier(move_data, move_type, power, weather),
-                user.item_power_modifier(move_type, move_data.category),
-            );
-            if converted {
-                power_modifier = crate::mechanics::chain(4915, power_modifier);
-            }
-            if move_data.name == "Knock Off" && mon.can_take_item(self.format.dex_mod).is_some() {
-                power_modifier = crate::mechanics::chain(power_modifier, 6144);
-            }
-            let mut final_modifier = match user.item.as_str() {
-                "lifeorb" => 5324,
-                "expertbelt" if effect > 0 => 4915,
-                _ => 4096,
-            };
-            if mon.glaive_drawback {
-                final_modifier = crate::mechanics::chain(final_modifier, 8192);
-            }
-            if (mon.ability == "multiscale" && mon.hp == mon.max_hp.get())
-                || (mon.ability == "auraguard" && move_data.flags.contains_key("contact"))
-            {
-                if user.ability == "sniper" && crit {
-                    final_modifier = crate::mechanics::chain(final_modifier, 6144);
-                }
-                final_modifier = crate::mechanics::chain(final_modifier, 2048);
-            }
-            final_modifier = crate::mechanics::chain(
-                final_modifier,
-                self.screens_damage_modifier(source, target, move_data.category, crit),
-            );
-            let value = Damage {
-                level: user.level,
-                power: tr.modify(u32::from(power), power_modifier),
-                attack: atk,
-                defense: NonZeroU32::new(def.max(1)).unwrap(),
-                spread_or_bond: if spread { 3072 } else { 4096 },
-                weather: self
-                    .weather()
-                    .map_or(4096, |w| w.damage_modifier(move_type)),
-                critical: crit,
-                stab: if !stab {
-                    4096
-                } else if user.ability == "adaptability" {
-                    8192
-                } else {
-                    6144
-                },
-                effectiveness: effect,
-                burned: user.status == Status::Burn
-                    && user.ability != "guts"
-                    && move_data.category == Category::Physical,
-                final_modifier,
-                bypassed_protect: false,
-            }
-            .roll_with_final_event(tr, &mut self.rng, |rng| {
-                // All screens register onAnyModifyDamage. Their handlers tie
-                // even when their own side/category then makes them no-ops.
-                for choices in (2..=screen_handlers).rev() {
-                    rng.below(choices);
-                }
-            });
-            if spread && self.format.report_exact_hp {
-                self.add("|debug|Spread modifier: 0.75");
-            }
-            if effect > 0 {
-                self.add(format!(
-                    "|-supereffective|{}|{}",
-                    self.ident(target),
-                    effect.min(2)
-                ));
-            } else if effect < 0 {
-                self.add(format!(
-                    "|-resisted|{}|{}",
-                    self.ident(target),
-                    (-effect).min(2)
-                ));
-            }
-            if crit {
-                self.add(format!("|-crit|{}", self.ident(target)));
-            }
-            damage.push((target, value));
-        }
+        let (max_hits, per_strike_accuracy) = self.hits(source, move_data);
         let mut total = 0;
-        for &(target, value) in &damage {
-            let mon = self.mon(target);
-            let value = if mon.ability == "sturdy" && mon.hp == mon.max_hp.get() && value >= mon.hp
+        let mut hits_landed = 0;
+        for hit in 1..=max_hits {
+            if self.mon(source).hp == 0
+                || spread_targets
+                    .iter()
+                    .all(|&target| self.mon(target).hp == 0)
             {
-                let value = mon.hp - 1;
-                self.add(format!("|-ability|{}|Sturdy", self.ident(target)));
-                value
+                break;
+            }
+            if hit > 1
+                && (matches!(self.mon(source).status, Status::Sleep(_))
+                    || (per_strike_accuracy
+                        && !self.next_strike_hits(source, spread_targets[0], move_data, accuracy)))
+            {
+                break;
+            }
+            let power = if matches!(move_data.name.as_str(), "Triple Axel" | "Triple Kick") {
+                power * u16::from(hit)
             } else {
-                value
+                power
             };
-            let value = self.focus_sash(target, value);
-            let mon = self.mon_mut(target);
-            let landed = value.min(mon.hp);
-            mon.hp -= landed;
-            total += landed;
-            self.add_health_line("-damage", target, false);
-            if let Some([a, b]) = move_data.drain
-                && landed > 0
-            {
-                let restored = (landed * u32::from(a) + u32::from(b) / 2) / u32::from(b);
-                let user = self.mon_mut(source);
-                if user.hp > 0 && user.hp < user.max_hp.get() {
-                    user.hp = (user.hp + restored.max(1)).min(user.max_hp.get());
-                    self.add_health_line_with(
-                        "-heal",
-                        source,
-                        false,
-                        &format!("|[from] drain|[of] {}", self.ident(target)),
+            damage.clear();
+            for &target in &spread_targets {
+                if move_data.name == "Poltergeist" {
+                    let item = DEX
+                        .item(self.format.dex_mod, &self.mon(target).item)
+                        .unwrap();
+                    self.add(format!(
+                        "|-activate|{}|move: Poltergeist|{}",
+                        self.ident(target),
+                        item.effect.name
+                    ));
+                }
+                let effect = self.effectiveness_of(move_data, move_type, target).unwrap();
+                let crit_ratio = move_data.crit_ratio.unwrap_or(1).min(4);
+                let crit_roll = move_data.will_crit.unwrap_or_else(|| {
+                    crit_ratio != 0
+                        && self
+                            .rng
+                            .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)])
+                });
+                let crit = crit_roll
+                    && !matches!(
+                        self.mon(target).ability.as_str(),
+                        "battlearmor" | "shellarmor"
                     );
+                let user = self.mon(source);
+                let mon = self.mon(target);
+                let (atk, atk_stage, def, def_stage) = if move_data.category == Category::Physical {
+                    (
+                        if move_data.name == "Body Press" {
+                            user.stats.def
+                        } else {
+                            user.stats.atk
+                        },
+                        user.boosts.get(if move_data.name == "Body Press" {
+                            BoostStat::Def
+                        } else {
+                            BoostStat::Atk
+                        }),
+                        mon.stats.def,
+                        mon.boosts.get(BoostStat::Def),
+                    )
+                } else {
+                    (
+                        user.stats.spa,
+                        user.boosts.get(BoostStat::Spa),
+                        mon.stats.spd,
+                        mon.boosts.get(BoostStat::Spd),
+                    )
+                };
+                let atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });
+                let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
+                let def = if (self.weather() == Some(Weather::Sand)
+                    && move_data.category == Category::Special
+                    && mon.has_type("Rock"))
+                    || (self.weather() == Some(Weather::Snow)
+                        && move_data.category == Category::Physical
+                        && mon.has_type("Ice"))
+                {
+                    tr.modify(def, 6144)
+                } else {
+                    def
+                };
+                let mut attack_modifier = user.attack_modifier(move_data.category, move_type);
+                if (mon.ability == "heatproof" && move_type == "Fire")
+                    || (mon.ability == "thickfat" && matches!(move_type, "Fire" | "Ice"))
+                {
+                    attack_modifier = crate::mechanics::chain(attack_modifier, 2048);
                 }
-            }
-        }
-        if !move_data.boosts.is_empty() {
-            for &(target, _) in &damage {
-                self.boost_from(target, source, &move_data.boosts, false, false);
-            }
-        }
-        if !move_data.self_boosts.is_empty() {
-            let roll = self.rng.below(100);
-            if move_data
-                .self_chance
-                .is_none_or(|chance| roll < u32::from(chance))
-            {
-                self.boost(source, &move_data.self_boosts, true);
-            }
-        }
-        if move_data.self_recharge && self.mon(source).hp > 0 {
-            let mon = self.mon_mut(source);
-            mon.recharge = 2;
-            mon.track_volatile("mustrecharge");
-            self.add(format!("|-mustrecharge|{source_name}"));
-        }
-        if move_data.self_rampage {
-            self.rampage_hit(source, slot);
-        }
-        if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 {
-            let mon = self.mon_mut(source);
-            mon.glaive_drawback = true;
-            mon.track_volatile("glaiverush");
-            self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
-        }
-        for &(target, _) in &damage {
-            for effect in &move_data.secondaries {
-                let roll = self.rng.below(100);
-                if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
-                    if let Some(status) = &effect.status {
-                        self.try_status(target, status, source, move_data, false, base);
-                    }
-                    if !effect.boosts.is_empty() {
-                        self.boost_from(target, source, &effect.boosts, true, false);
-                    }
-                    if !effect.self_boosts.is_empty() {
-                        self.boost(source, &effect.self_boosts, true);
-                    }
-                    if effect.volatile_status.as_deref() == Some("flinch")
-                        && self.mon(target).hp > 0
-                        && self.mon(target).ability != "innerfocus"
-                    {
-                        self.mon_mut(target).flinched = true;
-                        self.mon_mut(target).track_volatile("flinch");
-                    }
-                    if effect.volatile_status.as_deref() == Some("confusion") {
-                        self.apply_confusion(target, false);
-                    }
+                let atk = tr.modify(atk, attack_modifier);
+                let stab = user.has_type(move_type);
+                let mut power_modifier = crate::mechanics::chain(
+                    user.ability_power_modifier(move_data, move_type, power, weather),
+                    user.item_power_modifier(move_type, move_data.category),
+                );
+                if converted && (hit == 1 || user.converted_move_type(&move_data.move_type).1) {
+                    power_modifier = crate::mechanics::chain(4915, power_modifier);
                 }
-            }
-        }
-        for &(target, _) in &damage {
-            if (move_type == "Fire" || move_data.thaws_target)
-                && matches!(self.mon(target).status, Status::Freeze(_))
-            {
-                self.cure_status(target, "[msg]");
-            }
-        }
-        if move_data.flags.contains_key("contact") {
-            for &(target, _) in &damage {
-                if self.mon(target).ability == "roughskin" {
-                    if self.mon(source).hp > 0 && self.mon(source).ability == "magicguard" {
-                        self.add(format!(
-                            "|-activate|{}|ability: Rough Skin",
-                            self.ident(target)
-                        ));
+                if move_data.name == "Knock Off" && mon.can_take_item(self.format.dex_mod).is_some()
+                {
+                    power_modifier = crate::mechanics::chain(power_modifier, 6144);
+                }
+                let mut final_modifier = match user.item.as_str() {
+                    "lifeorb" => 5324,
+                    "expertbelt" if effect > 0 => 4915,
+                    _ => 4096,
+                };
+                if mon.glaive_drawback {
+                    final_modifier = crate::mechanics::chain(final_modifier, 8192);
+                }
+                if (mon.ability == "multiscale" && mon.hp == mon.max_hp.get())
+                    || (mon.ability == "auraguard" && move_data.flags.contains_key("contact"))
+                {
+                    if user.ability == "sniper" && crit {
+                        final_modifier = crate::mechanics::chain(final_modifier, 6144);
+                    }
+                    final_modifier = crate::mechanics::chain(final_modifier, 2048);
+                }
+                final_modifier = crate::mechanics::chain(
+                    final_modifier,
+                    self.screens_damage_modifier(source, target, move_data.category, crit),
+                );
+                let value = Damage {
+                    level: user.level,
+                    power: tr.modify(u32::from(power), power_modifier),
+                    attack: atk,
+                    defense: NonZeroU32::new(def.max(1)).unwrap(),
+                    spread_or_bond: if spread { 3072 } else { 4096 },
+                    weather: self
+                        .weather()
+                        .map_or(4096, |w| w.damage_modifier(move_type)),
+                    critical: crit,
+                    stab: if !stab {
+                        4096
+                    } else if user.ability == "adaptability" {
+                        8192
                     } else {
+                        6144
+                    },
+                    effectiveness: effect,
+                    burned: user.status == Status::Burn
+                        && user.ability != "guts"
+                        && move_data.category == Category::Physical,
+                    final_modifier,
+                    bypassed_protect: false,
+                }
+                .roll_with_final_event(tr, &mut self.rng, |rng| {
+                    // All screens register onAnyModifyDamage. Their handlers tie
+                    // even when their own side/category then makes them no-ops.
+                    for choices in (2..=screen_handlers).rev() {
+                        rng.below(choices);
+                    }
+                });
+                if spread && self.format.report_exact_hp {
+                    self.add("|debug|Spread modifier: 0.75");
+                }
+                if effect > 0 {
+                    self.add(format!(
+                        "|-supereffective|{}|{}",
+                        self.ident(target),
+                        effect.min(2)
+                    ));
+                } else if effect < 0 {
+                    self.add(format!(
+                        "|-resisted|{}|{}",
+                        self.ident(target),
+                        (-effect).min(2)
+                    ));
+                }
+                if crit {
+                    self.add(format!("|-crit|{}", self.ident(target)));
+                }
+                damage.push((target, value));
+            }
+            for &(target, value) in &damage {
+                let mon = self.mon(target);
+                let value =
+                    if mon.ability == "sturdy" && mon.hp == mon.max_hp.get() && value >= mon.hp {
+                        let value = mon.hp - 1;
+                        self.add(format!("|-ability|{}|Sturdy", self.ident(target)));
+                        value
+                    } else {
+                        value
+                    };
+                let value = self.focus_sash(target, value);
+                let mon = self.mon_mut(target);
+                let landed = value.min(mon.hp);
+                mon.hp -= landed;
+                total += landed;
+                self.add_health_line("-damage", target, false);
+                if let Some([a, b]) = move_data.drain
+                    && landed > 0
+                {
+                    let restored = (landed * u32::from(a) + u32::from(b) / 2) / u32::from(b);
+                    let user = self.mon_mut(source);
+                    if user.hp > 0 && user.hp < user.max_hp.get() {
+                        user.hp = (user.hp + restored.max(1)).min(user.max_hp.get());
+                        self.add_health_line_with(
+                            "-heal",
+                            source,
+                            false,
+                            &format!("|[from] drain|[of] {}", self.ident(target)),
+                        );
+                    }
+                }
+            }
+            if !move_data.boosts.is_empty() {
+                for &(target, _) in &damage {
+                    self.boost_from(target, source, &move_data.boosts, false, false);
+                }
+            }
+            if !move_data.self_boosts.is_empty() {
+                let roll = self.rng.below(100);
+                if move_data
+                    .self_chance
+                    .is_none_or(|chance| roll < u32::from(chance))
+                {
+                    self.boost(source, &move_data.self_boosts, true);
+                }
+            }
+            if move_data.self_recharge && self.mon(source).hp > 0 {
+                let mon = self.mon_mut(source);
+                mon.recharge = 2;
+                mon.track_volatile("mustrecharge");
+                self.add(format!("|-mustrecharge|{source_name}"));
+            }
+            if move_data.self_rampage {
+                self.rampage_hit(source, slot);
+            }
+            if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 {
+                let mon = self.mon_mut(source);
+                mon.glaive_drawback = true;
+                mon.track_volatile("glaiverush");
+                self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
+            }
+            for &(target, _) in &damage {
+                for effect in &move_data.secondaries {
+                    let roll = self.rng.below(100);
+                    if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
+                        if let Some(status) = &effect.status {
+                            self.try_status(target, status, source, move_data, false, base);
+                        }
+                        if !effect.boosts.is_empty() {
+                            self.boost_from(target, source, &effect.boosts, true, false);
+                        }
+                        if !effect.self_boosts.is_empty() {
+                            self.boost(source, &effect.self_boosts, true);
+                        }
+                        if effect.volatile_status.as_deref() == Some("flinch")
+                            && self.mon(target).hp > 0
+                            && self.mon(target).ability != "innerfocus"
+                        {
+                            self.mon_mut(target).flinched = true;
+                            self.mon_mut(target).track_volatile("flinch");
+                        }
+                        if effect.volatile_status.as_deref() == Some("confusion") {
+                            self.apply_confusion(target, false);
+                        }
+                    }
+                }
+            }
+            for &(target, _) in &damage {
+                if (move_type == "Fire" || move_data.thaws_target)
+                    && matches!(self.mon(target).status, Status::Freeze(_))
+                {
+                    self.cure_status(target, "[msg]");
+                }
+            }
+            if move_data.flags.contains_key("contact") {
+                for &(target, _) in &damage {
+                    if self.mon(target).ability == "roughskin" {
+                        if self.mon(source).hp > 0 && self.mon(source).ability == "magicguard" {
+                            self.add(format!(
+                                "|-activate|{}|ability: Rough Skin",
+                                self.ident(target)
+                            ));
+                        } else {
+                            self.indirect_damage(
+                                source,
+                                8,
+                                &format!("|[from] ability: Rough Skin|[of] {}", self.ident(target)),
+                            );
+                        }
+                    }
+                }
+                for &(target, _) in &damage {
+                    if self.mon(target).item == "rockyhelmet" {
                         self.indirect_damage(
                             source,
-                            8,
-                            &format!("|[from] ability: Rough Skin|[of] {}", self.ident(target)),
+                            6,
+                            &format!("|[from] item: Rocky Helmet|[of] {}", self.ident(target)),
                         );
                     }
                 }
             }
             for &(target, _) in &damage {
-                if self.mon(target).item == "rockyhelmet" {
-                    self.indirect_damage(
-                        source,
-                        6,
-                        &format!("|[from] item: Rocky Helmet|[of] {}", self.ident(target)),
+                if move_data.flags.contains_key("contact") {
+                    match self.mon(target).ability.as_str() {
+                        "flamebody" => self.flame_body(target, source),
+                        "cutecharm" => self.cute_charm(target, source),
+                        "mummy" | "lingeringaroma" => self.contact_ability(target, source),
+                        _ => {}
+                    }
+                }
+                if self.mon(target).ability == "cursedbody"
+                    && !struggle
+                    && self.mon(source).disabled_slot.is_none()
+                    && self.rng.chance(3, 10)
+                {
+                    self.disable_last_move(source, target, true);
+                }
+                if self.mon(target).ability == "thermalexchange" && move_type == "Fire" {
+                    self.ability_boost(target, "Thermal Exchange", BoostStat::Atk, 1, false);
+                }
+                if self.mon(target).ability == "stamina" {
+                    self.ability_boost(target, "Stamina", BoostStat::Def, 1, false);
+                }
+                if self.mon(target).ability == "weakarmor"
+                    && move_data.category == Category::Physical
+                {
+                    self.ability_boosts(
+                        target,
+                        "Weak Armor",
+                        &[(BoostStat::Def, -1), (BoostStat::Spe, 2)],
+                        false,
                     );
                 }
-            }
-        }
-        for &(target, _) in &damage {
-            if move_data.flags.contains_key("contact") {
-                match self.mon(target).ability.as_str() {
-                    "flamebody" => self.flame_body(target, source),
-                    "cutecharm" => self.cute_charm(target, source),
-                    "mummy" | "lingeringaroma" => self.contact_ability(target, source),
-                    _ => {}
+                if self.mon(target).item == "airballoon" {
+                    self.consume(target, "Air Balloon", false);
                 }
             }
-            if self.mon(target).ability == "cursedbody"
-                && !struggle
-                && self.mon(source).disabled_slot.is_none()
-                && self.rng.chance(3, 10)
-            {
-                self.disable_last_move(source, target, true);
-            }
-            if self.mon(target).ability == "thermalexchange" && move_type == "Fire" {
-                self.ability_boost(target, "Thermal Exchange", BoostStat::Atk, 1, false);
-            }
-            if self.mon(target).ability == "stamina" {
-                self.ability_boost(target, "Stamina", BoostStat::Def, 1, false);
-            }
-            if self.mon(target).ability == "weakarmor" && move_data.category == Category::Physical {
-                self.ability_boosts(
-                    target,
-                    "Weak Armor",
-                    &[(BoostStat::Def, -1), (BoostStat::Spe, 2)],
-                    false,
-                );
-            }
-            if self.mon(target).item == "airballoon" {
-                self.consume(target, "Air Balloon", false);
-            }
-        }
-        if move_data.name == "Knock Off" {
-            for &(target, _) in &damage {
-                if let Some(item) = self.mon(target).can_take_item(self.format.dex_mod) {
-                    self.mon_mut(target).item.clear();
-                    self.add(format!(
-                        "|-enditem|{}|{item}|[from] move: Knock Off|[of] {source_name}",
-                        self.ident(target)
-                    ));
-                } else if self.mon(target).ability == "stickyhold"
-                    && self.mon(target).hp > 0
-                    && !self.mon(target).item.is_empty()
-                {
-                    self.add(format!(
-                        "|-activate|{}|ability: Sticky Hold",
-                        self.ident(target)
-                    ));
+            if move_data.name == "Knock Off" {
+                for &(target, _) in &damage {
+                    if let Some(item) = self.mon(target).can_take_item(self.format.dex_mod) {
+                        self.mon_mut(target).item.clear();
+                        self.add(format!(
+                            "|-enditem|{}|{item}|[from] move: Knock Off|[of] {source_name}",
+                            self.ident(target)
+                        ));
+                    } else if self.mon(target).ability == "stickyhold"
+                        && self.mon(target).hp > 0
+                        && !self.mon(target).item.is_empty()
+                    {
+                        self.add(format!(
+                            "|-activate|{}|ability: Sticky Hold",
+                            self.ident(target)
+                        ));
+                    }
                 }
             }
+            self.each_event();
+            hits_landed += 1;
         }
-        self.each_event();
         let mut fainted = 0;
         for (target, _) in damage {
             if self.mon(target).hp == 0 {
@@ -2136,12 +2166,21 @@ impl Battle {
                 fainted += 1;
             }
             if target != source {
-                self.mon_mut(target).times_attacked += 1;
+                self.mon_mut(target).times_attacked += hits_landed;
             }
         }
         if self.mon(source).hp == 0 {
             self.mark_fainted(source);
             self.check_win();
+        }
+        if move_data.multihit.is_some() && hits_landed > 0 {
+            let target = spread_targets[0];
+            let ident = if self.mon(target).fainted {
+                format!("{}: {}", target.player.id(), self.mon(target).name)
+            } else {
+                self.ident(target)
+            };
+            self.add(format!("|-hitcount|{ident}|{hits_landed}"));
         }
         if fainted > 0 && !self.mon(source).fainted && self.mon(source).ability == "moxie" {
             self.ability_boost(source, "Moxie", BoostStat::Atk, fainted, false);
@@ -2410,6 +2449,7 @@ impl Pokemon {
                 | "lingeringaroma"
                 | "trace"
                 | "illuminate"
+                | "skilllink"
                 | "shedskin"
                 | "clearbody"
                 | "whitesmoke"
@@ -2483,6 +2523,7 @@ impl Pokemon {
                 | "expertbelt"
                 | "wiseglasses"
                 | "muscleband"
+                | "loadeddice"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

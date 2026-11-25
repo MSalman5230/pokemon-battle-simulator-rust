@@ -132,6 +132,13 @@ pub enum Accuracy {
     Bypass(bool),
 }
 
+#[derive(Debug, Copy, Clone, Deserialize)]
+#[serde(untagged)]
+pub enum HitCount {
+    Fixed(u8),
+    Range([u8; 2]),
+}
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Move {
@@ -146,6 +153,9 @@ pub struct Move {
     #[serde(default, rename = "noPPBoosts")]
     pub no_pp_boosts: bool,
     pub accuracy: Accuracy,
+    pub multihit: Option<HitCount>,
+    #[serde(default, rename = "multiaccuracy")]
+    pub multi_accuracy: bool,
     pub crit_ratio: Option<u8>,
     pub flags: Table<u8>,
     pub is_nonstandard: Option<String>,

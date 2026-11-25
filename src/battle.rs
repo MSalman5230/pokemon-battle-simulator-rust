@@ -16,6 +16,7 @@ mod disable;
 mod hazards;
 mod items;
 mod mega;
+mod multihit;
 mod rampage;
 mod screens;
 use hazards::Hazard;

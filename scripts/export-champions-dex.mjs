@@ -24,7 +24,7 @@ const genericMoveFields = new Set([
     'target', 'type', 'contestType', 'isNonstandard', 'zMove', 'maxMove', 'tags',
     'noPPBoosts', 'critRatio', 'willCrit', 'alwaysHit', 'heal', 'boosts',
     'status', 'ignoreImmunity', 'self', 'recoil', 'drain', 'thawsTarget',
-    'secondary', 'secondaries',
+    'secondary', 'secondaries', 'multihit', 'multiaccuracy',
 ]);
 const genericTarget = new Set(['self', 'normal', 'any', 'adjacentFoe', 'allAdjacent', 'allAdjacentFoes', 'randomNormal']);
 const supportedStatus = new Set(['brn', 'par', 'frz', 'slp', 'psn', 'tox']);
@@ -35,6 +35,7 @@ function runsOnGenericPipeline(raw, move) {
     if (!raw || Object.keys(raw).some(k => !genericMoveFields.has(k)) ||
         !genericTarget.has(move.target) || raw.flags?.futuremove || raw.flags?.cantusetwice ||
         typeof raw.ignoreImmunity === 'object' || (raw.status && !supportedStatus.has(raw.status))) return false;
+    if (move.multihit && !['normal', 'any', 'adjacentFoe'].includes(move.target)) return false;
     if (raw.self && !(raw.self.boosts && hasOnly(raw.self, ['boosts', 'chance']) ||
             ['mustrecharge', 'lockedmove'].includes(raw.self.volatileStatus) && hasOnly(raw.self, ['volatileStatus']))) return false;
     for (const effect of move.secondaries ?? []) {
@@ -62,7 +63,7 @@ const data = mod => {
         }),
         moves: table(dex.moves.all(), e => {
             const move = props(e, ['name', 'type', 'category', 'target', 'basePower', 'priority',
-                'pp', 'noPPBoosts', 'accuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget', 'willCrit', 'alwaysHit']);
+                'pp', 'noPPBoosts', 'accuracy', 'multihit', 'multiaccuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget', 'willCrit', 'alwaysHit']);
             return {...move, generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
                 selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,

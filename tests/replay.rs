@@ -310,3 +310,13 @@ fn bss_temporary_ability_changes_preserve_base_ability_and_reset_on_switch() {
 fn bss_hp_sharing_attack_based_healing_and_sunny_growth() {
     replay(include_str!("fixtures/bss-hp-effects.json"));
 }
+
+#[test]
+fn bss_multihit_rechecks_damage_and_abilities_between_strikes() {
+    replay(include_str!("fixtures/bss-multihit.json"));
+}
+
+#[test]
+fn vgc_multihit_counts_only_the_strikes_that_execute_after_focus_sash() {
+    replay(include_str!("fixtures/vgc-multihit-sash.json"));
+}
