@@ -5,9 +5,10 @@ doubles for Poke-RL, in progress. The Rust core accepts native Showdown input
 and replays seeded singles and doubles battles across a growing set of rules
 and mechanics. The experimental Poke-RL worker matched all 673 step replies
 in the default BSS Reg M-C benchmark and ran 4.45× faster in release mode.
-That result covers the fixed 32-game workload with prevalidated rosters.
-Unsupported mechanics return errors. Full training parity, native team
-validation, and team generation are not complete.
+That result covers the fixed 32-game workload. The worker now validates
+ordinary BSS rosters in Rust, without a reference manifest. Unsupported
+mechanics and unimplemented legality constraints return errors. Full format
+parity, team generation, and Poke-RL's tactics and lookahead are not complete.
 
 ## Local setup
 
@@ -51,12 +52,14 @@ source scripts/env.sh
 node scripts/export-champions-dex.mjs
 node scripts/export-champions-legality.mjs
 node scripts/capture-oracle.mjs
+node scripts/capture-validation.mjs
 ```
 
 The tests use checked-in fixtures and do not need Node. The fixture generator
 records seeded native battles from the locked simulator. Replay tests compare
 player requests, all three battle-log views, party state, and the RNG state at
 each checkpoint. Separate fixtures isolate RNG, ordering, stats, and HP display.
+The legality fixtures compare set and team validation to the same pinned build.
 
 ## Benchmark
 

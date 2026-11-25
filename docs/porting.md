@@ -67,7 +67,10 @@ The experimental Poke-RL worker passes exact response replay on the curated
 BSS benchmark and the fixed 32-game default benchmark using the training
 manifest. The [recorded default run](../benchmarks/verified-default-bss-result.json)
 matched 673 steps without truncation and measured a 4.45× release speedup.
-This is a benchmark milestone, not general parity. The Rust core does not
-yet validate legality or generate teams. Continue testing more rosters,
-seeds, and formats and record focused native fixtures for missing mechanics.
+This is a benchmark milestone, not general parity. Native Flat Rules
+validation covers BSS and VGC Reg M-B/M-C, including Bo3, for ordinary modern
+sets. The worker uses it by default and admits the 128 rosters in the locked
+training corpus. Some origin, special form, and event constraints are still
+unsupported. Team generation is not implemented. Continue testing more
+rosters, seeds, and formats and record focused native fixtures for gaps.
 The benchmark rejects any mismatch before timing the adapter.

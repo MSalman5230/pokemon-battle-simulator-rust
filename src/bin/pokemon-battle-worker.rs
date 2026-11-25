@@ -1,10 +1,10 @@
-//! Experimental Poke-RL JSON-lines worker. Accepts only the oracle-validated
-//! benchmark corpus until native team validation is ported.
+//! Experimental Poke-RL JSON-lines worker.
 
 use pokemon_battle_simulator::{
     adapter::{FORMAT, Game},
     dex::DEX,
     rng::Seed,
+    validation::TeamValidator,
 };
 use serde::Serialize;
 use serde_json::{Value, json};
@@ -12,27 +12,18 @@ use std::{
     collections::HashMap,
     env, fs,
     io::{self, BufRead, Write},
-    sync::LazyLock,
 };
-
-static FIXTURES: LazyLock<Value> = LazyLock::new(|| {
-    let data: Value =
-        serde_json::from_str(include_str!("../../benchmarks/verified-bss-corpus.json"))
-            .expect("checked-in benchmark teams must deserialize");
-    assert_eq!(data["revision"], DEX.revision);
-    data
-});
 
 struct Worker {
     games: HashMap<String, Game>,
-    verified: Value,
+    verified: Option<Value>,
 }
 
 impl Worker {
     fn new() -> Result<Self, String> {
         let mut args = env::args_os().skip(1);
         let verified = match args.next() {
-            None => &*FIXTURES,
+            None => None,
             Some(option) if option == "--verified-teams" => {
                 let path = args.next().ok_or("--verified-teams requires a file")?;
                 if args.next().is_some() {
@@ -56,16 +47,13 @@ impl Worker {
                 }) {
                     return Err("invalid verified team manifest".into());
                 }
-                return Ok(Self {
-                    games: HashMap::new(),
-                    verified: manifest,
-                });
+                Some(manifest)
             }
             _ => return Err("usage: pokemon-battle-worker [--verified-teams FILE]".into()),
         };
         Ok(Self {
             games: HashMap::new(),
-            verified: verified.clone(),
+            verified,
         })
     }
 }
@@ -80,7 +68,8 @@ impl Worker {
         if op == "ping" {
             return encode(
                 out,
-                json!({"format":FORMAT,"revision":DEX.revision,"backend":"rust","scope":"verified-corpus"}),
+                json!({"format":FORMAT,"revision":DEX.revision,"backend":"rust","scope":
+                    if self.verified.is_some() { "verified-corpus" } else { "native-validation" }}),
             );
         }
         if op == "batch" {
@@ -102,6 +91,7 @@ impl Worker {
 
     fn dispatch_one(&mut self, query: &Value, out: &mut Vec<u8>) -> Result<(), String> {
         match query["op"].as_str() {
+            Some("validate") => return validate(query, out),
             Some("new" | "step" | "close" | "trace") => {}
             Some(op) => return Err(format!("not ported: operation {op}")),
             None => return Err("missing operation".into()),
@@ -113,17 +103,26 @@ impl Worker {
                     .as_array()
                     .filter(|t| t.len() == 2)
                     .ok_or("expected two rosters")?;
-                for team in teams {
-                    if !self.verified["teams"]
+                if let Some(verified) = &self.verified {
+                    let allowed = verified["teams"]
                         .as_array()
-                        .unwrap()
+                        .expect("verified roster array checked at startup");
+                    if !teams
                         .iter()
-                        .any(|row| &row["team"] == team)
+                        .all(|team| allowed.iter().any(|row| &row["team"] == team))
                     {
-                        return Err("not ported: general BSS team validation; expected an exact roster from the loaded verified corpus".into());
+                        return Err(
+                            "expected an exact roster from the loaded verified corpus".into()
+                        );
                     }
                 }
-                let teams = [0, 1].map(|i| teams[i].as_array().unwrap().clone());
+                let roster = |i: usize| {
+                    teams[i]
+                        .as_array()
+                        .cloned()
+                        .ok_or("roster must be an array")
+                };
+                let teams = [roster(0)?, roster(1)?];
                 let seed = if let Some(seed) = query["seed"].as_str() {
                     seed.parse::<Seed>().map_err(|e| e.to_string())?
                 } else {
@@ -136,7 +135,11 @@ impl Worker {
                     .and_then(|n| u32::try_from(n).ok())
                     .unwrap_or(200);
                 let training = query["training"].as_bool().unwrap_or(false);
-                let game = Game::new_prevalidated(teams, seed, max_turns, training)?;
+                let game = if self.verified.is_some() {
+                    Game::new_prevalidated(teams, seed, max_turns, training)?
+                } else {
+                    Game::new(teams, seed, max_turns, training)?
+                };
                 encode(out, game.result())?;
                 self.games.insert(key.into(), game);
                 Ok(())
@@ -159,6 +162,29 @@ impl Worker {
             _ => unreachable!(),
         }
     }
+}
+
+fn validate(query: &Value, out: &mut Vec<u8>) -> Result<(), String> {
+    let validator = TeamValidator::new(FORMAT).map_err(|e| e.to_string())?;
+    let results: Result<Vec<_>, String> = if query["teams"].is_null() {
+        query["sets"]
+            .as_array()
+            .ok_or("validate must contain sets or teams")?
+            .iter()
+            .map(|set| validator.validate_set(set).map_err(|e| e.to_string()))
+            .collect()
+    } else {
+        query["teams"]
+            .as_array()
+            .ok_or("teams must be an array")?
+            .iter()
+            .map(|team| {
+                let team = team.as_array().ok_or("roster must be an array")?;
+                validator.validate_team(team).map_err(|e| e.to_string())
+            })
+            .collect()
+    };
+    encode(out, results?)
 }
 
 fn main() -> io::Result<()> {

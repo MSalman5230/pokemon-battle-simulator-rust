@@ -12,6 +12,7 @@ use crate::{
     input::{Input, Player, PlayerOptions, Start, Team},
     mechanics::{BoostStat, max_pp},
     rng::Seed,
+    validation::TeamValidator,
 };
 use public::{PublicState, fresh_mon};
 use serde_json::{Value, json};
@@ -104,8 +105,24 @@ impl OriginalSet {
 }
 
 impl Game {
+    /// Validate the submitted rosters before assigning private slot nicknames.
+    pub fn new(
+        teams: [Vec<Value>; 2],
+        seed: Seed,
+        max_turns: u32,
+        training: bool,
+    ) -> Result<Self, String> {
+        let validator = TeamValidator::new(FORMAT).map_err(|e| e.to_string())?;
+        for team in &teams {
+            if let Some(problems) = validator.validate_team(team).map_err(|e| e.to_string())? {
+                return Err(problems.join("; "));
+            }
+        }
+        Self::new_prevalidated(teams, seed, max_turns, training)
+    }
+
     /// Construct a game from rosters already checked by a Champions team
-    /// validator. The current worker only calls this for the pinned test corpus.
+    /// validator, such as the reference-verified benchmark corpus.
     pub fn new_prevalidated(
         mut teams: [Vec<Value>; 2],
         seed: Seed,

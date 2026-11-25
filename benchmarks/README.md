@@ -35,14 +35,11 @@ traffic. It does not run player models, feature encoding, or training.
 ```sh
 source scripts/env.sh
 cargo build --locked --release
-node scripts/verify-bss-teams.mjs .tools/poke-rl-simulator/teams_train.json \
-  .tools/verified-training-corpus.json
-node benchmarks/throughput.mjs -- ./target/release/pokemon-battle-worker \
-  --verified-teams .tools/verified-training-corpus.json
+node benchmarks/throughput.mjs -- ./target/release/pokemon-battle-worker
 ```
 
-The admission manifest validates rosters offline with the locked reference.
-The Rust worker does not use Showdown at runtime. For this test a candidate
+The Rust worker validates rosters itself and does not use Showdown at runtime.
+For this test a candidate
 must support `new` and `batch` with
 `step`/`close` entries from Poke-RL's protocol. It must echo the request
 `id` and return the corresponding JSON `result`, in order. Both backends
@@ -61,11 +58,14 @@ the same i5-6300HQ was 337.7 steps/s for Showdown and 1,501.9 for Rust
 (4.45×). This verifies the fixed workload, not every team combination, seed,
 mode, or worker operation.
 
+To reproduce the recorded run's external admission mode, generate the pinned
+manifest with `node scripts/verify-bss-teams.mjs .tools/poke-rl-simulator/teams_train.json .tools/verified-training-corpus.json`
+and append `--verified-teams .tools/verified-training-corpus.json` to the worker
+command after `--`. In that mode, only exact rosters from the manifest are admitted.
+
 ## Small checked-in BSS corpus
 
-Without an admission manifest, the experimental worker accepts only the exact
-rosters in the checked-in, oracle-validated BSS corpus. This gives a smaller
-benchmark without preparing a manifest.
+The checked-in, oracle-validated BSS corpus provides a smaller benchmark.
 
 ```sh
 source scripts/env.sh
