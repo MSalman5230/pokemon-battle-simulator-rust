@@ -148,17 +148,34 @@ impl Battle {
             return false;
         }
 
+        self.apply_status(pos, id, Some(&data.name));
+        true
+    }
+
+    pub(super) fn apply_status(&mut self, pos: Position, id: &str, move_name: Option<&str>) {
         let mut status = Status::from_id(id);
         let reason = if let Status::Sleep(_) = status {
             status = Status::Sleep(if self.rng.below(3) == 0 { 2 } else { 3 });
-            format!("|[from] move: {}", data.name)
+            move_name.map_or_else(String::new, |name| format!("|[from] move: {name}"))
         } else {
             String::new()
         };
         self.mon_mut(pos).status = status;
         self.add(format!("|-status|{}|{id}{reason}", self.ident(pos)));
         self.cure_with_berry(pos);
-        true
+    }
+
+    pub(super) fn tick_yawn(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        mon.yawn -= 1;
+        if mon.yawn != 0 {
+            return;
+        }
+        mon.untrack_volatile("yawn");
+        self.add(format!("|-end|{}|move: Yawn|[silent]", self.ident(pos)));
+        if self.mon(pos).status == Status::Healthy && !self.status_immune(pos, "slp") {
+            self.apply_status(pos, "slp", None);
+        }
     }
 
     pub(super) fn status_residual(&mut self, pos: Position) {

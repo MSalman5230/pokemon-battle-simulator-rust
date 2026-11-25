@@ -196,3 +196,8 @@ fn bss_choice_lock_intimidate_speed_boost_and_knock_off() {
 fn bss_roost_body_press_mirror_armor_and_recoil() {
     replay(include_str!("fixtures/bss-bulky-effects.json"));
 }
+
+#[test]
+fn bss_weather_screens_yawn_rest_and_water_absorb() {
+    replay(include_str!("fixtures/bss-screen-rest.json"));
+}

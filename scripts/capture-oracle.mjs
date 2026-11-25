@@ -162,6 +162,12 @@ const bulkyRosters = [
     [{...named('Archaludon', ['Icy Wind', 'Body Press', 'Giga Drain', 'Protect']), ability: 'Stamina'},
         named('Glaceon', ['Freeze-Dry']), named('Jolteon', ['Tackle'])],
 ];
+const screenRosters = [
+    [{...named('Ninetales-Alola', ['Aurora Veil', 'Reflect', 'Tackle', 'Rest']), ability: 'Snow Warning', item: 'Light Clay'},
+        named('Pelipper', ['Surf']), named('Umbreon', ['Recover'])],
+    [{...named('Vaporeon', ['Water Gun', 'Yawn', 'Recover', 'Tackle']), ability: 'Water Absorb'},
+        named('Glaceon', ['Freeze-Dry']), named('Jolteon', ['Tackle'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -212,6 +218,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 1'], ['move 2', 'move 2'],
         ['move 3', 'move 3'], ['move 4', 'switch 2'], ['switch 2', 'move 1']],
         bulkyRosters, 'bss-bulky-effects'],
+    ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 4'], ['move 2', 'move 2'],
+        ['move 3', 'move 1'], ['move 3', 'move 1'], ['move 3', 'move 1'],
+        ['move 4', 'move 4'], ['switch 2', 'move 4'], ['move 1', 'move 4'], ['move 1', 'move 4']],
+        screenRosters, 'bss-screen-rest'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

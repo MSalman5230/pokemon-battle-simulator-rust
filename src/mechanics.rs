@@ -170,6 +170,15 @@ pub struct Damage {
 
 impl Damage {
     pub fn roll(self, truncation: Truncation, rng: &mut Rng) -> u32 {
+        self.roll_with_final_event(truncation, rng, |_| {})
+    }
+
+    pub(crate) fn roll_with_final_event(
+        self,
+        truncation: Truncation,
+        rng: &mut Rng,
+        before_final: impl FnOnce(&mut Rng),
+    ) -> u32 {
         let t = truncation;
         let level_factor = u64::from(self.level) * 2 / 5 + 2;
         let base = t.word(level_factor * u64::from(self.power) * u64::from(self.attack));
@@ -190,6 +199,7 @@ impl Damage {
         if self.burned {
             damage = t.modify(damage, 2048);
         }
+        before_final(rng);
         damage = t.modify(damage, self.final_modifier);
         if self.bypassed_protect {
             damage = t.modify(damage, 1024);

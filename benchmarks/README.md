@@ -89,3 +89,15 @@ node benchmarks/throughput.mjs --capture-replay benchmarks/results/full-workload
 The coverage report counts selected moves and the active species, abilities,
 items, and Mega choices at selection time. A selected move may still fail or
 never execute. This diagnostic keeps the same deterministic workload hash.
+
+For full-corpus bring-up, generate an offline admission manifest using the
+same locked validator. This does not supply missing mechanics or certify
+Rust parity. The benchmark still withholds a speed result on any error or
+mismatch.
+
+```sh
+node scripts/verify-bss-teams.mjs .tools/poke-rl-simulator/teams_train.json \
+  .tools/verified-training-corpus.json
+node benchmarks/throughput.mjs -- ./target/release/pokemon-battle-worker \
+  --verified-teams .tools/verified-training-corpus.json
+```

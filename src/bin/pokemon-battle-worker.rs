@@ -10,6 +10,7 @@ use serde::Serialize;
 use serde_json::{Value, json};
 use std::{
     collections::HashMap,
+    env, fs,
     io::{self, BufRead, Write},
     sync::LazyLock,
 };
@@ -22,9 +23,51 @@ static FIXTURES: LazyLock<Value> = LazyLock::new(|| {
     data
 });
 
-#[derive(Default)]
 struct Worker {
     games: HashMap<String, Game>,
+    verified: Value,
+}
+
+impl Worker {
+    fn new() -> Result<Self, String> {
+        let mut args = env::args_os().skip(1);
+        let verified = match args.next() {
+            None => &*FIXTURES,
+            Some(option) if option == "--verified-teams" => {
+                let path = args.next().ok_or("--verified-teams requires a file")?;
+                if args.next().is_some() {
+                    return Err("unexpected worker arguments".into());
+                }
+                let data = fs::read(path).map_err(|e| e.to_string())?;
+                let manifest: Value = serde_json::from_slice(&data).map_err(|e| e.to_string())?;
+                if manifest["revision"] != DEX.revision || manifest["format"] != FORMAT {
+                    return Err("verified manifest uses another Showdown revision or format".into());
+                }
+                if !manifest["teams"].as_array().is_some_and(|rows| {
+                    !rows.is_empty()
+                        && rows.iter().all(|row| {
+                            row["team"].as_array().is_some_and(|t| {
+                                t.len() == 6
+                                    && t.iter().all(|set| {
+                                        set["species"].is_string() && set["moves"].is_array()
+                                    })
+                            })
+                        })
+                }) {
+                    return Err("invalid verified team manifest".into());
+                }
+                return Ok(Self {
+                    games: HashMap::new(),
+                    verified: manifest,
+                });
+            }
+            _ => return Err("usage: pokemon-battle-worker [--verified-teams FILE]".into()),
+        };
+        Ok(Self {
+            games: HashMap::new(),
+            verified: verified.clone(),
+        })
+    }
 }
 
 fn encode(out: &mut Vec<u8>, value: impl Serialize) -> Result<(), String> {
@@ -71,13 +114,13 @@ impl Worker {
                     .filter(|t| t.len() == 2)
                     .ok_or("expected two rosters")?;
                 for team in teams {
-                    if !FIXTURES["teams"]
+                    if !self.verified["teams"]
                         .as_array()
                         .unwrap()
                         .iter()
                         .any(|row| &row["team"] == team)
                     {
-                        return Err("not ported: general BSS team validation; expected an exact roster from the verified benchmark corpus".into());
+                        return Err("not ported: general BSS team validation; expected an exact roster from the loaded verified corpus".into());
                     }
                 }
                 let teams = [0, 1].map(|i| teams[i].as_array().unwrap().clone());
@@ -119,7 +162,7 @@ impl Worker {
 }
 
 fn main() -> io::Result<()> {
-    let mut worker = Worker::default();
+    let mut worker = Worker::new().map_err(io::Error::other)?;
     let mut stdin = io::stdin().lock();
     let mut stdout = io::stdout().lock();
     let mut line = String::new();

@@ -60,7 +60,7 @@ impl Battle {
         true
     }
 
-    fn side_ident(&self, player: Player) -> String {
+    pub(super) fn side_ident(&self, player: Player) -> String {
         format!(
             "{}: {}",
             player.id(),

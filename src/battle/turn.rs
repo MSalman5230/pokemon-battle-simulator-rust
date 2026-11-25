@@ -640,6 +640,14 @@ impl Battle {
                 | "liquidation"
                 | "earthpower"
                 | "glare"
+                | "rest"
+                | "yawn"
+                | "moonlight"
+                | "synthesis"
+                | "morningsun"
+                | "auroraveil"
+                | "reflect"
+                | "lightscreen"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -819,6 +827,7 @@ impl Battle {
                     party[outgoing.slot].choice_lock = None;
                     party[outgoing.slot].active_turns = 0;
                     party[outgoing.slot].roosted = false;
+                    party[outgoing.slot].yawn = 0;
                     if !party[outgoing.slot].fainted {
                         party[outgoing.slot].times_attacked = 0;
                     }
@@ -1003,6 +1012,8 @@ impl Battle {
             Weather,
             SpeedBoost,
             Roost,
+            Yawn,
+            Screen(Screen),
         }
         self.add("|");
         self.update_speed();
@@ -1021,6 +1032,21 @@ impl Battle {
                 },
             ));
         }
+        for player in Player::ALL {
+            for screen in Screen::ALL {
+                if self.has_screen(player, screen) {
+                    timers.push((
+                        Position { player, slot: 0 },
+                        Effect::Screen(screen),
+                        Priority {
+                            order: 26,
+                            sub_order: screen.sub_order(),
+                            ..Priority::default()
+                        },
+                    ));
+                }
+            }
+        }
         for pos in self.positions() {
             let mon = self.mon(pos);
             let priority = |order, sub_order| Priority {
@@ -1034,6 +1060,9 @@ impl Battle {
             }
             if mon.ability == "speedboost" {
                 timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
+            }
+            if mon.yawn > 0 {
+                timers.push((pos, Effect::Yawn, priority(23, 2)));
             }
             if mon.roosted {
                 timers.push((pos, Effect::Roost, priority(25, 2)));
@@ -1060,6 +1089,10 @@ impl Battle {
                 }
                 continue;
             }
+            if let Effect::Screen(screen) = effect {
+                self.tick_screen(pos.player, screen);
+                continue;
+            }
             let mon = self.mon_mut(pos);
             if mon.fainted {
                 continue;
@@ -1069,7 +1102,8 @@ impl Battle {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
                 }
-                Effect::Weather => unreachable!(),
+                Effect::Weather | Effect::Screen(_) => unreachable!(),
+                Effect::Yawn => self.tick_yawn(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Roost => {
                     mon.roosted = false;
@@ -1208,6 +1242,13 @@ impl Battle {
                 .pp
                 .saturating_sub(pressure_targets as u8);
         }
+        if let Some(screen) = Screen::from_move(&move_data.name) {
+            if !self.set_screen(source, screen) {
+                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.add(format!("|-fail|{source_name}"));
+            }
+            return;
+        }
         if let Some(hazard) = Hazard::from_move(&move_data.name) {
             if move_data.flags.contains_key("mustpressure") {
                 let pressure = (0..self.slots())
@@ -1247,6 +1288,32 @@ impl Battle {
             }
             return;
         }
+        if move_data.name == "Rest" {
+            let mon = self.mon(source);
+            if mon.hp == mon.max_hp.get() {
+                self.add(format!("|-fail|{source_name}|heal"));
+            } else if self.status_immune(source, "slp") {
+                let ability = if mon.ability == "insomnia" {
+                    "Insomnia"
+                } else {
+                    "Vital Spirit"
+                };
+                self.add(format!(
+                    "|-fail|{source_name}|[from] ability: {ability}|[of] {source_name}"
+                ));
+            } else {
+                self.apply_status(source, "slp", Some("Rest"));
+                let mon = self.mon_mut(source);
+                if matches!(mon.status, Status::Sleep(_)) {
+                    mon.status = Status::Sleep(3);
+                }
+                mon.hp = mon.max_hp.get();
+                self.add_health_line_with("-heal", source, false, "|[silent]");
+                self.each_event();
+                self.each_event();
+            }
+            return;
+        }
         if move_data.name == "Protect" {
             let stall = self.mon(source).stall.map_or(1, |(counter, _)| counter);
             if !more_actions || (stall > 1 && !self.rng.chance(1, u32::from(stall))) {
@@ -1275,6 +1342,26 @@ impl Battle {
         spread_targets.retain(|&mut_pos| {
             if self.mon(mut_pos).protected && move_data.flags.contains_key("protect") {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
+                false
+            } else if source != mut_pos
+                && move_type == "Water"
+                && self.mon(mut_pos).ability == "waterabsorb"
+            {
+                if !self.ability_heal(mut_pos, 4, "Water Absorb", Some(source)) {
+                    self.add(format!(
+                        "|-immune|{}|[from] ability: Water Absorb",
+                        self.ident(mut_pos)
+                    ));
+                }
+                false
+            } else if source != mut_pos
+                && move_data.flags.contains_key("sound")
+                && self.mon(mut_pos).ability == "soundproof"
+            {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Soundproof",
+                    self.ident(mut_pos)
+                ));
                 false
             } else if move_data.category == Category::Status
                 && source != mut_pos
@@ -1340,6 +1427,45 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Yawn" {
+                    let mon = self.mon(target);
+                    if mon.yawn != 0
+                        || mon.status != Status::Healthy
+                        || self.status_immune(target, "slp")
+                    {
+                        self.log[base].public = format!("|move|{source_name}|Yawn||[still]");
+                        self.add(format!("|-fail|{source_name}"));
+                        continue;
+                    }
+                    let mon = self.mon_mut(target);
+                    mon.yawn = 2;
+                    mon.track_volatile("yawn");
+                    self.add(format!(
+                        "|-start|{}|move: Yawn|[of] {source_name}",
+                        self.ident(target)
+                    ));
+                    succeeded = true;
+                }
+                if matches!(
+                    move_data.name.as_str(),
+                    "Moonlight" | "Morning Sun" | "Synthesis"
+                ) {
+                    let fraction = match self.weather() {
+                        Some(Weather::Sun) => 2732,
+                        Some(_) => 1024,
+                        None => 2048,
+                    };
+                    let tr = self.format.stat_rules().truncation;
+                    let mon = self.mon_mut(target);
+                    if mon.hp == mon.max_hp.get() {
+                        self.add(format!("|-fail|{}|heal", self.ident(target)));
+                    } else {
+                        mon.hp = (mon.hp + tr.modify(mon.max_hp.get(), fraction).max(1))
+                            .min(mon.max_hp.get());
+                        self.add_health_line("-heal", target, false);
+                        succeeded = true;
+                    }
+                }
                 if let Some(status) = &move_data.status {
                     succeeded |= self.try_status(target, status, source, move_data, true, base);
                 }
@@ -1375,6 +1501,13 @@ impl Battle {
         }
 
         let tr = self.format.stat_rules().truncation;
+        let screen_handlers = self
+            .sides
+            .iter()
+            .flatten()
+            .flat_map(|s| s.screens)
+            .filter(|turns| *turns != 0)
+            .count() as u32;
         let mut damage = Vec::with_capacity(spread_targets.len());
         for &target in &spread_targets {
             let effect = self.effectiveness(move_data, target).unwrap();
@@ -1435,9 +1568,15 @@ impl Battle {
                 power_modifier = crate::mechanics::chain(power_modifier, 6144);
             }
             let mut final_modifier = if user.item == "lifeorb" { 5324 } else { 4096 };
-            if mon.ability == "multiscale" && mon.hp == mon.max_hp.get() {
+            if (mon.ability == "multiscale" && mon.hp == mon.max_hp.get())
+                || (mon.ability == "auraguard" && move_data.flags.contains_key("contact"))
+            {
                 final_modifier = crate::mechanics::chain(final_modifier, 2048);
             }
+            final_modifier = crate::mechanics::chain(
+                final_modifier,
+                self.screens_damage_modifier(source, target, move_data.category, crit),
+            );
             let value = Damage {
                 level: user.level,
                 power: tr.modify(u32::from(move_data.base_power), power_modifier),
@@ -1462,7 +1601,13 @@ impl Battle {
                 final_modifier,
                 bypassed_protect: false,
             }
-            .roll(tr, &mut self.rng);
+            .roll_with_final_event(tr, &mut self.rng, |rng| {
+                // All screens register onAnyModifyDamage. Their handlers tie
+                // even when their own side/category then makes them no-ops.
+                for choices in (2..=screen_handlers).rev() {
+                    rng.below(choices);
+                }
+            });
             if effect > 0 {
                 self.add(format!(
                     "|-supereffective|{}|{}",
@@ -1483,6 +1628,15 @@ impl Battle {
         }
         let mut total = 0;
         for &(target, value) in &damage {
+            let mon = self.mon(target);
+            let value = if mon.ability == "sturdy" && mon.hp == mon.max_hp.get() && value >= mon.hp
+            {
+                let value = mon.hp - 1;
+                self.add(format!("|-ability|{}|Sturdy", self.ident(target)));
+                value
+            } else {
+                value
+            };
             let value = self.focus_sash(target, value);
             let mon = self.mon_mut(target);
             let landed = value.min(mon.hp);
@@ -1561,6 +1715,9 @@ impl Battle {
             }
         }
         for &(target, _) in &damage {
+            if self.mon(target).ability == "thermalexchange" && move_type == "Fire" {
+                self.ability_boost(target, "Thermal Exchange", BoostStat::Atk, 1, false);
+            }
             if self.mon(target).ability == "stamina" {
                 self.ability_boost(target, "Stamina", BoostStat::Def, 1, false);
             }
@@ -1663,6 +1820,7 @@ impl Battle {
         mon.imprisoned = false;
         mon.choice_lock = None;
         mon.roosted = false;
+        mon.yawn = 0;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
         self.add(format!("|faint|{}", self.ident(target)));
@@ -1810,6 +1968,16 @@ impl Pokemon {
                 | "mirrorarmor"
                 | "competitive"
                 | "stamina"
+                | "icebody"
+                | "waterabsorb"
+                | "soundproof"
+                | "auraguard"
+                | "sturdy"
+                | "thermalexchange"
+                | "infiltrator"
+                | "vitalspirit"
+                | "insomnia"
+                | "immunity"
         )
     }
 
@@ -1846,6 +2014,7 @@ impl Pokemon {
                 | "choicespecs"
                 | "softsand"
                 | "magnet"
+                | "lightclay"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

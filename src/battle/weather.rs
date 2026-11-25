@@ -101,13 +101,15 @@ impl Battle {
         self.weather = Some((weather, turns - 1));
         self.add(format!("|-weather|{}|[upkeep]", weather.label()));
         let (ordered, count) = self.ordered_actives(false);
-        if weather == Weather::Sand {
-            for (pos, _) in ordered.into_iter().take(count) {
+        for (pos, _) in ordered.into_iter().take(count) {
+            if weather == Weather::Sand {
                 if !self.status_immune(pos, "sandstorm")
                     && !matches!(self.mon(pos).ability.as_str(), "sandrush" | "sandforce")
                 {
                     self.indirect_damage(pos, 16, "|[from] Sandstorm");
                 }
+            } else if weather == Weather::Snow && self.mon(pos).ability == "icebody" {
+                self.ability_heal(pos, 16, "Ice Body", None);
             }
         }
         self.each_event();

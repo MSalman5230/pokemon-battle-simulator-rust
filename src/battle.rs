@@ -15,7 +15,9 @@ mod disable;
 mod hazards;
 mod items;
 mod mega;
+mod screens;
 use hazards::Hazard;
+use screens::Screen;
 mod status;
 mod trap;
 mod turn;
@@ -122,6 +124,7 @@ struct Side {
     party: Vec<Pokemon>,
     hazards: Vec<(Hazard, u8)>,
     mega_used: bool,
+    screens: [u8; 3],
 }
 
 pub struct Pokemon {
@@ -154,6 +157,7 @@ pub struct Pokemon {
     choice_lock: Option<usize>,
     active_turns: u32,
     roosted: bool,
+    yawn: u8,
     revealed_disables: u32,
     revealed_all_disables: bool,
     pivot_move: Option<&'static str>,
@@ -392,6 +396,7 @@ impl Battle {
             party,
             hazards: Vec::new(),
             mega_used: false,
+            screens: [0; 3],
         });
         self.rng = rng;
         if self.sides.iter().all(Option::is_some) {
@@ -649,6 +654,7 @@ impl Pokemon {
             choice_lock: None,
             active_turns: 0,
             roosted: false,
+            yawn: 0,
             revealed_disables: 0,
             revealed_all_disables: false,
             pivot_move: None,

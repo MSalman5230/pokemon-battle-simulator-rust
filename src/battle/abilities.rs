@@ -63,6 +63,26 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn ability_heal(
+        &mut self,
+        pos: Position,
+        divisor: u32,
+        label: &str,
+        source: Option<Position>,
+    ) -> bool {
+        let mon = self.mon_mut(pos);
+        if mon.hp == 0 || mon.hp == mon.max_hp.get() {
+            return false;
+        }
+        mon.hp = (mon.hp + (mon.max_hp.get() / divisor).max(1)).min(mon.max_hp.get());
+        let mut cause = format!("|[from] ability: {label}");
+        if let Some(source) = source.filter(|source| *source != pos) {
+            cause.push_str(&format!("|[of] {}", self.ident(source)));
+        }
+        self.add_health_line_with("-heal", pos, false, &cause);
+        true
+    }
+
     pub(super) fn intimidate(&mut self, pos: Position) {
         let foe = pos.player.foe();
         let slots = self.format.game_type.active_slots();
