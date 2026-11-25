@@ -1676,6 +1676,15 @@ const legacyFusionRosters = [
     [{...named('Smeargle', ['Fusion Flare', 'Protect']), ability:'Own Tempo'}, named('Glaceon', ['Fusion Bolt'])],
     [legacyFuryCutterRosters[1][0], {...named('Snorlax', ['Life Dew']), ability:'Immunity'}],
 ];
+const legacyRolloutRosters = [
+    [{...named('Smeargle', ['Defense Curl', 'Rollout']), ability:'No Guard'}],
+    [{...named('Regirock', ['Recover']), ability:'Clear Body'}],
+];
+const legacyIceBallRosters = [
+    [{...named('Smeargle', ['Ice Ball', 'Protect']), ability:'No Guard', item:'Icium Z'},
+        named('Glaceon', ['Protect'])],
+    [named('Vaporeon', ['Tail Whip']), {...named('Regirock', ['Recover', 'Protect']), ability:'Clear Body'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3013,6 +3022,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1 1','move 1, move 1'],
         ['move 1 1, move 1 2','move 2, move 1'], ['move 2, move 1 2','move 1, move 1']],
         legacyFusionRosters, 'custom-fusion-sequence'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 1'],
+        ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1']], legacyRolloutRosters, 'custom-rollout-defense-curl'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 2, move 1','move 1, move 1'],
+        ['move 1, move 1','move 1, move 2'], ['move 1 1, move 1','move 1, move 1']],
+        legacyIceBallRosters, 'custom-ice-ball-lock-and-protect'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

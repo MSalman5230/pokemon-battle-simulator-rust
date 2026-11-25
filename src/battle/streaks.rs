@@ -32,6 +32,47 @@ pub(super) enum Fusion {
     Flare,
 }
 
+#[derive(Clone, Copy)]
+pub(super) struct RollingAttack {
+    pub(super) slot: usize,
+    pub(super) target: i8,
+    id: &'static str,
+    hits: u8,
+    turns: u8,
+}
+
+impl Pokemon {
+    pub(super) fn begin_rolling_attack(&mut self, name: &str, slot: usize, target: i8) {
+        if self.rolling_attack.is_some() || matches!(self.status, Status::Sleep(_)) {
+            return;
+        }
+        let id = match name {
+            "Rollout" => "rollout",
+            "Ice Ball" => "iceball",
+            _ => return,
+        };
+        self.rolling_attack = Some(RollingAttack {
+            slot,
+            target,
+            id,
+            hits: 0,
+            turns: 1,
+        });
+        self.track_volatile(id);
+    }
+
+    pub(super) fn tick_rolling_attack(&mut self) {
+        if let Some(state) = &mut self.rolling_attack {
+            state.turns -= 1;
+            if state.turns == 0 {
+                let id = state.id;
+                self.rolling_attack = None;
+                self.untrack_volatile(id);
+            }
+        }
+    }
+}
+
 impl Fusion {
     pub(super) fn for_move(name: &str) -> Option<Self> {
         match name {
@@ -81,6 +122,26 @@ impl Battle {
                     mon.track_volatile("furycutter");
                 }
                 let power = (base * u16::from(mon.fury_cutter.unwrap().multiplier)).clamp(1, 160);
+                if self.format.report_exact_hp {
+                    self.add(format!("|debug|BP: {power}"));
+                }
+                power
+            }
+            "Rollout" | "Ice Ball" => {
+                let mon = self.mon_mut(pos);
+                let mut power = base;
+                if let Some(state) = &mut mon.rolling_attack {
+                    power <<= state.hits;
+                    if !matches!(mon.status, Status::Sleep(_)) {
+                        state.hits += 1;
+                        if state.hits < 5 {
+                            state.turns = 2;
+                        }
+                    }
+                }
+                if mon.volatile_ids().contains(&"defensecurl") {
+                    power *= 2;
+                }
                 if self.format.report_exact_hp {
                     self.add(format!("|debug|BP: {power}"));
                 }

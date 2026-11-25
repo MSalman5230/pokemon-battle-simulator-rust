@@ -1,0 +1,1870 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"Ice Ball\",\"Protect\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"No Guard\",\"item\":\"Icium Z\"},{\"species\":\"Glaceon\",\"moves\":[\"Protect\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Tail Whip\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Regirock\",\"moves\":[\"Recover\",\"Protect\"],\"gender\":\"F\",\"name\":\"Regirock\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Clear Body\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Regirock, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Regirock, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Regirock, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "iceball",
+                  "protect"
+                ],
+                "baseAbility": "noguard",
+                "item": "iciumz",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover",
+                  "protect"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "iciumz",
+            "active": false,
+            "moves": [
+              {
+                "id": "iceball",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2b: Regirock|Regirock, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2b: Regirock|Regirock, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2b: Regirock|Regirock, L50, F|155/155",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Ball",
+                  "id": "iceball",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Subzero Slammer",
+                  "target": "normal"
+                },
+                null
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "iceball",
+                  "protect"
+                ],
+                "baseAbility": "noguard",
+                "item": "iciumz",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover",
+                  "protect"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "iciumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "iceball",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 2, move 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "54160,3954,50453,18633",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2b: Regirock",
+          "|debug|BP: 30",
+          "|-damage|p2b: Regirock|152/155",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|move|p2b: Regirock|Recover|p2b: Regirock",
+          "|-heal|p2b: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2b: Regirock",
+          "|debug|BP: 30",
+          "|-damage|p2b: Regirock|152/155",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|move|p2b: Regirock|Recover|p2b: Regirock",
+          "|-heal|p2b: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2b: Regirock",
+          "|debug|BP: 30",
+          "|-damage|p2b: Regirock|152/155",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|move|p2b: Regirock|Recover|p2b: Regirock",
+          "|-heal|p2b: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Ball",
+                  "id": "iceball"
+                }
+              ],
+              "trapped": true
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "iceball",
+                  "protect"
+                ],
+                "baseAbility": "noguard",
+                "item": "iciumz",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover",
+                  "protect"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "iciumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "iceball",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1",
+        ">p2 move 1, move 2"
+      ],
+      "turn": 3,
+      "seed": "46145,21898,11320,62836",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect||[still]",
+          "|debug|Success chance: 33%",
+          "|-fail|p1b: Glaceon",
+          "|move|p2b: Regirock|Protect|p2b: Regirock",
+          "|-singleturn|p2b: Regirock|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2b: Regirock|[from] lockedmove",
+          "|-activate|p2b: Regirock|move: Protect",
+          "|move|p2a: Vaporeon|Tail Whip|p1b: Glaceon|[spread] p1a,p1b",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|-unboost|p1b: Glaceon|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect||[still]",
+          "|debug|Success chance: 33%",
+          "|-fail|p1b: Glaceon",
+          "|move|p2b: Regirock|Protect|p2b: Regirock",
+          "|-singleturn|p2b: Regirock|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2b: Regirock|[from] lockedmove",
+          "|-activate|p2b: Regirock|move: Protect",
+          "|move|p2a: Vaporeon|Tail Whip|p1b: Glaceon|[spread] p1a,p1b",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|-unboost|p1b: Glaceon|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect||[still]",
+          "|debug|Success chance: 33%",
+          "|-fail|p1b: Glaceon",
+          "|move|p2b: Regirock|Protect|p2b: Regirock",
+          "|-singleturn|p2b: Regirock|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2b: Regirock|[from] lockedmove",
+          "|-activate|p2b: Regirock|move: Protect",
+          "|move|p2a: Vaporeon|Tail Whip|p1b: Glaceon|[spread] p1a,p1b",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|-unboost|p1b: Glaceon|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Ball",
+                  "id": "iceball",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Subzero Slammer",
+                  "target": "normal"
+                },
+                null
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "iceball",
+                  "protect"
+                ],
+                "baseAbility": "noguard",
+                "item": "iciumz",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover",
+                  "protect"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "iciumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "iceball",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 4,
+      "seed": "11141,40696,19578,35210",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2a: Vaporeon",
+          "|debug|BP: 30",
+          "|-resisted|p2a: Vaporeon|1",
+          "|-damage|p2a: Vaporeon|202/205",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|move|p2b: Regirock|Recover||[still]",
+          "|-fail|p2b: Regirock|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2a: Vaporeon",
+          "|debug|BP: 30",
+          "|-resisted|p2a: Vaporeon|1",
+          "|-damage|p2a: Vaporeon|202/205",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|move|p2b: Regirock|Recover||[still]",
+          "|-fail|p2b: Regirock|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p1a: Smeargle|Ice Ball|p2a: Vaporeon",
+          "|debug|BP: 30",
+          "|-resisted|p2a: Vaporeon|1",
+          "|-damage|p2a: Vaporeon|202/205",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|move|p2b: Regirock|Recover||[still]",
+          "|-fail|p2b: Regirock|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ice Ball",
+                  "id": "iceball"
+                }
+              ],
+              "trapped": true
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "iceball",
+                  "protect"
+                ],
+                "baseAbility": "noguard",
+                "item": "iciumz",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "202/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover",
+                  "protect"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -3,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "iciumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "iceball",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 202,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 17,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

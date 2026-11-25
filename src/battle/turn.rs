@@ -993,6 +993,9 @@ impl Battle {
                     | "echoedvoice"
                     | "fusionbolt"
                     | "fusionflare"
+                    | "rollout"
+                    | "iceball"
+                    | "defensecurl"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1398,7 +1401,12 @@ impl Battle {
             return Ok((
                 ActionKind::Move {
                     move_slot,
-                    target: self.mon(actor).charge.map_or(0, |state| state.target),
+                    target: self
+                        .mon(actor)
+                        .charge
+                        .map(|state| state.target)
+                        .or_else(|| self.mon(actor).rolling_attack.map(|state| state.target))
+                        .unwrap_or(0),
                     mega: false,
                 },
                 false,
@@ -1916,6 +1924,7 @@ impl Battle {
         party[outgoing.slot].dragon_cheer = 0;
         party[outgoing.slot].laser_focus = 0;
         party[outgoing.slot].fury_cutter = None;
+        party[outgoing.slot].rolling_attack = None;
         party[outgoing.slot].gem_boost = false;
         party[outgoing.slot].electrified = false;
         party[outgoing.slot].gastro_acid = false;
@@ -2563,6 +2572,7 @@ impl Battle {
             HealBlock,
             LaserFocus,
             FuryCutter,
+            RollingAttack,
             EchoedVoice,
             Taunt,
             Encore,
@@ -2925,6 +2935,9 @@ impl Battle {
             if mon.fury_cutter.is_some() {
                 timers.push((pos, Effect::FuryCutter, priority(0, 2)));
             }
+            if mon.rolling_attack.is_some() {
+                timers.push((pos, Effect::RollingAttack, priority(0, 2)));
+            }
             if mon.recharge != 0 {
                 timers.push((pos, Effect::Recharge, priority(0, 2)));
             }
@@ -3114,6 +3127,7 @@ impl Battle {
                         mon.untrack_volatile("furycutter");
                     }
                 }
+                Effect::RollingAttack => mon.tick_rolling_attack(),
                 Effect::FocusPunch => {
                     mon.lost_focus = false;
                     mon.untrack_volatile("focuspunch");
@@ -3564,6 +3578,7 @@ impl Battle {
         let continuing = own_action
             && (self.mon(source).rampage.is_some()
                 || self.mon(source).uproar.is_some()
+                || self.mon(source).rolling_attack.is_some()
                 || releasing_charge);
         let round_followup = matches!(
             invocation,
@@ -4042,6 +4057,19 @@ impl Battle {
             return true;
         }
         let after_move_target = spread_targets.last().copied().or(actual_target);
+        if matches!(move_data.name.as_str(), "Rollout" | "Ice Ball")
+            && let (Some(slot), Some(target)) = (slot, target)
+        {
+            self.mon_mut(source).begin_rolling_attack(
+                &move_data.name,
+                slot,
+                if caller.is_some() {
+                    target.loc(source)
+                } else {
+                    loc
+                },
+            );
+        }
 
         if let Some(slot) = caller.map(|(caller, _)| caller).or(slot)
             && !struggle
@@ -6275,6 +6303,12 @@ impl Battle {
                     self.add(format!("|-start|{}|Tar Shot", self.ident(target)));
                     succeeded = true;
                 }
+                if move_data.name == "Defense Curl"
+                    && !self.mon(target).volatile_ids().contains(&"defensecurl")
+                {
+                    self.mon_mut(target).track_volatile("defensecurl");
+                    succeeded = true;
+                }
                 if move_data.name == "Autotomize" && self.mon(target).weighthg > 1 {
                     let mon = self.mon_mut(target);
                     mon.weighthg = mon.weighthg.saturating_sub(1000).max(1);
@@ -7614,6 +7648,7 @@ impl Battle {
         mon.dragon_cheer = 0;
         mon.laser_focus = 0;
         mon.fury_cutter = None;
+        mon.rolling_attack = None;
         mon.gem_boost = false;
         mon.electrified = false;
         mon.gastro_acid = false;
@@ -7911,7 +7946,8 @@ impl Pokemon {
                 .rampage
                 .map(|state| state.slot)
                 .or_else(|| self.charge.map(|state| state.slot))
-                .or_else(|| self.uproar.map(|state| state.slot))?;
+                .or_else(|| self.uproar.map(|state| state.slot))
+                .or_else(|| self.rolling_attack.map(|state| state.slot))?;
             let m = if slot == EXTRA_MOVE_SLOT {
                 self.extra_move.as_ref().unwrap()
             } else {

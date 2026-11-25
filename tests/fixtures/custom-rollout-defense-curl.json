@@ -1,0 +1,1731 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"Defense Curl\",\"Rollout\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"No Guard\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Regirock\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Regirock\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Clear Body\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Regirock, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Regirock, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Regirock, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "defensecurl",
+                  "rollout"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "defensecurl",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "rollout",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Regirock|Regirock, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Regirock|Regirock, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Regirock|Regirock, L50, F|155/155",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Defense Curl",
+                  "id": "defensecurl",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Rollout",
+                  "id": "rollout",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "defensecurl",
+                  "rollout"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "defensecurl",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "rollout",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Defense Curl|p1a: Smeargle",
+          "|-boost|p1a: Smeargle|def|1",
+          "|move|p2a: Regirock|Recover||[still]",
+          "|-fail|p2a: Regirock|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Defense Curl|p1a: Smeargle",
+          "|-boost|p1a: Smeargle|def|1",
+          "|move|p2a: Regirock|Recover||[still]",
+          "|-fail|p2a: Regirock|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Defense Curl|p1a: Smeargle",
+          "|-boost|p1a: Smeargle|def|1",
+          "|move|p2a: Regirock|Recover||[still]",
+          "|-fail|p2a: Regirock|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Defense Curl",
+                  "id": "defensecurl",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Rollout",
+                  "id": "rollout",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "defensecurl",
+                  "rollout"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "defensecurl",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "rollout",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock",
+          "|debug|BP: 60",
+          "|-damage|p2a: Regirock|150/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock",
+          "|debug|BP: 60",
+          "|-damage|p2a: Regirock|150/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock",
+          "|debug|BP: 60",
+          "|-damage|p2a: Regirock|150/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rollout",
+                  "id": "rollout"
+                }
+              ],
+              "trapped": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "defensecurl",
+                  "rollout"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "defensecurl",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "rollout",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 120",
+          "|-damage|p2a: Regirock|145/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 120",
+          "|-damage|p2a: Regirock|145/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 120",
+          "|-damage|p2a: Regirock|145/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rollout",
+                  "id": "rollout"
+                }
+              ],
+              "trapped": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "defensecurl",
+                  "rollout"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "defensecurl",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "rollout",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 240",
+          "|-damage|p2a: Regirock|136/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 240",
+          "|-damage|p2a: Regirock|136/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 240",
+          "|-damage|p2a: Regirock|136/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rollout",
+                  "id": "rollout"
+                }
+              ],
+              "trapped": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "defensecurl",
+                  "rollout"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "defensecurl",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "rollout",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "25495,32001,50713,50540",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 480",
+          "|-damage|p2a: Regirock|118/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 480",
+          "|-damage|p2a: Regirock|118/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 480",
+          "|-damage|p2a: Regirock|118/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rollout",
+                  "id": "rollout"
+                }
+              ],
+              "trapped": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "defensecurl",
+                  "rollout"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "defensecurl",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "rollout",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 7,
+      "seed": "54274,43667,37867,24894",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 960",
+          "|-damage|p2a: Regirock|88/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 960",
+          "|-damage|p2a: Regirock|88/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Rollout|p2a: Regirock|[from] lockedmove",
+          "|debug|BP: 960",
+          "|-damage|p2a: Regirock|88/155",
+          "|move|p2a: Regirock|Recover|p2a: Regirock",
+          "|-heal|p2a: Regirock|155/155",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Defense Curl",
+                  "id": "defensecurl",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Rollout",
+                  "id": "rollout",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "defensecurl",
+                  "rollout"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 2,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Regirock",
+                "details": "Regirock, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 220,
+                  "spa": 70,
+                  "spd": 120,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "clearbody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "defensecurl",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "rollout",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Regirock",
+            "species": "Regirock",
+            "details": "Regirock, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 220,
+              "spa": 70,
+              "spd": 120,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 2,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

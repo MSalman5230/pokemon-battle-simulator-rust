@@ -23,6 +23,7 @@ impl Pokemon {
             || self.rampage.is_some()
             || self.charge.is_some()
             || self.uproar.is_some()
+            || self.rolling_attack.is_some()
     }
 }
 

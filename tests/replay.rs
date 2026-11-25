@@ -1895,6 +1895,14 @@ fn inherited_move_streaks_respect_owner_turn_and_previous_success() {
 }
 
 #[test]
+fn inherited_rolling_attacks_lock_the_target_and_expire_on_hit_count_or_protect() {
+    replay(include_str!("fixtures/custom-rollout-defense-curl.json"));
+    replay(include_str!(
+        "fixtures/custom-ice-ball-lock-and-protect.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
