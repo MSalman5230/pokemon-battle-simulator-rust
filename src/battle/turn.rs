@@ -2420,9 +2420,6 @@ impl Battle {
             if let Some((order, _, _)) = mon.status.residual() {
                 timers.push((pos, Effect::Status, priority(order, 0)));
             }
-            if self.terrain() == Some(Terrain::Grassy) {
-                timers.push((pos, Effect::GrassyHeal, priority(5, 2)));
-            }
             if mon.volatile_ids().contains(&"aquaring") {
                 timers.push((pos, Effect::AquaRing, priority(6, 2)));
             }
@@ -2562,6 +2559,11 @@ impl Battle {
             }
             if mon.attention.is_some() {
                 timers.push((pos, Effect::Attention, priority(0, 2)));
+            }
+            // Field handlers are discovered after this slot's own effects.
+            // Selection-sort swaps use that order when residual speeds tie.
+            if self.terrain() == Some(Terrain::Grassy) {
+                timers.push((pos, Effect::GrassyHeal, priority(5, 2)));
             }
         }
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));

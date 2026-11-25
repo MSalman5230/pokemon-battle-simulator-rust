@@ -1559,6 +1559,11 @@ fn mega_uses_raw_speed_until_the_action_queue_recalculates_speed() {
 }
 
 #[test]
+fn grassy_residual_ties_follow_the_original_effect_discovery_order() {
+    replay(include_str!("fixtures/vgc-grassy-residual-speed-tie.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

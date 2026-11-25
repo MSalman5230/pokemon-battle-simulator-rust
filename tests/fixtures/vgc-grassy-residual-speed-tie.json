@@ -1,0 +1,1045 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsvgc2026regmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsvgc2026regmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Hydrapple\",\"moves\":[\"Grassy Terrain\"],\"gender\":\"F\",\"name\":\"Hydrapple\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Magikarp\",\"moves\":[\"Explosion\"],\"gender\":\"M\",\"name\":\"Magikarp\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Araquanid\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Araquanid\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Leftovers\",\"evs\":{\"spe\":2}},{\"species\":\"Sableye\",\"moves\":[\"Throat Chop\"],\"gender\":\"F\",\"name\":\"Sableye\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] VGC 2026 Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Hydrapple, L50, F|",
+          "|poke|p1|Magikarp, L50, M|",
+          "|poke|p2|Araquanid, L50, F|",
+          "|poke|p2|Sableye, L50, F|",
+          "|teampreview|4"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] VGC 2026 Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Hydrapple, L50, F|",
+          "|poke|p1|Magikarp, L50, M|",
+          "|poke|p2|Araquanid, L50, F|",
+          "|poke|p2|Sableye, L50, F|",
+          "|teampreview|4"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] VGC 2026 Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Hydrapple, L50, F|",
+          "|poke|p1|Magikarp, L50, M|",
+          "|poke|p2|Araquanid, L50, F|",
+          "|poke|p2|Sableye, L50, F|",
+          "|teampreview|4"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 4,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Hydrapple",
+                "details": "Hydrapple, L50, F",
+                "condition": "181/181",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 130,
+                  "spa": 140,
+                  "spd": 100,
+                  "spe": 64
+                },
+                "moves": [
+                  "grassyterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "explosion"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 4,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Araquanid",
+                "details": "Araquanid, L50, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 112,
+                  "spa": 70,
+                  "spd": 152,
+                  "spe": 64
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "throatchop"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Hydrapple",
+            "species": "Hydrapple",
+            "details": "Hydrapple, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 130,
+              "spa": 140,
+              "spd": 100,
+              "spe": 64
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "grassyterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "explosion",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Araquanid",
+            "species": "Araquanid",
+            "details": "Araquanid, L50, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 112,
+              "spa": 70,
+              "spd": 152,
+              "spe": 64
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "throatchop",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Hydrapple|Hydrapple, L50, F|100/100",
+          "|switch|p1b: Magikarp|Magikarp, L50, M|100/100",
+          "|switch|p2a: Araquanid|Araquanid, L50, F|100/100",
+          "|switch|p2b: Sableye|Sableye, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Hydrapple|Hydrapple, L50, F|181/181",
+          "|switch|p1b: Magikarp|Magikarp, L50, M|95/95",
+          "|switch|p2a: Araquanid|Araquanid, L50, F|100/100",
+          "|switch|p2b: Sableye|Sableye, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Hydrapple|Hydrapple, L50, F|100/100",
+          "|switch|p1b: Magikarp|Magikarp, L50, M|100/100",
+          "|switch|p2a: Araquanid|Araquanid, L50, F|143/143",
+          "|switch|p2b: Sableye|Sableye, L50, F|125/125",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Grassy Terrain",
+                  "id": "grassyterrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Explosion",
+                  "id": "explosion",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Hydrapple",
+                "details": "Hydrapple, L50, F",
+                "condition": "181/181",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 130,
+                  "spa": 140,
+                  "spd": 100,
+                  "spe": 64
+                },
+                "moves": [
+                  "grassyterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "explosion"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Throat Chop",
+                  "id": "throatchop",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Araquanid",
+                "details": "Araquanid, L50, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 112,
+                  "spa": 70,
+                  "spd": 152,
+                  "spe": 64
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "throatchop"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Hydrapple",
+            "species": "Hydrapple",
+            "details": "Hydrapple, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 130,
+              "spa": 140,
+              "spd": 100,
+              "spe": 64
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "grassyterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "explosion",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Araquanid",
+            "species": "Araquanid",
+            "details": "Araquanid, L50, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 112,
+              "spa": 70,
+              "spd": 152,
+              "spe": 64
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "throatchop",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1",
+        ">p2 move 1 1, move 1 1"
+      ],
+      "turn": 2,
+      "seed": "25913,14078,46725,43276",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Magikarp|Explosion|p2a: Araquanid|[spread] p1a,p2a",
+          "|-immune|p2b: Sableye",
+          "|-damage|p1a: Hydrapple|90/100",
+          "|-damage|p2a: Araquanid|86/100",
+          "|faint|p1b: Magikarp",
+          "|move|p2b: Sableye|Throat Chop|p1a: Hydrapple",
+          "|-damage|p1a: Hydrapple|70/100",
+          "|-start|p1a: Hydrapple|Throat Chop|[silent]",
+          "|move|p1a: Hydrapple|Grassy Terrain|p1a: Hydrapple",
+          "|-fieldstart|move: Grassy Terrain",
+          "|move|p2a: Araquanid|Tackle|p1a: Hydrapple",
+          "|-damage|p1a: Hydrapple|64/100",
+          "|",
+          "|-heal|p1a: Hydrapple|70/100|[from] Grassy Terrain",
+          "|-heal|p2a: Araquanid|92/100|[from] Grassy Terrain",
+          "|-heal|p2a: Araquanid|97/100|[from] item: Leftovers",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Magikarp|Explosion|p2a: Araquanid|[spread] p1a,p2a",
+          "|-immune|p2b: Sableye",
+          "|-damage|p1a: Hydrapple|164/181",
+          "|-damage|p2a: Araquanid|86/100",
+          "|faint|p1b: Magikarp",
+          "|move|p2b: Sableye|Throat Chop|p1a: Hydrapple",
+          "|-damage|p1a: Hydrapple|127/181",
+          "|-start|p1a: Hydrapple|Throat Chop|[silent]",
+          "|move|p1a: Hydrapple|Grassy Terrain|p1a: Hydrapple",
+          "|-fieldstart|move: Grassy Terrain",
+          "|move|p2a: Araquanid|Tackle|p1a: Hydrapple",
+          "|-damage|p1a: Hydrapple|116/181",
+          "|",
+          "|-heal|p1a: Hydrapple|127/181|[from] Grassy Terrain",
+          "|-heal|p2a: Araquanid|92/100|[from] Grassy Terrain",
+          "|-heal|p2a: Araquanid|97/100|[from] item: Leftovers",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Magikarp|Explosion|p2a: Araquanid|[spread] p1a,p2a",
+          "|-immune|p2b: Sableye",
+          "|-damage|p1a: Hydrapple|90/100",
+          "|-damage|p2a: Araquanid|124/143",
+          "|faint|p1b: Magikarp",
+          "|move|p2b: Sableye|Throat Chop|p1a: Hydrapple",
+          "|-damage|p1a: Hydrapple|70/100",
+          "|-start|p1a: Hydrapple|Throat Chop|[silent]",
+          "|move|p1a: Hydrapple|Grassy Terrain|p1a: Hydrapple",
+          "|-fieldstart|move: Grassy Terrain",
+          "|move|p2a: Araquanid|Tackle|p1a: Hydrapple",
+          "|-damage|p1a: Hydrapple|64/100",
+          "|",
+          "|-heal|p1a: Hydrapple|70/100|[from] Grassy Terrain",
+          "|-heal|p2a: Araquanid|132/143|[from] Grassy Terrain",
+          "|-heal|p2a: Araquanid|140/143|[from] item: Leftovers",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Grassy Terrain",
+                  "id": "grassyterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Explosion",
+                  "id": "explosion",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Hydrapple",
+                "details": "Hydrapple, L50, F",
+                "condition": "127/181",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 130,
+                  "spa": 140,
+                  "spd": 100,
+                  "spe": 64
+                },
+                "moves": [
+                  "grassyterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "explosion"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Throat Chop",
+                  "id": "throatchop",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Araquanid",
+                "details": "Araquanid, L50, F",
+                "condition": "140/143",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 112,
+                  "spa": 70,
+                  "spd": 152,
+                  "spe": 64
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "throatchop"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Hydrapple",
+            "species": "Hydrapple",
+            "details": "Hydrapple, L50, F",
+            "hp": 127,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 130,
+              "spa": 140,
+              "spd": 100,
+              "spe": 64
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "grassyterrain",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 0,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "explosion",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Araquanid",
+            "species": "Araquanid",
+            "details": "Araquanid, L50, F",
+            "hp": 140,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 112,
+              "spa": 70,
+              "spd": 152,
+              "spe": 64
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "throatchop",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
