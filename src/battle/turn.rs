@@ -1040,6 +1040,7 @@ impl Battle {
                     | "healpulse"
                     | "lifedew"
                     | "finalgambit"
+                    | "aurawheel"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -1750,7 +1751,10 @@ impl Battle {
             self.add(format!("|-ability|{}|{label}", self.ident(pos)));
         }
         self.switch_in_weather(pos);
-        self.weather_ability_changed(pos);
+        self.weather_ability_changed(pos, false);
+        if self.mon(pos).ability == "forecast" {
+            self.forecast(pos, self.effective_weather());
+        }
         self.switch_in_terrain(pos);
         if self.mon(pos).ability == "intimidate" {
             self.intimidate(pos);
@@ -1914,6 +1918,7 @@ impl Battle {
             WhiteHerb,
             ShedSkin,
             Hydration,
+            HungerSwitch,
             Healer,
             Weather,
             SpeedBoost,
@@ -2109,6 +2114,9 @@ impl Battle {
             if mon.ability == "hydration" {
                 timers.push((pos, Effect::Hydration, priority(5, 3)));
             }
+            if mon.ability == "hungerswitch" {
+                timers.push((pos, Effect::HungerSwitch, priority(29, 2)));
+            }
             if mon.ability == "healer" {
                 timers.push((pos, Effect::Healer, priority(5, 3)));
             }
@@ -2288,6 +2296,7 @@ impl Battle {
                 Effect::Encore => self.tick_encore(pos),
                 Effect::ShedSkin => self.shed_skin(pos),
                 Effect::Hydration => self.hydration(pos),
+                Effect::HungerSwitch => self.hunger_switch(pos),
                 Effect::Healer => self.healer_residual(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Harvest => self.harvest_item(pos),
@@ -2544,6 +2553,10 @@ impl Battle {
             ("???", false)
         } else if weather_ball {
             (weather.map_or("Normal", Weather::ball_type), false)
+        } else if move_data.name == "Aura Wheel"
+            && self.mon(source).species.name == "Morpeko-Hangry"
+        {
+            ("Dark", false)
         } else {
             let mon = self.mon(source);
             let base = if move_data.name == "Raging Bull" {
@@ -2856,6 +2869,14 @@ impl Battle {
                 move_data.name
             ));
             result.failed = true;
+            return true;
+        }
+        if move_data.name == "Aura Wheel" && self.mon(source).species.base_species != "Morpeko" {
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}|move: Aura Wheel"));
+            self.add(
+                "|-hint|Only a Pokemon whose form is Morpeko or Morpeko-Hangry can use this move.",
+            );
             return true;
         }
         if !delayed && matches!(move_data.name.as_str(), "Future Sight" | "Doom Desire") {
@@ -5011,7 +5032,7 @@ impl Battle {
         self.add(format!("|faint|{}", self.ident(target)));
         self.receive_fainted_ability(target);
         self.end_supreme_overlord(target, false);
-        self.weather_ability_changed(target);
+        self.weather_ability_changed(target, true);
         let rules = self.stat_rules;
         let mon = self.mon_mut(target);
         mon.reset_forme(rules);
@@ -5455,6 +5476,8 @@ impl Pokemon {
                 | "seedsower"
                 | "anticipation"
                 | "forewarn"
+                | "forecast"
+                | "hungerswitch"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

@@ -97,10 +97,24 @@ impl Battle {
         }
     }
 
-    pub(super) fn weather_ability_changed(&mut self, pos: Position) {
+    pub(super) fn weather_ability_changed(&mut self, pos: Position, ending: bool) {
         if self.weather_suppressor(pos).is_some() {
-            // WeatherChange sorts all actives even with no listeners.
-            self.ordered_actives(false);
+            self.weather_change_event(ending.then_some(pos));
+        }
+    }
+
+    fn weather_change_event(&mut self, ending_suppressor: Option<Position>) {
+        // WeatherChange sorts all actives even with no listeners.
+        let (ordered, count) = self.ordered_actives(false);
+        let weather = self.weather().filter(|_| {
+            !self.positions().any(|pos| {
+                Some(pos) != ending_suppressor
+                    && !self.mon(pos).fainted
+                    && self.weather_suppressor(pos).is_some()
+            })
+        });
+        for (pos, _) in ordered.into_iter().take(count) {
+            self.forecast(pos, weather);
         }
     }
 
@@ -134,7 +148,7 @@ impl Battle {
             format!("|[from] ability: {label}|[of] {}", self.ident(pos))
         });
         self.add(format!("|-weather|{}{reason}", weather.label()));
-        self.ordered_actives(false);
+        self.weather_change_event(None);
         true
     }
 
@@ -145,7 +159,7 @@ impl Battle {
         if turns <= 1 {
             self.weather = None;
             self.add("|-weather|none");
-            self.ordered_actives(false);
+            self.weather_change_event(None);
             return;
         }
         self.weather = Some((weather, turns - 1));

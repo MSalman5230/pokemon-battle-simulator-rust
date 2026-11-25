@@ -32,6 +32,58 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn forecast(&mut self, pos: Position, weather: Option<Weather>) {
+        let mon = self.mon(pos);
+        if mon.hp == 0
+            || self.event_ability(pos) != "forecast"
+            || mon.base_species.base_species != "Castform"
+            || mon.transformed.is_some()
+        {
+            return;
+        }
+        let weather = if mon.effective_item() == "utilityumbrella"
+            && matches!(weather, Some(Weather::Rain | Weather::Sun))
+        {
+            None
+        } else {
+            weather
+        };
+        let id = match weather {
+            Some(Weather::Sun) => "castformsunny",
+            Some(Weather::Rain) => "castformrainy",
+            Some(Weather::Snow) => "castformsnowy",
+            _ => "castform",
+        };
+        self.temporary_ability_forme(pos, id, "[msg]|[from] ability: Forecast");
+    }
+
+    pub(super) fn hunger_switch(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.hp == 0 || mon.species.base_species != "Morpeko" {
+            return;
+        }
+        let id = if mon.species.name == "Morpeko" {
+            "morpekohangry"
+        } else {
+            "morpeko"
+        };
+        self.temporary_ability_forme(pos, id, "");
+    }
+
+    fn temporary_ability_forme(&mut self, pos: Position, id: &str, message: &str) {
+        let species = DEX.species(self.format.dex_mod, id).unwrap();
+        if std::ptr::eq(self.mon(pos).species, species) {
+            return;
+        }
+        let rules = self.stat_rules;
+        self.mon_mut(pos).set_current_species(species, rules);
+        self.add(format!(
+            "|-formechange|{}|{}|{message}",
+            self.ident(pos),
+            species.name
+        ));
+    }
+
     pub(super) fn zero_to_hero_on_switch(&mut self, pos: Position) {
         let mon = self.mon(pos);
         if mon.base_species.base_species != "Palafin" || mon.species.name == "Palafin-Hero" {

@@ -445,7 +445,7 @@ impl Battle {
                 self.ident(pos)
             ));
         }
-        self.weather_ability_changed(pos);
+        self.weather_ability_changed(pos, true);
     }
 
     pub(super) fn start_supreme_overlord(&mut self, pos: Position) {

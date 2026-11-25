@@ -979,6 +979,14 @@ const seedSowerRosters = [
     [named('Espeon', ['Tackle'])],
     [{...named('Arboliva', ['Recover']), ability:'Seed Sower', item:'Terrain Extender'}],
 ];
+const forecastRosters = [
+    [{...named('Castform', ['Rain Dance', 'Weather Ball', 'Sunny Day', 'Snowscape']), ability:'Forecast'}],
+    [named('Vaporeon', ['Recover']), {...named('Drampa', ['Recover']), ability:'Cloud Nine'}],
+];
+const hungerSwitchRosters = [
+    [{...named('Morpeko', ['Aura Wheel']), ability:'Hunger Switch'}, named('Umbreon', ['Recover'])],
+    [{...named('Jolteon', ['Recover']), ability:'Volt Absorb'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1840,6 +1848,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         dangerSenseRosters, 'vgc-entry-move-threats'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
         seedSowerRosters, 'bss-seed-sower'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
+        ['move 3','switch 2'], ['move 4','move 1']], forecastRosters, 'bss-forecast'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['switch 2','move 1'], ['switch 2','move 1'], ['move 1','move 1']],
+        hungerSwitchRosters, 'bss-hunger-switch'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

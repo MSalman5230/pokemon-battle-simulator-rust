@@ -1290,6 +1290,12 @@ fn seed_sower_starts_grassy_terrain_when_hit() {
 }
 
 #[test]
+fn forecast_tracks_weather_and_suppression_while_hunger_switch_changes_aura_wheel() {
+    replay(include_str!("fixtures/bss-forecast.json"));
+    replay(include_str!("fixtures/bss-hunger-switch.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
