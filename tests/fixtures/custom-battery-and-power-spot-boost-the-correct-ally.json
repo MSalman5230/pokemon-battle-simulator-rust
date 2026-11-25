@@ -1,0 +1,1448 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Charjabug\",\"moves\":[\"Spark\"],\"gender\":\"F\",\"name\":\"Charjabug\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Battery\"},{\"species\":\"Stonjourner\",\"moves\":[\"Swift\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Stonjourner\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Power Spot\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Snorlax\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Venusaur\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Venusaur\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Charjabug, L50, F|",
+          "|poke|p1|Stonjourner, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Charjabug, L50, F|",
+          "|poke|p1|Stonjourner, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Charjabug, L50, F|",
+          "|poke|p1|Stonjourner, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Charjabug",
+                "details": "Charjabug, L50, F",
+                "condition": "132/132",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 95,
+                  "spe": 56
+                },
+                "moves": [
+                  "spark"
+                ],
+                "baseAbility": "battery",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "battery",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Stonjourner",
+                "details": "Stonjourner, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 155,
+                  "spa": 40,
+                  "spd": 40,
+                  "spe": 90
+                },
+                "moves": [
+                  "swift",
+                  "tackle"
+                ],
+                "baseAbility": "powerspot",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerspot",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Charjabug",
+            "species": "Charjabug",
+            "details": "Charjabug, L50, F",
+            "hp": 132,
+            "maxhp": 132,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 115,
+              "spa": 75,
+              "spd": 95,
+              "spe": 56
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "battery",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "spark",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Stonjourner",
+            "species": "Stonjourner",
+            "details": "Stonjourner, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 155,
+              "spa": 40,
+              "spd": 40,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerspot",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Charjabug|Charjabug, L50, F|132/132",
+          "|switch|p1b: Stonjourner|Stonjourner, L50, F|175/175",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Charjabug|Charjabug, L50, F|132/132",
+          "|switch|p1b: Stonjourner|Stonjourner, L50, F|175/175",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Charjabug|Charjabug, L50, F|132/132",
+          "|switch|p1b: Stonjourner|Stonjourner, L50, F|175/175",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spark",
+                  "id": "spark",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Charjabug",
+                "details": "Charjabug, L50, F",
+                "condition": "132/132",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 95,
+                  "spe": 56
+                },
+                "moves": [
+                  "spark"
+                ],
+                "baseAbility": "battery",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "battery",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Stonjourner",
+                "details": "Stonjourner, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 155,
+                  "spa": 40,
+                  "spd": 40,
+                  "spe": 90
+                },
+                "moves": [
+                  "swift",
+                  "tackle"
+                ],
+                "baseAbility": "powerspot",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerspot",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Charjabug",
+            "species": "Charjabug",
+            "details": "Charjabug, L50, F",
+            "hp": 132,
+            "maxhp": 132,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 115,
+              "spa": 75,
+              "spd": 95,
+              "spe": 56
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "battery",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spark",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Stonjourner",
+            "species": "Stonjourner",
+            "details": "Stonjourner, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 155,
+              "spa": 40,
+              "spd": 40,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerspot",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "55173,41332,18014,39666",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Stonjourner|Swift|p2b: Venusaur|[spread] p2a,p2b",
+          "|debug|Battery boost",
+          "|debug|Spread modifier: 0.75",
+          "|debug|Battery boost",
+          "|debug|Spread modifier: 0.75",
+          "|-damage|p2a: Snorlax|228/235",
+          "|-damage|p2b: Venusaur|147/155",
+          "|move|p1a: Charjabug|Spark|p2a: Snorlax",
+          "|debug|Power Spot boost",
+          "|-damage|p2a: Snorlax|162/235",
+          "|-status|p2a: Snorlax|par",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|235/235 par",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Stonjourner|Swift|p2b: Venusaur|[spread] p2a,p2b",
+          "|debug|Battery boost",
+          "|debug|Spread modifier: 0.75",
+          "|debug|Battery boost",
+          "|debug|Spread modifier: 0.75",
+          "|-damage|p2a: Snorlax|228/235",
+          "|-damage|p2b: Venusaur|147/155",
+          "|move|p1a: Charjabug|Spark|p2a: Snorlax",
+          "|debug|Power Spot boost",
+          "|-damage|p2a: Snorlax|162/235",
+          "|-status|p2a: Snorlax|par",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|235/235 par",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Stonjourner|Swift|p2b: Venusaur|[spread] p2a,p2b",
+          "|debug|Battery boost",
+          "|debug|Spread modifier: 0.75",
+          "|debug|Battery boost",
+          "|debug|Spread modifier: 0.75",
+          "|-damage|p2a: Snorlax|228/235",
+          "|-damage|p2b: Venusaur|147/155",
+          "|move|p1a: Charjabug|Spark|p2a: Snorlax",
+          "|debug|Power Spot boost",
+          "|-damage|p2a: Snorlax|162/235",
+          "|-status|p2a: Snorlax|par",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|235/235 par",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spark",
+                  "id": "spark",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Charjabug",
+                "details": "Charjabug, L50, F",
+                "condition": "132/132",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 95,
+                  "spe": 56
+                },
+                "moves": [
+                  "spark"
+                ],
+                "baseAbility": "battery",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "battery",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Stonjourner",
+                "details": "Stonjourner, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 155,
+                  "spa": 40,
+                  "spd": 40,
+                  "spe": 90
+                },
+                "moves": [
+                  "swift",
+                  "tackle"
+                ],
+                "baseAbility": "powerspot",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerspot",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235 par",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "147/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Charjabug",
+            "species": "Charjabug",
+            "details": "Charjabug, L50, F",
+            "hp": 132,
+            "maxhp": 132,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 115,
+              "spa": 75,
+              "spd": 95,
+              "spe": 56
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "battery",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spark",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Stonjourner",
+            "species": "Stonjourner",
+            "details": "Stonjourner, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 155,
+              "spa": 40,
+              "spd": 40,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerspot",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "par",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 147,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 2 2",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 3,
+      "seed": "32453,44464,39082,34970",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2b: Venusaur|Recover|p2b: Venusaur",
+          "|-heal|p2b: Venusaur|155/155",
+          "|move|p1b: Stonjourner|Tackle|p2b: Venusaur",
+          "|-damage|p2b: Venusaur|130/155",
+          "|move|p1a: Charjabug|Spark|p2a: Snorlax",
+          "|debug|Power Spot boost",
+          "|-damage|p2a: Snorlax|166/235 par",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|235/235 par",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2b: Venusaur|Recover|p2b: Venusaur",
+          "|-heal|p2b: Venusaur|155/155",
+          "|move|p1b: Stonjourner|Tackle|p2b: Venusaur",
+          "|-damage|p2b: Venusaur|130/155",
+          "|move|p1a: Charjabug|Spark|p2a: Snorlax",
+          "|debug|Power Spot boost",
+          "|-damage|p2a: Snorlax|166/235 par",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|235/235 par",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2b: Venusaur|Recover|p2b: Venusaur",
+          "|-heal|p2b: Venusaur|155/155",
+          "|move|p1b: Stonjourner|Tackle|p2b: Venusaur",
+          "|-damage|p2b: Venusaur|130/155",
+          "|move|p1a: Charjabug|Spark|p2a: Snorlax",
+          "|debug|Power Spot boost",
+          "|-damage|p2a: Snorlax|166/235 par",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|235/235 par",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spark",
+                  "id": "spark",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Charjabug",
+                "details": "Charjabug, L50, F",
+                "condition": "132/132",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 115,
+                  "spa": 75,
+                  "spd": 95,
+                  "spe": 56
+                },
+                "moves": [
+                  "spark"
+                ],
+                "baseAbility": "battery",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "battery",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Stonjourner",
+                "details": "Stonjourner, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 155,
+                  "spa": 40,
+                  "spd": 40,
+                  "spe": 90
+                },
+                "moves": [
+                  "swift",
+                  "tackle"
+                ],
+                "baseAbility": "powerspot",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerspot",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235 par",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "130/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Charjabug",
+            "species": "Charjabug",
+            "details": "Charjabug, L50, F",
+            "hp": 132,
+            "maxhp": 132,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 115,
+              "spa": 75,
+              "spd": 95,
+              "spe": 56
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "battery",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spark",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Stonjourner",
+            "species": "Stonjourner",
+            "details": "Stonjourner, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 155,
+              "spa": 40,
+              "spd": 40,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerspot",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "par",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 130,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

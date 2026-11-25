@@ -2081,6 +2081,36 @@ const blunderPolicyRosters = [
     [{...named('Golurk', ['Dynamic Punch'], 'N'), item:'Blunder Policy'}],
     [named('Skarmory', ['Recover'])],
 ];
+const dragonsMawIceScalesRosters = [
+    [{...named('Regidrago', ['Twister', 'Tackle'], 'N'), ability:"Dragon's Maw"}],
+    [{...named('Frosmoth', ['Recover']), ability:'Ice Scales'}],
+];
+const transistorRosters = [
+    [{...named('Regieleki', ['Thunder Shock'], 'N'), ability:'Transistor'}],
+    [named('Umbreon', ['Recover'])],
+];
+const rockySteelRosters = [
+    [{...named('Bombirdier', ['Rock Throw']), ability:'Rocky Payload'},
+        {...named('Dhelmise', ['Metal Claw'], 'N'), ability:'Steelworker'}],
+    [named('Snorlax', ['Recover']), named('Venusaur', ['Recover'])],
+];
+const defeatistRosters = [
+    [{...named('Archeops', ['Tackle']), ability:'Defeatist', ivs:{hp:27}}],
+    [named('Dragapult', ['Super Fang'])],
+];
+const statusBoostRosters = [
+    [{...named('Drifblim', ['Water Gun']), ability:'Flare Boost', item:'Flame Orb'}],
+    [{...named('Zangoose', ['Bite']), ability:'Toxic Boost', item:'Toxic Orb'}],
+];
+const alliedPowerRosters = [
+    [{...named('Charjabug', ['Spark']), ability:'Battery'},
+        {...named('Stonjourner', ['Swift', 'Tackle']), ability:'Power Spot'}],
+    [named('Snorlax', ['Recover']), named('Venusaur', ['Recover'])],
+];
+const tintedLensRosters = [
+    [{...named('Butterfree', ['Gust']), ability:'Tinted Lens'}],
+    [named('Jolteon', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3636,6 +3666,20 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         typedGemRosters, 'custom-fire-gem-triggers-on-the-matching-hit-only'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
         blunderPolicyRosters, 'custom-blunder-policy-activates-after-accuracy-miss'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        dragonsMawIceScalesRosters, 'custom-dragons-maw-and-ice-scales-at-distinct-damage-stages'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        transistorRosters, 'custom-transistor-uses-the-current-electric-move-type'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1 2','move 1, move 1']],
+        rockySteelRosters, 'custom-rocky-payload-and-steelworker-both-boost-attack'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        defeatistRosters, 'custom-defeatist-halves-attack-at-half-health'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        statusBoostRosters, 'custom-flare-boost-and-toxic-boost-check-category-and-status'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1'], ['move 1 1, move 2 2','move 1, move 1']],
+        alliedPowerRosters, 'custom-battery-and-power-spot-boost-the-correct-ally'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        tintedLensRosters, 'custom-tinted-lens-doubles-otherwise-resisted-damage'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

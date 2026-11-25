@@ -121,6 +121,17 @@ impl Pokemon {
             "megalauncher" if flags.contains_key("pulse") => 6144,
             "ironfist" if flags.contains_key("punch") => 4915,
             "reckless" if move_data.recoil.is_some() || crash_move(&move_data.name) => 4915,
+            "flareboost"
+                if self.status == Status::Burn && move_data.category == Category::Special =>
+            {
+                6144
+            }
+            "toxicboost"
+                if matches!(self.status, Status::Poison | Status::Toxic(_))
+                    && move_data.category == Category::Physical =>
+            {
+                6144
+            }
             "sandforce"
                 if weather == Some(Weather::Sand)
                     && matches!(move_type, "Rock" | "Ground" | "Steel") =>
@@ -132,7 +143,11 @@ impl Pokemon {
     }
 
     pub(super) fn attack_modifier(&self, category: Category, move_type: &str) -> u32 {
-        let ability = if self.active_ability() == "waterbubble" && move_type == "Water" {
+        let ability = if let Some((modifier, _)) = self.typed_offensive_modifier(move_type) {
+            modifier
+        } else if self.active_ability() == "defeatist" && self.hp * 2 <= self.max_hp.get() {
+            2048
+        } else if self.active_ability() == "waterbubble" && move_type == "Water" {
             8192
         } else if self.low_hp_attack_boost(move_type).is_some()
             || (self.active_ability() == "firemane" && move_type == "Fire")
@@ -163,6 +178,16 @@ impl Pokemon {
         } else {
             native
         }
+    }
+
+    pub(super) fn typed_offensive_modifier(&self, move_type: &str) -> Option<(u32, &'static str)> {
+        Some(match (self.active_ability(), move_type) {
+            ("dragonsmaw", "Dragon") => (6144, "Dragon's Maw boost"),
+            ("rockypayload", "Rock") => (6144, "Rocky Payload boost"),
+            ("steelworker", "Steel") => (6144, "Steelworker boost"),
+            ("transistor", "Electric") => (5325, "Transistor boost"),
+            _ => return None,
+        })
     }
 
     pub(super) fn low_hp_attack_boost(&self, move_type: &str) -> Option<&'static str> {

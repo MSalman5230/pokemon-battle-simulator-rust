@@ -146,6 +146,14 @@ impl Battle {
                 Hook::Ability(source, if effectiveness > 0 { 5120 } else { 4096 }, ""),
             );
         }
+        if source_active && user.ability == "tintedlens" {
+            let (factor, debug) = if effectiveness < 0 {
+                (8192, "Tinted Lens boost")
+            } else {
+                (4096, "")
+            };
+            add(user.speed, 7, Hook::Ability(source, factor, debug));
+        }
         match if source_active {
             user.item.as_str()
         } else {
@@ -196,6 +204,19 @@ impl Battle {
                 defender.speed,
                 7,
                 Hook::Ability(target, if contact { 2048 } else { 4096 }, ""),
+            ),
+            "icescales" => add(
+                defender.speed,
+                7,
+                Hook::Ability(
+                    target,
+                    if data.category == Category::Special {
+                        2048
+                    } else {
+                        4096
+                    },
+                    "",
+                ),
             ),
             "fluffy" => {
                 let factor = match (typing == "Fire", contact) {
@@ -397,17 +418,28 @@ impl Battle {
                 self.add("|debug|Punching Glove boost");
             }
         }
-        let mut spirit_handlers = [0; 2];
-        let mut spirit_count = 0;
+        let mut allied_power_handlers = [(0, 4096, ""); 2];
+        let mut allied_power_count = 0;
         let mut aura_handlers = [0; 4];
         let mut aura_count = 0;
         let mut aura_applies = false;
         let mut aura_break = false;
         for pos in self.positions() {
             match self.event_ability(pos) {
-                "steelyspirit" if pos.player == source.player => {
-                    spirit_handlers[spirit_count] = self.mon(pos).speed;
-                    spirit_count += 1;
+                ability @ ("steelyspirit" | "battery" | "powerspot")
+                    if pos.player == source.player =>
+                {
+                    let (factor, debug) = match ability {
+                        "steelyspirit" if move_type == "Steel" => (6144, "Steely Spirit boost"),
+                        "battery" if source != pos && move_data.category == Category::Special => {
+                            (5325, "Battery boost")
+                        }
+                        "powerspot" if source != pos => (5325, "Power Spot boost"),
+                        _ => (4096, ""),
+                    };
+                    allied_power_handlers[allied_power_count] =
+                        (self.mon(pos).speed, factor, debug);
+                    allied_power_count += 1;
                 }
                 ability @ ("fairyaura" | "darkaura") => {
                     aura_handlers[aura_count] = self.mon(pos).speed;
@@ -422,16 +454,18 @@ impl Battle {
             }
         }
         speed_sort_by(
-            &mut spirit_handlers[..spirit_count],
+            &mut allied_power_handlers[..allied_power_count],
             &mut self.rng,
-            |a, b| b.cmp(a),
+            |a, b| b.0.cmp(&a.0),
         );
         speed_sort_by(&mut aura_handlers[..aura_count], &mut self.rng, |a, b| {
             b.cmp(a)
         });
-        if move_type == "Steel" && self.format.report_exact_hp {
-            for _ in 0..spirit_count {
-                self.add("|debug|Steely Spirit boost");
+        if self.format.report_exact_hp {
+            for &(_, _, label) in &allied_power_handlers[..allied_power_count] {
+                if !label.is_empty() {
+                    self.add(format!("|debug|{label}"));
+                }
             }
         }
         if solar_weak && self.format.report_exact_hp {
@@ -606,7 +640,12 @@ impl Battle {
         };
         if self.format.report_exact_hp {
             let attack_boost = source_active
-                .then(|| user.low_hp_attack_boost(move_type))
+                .then(|| {
+                    user.low_hp_attack_boost(move_type).or_else(|| {
+                        user.typed_offensive_modifier(move_type)
+                            .map(|(_, label)| label)
+                    })
+                })
                 .flatten();
             if crit && atk_stage < 0 {
                 self.add("|debug|Negating (sp)atk boost/penalty.");
@@ -748,10 +787,8 @@ impl Battle {
         } else {
             4096
         };
-        if move_type == "Steel" {
-            for _ in 0..spirit_count {
-                power_modifier = chain(6144, power_modifier);
-            }
+        for &(_, factor, _) in &allied_power_handlers[..allied_power_count] {
+            power_modifier = chain(factor, power_modifier);
         }
         if glove {
             power_modifier = chain(4506, power_modifier);

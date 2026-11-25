@@ -1,0 +1,734 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Drifblim\",\"moves\":[\"Water Gun\"],\"gender\":\"F\",\"name\":\"Drifblim\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Flare Boost\",\"item\":\"Flame Orb\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Zangoose\",\"moves\":[\"Bite\"],\"gender\":\"F\",\"name\":\"Zangoose\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Toxic Boost\",\"item\":\"Toxic Orb\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Drifblim, L50, F|",
+          "|poke|p2|Zangoose, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Drifblim, L50, F|",
+          "|poke|p2|Zangoose, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Drifblim, L50, F|",
+          "|poke|p2|Zangoose, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Drifblim",
+                "details": "Drifblim, L50, F",
+                "condition": "225/225",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 64,
+                  "spa": 110,
+                  "spd": 74,
+                  "spe": 100
+                },
+                "moves": [
+                  "watergun"
+                ],
+                "baseAbility": "flareboost",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "flareboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Zangoose",
+                "details": "Zangoose, L50, F",
+                "condition": "148/148",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 80,
+                  "spa": 80,
+                  "spd": 80,
+                  "spe": 110
+                },
+                "moves": [
+                  "bite"
+                ],
+                "baseAbility": "toxicboost",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "toxicboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Drifblim",
+            "species": "Drifblim",
+            "details": "Drifblim, L50, F",
+            "hp": 225,
+            "maxhp": 225,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 64,
+              "spa": 110,
+              "spd": 74,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flareboost",
+            "item": "flameorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Zangoose",
+            "species": "Zangoose",
+            "details": "Zangoose, L50, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 80,
+              "spa": 80,
+              "spd": 80,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "toxicboost",
+            "item": "toxicorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Drifblim|Drifblim, L50, F|225/225",
+          "|switch|p2a: Zangoose|Zangoose, L50, F|148/148",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Drifblim|Drifblim, L50, F|225/225",
+          "|switch|p2a: Zangoose|Zangoose, L50, F|148/148",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Drifblim|Drifblim, L50, F|225/225",
+          "|switch|p2a: Zangoose|Zangoose, L50, F|148/148",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Drifblim",
+                "details": "Drifblim, L50, F",
+                "condition": "225/225",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 64,
+                  "spa": 110,
+                  "spd": 74,
+                  "spe": 100
+                },
+                "moves": [
+                  "watergun"
+                ],
+                "baseAbility": "flareboost",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "flareboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Zangoose",
+                "details": "Zangoose, L50, F",
+                "condition": "148/148",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 80,
+                  "spa": 80,
+                  "spd": 80,
+                  "spe": 110
+                },
+                "moves": [
+                  "bite"
+                ],
+                "baseAbility": "toxicboost",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "toxicboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Drifblim",
+            "species": "Drifblim",
+            "details": "Drifblim, L50, F",
+            "hp": 225,
+            "maxhp": 225,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 64,
+              "spa": 110,
+              "spd": 74,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flareboost",
+            "item": "flameorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Zangoose",
+            "species": "Zangoose",
+            "details": "Zangoose, L50, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 80,
+              "spa": 80,
+              "spd": 80,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "toxicboost",
+            "item": "toxicorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Zangoose|Bite|p1a: Drifblim",
+          "|-supereffective|p1a: Drifblim|1",
+          "|-damage|p1a: Drifblim|123/225",
+          "|cant|p1a: Drifblim|flinch",
+          "|",
+          "|-status|p2a: Zangoose|tox|[from] item: Toxic Orb",
+          "|-status|p1a: Drifblim|brn|[from] item: Flame Orb",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Zangoose|Bite|p1a: Drifblim",
+          "|-supereffective|p1a: Drifblim|1",
+          "|-damage|p1a: Drifblim|123/225",
+          "|cant|p1a: Drifblim|flinch",
+          "|",
+          "|-status|p2a: Zangoose|tox|[from] item: Toxic Orb",
+          "|-status|p1a: Drifblim|brn|[from] item: Flame Orb",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Zangoose|Bite|p1a: Drifblim",
+          "|-supereffective|p1a: Drifblim|1",
+          "|-damage|p1a: Drifblim|123/225",
+          "|cant|p1a: Drifblim|flinch",
+          "|",
+          "|-status|p2a: Zangoose|tox|[from] item: Toxic Orb",
+          "|-status|p1a: Drifblim|brn|[from] item: Flame Orb",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Drifblim",
+                "details": "Drifblim, L50, F",
+                "condition": "123/225 brn",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 64,
+                  "spa": 110,
+                  "spd": 74,
+                  "spe": 100
+                },
+                "moves": [
+                  "watergun"
+                ],
+                "baseAbility": "flareboost",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "flareboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Bite",
+                  "id": "bite",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Zangoose",
+                "details": "Zangoose, L50, F",
+                "condition": "148/148 tox",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 80,
+                  "spa": 80,
+                  "spd": 80,
+                  "spe": 110
+                },
+                "moves": [
+                  "bite"
+                ],
+                "baseAbility": "toxicboost",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "toxicboost",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Drifblim",
+            "species": "Drifblim",
+            "details": "Drifblim, L50, F",
+            "hp": 123,
+            "maxhp": 225,
+            "status": "brn",
+            "stats": {
+              "atk": 100,
+              "def": 64,
+              "spa": 110,
+              "spd": 74,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flareboost",
+            "item": "flameorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Zangoose",
+            "species": "Zangoose",
+            "details": "Zangoose, L50, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "tox",
+            "stats": {
+              "atk": 135,
+              "def": 80,
+              "spa": 80,
+              "spd": 80,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "toxicboost",
+            "item": "toxicorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "25495,32001,50713,50540",
+      "requestState": "",
+      "waiting": [
+        true,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Zangoose|Bite|p1a: Drifblim",
+          "|-supereffective|p1a: Drifblim|1",
+          "|-damage|p1a: Drifblim|0 fnt",
+          "|faint|p1a: Drifblim",
+          "|",
+          "|win|player1"
+        ],
+        [
+          "|",
+          "|move|p2a: Zangoose|Bite|p1a: Drifblim",
+          "|-supereffective|p1a: Drifblim|1",
+          "|-damage|p1a: Drifblim|0 fnt",
+          "|faint|p1a: Drifblim",
+          "|",
+          "|win|player1"
+        ],
+        [
+          "|",
+          "|move|p2a: Zangoose|Bite|p1a: Drifblim",
+          "|-supereffective|p1a: Drifblim|1",
+          "|-damage|p1a: Drifblim|0 fnt",
+          "|faint|p1a: Drifblim",
+          "|",
+          "|win|player1"
+        ]
+      ],
+      "requests": [
+        null,
+        null
+      ],
+      "teams": [
+        [
+          {
+            "name": "Drifblim",
+            "species": "Drifblim",
+            "details": "Drifblim, L50, F",
+            "hp": 0,
+            "maxhp": 225,
+            "status": "brn",
+            "stats": {
+              "atk": 100,
+              "def": 64,
+              "spa": 110,
+              "spd": 74,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flareboost",
+            "item": "flameorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Zangoose",
+            "species": "Zangoose",
+            "details": "Zangoose, L50, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "tox",
+            "stats": {
+              "atk": 135,
+              "def": 80,
+              "spa": 80,
+              "spd": 80,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "toxicboost",
+            "item": "toxicorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "bite",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

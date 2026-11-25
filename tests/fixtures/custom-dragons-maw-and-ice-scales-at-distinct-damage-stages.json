@@ -1,0 +1,865 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Regidrago\",\"moves\":[\"Twister\",\"Tackle\"],\"gender\":\"N\",\"name\":\"Regidrago\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Dragon's Maw\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Frosmoth\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Frosmoth\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Ice Scales\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Regidrago, L50|",
+          "|poke|p2|Frosmoth, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Regidrago, L50|",
+          "|poke|p2|Frosmoth, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Regidrago, L50|",
+          "|poke|p2|Frosmoth, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Regidrago",
+                "details": "Regidrago, L50",
+                "condition": "275/275",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 70,
+                  "spa": 120,
+                  "spd": 70,
+                  "spe": 100
+                },
+                "moves": [
+                  "twister",
+                  "tackle"
+                ],
+                "baseAbility": "dragonsmaw",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dragonsmaw",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Frosmoth",
+                "details": "Frosmoth, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 145,
+                  "spd": 110,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "icescales",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "icescales",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Regidrago",
+            "species": "Regidrago",
+            "details": "Regidrago, L50",
+            "hp": 275,
+            "maxhp": 275,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 70,
+              "spa": 120,
+              "spd": 70,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dragonsmaw",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "twister",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Frosmoth",
+            "species": "Frosmoth",
+            "details": "Frosmoth, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 145,
+              "spd": 110,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icescales",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Regidrago|Regidrago, L50|275/275",
+          "|switch|p2a: Frosmoth|Frosmoth, L50, F|145/145",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Regidrago|Regidrago, L50|275/275",
+          "|switch|p2a: Frosmoth|Frosmoth, L50, F|145/145",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Regidrago|Regidrago, L50|275/275",
+          "|switch|p2a: Frosmoth|Frosmoth, L50, F|145/145",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Twister",
+                  "id": "twister",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Regidrago",
+                "details": "Regidrago, L50",
+                "condition": "275/275",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 70,
+                  "spa": 120,
+                  "spd": 70,
+                  "spe": 100
+                },
+                "moves": [
+                  "twister",
+                  "tackle"
+                ],
+                "baseAbility": "dragonsmaw",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dragonsmaw",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Frosmoth",
+                "details": "Frosmoth, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 145,
+                  "spd": 110,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "icescales",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "icescales",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Regidrago",
+            "species": "Regidrago",
+            "details": "Regidrago, L50",
+            "hp": 275,
+            "maxhp": 275,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 70,
+              "spa": 120,
+              "spd": 70,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dragonsmaw",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "twister",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Frosmoth",
+            "species": "Frosmoth",
+            "details": "Frosmoth, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 145,
+              "spd": 110,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icescales",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Regidrago|Twister|p2a: Frosmoth",
+          "|debug|Dragon's Maw boost",
+          "|-damage|p2a: Frosmoth|125/145",
+          "|cant|p2a: Frosmoth|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Regidrago|Twister|p2a: Frosmoth",
+          "|debug|Dragon's Maw boost",
+          "|-damage|p2a: Frosmoth|125/145",
+          "|cant|p2a: Frosmoth|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Regidrago|Twister|p2a: Frosmoth",
+          "|debug|Dragon's Maw boost",
+          "|-damage|p2a: Frosmoth|125/145",
+          "|cant|p2a: Frosmoth|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Twister",
+                  "id": "twister",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Regidrago",
+                "details": "Regidrago, L50",
+                "condition": "275/275",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 70,
+                  "spa": 120,
+                  "spd": 70,
+                  "spe": 100
+                },
+                "moves": [
+                  "twister",
+                  "tackle"
+                ],
+                "baseAbility": "dragonsmaw",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dragonsmaw",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Frosmoth",
+                "details": "Frosmoth, L50, F",
+                "condition": "125/145",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 145,
+                  "spd": 110,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "icescales",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "icescales",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Regidrago",
+            "species": "Regidrago",
+            "details": "Regidrago, L50",
+            "hp": 275,
+            "maxhp": 275,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 70,
+              "spa": 120,
+              "spd": 70,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dragonsmaw",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "twister",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Frosmoth",
+            "species": "Frosmoth",
+            "details": "Frosmoth, L50, F",
+            "hp": 125,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 145,
+              "spd": 110,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icescales",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Regidrago|Tackle|p2a: Frosmoth",
+          "|-damage|p2a: Frosmoth|102/145",
+          "|move|p2a: Frosmoth|Recover|p2a: Frosmoth",
+          "|-heal|p2a: Frosmoth|145/145",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Regidrago|Tackle|p2a: Frosmoth",
+          "|-damage|p2a: Frosmoth|102/145",
+          "|move|p2a: Frosmoth|Recover|p2a: Frosmoth",
+          "|-heal|p2a: Frosmoth|145/145",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Regidrago|Tackle|p2a: Frosmoth",
+          "|-damage|p2a: Frosmoth|102/145",
+          "|move|p2a: Frosmoth|Recover|p2a: Frosmoth",
+          "|-heal|p2a: Frosmoth|145/145",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Twister",
+                  "id": "twister",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Regidrago",
+                "details": "Regidrago, L50",
+                "condition": "275/275",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 70,
+                  "spa": 120,
+                  "spd": 70,
+                  "spe": 100
+                },
+                "moves": [
+                  "twister",
+                  "tackle"
+                ],
+                "baseAbility": "dragonsmaw",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dragonsmaw",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Frosmoth",
+                "details": "Frosmoth, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 145,
+                  "spd": 110,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "icescales",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "icescales",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Regidrago",
+            "species": "Regidrago",
+            "details": "Regidrago, L50",
+            "hp": 275,
+            "maxhp": 275,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 70,
+              "spa": 120,
+              "spd": 70,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dragonsmaw",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "twister",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Frosmoth",
+            "species": "Frosmoth",
+            "details": "Frosmoth, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 145,
+              "spd": 110,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icescales",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

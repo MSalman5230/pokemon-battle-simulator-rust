@@ -2249,6 +2249,31 @@ fn inherited_hidden_item_handlers_use_the_native_immunity_and_accuracy_stages() 
 }
 
 #[test]
+fn inherited_damage_abilities_modify_the_correct_stat_power_or_final_damage() {
+    replay(include_str!(
+        "fixtures/custom-dragons-maw-and-ice-scales-at-distinct-damage-stages.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-transistor-uses-the-current-electric-move-type.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-rocky-payload-and-steelworker-both-boost-attack.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-defeatist-halves-attack-at-half-health.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-flare-boost-and-toxic-boost-check-category-and-status.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-battery-and-power-spot-boost-the-correct-ally.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-tinted-lens-doubles-otherwise-resisted-damage.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
