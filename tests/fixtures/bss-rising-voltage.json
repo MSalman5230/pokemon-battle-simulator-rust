@@ -1,0 +1,1382 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Bellibolt\",\"moves\":[\"Electric Terrain\",\"Rising Voltage\"],\"gender\":\"F\",\"name\":\"Bellibolt\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Rotom\",\"moves\":[\"Recover\"],\"gender\":\"N\",\"name\":\"Rotom\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Levitate\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Bellibolt, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Rotom, L50|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Bellibolt, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Rotom, L50|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Bellibolt, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Rotom, L50|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 65
+                },
+                "moves": [
+                  "electricterrain",
+                  "risingvoltage"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "electricterrain",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "risingvoltage",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Bellibolt|Bellibolt, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Bellibolt|Bellibolt, L50, F|184/184",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Bellibolt|Bellibolt, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electric Terrain",
+                  "id": "electricterrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Rising Voltage",
+                  "id": "risingvoltage",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 65
+                },
+                "moves": [
+                  "electricterrain",
+                  "risingvoltage"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electricterrain",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "risingvoltage",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Bellibolt|Electric Terrain|p1a: Bellibolt",
+          "|-fieldstart|move: Electric Terrain",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Bellibolt|Electric Terrain|p1a: Bellibolt",
+          "|-fieldstart|move: Electric Terrain",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Bellibolt|Electric Terrain|p1a: Bellibolt",
+          "|-fieldstart|move: Electric Terrain",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electric Terrain",
+                  "id": "electricterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Rising Voltage",
+                  "id": "risingvoltage",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 65
+                },
+                "moves": [
+                  "electricterrain",
+                  "risingvoltage"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electricterrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "risingvoltage",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Bellibolt|Rising Voltage|p2a: Umbreon",
+          "|-hint|Rising Voltage's BP doubled on grounded target.",
+          "|-damage|p2a: Umbreon|47/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Bellibolt|Rising Voltage|p2a: Umbreon",
+          "|-hint|Rising Voltage's BP doubled on grounded target.",
+          "|-damage|p2a: Umbreon|47/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Bellibolt|Rising Voltage|p2a: Umbreon",
+          "|-hint|Rising Voltage's BP doubled on grounded target.",
+          "|-damage|p2a: Umbreon|80/170",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electric Terrain",
+                  "id": "electricterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Rising Voltage",
+                  "id": "risingvoltage",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 65
+                },
+                "moves": [
+                  "electricterrain",
+                  "risingvoltage"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "80/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electricterrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "risingvoltage",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 80,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 switch 2"
+      ],
+      "turn": 4,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Rotom|Rotom, L50|100/100",
+          "|move|p1a: Bellibolt|Rising Voltage|p2a: Rotom",
+          "|-resisted|p2a: Rotom|1",
+          "|-damage|p2a: Rotom|72/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Rotom|Rotom, L50|100/100",
+          "|move|p1a: Bellibolt|Rising Voltage|p2a: Rotom",
+          "|-resisted|p2a: Rotom|1",
+          "|-damage|p2a: Rotom|72/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Rotom|Rotom, L50|125/125",
+          "|move|p1a: Bellibolt|Rising Voltage|p2a: Rotom",
+          "|-resisted|p2a: Rotom|1",
+          "|-damage|p2a: Rotom|90/125",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electric Terrain",
+                  "id": "electricterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Rising Voltage",
+                  "id": "risingvoltage",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bellibolt",
+                "details": "Bellibolt, L50, F",
+                "condition": "184/184",
+                "active": true,
+                "stats": {
+                  "atk": 84,
+                  "def": 111,
+                  "spa": 123,
+                  "spd": 103,
+                  "spe": 65
+                },
+                "moves": [
+                  "electricterrain",
+                  "risingvoltage"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "90/125",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "80/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bellibolt",
+            "species": "Bellibolt",
+            "details": "Bellibolt, L50, F",
+            "hp": 184,
+            "maxhp": 184,
+            "status": "",
+            "stats": {
+              "atk": 84,
+              "def": 111,
+              "spa": 123,
+              "spd": 103,
+              "spe": 65
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electricterrain",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "risingvoltage",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 90,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 80,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

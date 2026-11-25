@@ -361,6 +361,9 @@ impl Battle {
                     | "throatchop"
                     | "flail"
                     | "reversal"
+                    | "acrobatics"
+                    | "hardpress"
+                    | "risingvoltage"
             )
         {
             return Err(unsupported(format!("move {move_id}")));
@@ -416,6 +419,9 @@ impl Battle {
             "grassknot" | "lowkick" | "heatcrash" | "heavyslam" => self
                 .weight_move_power(&data.name, ACTOR, TARGET)
                 .ok_or_else(|| unsupported(move_id))?,
+            "acrobatics" | "hardpress" | "risingvoltage" => {
+                self.situational_base_power(ACTOR, TARGET, data, data.base_power)
+            }
             _ => data.base_power,
         };
         let item = self.mon(TARGET).item.clone();

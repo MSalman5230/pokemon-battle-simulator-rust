@@ -1227,6 +1227,12 @@ fn special_moves_can_target_physical_defense_without_changing_category() {
 }
 
 #[test]
+fn situational_attack_power_follows_held_items_current_hp_and_grounding() {
+    replay(include_str!("fixtures/bss-situational-power.json"));
+    replay(include_str!("fixtures/bss-rising-voltage.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

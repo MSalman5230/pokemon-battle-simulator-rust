@@ -16,6 +16,42 @@ enum Hook {
 }
 
 impl Battle {
+    pub(super) fn situational_base_power(
+        &mut self,
+        source: Position,
+        target: Position,
+        data: &Move,
+        power: u16,
+    ) -> u16 {
+        match data.name.as_str() {
+            "Acrobatics" if self.mon(source).item.is_empty() => {
+                if self.format.report_exact_hp {
+                    self.add("|debug|BP doubled for no item");
+                }
+                power * 2
+            }
+            "Hard Press" => {
+                let mon = self.mon(target);
+                let (hp, max_hp) = (mon.hp, mon.max_hp);
+                let ratio = hp * 4096 / max_hp;
+                let result = ((10_000 * ratio + 2047) / 4096 / 100).max(1);
+                if self.format.report_exact_hp {
+                    self.add(format!("|debug|BP for {hp}/{max_hp} HP: {result}"));
+                }
+                result as u16
+            }
+            "Rising Voltage"
+                if self.terrain() == Some(Terrain::Electric) && self.grounded(target) =>
+            {
+                if source.player != target.player {
+                    self.add("|-hint|Rising Voltage's BP doubled on grounded target.");
+                }
+                power * 2
+            }
+            _ => power,
+        }
+    }
+
     pub(super) fn final_damage_modifier(
         &mut self,
         source: Position,

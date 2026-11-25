@@ -900,6 +900,14 @@ const specialPhysicalDefenseRosters = [
     [named('Espeon', ['Psyshock', 'Psychic', 'Psystrike', 'Secret Sword'])],
     [{...named('Furfrou', ['Cotton Guard', 'Recover']), ability:'Fur Coat'}],
 ];
+const situationalPowerRosters = [
+    [{...named('Hawlucha', ['Acrobatics', 'Hard Press']), item:'Sitrus Berry'}],
+    [named('Vaporeon', ['Seismic Toss', 'Recover'])],
+];
+const risingVoltageRosters = [
+    [named('Bellibolt', ['Electric Terrain', 'Rising Voltage'])],
+    [named('Umbreon', ['Recover']), {...named('Rotom', ['Recover'], 'N'), ability:'Levitate'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1721,6 +1729,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         uproarRosters, 'bss-uproar'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'],
         ['move 3','move 2'], ['move 4','move 2']], specialPhysicalDefenseRosters, 'bss-special-physical-defense'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 1','move 2'], ['move 2','move 2']], situationalPowerRosters, 'bss-situational-power'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 2','switch 2']], risingVoltageRosters, 'bss-rising-voltage'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

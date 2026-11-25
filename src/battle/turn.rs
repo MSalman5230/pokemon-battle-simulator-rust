@@ -1033,6 +1033,9 @@ impl Battle {
                     | "reversal"
                     | "flail"
                     | "payback"
+                    | "acrobatics"
+                    | "hardpress"
+                    | "risingvoltage"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -4168,7 +4171,7 @@ impl Battle {
                         .effectiveness_of(move_data, move_type, target, ignores_type)
                         .unwrap()
                 };
-                let mut power = power;
+                let mut power = battle.situational_base_power(source, target, move_data, power);
                 if move_data.name == "Hex" && battle.mon(target).status != Status::Healthy {
                     if battle.format.report_exact_hp {
                         battle.add("|debug|BP doubled from status condition");

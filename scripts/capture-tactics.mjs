@@ -79,6 +79,12 @@ add('Psyshock uses special offense against Fur Coat and Defense boosts', 'psysho
     mon('Espeon', 'Synchronize', 'Choice Specs'), mon('Furfrou', 'Fur Coat', '', {boosts:{def:2}}));
 add('Psystrike uses physical defense including snow and not SpD', 'psystrike',
     mon('Espeon', 'Synchronize'), mon('Glaceon', 'Snow Cloak', '', {boosts:{spd:2}}), {weather:'snowscape'});
+add('Acrobatics doubles with no held item', 'acrobatics', mon('Hawlucha', 'Unburden'), water);
+add('Klutz does not make a held item disappear for Acrobatics', 'acrobatics',
+    mon('Lopunny', 'Klutz', 'Choice Band'), water);
+add('Hard Press power scales with the defender HP', 'hardpress', normal, {...water, hp:.27});
+add('Rising Voltage doubles for a grounded target', 'risingvoltage', electric, normal, {terrain:'electricterrain'});
+add('Rising Voltage does not double against a Flying target', 'risingvoltage', electric, fire, {terrain:'electricterrain'});
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));
