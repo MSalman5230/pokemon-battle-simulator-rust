@@ -1,0 +1,2679 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Gliscor\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Gliscor\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Poison Heal\",\"item\":\"Toxic Orb\"},{\"species\":\"Machamp\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Machamp\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Guts\",\"item\":\"Flame Orb\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Tackle\",\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Gliscor, L50, F|",
+          "|poke|p1|Machamp, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Gliscor, L50, F|",
+          "|poke|p1|Machamp, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Gliscor, L50, F|",
+          "|poke|p1|Machamp, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gliscor",
+                "details": "Gliscor, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 145,
+                  "spa": 65,
+                  "spd": 95,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "poisonheal",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "poisonheal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Machamp",
+                "details": "Machamp, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 100,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "guts",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "guts",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gliscor",
+            "species": "Gliscor",
+            "details": "Gliscor, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 145,
+              "spa": 65,
+              "spd": 95,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonheal",
+            "item": "toxicorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Machamp",
+            "species": "Machamp",
+            "details": "Machamp, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 100,
+              "spa": 85,
+              "spd": 105,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guts",
+            "item": "flameorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Gliscor|Gliscor, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Gliscor|Gliscor, L50, F|150/150",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Gliscor|Gliscor, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gliscor",
+                "details": "Gliscor, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 145,
+                  "spa": 65,
+                  "spd": 95,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "poisonheal",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "poisonheal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Machamp",
+                "details": "Machamp, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 100,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "guts",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "guts",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gliscor",
+            "species": "Gliscor",
+            "details": "Gliscor, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 145,
+              "spa": 65,
+              "spd": 95,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonheal",
+            "item": "toxicorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Machamp",
+            "species": "Machamp",
+            "details": "Machamp, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 100,
+              "spa": 85,
+              "spd": 105,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guts",
+            "item": "flameorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover||[still]",
+          "|-fail|p1a: Gliscor|heal",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|93/100",
+          "|",
+          "|-status|p1a: Gliscor|tox|[from] item: Toxic Orb",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover||[still]",
+          "|-fail|p1a: Gliscor|heal",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|140/150",
+          "|",
+          "|-status|p1a: Gliscor|tox|[from] item: Toxic Orb",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover||[still]",
+          "|-fail|p1a: Gliscor|heal",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|93/100",
+          "|",
+          "|-status|p1a: Gliscor|tox|[from] item: Toxic Orb",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gliscor",
+                "details": "Gliscor, L50, F",
+                "condition": "140/150 tox",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 145,
+                  "spa": 65,
+                  "spd": 95,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "poisonheal",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "poisonheal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Machamp",
+                "details": "Machamp, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 100,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "guts",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "guts",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gliscor",
+            "species": "Gliscor",
+            "details": "Gliscor, L50, F",
+            "hp": 140,
+            "maxhp": 150,
+            "status": "tox",
+            "stats": {
+              "atk": 115,
+              "def": 145,
+              "spa": 65,
+              "spd": 95,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonheal",
+            "item": "toxicorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Machamp",
+            "species": "Machamp",
+            "details": "Machamp, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 100,
+              "spa": 85,
+              "spd": 105,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guts",
+            "item": "flameorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover|p1a: Gliscor",
+          "|-heal|p1a: Gliscor|100/100 tox",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|93/100 tox",
+          "|",
+          "|-heal|p1a: Gliscor|100/100 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover|p1a: Gliscor",
+          "|-heal|p1a: Gliscor|150/150 tox",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|140/150 tox",
+          "|",
+          "|-heal|p1a: Gliscor|150/150 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover|p1a: Gliscor",
+          "|-heal|p1a: Gliscor|100/100 tox",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|93/100 tox",
+          "|",
+          "|-heal|p1a: Gliscor|100/100 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gliscor",
+                "details": "Gliscor, L50, F",
+                "condition": "150/150 tox",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 145,
+                  "spa": 65,
+                  "spd": 95,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "poisonheal",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "poisonheal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Machamp",
+                "details": "Machamp, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 100,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "guts",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "guts",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gliscor",
+            "species": "Gliscor",
+            "details": "Gliscor, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "tox",
+            "stats": {
+              "atk": 115,
+              "def": 145,
+              "spa": 65,
+              "spd": 95,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonheal",
+            "item": "toxicorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Machamp",
+            "species": "Machamp",
+            "details": "Machamp, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 100,
+              "spa": 85,
+              "spd": 105,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guts",
+            "item": "flameorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Machamp|Machamp, L50, F|100/100",
+          "|move|p2a: Umbreon|Tackle|p1a: Machamp",
+          "|-damage|p1a: Machamp|91/100",
+          "|",
+          "|-status|p1a: Machamp|brn|[from] item: Flame Orb",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Machamp|Machamp, L50, F|165/165",
+          "|move|p2a: Umbreon|Tackle|p1a: Machamp",
+          "|-damage|p1a: Machamp|151/165",
+          "|",
+          "|-status|p1a: Machamp|brn|[from] item: Flame Orb",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Machamp|Machamp, L50, F|100/100",
+          "|move|p2a: Umbreon|Tackle|p1a: Machamp",
+          "|-damage|p1a: Machamp|91/100",
+          "|",
+          "|-status|p1a: Machamp|brn|[from] item: Flame Orb",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Machamp",
+                "details": "Machamp, L50, F",
+                "condition": "151/165 brn",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 100,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "guts",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "guts",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Gliscor",
+                "details": "Gliscor, L50, F",
+                "condition": "150/150 tox",
+                "active": false,
+                "stats": {
+                  "atk": 115,
+                  "def": 145,
+                  "spa": 65,
+                  "spd": 95,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "poisonheal",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "poisonheal",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Machamp",
+            "species": "Machamp",
+            "details": "Machamp, L50, F",
+            "hp": 151,
+            "maxhp": 165,
+            "status": "brn",
+            "stats": {
+              "atk": 150,
+              "def": 100,
+              "spa": 85,
+              "spd": 105,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guts",
+            "item": "flameorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Gliscor",
+            "species": "Gliscor",
+            "details": "Gliscor, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "tox",
+            "stats": {
+              "atk": 115,
+              "def": 145,
+              "spa": 65,
+              "spd": 95,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonheal",
+            "item": "toxicorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 17,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Machamp|Tackle|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|81/100",
+          "|",
+          "|-damage|p1a: Machamp|85/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Machamp|Tackle|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|81/100",
+          "|",
+          "|-damage|p1a: Machamp|141/165 brn|[from] brn",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|move|p1a: Machamp|Tackle|p2a: Umbreon",
+          "|-damage|p2a: Umbreon|139/170",
+          "|",
+          "|-damage|p1a: Machamp|85/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Machamp",
+                "details": "Machamp, L50, F",
+                "condition": "141/165 brn",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 100,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "guts",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "guts",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Gliscor",
+                "details": "Gliscor, L50, F",
+                "condition": "150/150 tox",
+                "active": false,
+                "stats": {
+                  "atk": 115,
+                  "def": 145,
+                  "spa": 65,
+                  "spd": 95,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "poisonheal",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "poisonheal",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "139/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Machamp",
+            "species": "Machamp",
+            "details": "Machamp, L50, F",
+            "hp": 141,
+            "maxhp": 165,
+            "status": "brn",
+            "stats": {
+              "atk": 150,
+              "def": 100,
+              "spa": 85,
+              "spd": 105,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guts",
+            "item": "flameorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Gliscor",
+            "species": "Gliscor",
+            "details": "Gliscor, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "tox",
+            "stats": {
+              "atk": 115,
+              "def": 145,
+              "spa": 65,
+              "spd": 95,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonheal",
+            "item": "toxicorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 139,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 17,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Gliscor|Gliscor, L50, F|100/100 tox",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|92/100 tox",
+          "|",
+          "|-heal|p1a: Gliscor|100/100 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p1a: Gliscor|Gliscor, L50, F|150/150 tox",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|139/150 tox",
+          "|",
+          "|-heal|p1a: Gliscor|150/150 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p1a: Gliscor|Gliscor, L50, F|100/100 tox",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|92/100 tox",
+          "|",
+          "|-heal|p1a: Gliscor|100/100 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gliscor",
+                "details": "Gliscor, L50, F",
+                "condition": "150/150 tox",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 145,
+                  "spa": 65,
+                  "spd": 95,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "poisonheal",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "poisonheal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Machamp",
+                "details": "Machamp, L50, F",
+                "condition": "141/165 brn",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 100,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "guts",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "guts",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 16,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "139/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gliscor",
+            "species": "Gliscor",
+            "details": "Gliscor, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "tox",
+            "stats": {
+              "atk": 115,
+              "def": 145,
+              "spa": 65,
+              "spd": 95,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonheal",
+            "item": "toxicorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Machamp",
+            "species": "Machamp",
+            "details": "Machamp, L50, F",
+            "hp": 141,
+            "maxhp": 165,
+            "status": "brn",
+            "stats": {
+              "atk": 150,
+              "def": 100,
+              "spa": 85,
+              "spd": 105,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guts",
+            "item": "flameorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 139,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 16,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 7,
+      "seed": "61380,11535,34528,49510",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover||[still]",
+          "|-fail|p1a: Gliscor|heal",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|93/100 tox",
+          "|",
+          "|-heal|p1a: Gliscor|100/100 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover||[still]",
+          "|-fail|p1a: Gliscor|heal",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|140/150 tox",
+          "|",
+          "|-heal|p1a: Gliscor|150/150 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Gliscor|Recover||[still]",
+          "|-fail|p1a: Gliscor|heal",
+          "|move|p2a: Umbreon|Tackle|p1a: Gliscor",
+          "|-damage|p1a: Gliscor|93/100 tox",
+          "|",
+          "|-heal|p1a: Gliscor|100/100 tox|[from] ability: Poison Heal",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gliscor",
+                "details": "Gliscor, L50, F",
+                "condition": "150/150 tox",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 145,
+                  "spa": 65,
+                  "spd": 95,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "poisonheal",
+                "item": "toxicorb",
+                "pokeball": "pokeball",
+                "ability": "poisonheal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Machamp",
+                "details": "Machamp, L50, F",
+                "condition": "141/165 brn",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 100,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 75
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "guts",
+                "item": "flameorb",
+                "pokeball": "pokeball",
+                "ability": "guts",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 15,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "139/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gliscor",
+            "species": "Gliscor",
+            "details": "Gliscor, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "tox",
+            "stats": {
+              "atk": 115,
+              "def": 145,
+              "spa": 65,
+              "spd": 95,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "poisonheal",
+            "item": "toxicorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Machamp",
+            "species": "Machamp",
+            "details": "Machamp, L50, F",
+            "hp": 141,
+            "maxhp": 165,
+            "status": "brn",
+            "stats": {
+              "atk": 150,
+              "def": 100,
+              "spa": 85,
+              "spd": 105,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guts",
+            "item": "flameorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 139,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 15,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

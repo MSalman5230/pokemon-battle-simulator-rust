@@ -1804,6 +1804,7 @@ impl Battle {
             Rampage,
             Attention,
             Leftovers,
+            StatusOrb,
             WhiteHerb,
             ShedSkin,
             Healer,
@@ -1969,6 +1970,9 @@ impl Battle {
             if mon.item == "leftovers" {
                 timers.push((pos, Effect::Leftovers, priority(5, 4)));
             }
+            if matches!(mon.item.as_str(), "toxicorb" | "flameorb") {
+                timers.push((pos, Effect::StatusOrb, priority(28, 3)));
+            }
             if mon.item == "whiteherb" {
                 timers.push((pos, Effect::WhiteHerb, priority(29, 8)));
             }
@@ -2062,6 +2066,7 @@ impl Battle {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
                 }
+                Effect::StatusOrb => self.activate_status_orb(pos),
                 Effect::WhiteHerb => self.white_herb(pos),
                 Effect::Weather
                 | Effect::Screen(_)
@@ -4460,8 +4465,11 @@ impl Battle {
     }
 
     fn accuracy(&self, source: Position, target: Position, data: &Move, accuracy: u8) -> u32 {
-        let accuracy = if self.active_weather_evasion(target).0 {
-            self.stat_rules.truncation.modify(u32::from(accuracy), 3277) as i32
+        let modifier = self.accuracy_modifier(source, self.active_weather_evasion(target).0);
+        let accuracy = if modifier != 4096 {
+            self.stat_rules
+                .truncation
+                .modify(u32::from(accuracy), modifier) as i32
         } else {
             i32::from(accuracy)
         };
@@ -4725,6 +4733,7 @@ impl Pokemon {
                 | "prismarmor"
                 | "bigpecks"
                 | "justified"
+                | "poisonheal"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"
@@ -4834,6 +4843,9 @@ impl Pokemon {
                 | "lightball"
                 | "bindingband"
                 | "covertcloak"
+                | "widelens"
+                | "toxicorb"
+                | "flameorb"
                 | "gripclaw"
                 | "softsand"
                 | "magnet"

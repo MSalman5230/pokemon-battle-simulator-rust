@@ -29,6 +29,15 @@ pub(super) fn resistance_berry(id: &str) -> Option<(&'static str, &'static str)>
 }
 
 impl Battle {
+    pub(super) fn accuracy_modifier(&self, source: Position, weather_evasion: bool) -> u32 {
+        let modifier = if weather_evasion { 3277 } else { 4096 };
+        if self.mon(source).item == "widelens" && self.active_effects(source) {
+            crate::mechanics::chain(modifier, 4505)
+        } else {
+            modifier
+        }
+    }
+
     pub(super) fn on_switch_in_item(&mut self, pos: Position) {
         if self.mon(pos).item == "airballoon" {
             self.add(format!("|-item|{}|Air Balloon", self.ident(pos)));

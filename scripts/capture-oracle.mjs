@@ -892,6 +892,15 @@ const faintedItemSpeedRosters = [
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
         named('Umbreon', ['Recover']), named('Espeon', ['Recover'])],
 ];
+const orbRosters = [
+    [{...named('Gliscor', ['Recover']), ability:'Poison Heal', item:'Toxic Orb'},
+        {...named('Machamp', ['Tackle']), ability:'Guts', item:'Flame Orb'}],
+    [named('Umbreon', ['Tackle', 'Recover']), named('Vaporeon', ['Recover'])],
+];
+const wideLensRosters = [
+    [{...named('Jolteon', ['Screech']), item:'Wide Lens'}, named('Vaporeon', ['Recover'])],
+    [{...named('Froslass', ['Recover', 'Snowscape']), ability:'Snow Cloak'}, named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1358,6 +1367,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 3','switch 2'], ['move 3','move 1']], defenseHookRosters, 'bss-defense-hit-hooks'],
     ['vgc2026regmc', [['team 123','team 123'], ['move 1, move 1','move 1, move 1'],
         ['switch 3, pass','switch 3, pass']], faintedItemSpeedRosters, 'vgc-fainted-choice-scarf'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 1'],
+        ['switch 2','move 1'], ['move 1','move 2'], ['switch 2','move 1'], ['move 1','move 1']],
+        orbRosters, 'bss-orbs-and-poison-heal'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'],
+        ...Array(4).fill(['move 1','move 1'])], wideLensRosters, 'bss-wide-lens'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

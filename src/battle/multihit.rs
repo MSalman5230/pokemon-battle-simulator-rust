@@ -88,9 +88,11 @@ impl Battle {
         if snow_cloak && self.format.report_exact_hp {
             self.add("|debug|Snow Cloak - decreasing accuracy");
         }
-        if weather_evasion {
-            accuracy = ((accuracy * 3277.0).trunc() + 2047.0) / 4096.0;
-            accuracy = accuracy.trunc();
+        let modifier = self.accuracy_modifier(source, weather_evasion);
+        // The native event applies chained integer modifiers only when its
+        // post-stage relay is an integer.
+        if modifier != 4096 && accuracy.fract() == 0.0 {
+            accuracy = f64::from(self.stat_rules.truncation.modify(accuracy as u32, modifier));
         }
         f64::from(self.rng.below(100)) < accuracy
     }

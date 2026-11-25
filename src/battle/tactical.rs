@@ -481,11 +481,8 @@ impl Battle {
             self.mon(ACTOR).boosts.get(BoostStat::Accuracy)
         };
         let stage = (aim - evasion).clamp(-6, 6);
-        let base = if self.weather_evasion(TARGET, weather).0 {
-            self.stat_rules.truncation.modify(u32::from(base), 3277)
-        } else {
-            u32::from(base)
-        };
+        let modifier = self.accuracy_modifier(ACTOR, self.weather_evasion(TARGET, weather).0);
+        let base = self.stat_rules.truncation.modify(u32::from(base), modifier);
         let accuracy =
             f64::from(base) * (f64::from(3 + stage.max(0)) / f64::from(3 - stage.min(0)));
         (accuracy / 100.0).clamp(0.0, 1.0)

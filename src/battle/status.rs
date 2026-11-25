@@ -469,6 +469,13 @@ impl Battle {
             mon.status = Status::Toxic(stage);
             amount *= u32::from(stage);
         }
+        if mon.ability == "poisonheal" && matches!(mon.status, Status::Poison | Status::Toxic(_)) {
+            self.ability_heal(pos, 8, "Poison Heal", None);
+            if self.format.report_exact_hp {
+                self.add("|debug|damage event failed");
+            }
+            return;
+        }
         if mon.ability == "magicguard" {
             return;
         }
@@ -480,5 +487,29 @@ impl Battle {
         if self.mon(pos).hp == 0 {
             self.mark_fainted(pos);
         }
+    }
+
+    pub(super) fn activate_status_orb(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        let (status, id, immunity, item) = match mon.item.as_str() {
+            "toxicorb" => (Status::Toxic(0), "tox", "psn", "Toxic Orb"),
+            "flameorb" => (Status::Burn, "brn", "brn", "Flame Orb"),
+            _ => return,
+        };
+        if mon.hp == 0
+            || mon.status != Status::Healthy
+            || self.status_immune(pos, immunity)
+            || self.status_blocked_by_ability(pos, id, false)
+            || self.field_blocks_status(pos, id, pos.player, false)
+        {
+            return;
+        }
+        let mon = self.mon_mut(pos);
+        mon.status = status;
+        mon.slept_by_foe = false;
+        self.add(format!(
+            "|-status|{}|{id}|[from] item: {item}",
+            self.ident(pos)
+        ));
     }
 }
