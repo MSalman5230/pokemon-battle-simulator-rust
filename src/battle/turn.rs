@@ -1037,6 +1037,8 @@ impl Battle {
                     | "quash"
                     | "thief"
                     | "covet"
+                    | "healpulse"
+                    | "lifedew"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -2678,6 +2680,14 @@ impl Battle {
         };
         let mut spread_targets = Vec::new();
         match kind {
+            TargetKind::Allies => {
+                target = Some(source);
+                spread_targets.extend(
+                    (0..self.slots())
+                        .map(|slot| Position { slot, ..source })
+                        .filter(|&pos| !self.mon(pos).fainted),
+                );
+            }
             TargetKind::AllAdjacent | TargetKind::AllAdjacentFoes => {
                 if kind == TargetKind::AllAdjacent && self.slots() == 2 {
                     let mate = Position {
@@ -3611,8 +3621,12 @@ impl Battle {
             });
             let mut any_success = false;
             let mut hit_labels = Vec::new();
+            let life_dew = move_data.name == "Life Dew";
             for target in spread_targets {
                 let mut succeeded = false;
+                if spread && life_dew {
+                    hit_labels.push(target.label());
+                }
                 if matches!(move_data.name.as_str(), "Taunt" | "Encore" | "Disable")
                     && self.aroma_veil_blocks(target, true)
                 {
@@ -4012,6 +4026,11 @@ impl Battle {
                 if let Some(status) = &move_data.status {
                     succeeded |= self.try_status(target, status, source, move_data, true, base);
                 }
+                if move_data.name == "Heal Pulse" {
+                    self.heal_pulse(source, target);
+                    // Heal Pulse returns NOT_FAIL when the target is full.
+                    succeeded = true;
+                }
                 if let Some([num, den]) = move_data.heal {
                     let mon = self.mon_mut(target);
                     if mon.hp == mon.max_hp.get() {
@@ -4056,12 +4075,15 @@ impl Battle {
                 }
                 if succeeded {
                     any_success = true;
-                    if spread {
+                    if spread && !life_dew {
                         hit_labels.push(target.label());
                     }
                 }
             }
             if spread {
+                if life_dew && !any_success {
+                    hit_labels.clear();
+                }
                 self.log[base]
                     .public
                     .push_str(&format!("|[spread] {}", hit_labels.join(",")));

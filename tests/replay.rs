@@ -1269,6 +1269,11 @@ fn thief_covet_and_pickpocket_transfer_held_items_at_their_native_events() {
 }
 
 #[test]
+fn life_dew_and_heal_pulse_follow_doubles_targeting_and_healing_order() {
+    replay(include_str!("fixtures/vgc-life-dew-heal-pulse.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

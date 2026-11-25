@@ -956,6 +956,11 @@ const pickpocketRosters = [
     [{...named('Flareon', ['Tackle', 'U-turn']), item:'Leftovers'}, named('Espeon', ['Recover'])],
     [{...named('Weavile', ['Recover']), ability:'Pickpocket'}],
 ];
+const teamHealingRosters = [
+    [named('Vaporeon', ['Life Dew', 'Water Gun']),
+        {...named('Clawitzer', ['Heal Pulse']), ability:'Mega Launcher'}],
+    [named('Jolteon', ['Tackle', 'Tail Whip']), named('Umbreon', ['Tackle', 'Tail Whip'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1806,6 +1811,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2',null]], pickpocketRosters, 'bss-pickpocket'],
     ['bssregmc', [['team 12','team 1'], ['move 2','move 1'], ['switch 2',null]],
         pickpocketRosters, 'bss-pickpocket-pivot'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1 -1','move 2, move 2'],
+        ['move 1, move 1 -1','move 1 1, move 1 2'], ['move 2 1, move 1 1','move 1 2, move 1 1'],
+        ['move 1, move 1 -1','move 1 2, move 2']], teamHealingRosters, 'vgc-life-dew-heal-pulse'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

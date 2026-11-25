@@ -41,6 +41,22 @@ impl ReplacementHeal {
 }
 
 impl Battle {
+    pub(super) fn heal_pulse(&mut self, source: Position, target: Position) {
+        let max_hp = self.mon(target).max_hp.get();
+        let amount = if self.event_ability(source) == "megalauncher" {
+            self.stat_rules.truncation.modify(max_hp, 3072).max(1)
+        } else {
+            max_hp.div_ceil(2)
+        };
+        let mon = self.mon_mut(target);
+        if mon.hp == max_hp {
+            self.add(format!("|-fail|{}|heal", self.ident(target)));
+        } else {
+            mon.hp = (mon.hp + amount).min(max_hp);
+            self.add_health_line_with("-heal", target, false, "");
+        }
+    }
+
     pub(super) fn prepare_replacement_heal(&mut self, pos: Position, effect: ReplacementHeal) {
         let pending = &mut self.sides[pos.player.index()]
             .as_mut()
