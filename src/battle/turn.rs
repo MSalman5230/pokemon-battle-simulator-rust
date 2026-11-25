@@ -1717,6 +1717,17 @@ impl Battle {
                 ));
                 self.cure_status(pos, "[msg]");
             }
+            if let Status::Sleep(_) = self.mon(pos).status {
+                let label = match self.event_ability(pos) {
+                    "insomnia" => Some("Insomnia"),
+                    "vitalspirit" => Some("Vital Spirit"),
+                    _ => None,
+                };
+                if let Some(label) = label {
+                    self.add(format!("|-activate|{}|ability: {label}", self.ident(pos)));
+                    self.cure_status(pos, "[msg]");
+                }
+            }
             self.on_update_item(pos);
         }
     }
@@ -3228,14 +3239,7 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                         continue;
                     }
-                    if self.event_ability(target) == "purifyingsalt" {
-                        self.add(format!(
-                            "|-immune|{}|[from] ability: Purifying Salt",
-                            self.ident(target)
-                        ));
-                        if self.format.report_exact_hp {
-                            self.add("|debug|interrupting tryAddVolatile with Purifying Salt");
-                        }
+                    if self.yawn_blocked_by_ability(target) {
                         continue;
                     }
                     if let Some(holder) = self.flower_veil_holder(target) {
@@ -4212,6 +4216,8 @@ impl Pokemon {
                 | "infiltrator"
                 | "vitalspirit"
                 | "insomnia"
+                | "leafguard"
+                | "earlybird"
                 | "immunity"
                 | "cutecharm"
                 | "flamebody"

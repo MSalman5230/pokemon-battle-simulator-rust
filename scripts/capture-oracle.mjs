@@ -734,6 +734,16 @@ const snipeShotRosters = [
     [named('Inteleon', ['Snipe Shot', 'Water Gun']), named('Umbreon', ['Recover'])],
     [named('Togekiss', ['Follow Me', 'Recover']), named('Sylveon', ['Recover'])],
 ];
+const yawnAbilityRosters = [
+    [named('Espeon', ['Yawn', 'Spore', 'Sunny Day', 'Rain Dance']), named('Umbreon', ['Recover'])],
+    [{...named('Lycanroc-Midnight', ['Recover']), ability:'Vital Spirit'},
+        {...named('Noctowl', ['Recover']), ability:'Insomnia'},
+        {...named('Meganium', ['Recover']), ability:'Leaf Guard'}],
+];
+const earlyBirdRosters = [
+    [{...named('Houndoom', ['Recover', 'Rest', 'Tackle']), ability:'Early Bird'}, named('Umbreon', ['Recover'])],
+    [named('Jolteon', ['Tackle', 'Recover', 'Spore']), named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1110,6 +1120,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','move 4']], sacredSwordRosters, 'bss-sacred-sword'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 2 2, move 1','move 1, move 1'],
         ['move 1 2, move 1','move 1, move 1']], snipeShotRosters, 'vgc-snipe-shot'],
+    ['bssregmc', [['team 12','team 123'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','switch 2'],
+        ['move 2','move 1'], ['move 3','switch 3'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 4','move 1'], ['move 1','move 1'], ['move 3','move 1']], yawnAbilityRosters, 'bss-yawn-abilities'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 3'], ['move 3','move 2'],
+        ['move 3','move 1'], ['move 2','move 2'], ['move 3','move 2'], ['move 3','move 2']], earlyBirdRosters, 'bss-early-bird'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

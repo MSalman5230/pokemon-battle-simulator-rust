@@ -65,10 +65,11 @@ impl Battle {
         let status = self.mon(pos).status;
         match status {
             Status::Sleep(turns) => {
-                if turns <= 1 {
+                let decrement = 1 + u8::from(self.mon(pos).ability == "earlybird");
+                if turns <= decrement {
                     self.cure_status(pos, "[msg]");
                 } else {
-                    self.mon_mut(pos).status = Status::Sleep(turns - 1);
+                    self.mon_mut(pos).status = Status::Sleep(turns - decrement);
                     self.add(format!("|cant|{}|slp", self.ident(pos)));
                     return false;
                 }
@@ -325,6 +326,9 @@ impl Battle {
             ("limber", "par") => "Limber",
             ("waterbubble", "brn") => "Water Bubble",
             ("purifyingsalt", _) => "Purifying Salt",
+            ("insomnia", "slp") => "Insomnia",
+            ("vitalspirit", "slp") => "Vital Spirit",
+            ("leafguard", _) if self.effective_weather() == Some(Weather::Sun) => "Leaf Guard",
             _ => return false,
         };
         if reveal {
@@ -334,10 +338,31 @@ impl Battle {
             ));
         }
         if self.format.report_exact_hp {
-            if !matches!(label, "Limber" | "Water Bubble") {
+            if !matches!(
+                label,
+                "Limber" | "Water Bubble" | "Insomnia" | "Vital Spirit" | "Leaf Guard"
+            ) {
                 self.add(format!("|debug|interrupting setStatus with {label}"));
             }
             self.add(format!("|debug|set status [{id}] interrupted"));
+        }
+        true
+    }
+
+    pub(super) fn yawn_blocked_by_ability(&mut self, pos: Position) -> bool {
+        let label = match self.event_ability(pos) {
+            "purifyingsalt" => "Purifying Salt",
+            "insomnia" => "Insomnia",
+            "vitalspirit" => "Vital Spirit",
+            "leafguard" if self.effective_weather() == Some(Weather::Sun) => "Leaf Guard",
+            _ => return false,
+        };
+        self.add(format!(
+            "|-immune|{}|[from] ability: {label}",
+            self.ident(pos)
+        ));
+        if label == "Purifying Salt" && self.format.report_exact_hp {
+            self.add("|debug|interrupting tryAddVolatile with Purifying Salt");
         }
         true
     }

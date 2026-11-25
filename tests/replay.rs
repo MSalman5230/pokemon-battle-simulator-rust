@@ -832,6 +832,12 @@ fn move_properties_ignore_stages_or_redirects_in_the_matching_events() {
 }
 
 #[test]
+fn sleep_prevention_and_early_bird_follow_native_status_events() {
+    replay(include_str!("fixtures/bss-yawn-abilities.json"));
+    replay(include_str!("fixtures/bss-early-bird.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
