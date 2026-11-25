@@ -90,6 +90,7 @@ enum MoveInvocation {
         prankster: bool,
         round_followup: bool,
         pledge_from: Option<Pledge>,
+        pursuit_catch: bool,
         z_priority: Option<i8>,
     },
     External {
@@ -237,6 +238,7 @@ enum ActionKind {
         move_kind: CounterMove,
         target: i8,
     },
+    PreparePursuit(i8),
     RunSwitch,
     MegaEvolve,
     PriorityCharge(&'static str),
@@ -271,7 +273,7 @@ impl Action {
                 immediate: true, ..
             } => 3,
             ActionKind::BeforeTurn => 4,
-            ActionKind::PrepareCounter { .. } => 5,
+            ActionKind::PrepareCounter { .. } | ActionKind::PreparePursuit(_) => 5,
             ActionKind::Revive { .. } => 6,
             ActionKind::RunSwitch => 101,
             ActionKind::Switch {
@@ -688,22 +690,34 @@ impl Battle {
                             move_slot, target, ..
                         } = action.kind
                         && move_slot != RECHARGE_SLOT
-                        && let Some(move_kind) =
-                            CounterMove::for_move(self.move_data(action.actor.unwrap(), move_slot))
                     {
                         let actor = action.actor.unwrap();
-                        let target = if target != 0 {
-                            target
-                        } else {
-                            self.random_target(actor, TargetKind::Scripted)
-                                .map_or(0, |p| p.loc(actor))
-                        };
-                        let mut prep = Action::new(
-                            Some(actor),
-                            ActionKind::PrepareCounter { move_kind, target },
-                        );
-                        self.prioritize(&mut prep);
-                        queue.push(prep);
+                        let data = self.move_data(actor, move_slot);
+                        if let Some(move_kind) = CounterMove::for_move(data) {
+                            let target = if target != 0 {
+                                target
+                            } else {
+                                self.random_target(actor, TargetKind::Scripted)
+                                    .map_or(0, |p| p.loc(actor))
+                            };
+                            let mut prep = Action::new(
+                                Some(actor),
+                                ActionKind::PrepareCounter { move_kind, target },
+                            );
+                            self.prioritize(&mut prep);
+                            queue.push(prep);
+                        } else if data.name == "Pursuit" {
+                            let target = if target != 0 {
+                                target
+                            } else {
+                                self.random_target(actor, TargetKind::Normal)
+                                    .map_or(0, |p| p.loc(actor))
+                            };
+                            let mut prep =
+                                Action::new(Some(actor), ActionKind::PreparePursuit(target));
+                            self.prioritize(&mut prep);
+                            queue.push(prep);
+                        }
                     }
                     if self.phase == Phase::Move
                         && !action.z_move
@@ -1267,6 +1281,7 @@ impl Battle {
                     | "grasspledge"
                     | "waterpledge"
                     | "shelltrap"
+                    | "pursuit"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -1948,9 +1963,6 @@ impl Battle {
         drag: bool,
     ) {
         let returning = outgoing.slot == bench_slot;
-        if !returning && !self.mon(outgoing).fainted && pivot.is_none() && !drag {
-            self.each_event();
-        }
         if !returning && !self.mon(outgoing).fainted {
             self.switch_out_ability(outgoing);
             self.end_supreme_overlord(outgoing, true);
@@ -2093,6 +2105,21 @@ impl Battle {
                         }
                     }
                 }
+                ActionKind::PreparePursuit(target) => {
+                    let pos = action.actor.unwrap();
+                    if !self.mon(pos).fainted {
+                        if self.format.report_exact_hp {
+                            self.add("|debug|before turn callback: pursuit");
+                        }
+                        if self
+                            .resolve_target(pos, TargetKind::Normal, target)
+                            .is_some()
+                        {
+                            self.mon_mut(pos).track_volatile("pursuit");
+                            self.pursuit_started = true;
+                        }
+                    }
+                }
                 ActionKind::PriorityCharge(id) => {
                     let pos = action.actor.unwrap();
                     if self.mon(pos).hp > 0 {
@@ -2126,8 +2153,19 @@ impl Battle {
                             q.actor != Some(outgoing) || matches!(q.kind, ActionKind::RunSwitch)
                         });
                     }
-                    self.switch_party_member(outgoing, bench_slot, pivot, false);
-                    self.insert_run_switch(outgoing, &mut queue);
+                    if outgoing.slot != bench_slot && self.mon(outgoing).hp != 0 && pivot.is_none()
+                    {
+                        self.run_pursuit_activation(outgoing, &mut queue);
+                        if self.mon(outgoing).hp == 0 {
+                            self.add("|-hint|A Pokemon can't switch between when it runs out of HP and when it faints");
+                        } else {
+                            self.switch_party_member(outgoing, bench_slot, pivot, false);
+                            self.insert_run_switch(outgoing, &mut queue);
+                        }
+                    } else {
+                        self.switch_party_member(outgoing, bench_slot, pivot, false);
+                        self.insert_run_switch(outgoing, &mut queue);
+                    }
                 }
                 ActionKind::Revive { party_slot } => {
                     let target = Position {
@@ -2181,6 +2219,7 @@ impl Battle {
                             prankster: action.prankster,
                             round_followup: action.round_followup,
                             pledge_from: action.pledge_from,
+                            pursuit_catch: false,
                             z_priority: action.z_move.then(|| {
                                 (action.priority.priority - action.fractional_priority).round()
                                     as i8
@@ -2259,20 +2298,25 @@ impl Battle {
                         continue;
                     }
                     waiting = true;
-                    if self
-                        .mon(Position { player, slot })
-                        .pivot_move
-                        .is_some_and(|pivot| {
-                            !matches!(pivot, Pivot::Move("Shed Tail" | "Baton Pass"))
-                        })
-                    {
+                    let outgoing = Position { player, slot };
+                    if self.mon(outgoing).pivot_move.is_some_and(|pivot| {
+                        !matches!(pivot, Pivot::Move("Shed Tail" | "Baton Pass"))
+                    }) {
                         // BeforeSwitchOut marks this move-driven switch as having
                         // already run its update. Volatile-passing moves skip it.
-                        self.each_event();
+                        self.run_pursuit_activation(outgoing, &mut queue);
+                        if self.check_win() {
+                            return Ok(());
+                        }
                     }
                 }
             }
-            if waiting {
+            if waiting
+                && (!self.pursuit_started
+                    || Player::ALL
+                        .into_iter()
+                        .any(|player| self.force_switch(player).contains(&true)))
+            {
                 self.suspended = queue;
                 self.phase = Phase::Replace;
                 return Ok(());
@@ -2648,6 +2692,7 @@ impl Battle {
             ChillyReception,
             BeakBlast,
             ShellTrap,
+            Pursuit,
             HelpingHand,
             Counter,
             Recharge,
@@ -2716,6 +2761,7 @@ impl Battle {
             SyrupBomb,
         }
         self.snatch_started = false;
+        self.pursuit_started = false;
         self.add("|");
         self.update_speed();
         let mut timers = Vec::new();
@@ -3048,6 +3094,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"shelltrap") {
                 timers.push((pos, Effect::ShellTrap, priority(0, 2)));
             }
+            if mon.volatile_ids().contains(&"pursuit") {
+                timers.push((pos, Effect::Pursuit, priority(0, 2)));
+            }
             if mon.helping_hand != 0 {
                 timers.push((pos, Effect::HelpingHand, priority(0, 2)));
             }
@@ -3327,6 +3376,7 @@ impl Battle {
                     mon.shell_trap_hit = false;
                     mon.untrack_volatile("shelltrap");
                 }
+                Effect::Pursuit => mon.untrack_volatile("pursuit"),
                 Effect::HelpingHand => {
                     mon.helping_hand = 0;
                     mon.untrack_volatile("helpinghand");
@@ -3534,6 +3584,7 @@ impl Battle {
                     | Effect::FocusPunch
                     | Effect::BeakBlast
                     | Effect::ShellTrap
+                    | Effect::Pursuit
                     | Effect::ChillyReception
                     | Effect::Counter
                     | Effect::Electrify => true,
@@ -3612,6 +3663,87 @@ impl Battle {
             .find(|&(pos, effect)| {
                 matches!(effect, ExternalEffect::MagicCoat) || !self.ability_suppressed(pos)
             })
+    }
+
+    fn run_pursuit_activation(&mut self, target: Position, queue: &mut Vec<Action>) {
+        if self.pursuit_started {
+            let mut handlers = [(target, 0); 2];
+            let mut count = 0;
+            for slot in 0..self.slots() {
+                let pos = Position {
+                    player: target.player.foe(),
+                    slot,
+                };
+                let mon = self.mon(pos);
+                if !mon.fainted && mon.volatile_ids().contains(&"pursuit") {
+                    handlers[count] = (pos, mon.speed);
+                    count += 1;
+                }
+            }
+            let handlers = &mut handlers[..count];
+            speed_sort_by(handlers, &mut self.rng, |a, b| b.1.cmp(&a.1));
+            let mut activated = false;
+            for &(source, _) in handlers.iter() {
+                if self.format.report_exact_hp {
+                    self.add("|debug|Pursuit start");
+                }
+                if self.mon(source).hp == 0
+                    || self
+                        .mon(source)
+                        .encore
+                        .is_some_and(|(slot, _)| self.move_data(source, slot).name != "Pursuit")
+                {
+                    continue;
+                }
+                let Some(index) = queue.iter().position(|action| {
+                    action.actor == Some(source) && matches!(action.kind, ActionKind::Move { .. })
+                }) else {
+                    continue;
+                };
+                queue.remove(index);
+                if !activated {
+                    self.add(format!("|-activate|{}|move: Pursuit", self.ident(target)));
+                    activated = true;
+                }
+                if let Some(index) = queue.iter().position(|action| {
+                    action.actor == Some(source) && matches!(action.kind, ActionKind::MegaEvolve)
+                }) {
+                    queue.remove(index);
+                    self.mega_evolve(source);
+                }
+                self.clear_destiny_bond(target, false);
+                let Some(slot) = self
+                    .mon(source)
+                    .moves
+                    .iter()
+                    .position(|slot| slot.id == "pursuit")
+                else {
+                    continue;
+                };
+                self.mon_mut(source).acted = true;
+                self.mon_mut(source).active_move_actions += 1;
+                let old_breaker = self.ability_breaker.take();
+                let (attempted, _) = self.run_move(
+                    source,
+                    MoveInvocation::Choice {
+                        slot,
+                        loc: target.loc(source),
+                        original_target: None,
+                        prankster: false,
+                        round_followup: false,
+                        pledge_from: None,
+                        pursuit_catch: true,
+                        z_priority: None,
+                    },
+                    queue,
+                );
+                self.ability_breaker = old_breaker;
+                if attempted {
+                    self.white_herbs_after_action();
+                }
+            }
+        }
+        self.each_event();
     }
 
     fn run_external_move(
@@ -3890,6 +4022,13 @@ impl Battle {
             MoveInvocation::Choice { pledge_from, .. } => pledge_from,
             _ => None,
         };
+        let pursuit_catch = matches!(
+            invocation,
+            MoveInvocation::Choice {
+                pursuit_catch: true,
+                ..
+            }
+        );
         let pledge = Pledge::for_move(move_data);
         let pledge_combo = pledge
             .zip(pledge_from)
@@ -3906,6 +4045,8 @@ impl Battle {
             "|[from] move: Round"
         } else if let Some(earlier) = pledge_from {
             earlier.source_label()
+        } else if pursuit_catch {
+            "|[from] Pursuit"
         } else if continuing {
             "|[from] lockedmove"
         } else {
@@ -4139,6 +4280,9 @@ impl Battle {
             }
             _ => move_data.accuracy,
         };
+        if pursuit_catch {
+            accuracy = Accuracy::Bypass(true);
+        }
         if own_action
             && matches!(self.mon(source).status, Status::Freeze(_))
             && move_data.flags.contains_key("defrost")
@@ -4399,6 +4543,7 @@ impl Battle {
         let mut redirected = false;
         if !delayed
             && !lost_counter_target
+            && !pursuit_catch
             && self.slots() > 1
             && !move_data.tracks_target
             && (kind == TargetKind::Scripted
@@ -7305,6 +7450,11 @@ impl Battle {
                 let mut power = if round_followup && move_data.name == "Round" {
                     if battle.format.report_exact_hp {
                         battle.add("|debug|BP doubled");
+                    }
+                    power * 2
+                } else if pursuit_catch {
+                    if battle.format.report_exact_hp {
+                        battle.add("|debug|Pursuit damage boost");
                     }
                     power * 2
                 } else if pledge_combo.is_some() {

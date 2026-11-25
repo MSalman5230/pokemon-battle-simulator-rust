@@ -1846,6 +1846,18 @@ const legacyShellTrapRosters = [
     [named('Turtonator', ['Shell Trap', 'Substitute']), named('Chansey', ['Recover', 'Tackle'])],
     [named('Jolteon', ['Tackle', 'Thunder Shock']), named('Porygon2', ['Recover'])],
 ];
+const legacyPursuitSwitchRosters = [
+    [named('Tyranitar', ['Pursuit', 'Recover'])],
+    [named('Chansey', ['Recover']), named('Slowbro', ['Recover'])],
+];
+const legacyPursuitFaintRosters = [
+    [named('Tyranitar', ['Pursuit'])],
+    [named('Abra', ['Recover']), named('Slowbro', ['Recover']), named('Umbreon', ['Recover'])],
+];
+const legacyPursuitPivotRosters = [
+    [named('Tyranitar', ['Pursuit', 'Recover'])],
+    [named('Jolteon', ['U-turn']), named('Slowbro', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3274,6 +3286,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1'],
         ['move 1, move 2 -1','move 2 1, move 1'], ['move 2, move 1','move 1 1, move 1'],
         ['move 1, move 1','move 1 1, move 1']], legacyShellTrapRosters, 'custom-shell-trap-trigger-order'],
+    ['customgame', [['team 1','team 12'], ['move 1','switch 2'], ['move 1','move 1']],
+        legacyPursuitSwitchRosters, 'custom-pursuit-before-voluntary-switch'],
+    ['customgame', [['team 1','team 123'], ['move 1','switch 2'], [null,'switch 3']],
+        legacyPursuitFaintRosters, 'custom-pursuit-cancels-fainted-switch'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], [null,'switch 2']],
+        legacyPursuitPivotRosters, 'custom-pursuit-before-pivot-request'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -2019,6 +2019,19 @@ fn shell_trap_waits_for_an_enemy_physical_hit_that_reaches_the_user() {
 }
 
 #[test]
+fn pursuit_intercepts_the_outgoing_member_before_switch_and_pivot_requests() {
+    replay(include_str!(
+        "fixtures/custom-pursuit-before-voluntary-switch.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-pursuit-cancels-fainted-switch.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-pursuit-before-pivot-request.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
