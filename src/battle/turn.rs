@@ -1587,9 +1587,18 @@ impl Battle {
                 match self.mon(pos).ability.as_str() {
                     "hospitality" => deferred_hospitality |= pos.mask(),
                     "imposter" => self.imposter_on_entry(pos),
+                    "mimicry" => {}
                     _ => self.start_ability(pos),
                 }
                 self.on_switch_in_item(pos);
+            }
+        }
+        for (pos, _) in order.into_iter().take(count) {
+            if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
+                if self.mon(pos).ability == "mimicry" {
+                    self.apply_mimicry(pos);
+                }
+                self.use_matching_terrain_seed(pos);
             }
         }
         for (pos, _) in order.into_iter().take(count) {
@@ -6078,6 +6087,17 @@ impl Battle {
         is_self: bool,
         invert: bool,
     ) -> bool {
+        self.apply_boosts_with_item(pos, boosts, is_self, invert, None)
+    }
+
+    pub(super) fn apply_boosts_with_item(
+        &mut self,
+        pos: Position,
+        boosts: &[(BoostStat, i8)],
+        is_self: bool,
+        invert: bool,
+        item: Option<&str>,
+    ) -> bool {
         if self.mon(pos).hp == 0
             || !self
                 .party(pos.player.foe())
@@ -6107,12 +6127,19 @@ impl Battle {
                 "-boost"
             };
             if changed != 0 || !is_self {
-                self.add(format!(
+                let mut line = format!(
                     "|{event}|{}|{}|{}",
                     self.ident(pos),
                     stat.id(),
                     changed.abs()
-                ));
+                );
+                if changed != 0
+                    && let Some(item) = item
+                {
+                    line.push_str("|[from] item: ");
+                    line.push_str(item);
+                }
+                self.add(line);
             }
             succeeded |= changed != 0;
         }
@@ -6624,6 +6651,10 @@ impl Pokemon {
                 | "laxincense"
                 | "whiteherb"
                 | "redcard"
+                | "electricseed"
+                | "grassyseed"
+                | "mistyseed"
+                | "psychicseed"
                 | "floatstone"
                 | "blackbelt"
                 | "blackglasses"

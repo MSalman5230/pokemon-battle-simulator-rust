@@ -99,6 +99,7 @@ impl Battle {
             if self.mon(pos).ability == "mimicry" {
                 self.apply_mimicry(pos);
             }
+            self.use_matching_terrain_seed(pos);
         }
     }
 

@@ -1449,6 +1449,11 @@ fn red_card_forces_a_switch_unless_the_attacker_cannot_be_dragged() {
 }
 
 #[test]
+fn terrain_seeds_activate_on_field_changes_and_on_entry() {
+    replay(include_str!("fixtures/bss-terrain-seeds.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

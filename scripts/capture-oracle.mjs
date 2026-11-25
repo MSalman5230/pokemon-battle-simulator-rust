@@ -1152,6 +1152,11 @@ const guardDogCardRosters = [
     [{...named('Mabosstiff', ['Tackle']), ability:'Guard Dog'}, redCardRosters[0][1]],
     redCardRosters[1],
 ];
+const terrainSeedRosters = [
+    [named('Vaporeon', ['Grassy Terrain', 'Psychic Terrain', 'Recover'])],
+    [{...named('Drifblim', ['Recover']), ability:'Unburden', item:'Grassy Seed'},
+        {...named('Glaceon', ['Recover']), item:'Psychic Seed'}],
+];
 const cudChewRosters = [
     [{...named('Farigiraf', ['Tackle']), ability:'Cud Chew', item:'Sitrus Berry'}],
     [named('Raticate', ['Super Fang', 'Recover'])],
@@ -2207,6 +2212,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         redCardRosters, 'bss-red-card'],
     ['bssregmc', [['team 12','team 1'], ['move 1','move 1']],
         guardDogCardRosters, 'bss-red-card-guard-dog'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 3','switch 2']], terrainSeedRosters, 'bss-terrain-seeds'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], rattledRosters, 'bss-rattled'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 2']],
         cudChewRosters, 'bss-cud-chew'],

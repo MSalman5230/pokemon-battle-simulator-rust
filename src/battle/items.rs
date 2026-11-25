@@ -1,5 +1,6 @@
 //! Held-item hooks for the currently supported damage and status pipeline.
 
+use super::terrain::Terrain;
 use super::turn::{Pivot, Position};
 use super::*;
 use crate::mechanics::BoostStat;
@@ -172,7 +173,29 @@ impl Battle {
 
     fn on_gained_item(&mut self, pos: Position) {
         self.on_switch_in_item(pos);
+        self.use_matching_terrain_seed(pos);
         self.white_herb(pos);
+    }
+
+    pub(super) fn use_matching_terrain_seed(&mut self, pos: Position) {
+        let (terrain, name, stat) = match self.mon(pos).effective_item() {
+            "electricseed" => (Terrain::Electric, "Electric Seed", BoostStat::Def),
+            "grassyseed" => (Terrain::Grassy, "Grassy Seed", BoostStat::Def),
+            "mistyseed" => (Terrain::Misty, "Misty Seed", BoostStat::Spd),
+            "psychicseed" => (Terrain::Psychic, "Psychic Seed", BoostStat::Spd),
+            _ => return,
+        };
+        if self.terrain() != Some(terrain) || self.mon(pos).hp == 0 {
+            return;
+        }
+        self.consume(pos, name, false);
+        let (amount, invert) = match self.event_ability(pos) {
+            "simple" => (2, false),
+            "contrary" => (1, true),
+            _ => (1, false),
+        };
+        self.apply_boosts_with_item(pos, &[(stat, amount)], false, invert, Some(name));
+        self.symbiosis_after_item(pos);
     }
 
     pub(super) fn white_herb(&mut self, pos: Position) {
