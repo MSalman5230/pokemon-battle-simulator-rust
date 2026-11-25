@@ -1745,6 +1745,17 @@ fn metronome_item_stacks_successful_repeats_caps_and_resets() {
 }
 
 #[test]
+fn national_dex_legacy_moves_match_weather_status_and_effect_only_actions() {
+    replay(include_str!("fixtures/natdex-hail.json"));
+    replay(include_str!("fixtures/natdex-legacy-status.json"));
+}
+
+#[test]
+fn baton_pass_skips_the_pre_switch_update_even_during_a_speed_tie() {
+    replay(include_str!("fixtures/vgc-baton-pass-speed-tie.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

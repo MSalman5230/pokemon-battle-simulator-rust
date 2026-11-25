@@ -1,0 +1,1828 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"Celebrate\",\"Happy Hour\",\"Splash\",\"Refresh\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Own Tempo\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Tail Whip\",\"Toxic\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Water Absorb\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "celebrate",
+                  "happyhour",
+                  "splash",
+                  "refresh"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip",
+                  "toxic"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "celebrate",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "happyhour",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "refresh",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Celebrate",
+                  "id": "celebrate",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Happy Hour",
+                  "id": "happyhour",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Refresh",
+                  "id": "refresh",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "celebrate",
+                  "happyhour",
+                  "splash",
+                  "refresh"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip",
+                  "toxic"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "celebrate",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "happyhour",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "refresh",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Celebrate|p1a: Smeargle",
+          "|-activate|p1a: Smeargle|move: Celebrate",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Celebrate|p1a: Smeargle",
+          "|-activate|p1a: Smeargle|move: Celebrate",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Celebrate|p1a: Smeargle",
+          "|-activate|p1a: Smeargle|move: Celebrate",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Celebrate",
+                  "id": "celebrate",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Happy Hour",
+                  "id": "happyhour",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Refresh",
+                  "id": "refresh",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "celebrate",
+                  "happyhour",
+                  "splash",
+                  "refresh"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip",
+                  "toxic"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "celebrate",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "happyhour",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "refresh",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Happy Hour|p1a: Smeargle",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Happy Hour|p1a: Smeargle",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Happy Hour|p1a: Smeargle",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Celebrate",
+                  "id": "celebrate",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Happy Hour",
+                  "id": "happyhour",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Refresh",
+                  "id": "refresh",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "celebrate",
+                  "happyhour",
+                  "splash",
+                  "refresh"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip",
+                  "toxic"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "celebrate",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "happyhour",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "refresh",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Splash|p1a: Smeargle",
+          "|-nothing",
+          "|move|p2a: Vaporeon|Toxic|p1a: Smeargle",
+          "|-status|p1a: Smeargle|tox",
+          "|",
+          "|-damage|p1a: Smeargle|93/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Splash|p1a: Smeargle",
+          "|-nothing",
+          "|move|p2a: Vaporeon|Toxic|p1a: Smeargle",
+          "|-status|p1a: Smeargle|tox",
+          "|",
+          "|-damage|p1a: Smeargle|122/130 tox|[from] psn",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Splash|p1a: Smeargle",
+          "|-nothing",
+          "|move|p2a: Vaporeon|Toxic|p1a: Smeargle",
+          "|-status|p1a: Smeargle|tox",
+          "|",
+          "|-damage|p1a: Smeargle|93/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Celebrate",
+                  "id": "celebrate",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Happy Hour",
+                  "id": "happyhour",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Refresh",
+                  "id": "refresh",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "122/130 tox",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "celebrate",
+                  "happyhour",
+                  "splash",
+                  "refresh"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip",
+                  "toxic"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 122,
+            "maxhp": 130,
+            "status": "tox",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "celebrate",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "happyhour",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "splash",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "refresh",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Refresh|p1a: Smeargle",
+          "|-curestatus|p1a: Smeargle|tox|[msg]",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Refresh|p1a: Smeargle",
+          "|-curestatus|p1a: Smeargle|tox|[msg]",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Refresh|p1a: Smeargle",
+          "|-curestatus|p1a: Smeargle|tox|[msg]",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Celebrate",
+                  "id": "celebrate",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Happy Hour",
+                  "id": "happyhour",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Refresh",
+                  "id": "refresh",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "122/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "celebrate",
+                  "happyhour",
+                  "splash",
+                  "refresh"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip",
+                  "toxic"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 122,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -3,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "celebrate",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "happyhour",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "splash",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "refresh",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 17,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Refresh||[still]",
+          "|-fail|p1a: Smeargle",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Refresh||[still]",
+          "|-fail|p1a: Smeargle",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Refresh||[still]",
+          "|-fail|p1a: Smeargle",
+          "|move|p2a: Vaporeon|Tail Whip|p1a: Smeargle",
+          "|-unboost|p1a: Smeargle|def|1",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Celebrate",
+                  "id": "celebrate",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Happy Hour",
+                  "id": "happyhour",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Refresh",
+                  "id": "refresh",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "122/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "celebrate",
+                  "happyhour",
+                  "splash",
+                  "refresh"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 16,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "tailwhip",
+                  "toxic"
+                ],
+                "baseAbility": "waterabsorb",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "waterabsorb",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 122,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -4,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "celebrate",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "happyhour",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "splash",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "refresh",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "waterabsorb",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 16,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

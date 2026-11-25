@@ -107,7 +107,12 @@ impl Battle {
     }
 
     pub(super) fn set_screen(&mut self, source: Position, screen: Screen) -> bool {
-        if matches!(screen, Screen::AuroraVeil) && self.effective_weather() != Some(Weather::Snow) {
+        if matches!(screen, Screen::AuroraVeil)
+            && !matches!(
+                self.effective_weather(),
+                Some(Weather::Snow | Weather::Hail)
+            )
+        {
             return false;
         }
         let turns = if self.mon(source).effective_item() == "lightclay" {

@@ -279,6 +279,7 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
         "sunnyday" => Some((Weather::Sun, input.field.weather_turns)),
         "sandstorm" => Some((Weather::Sand, input.field.weather_turns)),
         "snowscape" => Some((Weather::Snow, input.field.weather_turns)),
+        "hail" => Some((Weather::Hail, input.field.weather_turns)),
         other => return Err(unsupported(format!("weather {other}"))),
     };
     battle.terrain = match input.field.terrain.as_str() {

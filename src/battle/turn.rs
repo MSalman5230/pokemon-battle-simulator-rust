@@ -884,6 +884,11 @@ impl Battle {
                     | "gastroacid"
                     | "magicroom"
                     | "copycat"
+                    | "hail"
+                    | "celebrate"
+                    | "splash"
+                    | "happyhour"
+                    | "refresh"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1998,10 +2003,12 @@ impl Battle {
                     if self
                         .mon(Position { player, slot })
                         .pivot_move
-                        .is_some_and(|pivot| pivot != Pivot::Move("Shed Tail"))
+                        .is_some_and(|pivot| {
+                            !matches!(pivot, Pivot::Move("Shed Tail" | "Baton Pass"))
+                        })
                     {
                         // BeforeSwitchOut marks this move-driven switch as having
-                        // already run its update. Shed Tail skips that event.
+                        // already run its update. Volatile-passing moves skip it.
                         self.each_event();
                     }
                 }
@@ -3262,7 +3269,7 @@ impl Battle {
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
             && matches!(
                 move_weather,
-                Some(Weather::Rain | Weather::Sand | Weather::Snow)
+                Some(Weather::Rain | Weather::Sand | Weather::Snow | Weather::Hail)
             );
         let counter = CounterMove::for_move(move_data);
         let trapping_status = matches!(
@@ -3472,7 +3479,7 @@ impl Battle {
             target.and_then(|target| self.mon(target).personal_weather(weather))
         };
         let mut accuracy = match (move_data.name.as_str(), weather_at_target) {
-            ("Blizzard", Some(Weather::Snow)) => Accuracy::Bypass(true),
+            ("Blizzard", Some(Weather::Snow | Weather::Hail)) => Accuracy::Bypass(true),
             ("Hurricane" | "Thunder", Some(Weather::Rain)) if target.is_some() => {
                 Accuracy::Bypass(true)
             }
@@ -4003,7 +4010,10 @@ impl Battle {
         }
         if let Some(screen) = Screen::from_move(&move_data.name) {
             if !matches!(screen, Screen::AuroraVeil)
-                || self.effective_weather() == Some(Weather::Snow)
+                || matches!(
+                    self.effective_weather(),
+                    Some(Weather::Snow | Weather::Hail)
+                )
             {
                 self.protean_prepare(source, move_type);
             }
@@ -4223,6 +4233,10 @@ impl Battle {
         if move_data.name == "Magic Room" {
             self.protean_prepare(source, move_type);
             self.toggle_magic_room(source);
+            return true;
+        }
+        if move_data.name == "Happy Hour" {
+            self.protean_prepare(source, move_type);
             return true;
         }
         if let Some(weather) = Weather::from_move(&move_data.name) {
@@ -5009,6 +5023,32 @@ impl Battle {
                     continue;
                 }
                 let mut succeeded = false;
+                match move_data.name.as_str() {
+                    "Celebrate" => {
+                        self.add(format!("|-activate|{source_name}|move: Celebrate"));
+                        succeeded = true;
+                    }
+                    "Splash" => {
+                        self.add("|-nothing");
+                        succeeded = true;
+                    }
+                    "Refresh" => {
+                        if matches!(
+                            self.mon(target).status,
+                            Status::Burn | Status::Paralysis | Status::Poison | Status::Toxic(_)
+                        ) {
+                            self.cure_status(target, "[msg]");
+                            succeeded = true;
+                        } else {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                            if self.format.report_exact_hp {
+                                self.add("|debug|move failed because it did nothing");
+                            }
+                        }
+                    }
+                    _ => {}
+                }
                 if move_data.name == "Gastro Acid" {
                     if self.inhibit_ability(target) {
                         succeeded = true;
@@ -7234,7 +7274,7 @@ impl Pokemon {
             ("swiftswim", Some(Weather::Rain))
                 | ("chlorophyll", Some(Weather::Sun))
                 | ("sandrush", Some(Weather::Sand))
-                | ("slushrush", Some(Weather::Snow))
+                | ("slushrush", Some(Weather::Snow | Weather::Hail))
         ) || self.active_ability() == "surgesurfer" && terrain == Some(Terrain::Electric)
             || self.active_ability() == "unburden"
                 && self.item.is_empty()

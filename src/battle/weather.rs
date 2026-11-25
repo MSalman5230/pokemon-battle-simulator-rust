@@ -9,6 +9,7 @@ pub enum Weather {
     Sun,
     Sand,
     Snow,
+    Hail,
 }
 
 impl Weather {
@@ -18,6 +19,7 @@ impl Weather {
             Self::Sun => "SunnyDay",
             Self::Sand => "Sandstorm",
             Self::Snow => "Snowscape",
+            Self::Hail => "Hail",
         }
     }
 
@@ -26,7 +28,7 @@ impl Weather {
             Self::Rain => "damprock",
             Self::Sun => "heatrock",
             Self::Sand => "smoothrock",
-            Self::Snow => "icyrock",
+            Self::Snow | Self::Hail => "icyrock",
         }
     }
 
@@ -36,6 +38,7 @@ impl Weather {
             "Sunny Day" => Self::Sun,
             "Sandstorm" => Self::Sand,
             "Snowscape" => Self::Snow,
+            "Hail" => Self::Hail,
             _ => return None,
         })
     }
@@ -53,7 +56,7 @@ impl Weather {
             Self::Rain => "Water",
             Self::Sun => "Fire",
             Self::Sand => "Rock",
-            Self::Snow => "Ice",
+            Self::Snow | Self::Hail => "Ice",
         }
     }
 }
@@ -80,7 +83,7 @@ impl Battle {
     pub(super) fn weather_evasion(&self, pos: Position, weather: Option<Weather>) -> (bool, bool) {
         match (weather, self.event_ability(pos)) {
             (Some(Weather::Sand), "sandveil") => (true, false),
-            (Some(Weather::Snow), "snowcloak") => (true, true),
+            (Some(Weather::Snow | Weather::Hail), "snowcloak") => (true, true),
             _ => (false, false),
         }
     }
@@ -88,7 +91,9 @@ impl Battle {
     pub(super) fn active_weather_evasion(&self, pos: Position) -> (bool, bool) {
         match (self.weather(), self.event_ability(pos)) {
             (Some(Weather::Sand), "sandveil") => (!self.weather_suppressed(), false),
-            (Some(Weather::Snow), "snowcloak") if !self.weather_suppressed() => (true, true),
+            (Some(Weather::Snow | Weather::Hail), "snowcloak") if !self.weather_suppressed() => {
+                (true, true)
+            }
             _ => (false, false),
         }
     }
@@ -186,6 +191,19 @@ impl Battle {
                     )
                 {
                     self.indirect_damage(pos, 16, "|[from] Sandstorm");
+                }
+            } else if weather == Weather::Hail {
+                let ability = self.event_ability(pos);
+                let ice_body = ability == "icebody";
+                if ice_body || ability == "snowcloak" || self.status_immune(pos, "hail") {
+                    if self.format.report_exact_hp {
+                        self.add("|debug|weather immunity");
+                    }
+                    if ice_body {
+                        self.ability_heal(pos, 16, "Ice Body", None);
+                    }
+                } else {
+                    self.indirect_damage(pos, 16, "|[from] Hail");
                 }
             } else if weather == Weather::Snow && self.mon(pos).active_ability() == "icebody" {
                 self.ability_heal(pos, 16, "Ice Body", None);

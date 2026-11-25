@@ -53,7 +53,7 @@ impl Battle {
         let id = match weather {
             Some(Weather::Sun) => "castformsunny",
             Some(Weather::Rain) => "castformrainy",
-            Some(Weather::Snow) => "castformsnowy",
+            Some(Weather::Snow | Weather::Hail) => "castformsnowy",
             _ => "castform",
         };
         self.temporary_ability_forme(pos, id, "[msg]|[from] ability: Forecast");

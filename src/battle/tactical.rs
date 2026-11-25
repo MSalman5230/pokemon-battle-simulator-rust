@@ -150,6 +150,7 @@ impl DamageProbe {
             "sunnyday" => Some((Weather::Sun, 5)),
             "sandstorm" => Some((Weather::Sand, 5)),
             "snowscape" => Some((Weather::Snow, 5)),
+            "hail" => Some((Weather::Hail, 5)),
             _ => return Err(unsupported(self.weather)),
         };
         battle.terrain = match to_id(&self.terrain).as_str() {
@@ -509,9 +510,8 @@ impl Battle {
 
     fn preview_accuracy(&self, move_data: &Move, weather: Option<Weather>) -> f64 {
         let weather_adjusted = match (move_data.name.as_str(), weather) {
-            ("Blizzard", Some(Weather::Snow)) | ("Hurricane" | "Thunder", Some(Weather::Rain)) => {
-                Accuracy::Bypass(true)
-            }
+            ("Blizzard", Some(Weather::Snow | Weather::Hail))
+            | ("Hurricane" | "Thunder", Some(Weather::Rain)) => Accuracy::Bypass(true),
             ("Hurricane" | "Thunder", Some(Weather::Sun)) => Accuracy::Percent(50),
             _ => move_data.accuracy,
         };

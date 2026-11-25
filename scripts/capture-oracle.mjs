@@ -1443,6 +1443,18 @@ const metronomeRosters = [
     [{...named('Sylveon', ['Water Gun', 'Tail Whip']), item:'Metronome'}, named('Arcanine', ['Recover'])],
     [named('Vaporeon', ['Recover', 'Protect', 'Tail Whip'])],
 ];
+const natDexHailRosters = [
+    [{...named('Castform', ['Hail', 'Weather Ball', 'Sunny Day']), ability:'Forecast'}],
+    [{...named('Vaporeon', ['Tail Whip']), ability:'Water Absorb'}],
+];
+const natDexLegacyRosters = [
+    [{...named('Smeargle', ['Celebrate', 'Happy Hour', 'Splash', 'Refresh']), ability:'Own Tempo'}],
+    [{...named('Vaporeon', ['Tail Whip', 'Toxic']), ability:'Water Absorb'}],
+];
+const batonPassTieRosters = [
+    [{...named('Ninetales-Alola', ['Encore']), ability:'Snow Warning'}, named('Volcarona', ['Recover'])],
+    [named('Ninetales', ['Baton Pass']), named('Meowstic', ['Alluring Voice'], 'M'), named('Raticate', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2656,6 +2668,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 1'], ...Array(6).fill(['move 1','move 1']), ['move 1','move 2'],
         ['move 1','move 1'], ['move 2','move 3'], ['move 1','move 1'], ['switch 2','move 3'],
         ['switch 2','move 3'], ['move 1','move 3']], metronomeRosters, 'bss-metronome-item'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 1']],
+        natDexHailRosters, 'natdex-hail'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 2'],
+        ['move 4','move 1'], ['move 4','move 1']], natDexLegacyRosters, 'natdex-legacy-status'],
+    ['vgc2026regmc', [['team 12','team 123'], ['move 1 2, move 1','move 1, move 1 1'], [null,'switch 3, pass']],
+        batonPassTieRosters, 'vgc-baton-pass-speed-tie'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -312,7 +312,7 @@ impl Battle {
         if mon.semi_invulnerable() && matches!(key, "sandstorm" | "hail") {
             return true;
         }
-        (matches!(key, "powder" | "sandstorm")
+        (matches!(key, "powder" | "sandstorm" | "hail")
             && (mon.effective_item() == "safetygoggles" || self.event_ability(pos) == "overcoat"))
             || mon.types().filter(|ty| *ty != "???").any(|typing| {
                 DEX.type_data(&to_id(typing)).unwrap().damage_taken.get(key) == Some(&3)
