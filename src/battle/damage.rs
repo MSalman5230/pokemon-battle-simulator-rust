@@ -9,7 +9,7 @@ use crate::{
 #[derive(Clone, Copy)]
 enum Hook {
     Fixed(u32, &'static str),
-    DefenderAbility(u32, &'static str),
+    Ability(Position, u32, &'static str),
     Berry(&'static str, bool),
     Screens,
 }
@@ -26,7 +26,7 @@ impl Battle {
         let user = self.mon(source);
         let defender = self.mon(target);
         let source_active = self.active_effects(source);
-        let mut hooks = [(0_i32, 0_u8, Hook::Fixed(4096, "")); 7];
+        let mut hooks = [(0_i32, 0_u8, Hook::Fixed(4096, "")); 11];
         let mut count = 0;
         let mut add = |speed, suborder, hook| {
             hooks[count] = (speed, suborder, hook);
@@ -75,15 +75,16 @@ impl Battle {
                 defender.speed,
                 7,
                 if defender.hp == defender.max_hp.get() {
-                    Hook::DefenderAbility(2048, "Multiscale weaken")
+                    Hook::Ability(target, 2048, "Multiscale weaken")
                 } else {
-                    Hook::DefenderAbility(4096, "")
+                    Hook::Ability(target, 4096, "")
                 },
             ),
             "auraguard" => add(
                 defender.speed,
                 7,
-                Hook::DefenderAbility(
+                Hook::Ability(
+                    target,
                     if data.flags.contains_key("contact") {
                         2048
                     } else {
@@ -102,13 +103,24 @@ impl Battle {
                     defender.speed,
                     7,
                     if effectiveness > 0 {
-                        Hook::DefenderAbility(3072, debug)
+                        Hook::Ability(target, 3072, debug)
                     } else {
-                        Hook::DefenderAbility(4096, "")
+                        Hook::Ability(target, 4096, "")
                     },
                 );
             }
             _ => {}
+        }
+        for holder in self.positions() {
+            let mon = self.mon(holder);
+            if !mon.fainted && mon.ability == "friendguard" {
+                let (factor, debug) = if holder.player == target.player && holder != target {
+                    (3072, "Friend Guard weaken")
+                } else {
+                    (4096, "")
+                };
+                add(mon.speed, 7, Hook::Ability(holder, factor, debug));
+            }
         }
         if let Some((berry_type, name)) = resistance_berry(&defender.item) {
             let matches = berry_type == typing
@@ -125,8 +137,8 @@ impl Battle {
         for &(_, _, hook) in hooks.iter() {
             let (next, debug) = match hook {
                 Hook::Fixed(value, debug) => (value, debug),
-                Hook::DefenderAbility(value, debug) => {
-                    if self.ability_suppressed(target) {
+                Hook::Ability(holder, value, debug) => {
+                    if self.ability_suppressed(holder) {
                         if self.format.report_exact_hp {
                             self.add("|debug|ModifyDamage handler suppressed by Mold Breaker");
                         }

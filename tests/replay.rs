@@ -1028,6 +1028,21 @@ fn fainted_cached_speed_is_reset_before_an_opposing_pivot_switch() {
 }
 
 #[test]
+fn friend_guard_weakens_hits_against_its_ally_and_not_itself() {
+    replay(include_str!("fixtures/vgc-friend-guard.json"));
+}
+
+#[test]
+fn priority_guard_abilities_protect_foes_but_not_allied_targets() {
+    replay(include_str!("fixtures/vgc-priority-guards.json"));
+}
+
+#[test]
+fn feint_breaks_protect_and_exposes_the_target_to_later_attacks() {
+    replay(include_str!("fixtures/vgc-feint.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -1043,6 +1043,7 @@ impl Battle {
                     | "ragingbull"
                     | "brickbreak"
                     | "psychicfangs"
+                    | "feint"
                     | "focusenergy"
                     | "helpinghand"
                     | "focuspunch"
@@ -2619,6 +2620,20 @@ impl Battle {
             self.move_still(base);
             return true;
         }
+        let priority = self.base_move_priority(source, move_data) + i8::from(prankster);
+        if !delayed
+            && let Some(target) = spread_targets.last().copied().or(actual_target)
+            && let Some((holder, name)) =
+                self.try_move_guard(source, target, move_data, priority, sacrifice || mind_blown)
+        {
+            self.move_still(base);
+            self.add(format!(
+                "|cant|{}|ability: {name}|{}|[of] {source_name}",
+                self.ident(holder),
+                move_data.name
+            ));
+            return true;
+        }
         if !delayed && matches!(move_data.name.as_str(), "Future Sight" | "Doom Desire") {
             if !self.schedule_future_move(source, spread_targets[0], move_data) {
                 self.move_still(base);
@@ -2645,17 +2660,7 @@ impl Battle {
             self.add(format!("|-fail|{source_name}"));
             return true;
         }
-        let damp = self.damp_holder("TryMove", sacrifice || mind_blown);
         if sacrifice || mind_blown {
-            if let Some(holder) = damp {
-                self.move_still(base);
-                self.add(format!(
-                    "|cant|{}|ability: Damp|{}|[of] {source_name}",
-                    self.ident(holder),
-                    move_data.name
-                ));
-                return true;
-            }
             if sacrifice {
                 // The user is queued to faint before any target, but its
                 // faint log and cleanup happen after damage is applied.
@@ -3021,7 +3026,6 @@ impl Battle {
             self.protean_prepare(source, move_type);
         }
         let spread = !darts && spread_targets.len() > 1;
-        let priority = self.base_move_priority(source, move_data) + i8::from(prankster);
         spread_targets.retain(|&target| {
             if self
                 .mon(target)
@@ -3310,6 +3314,17 @@ impl Battle {
             }
             self.note_consecutive_move(consecutive, move_data);
             return true;
+        }
+        if move_data.name == "Feint" {
+            for &target in &spread_targets {
+                let mon = self.mon_mut(target);
+                if let Some(protection) = mon.protection.take() {
+                    mon.untrack_volatile(protection.volatile());
+                    mon.stall = None;
+                    mon.untrack_volatile("stall");
+                    self.add(format!("|-activate|{}|move: Feint", self.ident(target)));
+                }
+            }
         }
 
         if move_data.category == Category::Status {
@@ -4807,6 +4822,10 @@ impl Pokemon {
                 | "liquidooze"
                 | "toxicdebris"
                 | "compoundeyes"
+                | "friendguard"
+                | "armortail"
+                | "dazzling"
+                | "queenlymajesty"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

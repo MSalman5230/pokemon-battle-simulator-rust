@@ -933,6 +933,22 @@ const faintBeforePivotRosters = [
     [{...named('Perrserker', ['Swords Dance', 'U-turn']), evs:{spe:32, atk:32}},
         named('Froslass', ['Icy Wind', 'Recover']), named('Umbreon', ['Recover'])],
 ];
+const allyDamageGuardRosters = [
+    [{...named('Haxorus', ['Tackle', 'Recover']), ability:'Mold Breaker'},
+        named('Vaporeon', ['Surf', 'Recover'])],
+    [named('Umbreon', ['Recover', 'Protect']),
+        {...named('Clefairy', ['Recover']), ability:'Friend Guard'}],
+];
+const priorityGuardRosters = [
+    [named('Jolteon', ['Quick Attack', 'Recover']),
+        {...named('Haxorus', ['Quick Attack', 'Recover']), ability:'Mold Breaker'}],
+    [{...named('Tsareena', ['Recover']), ability:'Queenly Majesty'},
+        {...named('Farigiraf', ['Recover']), ability:'Armor Tail'}],
+];
+const feintRosters = [
+    [named('Flareon', ['Feint']), named('Vaporeon', ['Tackle'])],
+    [named('Umbreon', ['Protect', 'Recover']), named('Espeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1421,6 +1437,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 123','team 123'], ['move 1, move 1','move 1, move 1'],
         ['move 1, move 1','move 2 2, move 2'], [null,'switch 3, pass'], ['pass, switch 3',null]],
         faintBeforePivotRosters, 'vgc-faint-before-pivot'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1'],
+        ['move 1 2, move 1','move 2, move 1']], allyDamageGuardRosters, 'vgc-friend-guard'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 2, move 1 2','move 1, move 1'],
+        ['move 1 -2, move 2','move 1, move 1']],
+        priorityGuardRosters, 'vgc-priority-guards'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 1','move 1, move 1'],
+        ['move 1 1, move 1 1','move 2, move 1']], feintRosters, 'vgc-feint'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

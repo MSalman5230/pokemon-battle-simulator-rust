@@ -2,6 +2,7 @@
 
 use super::{turn::Position, *};
 use crate::{
+    choice::TargetKind,
     dex::Category,
     mechanics::{BoostStat, chain},
 };
@@ -195,6 +196,59 @@ impl Battle {
                 }
             } else if interrupts {
                 return Some(pos);
+            }
+        }
+        None
+    }
+
+    /// Return the first TryMove ability to block the move. The full set of
+    /// listeners is sorted even when none will block this particular move.
+    pub(super) fn try_move_guard(
+        &mut self,
+        source: Position,
+        target: Position,
+        data: &Move,
+        priority: i8,
+        explosive: bool,
+    ) -> Option<(Position, &'static str)> {
+        let mut guards = [(source, 0, ""); 4];
+        let mut len = 0;
+        for pos in self.positions() {
+            let mon = self.mon(pos);
+            if mon.hp == 0 {
+                continue;
+            }
+            let name = match mon.ability.as_str() {
+                "damp" => "Damp",
+                "armortail" if pos.player != source.player => "Armor Tail",
+                "dazzling" if pos.player != source.player => "Dazzling",
+                "queenlymajesty" if pos.player != source.player => "Queenly Majesty",
+                _ => continue,
+            };
+            guards[len] = (pos, mon.speed, name);
+            len += 1;
+        }
+        let guards = &mut guards[..len];
+        speed_sort_by(guards, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        let all_exception = data.target == TargetKind::All
+            && matches!(
+                data.name.as_str(),
+                "Perish Song" | "Flower Shield" | "Rototiller"
+            );
+        let blockable_priority =
+            priority > 0 && !matches!(data.target, TargetKind::FoeSide | TargetKind::All);
+        for &(pos, _, name) in guards.iter() {
+            if self.ability_suppressed(pos) {
+                if self.format.report_exact_hp {
+                    self.add("|debug|TryMove handler suppressed by Mold Breaker");
+                }
+            } else if if name == "Damp" {
+                explosive
+            } else {
+                (blockable_priority && target.player == pos.player)
+                    || (priority > 0 && all_exception)
+            } {
+                return Some((pos, name));
             }
         }
         None
