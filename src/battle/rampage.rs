@@ -13,7 +13,7 @@ pub(super) struct Rampage {
 
 impl Pokemon {
     pub(super) fn hard_locked(&self) -> bool {
-        self.recharge > 0 || self.rampage.is_some()
+        self.recharge > 0 || self.rampage.is_some() || self.charge.is_some()
     }
 }
 

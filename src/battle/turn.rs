@@ -1,3 +1,4 @@
+use super::charge::ChargeSpec;
 use super::*;
 use crate::{
     choice::{MoveChoice, SpecialChoice, TargetKind},
@@ -545,7 +546,7 @@ impl Battle {
             }
             return Ok(ActionKind::Move {
                 move_slot,
-                target: 0,
+                target: self.mon(actor).charge.map_or(0, |state| state.target),
                 mega: false,
             });
         }
@@ -758,6 +759,12 @@ impl Battle {
                     | "trick"
                     | "switcheroo"
                     | "skillswap"
+                    | "electroshot"
+                    | "solarbeam"
+                    | "solarblade"
+                    | "meteorbeam"
+                    | "skullbash"
+                    | "geomancy"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -975,6 +982,7 @@ impl Battle {
         party[outgoing.slot].stats_raised = false;
         party[outgoing.slot].flinched = false;
         party[outgoing.slot].recharge = 0;
+        party[outgoing.slot].charge = None;
         party[outgoing.slot].confusion = 0;
         party[outgoing.slot].rampage = None;
         party[outgoing.slot].attention = None;
@@ -1257,6 +1265,7 @@ impl Battle {
             Stall,
             Flinch,
             Recharge,
+            Charge,
             Rampage,
             Attention,
             Leftovers,
@@ -1387,6 +1396,9 @@ impl Battle {
             if mon.recharge != 0 {
                 timers.push((pos, Effect::Recharge, priority(0, 2)));
             }
+            if mon.charge.is_some() {
+                timers.push((pos, Effect::Charge, priority(0, 2)));
+            }
             if mon.rampage.is_some() {
                 timers.push((pos, Effect::Rampage, priority(0, 2)));
             }
@@ -1462,6 +1474,7 @@ impl Battle {
                     }
                 }
                 Effect::Rampage => self.tick_rampage(pos),
+                Effect::Charge => mon.tick_charge(),
                 Effect::Attention => {
                     if let Some(kind) = mon.attention.take() {
                         mon.untrack_volatile(kind.name_id().1);
@@ -1539,6 +1552,13 @@ impl Battle {
         }
         let move_data = self.move_data(source, slot);
         let struggle = slot == STRUGGLE_SLOT;
+        let charge_spec = ChargeSpec::for_move(&move_data.name);
+        let releasing_charge = self.mon(source).charge.is_some();
+        let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
+            && matches!(
+                self.weather(),
+                Some(Weather::Rain | Weather::Sand | Weather::Snow)
+            );
         let retaliation = matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
         let sheer_cold = move_data.name == "Sheer Cold";
         let ohko = sheer_cold
@@ -1551,8 +1571,8 @@ impl Battle {
         } else {
             None
         };
-        let rampage = self.mon(source).rampage.is_some();
-        let called_from = if rampage { "|[from] lockedmove" } else { "" };
+        let continuing = self.mon(source).rampage.is_some() || releasing_charge;
+        let called_from = if continuing { "|[from] lockedmove" } else { "" };
         let weather = self.weather();
         let weather_ball = move_data.name == "Weather Ball";
         let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
@@ -1572,6 +1592,7 @@ impl Battle {
         let original_target = self.resolve_target(source, move_data.target, loc);
         let target = retaliation_hit.map(|hit| hit.source).or(original_target);
         if !self.before_status_move(source, move_data) {
+            self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
             return false;
         }
@@ -1581,6 +1602,7 @@ impl Battle {
                 self.add("|debug|Disabled by Choice item lock");
             }
             self.add(format!("|-fail|{source_name}"));
+            self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
             return false;
         }
@@ -1607,7 +1629,7 @@ impl Battle {
             self.add(format!("|-activate|{source_name}|move: Struggle"));
         } else {
             let mon = self.mon_mut(source);
-            if !rampage {
+            if !continuing {
                 mon.moves[slot].pp -= 1;
                 mon.used_moves |= 1 << slot;
             }
@@ -1687,7 +1709,7 @@ impl Battle {
         }
 
         if !struggle
-            && !rampage
+            && !continuing
             && (move_data.target.is_choosable()
                 || matches!(
                     move_data.target,
@@ -1704,6 +1726,40 @@ impl Battle {
             self.mon_mut(source).moves[slot].pp = self.mon(source).moves[slot]
                 .pp
                 .saturating_sub(pressure_targets as u8);
+        }
+        if let Some(spec) = charge_spec {
+            if releasing_charge {
+                self.mon_mut(source).untrack_volatile(spec.id);
+            } else {
+                self.add(format!("|-prepare|{source_name}|{}", move_data.name));
+                if let Some(stat) = spec.boost {
+                    self.boost(source, &[(stat, 1)], false);
+                }
+                let weather_skip = spec.instant.is_some() && spec.instant == weather;
+                let herb_skip = !weather_skip && self.mon(source).item == "powerherb";
+                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                if weather_skip || herb_skip {
+                    if herb_skip {
+                        self.consume(source, "Power Herb", false);
+                        self.symbiosis_after_item(source);
+                        if self.format.report_exact_hp {
+                            self.add(format!(
+                                "|debug|power herb - remove charge turn for {}",
+                                spec.id
+                            ));
+                        }
+                    }
+                    self.add(format!(
+                        "|-anim|{source_name}|{}|{}",
+                        move_data.name,
+                        self.ident(spread_targets[0])
+                    ));
+                } else {
+                    self.mon_mut(source).begin_charge(spec, slot, loc);
+                    self.protean_prepare(source, move_type);
+                    return true;
+                }
+            }
         }
         if let Some(screen) = Screen::from_move(&move_data.name) {
             if !matches!(screen, Screen::AuroraVeil) || self.weather() == Some(Weather::Snow) {
@@ -2335,6 +2391,9 @@ impl Battle {
                         self.mon(target).ability.as_str(),
                         "battlearmor" | "shellarmor"
                     );
+                if solar_weak && self.format.report_exact_hp {
+                    self.add("|debug|weakened by weather");
+                }
                 let terrain_power =
                     self.terrain_power_modifier(source, target, move_data, move_type);
                 let user = self.mon(source);
@@ -2392,6 +2451,9 @@ impl Battle {
                     user.ability_power_modifier(move_data, move_type, power, weather),
                     user.item_power_modifier(move_type, move_data.category),
                 );
+                if solar_weak {
+                    power_modifier = crate::mechanics::chain(2048, power_modifier);
+                }
                 if converted && (hit == 1 || user.converted_move_type(&move_data.move_type).1) {
                     power_modifier = crate::mechanics::chain(4915, power_modifier);
                 }
@@ -2793,6 +2855,7 @@ impl Battle {
         mon.protected = false;
         mon.flinched = false;
         mon.recharge = 0;
+        mon.charge = None;
         mon.confusion = 0;
         mon.rampage = None;
         mon.attention = None;
@@ -2921,7 +2984,10 @@ impl Pokemon {
         if self.recharge > 0 {
             Some((RECHARGE_SLOT, "Recharge", "recharge"))
         } else {
-            let slot = self.rampage?.slot;
+            let slot = self
+                .rampage
+                .map(|state| state.slot)
+                .or_else(|| self.charge.map(|state| state.slot))?;
             let m = &self.moves[slot];
             Some((slot, &m.move_data.name, &m.id))
         }
@@ -3106,6 +3172,7 @@ impl Pokemon {
                 | "salacberry"
                 | "petayaberry"
                 | "apicotberry"
+                | "powerherb"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

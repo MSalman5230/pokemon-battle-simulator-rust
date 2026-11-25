@@ -341,6 +341,11 @@ const wanderingRosters = [
     [{...named('Heracross', ['Aerial Ace', 'Skill Swap']), ability: 'Guts'}, named('Vaporeon', ['Recover'])],
     [{...named('Runerigus', ['Recover']), ability: 'Wandering Spirit'}, named('Umbreon', ['Recover'])],
 ];
+const chargeRosters = [
+    [named('Archaludon', ['Recover', 'Rain Dance', 'Electro Shot']),
+        {...named('Meganium', ['Solar Beam', 'Sunny Day', 'Recover']), item: 'Power Herb'}],
+    [named('Umbreon', ['Recover']), named('Goodra', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -501,6 +506,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'], ['move 1', 'switch 2']], trickRosters, 'bss-trick-foul-play'],
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'], ['move 1', 'move 1'],
         ['switch 2', 'move 1'], ['switch 2', 'move 1']], wanderingRosters, 'bss-wandering-spirit'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 3', 'move 1'], ['move 1', 'switch 2'], ['move 2', 'move 1'],
+        ['move 3', 'move 1'], ['switch 2', 'move 1'], ['move 1', 'move 1'], ['move 2', 'move 1'], ['move 1', 'move 1']],
+        chargeRosters, 'bss-charge'],
+    ['vgc2026regmc', [['team 12', 'team 12'], ['move 3 2, move 3', 'move 1, move 1'],
+        ['move 1, move 3', 'move 1, move 1']], chargeRosters, 'vgc-charge'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -1,0 +1,3624 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Archaludon\",\"moves\":[\"Recover\",\"Rain Dance\",\"Electro Shot\"],\"gender\":\"F\",\"name\":\"Archaludon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Meganium\",\"moves\":[\"Solar Beam\",\"Sunny Day\",\"Recover\"],\"gender\":\"F\",\"name\":\"Meganium\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Power Herb\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Goodra\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Goodra\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Archaludon, L50, F|",
+          "|poke|p1|Meganium, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Goodra, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Archaludon, L50, F|",
+          "|poke|p1|Meganium, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Goodra, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Archaludon, L50, F|",
+          "|poke|p1|Meganium, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Goodra, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "powerherb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "powerherb",
+            "active": false,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Archaludon|Archaludon, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Archaludon|Archaludon, L50, F|165/165",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Archaludon|Archaludon, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Electro Shot",
+                  "id": "electroshot",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "powerherb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "powerherb",
+            "active": false,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Archaludon|Electro Shot||[still]",
+          "|-prepare|p1a: Archaludon|Electro Shot",
+          "|-boost|p1a: Archaludon|spa|1",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Archaludon|Electro Shot||[still]",
+          "|-prepare|p1a: Archaludon|Electro Shot",
+          "|-boost|p1a: Archaludon|spa|1",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Archaludon|Electro Shot||[still]",
+          "|-prepare|p1a: Archaludon|Electro Shot",
+          "|-boost|p1a: Archaludon|spa|1",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electro Shot",
+                  "id": "electroshot"
+                }
+              ],
+              "trapped": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "powerherb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "powerherb",
+            "active": false,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 2"
+      ],
+      "turn": 3,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Goodra|Goodra, L50, F|100/100",
+          "|move|p1a: Archaludon|Electro Shot|p2a: Goodra|[from] lockedmove",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|78/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Goodra|Goodra, L50, F|100/100",
+          "|move|p1a: Archaludon|Electro Shot|p2a: Goodra|[from] lockedmove",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|78/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Goodra|Goodra, L50, F|165/165",
+          "|move|p1a: Archaludon|Electro Shot|p2a: Goodra|[from] lockedmove",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|129/165",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Electro Shot",
+                  "id": "electroshot",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "powerherb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "129/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "powerherb",
+            "active": false,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 129,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Archaludon|Rain Dance|p1a: Archaludon",
+          "|-weather|RainDance",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|100/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Archaludon|Rain Dance|p1a: Archaludon",
+          "|-weather|RainDance",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|100/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Archaludon|Rain Dance|p1a: Archaludon",
+          "|-weather|RainDance",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|165/165",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Electro Shot",
+                  "id": "electroshot",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "powerherb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 1,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "powerherb",
+            "active": false,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Archaludon|Electro Shot||[still]",
+          "|-prepare|p1a: Archaludon|Electro Shot",
+          "|-boost|p1a: Archaludon|spa|1",
+          "|-anim|p1a: Archaludon|Electro Shot|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|74/100",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|100/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Archaludon|Electro Shot||[still]",
+          "|-prepare|p1a: Archaludon|Electro Shot",
+          "|-boost|p1a: Archaludon|spa|1",
+          "|-anim|p1a: Archaludon|Electro Shot|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|74/100",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|100/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Archaludon|Electro Shot||[still]",
+          "|-prepare|p1a: Archaludon|Electro Shot",
+          "|-boost|p1a: Archaludon|spa|1",
+          "|-anim|p1a: Archaludon|Electro Shot|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|123/165",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|165/165",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Electro Shot",
+                  "id": "electroshot",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "powerherb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 2,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "powerherb",
+            "active": false,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "55173,41332,18014,39666",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Meganium|Meganium, L50, F|100/100",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p1a: Meganium|Meganium, L50, F|155/155",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p1a: Meganium|Meganium, L50, F|100/100",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Solar Beam",
+                  "id": "solarbeam",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "powerherb",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "powerherb",
+            "active": true,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 7,
+      "seed": "49509,48214,61182,59152",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-enditem|p1a: Meganium|Power Herb",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|93/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-enditem|p1a: Meganium|Power Herb",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|93/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-enditem|p1a: Meganium|Power Herb",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-damage|p2a: Goodra|154/165",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Solar Beam",
+                  "id": "solarbeam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "154/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 154,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 8,
+      "seed": "25913,14078,46725,43276",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Meganium|Sunny Day|p1a: Meganium",
+          "|-weather|SunnyDay",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|100/100",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p1a: Meganium|Sunny Day|p1a: Meganium",
+          "|-weather|SunnyDay",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|100/100",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|move|p1a: Meganium|Sunny Day|p1a: Meganium",
+          "|-weather|SunnyDay",
+          "|move|p2a: Goodra|Recover|p2a: Goodra",
+          "|-heal|p2a: Goodra|165/165",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|8"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Solar Beam",
+                  "id": "solarbeam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 9,
+      "seed": "13649,37248,38599,15674",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-crit|p2a: Goodra",
+          "|-damage|p2a: Goodra|80/100",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-crit|p2a: Goodra",
+          "|-damage|p2a: Goodra|80/100",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p2a: Goodra|Recover||[still]",
+          "|-fail|p2a: Goodra|heal",
+          "|move|p1a: Meganium|Solar Beam||[still]",
+          "|-prepare|p1a: Meganium|Solar Beam",
+          "|-anim|p1a: Meganium|Solar Beam|p2a: Goodra",
+          "|-resisted|p2a: Goodra|1",
+          "|-crit|p2a: Goodra",
+          "|-damage|p2a: Goodra|133/165",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|9"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Solar Beam",
+                  "id": "solarbeam",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Meganium",
+                "details": "Meganium, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 120,
+                  "spa": 103,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "solarbeam",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Archaludon",
+                "details": "Archaludon, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 125,
+                  "def": 150,
+                  "spa": 145,
+                  "spd": 85,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover",
+                  "raindance",
+                  "electroshot"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 2,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "133/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Meganium",
+            "species": "Meganium",
+            "details": "Meganium, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 120,
+              "spa": 103,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "solarbeam",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "sunnyday",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Archaludon",
+            "species": "Archaludon",
+            "details": "Archaludon, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 150,
+              "spa": 145,
+              "spd": 85,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "electroshot",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 133,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 2,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -430,3 +430,13 @@ fn bss_trick_swaps_held_items_and_foul_play_uses_the_targets_attack_stat() {
 fn bss_wandering_spirit_and_skill_swap_preserve_base_abilities() {
     replay(include_str!("fixtures/bss-wandering-spirit.json"));
 }
+
+#[test]
+fn bss_charge_moves_handle_weather_power_herb_and_pp_exactly() {
+    replay(include_str!("fixtures/bss-charge.json"));
+}
+
+#[test]
+fn vgc_charge_preserves_the_selected_target_slot() {
+    replay(include_str!("fixtures/vgc-charge.json"));
+}

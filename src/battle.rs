@@ -13,6 +13,7 @@ use serde::Serialize;
 mod abilities;
 use abilities::Attention;
 mod attract;
+mod charge;
 mod disable;
 mod hazards;
 mod items;
@@ -21,6 +22,7 @@ mod mega;
 mod multihit;
 mod rampage;
 mod screens;
+use charge::Charge;
 use hazards::Hazard;
 use rampage::Rampage;
 use screens::Screen;
@@ -159,6 +161,7 @@ pub struct Pokemon {
     volatile_order: Vec<&'static str>,
     flinched: bool,
     recharge: u8,
+    charge: Option<Charge>,
     confusion: u8,
     rampage: Option<Rampage>,
     attention: Option<Attention>,
@@ -694,6 +697,7 @@ impl Pokemon {
             volatile_order: Vec::new(),
             flinched: false,
             recharge: 0,
+            charge: None,
             confusion: 0,
             rampage: None,
             attention: None,
