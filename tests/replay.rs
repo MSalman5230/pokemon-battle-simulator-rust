@@ -610,3 +610,8 @@ fn vgc_flash_fire_and_dry_skin_handle_elemental_hits_and_frisk_reveals_both_item
 fn bss_keen_eye_protects_accuracy_and_reckless_boosts_damage_before_recoil() {
     replay(include_str!("fixtures/bss-keen-reckless.json"));
 }
+
+#[test]
+fn bss_purifying_salt_blocks_status_and_salt_cure_uses_champions_residual_damage() {
+    replay(include_str!("fixtures/bss-purifying-salt.json"));
+}

@@ -10,6 +10,26 @@ pub(super) struct Wish {
 }
 
 impl Battle {
+    pub(super) fn start_salt_cure(&mut self, pos: Position) {
+        if self.mon(pos).hp > 0 && !self.mon(pos).volatile_ids().contains(&"saltcure") {
+            self.mon_mut(pos).track_volatile("saltcure");
+            self.add(format!("|-start|{}|Salt Cure", self.ident(pos)));
+        }
+    }
+
+    pub(super) fn tick_salt_cure(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        let divisor = if mon.has_type("Water") || mon.has_type("Steel") {
+            8
+        } else {
+            16
+        };
+        self.indirect_damage(pos, divisor, "|[from] Salt Cure");
+        if self.mon(pos).hp == 0 && !self.mon(pos).fainted {
+            self.mark_fainted(pos);
+        }
+    }
+
     fn overflowed_turn(&self) -> u32 {
         let previous = self.turn - 1;
         match self.stat_rules.truncation {

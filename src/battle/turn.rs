@@ -824,6 +824,7 @@ impl Battle {
                     | "tailwind"
                     | "lastrespects"
                     | "ragefist"
+                    | "saltcure"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1385,6 +1386,7 @@ impl Battle {
             Yawn,
             Wish,
             LeechSeed,
+            SaltCure,
             Taunt,
             Encore,
             Disable,
@@ -1500,6 +1502,9 @@ impl Battle {
             if mon.seeded_from.is_some() {
                 timers.push((pos, Effect::LeechSeed, priority(8, 2)));
             }
+            if mon.volatile_ids().contains(&"saltcure") {
+                timers.push((pos, Effect::SaltCure, priority(13, 2)));
+            }
             if mon.roosted {
                 timers.push((pos, Effect::Roost, priority(25, 2)));
             }
@@ -1591,6 +1596,12 @@ impl Battle {
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::LeechSeed => {
                     self.tick_leech_seed(pos);
+                    if self.check_win() {
+                        return;
+                    }
+                }
+                Effect::SaltCure => {
+                    self.tick_salt_cure(pos);
                     if self.check_win() {
                         return;
                     }
@@ -2110,12 +2121,14 @@ impl Battle {
                 ));
             } else {
                 self.protean_prepare(source, move_type);
-                if self.field_blocks_status(
-                    source,
-                    "slp",
-                    source.player,
-                    self.terrain() == Some(Terrain::Electric),
-                ) {
+                if self.status_blocked_by_ability(source, "slp", false)
+                    || self.field_blocks_status(
+                        source,
+                        "slp",
+                        source.player,
+                        self.terrain() == Some(Terrain::Electric),
+                    )
+                {
                     self.move_still(base);
                     self.add(format!("|-fail|{source_name}"));
                     return true;
@@ -2592,6 +2605,16 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                         continue;
                     }
+                    if self.event_ability(target) == "purifyingsalt" {
+                        self.add(format!(
+                            "|-immune|{}|[from] ability: Purifying Salt",
+                            self.ident(target)
+                        ));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|interrupting tryAddVolatile with Purifying Salt");
+                        }
+                        continue;
+                    }
                     if let Some(holder) = self.flower_veil_holder(target) {
                         if self.format.report_exact_hp {
                             self.add("|debug|Flower Veil blocking yawn");
@@ -2777,11 +2800,16 @@ impl Battle {
                 let terrain_power =
                     self.terrain_power_modifier(source, target, move_data, move_type);
                 let dry_skin = move_type == "Fire" && self.event_ability(target) == "dryskin";
+                let purifying_salt =
+                    move_type == "Ghost" && self.event_ability(target) == "purifyingsalt";
                 let flash_fire = move_type == "Fire"
                     && self.mon(source).ability == "flashfire"
                     && self.mon(source).volatile_ids().contains(&"flashfire");
                 if flash_fire && self.format.report_exact_hp {
                     self.add("|debug|Flash Fire boost");
+                }
+                if purifying_salt && self.format.report_exact_hp {
+                    self.add("|debug|Purifying Salt weaken");
                 }
                 if self.mon(source).ability == "reckless"
                     && self.format.report_exact_hp
@@ -2848,6 +2876,7 @@ impl Battle {
                 if (self.event_ability(target) == "heatproof" && move_type == "Fire")
                     || (self.event_ability(target) == "thickfat"
                         && matches!(move_type, "Fire" | "Ice"))
+                    || purifying_salt
                 {
                     attack_modifier = crate::mechanics::chain(attack_modifier, 2048);
                 }
@@ -3029,6 +3058,9 @@ impl Battle {
                         }
                         if effect.volatile_status.as_deref() == Some("confusion") {
                             self.apply_confusion(target, false);
+                        }
+                        if effect.volatile_status.as_deref() == Some("saltcure") {
+                            self.start_salt_cure(target);
                         }
                     }
                 }
@@ -3560,6 +3592,7 @@ impl Pokemon {
                 | "keeneye"
                 | "frisk"
                 | "reckless"
+                | "purifyingsalt"
         )
     }
 

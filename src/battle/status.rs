@@ -264,6 +264,7 @@ impl Battle {
         let label = match (self.event_ability(pos), id) {
             ("immunity", "psn" | "tox") => "Immunity",
             ("thermalexchange", "brn") => "Thermal Exchange",
+            ("purifyingsalt", _) => "Purifying Salt",
             _ => return false,
         };
         if reveal {
@@ -348,6 +349,7 @@ impl Battle {
         self.add(format!("|-end|{}|move: Yawn|[silent]", self.ident(pos)));
         if self.mon(pos).status == Status::Healthy
             && !self.status_immune(pos, "slp")
+            && !self.status_blocked_by_ability(pos, "slp", false)
             && !self.field_blocks_status(pos, "slp", source, true)
         {
             self.apply_status(pos, "slp", source, None);
