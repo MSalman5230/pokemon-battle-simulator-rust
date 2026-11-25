@@ -373,7 +373,7 @@ impl Battle {
         {
             return false;
         }
-        self.set_status(pos, id, source.player, Some(&data.name));
+        self.set_status(pos, id, source.player, primary.then_some(&data.name));
         if !self.synchronize_status(pos, source, id, move_log) {
             self.cure_with_berry(pos);
         }

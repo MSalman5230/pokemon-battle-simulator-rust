@@ -1176,6 +1176,22 @@ const steelRollerRosters = [
     [named('Copperajah', ['Steel Roller'])],
     [named('Leafeon', ['Grassy Terrain', 'Recover'])],
 ];
+const traceSwitchRosters = [
+    [{...named('Pinsir', ['Recover']), ability:'Mold Breaker'}],
+    [named('Vaporeon', ['Recover']), {...named('Gardevoir', ['Recover']), ability:'Trace'}],
+];
+const intimidateSubstituteRosters = [
+    [named('Vaporeon', ['Recover']), {...named('Wyrdeer', ['Recover']), ability:'Intimidate'}],
+    [named('Typhlosion', ['Substitute', 'Recover'])],
+];
+const direClawSleepRosters = [
+    [named('Sneasler', ['Dire Claw'])],
+    [named('Avalugg', ['Recover'])],
+];
+const fellStingerRosters = [
+    [named('Beedrill', ['Fell Stinger'])],
+    [named('Abra', ['Calm Mind']), named('Vaporeon', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -2135,6 +2151,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','move 2'], ['move 4','move 2'], ['move 3','move 1']], gravityRosters, 'bss-gravity'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 2'], ['move 1','move 1'], ['move 1','move 2']],
         steelRollerRosters, 'bss-steel-roller'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','switch 2']], traceSwitchRosters, 'bss-trace-switch'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 2']],
+        intimidateSubstituteRosters, 'bss-intimidate-substitute'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], direClawSleepRosters, 'bss-dire-claw-sleep', '481,271,827,14'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], [null,'switch 2']], fellStingerRosters, 'bss-fell-stinger'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

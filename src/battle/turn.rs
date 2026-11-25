@@ -1039,6 +1039,7 @@ impl Battle {
                     | "gravity"
                     | "gravapple"
                     | "steelroller"
+                    | "fellstinger"
                     | "electroshot"
                     | "solarbeam"
                     | "solarblade"
@@ -2002,7 +2003,7 @@ impl Battle {
         if self.mon(pos).ability == "curiousmedicine" {
             self.curious_medicine(pos);
         }
-        self.try_trace(pos);
+        self.start_trace(pos);
     }
 
     pub(super) fn positions(&self) -> impl Iterator<Item = Position> + use<> {
@@ -5663,6 +5664,9 @@ impl Battle {
             self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
         }
         let suppress_after_move = sheer_force_removed && self.event_ability(source) == "sheerforce";
+        if move_data.name == "Fell Stinger" && fainted > 0 && !suppress_after_move {
+            self.boost(source, &[(BoostStat::Atk, 3)], true);
+        }
         if hits_landed > 0 && !move_data.after_hit_boosts.is_empty() {
             self.boost(source, &move_data.after_hit_boosts, true);
         }

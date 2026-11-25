@@ -658,6 +658,7 @@ impl Battle {
         mon.ability_order = order;
         mon.type_change_used = false;
         mon.cud_chew = None;
+        mon.trace_seeking = false;
     }
 
     pub(super) fn replacement_ability(
@@ -806,8 +807,28 @@ impl Battle {
         ));
     }
 
+    pub(super) fn start_trace(&mut self, pos: Position) {
+        if self.event_ability(pos) != "trace" {
+            return;
+        }
+        if self.mon(pos).effective_item() == "abilityshield" {
+            self.add(format!("|-block|{}|item: Ability Shield", self.ident(pos)));
+            return;
+        }
+        let seek = !self.positions().any(|target| {
+            target.player != pos.player
+                && self.mon(target).hp > 0
+                && self.mon(target).ability == "noability"
+        });
+        self.mon_mut(pos).trace_seeking = seek;
+        self.try_trace(pos);
+    }
+
     pub(super) fn try_trace(&mut self, pos: Position) {
-        if self.mon(pos).hp == 0 || self.mon(pos).ability != "trace" {
+        if !self.mon(pos).trace_seeking
+            || self.mon(pos).hp == 0
+            || self.event_ability(pos) != "trace"
+        {
             return;
         }
         let mut candidates = [pos; 2];
@@ -1240,6 +1261,10 @@ impl Battle {
                 self.add(format!("|-ability|{}|Intimidate|boost", self.ident(pos)));
                 started = true;
             }
+            if self.mon(target).substitute_hp > 0 {
+                self.add(format!("|-immune|{}", self.ident(target)));
+                continue;
+            }
             let lowered = self.boost_from(
                 target,
                 pos,
@@ -1519,6 +1544,7 @@ impl Pokemon {
         }
         self.type_change_used = false;
         self.cud_chew = None;
+        self.trace_seeking = false;
     }
 
     fn stat_drop_protection(&self) -> Option<&'static str> {

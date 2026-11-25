@@ -1489,6 +1489,18 @@ fn steel_roller_requires_and_consumes_terrain() {
 }
 
 #[test]
+fn trace_starts_once_and_substitute_shields_from_intimidate() {
+    replay(include_str!("fixtures/bss-trace-switch.json"));
+    replay(include_str!("fixtures/bss-intimidate-substitute.json"));
+}
+
+#[test]
+fn dire_claw_sleep_has_no_primary_move_suffix_and_fell_stinger_boosts_on_ko() {
+    replay(include_str!("fixtures/bss-dire-claw-sleep.json"));
+    replay(include_str!("fixtures/bss-fell-stinger.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
