@@ -1,0 +1,109 @@
+#!/usr/bin/env node
+// Rebuild fixtures with the exact Showdown dependency used by Poke-RL.
+import assert from 'node:assert/strict';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {createRequire} from 'node:module';
+
+const stage = new URL('../.tools/poke-rl-simulator/', import.meta.url);
+const require = createRequire(new URL('worker.cjs', stage));
+const {Battle, BattleStream, PRNG} = require('pokemon-showdown');
+const {extractChannelMessages} = require('pokemon-showdown/dist/sim/battle');
+const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
+const lock = JSON.parse(readFileSync(new URL('package-lock.json', stage)));
+assert(lock.packages['node_modules/pokemon-showdown'].resolved.endsWith('/' + revision));
+const save = (file, data) => writeFileSync(new URL('../tests/fixtures/' + file, import.meta.url),
+    JSON.stringify({revision, ...data}, null, 2) + '\n');
+
+const seeds = ['0,0,0,0', '1,2,3,4', '65535,65535,65535,65535', 'gen5,ffff0a09abcdffff',
+    'sodium,a', 'sodium,131415161718191a1b1c1d1e1f202122',
+    'sodium,ffffff00000000000000000a0000000000000000000000000000000000000000'];
+const rng = seeds.map(seed => {
+    const prng = new PRNG(seed);
+    const words = Array.from({length: 64}, () => prng.rng.next());
+    const bounded = [0, 1, 24, 16, 100, 2, 65536, 4294967295].map(upper => [upper, prng.random(upper)]);
+    return {seed, words, bounded, after: prng.getSeed()};
+});
+
+const fallback = [90, 10, 10, 70, 40, 90, 40, 10];
+const sorting = [fallback, Array(20).fill(50), fallback.concat(Array(18).fill(300))].map((speeds, n) => {
+    const seed = seeds[n];
+    const battle = new Battle({formatid: 'gen9championsbssregmc', seed});
+    const nodes = speeds.map((speed, i) => ({speed, i, priority: [0, -0.1, 0.1][(i + n) % 3]}));
+    if (n > 0) nodes.forEach(p => p.priority = 0);
+    const input = structuredClone(nodes);
+    battle.speedSort(nodes);
+    return {seed, input, output: nodes.map(x => x.i), after: battle.prng.getSeed()};
+});
+
+const battles = ['bssregmc', 'bssregmb', 'randombattle', 'customgame']
+    .map(name => new Battle({formatid: 'gen9champions' + name, seed: seeds[1]}));
+const stat = battles.flatMap((battle, mode) => ['atk', 'spe', 'hp'].flatMap(name =>
+    [0, 1, 2, 32, 255].map((points, i) => {
+        const base = [50, 100, 95, 250, 255][i];
+        const level = [1, 42, 50, 100, 9999][i];
+        const nature = ['AdaMant', 'timid', 'serious', 'brave', 'hasty'][i];
+        const set = {evs: {[name]: points}, level, nature};
+        return {mode, name, points, base, level, nature, result: battle.statModify({[name]: base}, set, name)};
+    })));
+const normal = battles[0];
+const healthMon = {species: 'Magikarp', moves: ['Splash'], gender: 'F'};
+normal.setPlayer('p1', {team: [healthMon]});
+const mon = normal.sides[0].pokemon[0];
+const health = [
+    [0, 201, ''], [1, 333, ''], [40, 200, ''], [41, 204, ''], [100, 200, ''],
+    [100, 199, 'brn'], [200, 200, 'tox'], [51, 103, ''],
+].flatMap(([hp, maxhp, status]) => [false, true].map(exact => {
+    Object.assign(mon, {hp, maxhp, status});
+    normal.reportExactHP = exact;
+    const {secret, shared} = mon.getHealth();
+    return {hp, maxhp, status, exact, secret, shared};
+}));
+save('mechanics.json', {rng, sorting, stat, health});
+
+const named = (species, moves, gender = 'F') => ({
+    species, moves, gender, name: species, level: 50, nature: 'Hardy', ability: '',
+});
+const rosters = [
+    [named('Flareon', ['Tackle', 'Quick Attack', 'Protect']), named('Vaporeon', ['Water Gun', 'Surf']),
+        named('Jolteon', ['Thunder Shock']), named('Glaceon', ['Ice Shard'])],
+    [named('Umbreon', ['Tackle']), named('Espeon', ['Swift', 'Protect']), named('Leafeon', ['Tackle', 'Protect']),
+        named('Sylveon', ['Quick Attack'])],
+];
+for (const [suffix, play] of [
+    ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
+    ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
+        ['move 2 2, switch 4', 'move 1, move 1 1']]],
+]) {
+    const formatid = 'gen9champions' + suffix;
+    const inputs = [
+        '>start ' + JSON.stringify({formatid, seed: seeds[1], strictChoices: true}),
+        ...rosters.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team})),
+    ];
+    const stream = new BattleStream({noCatch: true});
+    let logCursor = 0;
+    const checkpoints = [];
+    async function checkpoint(lines) {
+        for (const line of lines) await stream.write(line);
+        const battle = stream.battle;
+        const newLog = battle.log.slice(logCursor).filter(l => !l.startsWith('|t:|'));
+        logCursor = battle.log.length;
+        const channels = extractChannelMessages(newLog.join('\n'), [0, 1, 2]);
+        checkpoints.push({
+            lines,
+            turn: battle.turn,
+            seed: battle.prng.getSeed(),
+            requestState: battle.requestState,
+            channels: [channels[0], channels[1], channels[2]],
+            requests: battle.sides.map(s => s.activeRequest),
+            teams: battle.sides.map(s => s.pokemon.map(p => ({
+                name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp,
+                stats: p.storedStats, ability: p.ability, item: p.item, active: p.isActive,
+                moves: p.moveSlots.map(m => ({id: m.id, pp: m.pp, maxpp: m.maxpp})),
+            }))),
+        });
+    }
+    await checkpoint(inputs);
+    for (const [p1, p2] of play) await checkpoint(['>p1 ' + p1, '>p2 ' + p2]);
+    await stream.writeEnd();
+    save(suffix + '.json', {formatid, checkpoints});
+}

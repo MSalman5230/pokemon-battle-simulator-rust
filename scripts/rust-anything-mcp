@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)"
+if [[ ! -x "$root/.tools/bin/rust-anything" ]]; then
+    printf 'rust-anything is not installed here. Run %s/scripts/setup.sh\n' "$root" >&2
+    exit 1
+fi
+source "$root/scripts/env.sh"
+cd "$root"
+exec "$root/.tools/bin/rust-anything" mcp

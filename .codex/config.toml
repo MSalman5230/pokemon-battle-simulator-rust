@@ -1,0 +1,3 @@
+[mcp_servers.rust-anything]
+command = "bash"
+args = ["-c", "exec \"$(git rev-parse --show-toplevel)/scripts/rust-anything-mcp\""]
