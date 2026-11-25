@@ -757,6 +757,9 @@ impl Battle {
             "Psyblade" if self.terrain() == Some(super::terrain::Terrain::Electric) => {
                 Some((6144, "psyblade electric terrain boost"))
             }
+            "Fusion Bolt" | "Fusion Flare" if self.fusion_power(&move_data.name) => {
+                Some((8192, "double power"))
+            }
             _ => None,
         };
         if let Some((factor, _)) = legacy_power {

@@ -40,6 +40,7 @@ use hazards::Hazard;
 use rampage::Rampage;
 use screens::Screen;
 mod status;
+mod streaks;
 mod substitute;
 mod support;
 mod switch_copy;
@@ -179,6 +180,8 @@ pub struct Battle {
     wonder_room: u8,
     magic_room: Option<target_effects::TargetTimer>,
     fairy_lock: u8,
+    echoed_voice: Option<streaks::Streak>,
+    last_fusion: Option<streaks::Fusion>,
     ability_order: u32,
     ability_breaker: Option<Position>,
     possible_unaware: bool,
@@ -249,6 +252,7 @@ pub struct Pokemon {
     magnet_rise: u8,
     dragon_cheer: u8,
     laser_focus: u8,
+    fury_cutter: Option<streaks::Streak>,
     gem_boost: bool,
     electrified: bool,
     gastro_acid: bool,
@@ -506,6 +510,8 @@ impl Battle {
             wonder_room: 0,
             magic_room: None,
             fairy_lock: 0,
+            echoed_voice: None,
+            last_fusion: None,
             ability_order: 0,
             ability_breaker: None,
             possible_unaware: false,
@@ -977,6 +983,7 @@ impl Pokemon {
             magnet_rise: 0,
             dragon_cheer: 0,
             laser_focus: 0,
+            fury_cutter: None,
             gem_boost: false,
             electrified: false,
             gastro_acid: false,

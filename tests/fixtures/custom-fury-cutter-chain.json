@@ -1,0 +1,1546 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"Fury Cutter\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Own Tempo\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chansey\",\"moves\":[\"Life Dew\",\"Protect\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Natural Cure\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "furycutter"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "furycutter",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fury Cutter",
+                  "id": "furycutter",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "furycutter"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "furycutter",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 40",
+          "|-damage|p2a: Chansey|298/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 40",
+          "|-damage|p2a: Chansey|298/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 40",
+          "|-damage|p2a: Chansey|298/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fury Cutter",
+                  "id": "furycutter",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "furycutter"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "furycutter",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|-activate|p2a: Chansey|move: Protect",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|-activate|p2a: Chansey|move: Protect",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|-activate|p2a: Chansey|move: Protect",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fury Cutter",
+                  "id": "furycutter",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "furycutter"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "furycutter",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 40",
+          "|-damage|p2a: Chansey|300/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 40",
+          "|-damage|p2a: Chansey|300/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 40",
+          "|-damage|p2a: Chansey|300/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fury Cutter",
+                  "id": "furycutter",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "furycutter"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "furycutter",
+                "pp": 17,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "54274,43667,37867,24894",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 80",
+          "|-damage|p2a: Chansey|275/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 80",
+          "|-damage|p2a: Chansey|275/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 80",
+          "|-damage|p2a: Chansey|275/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fury Cutter",
+                  "id": "furycutter",
+                  "pp": 16,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "furycutter"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 9,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "furycutter",
+                "pp": 16,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 9,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "4124,63122,38965,57347",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 160",
+          "|-damage|p2a: Chansey|213/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|294/325",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 160",
+          "|-damage|p2a: Chansey|213/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|294/325",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fury Cutter|p2a: Chansey",
+          "|debug|BP: 160",
+          "|-damage|p2a: Chansey|213/325",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey",
+          "|-heal|p2a: Chansey|294/325",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fury Cutter",
+                  "id": "furycutter",
+                  "pp": 15,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "furycutter"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 8,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "294/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "furycutter",
+                "pp": 15,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 294,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 8,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

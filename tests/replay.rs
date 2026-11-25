@@ -1888,6 +1888,13 @@ fn inherited_charged_attacks_retain_targets_and_consume_pp_once() {
 }
 
 #[test]
+fn inherited_move_streaks_respect_owner_turn_and_previous_success() {
+    replay(include_str!("fixtures/custom-fury-cutter-chain.json"));
+    replay(include_str!("fixtures/custom-echoed-voice-chain.json"));
+    replay(include_str!("fixtures/custom-fusion-sequence.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

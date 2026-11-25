@@ -36,6 +36,7 @@ impl Pokemon {
                 "octolock" => self.octolock = source.octolock,
                 "dragoncheer" => self.dragon_cheer = source.dragon_cheer,
                 "laserfocus" => self.laser_focus = source.laser_focus,
+                "furycutter" => self.fury_cutter = source.fury_cutter,
                 "gem" => self.gem_boost = source.gem_boost,
                 "powertrick" => self.swap_attack_defense(),
                 "aquaring" | "ingrain" | "tarshot" => {}

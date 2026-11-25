@@ -989,6 +989,10 @@ impl Battle {
                     | "freezeshock"
                     | "iceburn"
                     | "razorwind"
+                    | "furycutter"
+                    | "echoedvoice"
+                    | "fusionbolt"
+                    | "fusionflare"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1911,6 +1915,7 @@ impl Battle {
         party[outgoing.slot].magnet_rise = 0;
         party[outgoing.slot].dragon_cheer = 0;
         party[outgoing.slot].laser_focus = 0;
+        party[outgoing.slot].fury_cutter = None;
         party[outgoing.slot].gem_boost = false;
         party[outgoing.slot].electrified = false;
         party[outgoing.slot].gastro_acid = false;
@@ -1960,6 +1965,7 @@ impl Battle {
                     }
                 }
                 ActionKind::BeforeTurn => {
+                    self.last_fusion = None;
                     self.ordered_actives(false);
                 }
                 ActionKind::PrepareCounter { move_kind, target } => {
@@ -2556,6 +2562,8 @@ impl Battle {
             ThroatChop,
             HealBlock,
             LaserFocus,
+            FuryCutter,
+            EchoedVoice,
             Taunt,
             Encore,
             Disable,
@@ -2584,6 +2592,19 @@ impl Battle {
         self.add("|");
         self.update_speed();
         let mut timers = Vec::new();
+        if self.echoed_voice.is_some() {
+            timers.push((
+                Position {
+                    player: Player::P1,
+                    slot: 0,
+                },
+                Effect::EchoedVoice,
+                Priority {
+                    sub_order: 5,
+                    ..Priority::default()
+                },
+            ));
+        }
         if self.weather().is_some() {
             timers.push((
                 Position {
@@ -2901,6 +2922,9 @@ impl Battle {
             if mon.laser_focus != 0 {
                 timers.push((pos, Effect::LaserFocus, priority(0, 2)));
             }
+            if mon.fury_cutter.is_some() {
+                timers.push((pos, Effect::FuryCutter, priority(0, 2)));
+            }
             if mon.recharge != 0 {
                 timers.push((pos, Effect::Recharge, priority(0, 2)));
             }
@@ -2928,6 +2952,10 @@ impl Battle {
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
         let mut perish_faints = Vec::new();
         for (pos, effect, _) in timers {
+            if matches!(effect, Effect::EchoedVoice) {
+                super::streaks::Streak::tick(&mut self.echoed_voice);
+                continue;
+            }
             if let Effect::SideGuard(guard) = effect {
                 self.clear_side_guard(pos.player, guard);
                 continue;
@@ -3080,6 +3108,12 @@ impl Battle {
                         self.end_laser_focus(pos);
                     }
                 }
+                Effect::FuryCutter => {
+                    super::streaks::Streak::tick(&mut mon.fury_cutter);
+                    if mon.fury_cutter.is_none() {
+                        mon.untrack_volatile("furycutter");
+                    }
+                }
                 Effect::FocusPunch => {
                     mon.lost_focus = false;
                     mon.untrack_volatile("focuspunch");
@@ -3125,6 +3159,7 @@ impl Battle {
                 | Effect::SideGuard(_)
                 | Effect::Safeguard
                 | Effect::LuckyChant
+                | Effect::EchoedVoice
                 | Effect::TrickRoom
                 | Effect::Gravity
                 | Effect::WonderRoom
@@ -3361,6 +3396,14 @@ impl Battle {
         let roster_index = self.mon(source).roster_index;
         let mut result = MoveResult::default();
         let attempted = self.run_move_inner(source, invocation, queue, &mut result);
+        if matches!(invocation, MoveInvocation::Choice { .. }) {
+            self.last_fusion = if result.counts_as_success && !result.failed {
+                self.last_battle_move
+                    .and_then(|data| super::streaks::Fusion::for_move(&data.name))
+            } else {
+                None
+            };
+        }
         let source = self.position_after_move(source, roster_index);
         if result.spends_charge {
             self.use_electric_charge(source);
@@ -4079,6 +4122,9 @@ impl Battle {
         }
         if !delayed {
             self.metronome_try_move(source, move_data);
+        }
+        if move_data.name == "Echoed Voice" {
+            self.continue_echoed_voice();
         }
         if move_data.name == "Aura Wheel" && self.mon(source).species.base_species != "Morpeko" {
             self.move_still(base);
@@ -6179,7 +6225,7 @@ impl Battle {
                     if mon.hp == mon.max_hp.get() {
                         self.move_still(base);
                         self.add(format!("|-fail|{}|heal", self.ident(target)));
-                        if !move_data.self_effect {
+                        if !move_data.self_effect && !life_dew {
                             self.report_no_move_effect();
                         }
                         continue;
@@ -6284,6 +6330,9 @@ impl Battle {
             if group_recovery && !any_success {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
+            }
+            if life_dew && !any_success {
                 self.report_no_move_effect();
             }
             if spread {
@@ -6561,6 +6610,7 @@ impl Battle {
                     battle.add("|-fieldactivate|Delta Stream");
                 }
                 let mut power = battle.situational_base_power(source, target, move_data, power);
+                power = battle.inherited_streak_power(source, &move_data.name, hit, power);
                 if matches!(move_data.name.as_str(), "Hex" | "Infernal Parade")
                     && (battle.mon(target).status != Status::Healthy
                         || battle.event_ability(target) == "comatose")
@@ -7563,6 +7613,7 @@ impl Battle {
         mon.magnet_rise = 0;
         mon.dragon_cheer = 0;
         mon.laser_focus = 0;
+        mon.fury_cutter = None;
         mon.gem_boost = false;
         mon.electrified = false;
         mon.gastro_acid = false;

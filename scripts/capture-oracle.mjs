@@ -1664,6 +1664,18 @@ const legacyRazorWindRosters = [
     [{...named('Smeargle', ['Razor Wind']), ability:'Own Tempo'}, named('Glaceon', ['Protect'])],
     [named('Jolteon', ['Tail Whip']), named('Vaporeon', ['Recover'])],
 ];
+const legacyFuryCutterRosters = [
+    [{...named('Smeargle', ['Fury Cutter']), ability:'Own Tempo'}],
+    [{...named('Chansey', ['Life Dew', 'Protect']), ability:'Natural Cure'}],
+];
+const legacyEchoedVoiceRosters = [
+    [{...named('Smeargle', ['Echoed Voice', 'Protect']), ability:'Own Tempo'}, named('Glaceon', ['Echoed Voice', 'Protect'])],
+    [legacyFuryCutterRosters[1][0], named('Vaporeon', ['Recover', 'Tail Whip'])],
+];
+const legacyFusionRosters = [
+    [{...named('Smeargle', ['Fusion Flare', 'Protect']), ability:'Own Tempo'}, named('Glaceon', ['Fusion Bolt'])],
+    [legacyFuryCutterRosters[1][0], {...named('Snorlax', ['Life Dew']), ability:'Immunity'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2993,6 +3005,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         legacyIceBurnRosters, 'natdex-ice-burn-power-herb'],
     ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'],
         ['move 1, move 1','move 1, move 1']], legacyRazorWindRosters, 'custom-razor-wind-charge'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 1'],
+        ['move 1','move 1'], ['move 1','move 1']], legacyFuryCutterRosters, 'custom-fury-cutter-chain'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1 2','move 2, move 1'],
+        ['move 1 1, move 1 1','move 1, move 2'], ['move 2, move 2','move 1, move 2'],
+        ['move 2, move 1 1','move 1, move 2']], legacyEchoedVoiceRosters, 'custom-echoed-voice-chain'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1 1','move 1, move 1'],
+        ['move 1 1, move 1 2','move 2, move 1'], ['move 2, move 1 2','move 1, move 1']],
+        legacyFusionRosters, 'custom-fusion-sequence'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

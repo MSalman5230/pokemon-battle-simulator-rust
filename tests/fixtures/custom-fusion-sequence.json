@@ -1,0 +1,1875 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"Fusion Flare\",\"Protect\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Own Tempo\"},{\"species\":\"Glaceon\",\"moves\":[\"Fusion Bolt\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chansey\",\"moves\":[\"Life Dew\",\"Protect\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Natural Cure\"},{\"species\":\"Snorlax\",\"moves\":[\"Life Dew\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Immunity\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "fusionflare",
+                  "protect"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "fusionbolt"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "lifedew"
+                ],
+                "baseAbility": "immunity",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "immunity",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "fusionflare",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "fusionbolt",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "immunity",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fusion Flare",
+                  "id": "fusionflare",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Fusion Bolt",
+                  "id": "fusionbolt",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "fusionflare",
+                  "protect"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "fusionbolt"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "lifedew"
+                ],
+                "baseAbility": "immunity",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "immunity",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fusionflare",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fusionbolt",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "immunity",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 1 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "9621,18248,53276,33281",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Fusion Flare|p2a: Chansey",
+          "|-damage|p2a: Chansey|311/325",
+          "|move|p1b: Glaceon|Fusion Bolt|p2a: Chansey",
+          "|debug|double power",
+          "|-damage|p2a: Chansey|65/325",
+          "|move|p2a: Chansey|Life Dew||[still]|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|146/325",
+          "|-fail|p2b: Snorlax|heal",
+          "|move|p2b: Snorlax|Life Dew||[still]|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|227/325",
+          "|-fail|p2b: Snorlax|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fusion Flare|p2a: Chansey",
+          "|-damage|p2a: Chansey|311/325",
+          "|move|p1b: Glaceon|Fusion Bolt|p2a: Chansey",
+          "|debug|double power",
+          "|-damage|p2a: Chansey|65/325",
+          "|move|p2a: Chansey|Life Dew||[still]|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|146/325",
+          "|-fail|p2b: Snorlax|heal",
+          "|move|p2b: Snorlax|Life Dew||[still]|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|227/325",
+          "|-fail|p2b: Snorlax|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Fusion Flare|p2a: Chansey",
+          "|-damage|p2a: Chansey|311/325",
+          "|move|p1b: Glaceon|Fusion Bolt|p2a: Chansey",
+          "|debug|double power",
+          "|-damage|p2a: Chansey|65/325",
+          "|move|p2a: Chansey|Life Dew||[still]|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|146/325",
+          "|-fail|p2b: Snorlax|heal",
+          "|move|p2b: Snorlax|Life Dew||[still]|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|227/325",
+          "|-fail|p2b: Snorlax|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fusion Flare",
+                  "id": "fusionflare",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Fusion Bolt",
+                  "id": "fusionbolt",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "fusionflare",
+                  "protect"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "fusionbolt"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "227/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "lifedew"
+                ],
+                "baseAbility": "immunity",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "immunity",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fusionflare",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fusionbolt",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 227,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "immunity",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 1 2",
+        ">p2 move 2, move 1"
+      ],
+      "turn": 3,
+      "seed": "12962,13605,28059,35138",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|move|p1a: Smeargle|Fusion Flare|p2a: Chansey",
+          "|-activate|p2a: Chansey|move: Protect",
+          "|move|p1b: Glaceon|Fusion Bolt|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|198/235",
+          "|move|p2b: Snorlax|Life Dew|p2b: Snorlax|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|308/325",
+          "|-heal|p2b: Snorlax|235/235",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|move|p1a: Smeargle|Fusion Flare|p2a: Chansey",
+          "|-activate|p2a: Chansey|move: Protect",
+          "|move|p1b: Glaceon|Fusion Bolt|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|198/235",
+          "|move|p2b: Snorlax|Life Dew|p2b: Snorlax|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|308/325",
+          "|-heal|p2b: Snorlax|235/235",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Chansey|Protect|p2a: Chansey",
+          "|-singleturn|p2a: Chansey|Protect",
+          "|move|p1a: Smeargle|Fusion Flare|p2a: Chansey",
+          "|-activate|p2a: Chansey|move: Protect",
+          "|move|p1b: Glaceon|Fusion Bolt|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|198/235",
+          "|move|p2b: Snorlax|Life Dew|p2b: Snorlax|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|308/325",
+          "|-heal|p2b: Snorlax|235/235",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fusion Flare",
+                  "id": "fusionflare",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Fusion Bolt",
+                  "id": "fusionbolt",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "fusionflare",
+                  "protect"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "fusionbolt"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "308/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "lifedew"
+                ],
+                "baseAbility": "immunity",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "immunity",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fusionflare",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fusionbolt",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 308,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "immunity",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2, move 1 2",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 4,
+      "seed": "887,44538,39903,26973",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Protect|p1a: Smeargle",
+          "|-singleturn|p1a: Smeargle|Protect",
+          "|move|p1b: Glaceon|Fusion Bolt|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|196/235",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|325/325",
+          "|-heal|p2b: Snorlax|235/235",
+          "|move|p2b: Snorlax|Life Dew||[still]|[still]|[spread] ",
+          "|-fail|p2a: Chansey|heal",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Protect|p1a: Smeargle",
+          "|-singleturn|p1a: Smeargle|Protect",
+          "|move|p1b: Glaceon|Fusion Bolt|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|196/235",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|325/325",
+          "|-heal|p2b: Snorlax|235/235",
+          "|move|p2b: Snorlax|Life Dew||[still]|[still]|[spread] ",
+          "|-fail|p2a: Chansey|heal",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Protect|p1a: Smeargle",
+          "|-singleturn|p1a: Smeargle|Protect",
+          "|move|p1b: Glaceon|Fusion Bolt|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|196/235",
+          "|move|p2a: Chansey|Life Dew|p2a: Chansey|[spread] p2a,p2b",
+          "|-heal|p2a: Chansey|325/325",
+          "|-heal|p2b: Snorlax|235/235",
+          "|move|p2b: Snorlax|Life Dew||[still]|[still]|[spread] ",
+          "|-fail|p2a: Chansey|heal",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Fusion Flare",
+                  "id": "fusionflare",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Fusion Bolt",
+                  "id": "fusionbolt",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "fusionflare",
+                  "protect"
+                ],
+                "baseAbility": "owntempo",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "owntempo",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "fusionbolt"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Life Dew",
+                  "id": "lifedew",
+                  "pp": 9,
+                  "maxpp": 12,
+                  "target": "allies",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "lifedew",
+                  "protect"
+                ],
+                "baseAbility": "naturalcure",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "naturalcure",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "lifedew"
+                ],
+                "baseAbility": "immunity",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "immunity",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "owntempo",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fusionflare",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "fusionbolt",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "naturalcure",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "immunity",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lifedew",
+                "pp": 9,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
