@@ -11,7 +11,7 @@ pub(super) struct Trap {
 impl Battle {
     pub(super) fn trap_info(&self, pos: Position) -> Trap {
         let mon = self.mon(pos);
-        if mon.recharge > 0 {
+        if mon.hard_locked() {
             return Trap {
                 actual: true,
                 possible: true,
@@ -57,7 +57,7 @@ impl Battle {
     pub fn trapped_in_request(&self, player: Player, slot: usize) -> bool {
         let pos = Position { player, slot };
         let mon = self.mon(pos);
-        mon.recharge > 0
+        mon.hard_locked()
             || mon.revealed_trap
             || (!self.last_active(pos)
                 && self.trap_info(pos).actual

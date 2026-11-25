@@ -6,7 +6,7 @@ use super::*;
 impl Battle {
     pub(super) fn can_mega(&self, pos: Position) -> bool {
         let side = self.sides[pos.player.index()].as_ref().unwrap();
-        !side.mega_used && self.mon(pos).recharge == 0 && self.mega_species(pos).is_some()
+        !side.mega_used && !self.mon(pos).hard_locked() && self.mega_species(pos).is_some()
     }
 
     fn mega_species(&self, pos: Position) -> Option<&'static Species> {

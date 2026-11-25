@@ -163,6 +163,8 @@ pub struct Move {
     pub self_chance: Option<u8>,
     #[serde(default)]
     pub self_recharge: bool,
+    #[serde(default)]
+    pub self_rampage: bool,
     pub heal: Option<[u16; 2]>,
     pub drain: Option<[u16; 2]>,
     pub recoil: Option<[u16; 2]>,

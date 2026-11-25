@@ -280,3 +280,13 @@ fn vgc_recharge_keeps_the_ally_choice_and_rng_order() {
 fn bss_weather_attacks_modify_type_power_and_accuracy_and_replay_confusion() {
     replay(include_str!("fixtures/bss-weather-attacks.json"));
 }
+
+#[test]
+fn bss_rampage_requests_spend_pp_only_on_start_and_end_with_fatigue() {
+    replay(include_str!("fixtures/bss-rampage.json"));
+}
+
+#[test]
+fn vgc_rampage_replays_random_targeting_across_forced_moves() {
+    replay(include_str!("fixtures/vgc-rampage.json"));
+}

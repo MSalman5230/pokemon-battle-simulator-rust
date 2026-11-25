@@ -26,7 +26,7 @@ const genericMoveFields = new Set([
     'status', 'ignoreImmunity', 'self', 'recoil', 'drain', 'thawsTarget',
     'secondary', 'secondaries',
 ]);
-const genericTarget = new Set(['self', 'normal', 'any', 'adjacentFoe', 'allAdjacent', 'allAdjacentFoes']);
+const genericTarget = new Set(['self', 'normal', 'any', 'adjacentFoe', 'allAdjacent', 'allAdjacentFoes', 'randomNormal']);
 const supportedStatus = new Set(['brn', 'par', 'frz', 'slp', 'psn', 'tox']);
 function hasOnly(object, keys) {
     return Object.keys(object).every(key => keys.includes(key));
@@ -36,7 +36,7 @@ function runsOnGenericPipeline(raw, move) {
         !genericTarget.has(move.target) || raw.flags?.futuremove || raw.flags?.cantusetwice ||
         typeof raw.ignoreImmunity === 'object' || (raw.status && !supportedStatus.has(raw.status))) return false;
     if (raw.self && !(raw.self.boosts && hasOnly(raw.self, ['boosts', 'chance']) ||
-            raw.self.volatileStatus === 'mustrecharge' && hasOnly(raw.self, ['volatileStatus']))) return false;
+            ['mustrecharge', 'lockedmove'].includes(raw.self.volatileStatus) && hasOnly(raw.self, ['volatileStatus']))) return false;
     for (const effect of move.secondaries ?? []) {
         if (!hasOnly(effect, ['chance', 'status', 'volatileStatus', 'boosts', 'self']) ||
             (effect.self && (!effect.self.boosts || !hasOnly(effect.self, ['boosts']))) ||
@@ -67,6 +67,7 @@ const data = mod => {
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
                 selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,
                 selfRecharge: e.self?.volatileStatus === 'mustrecharge' || undefined,
+                selfRampage: e.self?.volatileStatus === 'lockedmove' || undefined,
                 secondaries: (e.secondaries ?? []).map(s => ({chance: s.chance, status: s.status,
                     volatileStatus: s.volatileStatus, boosts: Object.entries(s.boosts ?? {}),
                     selfBoosts: s.self?.boosts && Object.entries(s.self.boosts)}))};

@@ -208,8 +208,8 @@ impl Game {
                         json!({"id":id,"kind":"move","slot":slot,"move":name,"mega":evolve,"choice":choice})));
                 }
             };
-            if battle.must_recharge(player, 0) {
-                add(0, "recharge");
+            if let Some(move_id) = battle.forced_move_id(player, 0) {
+                add(0, move_id);
             } else if active
                 .moves
                 .iter()

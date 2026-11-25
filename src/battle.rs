@@ -16,8 +16,10 @@ mod disable;
 mod hazards;
 mod items;
 mod mega;
+mod rampage;
 mod screens;
 use hazards::Hazard;
+use rampage::Rampage;
 use screens::Screen;
 mod status;
 mod trap;
@@ -146,6 +148,7 @@ pub struct Pokemon {
     flinched: bool,
     recharge: u8,
     confusion: u8,
+    rampage: Option<Rampage>,
     pub max_hp: NonZeroU32,
     pub item: String,
     pub ability: String,
@@ -665,6 +668,7 @@ impl Pokemon {
             flinched: false,
             recharge: 0,
             confusion: 0,
+            rampage: None,
             max_hp,
             item,
             ability,

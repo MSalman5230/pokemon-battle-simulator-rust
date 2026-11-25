@@ -80,10 +80,11 @@ impl Battle {
         self.turn
     }
 
-    pub fn must_recharge(&self, player: Player, slot: usize) -> bool {
-        self.party(player)
-            .and_then(|party| party.get(slot))
-            .is_some_and(|mon| mon.recharge > 0)
+    pub fn forced_move_id(&self, player: Player, slot: usize) -> Option<&str> {
+        self.party(player)?
+            .get(slot)?
+            .forced_move()
+            .map(|(_, _, id)| id)
     }
 
     pub fn can_mega_in_slot(&self, player: Player, slot: usize) -> bool {
@@ -130,8 +131,8 @@ impl Battle {
                 "active": (0..self.slots()).map(|slot| {
                     let mon = self.mon(Position { player, slot });
                     let pos = Position { player, slot };
-                    if mon.recharge > 0 {
-                        return json!({"moves":[{"move":"Recharge","id":"recharge"}],"trapped":true});
+                    if let Some((_, name, id)) = mon.forced_move() {
+                        return json!({"moves":[{"move":name,"id":id}],"trapped":true});
                     }
                     let moves = if !self.any_move_in_request(pos) && mon.revealed_disables == 0 {
                         vec![json!({"move":"Struggle","id":"struggle","target":"randomNormal","disabled":false})]
@@ -309,7 +310,7 @@ impl Battle {
                 } else if let ActionKind::Move { move_slot, .. } = action.kind {
                     let pos = action.actor.unwrap();
                     if move_slot != STRUGGLE_SLOT
-                        && move_slot != RECHARGE_SLOT
+                        && !self.mon(pos).hard_locked()
                         && self.actual_disabled(pos, move_slot)
                     {
                         if self.visible_disable(pos, move_slot) {
@@ -317,8 +318,9 @@ impl Battle {
                         }
                         return Err(self.reveal_disabled_move(pos, move_slot));
                     }
-                    self.cant_undo[idx] |=
-                        self.slots() == 1 && self.foe_imprison(pos).next().is_some();
+                    self.cant_undo[idx] |= !self.mon(pos).hard_locked()
+                        && self.slots() == 1
+                        && self.foe_imprison(pos).next().is_some();
                 }
             }
         }
@@ -350,7 +352,7 @@ impl Battle {
                         target: 0,
                         mega,
                     } = action.kind
-                        && move_slot != RECHARGE_SLOT
+                        && !self.mon(action.actor.unwrap()).hard_locked()
                     {
                         let source = action.actor.unwrap();
                         let kind = self.move_data(source, move_slot).target;
@@ -511,12 +513,12 @@ impl Battle {
         target: Option<i8>,
         mega: bool,
     ) -> Result<ActionKind, BattleError> {
-        if self.mon(actor).recharge > 0 {
+        if let Some((move_slot, _, id)) = self.mon(actor).forced_move() {
             let valid = match selection {
                 MoveChoice::Auto => true,
                 MoveChoice::Slot(slot) => slot.get() == 1 && target.is_none(),
                 MoveChoice::Name(name) => {
-                    name == "recharge"
+                    name == id
                         && (self.slots() == 1 || target.is_some())
                         && target.is_none_or(|loc| {
                             TargetKind::Normal.valid_location(
@@ -528,10 +530,10 @@ impl Battle {
                 }
             };
             if !valid || mega {
-                return Err(BattleError::Choice("only Recharge is available"));
+                return Err(BattleError::Choice("only the forced move is available"));
             }
             return Ok(ActionKind::Move {
-                move_slot: RECHARGE_SLOT,
+                move_slot,
                 target: 0,
                 mega: false,
             });
@@ -890,6 +892,7 @@ impl Battle {
                     party[outgoing.slot].flinched = false;
                     party[outgoing.slot].recharge = 0;
                     party[outgoing.slot].confusion = 0;
+                    party[outgoing.slot].rampage = None;
                     party[outgoing.slot].volatile_order.clear();
                     party[outgoing.slot].imprisoned = false;
                     party[outgoing.slot].choice_lock = None;
@@ -937,7 +940,9 @@ impl Battle {
                         matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. })
                     });
                     self.mon_mut(source).acted = true;
-                    self.run_move(source, move_slot, target, another_action);
+                    if self.run_move(source, move_slot, target, another_action) {
+                        self.end_rampage_attempt(source);
+                    }
                 }
                 ActionKind::Residual => self.residual(),
             }
@@ -1087,6 +1092,7 @@ impl Battle {
             Stall,
             Flinch,
             Recharge,
+            Rampage,
             Leftovers,
             ShedSkin,
             Weather,
@@ -1169,6 +1175,9 @@ impl Battle {
             if mon.recharge != 0 {
                 timers.push((pos, Effect::Recharge, priority(0, 2)));
             }
+            if mon.rampage.is_some() {
+                timers.push((pos, Effect::Rampage, priority(0, 2)));
+            }
         }
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
         for (pos, effect, _) in timers {
@@ -1215,6 +1224,7 @@ impl Battle {
                         mon.untrack_volatile("mustrecharge");
                     }
                 }
+                Effect::Rampage => self.tick_rampage(pos),
                 Effect::Stall => {
                     mon.stall = mon.stall.and_then(|(counter, duration)| {
                         (duration > 1).then_some((counter, duration - 1))
@@ -1257,17 +1267,20 @@ impl Battle {
         true
     }
 
-    fn run_move(&mut self, source: Position, slot: usize, loc: i8, more_actions: bool) {
+    // Whether this action reached the move attempt, for AfterMove hooks.
+    fn run_move(&mut self, source: Position, slot: usize, loc: i8, more_actions: bool) -> bool {
         if slot == RECHARGE_SLOT {
             self.random_target(source, TargetKind::Normal);
             self.add(format!("|cant|{}|recharge", self.ident(source)));
             let mon = self.mon_mut(source);
             mon.recharge = 0;
             mon.untrack_volatile("mustrecharge");
-            return;
+            return true;
         }
         let move_data = self.move_data(source, slot);
         let struggle = slot == STRUGGLE_SLOT;
+        let rampage = self.mon(source).rampage.is_some();
+        let called_from = if rampage { "|[from] lockedmove" } else { "" };
         let weather = self.weather();
         let weather_ball = move_data.name == "Weather Ball";
         let power = if weather_ball && weather.is_some() {
@@ -1285,7 +1298,7 @@ impl Battle {
         let source_name = self.ident(source);
         let target = self.resolve_target(source, move_data.target, loc);
         if !self.before_status_move(source, move_data) {
-            return;
+            return false;
         }
         let accuracy = match (move_data.name.as_str(), weather) {
             ("Blizzard", Some(Weather::Snow)) => Accuracy::Bypass(true),
@@ -1307,8 +1320,10 @@ impl Battle {
             self.add(format!("|-activate|{source_name}|move: Struggle"));
         } else {
             let mon = self.mon_mut(source);
-            mon.moves[slot].pp -= 1;
-            mon.used_moves |= 1 << slot;
+            if !rampage {
+                mon.moves[slot].pp -= 1;
+                mon.used_moves |= 1 << slot;
+            }
             mon.last_move_slot = Some(slot);
             if mon.holds_choice_item() && mon.choice_lock.is_none() {
                 mon.choice_lock = Some(slot);
@@ -1349,17 +1364,19 @@ impl Battle {
         }
         let base = self.log.len();
         self.add(format!(
-            "|move|{source_name}|{}|{target_name}",
+            "|move|{source_name}|{}|{target_name}{called_from}",
             move_data.name
         ));
         if self.slots() > 1
-            && let Some(target) = actual_target.filter(|_| move_data.target.is_choosable())
+            && let Some(target) = actual_target.filter(|_| {
+                move_data.target.is_choosable() || move_data.target == TargetKind::RandomNormal
+            })
             && let Some(redirect) = self.redirect_elemental(source, target, move_data, move_type)
         {
             spread_targets.clear();
             spread_targets.push(redirect);
             self.log[base].public = format!(
-                "|move|{source_name}|{}|{}",
+                "|move|{source_name}|{}|{}{called_from}",
                 move_data.name,
                 self.ident(redirect)
             );
@@ -1367,14 +1384,17 @@ impl Battle {
         if spread_targets.is_empty() {
             self.log[base].public.push_str("|[notarget]");
             self.add(format!("|-fail|{source_name}"));
-            return;
+            return true;
         }
 
         if !struggle
+            && !rampage
             && (move_data.target.is_choosable()
                 || matches!(
                     move_data.target,
-                    TargetKind::AllAdjacent | TargetKind::AllAdjacentFoes
+                    TargetKind::AllAdjacent
+                        | TargetKind::AllAdjacentFoes
+                        | TargetKind::RandomNormal
                 ))
         {
             let pressure_targets = spread_targets
@@ -1393,7 +1413,7 @@ impl Battle {
                 self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
                 self.add(format!("|-fail|{source_name}"));
             }
-            return;
+            return true;
         }
         if let Some(hazard) = Hazard::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
@@ -1412,7 +1432,7 @@ impl Battle {
                 self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
                 self.add(format!("|-fail|{source_name}"));
             }
-            return;
+            return true;
         }
         if let Some(weather) = Weather::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
@@ -1420,7 +1440,7 @@ impl Battle {
                 self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
                 self.add(format!("|-fail|{source_name}"));
             }
-            return;
+            return true;
         }
         if move_data.name == "Imprison" {
             self.protean_prepare(source, move_type);
@@ -1435,7 +1455,7 @@ impl Battle {
                 self.each_event();
                 self.each_event();
             }
-            return;
+            return true;
         }
         if move_data.name == "Rest" {
             let mon = self.mon(source);
@@ -1462,7 +1482,7 @@ impl Battle {
                 self.each_event();
                 self.each_event();
             }
-            return;
+            return true;
         }
         if move_data.name == "Protect" {
             let stall = self.mon(source).stall.map_or(1, |(counter, _)| counter);
@@ -1473,7 +1493,7 @@ impl Battle {
                 }
                 self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
                 self.add(format!("|-fail|{source_name}"));
-                return;
+                return true;
             }
             self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
@@ -1484,7 +1504,7 @@ impl Battle {
             self.add(format!("|-singleturn|{source_name}|Protect"));
             self.each_event();
             self.each_event();
-            return;
+            return true;
         }
 
         self.protean_prepare(source, move_type);
@@ -1554,7 +1574,7 @@ impl Battle {
         {
             self.log[base].public = format!("|move|{source_name}|Disable||[still]");
             self.add(format!("|-fail|{source_name}"));
-            return;
+            return true;
         }
         spread_targets.retain(|&pos| {
             if let Accuracy::Percent(accuracy) = accuracy
@@ -1575,7 +1595,7 @@ impl Battle {
             }
         });
         if spread_targets.is_empty() {
-            return;
+            return true;
         }
 
         if move_data.category == Category::Status {
@@ -1659,7 +1679,7 @@ impl Battle {
                 self.each_event();
                 self.each_event();
             }
-            return;
+            return true;
         }
 
         let tr = self.format.stat_rules().truncation;
@@ -1863,6 +1883,9 @@ impl Battle {
             mon.track_volatile("mustrecharge");
             self.add(format!("|-mustrecharge|{source_name}"));
         }
+        if move_data.self_rampage {
+            self.rampage_hit(source, slot);
+        }
         for &(target, _) in &damage {
             for effect in &move_data.secondaries {
                 let roll = self.rng.below(100);
@@ -2041,6 +2064,7 @@ impl Battle {
                 .public
                 .push_str(&format!("|[spread] {}", labels.join(",")));
         }
+        true
     }
 
     pub(super) fn mark_fainted(&mut self, target: Position) {
@@ -2053,6 +2077,7 @@ impl Battle {
         mon.flinched = false;
         mon.recharge = 0;
         mon.confusion = 0;
+        mon.rampage = None;
         mon.volatile_order.clear();
         mon.imprisoned = false;
         mon.choice_lock = None;
@@ -2151,6 +2176,16 @@ impl Battle {
 }
 
 impl Pokemon {
+    fn forced_move(&self) -> Option<(usize, &str, &str)> {
+        if self.recharge > 0 {
+            Some((RECHARGE_SLOT, "Recharge", "recharge"))
+        } else {
+            let slot = self.rampage?.slot;
+            let m = &self.moves[slot];
+            Some((slot, &m.move_data.name, &m.id))
+        }
+    }
+
     fn current_speed(&self, weather: Option<Weather>) -> u32 {
         let mut stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
         if matches!(
