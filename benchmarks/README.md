@@ -144,6 +144,12 @@ all 128 rosters from `../Poke-RL/data/teams_train.json` as the pool for both
 BSS Reg M-C singles and VGC 2026 Reg M-C doubles. It matches all 2,177
 checkpoints across 64 complete games in each format.
 
+The [all-format submitted sample](verified-native-all-formats-parity.json)
+matches 4,595 checkpoints in 180 complete games across all 15 submitted
+formats, including both Custom Games and both VGC Bo3 battle formats. It
+repeats 24 of the BSS and VGC games above. The Bo3 series API is tested
+separately.
+
 The [recorded 24-game sample](verified-native-generated-parity.json) matches
 all 574 checkpoints. Eighteen games ended naturally. The other six reached
 the 30-turn cap with exact results through their last recorded checkpoint.

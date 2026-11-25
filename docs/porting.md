@@ -108,6 +108,12 @@ requests and PRNG state in both formats. A single run at `f5322a6` reproduced
 both the generated and submitted samples, with 28,752 exact checkpoints
 across 1,088 complete games.
 
+The [all-format submitted sample](../benchmarks/verified-native-all-formats-parity.json)
+matched 4,595 checkpoints in 180 completed games across the remaining format
+entry points and repeated BSS and VGC controls. This includes Custom Game
+debug output, but uses a modern roster pool. It does not establish complete
+National Dex transfer or legacy battle coverage.
+
 The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
 markers. Its hypothetical damage calculator runs in an isolated battle and
 reuses the native damage formula. Tests compare each enumerated damage roll,
