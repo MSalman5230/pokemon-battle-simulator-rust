@@ -748,4 +748,5 @@ fn substitute_separates_shield_damage_and_shed_tail_preserves_remaining_shield_h
     replay(include_str!("fixtures/vgc-substitute-spread.json"));
     replay(include_str!("fixtures/bss-substitute-focus.json"));
     replay(include_str!("fixtures/bss-substitute-multihit.json"));
+    replay(include_str!("fixtures/bss-substitute-secondaries.json"));
 }

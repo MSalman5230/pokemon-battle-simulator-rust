@@ -3270,7 +3270,7 @@ impl Battle {
                     );
                 }
             }
-            if !move_data.self_boosts.is_empty() && !damage.is_empty() {
+            if !move_data.self_boosts.is_empty() {
                 let roll = self.rng.below(100);
                 if move_data
                     .self_chance
@@ -3279,25 +3279,31 @@ impl Battle {
                     self.boost(source, &move_data.self_boosts, true);
                 }
             }
-            if move_data.self_recharge && self.mon(source).hp > 0 && !damage.is_empty() {
+            if move_data.self_recharge && self.mon(source).hp > 0 {
                 let mon = self.mon_mut(source);
                 mon.recharge = 2;
                 mon.track_volatile("mustrecharge");
                 self.add(format!("|-mustrecharge|{source_name}"));
             }
-            if move_data.self_rampage && !damage.is_empty() {
+            if move_data.self_rampage {
                 self.rampage_hit(source, slot.expect("rampage moves are not reflectable"));
             }
-            if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 && !damage.is_empty() {
+            if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 {
                 let mon = self.mon_mut(source);
                 mon.glaive_drawback = true;
                 mon.track_volatile("glaiverush");
                 self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
             }
-            for &(target, _) in &damage {
+            for &target in &spread_targets {
                 for effect in &move_data.secondaries {
                     let roll = self.rng.below(100);
                     if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
+                        if shielded & target.mask() != 0 {
+                            if !effect.self_boosts.is_empty() {
+                                self.boost(source, &effect.self_boosts, true);
+                            }
+                            continue;
+                        }
                         if move_data.name == "Dire Claw" {
                             let status = ["psn", "par", "slp"][self.rng.below(3) as usize];
                             self.try_status(target, status, source, move_data, false, base);
