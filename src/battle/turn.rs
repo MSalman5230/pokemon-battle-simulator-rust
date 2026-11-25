@@ -779,6 +779,9 @@ impl Battle {
                     | "heavyslam"
                     | "heatcrash"
                     | "endeavor"
+                    | "eruption"
+                    | "waterspout"
+                    | "dragonenergy"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -2502,6 +2505,20 @@ impl Battle {
                 let power = if power == 0 {
                     self.weight_move_power(&move_data.name, source, target)
                         .unwrap_or(power)
+                } else if matches!(
+                    move_data.name.as_str(),
+                    "Eruption" | "Water Spout" | "Dragon Energy"
+                ) {
+                    let user = self.mon(source);
+                    let numerator = u32::from(power) * user.hp;
+                    let denominator = user.max_hp.get();
+                    if self.format.report_exact_hp {
+                        self.add(format!(
+                            "|debug|BP: {}",
+                            f64::from(numerator) / f64::from(denominator)
+                        ));
+                    }
+                    (numerator / denominator).max(1) as u16
                 } else {
                     power
                 };

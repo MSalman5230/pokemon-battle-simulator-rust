@@ -520,3 +520,8 @@ fn bss_endeavor_checks_current_hp_and_natural_type_immunity() {
 fn bss_cloud_nine_suppresses_effects_without_removing_the_weather() {
     replay(include_str!("fixtures/bss-cloud-nine.json"));
 }
+
+#[test]
+fn vgc_eruption_and_water_spout_use_current_hp_after_priority_damage() {
+    replay(include_str!("fixtures/vgc-hp-power.json"));
+}
