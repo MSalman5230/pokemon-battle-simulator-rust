@@ -1,6 +1,7 @@
 //! Ordered item selection for the pinned Roster Ranch generator.
 
 use super::MoveFacts;
+use crate::generation::type_booster;
 use crate::{
     choice::{TargetKind, to_id},
     dex::{Accuracy, Category, DEX, HitCount, Move, Species},
@@ -764,27 +765,3 @@ const RESIST_BERRIES: &[(&str, &str)] = &[
     ("Steel", "Babiri Berry"),
     ("Water", "Passho Berry"),
 ];
-
-fn type_booster(typing: &str) -> &'static str {
-    match typing {
-        "Bug" => "Silver Powder",
-        "Dark" => "Black Glasses",
-        "Dragon" => "Dragon Fang",
-        "Electric" => "Magnet",
-        "Fairy" => "Fairy Feather",
-        "Fighting" => "Black Belt",
-        "Fire" => "Charcoal",
-        "Flying" => "Sharp Beak",
-        "Ghost" => "Spell Tag",
-        "Grass" => "Miracle Seed",
-        "Ground" => "Soft Sand",
-        "Ice" => "Never-Melt Ice",
-        "Normal" => "Silk Scarf",
-        "Poison" => "Poison Barb",
-        "Psychic" => "Twisted Spoon",
-        "Rock" => "Hard Stone",
-        "Steel" => "Metal Coat",
-        "Water" => "Mystic Water",
-        _ => "Leftovers",
-    }
-}

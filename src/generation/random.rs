@@ -12,17 +12,28 @@ use crate::{
 use serde::Deserialize;
 use std::{collections::HashMap, sync::LazyLock};
 
+mod set;
+
 #[derive(Deserialize)]
 struct Catalog {
     revision: String,
     types: Vec<String>,
+    moves: HashMap<String, set::MoveFacts>,
     formats: [Vec<Recipe>; 2],
 }
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct Recipe {
     id: String,
     mega: bool,
+    level: Option<u16>,
+    battle_form: Option<String>,
+    cosmetics: Option<Vec<String>>,
+    other_formes: Option<Vec<String>>,
+    move_abilities: Option<Vec<String>>,
+    required_items: Option<Vec<String>>,
+    sets: Vec<set::RecipeSet>,
 }
 
 #[derive(Clone, Copy)]
@@ -339,6 +350,18 @@ struct RecordedSet {
     details: TeamDetails,
     lead: bool,
     set: Set,
+    moveset: RecordedMoves,
+}
+
+#[derive(Deserialize)]
+struct RecordedMoves {
+    before: String,
+    after: String,
+    input: Vec<String>,
+    moves: Vec<String>,
+    preferred: String,
+    role: String,
+    abilities: Vec<String>,
 }
 
 #[test]
@@ -361,10 +384,29 @@ fn team_assembly_preserves_set_context_order_and_rng_across_random_formats() {
                 assert_eq!(*details, expected.details, "{context}");
                 assert_eq!(lead, expected.lead, "{context}");
                 assert_eq!(doubles, format.game_type == GameType::Doubles, "{context}");
-                // Replay only the not-yet-ported set builder's draws, in the test
-                // harness. The production API never loads recorded sets.
-                *rng = Rng::new(expected.after.parse().unwrap());
-                Ok(expected.set)
+                let ordered = set::build(
+                    format,
+                    candidate,
+                    details,
+                    lead,
+                    doubles,
+                    rng,
+                    |state, rng| {
+                        let record = &expected.moveset;
+                        assert_eq!(rng.seed(), record.before.parse().unwrap(), "{context}");
+                        assert_eq!(state.pool, record.input, "{context}");
+                        assert_eq!(state.preferred, record.preferred, "{context}");
+                        assert_eq!(state.role, record.role, "{context}");
+                        assert_eq!(state.abilities, record.abilities, "{context}");
+                        // Replay only the not-yet-ported move selector, from the test
+                        // harness. Production never loads recorded sets.
+                        *rng = Rng::new(record.after.parse().unwrap());
+                        record.moves.iter().map(|id| set::move_ref(id).0).collect()
+                    },
+                );
+                assert_eq!(ordered, expected.set, "{context} {}", candidate.recipe.id);
+                assert_eq!(rng.seed(), expected.after.parse().unwrap(), "{context}");
+                Ok(ordered)
             },
         )
         .unwrap();

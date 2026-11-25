@@ -13,17 +13,38 @@ const {PRNG, Teams} = require('pokemon-showdown');
 
 const ids = ['gen9championsrandombattle', 'gen9championsrandomdoublesbattle'];
 const seeded = '1,2,3,4';
+const moves = new Map();
+function moveId(dex, name) {
+    const move = dex.moves.get(name);
+    assert(move.exists, name);
+    moves.set(move.id, {
+        fixedDamage: !!(move.damage || move.damageCallback),
+        sheerForce: !!(move.secondaries || move.hasSheerForceBoost),
+        crash: !!move.hasCrashDamage,
+    });
+    return move.id;
+}
 const recipes = ids.map((id, i) => {
     const generator = Teams.getGenerator(id, seeded);
     const catalog = i ? generator.randomDoublesSets : generator.randomSets;
-    return Object.entries(catalog).map(([speciesId, row]) => ({
-        id: speciesId, mega: generator.dex.species.get(speciesId).isMega || false, ...row,
-    }));
+    return Object.entries(catalog).map(([speciesId, row]) => {
+        const species = generator.dex.species.get(speciesId);
+        return {
+            id: speciesId, mega: !!species.isMega, level: row.level,
+            battleForm: typeof species.battleOnly === 'string' ? species.battleOnly : null,
+            cosmetics: species.cosmeticFormes, otherFormes: species.otherFormes,
+            moveAbilities: species.battleOnly && !species.requiredAbility ? Object.values(species.abilities) : null,
+            requiredMove: species.requiredMove ? moveId(generator.dex, species.requiredMove) : null,
+            requiredItems: species.requiredItems,
+            sets: row.sets.map(set => ({...set, movepool: set.movepool.map(name => moveId(generator.dex, name))})),
+        };
+    });
 });
 const dex = Teams.getGenerator(ids[0], seeded).dex;
+moveId(dex, 'Tri Attack');
 const types = dex.types.names();
 writeFileSync(new URL('../data/random-champions.json', import.meta.url),
-    `{"revision":${JSON.stringify(revision)},"types":${JSON.stringify(types)},"formats":[\n${recipes.map(rows =>
+    `{"revision":${JSON.stringify(revision)},"types":${JSON.stringify(types)},"moves":${JSON.stringify(Object.fromEntries(moves))},"formats":[\n${recipes.map(rows =>
         '[\n' + rows.map(row => JSON.stringify(row)).join(',\n') + '\n]').join(',\n')}\n]}\n`);
 
 const seedSource = new PRNG('45825,7,4545,101');
@@ -32,12 +53,21 @@ const seeds = [seeded, '0,0,0,0', 'sodium,a', 'sodium,131415161718191a1b1c1d1e1f
 const cases = ids.flatMap(format => seeds.map(seed => {
     const g = Teams.getGenerator(format, seed);
     const generate = g.randomSet.bind(g);
+    const chooseMoves = g.randomMoveset.bind(g);
     const sets = [];
+    let moveset;
+    g.randomMoveset = (types, abilities, details, species, lead, pool, preferred, role, doubles) => {
+        const before = g.prng.getSeed();
+        const input = [...pool];
+        const output = chooseMoves(types, abilities, details, species, lead, pool, preferred, role, doubles);
+        moveset = {before, after: g.prng.getSeed(), input, moves: [...output], preferred, role, abilities};
+        return output;
+    };
     g.randomSet = (species, context, lead, doubles) => {
         const before = g.prng.getSeed();
         const details = structuredClone(context);
         const set = generate(species, context, lead, doubles);
-        sets.push({id: species.id, before, after: g.prng.getSeed(), details, lead, set});
+        sets.push({id: species.id, before, after: g.prng.getSeed(), details, lead, set, moveset});
         return set;
     };
     const order = g.getTeam().map(p => p.speciesId);

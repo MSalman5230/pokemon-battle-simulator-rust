@@ -57,3 +57,27 @@ fn index(rng: &mut Rng, len: usize) -> usize {
 fn sample<T: Copy>(rng: &mut Rng, pool: &[T]) -> T {
     pool[index(rng, pool.len())]
 }
+
+pub(super) fn type_booster(typing: &str) -> &'static str {
+    match typing {
+        "Bug" => "Silver Powder",
+        "Dark" => "Black Glasses",
+        "Dragon" => "Dragon Fang",
+        "Electric" => "Magnet",
+        "Fairy" => "Fairy Feather",
+        "Fighting" => "Black Belt",
+        "Fire" => "Charcoal",
+        "Flying" => "Sharp Beak",
+        "Ghost" => "Spell Tag",
+        "Grass" => "Miracle Seed",
+        "Ground" => "Soft Sand",
+        "Ice" => "Never-Melt Ice",
+        "Normal" => "Silk Scarf",
+        "Poison" => "Poison Barb",
+        "Psychic" => "Twisted Spoon",
+        "Rock" => "Hard Stone",
+        "Steel" => "Metal Coat",
+        "Water" => "Mystic Water",
+        _ => "Leftovers",
+    }
+}
