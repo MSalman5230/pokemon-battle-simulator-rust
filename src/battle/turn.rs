@@ -869,6 +869,7 @@ impl Battle {
                     | "roleplay"
                     | "reflecttype"
                     | "gastroacid"
+                    | "magicroom"
                     | "round"
                     | "swift"
                     | "surf"
@@ -2389,6 +2390,7 @@ impl Battle {
             TrickRoom,
             Gravity,
             WonderRoom,
+            MagicRoom,
             Terrain,
             GrassyHeal,
             AquaRing,
@@ -2457,6 +2459,20 @@ impl Battle {
                 Priority {
                     order: 27,
                     sub_order: 5,
+                    ..Priority::default()
+                },
+            ));
+        }
+        if self.magic_room.is_some() {
+            timers.push((
+                Position {
+                    player: Player::P1,
+                    slot: 0,
+                },
+                Effect::MagicRoom,
+                Priority {
+                    order: 27,
+                    sub_order: 6,
                     ..Priority::default()
                 },
             ));
@@ -2795,6 +2811,13 @@ impl Battle {
                 }
                 continue;
             }
+            if matches!(effect, Effect::MagicRoom) {
+                self.tick_magic_room();
+                if self.magic_room.is_some() && self.resolve_perish_faints(&mut perish_faints) {
+                    return;
+                }
+                continue;
+            }
             if matches!(effect, Effect::Terrain) {
                 self.tick_terrain();
                 if self.terrain.is_some() && self.resolve_perish_faints(&mut perish_faints) {
@@ -2886,6 +2909,7 @@ impl Battle {
                 | Effect::TrickRoom
                 | Effect::Gravity
                 | Effect::WonderRoom
+                | Effect::MagicRoom
                 | Effect::Terrain
                 | Effect::Wish
                 | Effect::FutureMove
@@ -4144,6 +4168,11 @@ impl Battle {
                 self.wonder_room = 5;
                 self.add(format!("|-fieldstart|move: Wonder Room|[of] {source_name}"));
             }
+            return true;
+        }
+        if move_data.name == "Magic Room" {
+            self.protean_prepare(source, move_type);
+            self.toggle_magic_room(source);
             return true;
         }
         if let Some(weather) = Weather::from_move(&move_data.name) {

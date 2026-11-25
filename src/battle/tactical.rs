@@ -160,15 +160,17 @@ impl DamageProbe {
             "psychicterrain" => Some((Terrain::Psychic, 5)),
             _ => return Err(unsupported(self.terrain)),
         };
-        if self
-            .pseudo
-            .keys()
-            .any(|id| !matches!(id.as_str(), "trickroom" | "gravity" | "wonderroom"))
-        {
+        if self.pseudo.keys().any(|id| {
+            !matches!(
+                id.as_str(),
+                "trickroom" | "gravity" | "wonderroom" | "magicroom"
+            )
+        }) {
             return Err(unsupported("field conditions"));
         }
         battle.gravity = u8::from(self.pseudo.contains_key("gravity"));
         battle.wonder_room = u8::from(self.pseudo.contains_key("wonderroom"));
+        battle.set_items_suppressed(self.pseudo.contains_key("magicroom"));
         for (i, conditions) in self.conditions.iter().enumerate() {
             let side = battle.sides[i].as_mut().unwrap();
             side.total_fainted = self.faints[i];

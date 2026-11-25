@@ -472,7 +472,7 @@ impl Battle {
 
     pub(super) fn prepare_fling(&mut self, pos: Position) -> Option<&'static Item> {
         let mon = self.mon(pos);
-        if self.event_ability(pos) == "klutz" {
+        if mon.items_suppressed || self.event_ability(pos) == "klutz" {
             return None;
         }
         let item = mon.transferable_item(self.format.dex_mod)?;
@@ -962,10 +962,11 @@ impl Battle {
 
 impl Pokemon {
     pub(super) fn ignores_held_item(&self) -> bool {
-        self.active_ability() == "klutz"
-            && !DEX
-                .item(crate::dex::Mod::Champions, &self.item)
-                .is_some_and(|item| item.ignore_klutz)
+        self.items_suppressed
+            || self.active_ability() == "klutz"
+                && !DEX
+                    .item(crate::dex::Mod::Champions, &self.item)
+                    .is_some_and(|item| item.ignore_klutz)
     }
 
     /// The held item remains in inventories even when its effects are ignored.

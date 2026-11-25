@@ -1395,6 +1395,14 @@ const gastroShieldRosters = [
     gastroAcidRosters[0],
     [{...gastroAcidRosters[1][0], item:'Ability Shield'}],
 ];
+const magicRoomRosters = [
+    [{...named('Alakazam', ['Magic Room', 'Recover']), item:'Leftovers'}, named('Umbreon', ['Recover'])],
+    [{...named('Vaporeon', ['Water Gun', 'Tackle']), item:'Choice Specs'}],
+];
+const magicRoomToggleRosters = [
+    magicRoomRosters[0].slice(0, 1),
+    [named('Mr. Mime', ['Magic Room', 'Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2582,6 +2590,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','switch 2'], ['move 2','switch 2']], gastroAcidRosters, 'bss-gastro-acid'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
         gastroShieldRosters, 'bss-gastro-acid-shield'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['switch 2','move 1'],
+        ['move 1','move 2'], ['move 1','move 1'], ['move 1','move 1']], magicRoomRosters, 'bss-magic-room'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        magicRoomToggleRosters, 'bss-magic-room-toggle'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

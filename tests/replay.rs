@@ -1697,6 +1697,12 @@ fn gastro_acid_disables_an_ability_until_switch_out_and_respects_ability_shield(
 }
 
 #[test]
+fn magic_room_suppresses_items_and_keeps_the_original_source_for_expiry() {
+    replay(include_str!("fixtures/bss-magic-room.json"));
+    replay(include_str!("fixtures/bss-magic-room-toggle.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

@@ -37,6 +37,61 @@ impl Battle {
         }
     }
 
+    pub(super) fn set_items_suppressed(&mut self, suppressed: bool) {
+        for side in self.sides.iter_mut().flatten() {
+            for mon in &mut side.party {
+                mon.items_suppressed = suppressed;
+            }
+        }
+    }
+
+    pub(super) fn toggle_magic_room(&mut self, source: Position) {
+        if let Some(room) = self.magic_room.take() {
+            self.end_magic_room(room);
+        } else {
+            self.magic_room = Some(self.target_timer(source, 5));
+            self.set_items_suppressed(true);
+            self.add(format!(
+                "|-fieldstart|move: Magic Room|[of] {}",
+                self.ident(source)
+            ));
+            for pos in self.positions() {
+                if !self.mon(pos).fainted
+                    && DEX
+                        .item(self.format.dex_mod, &self.mon(pos).item)
+                        .is_some_and(|item| item.effect.handlers.iter().any(|name| name == "onEnd"))
+                {
+                    self.debug_ignored_item(pos, "End");
+                }
+            }
+        }
+    }
+
+    pub(super) fn tick_magic_room(&mut self) {
+        let room = self.magic_room.unwrap();
+        if TargetTimer::tick(&mut self.magic_room) {
+            self.end_magic_room(room);
+        }
+    }
+
+    fn end_magic_room(&mut self, room: TargetTimer) {
+        self.set_items_suppressed(false);
+        let party = self.party(room.side).unwrap();
+        let slot = party
+            .iter()
+            .position(|mon| mon.roster_index == usize::from(room.roster))
+            .unwrap();
+        let name = if slot < self.slots() && !party[slot].fainted {
+            self.ident(Position {
+                player: room.side,
+                slot,
+            })
+        } else {
+            format!("{}: {}", room.side.id(), party[slot].name)
+        };
+        self.add(format!("|-fieldend|move: Magic Room|[of] {name}"));
+    }
+
     pub(super) fn start_lock_on(
         &mut self,
         source: Position,
