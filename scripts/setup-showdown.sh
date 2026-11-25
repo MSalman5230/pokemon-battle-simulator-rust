@@ -8,7 +8,7 @@ oracle="$root/.tools/poke-rl-simulator"
 mkdir -p "$oracle"
 
 # Copy the real worker and its lock, without installing into or editing Poke-RL.
-cp -- "$poke_rl/simulator/"{worker.cjs,package.json,package-lock.json} "$oracle/"
+cp -- "$poke_rl/simulator/"{worker.cjs,tactics.cjs,lookahead.cjs,hypothetical.cjs,package.json,package-lock.json} "$oracle/"
 cp -- "$poke_rl/data/teams_train.json" "$oracle/"
 git -C "$poke_rl" rev-parse HEAD > "$oracle/poke-rl-revision"
 if [[ -n "$(git -C "$poke_rl" status --porcelain --untracked-files=no)" ]]; then

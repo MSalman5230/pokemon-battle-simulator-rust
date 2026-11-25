@@ -53,6 +53,7 @@ source scripts/env.sh
 node scripts/export-champions-dex.mjs
 node scripts/export-champions-legality.mjs
 node scripts/export-ranch-data.mjs
+node scripts/export-tactics-metadata.mjs
 node scripts/capture-oracle.mjs
 node scripts/capture-validation.mjs
 node scripts/capture-generate-teams.mjs

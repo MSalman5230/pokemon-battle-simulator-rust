@@ -23,6 +23,7 @@ fn worker_validates_sets_and_admits_rosters_without_an_external_manifest() {
         json!({"id":2,"op":"new","game":"bad","teams":[invalid_team,teams[1]],"seed":[1,2,3,4]}),
         json!({"id":3,"op":"new","game":"good","teams":teams,"seed":[1,2,3,4]}),
         json!({"id":4,"op":"step","game":"good","actions":[14,14]}),
+        json!({"id":5,"op":"tactics_metadata"}),
     ];
     let mut child = Command::new(env!("CARGO_BIN_EXE_pokemon-battle-worker"))
         .stdin(Stdio::piped())
@@ -42,7 +43,7 @@ fn worker_validates_sets_and_admits_rosters_without_an_external_manifest() {
         .lines()
         .map(|line| serde_json::from_str(line).unwrap())
         .collect();
-    assert_eq!(responses.len(), 4);
+    assert_eq!(responses.len(), 5);
     assert_eq!(
         responses[0],
         json!({"id":1,"result":[[null,[error]],[null,[error]]]})
@@ -52,4 +53,6 @@ fn worker_validates_sets_and_admits_rosters_without_an_external_manifest() {
     assert_eq!(responses[2]["result"]["views"][0]["phase"], "preview");
     assert_eq!(responses[3]["id"], 4);
     assert_eq!(responses[3]["result"]["views"][0]["turn"], 1);
+    let data: Value = serde_json::from_str(include_str!("../data/tactics-metadata.json")).unwrap();
+    assert_eq!(responses[4], json!({"id":5,"result":data["metadata"]}));
 }

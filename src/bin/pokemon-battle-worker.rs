@@ -1,7 +1,7 @@
 //! Experimental Poke-RL JSON-lines worker.
 
 use pokemon_battle_simulator::{
-    adapter::{FORMAT, Game},
+    adapter::{FORMAT, Game, tactics},
     dex::DEX,
     rng::Seed,
     validation::TeamValidator,
@@ -92,6 +92,7 @@ impl Worker {
     fn dispatch_one(&mut self, query: &Value, out: &mut Vec<u8>) -> Result<(), String> {
         match query["op"].as_str() {
             Some("validate") => return validate(query, out),
+            Some("tactics_metadata") => return encode(out, tactics::metadata()),
             Some("new" | "step" | "close" | "trace") => {}
             Some(op) => return Err(format!("not ported: operation {op}")),
             None => return Err("missing operation".into()),

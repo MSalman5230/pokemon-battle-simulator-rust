@@ -2,6 +2,7 @@
 //! viewer's native channel. Critic observations are a separate opt-in result.
 
 mod public;
+pub mod tactics;
 mod wire;
 pub use wire::GameResult;
 
