@@ -1,0 +1,2018 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Eelektross\",\"moves\":[\"Thunderbolt\",\"Recover\"],\"gender\":\"F\",\"name\":\"Eelektross\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Levitate\",\"item\":\"Eelektrossite\"},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Magikarp\",\"moves\":[\"Earthquake\",\"Recover\"],\"gender\":\"M\",\"name\":\"Magikarp\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Haxorus\",\"moves\":[\"Earthquake\"],\"gender\":\"F\",\"name\":\"Haxorus\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Mold Breaker\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Magikarp, L50, M|",
+          "|poke|p2|Haxorus, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Magikarp, L50, M|",
+          "|poke|p2|Haxorus, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Eelektross, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Magikarp, L50, M|",
+          "|poke|p2|Haxorus, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "thunderbolt",
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Haxorus",
+                "details": "Haxorus, L50, F",
+                "condition": "151/151",
+                "active": false,
+                "stats": {
+                  "atk": 167,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "earthquake"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "eelektrossite",
+            "active": false,
+            "moves": [
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Haxorus",
+            "species": "Haxorus",
+            "details": "Haxorus, L50, F",
+            "hp": 151,
+            "maxhp": 151,
+            "status": "",
+            "stats": {
+              "atk": 167,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|100/100",
+          "|switch|p2a: Magikarp|Magikarp, L50, M|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|160/160",
+          "|switch|p2a: Magikarp|Magikarp, L50, M|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Eelektross|Eelektross, L50, F|100/100",
+          "|switch|p2a: Magikarp|Magikarp, L50, M|95/95",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canMegaEvo": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 135,
+                  "def": 100,
+                  "spa": 125,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "thunderbolt",
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Haxorus",
+                "details": "Haxorus, L50, F",
+                "condition": "151/151",
+                "active": false,
+                "stats": {
+                  "atk": 167,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "earthquake"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross",
+            "details": "Eelektross, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 135,
+              "def": 100,
+              "spa": 125,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "eelektrossite",
+            "active": true,
+            "moves": [
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Haxorus",
+            "species": "Haxorus",
+            "details": "Haxorus, L50, F",
+            "hp": 151,
+            "maxhp": 151,
+            "status": "",
+            "stats": {
+              "atk": 167,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2 mega",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|detailschange|p1a: Eelektross|Eelektross-Mega, L50, F",
+          "|-mega|p1a: Eelektross|Eelektross|Eelektrossite",
+          "|move|p1a: Eelektross|Recover||[still]",
+          "|-fail|p1a: Eelektross|heal",
+          "|move|p2a: Magikarp|Earthquake|p1a: Eelektross",
+          "|-immune|p1a: Eelektross|[from] ability: Eelevate",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|detailschange|p1a: Eelektross|Eelektross-Mega, L50, F",
+          "|-mega|p1a: Eelektross|Eelektross|Eelektrossite",
+          "|move|p1a: Eelektross|Recover||[still]",
+          "|-fail|p1a: Eelektross|heal",
+          "|move|p2a: Magikarp|Earthquake|p1a: Eelektross",
+          "|-immune|p1a: Eelektross|[from] ability: Eelevate",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|detailschange|p1a: Eelektross|Eelektross-Mega, L50, F",
+          "|-mega|p1a: Eelektross|Eelektross|Eelektrossite",
+          "|move|p1a: Eelektross|Recover||[still]",
+          "|-fail|p1a: Eelektross|heal",
+          "|move|p2a: Magikarp|Earthquake|p1a: Eelektross",
+          "|-immune|p1a: Eelektross|[from] ability: Eelevate",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross-Mega, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 165,
+                  "def": 100,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 100
+                },
+                "moves": [
+                  "thunderbolt",
+                  "recover"
+                ],
+                "baseAbility": "eelevate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "eelevate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "95/95",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Haxorus",
+                "details": "Haxorus, L50, F",
+                "condition": "151/151",
+                "active": false,
+                "stats": {
+                  "atk": 167,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "earthquake"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross-Mega",
+            "details": "Eelektross-Mega, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 165,
+              "def": 100,
+              "spa": 155,
+              "spd": 110,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "eelevate",
+            "item": "eelektrossite",
+            "active": true,
+            "moves": [
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 95,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Haxorus",
+            "species": "Haxorus",
+            "details": "Haxorus, L50, F",
+            "hp": 151,
+            "maxhp": 151,
+            "status": "",
+            "stats": {
+              "atk": 167,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "55173,41332,18014,39666",
+      "requestState": "switch",
+      "waiting": [
+        true,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Eelektross|Thunderbolt|p2a: Magikarp",
+          "|-supereffective|p2a: Magikarp|1",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|-ability|p1a: Eelektross|Eelevate|boost",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Eelektross|Thunderbolt|p2a: Magikarp",
+          "|-supereffective|p2a: Magikarp|1",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|-ability|p1a: Eelektross|Eelevate|boost",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1a: Eelektross|Thunderbolt|p2a: Magikarp",
+          "|-supereffective|p2a: Magikarp|1",
+          "|-damage|p2a: Magikarp|0 fnt",
+          "|faint|p2a: Magikarp",
+          "|-ability|p1a: Eelektross|Eelevate|boost",
+          "|-boost|p1a: Eelektross|atk|1",
+          "|",
+          "|upkeep"
+        ]
+      ],
+      "requests": [
+        {
+          "wait": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross-Mega, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 165,
+                  "def": 100,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 100
+                },
+                "moves": [
+                  "thunderbolt",
+                  "recover"
+                ],
+                "baseAbility": "eelevate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "eelevate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Haxorus",
+                "details": "Haxorus, L50, F",
+                "condition": "151/151",
+                "active": false,
+                "stats": {
+                  "atk": 167,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "earthquake"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross-Mega",
+            "details": "Eelektross-Mega, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 165,
+              "def": 100,
+              "spa": 155,
+              "spd": 110,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "eelevate",
+            "item": "eelektrossite",
+            "active": true,
+            "moves": [
+              {
+                "id": "thunderbolt",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 0,
+            "maxhp": 95,
+            "status": "fnt",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Haxorus",
+            "species": "Haxorus",
+            "details": "Haxorus, L50, F",
+            "hp": 151,
+            "maxhp": 151,
+            "status": "",
+            "stats": {
+              "atk": 167,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p2 switch 2"
+      ],
+      "turn": 3,
+      "seed": "55173,41332,18014,39666",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Haxorus|Haxorus, L50, F|100/100",
+          "|-ability|p2a: Haxorus|Mold Breaker",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Haxorus|Haxorus, L50, F|100/100",
+          "|-ability|p2a: Haxorus|Mold Breaker",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Haxorus|Haxorus, L50, F|151/151",
+          "|-ability|p2a: Haxorus|Mold Breaker",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross-Mega, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 165,
+                  "def": 100,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 100
+                },
+                "moves": [
+                  "thunderbolt",
+                  "recover"
+                ],
+                "baseAbility": "eelevate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "eelevate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Haxorus",
+                "details": "Haxorus, L50, F",
+                "condition": "151/151",
+                "active": true,
+                "stats": {
+                  "atk": 167,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "earthquake"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross-Mega",
+            "details": "Eelektross-Mega, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 165,
+              "def": 100,
+              "spa": 155,
+              "spd": 110,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "eelevate",
+            "item": "eelektrossite",
+            "active": true,
+            "moves": [
+              {
+                "id": "thunderbolt",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Haxorus",
+            "species": "Haxorus",
+            "details": "Haxorus, L50, F",
+            "hp": 151,
+            "maxhp": 151,
+            "status": "",
+            "stats": {
+              "atk": 167,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 0,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "9229,60870,33850,16231",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Haxorus|Earthquake|p1a: Eelektross",
+          "|-supereffective|p1a: Eelektross|1",
+          "|-damage|p1a: Eelektross|8/100",
+          "|move|p1a: Eelektross|Recover|p1a: Eelektross",
+          "|-heal|p1a: Eelektross|58/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Haxorus|Earthquake|p1a: Eelektross",
+          "|-supereffective|p1a: Eelektross|1",
+          "|-damage|p1a: Eelektross|14/160",
+          "|move|p1a: Eelektross|Recover|p1a: Eelektross",
+          "|-heal|p1a: Eelektross|94/160",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Haxorus|Earthquake|p1a: Eelektross",
+          "|-supereffective|p1a: Eelektross|1",
+          "|-damage|p1a: Eelektross|8/100",
+          "|move|p1a: Eelektross|Recover|p1a: Eelektross",
+          "|-heal|p1a: Eelektross|58/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eelektross",
+                "details": "Eelektross-Mega, L50, F",
+                "condition": "94/160",
+                "active": true,
+                "stats": {
+                  "atk": 165,
+                  "def": 100,
+                  "spa": 155,
+                  "spd": 110,
+                  "spe": 100
+                },
+                "moves": [
+                  "thunderbolt",
+                  "recover"
+                ],
+                "baseAbility": "eelevate",
+                "item": "eelektrossite",
+                "pokeball": "pokeball",
+                "ability": "eelevate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Haxorus",
+                "details": "Haxorus, L50, F",
+                "condition": "151/151",
+                "active": true,
+                "stats": {
+                  "atk": 167,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "earthquake"
+                ],
+                "baseAbility": "moldbreaker",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "moldbreaker",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Magikarp",
+                "details": "Magikarp, L50, M",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 30,
+                  "def": 75,
+                  "spa": 35,
+                  "spd": 40,
+                  "spe": 100
+                },
+                "moves": [
+                  "earthquake",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eelektross",
+            "species": "Eelektross-Mega",
+            "details": "Eelektross-Mega, L50, F",
+            "hp": 94,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 165,
+              "def": 100,
+              "spa": 155,
+              "spd": 110,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "eelevate",
+            "item": "eelektrossite",
+            "active": true,
+            "moves": [
+              {
+                "id": "thunderbolt",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Haxorus",
+            "species": "Haxorus",
+            "details": "Haxorus, L50, F",
+            "hp": 151,
+            "maxhp": 151,
+            "status": "",
+            "stats": {
+              "atk": 167,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "moldbreaker",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Magikarp",
+            "species": "Magikarp",
+            "details": "Magikarp, L50, M",
+            "hp": 0,
+            "maxhp": 95,
+            "status": "",
+            "stats": {
+              "atk": 30,
+              "def": 75,
+              "spa": 35,
+              "spd": 40,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

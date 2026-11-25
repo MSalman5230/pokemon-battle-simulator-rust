@@ -771,6 +771,20 @@ const bloodMoonRosters = [
     [{...named('Ursaluna-Bloodmoon', ['Blood Moon', 'Recover']), ability:"Mind's Eye"}, named('Umbreon', ['Recover'])],
     [named('Drifblim', ['Protect', 'Recover', 'Sand Attack']), named('Vaporeon', ['Recover'])],
 ];
+const mimicryRosters = [
+    [{...named('Stunfisk-Galar', ['Recover']), ability:'Mimicry'}, named('Umbreon', ['Recover'])],
+    [named('Vaporeon', ['Electric Terrain', 'Misty Terrain', 'Recover', 'Water Gun']), named('Espeon', ['Recover'])],
+];
+const angerPointRosters = [
+    [{...named('Tauros', ['Substitute', 'Recover']), ability:'Anger Point'}, named('Umbreon', ['Recover'])],
+    [named('Espeon', ['Storm Throw', 'Recover']), named('Vaporeon', ['Recover'])],
+];
+const eelevateRosters = [
+    [{...named('Eelektross', ['Thunderbolt', 'Recover']), ability:'Levitate', item:'Eelektrossite'},
+        named('Umbreon', ['Recover'])],
+    [named('Magikarp', ['Earthquake', 'Recover'], 'M'),
+        {...named('Haxorus', ['Earthquake']), ability:'Mold Breaker'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1167,6 +1181,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 3'], ['move 1','move 1'],
         ['move 2','move 2'], ['move 1','move 2']],
         bloodMoonRosters, 'bss-blood-moon'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['switch 2','move 2'],
+        ['switch 2','move 4'], ...Array(4).fill(['move 1','move 4'])], mimicryRosters, 'bss-mimicry'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ...Array(3).fill(['move 2','move 1'])],
+        angerPointRosters, 'bss-anger-point'],
+    ['bssregmc', [['team 12','team 12'], ['move 2 mega','move 1'], ['move 1','move 2'],
+        [null,'switch 2'], ['move 2','move 1']], eelevateRosters, 'bss-eelevate'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

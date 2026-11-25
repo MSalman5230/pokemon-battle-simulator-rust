@@ -299,6 +299,39 @@ impl Battle {
         }
     }
 
+    pub(super) fn airborne_ability(&self, holder: Position) -> Option<&'static str> {
+        let label = match self.mon(holder).ability.as_str() {
+            "levitate" => "Levitate",
+            "eelevate" => "Eelevate",
+            _ => return None,
+        };
+        (!self.ignores_ability_of(holder)).then_some(label)
+    }
+
+    pub(super) fn boost_after_knockouts(&mut self, source: Position, count: i8) {
+        match self.event_ability(source) {
+            "moxie" => {
+                self.ability_boost(source, "Moxie", BoostStat::Atk, count, false);
+            }
+            "eelevate" => {
+                let s = self.mon(source).stats;
+                let mut best = (s.atk, BoostStat::Atk);
+                for pair in [
+                    (s.def, BoostStat::Def),
+                    (s.spa, BoostStat::Spa),
+                    (s.spd, BoostStat::Spd),
+                    (s.spe, BoostStat::Spe),
+                ] {
+                    if pair.0 > best.0 {
+                        best = pair;
+                    }
+                }
+                self.ability_boost(source, "Eelevate", best.1, count, false);
+            }
+            _ => {}
+        }
+    }
+
     pub(super) fn can_take_item(&self, target: Position) -> Option<&'static str> {
         let mon = self.mon(target);
         if mon.hp > 0 && self.event_ability(target) == "stickyhold" {
@@ -891,6 +924,16 @@ impl Battle {
             let change = self.mon_mut(pos).boosts.add(stat, amount);
             if change > 0 {
                 self.mon_mut(pos).stats_raised = true;
+            }
+            if change != 0 && label == "Anger Point" {
+                let stage = self.mon(pos).boosts.get(stat);
+                self.add(format!(
+                    "|-setboost|{}|{}|{stage}|[from] ability: Anger Point",
+                    self.ident(pos),
+                    stat.id()
+                ));
+                success = true;
+                continue;
             }
             if change != 0 || quiet {
                 if change != 0 && !success {

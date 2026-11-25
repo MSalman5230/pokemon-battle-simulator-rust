@@ -1635,6 +1635,9 @@ impl Battle {
         if self.mon(pos).ability == "screencleaner" {
             self.screen_cleaner(pos);
         }
+        if self.mon(pos).ability == "mimicry" {
+            self.apply_mimicry(pos);
+        }
         self.try_trace(pos);
     }
 
@@ -2960,12 +2963,11 @@ impl Battle {
         spread_targets.retain(|&pos| {
             if !ignores_type
                 && move_type == "Ground"
-                && self.mon(pos).ability == "levitate"
-                && !self.ignores_ability_of(pos)
                 && !self.mon(pos).has_type("Flying")
+                && let Some(label) = self.airborne_ability(pos)
             {
                 self.add(format!(
-                    "|-immune|{}|[from] ability: Levitate",
+                    "|-immune|{}|[from] ability: {label}",
                     self.ident(pos)
                 ));
                 false
@@ -3400,7 +3402,8 @@ impl Battle {
                 power
             };
             damage.clear();
-            let compute = |battle: &mut Self, target: Position, shield: bool| {
+            let mut critical_hits = 0;
+            let mut compute = |battle: &mut Self, target: Position, shield: bool| {
                 if ohko {
                     return battle.mon(target).max_hp.get();
                 }
@@ -3476,6 +3479,9 @@ impl Battle {
                 let crit = crit_roll
                     && !disguised
                     && !matches!(battle.event_ability(target), "battlearmor" | "shellarmor");
+                if crit && !shield {
+                    critical_hits |= target.mask();
+                }
                 // BasePower handlers run after the critical-hit draw, unlike
                 // the earlier basePowerCallback used by Hex.
                 if move_data.name == "Fickle Beam" && battle.rng.chance(3, 10) {
@@ -3593,6 +3599,12 @@ impl Battle {
                             &format!("|[from] drain|[of] {}", self.ident(target)),
                         );
                     }
+                }
+            }
+            for &(target, _) in &damage {
+                if critical_hits & target.mask() != 0 && self.event_ability(target) == "angerpoint"
+                {
+                    self.ability_boost(target, "Anger Point", BoostStat::Atk, 12, false);
                 }
             }
             if move_data.name == "Ice Spinner" && !damage.is_empty() {
@@ -3898,8 +3910,8 @@ impl Battle {
             };
             self.add(format!("|-hitcount|{ident}|{hits_landed}"));
         }
-        if fainted > 0 && !self.mon(source).fainted && self.mon(source).ability == "moxie" {
-            self.ability_boost(source, "Moxie", BoostStat::Atk, fainted, false);
+        if fainted > 0 && !self.mon(source).fainted {
+            self.boost_after_knockouts(source, fainted);
         }
         let recoil = if struggle && !hit_substitute {
             (self.mon(source).max_hp.get() + 2) / 4
@@ -4329,6 +4341,9 @@ impl Pokemon {
                 | "leafguard"
                 | "earlybird"
                 | "scrappy"
+                | "angerpoint"
+                | "eelevate"
+                | "mimicry"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

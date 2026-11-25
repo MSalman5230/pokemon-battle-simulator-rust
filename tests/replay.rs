@@ -856,6 +856,13 @@ fn moves_that_cannot_be_selected_twice_still_work_when_forced() {
 }
 
 #[test]
+fn ability_events_change_typing_or_boosts_at_the_native_step() {
+    replay(include_str!("fixtures/bss-mimicry.json"));
+    replay(include_str!("fixtures/bss-anger-point.json"));
+    replay(include_str!("fixtures/bss-eelevate.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

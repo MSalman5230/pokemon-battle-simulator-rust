@@ -11,6 +11,15 @@ pub enum Terrain {
 }
 
 impl Terrain {
+    fn mimicry_type(self) -> &'static str {
+        match self {
+            Self::Electric => "Electric",
+            Self::Grassy => "Grass",
+            Self::Misty => "Fairy",
+            Self::Psychic => "Psychic",
+        }
+    }
+
     pub(super) fn name(self) -> &'static str {
         match self {
             Self::Electric => "Electric Terrain",
@@ -68,7 +77,7 @@ impl Battle {
             format!("|[from] ability: {name}|[of] {}", self.ident(pos))
         });
         self.add(format!("|-fieldstart|move: {}{source}", terrain.name()));
-        self.ordered_actives(false);
+        self.terrain_changed();
         true
     }
 
@@ -80,7 +89,40 @@ impl Battle {
                 "move: "
             };
             self.add(format!("|-fieldend|{prefix}{}", terrain.name()));
-            self.ordered_actives(false);
+            self.terrain_changed();
+        }
+    }
+
+    fn terrain_changed(&mut self) {
+        let (order, count) = self.ordered_actives(false);
+        for (pos, _) in order.into_iter().take(count) {
+            if self.mon(pos).ability == "mimicry" {
+                self.apply_mimicry(pos);
+            }
+        }
+    }
+
+    pub(super) fn apply_mimicry(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally") {
+            return;
+        }
+        let terrain_type = self.terrain().map(Terrain::mimicry_type);
+        let base = mon.base_species.types.iter().map(String::as_str);
+        if terrain_type.map_or_else(|| mon.types().eq(base), |ty| mon.types().eq([ty])) {
+            return;
+        }
+        let mon = self.mon_mut(pos);
+        mon.temporary_type = terrain_type;
+        mon.spent_elements = 0;
+        let ident = self.ident(pos);
+        if let Some(ty) = terrain_type {
+            self.add(format!(
+                "|-start|{ident}|typechange|{ty}|[from] ability: Mimicry"
+            ));
+        } else {
+            self.add(format!("|-activate|{ident}|ability: Mimicry"));
+            self.add(format!("|-end|{ident}|typechange|[silent]"));
         }
     }
 
