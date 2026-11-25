@@ -2256,6 +2256,22 @@ const powerConstructRosters = [
     [{...named('Zygarde', ['Tackle'], 'N'), ability:'Power Construct', ivs:{hp:29}}, named('Umbreon', ['Recover'])],
     [named('Raticate', ['Super Fang', 'Recover'])],
 ];
+const faintedZygardeRosters = [
+    [{...named('Zygarde-10%', ['Splash'], 'N'), ability:'Power Construct', ivs:{hp:29}}],
+    [named('Articuno', ['Super Fang', 'Ice Beam'], 'N')],
+];
+const boosterHazardRosters = [
+    [named('Torkoal', ['Splash']), {...named('Flutter Mane', ['Splash'], 'N'), ability:'Protosynthesis', item:'Booster Energy'}],
+    [named('Tyranitar', ['Stealth Rock', 'Splash'])],
+];
+const spinBeforeFaintRosters = [
+    [named('Torkoal', ['Splash', 'Rapid Spin']), named('Snorlax', ['Splash'])],
+    [{...named('Raticate', ['Spikes', 'Super Fang']), item:'Rocky Helmet'}],
+];
+const assaultVestTauntRosters = [
+    [named('Qwilfish-Hisui', ['Taunt'])],
+    [{...named('Primarina', ['Hyper Voice', 'Protect']), item:'Assault Vest'}],
+];
 const teraShiftRosters = [
     [{...named('Terapagos', ['Tackle'], 'M'), ability:'Tera Shift'}],
     [{...named('Aipom', ['Tail Slap', 'Tackle']), ability:'Skill Link'}],
@@ -3954,6 +3970,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         zenModeRosters, 'custom-zen-mode-switches-form-in-both-directions'],
     ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 2'], ['switch 2','move 2']],
         powerConstructRosters, 'custom-power-construct-preserves-missing-hp-and-persists-across-switch'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2']],
+        faintedZygardeRosters, 'custom-power-construct-regresses-after-fainting'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 2']],
+        boosterHazardRosters, 'custom-booster-energy-starts-after-entry-hazards'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 2'],
+        ['move 1','move 2'], ['move 2','move 1']], spinBeforeFaintRosters, 'custom-spin-removes-hazards-after-rocky-helmet-knockout'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        assaultVestTauntRosters, 'custom-disablemove-does-not-tie-taunt-and-assault-vest'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
         teraShiftRosters, 'custom-tera-shift-and-tera-shell-multihit-without-terastallizing'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 1']],

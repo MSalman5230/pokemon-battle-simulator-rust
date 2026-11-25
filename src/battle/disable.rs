@@ -77,21 +77,30 @@ impl Battle {
             + usize::from(mon.encore.is_some())
             + usize::from(mon.heal_block > 0)
             + usize::from(mon.volatile_ids().contains(&"torment"))
-            + usize::from(mon.item == "assaultvest")
             + usize::from(mon.disabled_slot.is_some());
-        let mut handlers = [mon.speed; 11];
+        let mut handlers = [(2, mon.speed); 12]; // Pokémon-owned conditions
         let mut count = own_handlers;
         for foe in self.foe_imprison(pos) {
-            handlers[count] = foe.speed;
+            handlers[count] = (2, foe.speed);
             count += 1;
         }
         if self.gravity > 0 {
-            handlers[count] = 0; // Field-owned condition has no Pokémon speed.
+            handlers[count] = (5, 0); // Field-owned condition has no Pokémon speed.
+            count += 1;
+        }
+        if mon.ability == "gorillatactics" {
+            handlers[count] = (7, mon.speed);
+            count += 1;
+        }
+        if mon.item == "assaultvest" {
+            handlers[count] = (8, mon.speed);
             count += 1;
         }
         // DisableMove sorts these condition handlers together, even when the
         // final flags do not depend on which tied condition runs first.
-        speed_sort_by(&mut handlers[..count], &mut self.rng, |a, b| b.cmp(a));
+        speed_sort_by(&mut handlers[..count], &mut self.rng, |a, b| {
+            a.0.cmp(&b.0).then_with(|| b.1.cmp(&a.1))
+        });
         if self.mon(pos).choice_lock == Some(usize::MAX) {
             let mon = self.mon_mut(pos);
             mon.choice_lock = None;

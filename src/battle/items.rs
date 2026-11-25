@@ -315,7 +315,7 @@ impl Battle {
         self.on_switch_in_item(pos);
         self.use_matching_terrain_seed(pos);
         self.use_room_service(pos);
-        self.update_booster_energy(pos);
+        self.start_booster_energy(pos);
         self.white_herb(pos);
     }
 
@@ -1474,6 +1474,8 @@ impl Battle {
             mon.mirror_herb = Default::default();
         } else if item == "ejectpack" {
             mon.eject_pack_ready = false;
+        } else if item == "boosterenergy" {
+            mon.booster_energy_started = false;
         }
         if !item.is_empty() && mon.active_ability() == "unburden" {
             mon.track_volatile("unburden");

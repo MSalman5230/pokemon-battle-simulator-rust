@@ -2457,6 +2457,22 @@ fn dark_void_requires_darkrai_but_can_be_reflected() {
 }
 
 #[test]
+fn entry_and_hit_callbacks_obey_native_order_when_hazards_or_fainting_intervene() {
+    replay(include_str!(
+        "fixtures/custom-power-construct-regresses-after-fainting.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-booster-energy-starts-after-entry-hazards.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-spin-removes-hazards-after-rocky-helmet-knockout.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-disablemove-does-not-tie-taunt-and-assault-vest.json"
+    ));
+}
+
+#[test]
 fn tera_starstorm_only_changes_type_and_spreads_in_stellar_form() {
     replay(include_str!(
         "fixtures/custom-tera-starstorm-is-normal-before-stellar.json"

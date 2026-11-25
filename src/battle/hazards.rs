@@ -95,12 +95,10 @@ impl Battle {
     }
 
     pub(super) fn clear_spinning_hazards(&mut self, pos: Position, move_name: &str) {
-        if self.mon(pos).hp == 0 {
-            return;
-        }
         let source = self.ident(pos);
         let suffix = format!("|[from] move: {move_name}|[of] {source}");
-        if self.mon_mut(pos).seeded_from.take().is_some() {
+        let alive = self.mon(pos).hp != 0;
+        if alive && self.mon_mut(pos).seeded_from.take().is_some() {
             self.mon_mut(pos).untrack_volatile("leechseed");
             self.add(format!("|-end|{source}|Leech Seed{suffix}"));
         }
@@ -124,7 +122,9 @@ impl Battle {
                 ));
             }
         }
-        self.end_partial_trap(pos, false);
+        if alive {
+            self.end_partial_trap(pos, false);
+        }
     }
 
     pub(super) fn grounded(&self, pos: Position) -> bool {

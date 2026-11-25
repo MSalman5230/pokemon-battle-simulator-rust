@@ -1,0 +1,1002 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Zygarde-10%\",\"moves\":[\"Splash\"],\"gender\":\"N\",\"name\":\"Zygarde-10%\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Power Construct\",\"ivs\":{\"hp\":29}}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Articuno\",\"moves\":[\"Super Fang\",\"Ice Beam\"],\"gender\":\"N\",\"name\":\"Articuno\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Zygarde-10%, L50|",
+          "|poke|p2|Articuno, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Zygarde-10%, L50|",
+          "|poke|p2|Articuno, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Zygarde-10%, L50|",
+          "|poke|p2|Articuno, L50|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde-10%, L50",
+                "condition": "129/129",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 91,
+                  "spa": 81,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Articuno",
+                "details": "Articuno, L50",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 145,
+                  "spe": 105
+                },
+                "moves": [
+                  "superfang",
+                  "icebeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde-10%",
+            "details": "Zygarde-10%, L50",
+            "hp": 129,
+            "maxhp": 129,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 91,
+              "spa": 81,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Articuno",
+            "species": "Articuno",
+            "details": "Articuno, L50",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 120,
+              "spa": 115,
+              "spd": 145,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "icebeam",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde-10%, L50|129/129",
+          "|switch|p2a: Articuno|Articuno, L50|165/165",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde-10%, L50|129/129",
+          "|switch|p2a: Articuno|Articuno, L50|165/165",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde-10%, L50|129/129",
+          "|switch|p2a: Articuno|Articuno, L50|165/165",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde-10%, L50",
+                "condition": "129/129",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 91,
+                  "spa": 81,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Articuno",
+                "details": "Articuno, L50",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 145,
+                  "spe": 105
+                },
+                "moves": [
+                  "superfang",
+                  "icebeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde-10%",
+            "details": "Zygarde-10%, L50",
+            "hp": 129,
+            "maxhp": 129,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 91,
+              "spa": 81,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Articuno",
+            "species": "Articuno",
+            "details": "Articuno, L50",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 120,
+              "spa": 115,
+              "spd": 145,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "icebeam",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Zygarde|Splash|p1a: Zygarde",
+          "|-nothing",
+          "|move|p2a: Articuno|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|65/129",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Zygarde|Splash|p1a: Zygarde",
+          "|-nothing",
+          "|move|p2a: Articuno|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|65/129",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Zygarde|Splash|p1a: Zygarde",
+          "|-nothing",
+          "|move|p2a: Articuno|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|65/129",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde-10%, L50",
+                "condition": "65/129",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 91,
+                  "spa": 81,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Articuno",
+                "details": "Articuno, L50",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 145,
+                  "spe": 105
+                },
+                "moves": [
+                  "superfang",
+                  "icebeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde-10%",
+            "details": "Zygarde-10%, L50",
+            "hp": 65,
+            "maxhp": 129,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 91,
+              "spa": 81,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Articuno",
+            "species": "Articuno",
+            "details": "Articuno, L50",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 120,
+              "spa": 115,
+              "spd": 145,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "icebeam",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Zygarde|Splash|p1a: Zygarde",
+          "|-nothing",
+          "|move|p2a: Articuno|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|33/129",
+          "|",
+          "|-activate|p1a: Zygarde|ability: Power Construct",
+          "|detailschange|p1a: Zygarde|Zygarde-Complete, L50",
+          "|-heal|p1a: Zygarde|195/291|[silent]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Zygarde|Splash|p1a: Zygarde",
+          "|-nothing",
+          "|move|p2a: Articuno|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|33/129",
+          "|",
+          "|-activate|p1a: Zygarde|ability: Power Construct",
+          "|detailschange|p1a: Zygarde|Zygarde-Complete, L50",
+          "|-heal|p1a: Zygarde|195/291|[silent]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Zygarde|Splash|p1a: Zygarde",
+          "|-nothing",
+          "|move|p2a: Articuno|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|33/129",
+          "|",
+          "|-activate|p1a: Zygarde|ability: Power Construct",
+          "|detailschange|p1a: Zygarde|Zygarde-Complete, L50",
+          "|-heal|p1a: Zygarde|195/291|[silent]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Splash",
+                  "id": "splash",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde-Complete, L50",
+                "condition": "195/291",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 111,
+                  "spd": 115,
+                  "spe": 105
+                },
+                "moves": [
+                  "splash"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Ice Beam",
+                  "id": "icebeam",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Articuno",
+                "details": "Articuno, L50",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 120,
+                  "spa": 115,
+                  "spd": 145,
+                  "spe": 105
+                },
+                "moves": [
+                  "superfang",
+                  "icebeam"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde-Complete",
+            "details": "Zygarde-Complete, L50",
+            "hp": 195,
+            "maxhp": 291,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 111,
+              "spd": 115,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Articuno",
+            "species": "Articuno",
+            "details": "Articuno, L50",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 120,
+              "spa": 115,
+              "spd": 145,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "icebeam",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "",
+      "waiting": [
+        true,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Articuno|Ice Beam|p1a: Zygarde",
+          "|-supereffective|p1a: Zygarde|2",
+          "|-damage|p1a: Zygarde|0 fnt",
+          "|faint|p1a: Zygarde",
+          "|detailschange|p1: Zygarde|Zygarde-10%, L50|[silent]",
+          "|",
+          "|win|player1"
+        ],
+        [
+          "|",
+          "|move|p2a: Articuno|Ice Beam|p1a: Zygarde",
+          "|-supereffective|p1a: Zygarde|2",
+          "|-damage|p1a: Zygarde|0 fnt",
+          "|faint|p1a: Zygarde",
+          "|detailschange|p1: Zygarde|Zygarde-10%, L50|[silent]",
+          "|",
+          "|win|player1"
+        ],
+        [
+          "|",
+          "|move|p2a: Articuno|Ice Beam|p1a: Zygarde",
+          "|-supereffective|p1a: Zygarde|2",
+          "|-damage|p1a: Zygarde|0 fnt",
+          "|faint|p1a: Zygarde",
+          "|detailschange|p1: Zygarde|Zygarde-10%, L50|[silent]",
+          "|",
+          "|win|player1"
+        ]
+      ],
+      "requests": [
+        null,
+        null
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde-10%",
+            "details": "Zygarde-10%, L50",
+            "hp": 0,
+            "maxhp": 129,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 91,
+              "spa": 81,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "splash",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Articuno",
+            "species": "Articuno",
+            "details": "Articuno, L50",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 120,
+              "spa": 115,
+              "spd": 145,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "icebeam",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

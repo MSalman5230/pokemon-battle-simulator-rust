@@ -108,9 +108,16 @@ impl Battle {
         }
     }
 
+    pub(super) fn start_booster_energy(&mut self, pos: Position) {
+        if self.mon(pos).item == "boosterenergy" && !self.debug_ignored_item(pos, "Start") {
+            self.mon_mut(pos).booster_energy_started = true;
+            self.update_booster_energy(pos);
+        }
+    }
+
     pub(super) fn update_booster_energy(&mut self, pos: Position) {
         let mon = self.mon(pos);
-        if mon.item != "boosterenergy" || mon.hp == 0 || mon.transformed.is_some() {
+        if !mon.booster_energy_started || mon.hp == 0 || mon.transformed.is_some() {
             return;
         }
         let Some(kind) = ParadoxKind::from_ability(self.event_ability(pos)) else {

@@ -2020,7 +2020,11 @@ impl Battle {
                 ) {
                     self.start_switch_ability(pos);
                 }
-                self.update_booster_energy(pos);
+            }
+        }
+        for (pos, _) in order.into_iter().take(count) {
+            if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
+                self.start_booster_energy(pos);
             }
         }
         for (pos, _) in order.into_iter().take(count) {

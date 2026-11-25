@@ -325,8 +325,9 @@ impl Battle {
         let end = mon.details.find(',').unwrap_or(mon.details.len());
         mon.details.replace_range(..end, &submitted.name);
         self.add(format!(
-            "|detailschange|{}|{}|[silent]",
-            self.ident(pos),
+            "|detailschange|{}: {}|{}|[silent]",
+            pos.player.id(),
+            self.mon(pos).name,
             self.displayed_details(pos)
         ));
     }
