@@ -468,6 +468,12 @@ impl Battle {
             self.add("|debug|charge boost");
         }
         let terrain_power = self.terrain_power_modifier(source, target, move_data, move_type);
+        let sport = self.legacy_sport(move_type);
+        if self.format.report_exact_hp
+            && let Some(label) = sport
+        {
+            self.add(format!("|debug|{label}"));
+        }
         let lash_out = move_data.name == "Lash Out" && self.mon(source).stats_lowered;
         if lash_out && self.format.report_exact_hp {
             self.add("|debug|lashout buff");
@@ -733,6 +739,9 @@ impl Battle {
             power_modifier = chain(power_modifier, 8192);
         }
         power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
+        if sport.is_some() {
+            power_modifier = chain(power_modifier, 1352);
+        }
         if lash_out {
             power_modifier = chain(power_modifier, 8192);
         }

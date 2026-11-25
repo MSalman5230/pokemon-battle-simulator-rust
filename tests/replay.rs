@@ -1946,6 +1946,16 @@ fn inherited_typed_items_supply_power_and_respect_suppression_and_consumption() 
 }
 
 #[test]
+fn inherited_field_types_and_power_modifiers_expire_on_the_native_turn() {
+    replay(include_str!(
+        "fixtures/custom-ion-deluge-and-plasma-fists.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-mud-sport-and-water-sport.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

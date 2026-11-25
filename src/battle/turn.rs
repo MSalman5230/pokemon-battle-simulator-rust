@@ -4,6 +4,7 @@ use super::{
     abilities::{BoostOrigin, PostHit},
     charge::ChargeSpec,
     damage::RegularHit,
+    field_effects::LegacyField,
     leech::DrainKind,
 };
 use crate::{
@@ -1020,6 +1021,10 @@ impl Battle {
                     | "technoblast"
                     | "ivycudgel"
                     | "naturalgift"
+                    | "iondeluge"
+                    | "plasmafists"
+                    | "watersport"
+                    | "mudsport"
                     | "round"
                     | "swift"
                     | "surf"
@@ -2599,6 +2604,7 @@ impl Battle {
             FuryCutter,
             RollingAttack,
             EchoedVoice,
+            LegacyField(LegacyField),
             Taunt,
             Encore,
             Disable,
@@ -2627,6 +2633,23 @@ impl Battle {
         self.add("|");
         self.update_speed();
         let mut timers = Vec::new();
+        for effect in LegacyField::ALL {
+            if self.legacy_field_active(effect) {
+                let (order, sub_order) = effect.residual_priority();
+                timers.push((
+                    Position {
+                        player: Player::P1,
+                        slot: 0,
+                    },
+                    Effect::LegacyField(effect),
+                    Priority {
+                        order,
+                        sub_order,
+                        ..Priority::default()
+                    },
+                ));
+            }
+        }
         if self.echoed_voice.is_some() {
             timers.push((
                 Position {
@@ -2990,6 +3013,10 @@ impl Battle {
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
         let mut perish_faints = Vec::new();
         for (pos, effect, _) in timers {
+            if let Effect::LegacyField(effect) = effect {
+                self.tick_legacy_field(effect);
+                continue;
+            }
             if matches!(effect, Effect::EchoedVoice) {
                 super::streaks::Streak::tick(&mut self.echoed_voice);
                 continue;
@@ -3199,6 +3226,7 @@ impl Battle {
                 | Effect::Safeguard
                 | Effect::LuckyChant
                 | Effect::EchoedVoice
+                | Effect::LegacyField(_)
                 | Effect::TrickRoom
                 | Effect::Gravity
                 | Effect::WonderRoom
@@ -3923,6 +3951,16 @@ impl Battle {
         }
         if electrified && self.format.report_exact_hp {
             self.add("|debug|Electrify making move type electric");
+        }
+        if !delayed && move_type == "Normal" && self.legacy_field_active(LegacyField::IonDeluge) {
+            move_type = "Electric";
+            result.spends_charge = !reflected;
+            if self.format.report_exact_hp {
+                self.add(format!(
+                    "|debug|{}'s type changed to Electric",
+                    move_data.name
+                ));
+            }
         }
         result.spends_stockpile = !delayed && move_data.name == "Spit Up";
         result.ran_after_move = own_action;
@@ -4737,6 +4775,19 @@ impl Battle {
                 self.each_event();
                 self.each_event();
             } else if !snow_started {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
+                result.failed = true;
+            }
+            return true;
+        }
+        if let Some(effect) = LegacyField::for_move(&move_data.name) {
+            self.protean_prepare(source, move_type);
+            if self.start_legacy_field(source, effect, &move_data.name) {
+                self.each_event();
+                self.each_event();
+            } else {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
                 self.report_no_move_effect();
@@ -7091,6 +7142,9 @@ impl Battle {
                 splash_faints |= self.inherited_damage_hook(source, target, move_data, queue);
                 if move_data.name == "Thousand Waves" {
                     self.start_linked_trap(source, target);
+                }
+                if move_data.name == "Plasma Fists" {
+                    self.start_legacy_field(source, LegacyField::IonDeluge, &move_data.name);
                 }
                 if let Some(item) = thrown_item {
                     self.fling_hit(source, target, item);

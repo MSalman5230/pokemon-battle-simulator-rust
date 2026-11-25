@@ -19,6 +19,7 @@ mod charge;
 mod control;
 mod damage;
 mod disable;
+mod field_effects;
 mod forme;
 mod guards;
 mod hazards;
@@ -181,6 +182,7 @@ pub struct Battle {
     magic_room: Option<target_effects::TargetTimer>,
     fairy_lock: u8,
     echoed_voice: Option<streaks::Streak>,
+    legacy_fields: [field_effects::LegacyFieldState; 3],
     last_fusion: Option<streaks::Fusion>,
     ability_order: u32,
     ability_breaker: Option<Position>,
@@ -512,6 +514,7 @@ impl Battle {
             magic_room: None,
             fairy_lock: 0,
             echoed_voice: None,
+            legacy_fields: Default::default(),
             last_fusion: None,
             ability_order: 0,
             ability_breaker: None,
