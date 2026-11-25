@@ -37,6 +37,8 @@ impl Battle {
         let foe = self.mon(target);
         let focus = foe.volatile_ids().contains(&"focusenergy");
         let cheer = foe.dragon_cheer;
+        let laser = foe.laser_focus != 0;
+        self.end_laser_focus(source);
         let mon = self.mon_mut(source);
         mon.untrack_volatile("focusenergy");
         mon.untrack_volatile("dragoncheer");
@@ -54,6 +56,32 @@ impl Battle {
             self.add(format!(
                 "|-start|{}|move: {name}|[silent]",
                 self.ident(source)
+            ));
+        }
+        if laser {
+            self.start_laser_focus(source, true);
+        }
+    }
+
+    pub(super) fn start_laser_focus(&mut self, pos: Position, copied: bool) {
+        let mon = self.mon_mut(pos);
+        mon.laser_focus = 2;
+        mon.track_volatile("laserfocus");
+        let suffix = if copied { "|[silent]" } else { "" };
+        self.add(format!(
+            "|-start|{}|move: Laser Focus{suffix}",
+            self.ident(pos)
+        ));
+    }
+
+    pub(super) fn end_laser_focus(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        if mon.volatile_ids().contains(&"laserfocus") {
+            mon.untrack_volatile("laserfocus");
+            mon.laser_focus = 0;
+            self.add(format!(
+                "|-end|{}|move: Laser Focus|[silent]",
+                self.ident(pos)
             ));
         }
     }

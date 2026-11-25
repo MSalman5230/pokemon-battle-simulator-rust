@@ -386,6 +386,9 @@ impl Battle {
         if !self.active_effects(source) {
             return data.crit_ratio.unwrap_or(1);
         }
+        if user.laser_focus != 0 {
+            return 4;
+        }
         if user.active_ability() == "merciless"
             && matches!(self.mon(target).status, Status::Poison | Status::Toxic(_))
         {

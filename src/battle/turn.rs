@@ -983,6 +983,9 @@ impl Battle {
                     | "foresight"
                     | "odorsleuth"
                     | "miracleeye"
+                    | "laserfocus"
+                    | "luckychant"
+                    | "healblock"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1904,6 +1907,7 @@ impl Battle {
         party[outgoing.slot].stockpile = Default::default();
         party[outgoing.slot].magnet_rise = 0;
         party[outgoing.slot].dragon_cheer = 0;
+        party[outgoing.slot].laser_focus = 0;
         party[outgoing.slot].gem_boost = false;
         party[outgoing.slot].electrified = false;
         party[outgoing.slot].gastro_acid = false;
@@ -2548,12 +2552,14 @@ impl Battle {
             PerishSong,
             ThroatChop,
             HealBlock,
+            LaserFocus,
             Taunt,
             Encore,
             Disable,
             Screen(Screen),
             SideGuard(SideGuard),
             Safeguard,
+            LuckyChant,
             Tailwind,
             TrickRoom,
             Gravity,
@@ -2673,6 +2679,17 @@ impl Battle {
             ));
         }
         for player in Player::ALL {
+            if self.lucky_chant_active(player) {
+                timers.push((
+                    Position { player, slot: 0 },
+                    Effect::LuckyChant,
+                    Priority {
+                        order: 26,
+                        sub_order: 6,
+                        ..Priority::default()
+                    },
+                ));
+            }
             if self.sides[player.index()].as_ref().unwrap().safeguard > 0 {
                 timers.push((
                     Position { player, slot: 0 },
@@ -2878,6 +2895,9 @@ impl Battle {
             if mon.lock_on.is_some() {
                 timers.push((pos, Effect::LockOn, priority(0, 2)));
             }
+            if mon.laser_focus != 0 {
+                timers.push((pos, Effect::LaserFocus, priority(0, 2)));
+            }
             if mon.recharge != 0 {
                 timers.push((pos, Effect::Recharge, priority(0, 2)));
             }
@@ -2911,6 +2931,10 @@ impl Battle {
             }
             if matches!(effect, Effect::Safeguard) {
                 self.tick_safeguard(pos.player);
+                continue;
+            }
+            if matches!(effect, Effect::LuckyChant) {
+                self.tick_lucky_chant(pos.player);
                 continue;
             }
             if matches!(effect, Effect::Weather) {
@@ -3047,6 +3071,12 @@ impl Battle {
                         self.end_heal_block(pos);
                     }
                 }
+                Effect::LaserFocus => {
+                    mon.laser_focus -= 1;
+                    if mon.laser_focus == 0 {
+                        self.end_laser_focus(pos);
+                    }
+                }
                 Effect::FocusPunch => {
                     mon.lost_focus = false;
                     mon.untrack_volatile("focuspunch");
@@ -3091,6 +3121,7 @@ impl Battle {
                 | Effect::Screen(_)
                 | Effect::SideGuard(_)
                 | Effect::Safeguard
+                | Effect::LuckyChant
                 | Effect::TrickRoom
                 | Effect::Gravity
                 | Effect::WonderRoom
@@ -4541,6 +4572,18 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Lucky Chant" {
+            self.protean_prepare(source, move_type);
+            if !self.start_lucky_chant(source.player) {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+            } else {
+                self.each_event();
+                self.each_event();
+            }
+            return true;
+        }
         if move_data.name == "Imprison" {
             self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
@@ -5375,6 +5418,17 @@ impl Battle {
                             self.move_still(base);
                             self.add(format!("|-fail|{source_name}"));
                             self.report_no_move_effect();
+                        }
+                    }
+                    "Laser Focus" => {
+                        self.start_laser_focus(target, false);
+                        succeeded = true;
+                    }
+                    "Heal Block" => {
+                        if self.mon(target).heal_block > 0 {
+                            self.add(format!("|-fail|{}|move: Heal Block", self.ident(target)));
+                        } else {
+                            succeeded = self.start_heal_block(target, 5);
                         }
                     }
                     "Psycho Shift" => {
@@ -6572,6 +6626,7 @@ impl Battle {
                 });
                 let crit = crit_roll
                     && !disguised
+                    && !battle.lucky_chant_active(target.player)
                     && !matches!(battle.event_ability(target), "battlearmor" | "shellarmor");
                 if crit && !shield {
                     critical_hits |= target.mask();
@@ -7504,6 +7559,7 @@ impl Battle {
         mon.stockpile = Default::default();
         mon.magnet_rise = 0;
         mon.dragon_cheer = 0;
+        mon.laser_focus = 0;
         mon.gem_boost = false;
         mon.electrified = false;
         mon.gastro_acid = false;

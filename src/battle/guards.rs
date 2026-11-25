@@ -34,6 +34,34 @@ impl SideGuard {
 }
 
 impl Battle {
+    pub(super) fn start_lucky_chant(&mut self, player: Player) -> bool {
+        let side = self.sides[player.index()].as_mut().unwrap();
+        if side.lucky_chant != 0 {
+            return false;
+        }
+        side.lucky_chant = 5;
+        self.add(format!(
+            "|-sidestart|{}|move: Lucky Chant",
+            self.side_ident(player)
+        ));
+        true
+    }
+
+    pub(super) fn tick_lucky_chant(&mut self, player: Player) {
+        let turns = &mut self.sides[player.index()].as_mut().unwrap().lucky_chant;
+        *turns = turns.saturating_sub(1);
+        if *turns == 0 {
+            self.add(format!(
+                "|-sideend|{}|move: Lucky Chant",
+                self.side_ident(player)
+            ));
+        }
+    }
+
+    pub(super) fn lucky_chant_active(&self, player: Player) -> bool {
+        self.sides[player.index()].as_ref().unwrap().lucky_chant != 0
+    }
+
     pub(super) fn start_safeguard(&mut self, player: Player) -> bool {
         let turns = &mut self.sides[player.index()].as_mut().unwrap().safeguard;
         if *turns > 0 {

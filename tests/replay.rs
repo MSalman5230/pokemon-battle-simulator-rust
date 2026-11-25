@@ -1872,6 +1872,15 @@ fn inherited_type_and_weight_moves_change_only_their_intended_matchups() {
 }
 
 #[test]
+fn inherited_critical_and_heal_conditions_preserve_rolls_and_expiration() {
+    replay(include_str!(
+        "fixtures/natdex-lucky-chant-and-laser-focus.json"
+    ));
+    replay(include_str!("fixtures/natdex-laser-focus-transform.json"));
+    replay(include_str!("fixtures/natdex-direct-heal-block.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

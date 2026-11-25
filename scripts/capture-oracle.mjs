@@ -1640,6 +1640,18 @@ const legacyMiracleRosters = [
     [{...named('Smeargle', ['Psychic', 'Miracle Eye']), ability:'Own Tempo'}],
     [named('Umbreon', ['Double Team', 'Recover'])],
 ];
+const legacyCritRosters = [
+    [{...named('Smeargle', ['Laser Focus', 'Tackle', 'Recover']), ability:'Own Tempo'}],
+    [{...named('Chansey', ['Lucky Chant', 'Life Dew', 'Tail Whip']), ability:'Natural Cure'}],
+];
+const legacyCritCopyRosters = [
+    legacyCritRosters[0],
+    [{...named('Ditto', ['Transform']), ability:'Limber'}],
+];
+const legacyHealBlockRosters = [
+    [{...named('Smeargle', ['Heal Block', 'Tackle']), ability:'Own Tempo'}],
+    [named('Vaporeon', ['Recover', 'Tail Whip'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2957,6 +2969,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 3','move 2'], ['move 4','move 2']], legacyForesightRosters, 'natdex-foresight-and-odor-sleuth'],
     ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 1']],
         legacyMiracleRosters, 'natdex-miracle-eye'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 1'],
+        ['move 2','move 2'], ['move 1','move 3'], ['move 2','move 2']], legacyCritRosters, 'natdex-lucky-chant-and-laser-focus'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2']],
+        legacyCritCopyRosters, 'natdex-laser-focus-transform'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 2','move 2'],
+        ['move 2','move 2'], ['move 2','move 2'], ['move 2','move 1']], legacyHealBlockRosters, 'natdex-direct-heal-block'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
