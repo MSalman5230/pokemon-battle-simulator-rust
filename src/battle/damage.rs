@@ -92,6 +92,22 @@ impl Battle {
                     "",
                 ),
             ),
+            id @ ("filter" | "solidrock" | "prismarmor") => {
+                let debug = match id {
+                    "filter" => "Filter neutralize",
+                    "solidrock" => "Solid Rock neutralize",
+                    _ => "Prism Armor neutralize",
+                };
+                add(
+                    defender.speed,
+                    7,
+                    if effectiveness > 0 {
+                        Hook::DefenderAbility(3072, debug)
+                    } else {
+                        Hook::DefenderAbility(4096, "")
+                    },
+                );
+            }
             _ => {}
         }
         if let Some((berry_type, name)) = resistance_berry(&defender.item) {

@@ -972,6 +972,17 @@ fn dragon_darts_splits_when_possible_and_retargets_to_the_eligible_survivor() {
 }
 
 #[test]
+fn defensive_abilities_modify_only_matching_moves_and_stat_drops() {
+    replay(include_str!("fixtures/bss-super-effective-guards.json"));
+    replay(include_str!("fixtures/bss-defense-hit-hooks.json"));
+}
+
+#[test]
+fn replacements_ignore_speed_modifiers_on_fainted_holders() {
+    replay(include_str!("fixtures/vgc-fainted-choice-scarf.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

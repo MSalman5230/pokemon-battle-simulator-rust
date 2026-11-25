@@ -57,7 +57,7 @@ enum DropHook {
     FlowerVeil,
     Block(&'static str),
     IntimidateBlock(&'static str),
-    ProtectAccuracy(&'static str),
+    ProtectStat(BoostStat, &'static str),
     MirrorArmor,
 }
 
@@ -910,9 +910,10 @@ impl Battle {
         let mut hooks = [(target, 0, DropHook::FlowerVeil); 3];
         let own = match mon.ability.as_str() {
             "mirrorarmor" => Some(DropHook::MirrorArmor),
-            "illuminate" => Some(DropHook::ProtectAccuracy("Illuminate")),
-            "keeneye" => Some(DropHook::ProtectAccuracy("Keen Eye")),
-            "mindseye" => Some(DropHook::ProtectAccuracy("Mind's Eye")),
+            "illuminate" => Some(DropHook::ProtectStat(BoostStat::Accuracy, "Illuminate")),
+            "keeneye" => Some(DropHook::ProtectStat(BoostStat::Accuracy, "Keen Eye")),
+            "mindseye" => Some(DropHook::ProtectStat(BoostStat::Accuracy, "Mind's Eye")),
+            "bigpecks" => Some(DropHook::ProtectStat(BoostStat::Def, "Big Pecks")),
             "innerfocus" => Some(DropHook::IntimidateBlock("Inner Focus")),
             "oblivious" => Some(DropHook::IntimidateBlock("Oblivious")),
             "owntempo" => Some(DropHook::IntimidateBlock("Own Tempo")),
@@ -948,8 +949,7 @@ impl Battle {
                     if removed & (1 << i) != 0
                         || amount >= 0
                         || current <= -6
-                        || matches!(hook, DropHook::ProtectAccuracy(_))
-                            && stat != BoostStat::Accuracy
+                        || matches!(hook, DropHook::ProtectStat(protected, _) if protected != stat)
                         || matches!(hook, DropHook::IntimidateBlock(_))
                             && (stat != BoostStat::Atk || origin != BoostOrigin::Intimidate)
                     {
@@ -977,9 +977,12 @@ impl Battle {
                                 "|-fail|{ident}|unboost|atk|[from] ability: {ability}|[of] {ident}"
                             ));
                         }
-                        DropHook::ProtectAccuracy(ability) => {
+                        DropHook::ProtectStat(stat, ability) => {
                             let ident = self.ident(target);
-                            self.add(format!("|-fail|{ident}|unboost|accuracy|[from] ability: {ability}|[of] {ident}"));
+                            self.add(format!(
+                                "|-fail|{ident}|unboost|{}|[from] ability: {ability}|[of] {ident}",
+                                stat.id()
+                            ));
                         }
                         DropHook::MirrorArmor => {}
                     }

@@ -4071,6 +4071,9 @@ impl Battle {
                 if self.event_ability(target) == "stamina" {
                     self.ability_boost(target, "Stamina", BoostStat::Def, 1, false);
                 }
+                if move_type == "Dark" && self.event_ability(target) == "justified" {
+                    self.ability_boost(target, "Justified", BoostStat::Atk, 1, false);
+                }
                 if self.event_ability(target) == "weakarmor"
                     && move_data.category == Category::Physical
                 {
@@ -4585,6 +4588,11 @@ impl Pokemon {
         if tailwind {
             stat *= 2;
         }
+        if self.fainted {
+            // A queued replacement still uses the outgoing Pokemon's speed,
+            // but Showdown ignores its inactive ability and held item.
+            return stat;
+        }
         if matches!(
             (self.ability.as_str(), weather),
             ("swiftswim", Some(Weather::Rain))
@@ -4712,6 +4720,11 @@ impl Pokemon {
                 | "minus"
                 | "curiousmedicine"
                 | "imposter"
+                | "filter"
+                | "solidrock"
+                | "prismarmor"
+                | "bigpecks"
+                | "justified"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"
