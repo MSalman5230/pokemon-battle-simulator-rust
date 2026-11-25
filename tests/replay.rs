@@ -305,3 +305,8 @@ fn bss_court_change_glaive_rush_and_poltergeist() {
 fn bss_temporary_ability_changes_preserve_base_ability_and_reset_on_switch() {
     replay(include_str!("fixtures/bss-ability-transfer.json"));
 }
+
+#[test]
+fn bss_hp_sharing_attack_based_healing_and_sunny_growth() {
+    replay(include_str!("fixtures/bss-hp-effects.json"));
+}

@@ -707,6 +707,9 @@ impl Battle {
                     | "glaiverush"
                     | "poltergeist"
                     | "courtchange"
+                    | "growth"
+                    | "strengthsap"
+                    | "painsplit"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1658,6 +1661,43 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Pain Split" {
+                    let average = ((self.mon(source).hp + self.mon(target).hp) / 2).max(1);
+                    let mon = self.mon_mut(target);
+                    mon.hp = average.min(mon.max_hp.get());
+                    self.add_health_line_with(
+                        "-sethp",
+                        target,
+                        false,
+                        "|[from] move: Pain Split|[silent]",
+                    );
+                    let mon = self.mon_mut(source);
+                    mon.hp = average.min(mon.max_hp.get());
+                    self.add_health_line_with("-sethp", source, false, "|[from] move: Pain Split");
+                    succeeded = true;
+                }
+                if move_data.name == "Strength Sap" {
+                    let mon = self.mon(target);
+                    let stage = mon.boosts.get(BoostStat::Atk);
+                    let mut success = false;
+                    if stage > -6 {
+                        let restored = boosted_stat(mon.stats.atk, stage).max(1);
+                        success =
+                            self.boost_from(target, source, &[(BoostStat::Atk, -1)], false, false);
+                        let mon = self.mon_mut(source);
+                        if mon.hp > 0 && mon.hp < mon.max_hp.get() {
+                            mon.hp = (mon.hp + restored).min(mon.max_hp.get());
+                            self.add_health_line("-heal", source, false);
+                            success = true;
+                        }
+                    }
+                    if !success {
+                        self.log[base].public =
+                            format!("|move|{source_name}|Strength Sap||[still]");
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                    succeeded |= success;
+                }
                 if move_data.name == "Taunt" {
                     if self.taunt(target) {
                         succeeded = true;
@@ -1736,8 +1776,13 @@ impl Battle {
                     }
                     succeeded = true;
                 }
-                if !move_data.boosts.is_empty() {
-                    succeeded |= self.boost_from(target, source, &move_data.boosts, false, false);
+                let boosts = if move_data.name == "Growth" && weather == Some(Weather::Sun) {
+                    &[(BoostStat::Atk, 2), (BoostStat::Spa, 2)]
+                } else {
+                    move_data.boosts.as_slice()
+                };
+                if !boosts.is_empty() {
+                    succeeded |= self.boost_from(target, source, boosts, false, false);
                 }
             }
             if succeeded {
