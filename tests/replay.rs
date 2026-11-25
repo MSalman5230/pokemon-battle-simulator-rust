@@ -1274,6 +1274,12 @@ fn life_dew_and_heal_pulse_follow_doubles_targeting_and_healing_order() {
 }
 
 #[test]
+fn final_gambit_and_innards_out_queue_faints_in_native_order() {
+    replay(include_str!("fixtures/bss-final-gambit.json"));
+    replay(include_str!("fixtures/bss-innards-out.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -961,6 +961,15 @@ const teamHealingRosters = [
         {...named('Clawitzer', ['Heal Pulse']), ability:'Mega Launcher'}],
     [named('Jolteon', ['Tackle', 'Tail Whip']), named('Umbreon', ['Tackle', 'Tail Whip'])],
 ];
+const finalGambitRosters = [
+    [named('Annihilape', ['Final Gambit']), named('Vaporeon', ['Recover'])],
+    [named('Dusclops', ['Protect', 'Recover']), named('Umbreon', ['Recover'])],
+];
+const innardsOutRosters = [
+    [{...named('Victreebel', ['Growth']), ability:'Chlorophyll', item:'Victreebelite'}, named('Espeon', ['Recover'])],
+    [{...named('Chandelure', ['Flamethrower']), item:'Choice Specs', nature:'Modest', evs:{spa:32}},
+        named('Vaporeon', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1814,6 +1823,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1 -1','move 2, move 2'],
         ['move 1, move 1 -1','move 1 1, move 1 2'], ['move 2 1, move 1 1','move 1 2, move 1 1'],
         ['move 1, move 1 -1','move 1 2, move 2']], teamHealingRosters, 'vgc-life-dew-heal-pulse'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','switch 2']],
+        finalGambitRosters, 'bss-final-gambit'],
+    ['bssregmc', [['team 12','team 12'], ['move 1 mega','move 1']],
+        innardsOutRosters, 'bss-innards-out'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

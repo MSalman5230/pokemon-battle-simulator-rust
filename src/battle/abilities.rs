@@ -895,6 +895,31 @@ impl Battle {
         self.apply_contact_status(holder, attacker, "brn", "Spicy Spray", move_log);
     }
 
+    pub(super) fn innards_out(&mut self, holder: Position, attacker: Position, damage: u32) {
+        if damage == 0 || self.mon(attacker).hp == 0 {
+            return;
+        }
+        if self.event_ability(attacker) == "magicguard" {
+            self.add(format!(
+                "|-activate|{}|ability: Innards Out",
+                self.ident(holder)
+            ));
+            if self.format.report_exact_hp {
+                self.add("|debug|damage event failed");
+            }
+            return;
+        }
+        let mon = self.mon_mut(attacker);
+        mon.half_hp_berry_deferred = false;
+        mon.hp = mon.hp.saturating_sub(damage);
+        self.add_health_line_with(
+            "-damage",
+            attacker,
+            false,
+            &format!("|[from] ability: Innards Out|[of] {}", self.ident(holder)),
+        );
+    }
+
     fn apply_contact_status(
         &mut self,
         holder: Position,

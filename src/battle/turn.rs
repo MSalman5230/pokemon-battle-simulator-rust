@@ -1039,6 +1039,7 @@ impl Battle {
                     | "covet"
                     | "healpulse"
                     | "lifedew"
+                    | "finalgambit"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -2781,6 +2782,7 @@ impl Battle {
             move_data.name.as_str(),
             "Explosion" | "Self-Destruct" | "Misty Explosion"
         );
+        let final_gambit = move_data.name == "Final Gambit";
         let mind_blown = move_data.name == "Mind Blown";
         let half_recoil = match move_data.name.as_str() {
             "Mind Blown" => Some("mindblown"),
@@ -4207,10 +4209,16 @@ impl Battle {
                 power
             };
             damage.clear();
+            let previous_strike_damage = total;
             let mut critical_hits = 0;
             let mut compute = |battle: &mut Self, target: Position, shield: bool| {
                 if ohko {
                     return battle.mon(target).max_hp.get();
+                }
+                if final_gambit {
+                    // The damage callback queues the user's faint before
+                    // applying the target's damage, including to a Substitute.
+                    return std::mem::take(&mut battle.mon_mut(source).hp);
                 }
                 let fixed_damage = match move_data.name.as_str() {
                     "Metal Burst" | "Comeuppance" => {
@@ -4613,6 +4621,16 @@ impl Battle {
                 }
             }
             let original_source_hp = self.mon(source).hp;
+            for &(target, landed) in &damage {
+                if self.mon(target).hp == 0 && self.event_ability(target) == "innardsout" {
+                    let previous = if smart_target {
+                        0
+                    } else {
+                        previous_strike_damage
+                    };
+                    self.innards_out(target, source, landed + previous);
+                }
+            }
             if move_data.flags.contains_key("contact") {
                 for &(target, _) in &damage {
                     if self.mon(target).ability == "aftermath" {
@@ -4756,7 +4774,7 @@ impl Battle {
         if hint_before_faint {
             self.note_consecutive_move(true, move_data);
         }
-        if sacrifice {
+        if sacrifice || final_gambit && self.mon(source).hp == 0 {
             self.mark_fainted(source);
         }
         let mut fainted = 0;
@@ -5429,6 +5447,7 @@ impl Pokemon {
                 | "punkrock"
                 | "spicyspray"
                 | "pickpocket"
+                | "innardsout"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

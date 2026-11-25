@@ -1,0 +1,946 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Victreebel\",\"moves\":[\"Growth\"],\"gender\":\"F\",\"name\":\"Victreebel\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Chlorophyll\",\"item\":\"Victreebelite\"},{\"species\":\"Espeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chandelure\",\"moves\":[\"Flamethrower\"],\"gender\":\"F\",\"name\":\"Chandelure\",\"level\":50,\"nature\":\"Modest\",\"ability\":\"\",\"item\":\"Choice Specs\",\"evs\":{\"spa\":32}},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Victreebel, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Chandelure, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Victreebel, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Chandelure, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Victreebel, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Chandelure, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Victreebel",
+                "details": "Victreebel, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 85,
+                  "spa": 120,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "growth"
+                ],
+                "baseAbility": "chlorophyll",
+                "item": "victreebelite",
+                "pokeball": "pokeball",
+                "ability": "chlorophyll",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chandelure",
+                "details": "Chandelure, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 67,
+                  "def": 110,
+                  "spa": 216,
+                  "spd": 110,
+                  "spe": 100
+                },
+                "moves": [
+                  "flamethrower"
+                ],
+                "baseAbility": "",
+                "item": "choicespecs",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Victreebel",
+            "species": "Victreebel",
+            "details": "Victreebel, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 85,
+              "spa": 120,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "chlorophyll",
+            "item": "victreebelite",
+            "active": false,
+            "moves": [
+              {
+                "id": "growth",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chandelure",
+            "species": "Chandelure",
+            "details": "Chandelure, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 67,
+              "def": 110,
+              "spa": 216,
+              "spd": 110,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "choicespecs",
+            "active": false,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Victreebel|Victreebel, L50, F|100/100",
+          "|switch|p2a: Chandelure|Chandelure, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Victreebel|Victreebel, L50, F|155/155",
+          "|switch|p2a: Chandelure|Chandelure, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Victreebel|Victreebel, L50, F|100/100",
+          "|switch|p2a: Chandelure|Chandelure, L50, F|135/135",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Growth",
+                  "id": "growth",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canMegaEvo": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Victreebel",
+                "details": "Victreebel, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 85,
+                  "spa": 120,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "growth"
+                ],
+                "baseAbility": "chlorophyll",
+                "item": "victreebelite",
+                "pokeball": "pokeball",
+                "ability": "chlorophyll",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Flamethrower",
+                  "id": "flamethrower",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chandelure",
+                "details": "Chandelure, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 67,
+                  "def": 110,
+                  "spa": 216,
+                  "spd": 110,
+                  "spe": 100
+                },
+                "moves": [
+                  "flamethrower"
+                ],
+                "baseAbility": "",
+                "item": "choicespecs",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Victreebel",
+            "species": "Victreebel",
+            "details": "Victreebel, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 85,
+              "spa": 120,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "chlorophyll",
+            "item": "victreebelite",
+            "active": true,
+            "moves": [
+              {
+                "id": "growth",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chandelure",
+            "species": "Chandelure",
+            "details": "Chandelure, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 67,
+              "def": 110,
+              "spa": 216,
+              "spd": 110,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "choicespecs",
+            "active": true,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 mega",
+        ">p2 move 1"
+      ],
+      "turn": 1,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "switch",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|detailschange|p1a: Victreebel|Victreebel-Mega, L50, F",
+          "|-mega|p1a: Victreebel|Victreebel|Victreebelite",
+          "|move|p2a: Chandelure|Flamethrower|p1a: Victreebel",
+          "|-supereffective|p1a: Victreebel|1",
+          "|-damage|p1a: Victreebel|0 fnt",
+          "|-damage|p2a: Chandelure|0 fnt|[from] ability: Innards Out|[of] p1a: Victreebel",
+          "|faint|p1a: Victreebel",
+          "|faint|p2a: Chandelure",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|detailschange|p1a: Victreebel|Victreebel-Mega, L50, F",
+          "|-mega|p1a: Victreebel|Victreebel|Victreebelite",
+          "|move|p2a: Chandelure|Flamethrower|p1a: Victreebel",
+          "|-supereffective|p1a: Victreebel|1",
+          "|-damage|p1a: Victreebel|0 fnt",
+          "|-damage|p2a: Chandelure|0 fnt|[from] ability: Innards Out|[of] p1a: Victreebel",
+          "|faint|p1a: Victreebel",
+          "|faint|p2a: Chandelure",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|detailschange|p1a: Victreebel|Victreebel-Mega, L50, F",
+          "|-mega|p1a: Victreebel|Victreebel|Victreebelite",
+          "|move|p2a: Chandelure|Flamethrower|p1a: Victreebel",
+          "|-supereffective|p1a: Victreebel|1",
+          "|-damage|p1a: Victreebel|0 fnt",
+          "|-damage|p2a: Chandelure|0 fnt|[from] ability: Innards Out|[of] p1a: Victreebel",
+          "|faint|p1a: Victreebel",
+          "|faint|p2a: Chandelure",
+          "|",
+          "|upkeep"
+        ]
+      ],
+      "requests": [
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Victreebel",
+                "details": "Victreebel-Mega, L50, F",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 105,
+                  "spa": 155,
+                  "spd": 115,
+                  "spe": 90
+                },
+                "moves": [
+                  "growth"
+                ],
+                "baseAbility": "innardsout",
+                "item": "victreebelite",
+                "pokeball": "pokeball",
+                "ability": "innardsout",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chandelure",
+                "details": "Chandelure, L50, F",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 67,
+                  "def": 110,
+                  "spa": 216,
+                  "spd": 110,
+                  "spe": 100
+                },
+                "moves": [
+                  "flamethrower"
+                ],
+                "baseAbility": "",
+                "item": "choicespecs",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Victreebel",
+            "species": "Victreebel-Mega",
+            "details": "Victreebel-Mega, L50, F",
+            "hp": 0,
+            "maxhp": 155,
+            "status": "fnt",
+            "stats": {
+              "atk": 145,
+              "def": 105,
+              "spa": 155,
+              "spd": 115,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innardsout",
+            "item": "victreebelite",
+            "active": false,
+            "moves": [
+              {
+                "id": "growth",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chandelure",
+            "species": "Chandelure",
+            "details": "Chandelure, L50, F",
+            "hp": 0,
+            "maxhp": 135,
+            "status": "fnt",
+            "stats": {
+              "atk": 67,
+              "def": 110,
+              "spa": 216,
+              "spd": 110,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "choicespecs",
+            "active": false,
+            "moves": [
+              {
+                "id": "flamethrower",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
