@@ -85,7 +85,17 @@ const competitiveSets = [
     ...named(species, moves), ability, nature: 'Adamant', evs: {hp: 2, atk: 32, spe: 32},
 }));
 const competitiveRosters = [competitiveSets, [...competitiveSets].reverse()];
-for (const [suffix, play, players = rosters, label = suffix] of [
+const statusRosters = [
+    [named('Vaporeon', ['Thunder Wave', 'Recover', 'Surf', 'Ice Beam']),
+        named('Flareon', ['Will-O-Wisp', 'Tackle']), named('Jolteon', ['Nuzzle'])],
+    [named('Umbreon', ['Toxic', 'Tackle', 'Protect', 'Hypnosis']),
+        named('Glaceon', ['Tackle', 'Ice Beam', 'Recover', 'Protect']), named('Espeon', ['Swift'])],
+];
+const sleepFreezeRosters = [
+    [named('Jolteon', ['Ice Beam', 'Recover']), named('Flareon', ['Flamethrower'])],
+    [named('Umbreon', ['Tackle', 'Hypnosis', 'Recover']), named('Vaporeon', ['Recover'])],
+];
+for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
         ['move 2 2, switch 4', 'move 1, move 1 1']]],
@@ -95,6 +105,13 @@ for (const [suffix, play, players = rosters, label = suffix] of [
     ['bssregmc', [['team 123', 'team 365'], ['move 3', 'move 2'], ['move 1', 'move 3'],
         ['move 1', 'move 2'], [null, 'switch 2'], ['move 1', 'move 2']],
         competitiveRosters, 'bss-competitive'],
+    ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 1'], ['move 2', 'move 2'],
+        ['switch 2', 'move 2'], ['move 1', 'switch 2'], ['move 2', 'move 1'],
+        ['switch 2', 'move 3'], ['move 4', 'move 2'], ['move 2', 'move 2']],
+        statusRosters, 'bss-status'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 2'],
+        ...Array(3).fill(['move 2', 'move 2']), ...Array(3).fill(['move 2', 'move 1'])],
+        sleepFreezeRosters, 'bss-sleep-freeze', '1,2,3,22'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
@@ -102,7 +119,7 @@ for (const [suffix, play, players = rosters, label = suffix] of [
         for (const team of players) assert.equal(validator.validateTeam(structuredClone(team)), null);
     }
     const inputs = [
-        '>start ' + JSON.stringify({formatid, seed: seeds[1], strictChoices: true}),
+        '>start ' + JSON.stringify({formatid, seed, strictChoices: true}),
         ...players.map((team, i) => '>player p' + (i + 1) + ' ' + JSON.stringify({name: 'player' + i, team})),
     ];
     const stream = new BattleStream({noCatch: true});
@@ -123,7 +140,7 @@ for (const [suffix, play, players = rosters, label = suffix] of [
             channels: [0, 1, 2].map(id => channels[id].filter(l => !l.startsWith('|uhtml|otsrequest|') && !l.startsWith('|uhtmlchange|otsrequest|'))),
             requests: battle.sides.map(s => s.activeRequest),
             teams: battle.sides.map(s => s.pokemon.map(p => ({
-                name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp,
+                name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp, status: p.status,
                 stats: p.storedStats, boosts: {...p.boosts}, ability: p.ability, item: p.item, active: p.isActive,
                 moves: p.moveSlots.map(m => ({id: m.id, pp: m.pp, maxpp: m.maxpp})),
             }))),

@@ -10,7 +10,9 @@ use crate::{
 };
 use serde::Serialize;
 
+mod status;
 mod turn;
+pub use status::Status;
 use std::{error::Error, fmt, num::NonZeroU32};
 use turn::Action;
 
@@ -115,6 +117,8 @@ pub struct Pokemon {
     pub boosts: Boosts,
     speed: u32,
     pub hp: u32,
+    pub status: Status,
+    flinched: bool,
     pub max_hp: NonZeroU32,
     pub item: String,
     pub ability: String,
@@ -282,7 +286,7 @@ impl Battle {
                 .map(|(index, mon)| SwitchRequest {
                     ident: format!("{id}: {}", mon.name),
                     details: &mon.details,
-                    condition: health(mon.hp, mon.max_hp, "", true).secret,
+                    condition: health(mon.hp, mon.max_hp, mon.status.id(), true).secret,
                     active: index < self.format.game_type.active_slots(),
                     stats: mon.stats.into(),
                     moves: mon.moves.iter().map(|m| m.id.as_str()).collect(),
@@ -575,6 +579,8 @@ impl Pokemon {
             boosts: Boosts::default(),
             speed: stats.spe,
             hp: max_hp.get(),
+            status: Status::Healthy,
+            flinched: false,
             max_hp,
             item,
             ability,

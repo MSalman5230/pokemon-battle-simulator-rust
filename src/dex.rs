@@ -154,6 +154,19 @@ pub struct Move {
     pub self_boosts: Vec<(BoostStat, i8)>,
     pub self_chance: Option<u8>,
     pub heal: Option<[u16; 2]>,
+    pub status: Option<String>,
+    #[serde(default)]
+    pub ignore_immunity: serde_json::Value,
+    pub secondaries: Vec<Secondary>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Secondary {
+    pub chance: Option<u16>,
+    pub status: Option<String>,
+    pub volatile_status: Option<String>,
+    pub boosts: Vec<(BoostStat, i8)>,
 }
 
 #[derive(Debug, Deserialize)]

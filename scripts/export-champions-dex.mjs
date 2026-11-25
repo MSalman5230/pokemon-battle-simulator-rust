@@ -27,10 +27,12 @@ const data = mod => {
         })),
         moves: table(dex.moves.all(), e => {
             const move = props(e, ['name', 'type', 'category', 'target', 'basePower', 'priority',
-                'pp', 'noPPBoosts', 'accuracy', 'critRatio', 'flags', 'isNonstandard', 'heal']);
+                'pp', 'noPPBoosts', 'accuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity']);
             return {...move, handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
-                selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance};
+                selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,
+                secondaries: (e.secondaries ?? []).map(s => ({chance: s.chance, status: s.status,
+                    volatileStatus: s.volatileStatus, boosts: Object.entries(s.boosts ?? {})}))};
         }),
         abilities: table(dex.abilities.all(), e =>
             ({...props(e, ['name', 'isNonstandard']), handlers: handlers(e)})),

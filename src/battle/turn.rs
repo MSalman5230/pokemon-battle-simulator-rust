@@ -6,7 +6,7 @@ use crate::{
 };
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
-struct Position {
+pub(super) struct Position {
     player: Player,
     slot: usize,
 }
@@ -74,7 +74,10 @@ impl Battle {
     pub fn is_active(&self, player: Player, party_slot: usize) -> bool {
         self.turn > 0
             && party_slot < self.slots()
-            && !self.party(player).unwrap()[party_slot].fainted
+            && self
+                .party(player)
+                .and_then(|p| p.get(party_slot))
+                .is_some_and(|mon| !mon.fainted)
     }
 
     /// Serialize the current Showdown request for its owner. This is not part
@@ -119,29 +122,39 @@ impl Battle {
         self.format.game_type.active_slots()
     }
 
-    fn mon(&self, position: Position) -> &Pokemon {
+    pub(super) fn mon(&self, position: Position) -> &Pokemon {
         &self.party(position.player).unwrap()[position.slot]
     }
 
-    fn mon_mut(&mut self, position: Position) -> &mut Pokemon {
+    pub(super) fn mon_mut(&mut self, position: Position) -> &mut Pokemon {
         &mut self.sides[position.player.index()].as_mut().unwrap().party[position.slot]
     }
 
-    fn ident(&self, position: Position) -> String {
+    pub(super) fn ident(&self, position: Position) -> String {
         format!("{}: {}", position.label(), self.mon(position).name)
     }
 
     fn add_health_line(&mut self, event: &str, target: Position, details: bool) {
+        self.add_health_line_with(event, target, details, "");
+    }
+
+    pub(super) fn add_health_line_with(
+        &mut self,
+        event: &str,
+        target: Position,
+        details: bool,
+        suffix: &str,
+    ) {
         let mon = self.mon(target);
-        let condition = health(mon.hp, mon.max_hp, "", false);
+        let condition = health(mon.hp, mon.max_hp, mon.status.id(), false);
         let mut head = format!("|{event}|{}|", self.ident(target));
         if details {
             head.push_str(&mon.details);
             head.push('|');
         }
         self.log.push(LogLine {
-            public: format!("{head}{}", condition.shared),
-            secret: Some((target.player, format!("{head}{}", condition.secret))),
+            public: format!("{head}{}{suffix}", condition.shared),
+            secret: Some((target.player, format!("{head}{}{suffix}", condition.secret))),
         });
     }
 
@@ -399,6 +412,22 @@ impl Battle {
                 | "slackoff"
                 | "softboiled"
                 | "milkdrink"
+                | "flamethrower"
+                | "heatwave"
+                | "ember"
+                | "willowisp"
+                | "thunderwave"
+                | "toxic"
+                | "hypnosis"
+                | "sleeppowder"
+                | "poisonjab"
+                | "sludgebomb"
+                | "icebeam"
+                | "thunderbolt"
+                | "nuzzle"
+                | "rockslide"
+                | "shadowball"
+                | "moonblast"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -530,7 +559,14 @@ impl Battle {
                     party[outgoing.slot].protected = false;
                     party[outgoing.slot].stall = None;
                     party[outgoing.slot].boosts = Boosts::default();
+                    party[outgoing.slot].flinched = false;
+                    if party[outgoing.slot].fainted {
+                        party[outgoing.slot].status = Status::Healthy;
+                    }
                     party.swap(outgoing.slot, bench_slot);
+                    if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
+                        party[outgoing.slot].status = Status::Toxic(0);
+                    }
                     self.add_health_line("switch", outgoing, true);
                     self.insert_run_switch(outgoing, &mut queue);
                 }
@@ -546,7 +582,7 @@ impl Battle {
                 }
                 ActionKind::Residual => self.residual(),
             }
-            if self.check_win() {
+            if self.phase == Phase::Ended || self.check_win() {
                 return;
             }
             if !queue.first().is_some_and(|q| {
@@ -577,6 +613,13 @@ impl Battle {
             .into_iter()
             .any(|p| self.force_switch(p).contains(&true))
         {
+            for player in Player::ALL {
+                for (slot, needed) in self.force_switch(player).into_iter().enumerate() {
+                    if needed {
+                        self.mon_mut(Position { player, slot }).status = Status::Fainted;
+                    }
+                }
+            }
             self.phase = Phase::Replace;
         } else {
             self.turn += 1;
@@ -620,27 +663,57 @@ impl Battle {
     }
 
     fn residual(&mut self) {
+        #[derive(Copy, Clone)]
+        enum Effect {
+            Status,
+            Protect,
+            Stall,
+            Flinch,
+        }
         self.add("|");
         self.update_speed();
         let mut timers = Vec::new();
         for pos in self.positions() {
             let mon = self.mon(pos);
+            let priority = |order, sub_order| Priority {
+                order,
+                sub_order,
+                speed: mon.speed as i32,
+                ..Priority::default()
+            };
+            if let Some((order, _, _)) = mon.status.residual() {
+                timers.push((pos, Effect::Status, priority(order, 0)));
+            }
             if mon.protected {
-                timers.push((pos, false, mon.speed));
+                timers.push((pos, Effect::Protect, priority(0, 2)));
             }
             if mon.stall.is_some() {
-                timers.push((pos, true, mon.speed));
+                timers.push((pos, Effect::Stall, priority(0, 2)));
+            }
+            if mon.flinched {
+                timers.push((pos, Effect::Flinch, priority(0, 2)));
             }
         }
-        speed_sort_by(&mut timers, &mut self.rng, |a, b| b.2.cmp(&a.2));
-        for (pos, stall, _) in timers {
+        speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
+        for (pos, effect, _) in timers {
             let mon = self.mon_mut(pos);
-            if stall {
-                mon.stall = mon.stall.and_then(|(counter, duration)| {
-                    (duration > 1).then_some((counter, duration - 1))
-                });
-            } else {
-                mon.protected = false;
+            if mon.fainted {
+                continue;
+            }
+            match effect {
+                Effect::Protect => mon.protected = false,
+                Effect::Flinch => mon.flinched = false,
+                Effect::Stall => {
+                    mon.stall = mon.stall.and_then(|(counter, duration)| {
+                        (duration > 1).then_some((counter, duration - 1))
+                    });
+                }
+                Effect::Status => {
+                    self.status_residual(pos);
+                    if self.check_win() {
+                        return;
+                    }
+                }
             }
         }
         self.add("|upkeep");
@@ -673,6 +746,14 @@ impl Battle {
         let move_data = self.mon(source).moves[slot].move_data;
         let source_name = self.ident(source);
         let target = self.resolve_target(source, move_data.target, loc);
+        if !self.before_status_move(source, move_data) {
+            return;
+        }
+        if matches!(self.mon(source).status, Status::Freeze(_))
+            && move_data.flags.contains_key("defrost")
+        {
+            self.cure_status(source, &format!("[from] move: {}", move_data.name));
+        }
         let mon = self.mon_mut(source);
         mon.moves[slot].pp -= 1;
         let mut spread_targets = Vec::new();
@@ -746,8 +827,14 @@ impl Battle {
             }
         });
         spread_targets.retain(|&pos| {
-            if move_data.category != Category::Status
-                && self.effectiveness(move_data, pos).is_none()
+            let ignores_type = move_data
+                .ignore_immunity
+                .as_bool()
+                .unwrap_or(move_data.category == Category::Status);
+            if (!ignores_type && self.effectiveness(move_data, pos).is_none())
+                || (move_data.flags.contains_key("powder")
+                    && source != pos
+                    && self.status_immune(pos, "powder"))
             {
                 self.add(format!("|-immune|{}", self.ident(pos)));
                 false
@@ -758,6 +845,8 @@ impl Battle {
         spread_targets.retain(|&pos| {
             if let Accuracy::Percent(accuracy) = move_data.accuracy
                 && !(move_data.target == TargetKind::User && move_data.category == Category::Status)
+                && !(move_data.name == "Toxic"
+                    && self.mon(source).species.types.iter().any(|t| t == "Poison"))
                 && !self.rng.chance(self.accuracy(source, pos, accuracy), 100)
             {
                 if !spread {
@@ -776,6 +865,9 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if let Some(status) = &move_data.status {
+                    succeeded |= self.try_status(target, status, source, move_data, true, base);
+                }
                 if let Some([num, den]) = move_data.heal {
                     let mon = self.mon_mut(target);
                     if mon.hp == mon.max_hp.get() {
@@ -845,7 +937,7 @@ impl Battle {
                 critical: crit,
                 stab: if stab { 6144 } else { 4096 },
                 effectiveness: effect,
-                burned: false,
+                burned: user.status == Status::Burn && move_data.category == Category::Physical,
                 final_modifier: 4096,
                 bypassed_protect: false,
             }
@@ -882,15 +974,34 @@ impl Battle {
                 self.boost(source, &move_data.self_boosts, true);
             }
         }
+        for &(target, _) in &damage {
+            for effect in &move_data.secondaries {
+                let roll = self.rng.below(100);
+                if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
+                    if let Some(status) = &effect.status {
+                        self.try_status(target, status, source, move_data, false, base);
+                    }
+                    if !effect.boosts.is_empty() {
+                        self.boost(target, &effect.boosts, true);
+                    }
+                    if effect.volatile_status.as_deref() == Some("flinch")
+                        && self.mon(target).hp > 0
+                    {
+                        self.mon_mut(target).flinched = true;
+                    }
+                }
+            }
+        }
+        for &(target, _) in &damage {
+            if move_data.move_type == "Fire" && matches!(self.mon(target).status, Status::Freeze(_))
+            {
+                self.cure_status(target, "[msg]");
+            }
+        }
         self.each_event();
         for (target, _) in damage {
             if self.mon(target).hp == 0 {
-                let mon = self.mon_mut(target);
-                mon.fainted = true;
-                mon.stall = None;
-                mon.protected = false;
-                mon.boosts = Boosts::default();
-                self.add(format!("|faint|{}", self.ident(target)));
+                self.mark_fainted(target);
             }
         }
         self.each_event();
@@ -900,6 +1011,16 @@ impl Battle {
                 .public
                 .push_str(&format!("|[spread] {}", labels.join(",")));
         }
+    }
+
+    pub(super) fn mark_fainted(&mut self, target: Position) {
+        let mon = self.mon_mut(target);
+        mon.fainted = true;
+        mon.stall = None;
+        mon.protected = false;
+        mon.flinched = false;
+        mon.boosts = Boosts::default();
+        self.add(format!("|faint|{}", self.ident(target)));
     }
 
     fn boost(&mut self, pos: Position, boosts: &[(BoostStat, i8)], is_self: bool) -> bool {
@@ -963,7 +1084,12 @@ impl Battle {
 
 impl Pokemon {
     fn current_speed(&self) -> u32 {
-        boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe))
+        let stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
+        if self.status == Status::Paralysis {
+            stat / 2
+        } else {
+            stat
+        }
     }
 
     fn update_speed(&mut self) {

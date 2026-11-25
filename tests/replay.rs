@@ -68,7 +68,7 @@ fn replay(raw: &str) {
                 let mut stats = serde_json::to_value(mon.stats).unwrap();
                 stats.as_object_mut().unwrap().remove("hp");
                 json!({
-                    "name": mon.name, "species": mon.species.name, "details": mon.details, "hp": mon.hp,
+                    "name": mon.name, "species": mon.species.name, "details": mon.details, "hp": mon.hp, "status": mon.status.id(),
                     "maxhp": mon.max_hp, "stats": stats, "ability": mon.ability, "item": mon.item,
                     "boosts": ([BoostStat::Atk, BoostStat::Def, BoostStat::Spa, BoostStat::Spd, BoostStat::Spe,
                         BoostStat::Accuracy, BoostStat::Evasion].into_iter()
@@ -105,4 +105,14 @@ fn vgc_doubles_replay_with_two_faints_and_one_replacement() {
 #[test]
 fn bss_replay_with_legal_rosters_and_stat_changes() {
     replay(include_str!("fixtures/bss-competitive.json"));
+}
+
+#[test]
+fn bss_replay_with_paralysis_burn_and_toxic_reset() {
+    replay(include_str!("fixtures/bss-status.json"));
+}
+
+#[test]
+fn bss_replay_with_champions_sleep_and_freeze_timers() {
+    replay(include_str!("fixtures/bss-sleep-freeze.json"));
 }
