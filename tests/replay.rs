@@ -1177,6 +1177,18 @@ fn bug_bite_and_pluck_eat_berries_without_replacing_the_held_item() {
 }
 
 #[test]
+fn beat_up_uses_living_unstatused_roster_members_and_their_base_attack() {
+    replay(include_str!("fixtures/bss-beat-up.json"));
+    replay(include_str!("fixtures/bss-beat-up-moxie.json"));
+}
+
+#[test]
+fn battle_bond_only_triggers_once_and_ash_water_shuriken_always_hits_three_times() {
+    replay(include_str!("fixtures/bss-battle-bond.json"));
+    replay(include_str!("fixtures/bss-ash-water-shuriken.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

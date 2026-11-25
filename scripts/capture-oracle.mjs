@@ -1084,6 +1084,23 @@ const stealBerryRosters = [
         {...named('Umbreon', ['Recover']), item:'Sitrus Berry', ability:'Sticky Hold'},
         {...named('Leafeon', ['Recover']), item:'Liechi Berry'}],
 ];
+const beatUpRosters = [
+    [named('Umbreon', ['Beat Up']), named('Machamp', ['Recover']), named('Scizor', ['Recover'])],
+    [named('Mandibuzz', ['Recover', 'Will-O-Wisp'])],
+];
+const beatUpMoxieRosters = [
+    [{...named('Scrafty', ['Beat Up']), ability:'Moxie', evs:{atk:32}},
+        named('Machamp', ['Recover']), named('Scizor', ['Recover'])],
+    [named('Abra', ['Calm Mind']), named('Vaporeon', ['Recover'])],
+];
+const battleBondRosters = [
+    [{...named('Greninja-Bond', ['Water Gun', 'Water Shuriken'], 'M'), ability:'Battle Bond'}],
+    [named('Geodude', ['Tackle']), named('Rhydon', ['Recover']), named('Vaporeon', ['Recover'])],
+];
+const ashGreninjaRosters = [
+    [{...named('Greninja-Ash', ['Water Shuriken'], 'M'), ability:'Battle Bond'}],
+    [named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1646,6 +1663,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 123'], ['move 2','move 1'], ['move 1','move 2'], ['move 3','move 2'],
         ['move 2','move 2'], ['move 4','switch 2'], ['move 4','switch 3']],
         stealBerryRosters, 'bss-steal-berry'],
+    ['bssregmc', [['team 123','team 1'], ['move 1','move 1'], ['switch 2','move 2'],
+        ['switch 2','move 1'], ['move 1','move 1']], beatUpRosters, 'bss-beat-up'],
+    ['bssregmc', [['team 123','team 12'], ['move 1','move 1']], beatUpMoxieRosters, 'bss-beat-up-moxie'],
+    ['bssregmc', [['team 1','team 123'], ['move 1','move 1'], [null,'switch 2'], ['move 1','move 1'],
+        [null,'switch 3'], ['move 2','move 1']], battleBondRosters, 'bss-battle-bond'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1']],
+        ashGreninjaRosters, 'bss-ash-water-shuriken'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

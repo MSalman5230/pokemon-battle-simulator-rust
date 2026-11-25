@@ -487,6 +487,33 @@ impl Battle {
 
     pub(super) fn boost_after_knockouts(&mut self, source: Position, count: i8) {
         match self.event_ability(source) {
+            "battlebond"
+                if self.mon(source).species.name == "Greninja-Bond"
+                    && self.mon(source).hp != 0
+                    && self.mon(source).transformed.is_none()
+                    && !self.mon(source).triggered_battle_bond
+                    && self
+                        .party(source.player.foe())
+                        .unwrap()
+                        .iter()
+                        .any(|mon| !mon.fainted) =>
+            {
+                self.ability_boosts(
+                    source,
+                    "Battle Bond",
+                    &[
+                        (BoostStat::Atk, 1),
+                        (BoostStat::Spa, 1),
+                        (BoostStat::Spe, 1),
+                    ],
+                    false,
+                );
+                self.add(format!(
+                    "|-activate|{}|ability: Battle Bond",
+                    self.ident(source)
+                ));
+                self.mon_mut(source).triggered_battle_bond = true;
+            }
             "moxie" => {
                 self.ability_boost(source, "Moxie", BoostStat::Atk, count, false);
             }

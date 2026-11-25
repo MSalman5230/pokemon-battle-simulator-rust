@@ -1031,6 +1031,8 @@ impl Battle {
                     | "payback"
                     | "bugbite"
                     | "pluck"
+                    | "beatup"
+                    | "watershuriken"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -3952,7 +3954,29 @@ impl Battle {
             .filter(|turns| *turns != 0)
             .count() as u32;
         let mut damage = Vec::with_capacity(spread_targets.len());
-        let (max_hits, per_strike_accuracy) = self.hits(source, move_data);
+        let beat_up = (move_data.name == "Beat Up").then(|| {
+            self.party(source.player)
+                .unwrap()
+                .iter()
+                .enumerate()
+                .filter(|&(slot, ally)| {
+                    slot == source.slot || !ally.fainted && ally.status == Status::Healthy
+                })
+                .map(|(_, ally)| ally.submitted_species)
+                .collect::<Vec<_>>()
+        });
+        let ash_shuriken = move_data.name == "Water Shuriken"
+            && self.mon(source).species.name == "Greninja-Ash"
+            && self.mon(source).transformed.is_none()
+            && self.event_ability(source) == "battlebond";
+        let multihit = move_data.multihit.is_some() || beat_up.is_some();
+        let (max_hits, per_strike_accuracy) = if let Some(allies) = &beat_up {
+            (allies.len() as u8, false)
+        } else if ash_shuriken {
+            (3, false)
+        } else {
+            self.hits(source, move_data)
+        };
         let mut total = 0;
         let mut landed_by_target = [0u32; 4];
         let mut hp_after_damage = [0u32; 4];
@@ -4029,7 +4053,16 @@ impl Battle {
                 if stacked_power && battle.format.report_exact_hp {
                     battle.add(format!("|debug|BP: {power}"));
                 }
-                let power = if power == 0 {
+                let power = if let Some(allies) = &beat_up {
+                    let ally = allies[usize::from(hit - 1)];
+                    let result = 5 + ally.base_stats.atk as u16 / 10;
+                    if battle.format.report_exact_hp {
+                        battle.add(format!("|debug|BP for {} hit: {result}", ally.name));
+                    }
+                    result
+                } else if ash_shuriken {
+                    power + 5
+                } else if power == 0 {
                     battle
                         .weight_move_power(&move_data.name, source, target)
                         .unwrap_or(power)
@@ -4200,7 +4233,7 @@ impl Battle {
                 };
                 let value = self.focus_sash(target, value);
                 let berserk_waits = self.mon(target).ability == "berserk"
-                    && move_data.multihit.is_none()
+                    && !multihit
                     && !(sheer_force_removed && self.event_ability(source) == "sheerforce");
                 let turn = self.turn;
                 let mon = self.mon_mut(target);
@@ -4572,10 +4605,13 @@ impl Battle {
             }
             self.check_win();
         }
+        if fainted > 0 && self.active_effects(source) {
+            self.boost_after_knockouts(source, fainted);
+        }
         if ohko && self.mon(spread_targets[0]).hp == 0 {
             self.add("|-ohko");
         }
-        if move_data.multihit.is_some() && hits_landed > 0 && !darts {
+        if multihit && hits_landed > 0 && !darts {
             let target = spread_targets[0];
             let ident = if self.mon(target).fainted {
                 format!("{}: {}", target.player.id(), self.mon(target).name)
@@ -4583,9 +4619,6 @@ impl Battle {
                 self.ident(target)
             };
             self.add(format!("|-hitcount|{ident}|{hits_landed}"));
-        }
-        if fainted > 0 && self.active_effects(source) {
-            self.boost_after_knockouts(source, fainted);
         }
         let recoil = if struggle && !hit_substitute {
             (self.mon(source).max_hp.get() + 2) / 4
@@ -4625,7 +4658,7 @@ impl Battle {
                 source,
                 &spread_targets,
                 landed_by_target,
-                (move_data.multihit.is_some() && !smart_target).then_some(total),
+                (multihit && !smart_target).then_some(total),
             );
             for &target in &spread_targets {
                 let index = target.index();
@@ -5198,6 +5231,7 @@ impl Pokemon {
                 | "windpower"
                 | "zerotohero"
                 | "klutz"
+                | "battlebond"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"
