@@ -95,6 +95,10 @@ const sleepFreezeRosters = [
     [named('Jolteon', ['Ice Beam', 'Recover']), named('Flareon', ['Flamethrower'])],
     [named('Umbreon', ['Tackle', 'Hypnosis', 'Recover']), named('Vaporeon', ['Recover'])],
 ];
+const sunnyFreezeRosters = [
+    [named('Milotic', ['Ice Beam'])],
+    [{...named('Ninetales', ['Recover']), ability:'Drought'}],
+];
 const itemRosters = [
     [{...named('Flareon', ['Tackle']), item: 'Life Orb'},
         {...named('Vaporeon', ['Surf']), item: 'Mystic Water'},
@@ -1147,6 +1151,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 2'],
         ...Array(3).fill(['move 2', 'move 2']), ...Array(3).fill(['move 2', 'move 1'])],
         sleepFreezeRosters, 'bss-sleep-freeze', '1,2,3,22'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1']],
+        sunnyFreezeRosters, 'bss-sun-blocks-freeze', '1,2,3,13'],
     ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 2'],
         ['switch 2', 'switch 2'], ['move 1', 'move 2'], ['move 1', 'move 2'],
         [null, 'switch 3'], ['switch 3', 'move 2'], ['move 1', 'move 1'],

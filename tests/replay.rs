@@ -190,6 +190,11 @@ fn bss_replay_with_champions_sleep_and_freeze_timers() {
 }
 
 #[test]
+fn active_sunlight_blocks_the_freeze_secondary_without_changing_the_roll() {
+    replay(include_str!("fixtures/bss-sun-blocks-freeze.json"));
+}
+
+#[test]
 fn bss_replay_with_held_items_and_ability_interactions() {
     replay(include_str!("fixtures/bss-items.json"));
 }

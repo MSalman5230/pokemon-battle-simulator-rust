@@ -261,6 +261,22 @@ impl Battle {
             }
             return false;
         }
+        if id == "frz"
+            && self.effective_weather() == Some(Weather::Sun)
+            && self.mon(pos).effective_item() != "utilityumbrella"
+        {
+            if self.format.report_exact_hp {
+                self.add("|debug|artificial status immunity");
+                self.add("|debug|immune to status");
+                if !primary {
+                    self.add("|debug|move failed because it did nothing");
+                }
+            }
+            if primary {
+                self.add(format!("|-immune|{}", self.ident(pos)));
+            }
+            return false;
+        }
 
         let prevented = self.status_blocked_by_ability(pos, id, primary)
             || self.flower_veil_status(pos, source, id, primary && data.secondaries.is_empty());
