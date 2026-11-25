@@ -957,6 +957,8 @@ impl Battle {
                     | "icespinner"
                     | "stoneaxe"
                     | "ceaselessedge"
+                    | "defog"
+                    | "pollenpuff"
                     | "grassyglide"
                     | "encore"
                     | "tidyup"
@@ -1253,8 +1255,15 @@ impl Battle {
                 if let Some(label) = self.weather_suppressor(pos) {
                     self.add(format!("|-ability|{}|{label}", self.ident(pos)));
                 }
-                self.start_ability(pos);
+                if self.mon(pos).ability != "hospitality" {
+                    self.start_ability(pos);
+                }
                 self.on_switch_in_item(pos);
+            }
+        }
+        for (pos, _) in order.into_iter().take(count) {
+            if switching.contains(&Some(pos)) && self.mon(pos).ability == "hospitality" {
+                self.hospitality(pos);
             }
         }
         for (pos, _) in order.into_iter().take(count) {
@@ -1638,6 +1647,9 @@ impl Battle {
         }
         if self.mon(pos).ability == "mimicry" {
             self.apply_mimicry(pos);
+        }
+        if self.mon(pos).ability == "hospitality" {
+            self.hospitality(pos);
         }
         self.try_trace(pos);
     }
@@ -3141,6 +3153,14 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     }
                 }
+                if move_data.name == "Defog" {
+                    if self.defog(source, target, move_data) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if matches!(
                     move_data.name.as_str(),
                     "Skill Swap" | "Trick" | "Switcheroo"
@@ -3364,6 +3384,18 @@ impl Battle {
                 self.each_event();
                 self.each_event();
             }
+            return true;
+        }
+
+        if move_data.name == "Pollen Puff" && spread_targets[0].player == source.player {
+            let target = spread_targets[0];
+            let mon = self.mon_mut(target);
+            if mon.hp < mon.max_hp.get() {
+                mon.hp = (mon.hp + (mon.max_hp.get() / 2).max(1)).min(mon.max_hp.get());
+                self.add_health_line("-heal", target, false);
+            }
+            self.each_event();
+            self.each_event();
             return true;
         }
 
@@ -4348,6 +4380,7 @@ impl Pokemon {
                 | "eelevate"
                 | "mimicry"
                 | "unburden"
+                | "hospitality"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

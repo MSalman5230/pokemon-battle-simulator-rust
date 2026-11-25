@@ -706,6 +706,16 @@ impl Battle {
         }
     }
 
+    pub(super) fn hospitality(&mut self, holder: Position) {
+        if self.format.game_type.active_slots() == 2 && self.mon(holder).hp > 0 {
+            let ally = Position {
+                slot: 1 - holder.slot,
+                ..holder
+            };
+            self.ability_heal(ally, 4, "Hospitality", Some(holder));
+        }
+    }
+
     /// ModifyBoost observes all Unaware handlers. Even handlers that don't
     /// change the requested stat are shuffled when their speeds tie.
     pub(super) fn sort_unaware_handlers(&mut self) {

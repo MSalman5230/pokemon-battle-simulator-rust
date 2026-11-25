@@ -794,6 +794,16 @@ const poppedBalloonRosters = [
     [{...named('Jolteon', ['Substitute', 'Recycle', 'Recover']), item:'Air Balloon'}, named('Umbreon', ['Recover'])],
     [named('Samurott-Hisui', ['Stone Axe', 'Recover']), named('Vaporeon', ['Recover'])],
 ];
+const defogRosters = [
+    [named('Vaporeon', ['Defog', 'Reflect', 'Spikes', 'Grassy Terrain']), named('Espeon', ['Recover'])],
+    [{...named('Umbreon', ['Stealth Rock', 'Light Screen', 'Substitute', 'Recover']), evs:{spe:4}},
+        named('Jolteon', ['Recover'])],
+];
+const hospitalityRosters = [
+    [named('Vaporeon', ['Water Gun', 'Recover']), named('Umbreon', ['Recover']),
+        {...named('Sinistcha', ['Pollen Puff']), ability:'Hospitality'}],
+    [named('Jolteon', ['Shadow Ball', 'Recover']), named('Glaceon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1201,6 +1211,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         recycleRosters, 'bss-recycle-unburden'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2']],
         poppedBalloonRosters, 'bss-recycle-popped-balloon'],
+    ['bssregmc', [['team 12','team 12'], ['move 3','move 1'], ['move 4','move 2'], ['move 1','move 3'],
+        ['move 1','move 4'], ['move 1','switch 2']], defogRosters, 'bss-defog'],
+    ['vgc2026regmc', [['team 123','team 12'], ['move 1 2, move 1','move 1 1, move 1'],
+        ['move 1 2, switch 3','move 1 1, move 1'], ['move 1 2, move 1 -1','move 2, move 1'],
+        ['move 2, move 1 -1','move 2, move 1'], ['move 2, move 1 2','move 2, move 1']],
+        hospitalityRosters, 'vgc-hospitality-pollen-puff'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -869,6 +869,12 @@ fn unburden_can_resume_after_item_loss_and_recycle_only_restores_used_items() {
 }
 
 #[test]
+fn defog_and_ally_heals_keep_native_order_and_targeting() {
+    replay(include_str!("fixtures/bss-defog.json"));
+    replay(include_str!("fixtures/vgc-hospitality-pollen-puff.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

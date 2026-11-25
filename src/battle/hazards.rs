@@ -50,6 +50,41 @@ impl Hazard {
 }
 
 impl Battle {
+    pub(super) fn defog(&mut self, source: Position, target: Position, data: &Move) -> bool {
+        let mut changed = (self.mon(target).substitute_hp == 0
+            || self.event_ability(source) == "infiltrator")
+            && self.boost_from(
+                target,
+                source,
+                &[(BoostStat::Evasion, -1)],
+                BoostOrigin::from_move(data),
+            );
+        self.break_screens(target.player);
+        let ident = self.ident(source);
+        for player in [target.player, source.player] {
+            for hazard in [
+                Hazard::Spikes,
+                Hazard::ToxicSpikes,
+                Hazard::StealthRock,
+                Hazard::StickyWeb,
+            ] {
+                let hazards = &mut self.sides[player.index()].as_mut().unwrap().hazards;
+                let len = hazards.len();
+                hazards.retain(|&(h, _)| h != hazard);
+                if hazards.len() != len {
+                    let label = hazard.label().trim_start_matches("move: ");
+                    self.add(format!(
+                        "|-sideend|{}|{label}|[from] move: Defog|[of] {ident}",
+                        self.side_ident(player)
+                    ));
+                    changed = true;
+                }
+            }
+        }
+        self.clear_terrain();
+        changed
+    }
+
     pub(super) fn clear_spinning_hazards(&mut self, pos: Position, move_name: &str) {
         if self.mon(pos).hp == 0 {
             return;
