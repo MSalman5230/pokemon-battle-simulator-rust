@@ -4147,16 +4147,6 @@ impl Battle {
                 false
             });
         }
-        if move_data.name == "Disable"
-            && spread_targets
-                .iter()
-                .any(|&p| self.mon(p).last_move_slot.is_none())
-        {
-            self.move_still(base);
-            self.add(format!("|-fail|{source_name}"));
-            result.failed = true;
-            return true;
-        }
         spread_targets.retain(|&pos| {
             if ohko
                 && !self.mon(pos).semi_invulnerable()

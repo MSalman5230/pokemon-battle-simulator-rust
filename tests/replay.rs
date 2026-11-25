@@ -1517,6 +1517,11 @@ fn parental_bond_repeats_single_target_moves_with_a_weaker_second_hit() {
 }
 
 #[test]
+fn disable_checks_accuracy_before_failing_on_a_target_with_no_last_move() {
+    replay(include_str!("fixtures/bss-disable-before-first-move.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
