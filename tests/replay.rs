@@ -1564,6 +1564,21 @@ fn grassy_residual_ties_follow_the_original_effect_discovery_order() {
 }
 
 #[test]
+fn dragon_cheer_copies_its_stored_critical_stage_bonus() {
+    replay(include_str!("fixtures/vgc-dragon-cheer.json"));
+}
+
+#[test]
+fn power_trick_toggles_raw_stats_and_can_be_passed() {
+    replay(include_str!("fixtures/bss-power-trick.json"));
+}
+
+#[test]
+fn topsy_turvy_and_psych_up_change_stages_without_boost_events() {
+    replay(include_str!("fixtures/bss-invert-copy-stats.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

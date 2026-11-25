@@ -343,6 +343,7 @@ impl Battle {
             .unwrap_or(1)
             .saturating_add(
                 item + u8::from(user.ability == "superluck")
+                    + user.dragon_cheer
                     + 2 * u8::from(user.volatile_ids().contains(&"focusenergy")),
             )
             .min(4)

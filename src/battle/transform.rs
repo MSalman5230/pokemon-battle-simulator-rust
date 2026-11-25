@@ -57,7 +57,6 @@ impl Battle {
         let added_type = model.added_type;
         let spent_elements = model.spent_elements;
         let times_attacked = model.times_attacked;
-        let focus = model.volatile_ids().contains(&"focusenergy");
         let moves: Vec<_> = model
             .moves
             .iter()
@@ -107,14 +106,7 @@ impl Battle {
         mon.last_move_slot = last_move_slot;
         mon.disabled_slot = disabled;
         mon.encore = encore;
-        mon.untrack_volatile("focusenergy");
-        if focus {
-            mon.track_volatile("focusenergy");
-            self.add(format!(
-                "|-start|{}|move: Focus Energy|[silent]",
-                self.ident(source)
-            ));
-        }
+        self.copy_critical_conditions(source, target);
 
         self.add(format!(
             "|-transform|{}|{}{}",

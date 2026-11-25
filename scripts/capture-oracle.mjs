@@ -1273,6 +1273,19 @@ const grassyResidualTieRosters = [
     [{...named('Araquanid', ['Tackle']), item:'Leftovers', evs:{spe:2}},
         named('Sableye', ['Throat Chop'])],
 ];
+const dragonCheerRosters = [
+    [named('Noivern', ['Dragon Cheer', 'Aromatic Mist']),
+        named('Garchomp', ['Slash', 'Focus Energy'])],
+    [named('Vaporeon', ['Psych Up', 'Slash']), named('Umbreon', ['Recover'])],
+];
+const powerTrickRosters = [
+    [named('Forretress', ['Power Trick', 'Baton Pass']), named('Vaporeon', ['Tackle'])],
+    [named('Umbreon', ['Recover'])],
+];
+const invertAndCopyRosters = [
+    [named('Malamar', ['Topsy-Turvy', 'Psych Up'])],
+    [named('Vaporeon', ['Calm Mind', 'Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2394,6 +2407,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         megaSpeedTieRosters, 'bss-mega-speed-stage-tie'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1 1']],
         grassyResidualTieRosters, 'vgc-grassy-residual-speed-tie'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 -2, move 1 1','move 1 2, move 1'],
+        ['move 2 -2, move 2','move 2 2, move 1']], dragonCheerRosters, 'vgc-dragon-cheer'],
+    ['bssregmc', [['team 12','team 1'], ...Array(3).fill(['move 1','move 1']),
+        ['move 2','move 1'], ['switch 2',null], ['move 1','move 1']], powerTrickRosters, 'bss-power-trick'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 2','move 2']],
+        invertAndCopyRosters, 'bss-invert-copy-stats'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

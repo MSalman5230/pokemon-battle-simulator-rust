@@ -303,6 +303,15 @@ impl BoostStat {
 pub struct Boosts([i8; 7]);
 
 impl Boosts {
+    pub(crate) fn invert(&mut self) -> bool {
+        let mut changed = false;
+        for boost in &mut self.0 {
+            changed |= *boost != 0;
+            *boost = -*boost;
+        }
+        changed
+    }
+
     pub(crate) fn clear_negative(&mut self) -> bool {
         let mut changed = false;
         for stage in &mut self.0 {

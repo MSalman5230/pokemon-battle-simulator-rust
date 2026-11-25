@@ -1130,6 +1130,11 @@ impl Battle {
                     | "teeterdance"
                     | "memento"
                     | "minimize"
+                    | "aromaticmist"
+                    | "dragoncheer"
+                    | "powertrick"
+                    | "psychup"
+                    | "topsyturvy"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -1703,6 +1708,7 @@ impl Battle {
         party[outgoing.slot].fling_pending = false;
         party[outgoing.slot].stockpile = Default::default();
         party[outgoing.slot].magnet_rise = 0;
+        party[outgoing.slot].dragon_cheer = 0;
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -4513,6 +4519,13 @@ impl Battle {
                 }
                 let mut succeeded = false;
                 succeeded |= self.apply_stat_move(source, target, &move_data.name);
+                if move_data.name == "Topsy-Turvy" && !succeeded {
+                    self.move_still(base);
+                    self.add(format!("|-fail|{source_name}"));
+                    if self.format.report_exact_hp {
+                        self.add("|debug|move failed because it did nothing");
+                    }
+                }
                 if move_data.name == "Acupressure" {
                     let boosts = self.mon(target).boosts;
                     let mut eligible = BoostStat::ALL;
@@ -4567,13 +4580,25 @@ impl Battle {
                         succeeded = true;
                     }
                 } else if move_data.name == "Focus Energy" {
-                    if self.mon(target).volatile_ids().contains(&"focusenergy") {
+                    if self.mon(target).volatile_ids().contains(&"focusenergy")
+                        || self.mon(target).dragon_cheer != 0
+                    {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                     } else {
                         self.mon_mut(target).track_volatile("focusenergy");
                         self.add(format!("|-start|{}|move: Focus Energy", self.ident(target)));
                         succeeded = true;
+                    }
+                } else if move_data.name == "Dragon Cheer" {
+                    if self.start_dragon_cheer(target) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|move failed because it did nothing");
+                        }
                     }
                 }
                 let confusing_boost = matches!(move_data.name.as_str(), "Swagger" | "Flatter");
@@ -6287,6 +6312,7 @@ impl Battle {
         mon.fling_pending = false;
         mon.stockpile = Default::default();
         mon.magnet_rise = 0;
+        mon.dragon_cheer = 0;
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
