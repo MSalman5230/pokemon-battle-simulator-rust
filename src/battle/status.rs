@@ -544,6 +544,12 @@ impl Battle {
             ("limber", "par") => "Limber",
             ("waterbubble", "brn") => "Water Bubble",
             ("waterveil", "brn") => "Water Veil",
+            ("shieldsdown", _)
+                if self.mon(pos).species.name == "Minior-Meteor"
+                    && self.mon(pos).transformed.is_none() =>
+            {
+                "Shields Down"
+            }
             ("purifyingsalt", _) => "Purifying Salt",
             ("comatose", _) => "Comatose",
             ("insomnia", "slp") => "Insomnia",
@@ -575,6 +581,7 @@ impl Battle {
                     | "Vital Spirit"
                     | "Leaf Guard"
                     | "Comatose"
+                    | "Shields Down"
             ) {
                 self.add(format!("|debug|interrupting setStatus with {label}"));
             }
@@ -622,6 +629,16 @@ impl Battle {
 
     pub(super) fn yawn_blocked_by_ability(&mut self, pos: Position) -> bool {
         if self.sweet_veil_blocks(pos, true) {
+            return true;
+        }
+        if self.event_ability(pos) == "shieldsdown"
+            && self.mon(pos).species.name == "Minior-Meteor"
+            && self.mon(pos).transformed.is_none()
+        {
+            self.add(format!(
+                "|-immune|{}|[from] ability: Shields Down",
+                self.ident(pos)
+            ));
             return true;
         }
         let label = match self.event_ability(pos) {

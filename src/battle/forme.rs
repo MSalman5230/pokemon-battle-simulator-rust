@@ -36,6 +36,171 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn tera_shell_active(&self, pos: Position) -> bool {
+        let mon = self.mon(pos);
+        mon.species.name == "Terapagos-Terastal"
+            && mon.hp == mon.max_hp.get()
+            && self.event_ability(pos) == "terashell"
+            && !self.ignores_ability_of(pos)
+    }
+    fn permanent_ability_forme(
+        &mut self,
+        pos: Position,
+        species: &'static Species,
+        change_ability: bool,
+    ) {
+        let rules = self.stat_rules;
+        let mon = self.mon_mut(pos);
+        let hp_before = mon.max_hp.get();
+        mon.set_current_species(species, rules);
+        mon.base_species = species;
+        let end = mon.details.find(',').unwrap_or(mon.details.len());
+        mon.details.replace_range(..end, &species.name);
+        let ident = self.ident(pos);
+        self.add(format!(
+            "|detailschange|{ident}|{}",
+            self.displayed_details(pos)
+        ));
+        let mon = self.mon_mut(pos);
+        let new_hp = species.max_hp.unwrap_or(mon.stats.hp).max(1);
+        if new_hp != hp_before {
+            mon.max_hp = NonZeroU32::new(new_hp).unwrap();
+            if mon.hp != 0 {
+                mon.hp = new_hp.saturating_sub(hp_before - mon.hp).max(1);
+                self.add_health_line_with("-heal", pos, false, "|[silent]");
+            }
+        }
+        if change_ability {
+            let replacement = to_id(&species.abilities["0"]);
+            if self.mon(pos).ability != replacement {
+                self.end_ability(pos);
+                let mon = self.mon_mut(pos);
+                mon.base_ability.clone_from(&replacement);
+                mon.ability = replacement;
+                self.reset_ability_order(pos);
+                self.start_ability(pos);
+            }
+        }
+    }
+
+    pub(super) fn tera_shift(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if self.event_ability(pos) != "terashift"
+            || mon.base_species.base_species != "Terapagos"
+            || mon.species.name == "Terapagos-Terastal"
+            || mon.hp == 0
+        {
+            return;
+        }
+        let species = DEX
+            .species(self.format.dex_mod, "terapagosterastal")
+            .unwrap();
+        self.add(format!(
+            "|-activate|{}|ability: Tera Shift",
+            self.ident(pos)
+        ));
+        self.permanent_ability_forme(pos, species, true);
+    }
+
+    pub(super) fn threshold_forme(&mut self, pos: Position, entering: bool) {
+        let mon = self.mon(pos);
+        if mon.hp == 0 || mon.transformed.is_some() {
+            return;
+        }
+        let id = match (
+            self.event_ability(pos),
+            mon.base_species.base_species.as_str(),
+        ) {
+            ("schooling", "Wishiwashi") if mon.level >= 20 => {
+                if mon.hp * 4 > mon.max_hp.get() {
+                    "wishiwashischool"
+                } else {
+                    "wishiwashi"
+                }
+            }
+            ("shieldsdown", "Minior") => {
+                if mon.hp * 2 > mon.max_hp.get() {
+                    "miniormeteor"
+                } else if mon.species.name == "Minior-Meteor" {
+                    return self.temporary_ability_forme_to(pos, mon.submitted_species, "");
+                } else {
+                    return;
+                }
+            }
+            ("powerconstruct", "Zygarde")
+                if !entering
+                    && mon.species.name != "Zygarde-Complete"
+                    && mon.hp * 2 <= mon.max_hp.get() =>
+            {
+                let complete = DEX.species(self.format.dex_mod, "zygardecomplete").unwrap();
+                self.add(format!(
+                    "|-activate|{}|ability: Power Construct",
+                    self.ident(pos)
+                ));
+                self.permanent_ability_forme(pos, complete, true);
+                return;
+            }
+            ("zenmode", "Darmanitan") if !entering => {
+                let zen = mon.species.name.ends_with("-Zen");
+                let galar = mon.species.name.contains("Galar");
+                if mon.hp * 2 <= mon.max_hp.get() && !zen {
+                    self.mon_mut(pos).track_volatile("zenmode");
+                    if galar {
+                        "darmanitangalarzen"
+                    } else {
+                        "darmanitanzen"
+                    }
+                } else if mon.hp * 2 > mon.max_hp.get() && zen {
+                    self.mon_mut(pos).untrack_volatile("zenmode");
+                    if galar {
+                        "darmanitangalar"
+                    } else {
+                        "darmanitan"
+                    }
+                } else {
+                    return;
+                }
+            }
+            _ => return,
+        };
+        self.temporary_ability_forme(pos, id, "");
+    }
+
+    pub(super) fn end_zen_mode(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.ability == "zenmode" && mon.hp != 0 && mon.volatile_ids().contains(&"zenmode") {
+            let id = if mon.species.name == "Darmanitan-Galar-Zen" {
+                "darmanitangalar"
+            } else {
+                "darmanitan"
+            };
+            self.mon_mut(pos).untrack_volatile("zenmode");
+            self.temporary_ability_forme(pos, id, "[silent]|[from] ability: Zen Mode");
+        }
+    }
+
+    pub(super) fn regress_fainted_zygarde(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.base_species.name != "Zygarde-Complete"
+            || mon.submitted_species.name == "Zygarde-Complete"
+        {
+            return;
+        }
+        let rules = self.stat_rules;
+        let submitted = mon.submitted_species;
+        let mon = self.mon_mut(pos);
+        mon.set_current_species(submitted, rules);
+        mon.base_species = submitted;
+        mon.max_hp = NonZeroU32::new(mon.stats.hp.max(1)).unwrap();
+        let end = mon.details.find(',').unwrap_or(mon.details.len());
+        mon.details.replace_range(..end, &submitted.name);
+        self.add(format!(
+            "|detailschange|{}|{}|[silent]",
+            self.ident(pos),
+            self.displayed_details(pos)
+        ));
+    }
+
     pub(super) fn apply_crowned_forms(&mut self) {
         let rules = self.stat_rules;
         let dex = self.format.dex_mod;
@@ -130,8 +295,17 @@ impl Battle {
         ));
     }
 
-    fn temporary_ability_forme(&mut self, pos: Position, id: &str, message: &str) {
+    pub(super) fn temporary_ability_forme(&mut self, pos: Position, id: &str, message: &str) {
         let species = DEX.species(self.format.dex_mod, id).unwrap();
+        self.temporary_ability_forme_to(pos, species, message);
+    }
+
+    fn temporary_ability_forme_to(
+        &mut self,
+        pos: Position,
+        species: &'static Species,
+        message: &str,
+    ) {
         if std::ptr::eq(self.mon(pos).species, species) {
             return;
         }

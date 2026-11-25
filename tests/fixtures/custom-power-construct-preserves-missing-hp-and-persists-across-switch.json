@@ -1,0 +1,1368 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Zygarde\",\"moves\":[\"Tackle\"],\"gender\":\"N\",\"name\":\"Zygarde\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Power Construct\",\"ivs\":{\"hp\":29}},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Raticate\",\"moves\":[\"Super Fang\",\"Recover\"],\"gender\":\"F\",\"name\":\"Raticate\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Zygarde, L50|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Raticate, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Zygarde, L50|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Raticate, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Zygarde, L50|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Raticate, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Raticate",
+                "details": "Raticate, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 80,
+                  "spa": 70,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "superfang",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Raticate",
+            "species": "Raticate",
+            "details": "Raticate, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 80,
+              "spa": 70,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde, L50|183/183",
+          "|switch|p2a: Raticate|Raticate, L50, F|130/130",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde, L50|183/183",
+          "|switch|p2a: Raticate|Raticate, L50, F|130/130",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde, L50|183/183",
+          "|switch|p2a: Raticate|Raticate, L50, F|130/130",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Raticate",
+                "details": "Raticate, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 80,
+                  "spa": 70,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "superfang",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Raticate",
+            "species": "Raticate",
+            "details": "Raticate, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 80,
+              "spa": 70,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Raticate|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|92/183",
+          "|move|p1a: Zygarde|Tackle|p2a: Raticate",
+          "|-damage|p2a: Raticate|103/130",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Raticate|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|92/183",
+          "|move|p1a: Zygarde|Tackle|p2a: Raticate",
+          "|-damage|p2a: Raticate|103/130",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Raticate|Super Fang|p1a: Zygarde",
+          "|-damage|p1a: Zygarde|92/183",
+          "|move|p1a: Zygarde|Tackle|p2a: Raticate",
+          "|-damage|p2a: Raticate|103/130",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50",
+                "condition": "92/183",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Raticate",
+                "details": "Raticate, L50, F",
+                "condition": "103/130",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 80,
+                  "spa": 70,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "superfang",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50",
+            "hp": 92,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Raticate",
+            "species": "Raticate",
+            "details": "Raticate, L50, F",
+            "hp": 103,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 80,
+              "spa": 70,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|170/170",
+          "|move|p2a: Raticate|Recover|p2a: Raticate",
+          "|-heal|p2a: Raticate|130/130",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|170/170",
+          "|move|p2a: Raticate|Recover|p2a: Raticate",
+          "|-heal|p2a: Raticate|130/130",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|170/170",
+          "|move|p2a: Raticate|Recover|p2a: Raticate",
+          "|-heal|p2a: Raticate|130/130",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50",
+                "condition": "92/183",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Raticate",
+                "details": "Raticate, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 80,
+                  "spa": 70,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "superfang",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50",
+            "hp": 92,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Raticate",
+            "species": "Raticate",
+            "details": "Raticate, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 80,
+              "spa": 70,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Zygarde|Zygarde, L50|92/183",
+          "|move|p2a: Raticate|Recover||[still]",
+          "|-fail|p2a: Raticate|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Zygarde|Zygarde, L50|92/183",
+          "|move|p2a: Raticate|Recover||[still]",
+          "|-fail|p2a: Raticate|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Zygarde|Zygarde, L50|92/183",
+          "|move|p2a: Raticate|Recover||[still]",
+          "|-fail|p2a: Raticate|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50",
+                "condition": "92/183",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "powerconstruct",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "powerconstruct",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Super Fang",
+                  "id": "superfang",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Raticate",
+                "details": "Raticate, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 80,
+                  "spa": 70,
+                  "spd": 90,
+                  "spe": 117
+                },
+                "moves": [
+                  "superfang",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50",
+            "hp": 92,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "powerconstruct",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Raticate",
+            "species": "Raticate",
+            "details": "Raticate, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 80,
+              "spa": 70,
+              "spd": 90,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "superfang",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

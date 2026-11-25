@@ -2386,6 +2386,25 @@ fn inherited_ability_modifiers_track_choice_lock_timers_and_accuracy() {
 }
 
 #[test]
+fn inherited_ability_forms_preserve_hp_and_match_their_native_transitions() {
+    replay(include_str!(
+        "fixtures/custom-schooling-follows-the-quarter-health-threshold.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-shields-down-protects-meteor-form-only.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-zen-mode-switches-form-in-both-directions.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-power-construct-preserves-missing-hp-and-persists-across-switch.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-tera-shift-and-tera-shell-multihit-without-terastallizing.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

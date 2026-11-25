@@ -1,0 +1,907 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Terapagos\",\"moves\":[\"Tackle\"],\"gender\":\"M\",\"name\":\"Terapagos\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Tera Shift\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Aipom\",\"moves\":[\"Tail Slap\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Aipom\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Skill Link\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Terapagos, L50, M|",
+          "|poke|p2|Aipom, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Terapagos, L50, M|",
+          "|poke|p2|Aipom, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Terapagos, L50, M|",
+          "|poke|p2|Aipom, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Terapagos",
+                "details": "Terapagos, L50, M",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 105,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "terashift",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "terashift",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "tackle"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Terapagos",
+            "species": "Terapagos",
+            "details": "Terapagos, L50, M",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 105,
+              "spa": 85,
+              "spd": 105,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "terashift",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Terapagos|Terapagos, L50, M|165/165",
+          "|switch|p2a: Aipom|Aipom, L50, F|130/130",
+          "|-activate|p1a: Terapagos|ability: Tera Shift",
+          "|detailschange|p1a: Terapagos|Terapagos-Terastal, L50, M",
+          "|-heal|p1a: Terapagos|170/170|[silent]",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Terapagos|Terapagos, L50, M|165/165",
+          "|switch|p2a: Aipom|Aipom, L50, F|130/130",
+          "|-activate|p1a: Terapagos|ability: Tera Shift",
+          "|detailschange|p1a: Terapagos|Terapagos-Terastal, L50, M",
+          "|-heal|p1a: Terapagos|170/170|[silent]",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Terapagos|Terapagos, L50, M|165/165",
+          "|switch|p2a: Aipom|Aipom, L50, F|130/130",
+          "|-activate|p1a: Terapagos|ability: Tera Shift",
+          "|detailschange|p1a: Terapagos|Terapagos-Terastal, L50, M",
+          "|-heal|p1a: Terapagos|170/170|[silent]",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Terapagos",
+                "details": "Terapagos-Terastal, L50, M",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 130,
+                  "spa": 125,
+                  "spd": 130,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "terashell",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "terashell",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Slap",
+                  "id": "tailslap",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "tackle"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Terapagos",
+            "species": "Terapagos-Terastal",
+            "details": "Terapagos-Terastal, L50, M",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 130,
+              "spa": 125,
+              "spd": 130,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "terashell",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "12962,13605,28059,35138",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Terapagos|Tackle|p2a: Aipom",
+          "|-damage|p2a: Aipom|91/130",
+          "|move|p2a: Aipom|Tail Slap|p1a: Terapagos",
+          "|-activate|p1a: Terapagos|ability: Tera Shell",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|165/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|159/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|153/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|148/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|143/170",
+          "|-hitcount|p1a: Terapagos|5",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Terapagos|Tackle|p2a: Aipom",
+          "|-damage|p2a: Aipom|91/130",
+          "|move|p2a: Aipom|Tail Slap|p1a: Terapagos",
+          "|-activate|p1a: Terapagos|ability: Tera Shell",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|165/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|159/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|153/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|148/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|143/170",
+          "|-hitcount|p1a: Terapagos|5",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Terapagos|Tackle|p2a: Aipom",
+          "|-damage|p2a: Aipom|91/130",
+          "|move|p2a: Aipom|Tail Slap|p1a: Terapagos",
+          "|-activate|p1a: Terapagos|ability: Tera Shell",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|165/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|159/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|153/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|148/170",
+          "|-resisted|p1a: Terapagos|1",
+          "|-damage|p1a: Terapagos|143/170",
+          "|-hitcount|p1a: Terapagos|5",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Terapagos",
+                "details": "Terapagos-Terastal, L50, M",
+                "condition": "143/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 130,
+                  "spa": 125,
+                  "spd": 130,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "terashell",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "terashell",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Slap",
+                  "id": "tailslap",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "91/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "tackle"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Terapagos",
+            "species": "Terapagos-Terastal",
+            "details": "Terapagos-Terastal, L50, M",
+            "hp": 143,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 130,
+              "spa": 125,
+              "spd": 130,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "terashell",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 91,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "887,44538,39903,26973",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Aipom|Tackle|p1a: Terapagos",
+          "|-damage|p1a: Terapagos|124/170",
+          "|move|p1a: Terapagos|Tackle|p2a: Aipom",
+          "|-damage|p2a: Aipom|57/130",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Aipom|Tackle|p1a: Terapagos",
+          "|-damage|p1a: Terapagos|124/170",
+          "|move|p1a: Terapagos|Tackle|p2a: Aipom",
+          "|-damage|p2a: Aipom|57/130",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Aipom|Tackle|p1a: Terapagos",
+          "|-damage|p1a: Terapagos|124/170",
+          "|move|p1a: Terapagos|Tackle|p2a: Aipom",
+          "|-damage|p2a: Aipom|57/130",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Terapagos",
+                "details": "Terapagos-Terastal, L50, M",
+                "condition": "124/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 130,
+                  "spa": 125,
+                  "spd": 130,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "terashell",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "terashell",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Slap",
+                  "id": "tailslap",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "57/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "tackle"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Terapagos",
+            "species": "Terapagos-Terastal",
+            "details": "Terapagos-Terastal, L50, M",
+            "hp": 124,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 130,
+              "spa": 125,
+              "spd": 130,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "terashell",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 57,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

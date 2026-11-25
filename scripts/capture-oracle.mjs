@@ -2240,6 +2240,26 @@ const slowStartRosters = [
     [{...named('Regigigas', ['Tackle', 'Recover'], 'N'), ability:'Slow Start'}],
     [named('Suicune', ['Recover'], 'N')],
 ];
+const schoolingRosters = [
+    [{...named('Wishiwashi', ['Tackle', 'Recover']), ability:'Schooling'}],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
+const shieldsDownRosters = [
+    [{...named('Minior-Blue', ['Tackle'], 'N'), ability:'Shields Down', ivs:{hp:29}}],
+    [named('Crobat', ['Toxic', 'Super Fang'])],
+];
+const zenModeRosters = [
+    [{...named('Darmanitan-Galar', ['Tackle', 'Recover']), ability:'Zen Mode'}],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
+const powerConstructRosters = [
+    [{...named('Zygarde', ['Tackle'], 'N'), ability:'Power Construct', ivs:{hp:29}}, named('Umbreon', ['Recover'])],
+    [named('Raticate', ['Super Fang', 'Recover'])],
+];
+const teraShiftRosters = [
+    [{...named('Terapagos', ['Tackle'], 'M'), ability:'Tera Shift'}],
+    [{...named('Aipom', ['Tail Slap', 'Tackle']), ability:'Skill Link'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3875,6 +3895,16 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 2','move 1'],
         ['move 2','move 1'], ['move 1','move 1'], ['move 1','move 1']],
         slowStartRosters, 'custom-slow-start-halves-attack-and-speed-for-five-turns'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 2','move 2']],
+        schoolingRosters, 'custom-schooling-follows-the-quarter-health-threshold'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 1']],
+        shieldsDownRosters, 'custom-shields-down-protects-meteor-form-only'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2']],
+        zenModeRosters, 'custom-zen-mode-switches-form-in-both-directions'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 2'], ['switch 2','move 2']],
+        powerConstructRosters, 'custom-power-construct-preserves-missing-hp-and-persists-across-switch'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        teraShiftRosters, 'custom-tera-shift-and-tera-shell-multihit-without-terastallizing'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

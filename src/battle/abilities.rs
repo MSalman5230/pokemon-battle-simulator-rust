@@ -635,6 +635,7 @@ impl Battle {
         self.end_supreme_overlord(pos, false);
         self.end_paradox_ability(pos);
         self.end_slow_start(pos);
+        self.end_zen_mode(pos);
         self.mon_mut(pos).gorilla_lock = None;
         if self.mon(pos).ability == "opportunist" {
             self.mon_mut(pos).opportunist = PendingBoostCopy::default();

@@ -1948,6 +1948,11 @@ impl Battle {
         }
         let (order, count) = self.ordered_actives(true);
         for (pos, _) in order.into_iter().take(count) {
+            if switching.contains(&Some(pos)) && self.mon(pos).ability == "terashift" {
+                self.tera_shift(pos);
+            }
+        }
+        for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos))
                 && self.mon(pos).hp > 0
                 && matches!(
@@ -1984,6 +1989,9 @@ impl Battle {
         for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
                 self.primal_reversion(pos);
+                if matches!(self.mon(pos).ability.as_str(), "schooling" | "shieldsdown") {
+                    self.threshold_forme(pos, true);
+                }
                 if self.mon(pos).active_ability() == "mimicry" {
                     self.apply_mimicry(pos);
                 }
@@ -2894,6 +2902,7 @@ impl Battle {
             SpeedBoost,
             BadDreams,
             SlowStart,
+            ThresholdForme,
             Harvest,
             CudChew,
             Pickup,
@@ -3215,6 +3224,9 @@ impl Battle {
                     "cudchew" => timers.push((pos, Effect::CudChew, priority(28, 2))),
                     "baddreams" => timers.push((pos, Effect::BadDreams, priority(28, 2))),
                     "slowstart" => timers.push((pos, Effect::SlowStart, priority(28, 2))),
+                    "schooling" | "shieldsdown" | "powerconstruct" | "zenmode" => {
+                        timers.push((pos, Effect::ThresholdForme, priority(29, 7)));
+                    }
                     "pickup" => timers.push((pos, Effect::Pickup, priority(28, 2))),
                     "opportunist" => timers.push((pos, Effect::Opportunist, priority(29, 7))),
                     "moody" => timers.push((pos, Effect::Moody, priority(28, 2))),
@@ -3744,6 +3756,7 @@ impl Battle {
                     }
                 }
                 Effect::SlowStart => self.tick_slow_start(pos),
+                Effect::ThresholdForme => self.threshold_forme(pos, false),
                 Effect::Harvest => self.harvest_item(pos),
                 Effect::CudChew => self.chew_berry(pos),
                 Effect::Pickup => self.pick_up_item(pos),
@@ -8095,6 +8108,7 @@ impl Battle {
         let mut sparkling_aria_targets = 0;
         let binding = super::partial_trap::binding_move(&move_data.name);
         let mut ruin_cache = RuinCache::default();
+        let mut tera_shell_resisted = 0;
         for hit in 1..=max_hits {
             if (self.mon(source).hp == 0 && !sacrifice && !smart_target && !delayed)
                 || spread_targets
@@ -8269,13 +8283,23 @@ impl Battle {
                     ));
                 }
                 let disguised = !shield && battle.disguise_form(target).is_some();
-                let effect = if disguised {
+                let mut effect = if disguised {
                     0
                 } else {
                     battle
                         .effectiveness_of(move_data, move_type, target, ignores_type)
                         .unwrap()
                 };
+                if tera_shell_resisted & target.mask() != 0 {
+                    effect = -1;
+                } else if effect >= 0 && !struggle && battle.tera_shell_active(target) {
+                    battle.add(format!(
+                        "|-activate|{}|ability: Tera Shell",
+                        battle.ident(target)
+                    ));
+                    tera_shell_resisted |= target.mask();
+                    effect = -1;
+                }
                 if effect > 0 && !shield {
                     super_effective_targets |= target.mask();
                 }
@@ -9529,6 +9553,7 @@ impl Battle {
         // Clearing volatiles restores the raw species speed, even though
         // normal field-speed updates skip a fainted Pokémon.
         mon.speed = mon.stats.spe as i32;
+        self.regress_fainted_zygarde(target);
     }
 
     fn clear_destiny_bond(&mut self, pos: Position, notify_debug: bool) -> bool {
@@ -9992,6 +10017,14 @@ impl Pokemon {
                 | "victorystar"
                 | "gorillatactics"
                 | "slowstart"
+                | "powerconstruct"
+                | "schooling"
+                | "shieldsdown"
+                | "terashift"
+                | "terashell"
+                // Terastallization itself is disabled by the Champions mod.
+                | "teraformzero"
+                | "zenmode"
                 | "runaway"
                 | "drizzle"
                 | "drought"
