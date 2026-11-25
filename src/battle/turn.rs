@@ -1009,6 +1009,8 @@ impl Battle {
                     | "dragonenergy"
                     | "wish"
                     | "recycle"
+                    | "healingwish"
+                    | "lunardance"
                     | "tailwind"
                     | "lastrespects"
                     | "ragefist"
@@ -1245,6 +1247,7 @@ impl Battle {
         }
         for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
+                self.apply_replacement_heals(pos);
                 self.on_switch_in_hazards(pos);
                 if self.check_win() {
                     return original_hp;
@@ -2460,6 +2463,20 @@ impl Battle {
         {
             self.add(format!("|-fail|{source_name}|move: {}", move_data.name));
             self.move_still(base);
+            return true;
+        }
+        if let Some(effect) = super::support::ReplacementHeal::from_move(&move_data.name) {
+            if self.first_bench(source.player, 0).is_none() {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+            } else {
+                self.protean_prepare(source, move_type);
+                self.prepare_replacement_heal(source, effect);
+                self.mon_mut(source).hp = 0;
+                self.each_event();
+                self.mark_fainted(source);
+                self.each_event();
+            }
             return true;
         }
         let damp = self.damp_holder("TryMove", sacrifice || mind_blown);

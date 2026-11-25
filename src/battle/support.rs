@@ -9,7 +9,82 @@ pub(super) struct Wish {
     wisher: usize,
 }
 
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub(super) enum ReplacementHeal {
+    HealingWish,
+    LunarDance,
+}
+
+impl ReplacementHeal {
+    pub(super) fn from_move(name: &str) -> Option<Self> {
+        match name {
+            "Healing Wish" => Some(Self::HealingWish),
+            "Lunar Dance" => Some(Self::LunarDance),
+            _ => None,
+        }
+    }
+
+    fn name(self) -> &'static str {
+        match self {
+            Self::HealingWish => "Healing Wish",
+            Self::LunarDance => "Lunar Dance",
+        }
+    }
+}
+
 impl Battle {
+    pub(super) fn prepare_replacement_heal(&mut self, pos: Position, effect: ReplacementHeal) {
+        let pending = &mut self.sides[pos.player.index()]
+            .as_mut()
+            .unwrap()
+            .replacement_heals[pos.slot];
+        if !pending.contains(&effect) {
+            pending.push(effect);
+        }
+    }
+
+    pub(super) fn apply_replacement_heals(&mut self, pos: Position) {
+        let pending = &mut self.sides[pos.player.index()]
+            .as_mut()
+            .unwrap()
+            .replacement_heals[pos.slot];
+        if pending.is_empty() {
+            return;
+        }
+        let mut pending = std::mem::take(pending);
+        pending.retain(|&effect| {
+            let mon = self.mon_mut(pos);
+            if mon.fainted
+                || mon.hp == 0
+                || (mon.hp == mon.max_hp.get()
+                    && mon.status == Status::Healthy
+                    && (effect == ReplacementHeal::HealingWish
+                        || mon.moves.iter().all(|slot| slot.pp == slot.max_pp)))
+            {
+                return true;
+            }
+            mon.hp = mon.max_hp.get();
+            mon.status = Status::Healthy;
+            mon.slept_by_foe = false;
+            if effect == ReplacementHeal::LunarDance {
+                for slot in &mut mon.moves {
+                    slot.pp = slot.max_pp;
+                }
+            }
+            self.add_health_line_with(
+                "-heal",
+                pos,
+                false,
+                &format!("|[from] move: {}", effect.name()),
+            );
+            false
+        });
+        self.sides[pos.player.index()]
+            .as_mut()
+            .unwrap()
+            .replacement_heals[pos.slot] = pending;
+    }
+
     pub(super) fn start_salt_cure(&mut self, pos: Position) {
         if self.mon(pos).hp > 0 && !self.mon(pos).volatile_ids().contains(&"saltcure") {
             self.mon_mut(pos).track_volatile("saltcure");

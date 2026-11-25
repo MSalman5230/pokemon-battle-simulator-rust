@@ -182,6 +182,7 @@ struct Side {
     mega_used: bool,
     screens: [u8; 3],
     wishes: [Option<support::Wish>; 2],
+    replacement_heals: [Vec<support::ReplacementHeal>; 2],
     tailwind: u8,
     total_fainted: u8,
 }
@@ -539,6 +540,7 @@ impl Battle {
             mega_used: false,
             screens: [0; 3],
             wishes: [None; 2],
+            replacement_heals: [Vec::new(), Vec::new()],
             tailwind: 0,
             total_fainted: 0,
         });

@@ -881,6 +881,12 @@ fn supreme_overlord_snapshots_faints_and_receiver_starts_inherited_ability() {
 }
 
 #[test]
+fn sacrifice_heals_wait_for_an_eligible_slot_occupant() {
+    replay(include_str!("fixtures/bss-healing-wish.json"));
+    replay(include_str!("fixtures/bss-lunar-dance.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

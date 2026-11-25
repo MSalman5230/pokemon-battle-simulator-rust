@@ -816,6 +816,14 @@ const receiverRosters = [
         named('Vaporeon', ['Recover'])],
     [named('Dusclops', ['Recover']), named('Gengar', ['Recover'])],
 ];
+const healingWishRosters = [
+    [named('Vaporeon', ['Recover']), named('Espeon', ['Healing Wish']), named('Jolteon', ['Recover'])],
+    [named('Umbreon', ['Will-O-Wisp', 'Recover', 'Stealth Rock']), named('Glaceon', ['Recover'])],
+];
+const lunarDanceRosters = [
+    [named('Vaporeon', ['Recover']), named('Cresselia', ['Lunar Dance'])],
+    [named('Umbreon', ['Recover']), named('Glaceon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1235,6 +1243,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1, move 1'],
         ['pass, switch 3',null], ['move 2 1, move 1','move 1, move 1']],
         receiverRosters, 'vgc-receiver'],
+    ['bssregmc', [['team 123','team 12'], ['move 1','move 1'], ['switch 2','move 2'],
+        ['move 1','move 2'], ['switch 3',null], ['move 1','move 3'], ['switch 2','move 2']],
+        healingWishRosters, 'bss-healing-wish'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['switch 2','move 1'],
+        ['move 1','move 1'], ['switch 2',null], ['move 1','move 1']],
+        lunarDanceRosters, 'bss-lunar-dance'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
