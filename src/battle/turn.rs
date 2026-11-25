@@ -3163,6 +3163,20 @@ impl Battle {
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
             && self.grounded(source);
+        let stench_flinch = if !delayed
+            && move_data.category != Category::Status
+            && self.event_ability(source) == "stench"
+        {
+            if self.format.report_exact_hp {
+                self.add("|debug|Adding Stench flinch");
+            }
+            !move_data
+                .secondaries
+                .iter()
+                .any(|effect| effect.volatile_status.as_deref() == Some("flinch"))
+        } else {
+            false
+        };
         let kind = if expanded {
             // Both ModifyMove passes retarget a changed target kind.
             self.random_target(source, TargetKind::AllAdjacentFoes);
@@ -5406,12 +5420,13 @@ impl Battle {
                 self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
             }
             for &target in strike_targets {
-                if sheer_force_removed || move_data.secondaries.is_empty() {
+                if sheer_force_removed || (move_data.secondaries.is_empty() && !stench_flinch) {
                     break;
                 }
-                let dust = self.event_ability(target) == "shielddust";
-                let cloak = self.mon(target).effective_item() == "covertcloak";
-                if self.format.report_exact_hp {
+                let hit_pokemon = shielded & target.mask() == 0;
+                let dust = hit_pokemon && self.event_ability(target) == "shielddust";
+                let cloak = hit_pokemon && self.mon(target).effective_item() == "covertcloak";
+                if hit_pokemon && self.format.report_exact_hp {
                     if dust {
                         self.add("|debug|Shield Dust prevent secondary");
                     } else if self.mon(target).ability == "shielddust" {
@@ -5427,7 +5442,7 @@ impl Battle {
                     }
                     let roll = self.rng.below(100);
                     if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
-                        if shielded & target.mask() != 0 {
+                        if !hit_pokemon {
                             if !effect.self_boosts.is_empty() {
                                 self.boost(source, &effect.self_boosts, true);
                             }
@@ -5455,13 +5470,8 @@ impl Battle {
                         if !effect.self_boosts.is_empty() {
                             self.boost(source, &effect.self_boosts, true);
                         }
-                        if effect.volatile_status.as_deref() == Some("flinch")
-                            && self.mon(target).hp > 0
-                            && self.event_ability(target) != "innerfocus"
-                            && !self.mon(target).volatile_ids().contains(&"focuspunch")
-                        {
-                            self.mon_mut(target).flinched = true;
-                            self.mon_mut(target).track_volatile("flinch");
+                        if effect.volatile_status.as_deref() == Some("flinch") {
+                            self.apply_flinch(target);
                         }
                         if effect.volatile_status.as_deref() == Some("confusion")
                             && !self.safeguard_blocks(target, source, true, false, true)
@@ -5487,6 +5497,9 @@ impl Battle {
                             ));
                         }
                     }
+                }
+                if stench_flinch && !dust && !cloak && self.rng.chance(1, 10) && hit_pokemon {
+                    self.apply_flinch(target);
                 }
             }
             for &(target, _) in &damage {
@@ -5861,6 +5874,17 @@ impl Battle {
             &mut Vec::new(),
         );
         self.ability_breaker = prior_breaker;
+    }
+
+    fn apply_flinch(&mut self, target: Position) {
+        if self.mon(target).hp > 0
+            && self.event_ability(target) != "innerfocus"
+            && !self.mon(target).volatile_ids().contains(&"focuspunch")
+        {
+            let mon = self.mon_mut(target);
+            mon.flinched = true;
+            mon.track_volatile("flinch");
+        }
     }
 
     fn note_consecutive_move(&mut self, forced: bool, data: &Move) {
@@ -6390,6 +6414,7 @@ impl Pokemon {
                 | "sweetveil"
                 | "supersweetsyrup"
                 | "guarddog"
+                | "stench"
                 | "fairyaura"
                 | "darkaura"
                 | "aurabreak"

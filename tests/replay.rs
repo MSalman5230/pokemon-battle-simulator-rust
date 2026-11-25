@@ -1432,6 +1432,11 @@ fn stalwart_targets_through_follow_me() {
 }
 
 #[test]
+fn stench_adds_a_flinch_roll_only_to_attacks_that_lack_one() {
+    replay(include_str!("fixtures/bss-stench.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

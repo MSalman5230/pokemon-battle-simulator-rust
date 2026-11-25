@@ -1131,6 +1131,10 @@ const rattledRosters = [
     [{...named('Magikarp', ['Tackle']), ability:'Rattled'}],
     [{...named('Mightyena', ['Snarl']), ability:'Intimidate'}],
 ];
+const stenchRosters = [
+    [{...named('Skuntank', ['Tackle', 'Bite']), ability:'Stench', nature:'Jolly', evs:{spe:32}}],
+    [named('Umbreon', ['Recover']), {...named('Vaporeon', ['Substitute', 'Recover']), item:'Covert Cloak'}],
+];
 const cudChewRosters = [
     [{...named('Farigiraf', ['Tackle']), ability:'Cud Chew', item:'Sitrus Berry'}],
     [named('Raticate', ['Super Fang', 'Recover'])],
@@ -2176,6 +2180,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 2, move 1','move 1, move 1']], stalwartRosters, 'vgc-stalwart'],
     ['vgc2026regmc', [['team 12','team 123'], ['move 1 2, move 1','move 1, move 1']],
         stalwartHazardRosters, 'vgc-stalwart-side-target'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','switch 2'],
+        ['move 1','move 1'], ['move 1','move 2']], stenchRosters, 'bss-stench', '1,2,3,13'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], rattledRosters, 'bss-rattled'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 2']],
         cudChewRosters, 'bss-cud-chew'],
