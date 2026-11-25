@@ -1526,6 +1526,10 @@ impl Battle {
                 self.add(format!("|-activate|{}|ability: Own Tempo", self.ident(pos)));
                 self.cure_confusion(pos);
             }
+            if self.event_ability(pos) == "limber" && self.mon(pos).status == Status::Paralysis {
+                self.add(format!("|-activate|{}|ability: Limber", self.ident(pos)));
+                self.cure_status(pos, "[msg]");
+            }
             self.on_update_item(pos);
         }
     }
@@ -3318,7 +3322,7 @@ impl Battle {
                 if move_data.flags.contains_key("contact") {
                     match self.event_ability(target) {
                         "flamebody" | "static" | "poisonpoint" => {
-                            self.contact_status(target, source)
+                            self.contact_status(target, source, base)
                         }
                         "cutecharm" => self.cute_charm(target, source),
                         "mummy" | "lingeringaroma" => self.contact_ability(target, source),
@@ -3844,6 +3848,8 @@ impl Pokemon {
                 | "contrary"
                 | "merciless"
                 | "superluck"
+                | "synchronize"
+                | "limber"
         )
     }
 

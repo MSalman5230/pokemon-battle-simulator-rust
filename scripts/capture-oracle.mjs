@@ -591,6 +591,16 @@ const statusPowerRosters = [
     [named('Qwilfish', ['Barb Barrage', 'Hex', 'Toxic', 'Venoshock']), named('Glaceon', ['Recover'])],
     [named('Umbreon', ['Haze', 'Calm Mind', 'Recover']), named('Vaporeon', ['Recover'])],
 ];
+const syncRosters = [
+    [{...named('Espeon', ['Will-O-Wisp', 'Recover']), item: 'Lum Berry', ability: 'Synchronize'},
+        named('Gengar', ['Toxic'])],
+    [{...named('Umbreon', ['Recover']), ability: 'Synchronize'},
+        {...named('Hypno', ['Recover']), ability: 'Synchronize'}],
+];
+const syncLimberRosters = [
+    [{...named('Persian', ['Thunder Wave']), ability: 'Limber'}, named('Vaporeon', ['Recover'])],
+    [{...named('Umbreon', ['Recover']), ability: 'Synchronize'}, named('Espeon', ['Thunder Wave'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -889,6 +899,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 12'], ...Array(5).fill(['move 1','move 1'])], fickleBeamRosters, 'bss-fickle-beam'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 2'], ['move 3','move 2'], ['move 1','move 1'],
         ['move 2','move 3'], ['move 4','move 3']], statusPowerRosters, 'bss-status-power-haze'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['switch 2','switch 2'], ['move 1','move 1']],
+        syncRosters, 'bss-synchronize'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','switch 2'], ['move 1','move 1']],
+        syncLimberRosters, 'bss-sync-limber'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

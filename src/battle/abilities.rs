@@ -588,7 +588,7 @@ impl Battle {
         }
     }
 
-    pub(super) fn contact_status(&mut self, holder: Position, attacker: Position) {
+    pub(super) fn contact_status(&mut self, holder: Position, attacker: Position, move_log: usize) {
         let (id, label) = match self.event_ability(holder) {
             "flamebody" => ("brn", "Flame Body"),
             "static" => ("par", "Static"),
@@ -619,7 +619,9 @@ impl Battle {
             self.ident(attacker),
             self.ident(holder)
         ));
-        self.cure_with_berry(attacker);
+        if !self.synchronize_status(attacker, holder, id, move_log) {
+            self.cure_with_berry(attacker);
+        }
     }
 
     pub(super) fn ability_heal(

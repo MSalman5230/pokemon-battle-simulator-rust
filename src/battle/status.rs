@@ -252,7 +252,60 @@ impl Battle {
         if prevented || self.field_blocks_status(pos, id, source.player, primary) {
             return false;
         }
-        self.apply_status(pos, id, source.player, Some(&data.name));
+        self.set_status(pos, id, source.player, Some(&data.name));
+        if !self.synchronize_status(pos, source, id, move_log) {
+            self.cure_with_berry(pos);
+        }
+        true
+    }
+
+    pub(super) fn synchronize_status(
+        &mut self,
+        target: Position,
+        source: Position,
+        id: &str,
+        move_log: usize,
+    ) -> bool {
+        if target == source
+            || matches!(id, "slp" | "frz")
+            || self.event_ability(target) != "synchronize"
+        {
+            return false;
+        }
+        self.add(format!(
+            "|-activate|{}|ability: Synchronize",
+            self.ident(target)
+        ));
+        let source_contents = self.mon(source);
+        if source_contents.hp == 0 || source_contents.fainted {
+            return true;
+        }
+        if source_contents.status.id() == id {
+            self.add(format!("|-fail|{}|{id}", self.ident(source)));
+            return true;
+        }
+        if source_contents.status != Status::Healthy {
+            self.add(format!("|-fail|{}", self.ident(target)));
+            self.move_still(move_log);
+            return true;
+        }
+        if self.status_immune(source, if id == "tox" { "psn" } else { id }) {
+            if self.format.report_exact_hp {
+                self.add("|debug|natural status immunity");
+                self.add("|debug|immune to status");
+            }
+            self.add(format!("|-immune|{}", self.ident(source)));
+            return true;
+        }
+        if !self.status_blocked_by_ability(source, id, true)
+            && !self.flower_veil_status(source, target, id, true)
+            && !self.field_blocks_status(source, id, target.player, true)
+        {
+            self.set_status(source, id, target.player, None);
+            // Two Synchronize holders both activate. The original recipient
+            // already has the reflected status, which ends the chain.
+            self.synchronize_status(source, target, id, move_log);
+        }
         true
     }
 
@@ -265,6 +318,7 @@ impl Battle {
         let label = match (self.event_ability(pos), id) {
             ("immunity", "psn" | "tox") => "Immunity",
             ("thermalexchange", "brn") => "Thermal Exchange",
+            ("limber", "par") => "Limber",
             ("purifyingsalt", _) => "Purifying Salt",
             _ => return false,
         };
@@ -275,7 +329,9 @@ impl Battle {
             ));
         }
         if self.format.report_exact_hp {
-            self.add(format!("|debug|interrupting setStatus with {label}"));
+            if label != "Limber" {
+                self.add(format!("|debug|interrupting setStatus with {label}"));
+            }
             self.add(format!("|debug|set status [{id}] interrupted"));
         }
         true

@@ -729,3 +729,9 @@ fn conditional_base_power_and_field_wide_boost_reset_match_showdown() {
     replay(include_str!("fixtures/bss-fickle-beam.json"));
     replay(include_str!("fixtures/bss-status-power-haze.json"));
 }
+
+#[test]
+fn synchronize_reflects_before_berries_and_obeys_type_and_ability_immunity() {
+    replay(include_str!("fixtures/bss-synchronize.json"));
+    replay(include_str!("fixtures/bss-sync-limber.json"));
+}
