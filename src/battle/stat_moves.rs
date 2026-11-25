@@ -33,6 +33,39 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn steal_positive_stages(
+        &mut self,
+        source: Position,
+        target: Position,
+        move_log: usize,
+    ) {
+        let defender = self.mon(target);
+        let mut stages = [(BoostStat::Atk, 0); 7];
+        let mut count = 0;
+        for stat in BoostStat::ALL {
+            let stage = defender.boosts.get(stat);
+            if stage > 0 {
+                stages[count] = (stat, stage);
+                count += 1;
+            }
+        }
+        if count == 0 {
+            return;
+        }
+        let stages = &stages[..count];
+        let source_name = self.ident(source);
+        let target_name = self.ident(target);
+        self.move_still(move_log);
+        self.add(format!(
+            "|-clearpositiveboost|{target_name}|{source_name}|move: Spectral Thief"
+        ));
+        self.boost(source, stages, true);
+        for &(stat, amount) in stages {
+            self.mon_mut(target).boosts.add(stat, -amount);
+        }
+        self.add(format!("|-anim|{source_name}|Spectral Thief|{target_name}"));
+    }
+
     pub(super) fn copy_critical_conditions(&mut self, source: Position, target: Position) {
         let foe = self.mon(target);
         let focus = foe.volatile_ids().contains(&"focusenergy");

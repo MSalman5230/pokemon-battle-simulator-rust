@@ -1,0 +1,853 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Zygarde\",\"moves\":[\"Thousand Arrows\"],\"gender\":\"F\",\"name\":\"Zygarde\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Aura Break\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Talonflame\",\"moves\":[\"Roost\"],\"gender\":\"F\",\"name\":\"Talonflame\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Flame Body\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Zygarde, L50, F|",
+          "|poke|p2|Talonflame, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Zygarde, L50, F|",
+          "|poke|p2|Talonflame, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Zygarde, L50, F|",
+          "|poke|p2|Talonflame, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "thousandarrows"
+                ],
+                "baseAbility": "aurabreak",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "aurabreak",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Talonflame",
+                "details": "Talonflame, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 91,
+                  "spa": 94,
+                  "spd": 89,
+                  "spe": 146
+                },
+                "moves": [
+                  "roost"
+                ],
+                "baseAbility": "flamebody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "flamebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "aurabreak",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "thousandarrows",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Talonflame",
+            "species": "Talonflame",
+            "details": "Talonflame, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 91,
+              "spa": 94,
+              "spd": 89,
+              "spe": 146
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flamebody",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde, L50, F|100/100",
+          "|switch|p2a: Talonflame|Talonflame, L50, F|100/100",
+          "|-ability|p1a: Zygarde|Aura Break",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde, L50, F|183/183",
+          "|switch|p2a: Talonflame|Talonflame, L50, F|100/100",
+          "|-ability|p1a: Zygarde|Aura Break",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Zygarde|Zygarde, L50, F|100/100",
+          "|switch|p2a: Talonflame|Talonflame, L50, F|153/153",
+          "|-ability|p1a: Zygarde|Aura Break",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thousand Arrows",
+                  "id": "thousandarrows",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "thousandarrows"
+                ],
+                "baseAbility": "aurabreak",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "aurabreak",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Roost",
+                  "id": "roost",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Talonflame",
+                "details": "Talonflame, L50, F",
+                "condition": "153/153",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 91,
+                  "spa": 94,
+                  "spd": 89,
+                  "spe": 146
+                },
+                "moves": [
+                  "roost"
+                ],
+                "baseAbility": "flamebody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "flamebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "aurabreak",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "thousandarrows",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Talonflame",
+            "species": "Talonflame",
+            "details": "Talonflame, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 91,
+              "spa": 94,
+              "spd": 89,
+              "spe": 146
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flamebody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Talonflame|Roost||[still]",
+          "|-fail|p2a: Talonflame|heal",
+          "|move|p1a: Zygarde|Thousand Arrows|p2a: Talonflame",
+          "|-damage|p2a: Talonflame|52/100",
+          "|-start|p2a: Talonflame|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Talonflame|Roost||[still]",
+          "|-fail|p2a: Talonflame|heal",
+          "|move|p1a: Zygarde|Thousand Arrows|p2a: Talonflame",
+          "|-damage|p2a: Talonflame|52/100",
+          "|-start|p2a: Talonflame|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Talonflame|Roost||[still]",
+          "|-fail|p2a: Talonflame|heal",
+          "|move|p1a: Zygarde|Thousand Arrows|p2a: Talonflame",
+          "|-damage|p2a: Talonflame|81/153",
+          "|-start|p2a: Talonflame|Smack Down",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thousand Arrows",
+                  "id": "thousandarrows",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "thousandarrows"
+                ],
+                "baseAbility": "aurabreak",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "aurabreak",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Roost",
+                  "id": "roost",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Talonflame",
+                "details": "Talonflame, L50, F",
+                "condition": "81/153",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 91,
+                  "spa": 94,
+                  "spd": 89,
+                  "spe": 146
+                },
+                "moves": [
+                  "roost"
+                ],
+                "baseAbility": "flamebody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "flamebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "aurabreak",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "thousandarrows",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Talonflame",
+            "species": "Talonflame",
+            "details": "Talonflame, L50, F",
+            "hp": 81,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 91,
+              "spa": 94,
+              "spd": 89,
+              "spe": 146
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flamebody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Talonflame|Roost|p2a: Talonflame",
+          "|-heal|p2a: Talonflame|100/100",
+          "|-singleturn|p2a: Talonflame|move: Roost",
+          "|move|p1a: Zygarde|Thousand Arrows|p2a: Talonflame",
+          "|-supereffective|p2a: Talonflame|1",
+          "|-damage|p2a: Talonflame|4/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Talonflame|Roost|p2a: Talonflame",
+          "|-heal|p2a: Talonflame|100/100",
+          "|-singleturn|p2a: Talonflame|move: Roost",
+          "|move|p1a: Zygarde|Thousand Arrows|p2a: Talonflame",
+          "|-supereffective|p2a: Talonflame|1",
+          "|-damage|p2a: Talonflame|4/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Talonflame|Roost|p2a: Talonflame",
+          "|-heal|p2a: Talonflame|153/153",
+          "|-singleturn|p2a: Talonflame|move: Roost",
+          "|move|p1a: Zygarde|Thousand Arrows|p2a: Talonflame",
+          "|-supereffective|p2a: Talonflame|1",
+          "|-damage|p2a: Talonflame|7/153",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Thousand Arrows",
+                  "id": "thousandarrows",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Zygarde",
+                "details": "Zygarde, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 141,
+                  "spa": 101,
+                  "spd": 115,
+                  "spe": 115
+                },
+                "moves": [
+                  "thousandarrows"
+                ],
+                "baseAbility": "aurabreak",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "aurabreak",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Roost",
+                  "id": "roost",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Talonflame",
+                "details": "Talonflame, L50, F",
+                "condition": "7/153",
+                "active": true,
+                "stats": {
+                  "atk": 101,
+                  "def": 91,
+                  "spa": 94,
+                  "spd": 89,
+                  "spe": 146
+                },
+                "moves": [
+                  "roost"
+                ],
+                "baseAbility": "flamebody",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "flamebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Zygarde",
+            "species": "Zygarde",
+            "details": "Zygarde, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 141,
+              "spa": 101,
+              "spd": 115,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "aurabreak",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "thousandarrows",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Talonflame",
+            "species": "Talonflame",
+            "details": "Talonflame, L50, F",
+            "hp": 7,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 101,
+              "def": 91,
+              "spa": 94,
+              "spd": 89,
+              "spe": 146
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flamebody",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -1903,6 +1903,19 @@ fn inherited_rolling_attacks_lock_the_target_and_expire_on_hit_count_or_protect(
 }
 
 #[test]
+fn inherited_damage_hooks_preserve_suppression_grounding_and_stage_order() {
+    replay(include_str!(
+        "fixtures/natdex-thousand-arrows-grounding.json"
+    ));
+    replay(include_str!("fixtures/natdex-thousand-waves-link.json"));
+    replay(include_str!("fixtures/natdex-spectral-thief-contrary.json"));
+    replay(include_str!(
+        "fixtures/natdex-core-enforcer-substitute.json"
+    ));
+    replay(include_str!("fixtures/custom-flame-burst-splash.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

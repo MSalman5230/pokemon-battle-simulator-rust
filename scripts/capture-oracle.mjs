@@ -1685,6 +1685,27 @@ const legacyIceBallRosters = [
         named('Glaceon', ['Protect'])],
     [named('Vaporeon', ['Tail Whip']), {...named('Regirock', ['Recover', 'Protect']), ability:'Clear Body'}],
 ];
+const legacyArrowsRosters = [
+    [{...named('Zygarde', ['Thousand Arrows']), ability:'Aura Break'}],
+    [{...named('Talonflame', ['Roost']), ability:'Flame Body'}],
+];
+const legacyWavesRosters = [
+    [{...named('Zygarde', ['Thousand Waves']), ability:'Aura Break'}, named('Vaporeon', ['Protect'])],
+    [named('Umbreon', ['Recover']), {...named('Talonflame', ['Roost']), ability:'Flame Body'}],
+];
+const legacySpectralRosters = [
+    [{...named('Smeargle', ['Spectral Thief', 'Protect']), ability:'Contrary'}],
+    [{...named('Lucario', ['Swords Dance', 'Substitute', 'Howl']), ability:'Inner Focus'}],
+];
+const legacyCoreRosters = [
+    [{...named('Smeargle', ['Core Enforcer', 'Earthquake']), ability:'Own Tempo'}],
+    [{...named('Rotom-Wash', ['Substitute', 'Recover']), ability:'Levitate'},
+        {...named('Gengar', ['Recover']), ability:'Cursed Body', item:'Ability Shield'}],
+];
+const legacyFlameBurstRosters = [
+    [{...named('Smeargle', ['Flame Burst', 'Protect']), ability:'Own Tempo'}, named('Glaceon', ['Protect'])],
+    [named('Vaporeon', ['Substitute', 'Recover']), named('Jolteon', ['Tail Whip', 'Protect'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3027,6 +3048,16 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['doublescustomgame', [['team 12','team 12'], ['move 1 2, move 1','move 1, move 1'],
         ['move 1, move 1','move 1, move 2'], ['move 1 1, move 1','move 1, move 1']],
         legacyIceBallRosters, 'custom-ice-ball-lock-and-protect'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        legacyArrowsRosters, 'natdex-thousand-arrows-grounding'],
+    ['natdexdraft', [['team 12','team 12'], ['move 1','move 1'], ['switch 2','move 1'], ['move 1','switch 2']],
+        legacyWavesRosters, 'natdex-thousand-waves-link'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2','move 1'], ['move 2','move 2'], ['move 1','move 3']],
+        legacySpectralRosters, 'natdex-spectral-thief-contrary'],
+    ['natdexdraft', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 2'],
+        ['move 1','switch 2'], ['move 1','move 1']], legacyCoreRosters, 'natdex-core-enforcer-substitute'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 2, move 1','move 1, move 1'],
+        ['move 1 1, move 1','move 2, move 2']], legacyFlameBurstRosters, 'custom-flame-burst-splash'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

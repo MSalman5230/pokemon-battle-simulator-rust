@@ -996,6 +996,11 @@ impl Battle {
                     | "rollout"
                     | "iceball"
                     | "defensecurl"
+                    | "coreenforcer"
+                    | "flameburst"
+                    | "spectralthief"
+                    | "thousandarrows"
+                    | "thousandwaves"
                     | "round"
                     | "swift"
                     | "surf"
@@ -5339,6 +5344,9 @@ impl Battle {
                 }
             }
         }
+        if move_data.name == "Spectral Thief" {
+            self.steal_positive_stages(source, spread_targets[0], base);
+        }
 
         if move_data.category == Category::Status {
             let ability_replacement = matches!(
@@ -6477,6 +6485,7 @@ impl Battle {
             Hazard::from_attack(&move_data.name)
         };
         let mut hit_substitute = false;
+        let mut splash_faints = 0;
         let mut sparkling_aria_targets = 0;
         let binding = super::partial_trap::binding_move(&move_data.name);
         for hit in 1..=max_hits {
@@ -6769,6 +6778,7 @@ impl Battle {
                 if self.behind_substitute(source, target, move_data) {
                     let value = compute(self, target, true);
                     self.strike_substitute(source, target, move_data, value, ohko);
+                    splash_faints |= self.inherited_damage_hook(source, target, move_data, queue);
                     if matches!(
                         move_data.name.as_str(),
                         "Steel Roller" | "Splintered Stormshards"
@@ -6874,8 +6884,12 @@ impl Battle {
                 if move_data.name == "Jaw Lock" {
                     self.start_mutual_trap(source, target);
                 }
-                if move_data.name == "Smack Down" {
+                if matches!(move_data.name.as_str(), "Smack Down" | "Thousand Arrows") {
                     self.smack_down(target, queue);
+                }
+                splash_faints |= self.inherited_damage_hook(source, target, move_data, queue);
+                if move_data.name == "Thousand Waves" {
+                    self.start_linked_trap(source, target);
                 }
                 if let Some(item) = thrown_item {
                     self.fling_hit(source, target, item);
@@ -7321,6 +7335,16 @@ impl Battle {
                 });
             }
         }
+        if splash_faints != 0 {
+            for pos in self.positions() {
+                if splash_faints & pos.mask() != 0
+                    && self.mon(pos).hp == 0
+                    && !self.mon(pos).fainted
+                {
+                    self.mark_fainted(pos);
+                }
+            }
+        }
         if self.mon(source).hp == 0 {
             if !self.mon(source).fainted {
                 self.mark_fainted(source);
@@ -7538,6 +7562,41 @@ impl Battle {
             self.mon_mut(target).track_volatile("smackdown");
             self.add(format!("|-start|{}|Smack Down", self.ident(target)));
         }
+    }
+
+    fn inherited_damage_hook(
+        &mut self,
+        source: Position,
+        target: Position,
+        move_data: &Move,
+        queue: &[Action],
+    ) -> u8 {
+        match move_data.name.as_str() {
+            "Core Enforcer"
+                if self.mon(target).hp > 0
+                    && self.mon(target).active_turns > 0
+                    && Self::queued_move(queue, target).is_none()
+                    && self.mon(target).effective_item() != "abilityshield"
+                    && !DEX
+                        .ability(&self.mon(target).ability)
+                        .is_some_and(|ability| ability.cannot_suppress) =>
+            {
+                self.inhibit_ability(target);
+            }
+            "Flame Burst" if self.slots() > 1 => {
+                let ally = target.other_slot();
+                self.indirect_damage(
+                    ally,
+                    16,
+                    &format!("|[from] flameburst|[of] {}", self.ident(source)),
+                );
+                if self.mon(ally).hp == 0 && !self.mon(ally).fainted {
+                    return ally.mask();
+                }
+            }
+            _ => {}
+        }
+        0
     }
 
     fn note_consecutive_move(&mut self, forced: bool, data: &Move) {
@@ -7855,6 +7914,13 @@ impl Battle {
         ignores_immunity: bool,
     ) -> Option<i8> {
         let mon = self.mon(target);
+        if move_data.name == "Thousand Arrows"
+            && move_type == "Ground"
+            && mon.has_type("Flying")
+            && !self.grounded(target)
+        {
+            return Some(0);
+        }
         if move_type == "Ground"
             && mon.effective_item() == "ironball"
             && mon.has_type("Flying")
