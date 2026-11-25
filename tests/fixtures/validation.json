@@ -1,0 +1,2413 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "fixtures": [
+    {
+      "name": "legal set",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": null
+    },
+    {
+      "name": "unknown species",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Not a Pokémon",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "The Pokemon \"notapokmon\" does not exist."
+      ]
+    },
+    {
+      "name": "past item",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "item": "Ability Shield"
+      },
+      "expected": [
+        "Venusaur's item Ability Shield does not exist in Gen 9."
+      ]
+    },
+    {
+      "name": "mythical species",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Mew",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Mew is tagged Mythical, which is banned by Flat Rules.",
+        "Mew can't have Chlorophyll.",
+        "Mew can't learn Sleep Powder."
+      ]
+    },
+    {
+      "name": "unknown item",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "item": "Some fake item"
+      },
+      "expected": [
+        "\"somefakeitem\" is an invalid item."
+      ]
+    },
+    {
+      "name": "unknown nature",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Not a Nature",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "\"notanature\" is an invalid nature."
+      ]
+    },
+    {
+      "name": "wrong ability",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Adaptability",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur can't have Adaptability."
+      ]
+    },
+    {
+      "name": "missing ability",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur needs to have an ability.",
+        "Venusaur's ability No Ability does not exist in Gen 9."
+      ]
+    },
+    {
+      "name": "empty moves",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur has no moves (it must have at least one to be usable)."
+      ]
+    },
+    {
+      "name": "duplicate move",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Tackle",
+          "Tackle"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur has multiple copies of Tackle.",
+        "Venusaur's move Tackle does not exist in Gen 9.",
+        "Venusaur's move Tackle does not exist in Gen 9.",
+        "Venusaur can't learn Tackle."
+      ]
+    },
+    {
+      "name": "unlearnable move",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Dragon Ascent"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur's move Dragon Ascent does not exist in Gen 9.",
+        "Venusaur can't learn Dragon Ascent."
+      ]
+    },
+    {
+      "name": "unknown move",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "example"
+        ],
+        "ability": "Adaptability",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "\"example\" is an invalid move."
+      ]
+    },
+    {
+      "name": "stat point bounds",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 40,
+          "atk": -1,
+          "spa": 32,
+          "spd": 9
+        }
+      },
+      "expected": [
+        "Venusaur has less than 0 Awakening Values in Attack.",
+        "Venusaur has more than 32 Stat Points in HP.",
+        "Venusaur has 80 total Stat Points, which is more than this format's limit of 66."
+      ]
+    },
+    {
+      "name": "perfect IVs",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "ivs": {
+          "atk": 0
+        }
+      },
+      "expected": [
+        "Venusaur's IVs are not maxed out, but this format requires all IVs to be 31."
+      ]
+    },
+    {
+      "name": "level bounds",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "level": 1000
+      },
+      "expected": [
+        "Venusaur (level 1000) is above the maximum level of 100"
+      ]
+    },
+    {
+      "name": "species nickname",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "name": "Bulbasaur"
+      },
+      "expected": [
+        "Bulbasaur (Venusaur) must not be nicknamed a different Pokémon species than what it actually is."
+      ]
+    },
+    {
+      "name": "starting form of Mega",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Venusaur-Mega",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Thick Fat",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "item": "Venusaurite"
+      },
+      "expected": null
+    },
+    {
+      "name": "modern event can use mints",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Floette-Eternal",
+        "moves": [
+          "Light of Ruin",
+          "Moonblast",
+          "Trick",
+          "Giga Drain"
+        ],
+        "ability": "Flower Veil",
+        "nature": "Timid",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "level": 50
+      },
+      "expected": null
+    },
+    {
+      "name": "shiny-locked event",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Floette-Eternal",
+        "moves": [
+          "Light of Ruin",
+          "Moonblast",
+          "Trick",
+          "Giga Drain"
+        ],
+        "ability": "Flower Veil",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "level": 50,
+        "shiny": true
+      },
+      "expected": [
+        "Floette-Eternal is only obtainable from an event - it needs to match its event:",
+        "Floette-Eternal must not be shiny to be from its event."
+      ]
+    },
+    {
+      "name": "underlevel event",
+      "format": "gen9championsbssregmc",
+      "set": {
+        "species": "Floette-Eternal",
+        "moves": [
+          "Light of Ruin",
+          "Moonblast",
+          "Trick",
+          "Giga Drain"
+        ],
+        "ability": "Flower Veil",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "level": 70
+      },
+      "expected": [
+        "Floette-Eternal is only obtainable from an event - it needs to match its event:",
+        "Floette-Eternal must be at least level 72 to be from its event."
+      ]
+    },
+    {
+      "name": "legal roster",
+      "format": "gen9championsbssregmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Blaziken",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Blaziken",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "too few members",
+      "format": "gen9championsbssregmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        }
+      ],
+      "expected": [
+        "You must bring at least 6 Pokémon (your team has 5)."
+      ]
+    },
+    {
+      "name": "too many members",
+      "format": "gen9championsbssregmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Blaziken",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Blaziken",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Venusaur",
+          "moves": [
+            "Sludge Bomb",
+            "Sleep Powder",
+            "Energy Ball",
+            "Protect"
+          ],
+          "ability": "Chlorophyll",
+          "nature": "Modest",
+          "evs": {
+            "hp": 32,
+            "spa": 32,
+            "spd": 2
+          }
+        }
+      ],
+      "expected": [
+        "You may only bring up to 6 Pokémon (your team has 7)."
+      ]
+    },
+    {
+      "name": "duplicate species",
+      "format": "gen9championsbssregmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          },
+          "item": ""
+        }
+      ],
+      "expected": [
+        "You are limited to one of each Pokemon by Species Clause.",
+        "(You have more than one Infernape)"
+      ]
+    },
+    {
+      "name": "duplicate items",
+      "format": "gen9championsbssregmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          },
+          "item": "Leftovers"
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          },
+          "item": "Leftovers"
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Blaziken",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Blaziken",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        }
+      ],
+      "expected": [
+        "You are limited to 1 of each item by Item Clause.",
+        "(You have more than 1 Leftovers)"
+      ]
+    },
+    {
+      "name": "duplicate nicknames",
+      "format": "gen9championsbssregmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Twice",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Twice",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Blaziken",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Blaziken",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        }
+      ],
+      "expected": [
+        "Your Pokemon must have different nicknames.",
+        "(You have more than one Twice)"
+      ]
+    },
+    {
+      "name": "legal set",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": null
+    },
+    {
+      "name": "unknown species",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Not a Pokémon",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "The Pokemon \"notapokmon\" does not exist."
+      ]
+    },
+    {
+      "name": "past item",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "item": "Ability Shield"
+      },
+      "expected": [
+        "Venusaur's item Ability Shield does not exist in Gen 9."
+      ]
+    },
+    {
+      "name": "mythical species",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Mew",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Mew is tagged Mythical, which is banned by Flat Rules.",
+        "Mew can't have Chlorophyll.",
+        "Mew can't learn Sleep Powder."
+      ]
+    },
+    {
+      "name": "unknown item",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "item": "Some fake item"
+      },
+      "expected": [
+        "\"somefakeitem\" is an invalid item."
+      ]
+    },
+    {
+      "name": "unknown nature",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Not a Nature",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "\"notanature\" is an invalid nature."
+      ]
+    },
+    {
+      "name": "wrong ability",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Adaptability",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur can't have Adaptability."
+      ]
+    },
+    {
+      "name": "missing ability",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur needs to have an ability.",
+        "Venusaur's ability No Ability does not exist in Gen 9."
+      ]
+    },
+    {
+      "name": "empty moves",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur has no moves (it must have at least one to be usable)."
+      ]
+    },
+    {
+      "name": "duplicate move",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Tackle",
+          "Tackle"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur has multiple copies of Tackle.",
+        "Venusaur's move Tackle does not exist in Gen 9.",
+        "Venusaur's move Tackle does not exist in Gen 9.",
+        "Venusaur can't learn Tackle."
+      ]
+    },
+    {
+      "name": "unlearnable move",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Dragon Ascent"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "Venusaur's move Dragon Ascent does not exist in Gen 9.",
+        "Venusaur can't learn Dragon Ascent."
+      ]
+    },
+    {
+      "name": "unknown move",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "example"
+        ],
+        "ability": "Adaptability",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        }
+      },
+      "expected": [
+        "\"example\" is an invalid move."
+      ]
+    },
+    {
+      "name": "stat point bounds",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 40,
+          "atk": -1,
+          "spa": 32,
+          "spd": 9
+        }
+      },
+      "expected": [
+        "Venusaur has less than 0 Awakening Values in Attack.",
+        "Venusaur has more than 32 Stat Points in HP.",
+        "Venusaur has 80 total Stat Points, which is more than this format's limit of 66."
+      ]
+    },
+    {
+      "name": "perfect IVs",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "ivs": {
+          "atk": 0
+        }
+      },
+      "expected": [
+        "Venusaur's IVs are not maxed out, but this format requires all IVs to be 31."
+      ]
+    },
+    {
+      "name": "level bounds",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "level": 1000
+      },
+      "expected": [
+        "Venusaur (level 1000) is above the maximum level of 100"
+      ]
+    },
+    {
+      "name": "species nickname",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Chlorophyll",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "name": "Bulbasaur"
+      },
+      "expected": [
+        "Bulbasaur (Venusaur) must not be nicknamed a different Pokémon species than what it actually is."
+      ]
+    },
+    {
+      "name": "starting form of Mega",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Venusaur-Mega",
+        "moves": [
+          "Sludge Bomb",
+          "Sleep Powder",
+          "Energy Ball",
+          "Protect"
+        ],
+        "ability": "Thick Fat",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "item": "Venusaurite"
+      },
+      "expected": null
+    },
+    {
+      "name": "modern event can use mints",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Floette-Eternal",
+        "moves": [
+          "Light of Ruin",
+          "Moonblast",
+          "Trick",
+          "Giga Drain"
+        ],
+        "ability": "Flower Veil",
+        "nature": "Timid",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "level": 50
+      },
+      "expected": null
+    },
+    {
+      "name": "shiny-locked event",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Floette-Eternal",
+        "moves": [
+          "Light of Ruin",
+          "Moonblast",
+          "Trick",
+          "Giga Drain"
+        ],
+        "ability": "Flower Veil",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "level": 50,
+        "shiny": true
+      },
+      "expected": [
+        "Floette-Eternal is only obtainable from an event - it needs to match its event:",
+        "Floette-Eternal must not be shiny to be from its event."
+      ]
+    },
+    {
+      "name": "underlevel event",
+      "format": "gen9championsvgc2026regmc",
+      "set": {
+        "species": "Floette-Eternal",
+        "moves": [
+          "Light of Ruin",
+          "Moonblast",
+          "Trick",
+          "Giga Drain"
+        ],
+        "ability": "Flower Veil",
+        "nature": "Modest",
+        "evs": {
+          "hp": 32,
+          "spa": 32,
+          "spd": 2
+        },
+        "level": 70
+      },
+      "expected": [
+        "Floette-Eternal is only obtainable from an event - it needs to match its event:",
+        "Floette-Eternal must be at least level 72 to be from its event."
+      ]
+    },
+    {
+      "name": "legal roster",
+      "format": "gen9championsvgc2026regmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Blaziken",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Blaziken",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        }
+      ],
+      "expected": null
+    },
+    {
+      "name": "too few members",
+      "format": "gen9championsvgc2026regmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        }
+      ],
+      "expected": [
+        "You must bring at least 6 Pokémon (your team has 5)."
+      ]
+    },
+    {
+      "name": "too many members",
+      "format": "gen9championsvgc2026regmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Blaziken",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Blaziken",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Venusaur",
+          "moves": [
+            "Sludge Bomb",
+            "Sleep Powder",
+            "Energy Ball",
+            "Protect"
+          ],
+          "ability": "Chlorophyll",
+          "nature": "Modest",
+          "evs": {
+            "hp": 32,
+            "spa": 32,
+            "spd": 2
+          }
+        }
+      ],
+      "expected": [
+        "You may only bring up to 6 Pokémon (your team has 7)."
+      ]
+    },
+    {
+      "name": "duplicate species",
+      "format": "gen9championsvgc2026regmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          },
+          "item": ""
+        }
+      ],
+      "expected": [
+        "You are limited to one of each Pokemon by Species Clause.",
+        "(You have more than one Infernape)"
+      ]
+    },
+    {
+      "name": "duplicate items",
+      "format": "gen9championsvgc2026regmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Infernape",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          },
+          "item": "Leftovers"
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Empoleon",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          },
+          "item": "Leftovers"
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Blaziken",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Blaziken",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        }
+      ],
+      "expected": [
+        "You are limited to 1 of each item by Item Clause.",
+        "(You have more than 1 Leftovers)"
+      ]
+    },
+    {
+      "name": "duplicate nicknames",
+      "format": "gen9championsvgc2026regmc",
+      "team": [
+        {
+          "species": "Infernape",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Twice",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Empoleon",
+          "moves": [
+            "Surf",
+            "Aqua Jet",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Twice",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Meganium",
+          "moves": [
+            "Swords Dance",
+            "Earthquake",
+            "Leaf Blade",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Meganium",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Swampert",
+          "moves": [
+            "Earthquake",
+            "Surf",
+            "Protect",
+            "Flip Turn"
+          ],
+          "gender": "F",
+          "name": "Swampert",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Torrent",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Sceptile",
+          "moves": [
+            "Leaf Blade",
+            "Earthquake",
+            "Swords Dance",
+            "Protect"
+          ],
+          "gender": "F",
+          "name": "Sceptile",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Overgrow",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        },
+        {
+          "species": "Blaziken",
+          "moves": [
+            "Close Combat",
+            "Protect",
+            "Swords Dance",
+            "Earthquake"
+          ],
+          "gender": "F",
+          "name": "Blaziken",
+          "level": 50,
+          "nature": "Adamant",
+          "ability": "Blaze",
+          "evs": {
+            "hp": 2,
+            "atk": 32,
+            "spe": 32
+          }
+        }
+      ],
+      "expected": [
+        "Your Pokemon must have different nicknames.",
+        "(You have more than one Twice)"
+      ]
+    }
+  ]
+}

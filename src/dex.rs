@@ -262,6 +262,10 @@ impl Dex {
         self.natures.get(&to_id(name)).copied().unwrap_or_default()
     }
 
+    pub(crate) fn has_nature(&self, id: &str) -> bool {
+        self.natures.contains_key(id)
+    }
+
     pub fn type_data(&self, id: &str) -> Option<&TypeData> {
         self.types.get(id)
     }

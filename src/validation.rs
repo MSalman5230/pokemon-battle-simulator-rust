@@ -11,6 +11,9 @@ use serde::Deserialize;
 use serde_json::Value;
 use std::{collections::HashMap, sync::LazyLock};
 
+mod flat;
+pub use flat::{TeamValidator, ValidationError};
+
 type Table<T> = HashMap<String, T>;
 
 pub static LEGALITY: LazyLock<LegalityCatalog> = LazyLock::new(|| {
