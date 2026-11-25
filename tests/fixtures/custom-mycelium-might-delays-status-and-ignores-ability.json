@@ -1,0 +1,874 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Toedscruel\",\"moves\":[\"Tail Whip\",\"Earth Power\"],\"gender\":\"F\",\"name\":\"Toedscruel\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Mycelium Might\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Gholdengo\",\"moves\":[\"Recover\"],\"gender\":\"N\",\"name\":\"Gholdengo\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Good as Gold\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Toedscruel, L50, F|",
+          "|poke|p2|Gholdengo, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Toedscruel, L50, F|",
+          "|poke|p2|Gholdengo, L50|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Toedscruel, L50, F|",
+          "|poke|p2|Gholdengo, L50|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toedscruel",
+                "details": "Toedscruel, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 85,
+                  "spa": 100,
+                  "spd": 140,
+                  "spe": 120
+                },
+                "moves": [
+                  "tailwhip",
+                  "earthpower"
+                ],
+                "baseAbility": "myceliummight",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "myceliummight",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toedscruel",
+            "species": "Toedscruel",
+            "details": "Toedscruel, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 85,
+              "spa": 100,
+              "spd": 140,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "myceliummight",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "earthpower",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Toedscruel|Toedscruel, L50, F|155/155",
+          "|switch|p2a: Gholdengo|Gholdengo, L50|162/162",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Toedscruel|Toedscruel, L50, F|155/155",
+          "|switch|p2a: Gholdengo|Gholdengo, L50|162/162",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Toedscruel|Toedscruel, L50, F|155/155",
+          "|switch|p2a: Gholdengo|Gholdengo, L50|162/162",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Earth Power",
+                  "id": "earthpower",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toedscruel",
+                "details": "Toedscruel, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 85,
+                  "spa": 100,
+                  "spd": 140,
+                  "spe": 120
+                },
+                "moves": [
+                  "tailwhip",
+                  "earthpower"
+                ],
+                "baseAbility": "myceliummight",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "myceliummight",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toedscruel",
+            "species": "Toedscruel",
+            "details": "Toedscruel, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 85,
+              "spa": 100,
+              "spd": 140,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "myceliummight",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "earthpower",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Toedscruel|Tail Whip|p2a: Gholdengo",
+          "|debug|TryHit handler suppressed by Mold Breaker",
+          "|-unboost|p2a: Gholdengo|def|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Toedscruel|Tail Whip|p2a: Gholdengo",
+          "|debug|TryHit handler suppressed by Mold Breaker",
+          "|-unboost|p2a: Gholdengo|def|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Gholdengo|Recover||[still]",
+          "|-fail|p2a: Gholdengo|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Toedscruel|Tail Whip|p2a: Gholdengo",
+          "|debug|TryHit handler suppressed by Mold Breaker",
+          "|-unboost|p2a: Gholdengo|def|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Earth Power",
+                  "id": "earthpower",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toedscruel",
+                "details": "Toedscruel, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 85,
+                  "spa": 100,
+                  "spd": 140,
+                  "spe": 120
+                },
+                "moves": [
+                  "tailwhip",
+                  "earthpower"
+                ],
+                "baseAbility": "myceliummight",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "myceliummight",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50",
+                "condition": "162/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toedscruel",
+            "species": "Toedscruel",
+            "details": "Toedscruel, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 85,
+              "spa": 100,
+              "spd": 140,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "myceliummight",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "earthpower",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Toedscruel|Earth Power|p2a: Gholdengo",
+          "|-supereffective|p2a: Gholdengo|1",
+          "|-damage|p2a: Gholdengo|54/162",
+          "|move|p2a: Gholdengo|Recover|p2a: Gholdengo",
+          "|-heal|p2a: Gholdengo|135/162",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Toedscruel|Earth Power|p2a: Gholdengo",
+          "|-supereffective|p2a: Gholdengo|1",
+          "|-damage|p2a: Gholdengo|54/162",
+          "|move|p2a: Gholdengo|Recover|p2a: Gholdengo",
+          "|-heal|p2a: Gholdengo|135/162",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Toedscruel|Earth Power|p2a: Gholdengo",
+          "|-supereffective|p2a: Gholdengo|1",
+          "|-damage|p2a: Gholdengo|54/162",
+          "|move|p2a: Gholdengo|Recover|p2a: Gholdengo",
+          "|-heal|p2a: Gholdengo|135/162",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Earth Power",
+                  "id": "earthpower",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toedscruel",
+                "details": "Toedscruel, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 85,
+                  "spa": 100,
+                  "spd": 140,
+                  "spe": 120
+                },
+                "moves": [
+                  "tailwhip",
+                  "earthpower"
+                ],
+                "baseAbility": "myceliummight",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "myceliummight",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gholdengo",
+                "details": "Gholdengo, L50",
+                "condition": "135/162",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 115,
+                  "spa": 153,
+                  "spd": 111,
+                  "spe": 104
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "goodasgold",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "goodasgold",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toedscruel",
+            "species": "Toedscruel",
+            "details": "Toedscruel, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 85,
+              "spa": 100,
+              "spd": 140,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "myceliummight",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "earthpower",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gholdengo",
+            "species": "Gholdengo",
+            "details": "Gholdengo, L50",
+            "hp": 135,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 115,
+              "spa": 153,
+              "spd": 111,
+              "spe": 104
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "goodasgold",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

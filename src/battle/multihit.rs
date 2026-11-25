@@ -84,7 +84,7 @@ impl Battle {
         let numerator = i32::from(base) * an * ed;
         let denominator = ad * en;
         let mut accuracy = numerator as f64 / denominator as f64;
-        self.prepare_accuracy_modifiers(source, target, true, zoom);
+        self.prepare_accuracy_modifiers(source, target, true, zoom, data.category);
         let micle = !data.ohko && !data.always_hit && self.consume_micle_accuracy(source);
         if always_hits {
             return true;

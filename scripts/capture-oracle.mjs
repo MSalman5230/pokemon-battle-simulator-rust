@@ -2203,6 +2203,30 @@ const windRiderRosters = [
     [named('Tornadus', ['Tailwind'], 'M'), {...named('Brambleghast', ['Tackle']), ability:'Wind Rider'}],
     [named('Whimsicott', ['Gust']), named('Porygon2', ['Recover'])],
 ];
+const triageRosters = [
+    [{...named('Comfey', ['Draining Kiss']), ability:'Triage'}],
+    [named('Dragapult', ['Quick Attack'])],
+];
+const myceliumRosters = [
+    [{...named('Toedscruel', ['Tail Whip', 'Earth Power']), ability:'Mycelium Might'}],
+    [{...named('Gholdengo', ['Recover'], 'N'), ability:'Good as Gold'}],
+];
+const normalizeRosters = [
+    [{...named('Delcatty', ['Ember', 'Hidden Power Fire']), ability:'Normalize'}],
+    [named('Gengar', ['Recover']), named('Umbreon', ['Recover'])],
+];
+const truantRosters = [
+    [{...named('Slaking', ['Tackle']), ability:'Truant'}],
+    [named('Chansey', ['Recover'])],
+];
+const wonderGuardRosters = [
+    [named('Flareon', ['Tackle', 'Water Gun', 'Ember'])],
+    [{...named('Shedinja', ['Recover'], 'N'), ability:'Wonder Guard'}],
+];
+const wonderSkinRosters = [
+    [named('Espeon', ['Tail Whip', 'Tackle'])],
+    [{...named('Delcatty', ['Recover']), ability:'Wonder Skin'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3818,6 +3842,18 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         costarRosters, 'custom-costar-copies-boosts-and-focus-energy'],
     ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1 1','move 1 2, move 1']],
         windRiderRosters, 'custom-wind-rider-absorbs-wind-and-boosts-from-tailwind'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        triageRosters, 'custom-triage-boosts-healing-move-priority'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        myceliumRosters, 'custom-mycelium-might-delays-status-and-ignores-ability'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 1','switch 2'], ['move 2','move 1']],
+        normalizeRosters, 'custom-normalize-converts-move-but-not-hidden-power'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1']],
+        truantRosters, 'custom-truant-alternates-without-spending-pp'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 1']],
+        wonderGuardRosters, 'custom-wonder-guard-requires-super-effective-damage'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        wonderSkinRosters, 'custom-wonder-skin-only-changes-numeric-status-accuracy'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

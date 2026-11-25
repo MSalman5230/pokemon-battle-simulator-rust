@@ -861,7 +861,11 @@ impl Battle {
         {
             power_modifier = chain(5325, power_modifier);
         }
-        if converted && (hit == 1 || user.converted_move_type(&move_data.move_type).1) {
+        if converted
+            && (hit == 1
+                || user.active_ability() == "normalize"
+                || user.converted_move_type(&move_data.move_type).1)
+        {
             power_modifier = crate::mechanics::chain(4915, power_modifier);
         }
         if user.volatile_ids().contains(&"mefirst") {

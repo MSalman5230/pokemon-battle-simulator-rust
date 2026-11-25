@@ -1738,7 +1738,13 @@ impl Battle {
         {
             action.fractional_priority = -0.1;
         }
-        if action.fractional_priority <= 0.0 && self.custap_berry(actor) {
+        let mycelium_status = self.event_ability(actor) == "myceliummight"
+            && matches!(action.kind, ActionKind::Move {move_slot, ..}
+                if move_slot != RECHARGE_SLOT && self.move_data(actor, move_slot).category == Category::Status);
+        if mycelium_status {
+            action.fractional_priority = -0.1;
+        }
+        if !mycelium_status && action.fractional_priority <= 0.0 && self.custap_berry(actor) {
             action.fractional_priority = 0.1;
         }
     }
@@ -2549,6 +2555,15 @@ impl Battle {
         if self.mon(pos).ability == "ripen" {
             self.mon_mut(pos).ripen_pending = false;
         }
+        if self.mon(pos).ability == "truant" {
+            let missed_turn =
+                self.mon(pos).active_turns != 0 && (self.mon(pos).acted || self.turn_queue_empty);
+            let mon = self.mon_mut(pos);
+            mon.untrack_volatile("truant");
+            if missed_turn {
+                mon.track_volatile("truant");
+            }
+        }
         if let Some(label) = match self.mon(pos).ability.as_str() {
             "pressure" => Some("Pressure"),
             "comatose" => Some("Comatose"),
@@ -2759,6 +2774,11 @@ impl Battle {
                 data.move_type == "Flying"
                     && self.mon(pos).hp == self.mon(pos).max_hp.get()
                     && self.event_ability(pos) == "galewings",
+            )
+            + 3 * i8::from(
+                self.mon(pos).ability == "triage"
+                    && data.flags.contains_key("heal")
+                    && self.event_ability(pos) == "triage",
             )
     }
 
@@ -4466,6 +4486,22 @@ impl Battle {
             .filter(|_| move_data.name == "Natural Gift");
         let (mut move_type, converted) = if damaging_z || bide_strike.is_some() {
             (move_data.move_type.as_str(), false)
+        } else if self.mon(source).ability == "normalize"
+            && self.event_ability(source) == "normalize"
+            && !matches!(
+                move_data.name.as_str(),
+                "Hidden Power"
+                    | "Judgment"
+                    | "Multi-Attack"
+                    | "Natural Gift"
+                    | "Revelation Dance"
+                    | "Struggle"
+                    | "Techno Blast"
+                    | "Terrain Pulse"
+                    | "Weather Ball"
+            )
+        {
+            ("Normal", true)
         } else if struggle {
             ("???", false)
         } else if weather_ball {
@@ -4765,10 +4801,11 @@ impl Battle {
             move_data = super::legacy_attacks::secret_power(self.format.dex_mod, terrain);
         }
         if !delayed
-            && matches!(
+            && (matches!(
                 self.mon(source).active_ability(),
                 "moldbreaker" | "teravolt" | "turboblaze"
-            )
+            ) || self.mon(source).active_ability() == "myceliummight"
+                && move_data.category == Category::Status)
         {
             self.ability_breaker = Some(source);
         }
@@ -6288,6 +6325,7 @@ impl Battle {
                     return false;
                 }
             }
+            self.debug_suppressed_hook(mut_pos, "onTryHit");
             let reflector = if self.mon(mut_pos).under(LegacyCondition::MagicCoat) {
                 Some((
                     ExternalEffect::MagicCoat,
@@ -6388,6 +6426,41 @@ impl Battle {
                     ));
                 }
                 false
+            } else if source != mut_pos
+                && move_data.category != Category::Status
+                && !struggle
+                && (!sky_drop || releasing_charge)
+                && self.event_ability(mut_pos) == "wonderguard"
+            {
+                if self.format.report_exact_hp {
+                    self.add(format!(
+                        "|debug|Wonder Guard immunity: {}",
+                        to_id(&move_data.name)
+                    ));
+                }
+                let immune = self.move_ignores_immunity(source, move_data, move_type);
+                let effective = self
+                    .effectiveness_of(move_data, move_type, mut_pos, immune)
+                    .is_some_and(|effect| effect > 0);
+                let grounded = move_type != "Ground"
+                    || immune
+                    || self.grounded_ignoring_flying(
+                        mut_pos,
+                        self.mon(mut_pos).effective_item() == "ringtarget",
+                    );
+                if effective && grounded {
+                    true
+                } else {
+                    if smart_target {
+                        smart_target = false;
+                    } else {
+                        self.add(format!(
+                            "|-immune|{}|[from] ability: Wonder Guard",
+                            self.ident(mut_pos)
+                        ));
+                    }
+                    false
+                }
             } else if source != mut_pos
                 && source.player == mut_pos.player
                 && move_data.category != Category::Status
@@ -6522,7 +6595,13 @@ impl Battle {
             let numeric_accuracy = matches!(accuracy, Accuracy::Percent(_));
             let zoom = self.zoom_lens_active(source, pos, queue);
             if !ohko {
-                self.prepare_accuracy_modifiers(source, pos, numeric_accuracy, zoom);
+                self.prepare_accuracy_modifiers(
+                    source,
+                    pos,
+                    numeric_accuracy,
+                    zoom,
+                    move_data.category,
+                );
             }
             if numeric_accuracy && !ohko {
                 self.sort_unaware_handlers();
@@ -9542,6 +9621,12 @@ impl Battle {
         accuracy: u8,
         zoom: bool,
     ) -> u32 {
+        let accuracy =
+            if data.category == Category::Status && self.event_ability(target) == "wonderskin" {
+                50
+            } else {
+                accuracy
+            };
         let modifier = self.accuracy_modifier(
             source,
             target,
@@ -9851,6 +9936,12 @@ impl Pokemon {
                 | "poisonpuppeteer"
                 | "waterveil"
                 | "windrider"
+                | "myceliummight"
+                | "normalize"
+                | "triage"
+                | "truant"
+                | "wonderguard"
+                | "wonderskin"
                 | "runaway"
                 | "drizzle"
                 | "drought"

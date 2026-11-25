@@ -91,12 +91,20 @@ impl Battle {
         target: Position,
         numeric: bool,
         zoom: bool,
+        category: Category,
     ) {
         let ability = self.event_ability(source);
         let compound = ability == "compoundeyes";
         let active_handler = compound || ability == "hustle";
         if !active_handler && !self.format.report_exact_hp {
             return;
+        }
+        if self.format.report_exact_hp && self.mon(target).ability == "wonderskin" {
+            if self.ability_suppressed(target) {
+                self.log_suppressed_ability(target, "ModifyAccuracy");
+            } else if numeric && category == Category::Status {
+                self.add("|debug|Wonder Skin - setting accuracy to 50");
+            }
         }
         let evasion_handler = matches!(self.event_ability(target), "snowcloak" | "sandveil");
         let mut evasion_first = true;

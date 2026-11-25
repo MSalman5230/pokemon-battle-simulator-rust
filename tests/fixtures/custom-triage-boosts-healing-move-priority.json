@@ -1,0 +1,611 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Comfey\",\"moves\":[\"Draining Kiss\"],\"gender\":\"F\",\"name\":\"Comfey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Triage\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Dragapult\",\"moves\":[\"Quick Attack\"],\"gender\":\"F\",\"name\":\"Dragapult\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Comfey, L50, F|",
+          "|poke|p2|Dragapult, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Comfey, L50, F|",
+          "|poke|p2|Dragapult, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Comfey, L50, F|",
+          "|poke|p2|Dragapult, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Comfey",
+                "details": "Comfey, L50, F",
+                "condition": "126/126",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 110,
+                  "spa": 102,
+                  "spd": 130,
+                  "spe": 120
+                },
+                "moves": [
+                  "drainingkiss"
+                ],
+                "baseAbility": "triage",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "triage",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Dragapult",
+                "details": "Dragapult, L50, F",
+                "condition": "163/163",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 95,
+                  "spa": 120,
+                  "spd": 95,
+                  "spe": 162
+                },
+                "moves": [
+                  "quickattack"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Comfey",
+            "species": "Comfey",
+            "details": "Comfey, L50, F",
+            "hp": 126,
+            "maxhp": 126,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 110,
+              "spa": 102,
+              "spd": 130,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "triage",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "drainingkiss",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Dragapult",
+            "species": "Dragapult",
+            "details": "Dragapult, L50, F",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 95,
+              "spa": 120,
+              "spd": 95,
+              "spe": 162
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "quickattack",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Comfey|Comfey, L50, F|126/126",
+          "|switch|p2a: Dragapult|Dragapult, L50, F|163/163",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Comfey|Comfey, L50, F|126/126",
+          "|switch|p2a: Dragapult|Dragapult, L50, F|163/163",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Comfey|Comfey, L50, F|126/126",
+          "|switch|p2a: Dragapult|Dragapult, L50, F|163/163",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Draining Kiss",
+                  "id": "drainingkiss",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Comfey",
+                "details": "Comfey, L50, F",
+                "condition": "126/126",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 110,
+                  "spa": 102,
+                  "spd": 130,
+                  "spe": 120
+                },
+                "moves": [
+                  "drainingkiss"
+                ],
+                "baseAbility": "triage",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "triage",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Quick Attack",
+                  "id": "quickattack",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Dragapult",
+                "details": "Dragapult, L50, F",
+                "condition": "163/163",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 95,
+                  "spa": 120,
+                  "spd": 95,
+                  "spe": 162
+                },
+                "moves": [
+                  "quickattack"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Comfey",
+            "species": "Comfey",
+            "details": "Comfey, L50, F",
+            "hp": 126,
+            "maxhp": 126,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 110,
+              "spa": 102,
+              "spd": 130,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "triage",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "drainingkiss",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Dragapult",
+            "species": "Dragapult",
+            "details": "Dragapult, L50, F",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 95,
+              "spa": 120,
+              "spd": 95,
+              "spe": 162
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "quickattack",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Comfey|Draining Kiss|p2a: Dragapult",
+          "|-supereffective|p2a: Dragapult|1",
+          "|-damage|p2a: Dragapult|97/163",
+          "|move|p2a: Dragapult|Quick Attack|p1a: Comfey",
+          "|-damage|p1a: Comfey|105/126",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Comfey|Draining Kiss|p2a: Dragapult",
+          "|-supereffective|p2a: Dragapult|1",
+          "|-damage|p2a: Dragapult|97/163",
+          "|move|p2a: Dragapult|Quick Attack|p1a: Comfey",
+          "|-damage|p1a: Comfey|105/126",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Comfey|Draining Kiss|p2a: Dragapult",
+          "|-supereffective|p2a: Dragapult|1",
+          "|-damage|p2a: Dragapult|97/163",
+          "|move|p2a: Dragapult|Quick Attack|p1a: Comfey",
+          "|-damage|p1a: Comfey|105/126",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Draining Kiss",
+                  "id": "drainingkiss",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Comfey",
+                "details": "Comfey, L50, F",
+                "condition": "105/126",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 110,
+                  "spa": 102,
+                  "spd": 130,
+                  "spe": 120
+                },
+                "moves": [
+                  "drainingkiss"
+                ],
+                "baseAbility": "triage",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "triage",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Quick Attack",
+                  "id": "quickattack",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Dragapult",
+                "details": "Dragapult, L50, F",
+                "condition": "97/163",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 95,
+                  "spa": 120,
+                  "spd": 95,
+                  "spe": 162
+                },
+                "moves": [
+                  "quickattack"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Comfey",
+            "species": "Comfey",
+            "details": "Comfey, L50, F",
+            "hp": 105,
+            "maxhp": 126,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 110,
+              "spa": 102,
+              "spd": 130,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "triage",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "drainingkiss",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Dragapult",
+            "species": "Dragapult",
+            "details": "Dragapult, L50, F",
+            "hp": 97,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 95,
+              "spa": 120,
+              "spd": 95,
+              "spe": 162
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "quickattack",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

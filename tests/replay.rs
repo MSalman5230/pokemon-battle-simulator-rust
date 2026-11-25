@@ -2351,6 +2351,28 @@ fn inherited_status_and_support_abilities_run_at_matching_native_phases() {
 }
 
 #[test]
+fn inherited_move_control_abilities_change_only_their_native_action_stage() {
+    replay(include_str!(
+        "fixtures/custom-triage-boosts-healing-move-priority.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-mycelium-might-delays-status-and-ignores-ability.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-normalize-converts-move-but-not-hidden-power.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-truant-alternates-without-spending-pp.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-wonder-guard-requires-super-effective-damage.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-wonder-skin-only-changes-numeric-status-accuracy.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

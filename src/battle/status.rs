@@ -92,6 +92,14 @@ impl Battle {
             }
             _ => {}
         }
+        if self.event_ability(pos) == "truant" {
+            if self.mon(pos).volatile_ids().contains(&"truant") {
+                self.mon_mut(pos).untrack_volatile("truant");
+                self.add(format!("|cant|{}|ability: Truant", self.ident(pos)));
+                return false;
+            }
+            self.mon_mut(pos).track_volatile("truant");
+        }
         if self.mon(pos).flinched {
             self.add(format!("|cant|{}|flinch", self.ident(pos)));
             if self.event_ability(pos) == "steadfast" {
