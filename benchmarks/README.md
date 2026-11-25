@@ -59,6 +59,11 @@ steps/s for Showdown and 1,460 for Rust across five replays (4.37×). The
 [previous trace run](verified-trace-bss-result.json) measured 4.45× on the
 same workload hash.
 
+The [current BSS trace milestone](verified-current-bss-result.json) at
+commit `2d9e2b2` matched all 32 traces and all 673 step replies. On the
+same workload, the five-replay medians were 325.4 steps/s for Showdown and
+1,467.8 for Rust (4.51×).
+
 The [recorded native-validation run](verified-native-bss-result.json) used
 Rust commit `70653a09946713dc4593e467e83d3ef6bb6c7a2c`. Both workers matched
 all replies in the untimed parity replay, including 673 steps across 32
@@ -94,6 +99,24 @@ the same Intel i5-6300HQ host, the median across five replays was 474.1
 steps/s for Showdown and 1,673.5 for Rust (3.53×). This is a result on the
 verified subset, not a speed or parity claim about the default Poke-RL corpus.
 
+## Native generated-team replay
+
+Use the native simulator contract to sample longer continuations in Random
+Battle, Random Doubles Battle, and Roster Ranch Rumble. This diagnostic is
+separate from the timed Poke-RL workload.
+
+```sh
+source scripts/env.sh
+node scripts/capture-wide-native.mjs .tools/wide-native.jsonl --games 8 --max-turns 30
+cargo test --locked --test replay wide_generated -- --ignored --nocapture
+```
+
+Each game uses explicit, separate battle, roster, and choice seeds. The test
+checks every recorded public and private log, each side's current request,
+the party state, and the battle RNG, even when the replay reaches its turn
+cap. It reports the first mismatch in each game. Use
+`CHAMPIONS_NATIVE_CORPUS` to select a different generated corpus.
+
 ## Profile adapter overhead
 
 `benchmarks/profile-oracle.mjs` runs the locked worker's `Game` in-process
@@ -118,7 +141,7 @@ Add `--diagnose-parity` before `--` to report the first error or mismatch
 for each battle. This runs untimed, isolates games from failures in other
 slots, and exits nonzero if any game fails. The timed benchmark still
 requires parity on the original batched workload.
-On a separate untimed stress replay with 160 games and seed `20261125`,
-`a60fb32` matched 111 complete games and 2,297 steps before any blocker.
-The other 49 games stopped at an explicitly unsupported mechanic. This run
-does not establish parity on new seeds and does not report throughput.
+The [160-game diagnostic replay](verified-wide-bss-parity.json) with seed
+`20261125` matched all 2,856 step replies end to end at commit `2d9e2b2`.
+This was untimed and did not compare spectator traces. It does not
+establish parity on other seeds, rosters, or modes.

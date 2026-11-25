@@ -7,6 +7,10 @@ use serde_json::{Value, json};
 
 fn replay(raw: &str) {
     let fixture: Value = serde_json::from_str(raw).unwrap();
+    replay_fixture(&fixture);
+}
+
+fn replay_fixture(fixture: &Value) {
     let format = fixture["formatid"].as_str().unwrap();
     let mut stream = BattleStream::default();
     let mut log_cursor = 0;
@@ -119,6 +123,40 @@ fn replay(raw: &str) {
             }
         }
     }
+}
+
+#[test]
+#[ignore = "generate a corpus with node scripts/capture-wide-native.mjs .tools/wide-native.jsonl"]
+fn wide_generated_team_battles_match_native_checkpoints() {
+    use std::{
+        collections::BTreeMap,
+        fs::File,
+        io::{BufRead, BufReader},
+        panic,
+    };
+    let path = std::env::var("CHAMPIONS_NATIVE_CORPUS")
+        .unwrap_or_else(|_| ".tools/wide-native.jsonl".into());
+    let cases = BufReader::new(File::open(path).unwrap()).lines();
+    let mut totals = BTreeMap::<String, (usize, usize)>::new();
+    for raw in cases {
+        let raw = raw.unwrap();
+        let header: Value = serde_json::from_str(&raw).unwrap();
+        assert_eq!(
+            header["revision"],
+            pokemon_battle_simulator::dex::DEX.revision
+        );
+        let format = header["formatid"].as_str().unwrap();
+        let counts = totals.entry(format.to_owned()).or_default();
+        counts.1 += 1;
+        if panic::catch_unwind(|| replay_fixture(&header)).is_ok() {
+            counts.0 += 1;
+        } else {
+            eprintln!("first mismatch for {format}, seed {}", header["seed"]);
+        }
+    }
+    assert!(!totals.is_empty(), "empty replay corpus");
+    eprintln!("Exact native replays by format (passed, total) {totals:?}");
+    assert!(totals.values().all(|(passed, total)| passed == total));
 }
 
 #[test]
