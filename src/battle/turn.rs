@@ -1135,6 +1135,12 @@ impl Battle {
                     | "powertrick"
                     | "psychup"
                     | "topsyturvy"
+                    | "attract"
+                    | "axekick"
+                    | "eeriespell"
+                    | "snore"
+                    | "spite"
+                    | "triattack"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -3223,6 +3229,10 @@ impl Battle {
         } else if own_action && let Some(slot) = slot {
             let mon = self.mon_mut(source);
             if !continuing {
+                if mon.moves[slot].pp == 0 {
+                    self.add(format!("|cant|{source_name}|nopp|{}", move_data.name));
+                    return false;
+                }
                 mon.moves[slot].pp -= 1;
                 mon.used_moves |= 1 << slot;
             }
@@ -3570,6 +3580,15 @@ impl Battle {
             return true;
         }
         if move_data.name == "Belch" && !self.mon(source).ate_berry {
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
+            return true;
+        }
+        if move_data.name == "Snore"
+            && !matches!(self.mon(source).status, Status::Sleep(_))
+            && self.event_ability(source) != "comatose"
+        {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
             result.failed = true;
@@ -4256,7 +4275,9 @@ impl Battle {
                 false
             } else if self.absorb_elemental(mut_pos, source, move_type) {
                 false
-            } else if self.event_ability(mut_pos) == "oblivious" && move_data.name == "Taunt" {
+            } else if self.event_ability(mut_pos) == "oblivious"
+                && matches!(move_data.name.as_str(), "Taunt" | "Attract")
+            {
                 self.add(format!(
                     "|-immune|{}|[from] ability: Oblivious",
                     self.ident(mut_pos)
@@ -4339,12 +4360,19 @@ impl Battle {
             }
         });
         smart_target &= spread_targets.len() > 1;
-        if trapping_status || matches!(move_data.name.as_str(), "Octolock" | "Worry Seed") {
+        if trapping_status
+            || matches!(
+                move_data.name.as_str(),
+                "Octolock" | "Worry Seed" | "Attract"
+            )
+        {
             spread_targets.retain(|&target| {
                 if if trapping_status {
                     self.mon(target).has_type("Ghost")
                 } else if move_data.name == "Octolock" {
                     self.status_immune(target, "trapped")
+                } else if move_data.name == "Attract" {
+                    !self.compatible_attraction(source, target)
                 } else {
                     matches!(self.mon(target).ability.as_str(), "insomnia" | "truant")
                 } {
@@ -4436,7 +4464,7 @@ impl Battle {
             }
             if matches!(
                 move_data.name.as_str(),
-                "Supercell Slam" | "High Jump Kick" | "Jump Kick"
+                "Supercell Slam" | "High Jump Kick" | "Jump Kick" | "Axe Kick"
             ) {
                 let original_hp = self.mon(source).hp;
                 self.indirect_damage(source, 2, &format!("|[from] {}", to_id(&move_data.name)));
@@ -4558,7 +4586,7 @@ impl Battle {
                 }
                 if matches!(
                     move_data.name.as_str(),
-                    "Taunt" | "Encore" | "Disable" | "Torment"
+                    "Taunt" | "Encore" | "Disable" | "Torment" | "Attract"
                 ) && self.aroma_veil_blocks(target, true)
                 {
                     continue;
@@ -4993,6 +5021,22 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                     } else {
                         succeeded = true;
+                    }
+                }
+                if matches!(move_data.name.as_str(), "Attract" | "Spite") {
+                    let applied = if move_data.name == "Attract" {
+                        self.start_attraction(source, target, false)
+                    } else {
+                        self.reduce_last_move_pp(target, "Spite", 4)
+                    };
+                    if applied {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|move failed because it did nothing");
+                        }
                     }
                 }
                 if move_data.name == "Yawn" {
@@ -5718,9 +5762,17 @@ impl Battle {
                             }
                             continue;
                         }
-                        if move_data.name == "Dire Claw" {
-                            let status = ["psn", "par", "slp"][self.rng.below(3) as usize];
+                        if matches!(move_data.name.as_str(), "Dire Claw" | "Tri Attack") {
+                            let choices = if move_data.name == "Dire Claw" {
+                                ["psn", "par", "slp"]
+                            } else {
+                                ["brn", "par", "frz"]
+                            };
+                            let status = choices[self.rng.below(3) as usize];
                             self.try_status(target, status, source, move_data, false, base);
+                        }
+                        if move_data.name == "Eerie Spell" {
+                            self.reduce_last_move_pp(target, "Eerie Spell", 3);
                         }
                         if matches!(move_data.name.as_str(), "Anchor Shot" | "Spirit Shackle") {
                             self.start_linked_trap(source, target);

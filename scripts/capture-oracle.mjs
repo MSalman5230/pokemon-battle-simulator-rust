@@ -1286,6 +1286,30 @@ const invertAndCopyRosters = [
     [named('Malamar', ['Topsy-Turvy', 'Psych Up'])],
     [named('Vaporeon', ['Calm Mind', 'Recover'])],
 ];
+const spiteRosters = [
+    [named('Jolteon', ['Recover', 'Spite'])],
+    [named('Vaporeon', ['Recover'])],
+];
+const eerieSpellRosters = [
+    [named('Slowking-Galar', ['Eerie Spell'])],
+    [named('Vaporeon', ['Recover'])],
+];
+const attractMoveRosters = [
+    [named('Azumarill', ['Recover', 'Attract']), named('Umbreon', ['Recover'])],
+    [named('Torkoal', ['Substitute', 'Tackle'], 'M')],
+];
+const snoreRosters = [
+    [named('Alakazam', ['Snore'])],
+    [named('Vaporeon', ['Spore', 'Recover'])],
+];
+const triAttackRosters = [
+    [named('Alakazam', ['Tri Attack'])],
+    [named('Vaporeon', ['Recover'])],
+];
+const axeKickRosters = [
+    [named('Medicham', ['Axe Kick'])],
+    [named('Vaporeon', ['Protect', 'Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2413,6 +2437,18 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','move 1'], ['switch 2',null], ['move 1','move 1']], powerTrickRosters, 'bss-power-trick'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 2','move 2']],
         invertAndCopyRosters, 'bss-invert-copy-stats'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 2','move 1']],
+        spiteRosters, 'bss-spite-queued-pp'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        eerieSpellRosters, 'bss-eerie-spell'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['switch 2','move 2']],
+        attractMoveRosters, 'bss-attract'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        snoreRosters, 'bss-snore'],
+    ['bssregmc', [['team 1','team 1'], ...Array(3).fill(['move 1','move 1'])],
+        triAttackRosters, 'bss-tri-attack'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        axeKickRosters, 'bss-axe-kick'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

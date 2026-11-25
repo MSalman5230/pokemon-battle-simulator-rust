@@ -1579,6 +1579,28 @@ fn topsy_turvy_and_psych_up_change_stages_without_boost_events() {
 }
 
 #[test]
+fn pp_reduction_can_exhaust_a_move_after_it_is_queued() {
+    replay(include_str!("fixtures/bss-spite-queued-pp.json"));
+    replay(include_str!("fixtures/bss-eerie-spell.json"));
+}
+
+#[test]
+fn attract_bypasses_substitute_and_ends_when_the_source_leaves() {
+    replay(include_str!("fixtures/bss-attract.json"));
+}
+
+#[test]
+fn snore_and_tri_attack_run_their_native_status_paths() {
+    replay(include_str!("fixtures/bss-snore.json"));
+    replay(include_str!("fixtures/bss-tri-attack.json"));
+}
+
+#[test]
+fn axe_kick_can_crash_against_protection() {
+    replay(include_str!("fixtures/bss-axe-kick.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

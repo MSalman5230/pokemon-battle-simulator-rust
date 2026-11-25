@@ -1,4 +1,4 @@
-//! Contact-induced infatuation. The condition tracks a stable roster identity,
+//! Infatuation tracks a stable roster identity,
 //! not a field slot that could be occupied by a different Pokémon after a switch.
 
 use super::{turn::Position, *};
@@ -30,23 +30,41 @@ impl Battle {
         {
             return;
         }
-        if !matches!(
-            (self.mon(holder).gender, self.mon(attacker).gender),
-            (b'M', b'F') | (b'F', b'M')
-        ) {
+        if !self.compatible_attraction(holder, attacker) {
             return;
         }
         if self.aroma_veil_blocks(attacker, false) {
             return;
         }
-        let roster = self.mon(holder).roster_index;
-        let mon = self.mon_mut(attacker);
-        mon.attract = Some((holder.player, roster));
+        self.start_attraction(holder, attacker, true);
+    }
+
+    pub(super) fn compatible_attraction(&self, source: Position, target: Position) -> bool {
+        matches!(
+            (self.mon(source).gender, self.mon(target).gender),
+            (b'M', b'F') | (b'F', b'M')
+        )
+    }
+
+    pub(super) fn start_attraction(
+        &mut self,
+        source: Position,
+        target: Position,
+        cute_charm: bool,
+    ) -> bool {
+        let roster = self.mon(source).roster_index;
+        let mon = self.mon_mut(target);
+        if mon.hp == 0 || mon.attract.is_some() {
+            return false;
+        }
+        mon.attract = Some((source.player, roster));
         mon.track_volatile("attract");
-        self.add(format!(
-            "|-start|{}|Attract|[from] ability: Cute Charm|[of] {}",
-            self.ident(attacker),
-            self.ident(holder)
-        ));
+        let cause = if cute_charm {
+            format!("|[from] ability: Cute Charm|[of] {}", self.ident(source))
+        } else {
+            String::new()
+        };
+        self.add(format!("|-start|{}|Attract{cause}", self.ident(target)));
+        true
     }
 }

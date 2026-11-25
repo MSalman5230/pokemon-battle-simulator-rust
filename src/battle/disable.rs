@@ -3,6 +3,36 @@
 use super::{turn::Position, *};
 
 impl Battle {
+    pub(super) fn reduce_last_move_pp(
+        &mut self,
+        target: Position,
+        effect: &str,
+        amount: u8,
+    ) -> bool {
+        let mon = self.mon_mut(target);
+        if mon.hp == 0 {
+            return false;
+        }
+        let Some((slot, data)) = mon
+            .last_move_slot
+            .and_then(|slot| mon.moves.get_mut(slot).map(|data| (slot, data)))
+        else {
+            return false;
+        };
+        mon.used_moves |= 1 << slot;
+        let lost = data.pp.min(amount);
+        if lost == 0 {
+            return false;
+        }
+        data.pp -= lost;
+        let move_name = &data.move_data.name;
+        self.add(format!(
+            "|-activate|{}|move: {effect}|{move_name}|{lost}",
+            self.ident(target)
+        ));
+        true
+    }
+
     pub(super) fn foe_imprison(&self, pos: Position) -> impl Iterator<Item = &Pokemon> {
         let slots = self.format.game_type.active_slots();
         self.party(pos.player.foe()).unwrap()[..slots]

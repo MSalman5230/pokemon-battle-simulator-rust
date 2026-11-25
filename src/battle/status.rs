@@ -71,7 +71,7 @@ impl Battle {
                 } else {
                     self.mon_mut(pos).status = Status::Sleep(turns - decrement);
                     self.add(format!("|cant|{}|slp", self.ident(pos)));
-                    if data.name != "Sleep Talk" {
+                    if !matches!(data.name.as_str(), "Sleep Talk" | "Snore") {
                         return false;
                     }
                 }
