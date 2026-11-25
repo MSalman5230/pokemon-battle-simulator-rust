@@ -56,6 +56,11 @@ impl Battle {
                 .disabled_slot
                 .is_some_and(|(disabled, _)| disabled == slot)
             || (mon.moves[slot].id == "lastresort" && !mon.can_use_last_resort())
+            || (mon.active_move_actions > 0
+                && matches!(mon.moves[slot].id.as_str(), "fakeout" | "firstimpression"))
+            || (mon.taunt > 0
+                && mon.moves[slot].move_data.category == crate::dex::Category::Status
+                && mon.moves[slot].id != "mefirst")
     }
 
     pub(super) fn actual_disabled(&self, pos: Position, slot: usize) -> bool {
@@ -120,6 +125,26 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn taunt(&mut self, target: Position) -> bool {
+        let mon = self.mon_mut(target);
+        if mon.taunt > 0 {
+            return false;
+        }
+        mon.taunt = 3 + u8::from(mon.active_turns > 0 && mon.acted);
+        mon.track_volatile("taunt");
+        self.add(format!("|-start|{}|move: Taunt", self.ident(target)));
+        true
+    }
+
+    pub(super) fn tick_taunt(&mut self, target: Position) {
+        let mon = self.mon_mut(target);
+        mon.taunt -= 1;
+        if mon.taunt == 0 {
+            mon.untrack_volatile("taunt");
+            self.add(format!("|-end|{}|move: Taunt", self.ident(target)));
+        }
+    }
+
     pub(super) fn disable_last_move(
         &mut self,
         target: Position,

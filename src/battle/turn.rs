@@ -701,6 +701,9 @@ impl Battle {
                     | "hurricane"
                     | "thunder"
                     | "blizzard"
+                    | "taunt"
+                    | "fakeout"
+                    | "firstimpression"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -897,9 +900,11 @@ impl Battle {
                     party[outgoing.slot].imprisoned = false;
                     party[outgoing.slot].choice_lock = None;
                     party[outgoing.slot].active_turns = 0;
+                    party[outgoing.slot].active_move_actions = 0;
                     party[outgoing.slot].roosted = false;
                     party[outgoing.slot].temporary_type = None;
                     party[outgoing.slot].yawn = 0;
+                    party[outgoing.slot].taunt = 0;
                     party[outgoing.slot].attract = None;
                     party[outgoing.slot].disabled_slot = None;
                     party[outgoing.slot].last_move_slot = None;
@@ -940,6 +945,7 @@ impl Battle {
                         matches!(q.kind, ActionKind::Move { .. } | ActionKind::Switch { .. })
                     });
                     self.mon_mut(source).acted = true;
+                    self.mon_mut(source).active_move_actions += 1;
                     if self.run_move(source, move_slot, target, another_action) {
                         self.end_rampage_attempt(source);
                     }
@@ -1099,6 +1105,7 @@ impl Battle {
             SpeedBoost,
             Roost,
             Yawn,
+            Taunt,
             Disable,
             Screen(Screen),
         }
@@ -1150,6 +1157,9 @@ impl Battle {
             }
             if mon.disabled_slot.is_some() {
                 timers.push((pos, Effect::Disable, priority(17, 2)));
+            }
+            if mon.taunt > 0 {
+                timers.push((pos, Effect::Taunt, priority(15, 2)));
             }
             if mon.yawn > 0 {
                 timers.push((pos, Effect::Yawn, priority(23, 2)));
@@ -1204,6 +1214,7 @@ impl Battle {
                 Effect::Weather | Effect::Screen(_) => unreachable!(),
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::Disable => self.tick_disable(pos),
+                Effect::Taunt => self.tick_taunt(pos),
                 Effect::ShedSkin => self.shed_skin(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Roost => {
@@ -1507,6 +1518,17 @@ impl Battle {
             return true;
         }
 
+        if self.mon(source).active_move_actions > 1
+            && matches!(move_data.name.as_str(), "Fake Out" | "First Impression")
+        {
+            self.add(format!(
+                "|-hint|{} only works on your first turn out.",
+                move_data.name
+            ));
+            self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+            self.add(format!("|-fail|{source_name}"));
+            return true;
+        }
         self.protean_prepare(source, move_type);
         let spread = spread_targets.len() > 1;
         // Preserve upstream's hit-step batching: all protection and immunity
@@ -1516,6 +1538,12 @@ impl Battle {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
                 false
             } else if self.absorb_elemental(mut_pos, source, move_type) {
+                false
+            } else if self.mon(mut_pos).ability == "oblivious" && move_data.name == "Taunt" {
+                self.add(format!(
+                    "|-immune|{}|[from] ability: Oblivious",
+                    self.ident(mut_pos)
+                ));
                 false
             } else if source != mut_pos
                 && move_data.flags.contains_key("sound")
@@ -1601,6 +1629,14 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Taunt" {
+                    if self.taunt(target) {
+                        succeeded = true;
+                    } else {
+                        self.log[base].public = format!("|move|{source_name}|Taunt||[still]");
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if move_data.name == "Disable" {
                     if !self.disable_last_move(target, source, false) {
                         self.log[base].public = format!("|move|{source_name}|Disable||[still]");
@@ -1901,6 +1937,7 @@ impl Battle {
                     }
                     if effect.volatile_status.as_deref() == Some("flinch")
                         && self.mon(target).hp > 0
+                        && self.mon(target).ability != "innerfocus"
                     {
                         self.mon_mut(target).flinched = true;
                         self.mon_mut(target).track_volatile("flinch");
@@ -2084,6 +2121,7 @@ impl Battle {
         mon.roosted = false;
         mon.temporary_type = None;
         mon.yawn = 0;
+        mon.taunt = 0;
         mon.attract = None;
         mon.disabled_slot = None;
         mon.last_move_slot = None;
@@ -2243,6 +2281,7 @@ impl Pokemon {
                 | "shadowtag"
                 | "intimidate"
                 | "innerfocus"
+                | "oblivious"
                 | "speedboost"
                 | "multiscale"
                 | "guts"

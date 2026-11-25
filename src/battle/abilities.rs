@@ -208,10 +208,15 @@ impl Battle {
                 self.add(format!("|-ability|{}|Intimidate|boost", self.ident(pos)));
                 started = true;
             }
-            if self.mon(target).ability == "innerfocus" {
+            let blocked = match self.mon(target).ability.as_str() {
+                "innerfocus" => Some("Inner Focus"),
+                "oblivious" => Some("Oblivious"),
+                _ => None,
+            };
+            if let Some(blocked) = blocked {
                 let ident = self.ident(target);
                 self.add(format!(
-                    "|-fail|{ident}|unboost|atk|[from] ability: Inner Focus|[of] {ident}"
+                    "|-fail|{ident}|unboost|atk|[from] ability: {blocked}|[of] {ident}"
                 ));
             } else if let Some(ability) = self.mon(target).stat_drop_protection() {
                 self.fail_stat_drop(target, ability);

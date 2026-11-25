@@ -349,23 +349,39 @@ impl PublicState {
                     self.mon_mut(key)["types"] = json!(get(4).split('/').collect::<Vec<_>>());
                 }
             }
-            "-start"
-                if matches!(
-                    get(3),
-                    "move: Imprison" | "move: Yawn" | "Attract" | "Disable"
-                ) =>
-            {
+            "-start" if get(3) == "typeadd" => {
                 if let Some(key) = key {
-                    self.mon_mut(key)["volatiles"][effect(get(3))] =
-                        json!({"turn":turn,"move":(!get(4).is_empty()).then(|| to_id(get(4)))});
+                    let types = self.mon_mut(key)["types"].as_array_mut().unwrap();
+                    if !types.iter().any(|ty| ty == get(4)) {
+                        types.push(json!(get(4)));
+                    }
                 }
             }
-            "-end" if matches!(get(3), "move: Yawn" | "Attract") => {
+            "-start" => {
                 if let Some(key) = key {
-                    self.mon_mut(key)["volatiles"]
-                        .as_object_mut()
-                        .unwrap()
-                        .remove(&effect(get(3)));
+                    let id = effect(get(3));
+                    let volatiles = self.mon_mut(key)["volatiles"].as_object_mut().unwrap();
+                    for prefix in ["stockpile", "perish"] {
+                        if id.starts_with(prefix) {
+                            volatiles.retain(|key, _| !key.starts_with(prefix));
+                        }
+                    }
+                    volatiles.insert(
+                        id,
+                        json!({"turn":turn,"move":(!get(4).is_empty()).then(|| to_id(get(4)))}),
+                    );
+                }
+            }
+            "-end" => {
+                if let Some(key) = key {
+                    let id = effect(get(3));
+                    let volatiles = self.mon_mut(key)["volatiles"].as_object_mut().unwrap();
+                    volatiles.remove(&id);
+                    if matches!(id.as_str(), "stockpile" | "perishsong") {
+                        volatiles.retain(|key, _| {
+                            !key.starts_with("stockpile") && !key.starts_with("perish")
+                        });
+                    }
                 }
             }
             "-singleturn" => {

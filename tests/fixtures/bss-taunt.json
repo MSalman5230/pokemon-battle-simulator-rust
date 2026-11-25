@@ -1,0 +1,3197 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Weavile\",\"moves\":[\"Taunt\",\"Fake Out\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Weavile\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Inner Focus\"},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Snorlax\",\"moves\":[\"Recover\",\"Tackle\",\"Protect\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Slowbro\",\"moves\":[\"Recover\",\"Water Gun\"],\"gender\":\"F\",\"name\":\"Slowbro\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Oblivious\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Weavile, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Slowbro, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Weavile, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Slowbro, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Weavile, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|poke|p2|Slowbro, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "taunt",
+                  "fakeout",
+                  "tackle"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "tackle",
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "watergun"
+                ],
+                "baseAbility": "oblivious",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "oblivious",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "observedDisables": [
+        [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false
+          ]
+        ],
+        [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false
+          ]
+        ]
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "taunt",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "oblivious",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Weavile|Weavile, L50, F|100/100",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Weavile|Weavile, L50, F|145/145",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Weavile|Weavile, L50, F|100/100",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Taunt",
+                  "id": "taunt",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "taunt",
+                  "fakeout",
+                  "tackle"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "tackle",
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "watergun"
+                ],
+                "baseAbility": "oblivious",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "oblivious",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "observedDisables": [
+        [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false
+          ]
+        ],
+        [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false
+          ]
+        ]
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "taunt",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "oblivious",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Weavile|Fake Out|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|88/100",
+          "|cant|p2a: Snorlax|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Fake Out|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|88/100",
+          "|cant|p2a: Snorlax|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Fake Out|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|208/235",
+          "|cant|p2a: Snorlax|flinch",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Taunt",
+                  "id": "taunt",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "taunt",
+                  "fakeout",
+                  "tackle"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "208/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "tackle",
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "watergun"
+                ],
+                "baseAbility": "oblivious",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "oblivious",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "observedDisables": [
+        [
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            false
+          ]
+        ],
+        [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false
+          ]
+        ]
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "taunt",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 208,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "oblivious",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Weavile|Taunt|p2a: Snorlax",
+          "|-start|p2a: Snorlax|move: Taunt",
+          "|cant|p2a: Snorlax|move: Taunt|Recover",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Taunt|p2a: Snorlax",
+          "|-start|p2a: Snorlax|move: Taunt",
+          "|cant|p2a: Snorlax|move: Taunt|Recover",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Taunt|p2a: Snorlax",
+          "|-start|p2a: Snorlax|move: Taunt",
+          "|cant|p2a: Snorlax|move: Taunt|Recover",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Taunt",
+                  "id": "taunt",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "taunt",
+                  "fakeout",
+                  "tackle"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": true
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": true
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "208/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "tackle",
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "watergun"
+                ],
+                "baseAbility": "oblivious",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "oblivious",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "observedDisables": [
+        [
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            false
+          ]
+        ],
+        [
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            false,
+            false
+          ]
+        ]
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "taunt",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 208,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "oblivious",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "7104,42574,9152,10809",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|76/100",
+          "|move|p2a: Snorlax|Tackle|p1a: Weavile",
+          "|-damage|p1a: Weavile|72/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|76/100",
+          "|move|p2a: Snorlax|Tackle|p1a: Weavile",
+          "|-damage|p1a: Weavile|105/145",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|180/235",
+          "|move|p2a: Snorlax|Tackle|p1a: Weavile",
+          "|-damage|p1a: Weavile|72/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Taunt",
+                  "id": "taunt",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "105/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "taunt",
+                  "fakeout",
+                  "tackle"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": true
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": true
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "180/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "tackle",
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "watergun"
+                ],
+                "baseAbility": "oblivious",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "oblivious",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "observedDisables": [
+        [
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            false
+          ]
+        ],
+        [
+          [
+            true,
+            false,
+            true
+          ],
+          [
+            false,
+            false
+          ]
+        ]
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 105,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "taunt",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 180,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "oblivious",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "9229,60870,33850,16231",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|65/100",
+          "|move|p2a: Snorlax|Tackle|p1a: Weavile",
+          "|-damage|p1a: Weavile|44/100",
+          "|",
+          "|-end|p2a: Snorlax|move: Taunt",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|65/100",
+          "|move|p2a: Snorlax|Tackle|p1a: Weavile",
+          "|-damage|p1a: Weavile|65/145",
+          "|",
+          "|-end|p2a: Snorlax|move: Taunt",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|154/235",
+          "|move|p2a: Snorlax|Tackle|p1a: Weavile",
+          "|-damage|p1a: Weavile|44/100",
+          "|",
+          "|-end|p2a: Snorlax|move: Taunt",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Taunt",
+                  "id": "taunt",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "65/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "taunt",
+                  "fakeout",
+                  "tackle"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "154/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "tackle",
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "watergun"
+                ],
+                "baseAbility": "oblivious",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "oblivious",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "observedDisables": [
+        [
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            false
+          ]
+        ],
+        [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false
+          ]
+        ]
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 65,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "taunt",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 154,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "oblivious",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "1282,42014,22271,29224",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|52/100",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|100/100",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|52/100",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|100/100",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Weavile|Tackle|p2a: Snorlax",
+          "|-damage|p2a: Snorlax|124/235",
+          "|move|p2a: Snorlax|Recover|p2a: Snorlax",
+          "|-heal|p2a: Snorlax|235/235",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Taunt",
+                  "id": "taunt",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "65/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "taunt",
+                  "fakeout",
+                  "tackle"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "tackle",
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "watergun"
+                ],
+                "baseAbility": "oblivious",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "oblivious",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "observedDisables": [
+        [
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            false
+          ]
+        ],
+        [
+          [
+            false,
+            false,
+            false
+          ],
+          [
+            false,
+            false
+          ]
+        ]
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 65,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "taunt",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 17,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "oblivious",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 2"
+      ],
+      "turn": 7,
+      "seed": "1282,42014,22271,29224",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Slowbro|Slowbro, L50, F|100/100",
+          "|move|p1a: Weavile|Taunt|p2a: Slowbro",
+          "|-immune|p2a: Slowbro|[from] ability: Oblivious",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p2a: Slowbro|Slowbro, L50, F|100/100",
+          "|move|p1a: Weavile|Taunt|p2a: Slowbro",
+          "|-immune|p2a: Slowbro|[from] ability: Oblivious",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p2a: Slowbro|Slowbro, L50, F|170/170",
+          "|move|p1a: Weavile|Taunt|p2a: Slowbro",
+          "|-immune|p2a: Slowbro|[from] ability: Oblivious",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Taunt",
+                  "id": "taunt",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weavile",
+                "details": "Weavile, L50, F",
+                "condition": "65/145",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 85,
+                  "spa": 65,
+                  "spd": 105,
+                  "spe": 145
+                },
+                "moves": [
+                  "taunt",
+                  "fakeout",
+                  "tackle"
+                ],
+                "baseAbility": "innerfocus",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "innerfocus",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Slowbro",
+                "details": "Slowbro, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 130,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "watergun"
+                ],
+                "baseAbility": "oblivious",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "oblivious",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover",
+                  "tackle",
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "observedDisables": [
+        [
+          [
+            false,
+            true,
+            false
+          ],
+          [
+            false
+          ]
+        ],
+        [
+          [
+            false,
+            false
+          ],
+          [
+            false,
+            false,
+            false
+          ]
+        ]
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weavile",
+            "species": "Weavile",
+            "details": "Weavile, L50, F",
+            "hp": 65,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 85,
+              "spa": 65,
+              "spd": 105,
+              "spe": 145
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "innerfocus",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "taunt",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 17,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Slowbro",
+            "species": "Slowbro",
+            "details": "Slowbro, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 130,
+              "spa": 120,
+              "spd": 100,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "oblivious",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

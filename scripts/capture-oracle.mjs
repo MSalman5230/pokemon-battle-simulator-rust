@@ -220,6 +220,11 @@ const rampageRosters = [
     [named('Shuckle', ['Tackle', 'Outrage']), named('Vaporeon', ['Recover'])],
     [{...named('Umbreon', ['Recover', 'Protect']), ability: 'Pressure'}, named('Jolteon', ['Recover'])],
 ];
+const tauntRosters = [
+    [{...named('Weavile', ['Taunt', 'Fake Out', 'Tackle']), ability: 'Inner Focus'}, named('Vaporeon', ['Recover'])],
+    [named('Snorlax', ['Recover', 'Tackle', 'Protect']),
+        {...named('Slowbro', ['Recover', 'Water Gun']), ability: 'Oblivious'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -310,6 +315,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12', 'team 12'], ['move 2, move 1', 'move 1, move 1'],
         ['move 1, move 1', 'move 1, move 1'], ['move 1, move 1', 'move 1, move 1']],
         rampageRosters, 'vgc-rampage', '1,2,3,1'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 2', 'move 1'], ['move 1', 'move 1'],
+        ['move 3', 'move 2'], ['move 3', 'move 2'], ['move 3', 'move 1'], ['move 1', 'switch 2']],
+        tauntRosters, 'bss-taunt'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
@@ -343,7 +351,7 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
             waiting: battle.sides.map(s => s.isChoiceDone()),
             channels: [0, 1, 2].map(id => channels[id].filter(l => !l.startsWith('|uhtml|otsrequest|') && !l.startsWith('|uhtmlchange|otsrequest|'))),
             requests: battle.sides.map(s => structuredClone(s.activeRequest)),
-            ...(label === 'bss-last-resort' && {observedDisables: battle.sides.map(s =>
+            ...(['bss-last-resort', 'bss-taunt'].includes(label) && {observedDisables: battle.sides.map(s =>
                 s.pokemon.map(p => p.moveSlots.map(m => !!m.disabled)))}),
             teams: battle.sides.map(s => s.pokemon.map(p => ({
                 name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp, status: p.status,

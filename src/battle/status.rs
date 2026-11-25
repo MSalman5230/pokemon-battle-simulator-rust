@@ -87,6 +87,17 @@ impl Battle {
             self.add(format!("|cant|{}|Disable|{}", self.ident(pos), data.name));
             return false;
         }
+        if self.mon(pos).taunt > 0
+            && data.category == crate::dex::Category::Status
+            && data.name != "Me First"
+        {
+            self.add(format!(
+                "|cant|{}|move: Taunt|{}",
+                self.ident(pos),
+                data.name
+            ));
+            return false;
+        }
         if self.imprisoned_move(pos, &data.name) {
             self.add(format!(
                 "|cant|{}|move: Imprison|{}",

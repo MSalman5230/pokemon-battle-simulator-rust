@@ -290,3 +290,8 @@ fn bss_rampage_requests_spend_pp_only_on_start_and_end_with_fatigue() {
 fn vgc_rampage_replays_random_targeting_across_forced_moves() {
     replay(include_str!("fixtures/vgc-rampage.json"));
 }
+
+#[test]
+fn bss_taunt_interrupts_selected_status_moves_and_updates_requests() {
+    replay(include_str!("fixtures/bss-taunt.json"));
+}
