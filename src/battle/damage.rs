@@ -128,6 +128,24 @@ impl Battle {
                     "",
                 ),
             ),
+            "fluffy" => {
+                let contact = data.flags.contains_key("contact");
+                let factor = match (typing == "Fire", contact) {
+                    (true, false) => 8192,
+                    (false, true) => 2048,
+                    _ => 4096,
+                };
+                add(defender.speed, 7, Hook::Ability(target, factor, ""));
+            }
+            "punkrock" => add(
+                defender.speed,
+                7,
+                if data.flags.contains_key("sound") {
+                    Hook::Ability(target, 2048, "Punk Rock weaken")
+                } else {
+                    Hook::Ability(target, 4096, "")
+                },
+            ),
             id @ ("filter" | "solidrock" | "prismarmor") => {
                 let debug = match id {
                     "filter" => "Filter neutralize",
@@ -311,6 +329,13 @@ impl Battle {
             && self.format.report_exact_hp
         {
             self.add(format!("|debug|Boosting from Helping Hand: {multiplier}"));
+        }
+        if source_active
+            && self.mon(source).ability == "punkrock"
+            && move_data.flags.contains_key("sound")
+            && self.format.report_exact_hp
+        {
+            self.add("|debug|Punk Rock boost");
         }
         let electric_charge = source_active
             && move_type == "Electric"

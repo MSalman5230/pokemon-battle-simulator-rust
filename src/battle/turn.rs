@@ -4574,9 +4574,12 @@ impl Battle {
                     }
                 }
             }
-            for &(target, _) in &damage {
+            for &(target, landed) in &damage {
                 if self.event_ability(target) == "illusion" {
                     self.end_illusion(target);
+                }
+                if landed > 0 && self.event_ability(target) == "spicyspray" {
+                    self.spicy_spray(target, source, base);
                 }
                 if move_data.flags.contains_key("contact") {
                     match self.event_ability(target) {
@@ -5346,6 +5349,9 @@ impl Pokemon {
                 | "hydration"
                 | "stall"
                 | "tangledfeet"
+                | "fluffy"
+                | "punkrock"
+                | "spicyspray"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

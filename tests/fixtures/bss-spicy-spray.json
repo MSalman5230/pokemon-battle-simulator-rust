@@ -1,0 +1,940 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Water Gun\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Scovillain\",\"moves\":[\"Growth\",\"Recover\"],\"gender\":\"F\",\"name\":\"Scovillain\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Chlorophyll\",\"item\":\"Scovillainite\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Scovillain, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Scovillain, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Scovillain, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "watergun",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Scovillain",
+                "details": "Scovillain, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 128,
+                  "def": 85,
+                  "spa": 128,
+                  "spd": 85,
+                  "spe": 95
+                },
+                "moves": [
+                  "growth",
+                  "recover"
+                ],
+                "baseAbility": "chlorophyll",
+                "item": "scovillainite",
+                "pokeball": "pokeball",
+                "ability": "chlorophyll",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Scovillain",
+            "species": "Scovillain",
+            "details": "Scovillain, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 128,
+              "def": 85,
+              "spa": 128,
+              "spd": 85,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "chlorophyll",
+            "item": "scovillainite",
+            "active": false,
+            "moves": [
+              {
+                "id": "growth",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Scovillain|Scovillain, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2a: Scovillain|Scovillain, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Scovillain|Scovillain, L50, F|140/140",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "watergun",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Growth",
+                  "id": "growth",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canMegaEvo": true
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Scovillain",
+                "details": "Scovillain, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 128,
+                  "def": 85,
+                  "spa": 128,
+                  "spd": 85,
+                  "spe": 95
+                },
+                "moves": [
+                  "growth",
+                  "recover"
+                ],
+                "baseAbility": "chlorophyll",
+                "item": "scovillainite",
+                "pokeball": "pokeball",
+                "ability": "chlorophyll",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Scovillain",
+            "species": "Scovillain",
+            "details": "Scovillain, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 128,
+              "def": 85,
+              "spa": 128,
+              "spd": 85,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "chlorophyll",
+            "item": "scovillainite",
+            "active": true,
+            "moves": [
+              {
+                "id": "growth",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1 mega"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|detailschange|p2a: Scovillain|Scovillain-Mega, L50, F",
+          "|-mega|p2a: Scovillain|Scovillain|Scovillainite",
+          "|move|p2a: Scovillain|Growth|p2a: Scovillain",
+          "|-boost|p2a: Scovillain|atk|1",
+          "|-boost|p2a: Scovillain|spa|1",
+          "|move|p1a: Vaporeon|Water Gun|p2a: Scovillain",
+          "|-damage|p2a: Scovillain|78/100",
+          "|-status|p1a: Vaporeon|brn|[from] ability: Spicy Spray|[of] p2a: Scovillain",
+          "|",
+          "|-damage|p1a: Vaporeon|94/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|detailschange|p2a: Scovillain|Scovillain-Mega, L50, F",
+          "|-mega|p2a: Scovillain|Scovillain|Scovillainite",
+          "|move|p2a: Scovillain|Growth|p2a: Scovillain",
+          "|-boost|p2a: Scovillain|atk|1",
+          "|-boost|p2a: Scovillain|spa|1",
+          "|move|p1a: Vaporeon|Water Gun|p2a: Scovillain",
+          "|-damage|p2a: Scovillain|78/100",
+          "|-status|p1a: Vaporeon|brn|[from] ability: Spicy Spray|[of] p2a: Scovillain",
+          "|",
+          "|-damage|p1a: Vaporeon|193/205 brn|[from] brn",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|detailschange|p2a: Scovillain|Scovillain-Mega, L50, F",
+          "|-mega|p2a: Scovillain|Scovillain|Scovillainite",
+          "|move|p2a: Scovillain|Growth|p2a: Scovillain",
+          "|-boost|p2a: Scovillain|atk|1",
+          "|-boost|p2a: Scovillain|spa|1",
+          "|move|p1a: Vaporeon|Water Gun|p2a: Scovillain",
+          "|-damage|p2a: Scovillain|110/140",
+          "|-status|p1a: Vaporeon|brn|[from] ability: Spicy Spray|[of] p2a: Scovillain",
+          "|",
+          "|-damage|p1a: Vaporeon|94/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "193/205 brn",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "watergun",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Growth",
+                  "id": "growth",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Scovillain",
+                "details": "Scovillain-Mega, L50, F",
+                "condition": "110/140",
+                "active": true,
+                "stats": {
+                  "atk": 158,
+                  "def": 105,
+                  "spa": 158,
+                  "spd": 105,
+                  "spe": 95
+                },
+                "moves": [
+                  "growth",
+                  "recover"
+                ],
+                "baseAbility": "spicyspray",
+                "item": "scovillainite",
+                "pokeball": "pokeball",
+                "ability": "spicyspray",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 193,
+            "maxhp": 205,
+            "status": "brn",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Scovillain",
+            "species": "Scovillain-Mega",
+            "details": "Scovillain-Mega, L50, F",
+            "hp": 110,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 158,
+              "def": 105,
+              "spa": 158,
+              "spd": 105,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 1,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "spicyspray",
+            "item": "scovillainite",
+            "active": true,
+            "moves": [
+              {
+                "id": "growth",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Scovillain|Recover|p2a: Scovillain",
+          "|-heal|p2a: Scovillain|100/100",
+          "|move|p1a: Vaporeon|Tackle|p2a: Scovillain",
+          "|-damage|p2a: Scovillain|95/100",
+          "|",
+          "|-damage|p1a: Vaporeon|88/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Scovillain|Recover|p2a: Scovillain",
+          "|-heal|p2a: Scovillain|100/100",
+          "|move|p1a: Vaporeon|Tackle|p2a: Scovillain",
+          "|-damage|p2a: Scovillain|95/100",
+          "|",
+          "|-damage|p1a: Vaporeon|181/205 brn|[from] brn",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Scovillain|Recover|p2a: Scovillain",
+          "|-heal|p2a: Scovillain|140/140",
+          "|move|p1a: Vaporeon|Tackle|p2a: Scovillain",
+          "|-damage|p2a: Scovillain|133/140",
+          "|",
+          "|-damage|p1a: Vaporeon|88/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "181/205 brn",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "watergun",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Growth",
+                  "id": "growth",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Scovillain",
+                "details": "Scovillain-Mega, L50, F",
+                "condition": "133/140",
+                "active": true,
+                "stats": {
+                  "atk": 158,
+                  "def": 105,
+                  "spa": 158,
+                  "spd": 105,
+                  "spe": 95
+                },
+                "moves": [
+                  "growth",
+                  "recover"
+                ],
+                "baseAbility": "spicyspray",
+                "item": "scovillainite",
+                "pokeball": "pokeball",
+                "ability": "spicyspray",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 181,
+            "maxhp": 205,
+            "status": "brn",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Scovillain",
+            "species": "Scovillain-Mega",
+            "details": "Scovillain-Mega, L50, F",
+            "hp": 133,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 158,
+              "def": 105,
+              "spa": 158,
+              "spd": 105,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 1,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "spicyspray",
+            "item": "scovillainite",
+            "active": true,
+            "moves": [
+              {
+                "id": "growth",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

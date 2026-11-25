@@ -85,6 +85,11 @@ add('Klutz does not make a held item disappear for Acrobatics', 'acrobatics',
 add('Hard Press power scales with the defender HP', 'hardpress', normal, {...water, hp:.27});
 add('Rising Voltage doubles for a grounded target', 'risingvoltage', electric, normal, {terrain:'electricterrain'});
 add('Rising Voltage does not double against a Flying target', 'risingvoltage', electric, fire, {terrain:'electricterrain'});
+add('Fluffy halves contact damage', 'tackle', normal, mon('Bewear', 'Fluffy'));
+add('Fluffy doubles noncontact fire damage', 'flamethrower', fire, mon('Bewear', 'Fluffy'));
+add('Fluffy’s two multipliers cancel for contact Fire moves', 'flamecharge', fire, mon('Bewear', 'Fluffy'));
+add('Punk Rock strengthens the user’s sound attack', 'hypervoice', mon('Toxtricity', 'Punk Rock'), water);
+add('Punk Rock softens incoming sound damage', 'hypervoice', water, mon('Toxtricity', 'Punk Rock'));
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

@@ -925,6 +925,18 @@ const confuseRayRosters = [
     [{...named('Spinda', ['Recover']), ability:'Tangled Feet'},
         {...named('Mudsdale', ['Recover']), ability:'Own Tempo'}],
 ];
+const fluffyRosters = [
+    [named('Flareon', ['Tackle', 'Flamethrower', 'Flame Charge'])],
+    [{...named('Bewear', ['Recover']), ability:'Fluffy'}],
+];
+const punkRockRosters = [
+    [{...named('Toxtricity', ['Hyper Voice', 'Water Gun']), ability:'Punk Rock'}],
+    [{...named('Sylveon', ['Hyper Voice', 'Recover']), ability:'Pixilate'}],
+];
+const spicySprayRosters = [
+    [named('Vaporeon', ['Water Gun', 'Tackle'])],
+    [{...named('Scovillain', ['Growth', 'Recover']), ability:'Chlorophyll', item:'Scovillainite'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1759,6 +1771,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 1','move 1'],
         ['move 3','move 1'], ['move 2','move 1'], ['move 1','switch 2']],
         confuseRayRosters, 'bss-confusion-accuracy'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 1']],
+        fluffyRosters, 'bss-fluffy'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 2']],
+        punkRockRosters, 'bss-punk-rock'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1 mega'], ['move 2','move 2']],
+        spicySprayRosters, 'bss-spicy-spray'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

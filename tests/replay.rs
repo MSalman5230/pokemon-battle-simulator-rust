@@ -1245,6 +1245,13 @@ fn confuse_ray_respects_existing_confusion_tangled_feet_and_own_tempo() {
 }
 
 #[test]
+fn fluffy_punk_rock_and_spicy_spray_react_to_move_traits() {
+    replay(include_str!("fixtures/bss-fluffy.json"));
+    replay(include_str!("fixtures/bss-punk-rock.json"));
+    replay(include_str!("fixtures/bss-spicy-spray.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

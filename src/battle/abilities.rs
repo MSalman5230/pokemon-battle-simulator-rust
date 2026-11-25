@@ -76,6 +76,7 @@ impl Pokemon {
             "toughclaws" if flags.contains_key("contact") => 5325,
             "sharpness" if flags.contains_key("slicing") => 6144,
             "strongjaw" if flags.contains_key("bite") => 6144,
+            "punkrock" if flags.contains_key("sound") => 5325,
             "megalauncher" if flags.contains_key("pulse") => 6144,
             "ironfist" if flags.contains_key("punch") => 4915,
             "reckless" if move_data.recoil.is_some() || crash_move(&move_data.name) => 4915,
@@ -879,6 +880,10 @@ impl Battle {
         if self.rng.chance(3, 10) {
             self.apply_contact_status(holder, attacker, id, label, move_log);
         }
+    }
+
+    pub(super) fn spicy_spray(&mut self, holder: Position, attacker: Position, move_log: usize) {
+        self.apply_contact_status(holder, attacker, "brn", "Spicy Spray", move_log);
     }
 
     fn apply_contact_status(

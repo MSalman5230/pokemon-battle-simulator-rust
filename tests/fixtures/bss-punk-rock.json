@@ -1,0 +1,1164 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Toxtricity\",\"moves\":[\"Hyper Voice\",\"Water Gun\"],\"gender\":\"F\",\"name\":\"Toxtricity\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Punk Rock\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Sylveon\",\"moves\":[\"Hyper Voice\",\"Recover\"],\"gender\":\"F\",\"name\":\"Sylveon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Pixilate\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Toxtricity, L50, F|",
+          "|poke|p2|Sylveon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Toxtricity, L50, F|",
+          "|poke|p2|Sylveon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Toxtricity, L50, F|",
+          "|poke|p2|Sylveon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toxtricity",
+                "details": "Toxtricity, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 118,
+                  "def": 90,
+                  "spa": 134,
+                  "spd": 90,
+                  "spe": 95
+                },
+                "moves": [
+                  "hypervoice",
+                  "watergun"
+                ],
+                "baseAbility": "punkrock",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "punkrock",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Sylveon",
+                "details": "Sylveon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 85,
+                  "spa": 130,
+                  "spd": 150,
+                  "spe": 80
+                },
+                "moves": [
+                  "hypervoice",
+                  "recover"
+                ],
+                "baseAbility": "pixilate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pixilate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toxtricity",
+            "species": "Toxtricity",
+            "details": "Toxtricity, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 118,
+              "def": 90,
+              "spa": 134,
+              "spd": 90,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "punkrock",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Sylveon",
+            "species": "Sylveon",
+            "details": "Sylveon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 85,
+              "spa": 130,
+              "spd": 150,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pixilate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Toxtricity|Toxtricity, L50, F|100/100",
+          "|switch|p2a: Sylveon|Sylveon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Toxtricity|Toxtricity, L50, F|150/150",
+          "|switch|p2a: Sylveon|Sylveon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Toxtricity|Toxtricity, L50, F|100/100",
+          "|switch|p2a: Sylveon|Sylveon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toxtricity",
+                "details": "Toxtricity, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 118,
+                  "def": 90,
+                  "spa": 134,
+                  "spd": 90,
+                  "spe": 95
+                },
+                "moves": [
+                  "hypervoice",
+                  "watergun"
+                ],
+                "baseAbility": "punkrock",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "punkrock",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Sylveon",
+                "details": "Sylveon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 85,
+                  "spa": 130,
+                  "spd": 150,
+                  "spe": 80
+                },
+                "moves": [
+                  "hypervoice",
+                  "recover"
+                ],
+                "baseAbility": "pixilate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pixilate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toxtricity",
+            "species": "Toxtricity",
+            "details": "Toxtricity, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 118,
+              "def": 90,
+              "spa": 134,
+              "spd": 90,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "punkrock",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Sylveon",
+            "species": "Sylveon",
+            "details": "Sylveon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 85,
+              "spa": 130,
+              "spd": 150,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pixilate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Toxtricity|Hyper Voice|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|75/100",
+          "|move|p2a: Sylveon|Hyper Voice|p1a: Toxtricity",
+          "|-resisted|p1a: Toxtricity|1",
+          "|-damage|p1a: Toxtricity|84/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Toxtricity|Hyper Voice|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|75/100",
+          "|move|p2a: Sylveon|Hyper Voice|p1a: Toxtricity",
+          "|-resisted|p1a: Toxtricity|1",
+          "|-damage|p1a: Toxtricity|127/150",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Toxtricity|Hyper Voice|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|128/170",
+          "|move|p2a: Sylveon|Hyper Voice|p1a: Toxtricity",
+          "|-resisted|p1a: Toxtricity|1",
+          "|-damage|p1a: Toxtricity|84/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toxtricity",
+                "details": "Toxtricity, L50, F",
+                "condition": "127/150",
+                "active": true,
+                "stats": {
+                  "atk": 118,
+                  "def": 90,
+                  "spa": 134,
+                  "spd": 90,
+                  "spe": 95
+                },
+                "moves": [
+                  "hypervoice",
+                  "watergun"
+                ],
+                "baseAbility": "punkrock",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "punkrock",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Sylveon",
+                "details": "Sylveon, L50, F",
+                "condition": "128/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 85,
+                  "spa": 130,
+                  "spd": 150,
+                  "spe": 80
+                },
+                "moves": [
+                  "hypervoice",
+                  "recover"
+                ],
+                "baseAbility": "pixilate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pixilate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toxtricity",
+            "species": "Toxtricity",
+            "details": "Toxtricity, L50, F",
+            "hp": 127,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 118,
+              "def": 90,
+              "spa": 134,
+              "spd": 90,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "punkrock",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Sylveon",
+            "species": "Sylveon",
+            "details": "Sylveon, L50, F",
+            "hp": 128,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 85,
+              "spa": 130,
+              "spd": 150,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pixilate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Toxtricity|Water Gun|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|67/100",
+          "|move|p2a: Sylveon|Hyper Voice|p1a: Toxtricity",
+          "|-resisted|p1a: Toxtricity|1",
+          "|-damage|p1a: Toxtricity|68/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Toxtricity|Water Gun|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|67/100",
+          "|move|p2a: Sylveon|Hyper Voice|p1a: Toxtricity",
+          "|-resisted|p1a: Toxtricity|1",
+          "|-damage|p1a: Toxtricity|102/150",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Toxtricity|Water Gun|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|114/170",
+          "|move|p2a: Sylveon|Hyper Voice|p1a: Toxtricity",
+          "|-resisted|p1a: Toxtricity|1",
+          "|-damage|p1a: Toxtricity|68/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toxtricity",
+                "details": "Toxtricity, L50, F",
+                "condition": "102/150",
+                "active": true,
+                "stats": {
+                  "atk": 118,
+                  "def": 90,
+                  "spa": 134,
+                  "spd": 90,
+                  "spe": 95
+                },
+                "moves": [
+                  "hypervoice",
+                  "watergun"
+                ],
+                "baseAbility": "punkrock",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "punkrock",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Sylveon",
+                "details": "Sylveon, L50, F",
+                "condition": "114/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 85,
+                  "spa": 130,
+                  "spd": 150,
+                  "spe": 80
+                },
+                "moves": [
+                  "hypervoice",
+                  "recover"
+                ],
+                "baseAbility": "pixilate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pixilate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toxtricity",
+            "species": "Toxtricity",
+            "details": "Toxtricity, L50, F",
+            "hp": 102,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 118,
+              "def": 90,
+              "spa": 134,
+              "spd": 90,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "punkrock",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Sylveon",
+            "species": "Sylveon",
+            "details": "Sylveon, L50, F",
+            "hp": 114,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 85,
+              "spa": 130,
+              "spd": 150,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pixilate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Toxtricity|Hyper Voice|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|41/100",
+          "|move|p2a: Sylveon|Recover|p2a: Sylveon",
+          "|-heal|p2a: Sylveon|91/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Toxtricity|Hyper Voice|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|41/100",
+          "|move|p2a: Sylveon|Recover|p2a: Sylveon",
+          "|-heal|p2a: Sylveon|91/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Toxtricity|Hyper Voice|p2a: Sylveon",
+          "|-damage|p2a: Sylveon|70/170",
+          "|move|p2a: Sylveon|Recover|p2a: Sylveon",
+          "|-heal|p2a: Sylveon|155/170",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Toxtricity",
+                "details": "Toxtricity, L50, F",
+                "condition": "102/150",
+                "active": true,
+                "stats": {
+                  "atk": 118,
+                  "def": 90,
+                  "spa": 134,
+                  "spd": 90,
+                  "spe": 95
+                },
+                "moves": [
+                  "hypervoice",
+                  "watergun"
+                ],
+                "baseAbility": "punkrock",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "punkrock",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Sylveon",
+                "details": "Sylveon, L50, F",
+                "condition": "155/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 85,
+                  "spa": 130,
+                  "spd": 150,
+                  "spe": 80
+                },
+                "moves": [
+                  "hypervoice",
+                  "recover"
+                ],
+                "baseAbility": "pixilate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "pixilate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Toxtricity",
+            "species": "Toxtricity",
+            "details": "Toxtricity, L50, F",
+            "hp": 102,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 118,
+              "def": 90,
+              "spa": 134,
+              "spd": 90,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "punkrock",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Sylveon",
+            "species": "Sylveon",
+            "details": "Sylveon, L50, F",
+            "hp": 155,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 85,
+              "spa": 130,
+              "spd": 150,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "pixilate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
