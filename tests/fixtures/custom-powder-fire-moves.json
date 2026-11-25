@@ -1,0 +1,1475 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Vivillon\",\"moves\":[\"Powder\",\"Recover\"],\"gender\":\"F\",\"name\":\"Vivillon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Torkoal\",\"moves\":[\"Ember\",\"Sunny Day\",\"Recover\"],\"gender\":\"F\",\"name\":\"Torkoal\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"evs\":{\"hp\":2}}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Vivillon, L50, F|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Vivillon, L50, F|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Vivillon, L50, F|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vivillon",
+                "details": "Vivillon, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 70,
+                  "spa": 110,
+                  "spd": 70,
+                  "spe": 109
+                },
+                "moves": [
+                  "powder",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "147/147",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "ember",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vivillon",
+            "species": "Vivillon",
+            "details": "Vivillon, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 70,
+              "spa": 110,
+              "spd": 70,
+              "spe": 109
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "powder",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 147,
+            "maxhp": 147,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vivillon|Vivillon, L50, F|155/155",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|147/147",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vivillon|Vivillon, L50, F|155/155",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|147/147",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vivillon|Vivillon, L50, F|155/155",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|147/147",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Powder",
+                  "id": "powder",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vivillon",
+                "details": "Vivillon, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 70,
+                  "spa": 110,
+                  "spd": 70,
+                  "spe": 109
+                },
+                "moves": [
+                  "powder",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "147/147",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "ember",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vivillon",
+            "species": "Vivillon",
+            "details": "Vivillon, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 70,
+              "spa": 110,
+              "spd": 70,
+              "spe": 109
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "powder",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 147,
+            "maxhp": 147,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Ember||[still]",
+          "|-activate|p2a: Torkoal|move: Powder|[move] Ember",
+          "|-damage|p2a: Torkoal|110/147|[silent]",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Ember||[still]",
+          "|-activate|p2a: Torkoal|move: Powder|[move] Ember",
+          "|-damage|p2a: Torkoal|110/147|[silent]",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Ember||[still]",
+          "|-activate|p2a: Torkoal|move: Powder|[move] Ember",
+          "|-damage|p2a: Torkoal|110/147|[silent]",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Powder",
+                  "id": "powder",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vivillon",
+                "details": "Vivillon, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 70,
+                  "spa": 110,
+                  "spd": 70,
+                  "spe": 109
+                },
+                "moves": [
+                  "powder",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "110/147",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "ember",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vivillon",
+            "species": "Vivillon",
+            "details": "Vivillon, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 70,
+              "spa": 110,
+              "spd": 70,
+              "spe": 109
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "powder",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 110,
+            "maxhp": 147,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sunnyday",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "57890,13032,12358,42006",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Sunny Day||[still]",
+          "|-activate|p2a: Torkoal|move: Powder|[move] Sunny Day",
+          "|-damage|p2a: Torkoal|73/147|[silent]",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Sunny Day||[still]",
+          "|-activate|p2a: Torkoal|move: Powder|[move] Sunny Day",
+          "|-damage|p2a: Torkoal|73/147|[silent]",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Sunny Day||[still]",
+          "|-activate|p2a: Torkoal|move: Powder|[move] Sunny Day",
+          "|-damage|p2a: Torkoal|73/147|[silent]",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Powder",
+                  "id": "powder",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vivillon",
+                "details": "Vivillon, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 70,
+                  "spa": 110,
+                  "spd": 70,
+                  "spe": 109
+                },
+                "moves": [
+                  "powder",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "73/147",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "ember",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vivillon",
+            "species": "Vivillon",
+            "details": "Vivillon, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 70,
+              "spa": 110,
+              "spd": 70,
+              "spe": 109
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "powder",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 73,
+            "maxhp": 147,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sunnyday",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 3"
+      ],
+      "turn": 4,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|147/147",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|147/147",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Vivillon|Powder|p2a: Torkoal",
+          "|-singleturn|p2a: Torkoal|Powder",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|147/147",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Powder",
+                  "id": "powder",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vivillon",
+                "details": "Vivillon, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 70,
+                  "spa": 110,
+                  "spd": 70,
+                  "spe": 109
+                },
+                "moves": [
+                  "powder",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "147/147",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "ember",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vivillon",
+            "species": "Vivillon",
+            "details": "Vivillon, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 70,
+              "spa": 110,
+              "spd": 70,
+              "spe": 109
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "powder",
+                "pp": 17,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 147,
+            "maxhp": 147,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sunnyday",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vivillon|Recover||[still]",
+          "|-fail|p1a: Vivillon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2a: Torkoal|Sunny Day|p2a: Torkoal",
+          "|-weather|SunnyDay",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Vivillon|Recover||[still]",
+          "|-fail|p1a: Vivillon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2a: Torkoal|Sunny Day|p2a: Torkoal",
+          "|-weather|SunnyDay",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Vivillon|Recover||[still]",
+          "|-fail|p1a: Vivillon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2a: Torkoal|Sunny Day|p2a: Torkoal",
+          "|-weather|SunnyDay",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Powder",
+                  "id": "powder",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vivillon",
+                "details": "Vivillon, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 72,
+                  "def": 70,
+                  "spa": 110,
+                  "spd": 70,
+                  "spe": 109
+                },
+                "moves": [
+                  "powder",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Sunny Day",
+                  "id": "sunnyday",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "147/147",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "ember",
+                  "sunnyday",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vivillon",
+            "species": "Vivillon",
+            "details": "Vivillon, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 72,
+              "def": 70,
+              "spa": 110,
+              "spd": 70,
+              "spe": 109
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "powder",
+                "pp": 17,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 147,
+            "maxhp": 147,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sunnyday",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

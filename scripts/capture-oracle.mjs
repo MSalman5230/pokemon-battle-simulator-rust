@@ -1764,6 +1764,22 @@ const legacySportsRosters = [
     [{...named('Chansey', ['Mud Sport', 'Water Sport', 'Tackle']), ability:'Natural Cure'}],
     [named('Jolteon', ['Thunder Shock', 'Ember'])],
 ];
+const legacyEmbargoRosters = [
+    [named('Chansey', ['Embargo', 'Tackle', 'Recover'])],
+    [{...named('Jolteon', ['Tackle', 'Fling']), item:'Leftovers'}],
+];
+const legacyMistRosters = [
+    [named('Jolteon', ['Mist', 'Recover'])],
+    [named('Chansey', ['Growl', 'Acid Spray', 'Defog'])],
+];
+const legacyTelekinesisRosters = [
+    [named('Smeargle', ['Telekinesis', 'Dynamic Punch', 'Earthquake', 'Gravity'])],
+    [named('Chansey', ['Recover'])],
+];
+const legacyPowderRosters = [
+    [named('Vivillon', ['Powder', 'Recover'])],
+    [{...named('Torkoal', ['Ember', 'Sunny Day', 'Recover']), evs:{hp:2}}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3148,6 +3164,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','move 1'], ['move 3','move 2']], legacyIonRosters, 'custom-ion-deluge-and-plasma-fists'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 2'],
         ['move 1','move 2'], ['move 3','move 1'], ['move 3','move 1']], legacySportsRosters, 'custom-mud-sport-and-water-sport'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 1','move 1'],
+        ['move 2','move 1'], ['move 3','move 1'], ['move 3','move 1']], legacyEmbargoRosters, 'custom-embargo-held-items'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 3'],
+        ['move 2','move 1']], legacyMistRosters, 'custom-mist-boosts-and-defog'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 3','move 1'],
+        ['move 1','move 1'], ['move 4','move 1']], legacyTelekinesisRosters, 'custom-telekinesis-and-gravity'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 3'],
+        ['move 2','move 2']], legacyPowderRosters, 'custom-powder-fire-moves'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

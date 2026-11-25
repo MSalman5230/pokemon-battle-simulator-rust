@@ -1589,6 +1589,33 @@ impl Battle {
         speed_sort_by(hooks, &mut self.rng, |a, b| b.1.cmp(&a.1));
         let mut removed = 0_u8;
         if target != source {
+            if self.mist_active(target.player)
+                && !(target.player != source.player
+                    && matches!(origin, BoostOrigin::Move { .. } | BoostOrigin::Secondary)
+                    && self.event_ability(source) == "infiltrator")
+            {
+                for (i, &(_, amount)) in changes.iter().enumerate() {
+                    if amount < 0 {
+                        removed |= 1 << i;
+                    }
+                }
+                if removed != 0
+                    && !matches!(
+                        origin,
+                        BoostOrigin::Secondary
+                            | BoostOrigin::Move {
+                                has_secondaries: true
+                            }
+                    )
+                {
+                    self.add(format!("|-activate|{}|move: Mist", self.ident(target)));
+                }
+                if origin == BoostOrigin::Secondary
+                    && removed.count_ones() as usize == changes.len()
+                {
+                    self.report_no_move_effect();
+                }
+            }
             for &(holder, _, hook) in hooks.iter() {
                 if self.ability_suppressed(holder) {
                     continue;

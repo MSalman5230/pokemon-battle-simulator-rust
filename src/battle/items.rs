@@ -599,7 +599,10 @@ impl Battle {
 
     pub(super) fn prepare_fling(&mut self, pos: Position) -> Option<&'static Item> {
         let mon = self.mon(pos);
-        if mon.items_suppressed || self.event_ability(pos) == "klutz" {
+        if mon.items_suppressed
+            || mon.under(super::field_effects::LegacyCondition::Embargo)
+            || self.event_ability(pos) == "klutz"
+        {
             return None;
         }
         let item = mon.transferable_item(self.format.dex_mod)?;
@@ -1133,11 +1136,15 @@ impl Battle {
     }
 
     pub(super) fn indirect_damage(&mut self, pos: Position, divisor: u32, cause: &str) {
+        let amount = (self.mon(pos).max_hp.get() / divisor).max(1);
+        self.indirect_damage_amount(pos, amount, cause);
+    }
+
+    pub(super) fn indirect_damage_amount(&mut self, pos: Position, amount: u32, cause: &str) {
         let mon = self.mon(pos);
         if mon.hp == 0 || mon.active_ability() == "magicguard" {
             return;
         }
-        let amount = (mon.max_hp.get() / divisor).max(1);
         let amount = self.focus_survival(pos, amount, false);
         let mon = self.mon_mut(pos);
         mon.half_hp_berry_deferred = false;
@@ -1149,6 +1156,7 @@ impl Battle {
 impl Pokemon {
     pub(super) fn ignores_held_item(&self) -> bool {
         (self.items_suppressed
+            || self.under(super::field_effects::LegacyCondition::Embargo)
             || self.active_ability() == "klutz"
                 && !DEX
                     .item(crate::dex::Mod::Champions, &self.item)

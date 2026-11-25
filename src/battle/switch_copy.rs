@@ -33,6 +33,10 @@ impl Pokemon {
                 "protect" | "kingsshield" | "banefulbunker" | "spikyshield" | "burningbulwark"
                 | "obstruct" | "silktrap" => self.protection = source.protection,
                 "healblock" => self.heal_block = source.heal_block,
+                "embargo" | "telekinesis" | "powder" => {
+                    let index = field_effects::LegacyCondition::from_volatile(id).unwrap() as usize;
+                    self.legacy_conditions.0[index] = source.legacy_conditions.0[index];
+                }
                 "octolock" => self.octolock = source.octolock,
                 "dragoncheer" => self.dragon_cheer = source.dragon_cheer,
                 "laserfocus" => self.laser_focus = source.laser_focus,

@@ -165,5 +165,12 @@ impl Battle {
         self.possible_unaware |= self.mon(pos).ability == "unaware";
         self.reset_ability_order(pos);
         self.start_ability(pos);
+        if species.name == "Gengar-Mega"
+            && self
+                .mon_mut(pos)
+                .clear_legacy_condition(super::field_effects::LegacyCondition::Telekinesis)
+        {
+            self.add(format!("|-end|{}|Telekinesis|[silent]", self.ident(pos)));
+        }
     }
 }

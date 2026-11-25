@@ -4,7 +4,7 @@ use super::{
     abilities::{BoostOrigin, PostHit},
     charge::ChargeSpec,
     damage::RegularHit,
-    field_effects::LegacyField,
+    field_effects::{LegacyCondition, LegacyField},
     leech::DrainKind,
 };
 use crate::{
@@ -426,7 +426,7 @@ impl Battle {
         line.push_str("|[still]");
     }
 
-    fn report_no_move_effect(&mut self) {
+    pub(super) fn report_no_move_effect(&mut self) {
         if self.format.report_exact_hp {
             self.add("|debug|move failed because it did nothing");
         }
@@ -1217,6 +1217,10 @@ impl Battle {
                     | "magicpowder"
                     | "ingrain"
                     | "gravity"
+                    | "telekinesis"
+                    | "embargo"
+                    | "powder"
+                    | "mist"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -1946,6 +1950,7 @@ impl Battle {
         party[outgoing.slot].last_foe_hit = None;
         party[outgoing.slot].attackers_this_turn = [0; 2];
         party[outgoing.slot].heal_block = 0;
+        party[outgoing.slot].legacy_conditions = Default::default();
         party[outgoing.slot].octolock = None;
         party[outgoing.slot].fling_pending = false;
         party[outgoing.slot].stockpile = Default::default();
@@ -2605,6 +2610,8 @@ impl Battle {
             RollingAttack,
             EchoedVoice,
             LegacyField(LegacyField),
+            LegacyCondition(LegacyCondition),
+            Mist,
             Taunt,
             Encore,
             Disable,
@@ -2761,6 +2768,17 @@ impl Battle {
             ));
         }
         for player in Player::ALL {
+            if self.mist_active(player) {
+                timers.push((
+                    Position { player, slot: 0 },
+                    Effect::Mist,
+                    Priority {
+                        order: 26,
+                        sub_order: 4,
+                        ..Priority::default()
+                    },
+                ));
+            }
             if self.lucky_chant_active(player) {
                 timers.push((
                     Position { player, slot: 0 },
@@ -2876,6 +2894,15 @@ impl Battle {
             }
             if mon.heal_block > 0 {
                 timers.push((pos, Effect::HealBlock, priority(20, 2)));
+            }
+            for condition in LegacyCondition::ALL {
+                if mon.under(condition) {
+                    timers.push((
+                        pos,
+                        Effect::LegacyCondition(condition),
+                        priority(condition.residual_order(), 2),
+                    ));
+                }
             }
             if mon.encore.is_some() {
                 timers.push((pos, Effect::Encore, priority(16, 2)));
@@ -3015,6 +3042,10 @@ impl Battle {
         for (pos, effect, _) in timers {
             if let Effect::LegacyField(effect) = effect {
                 self.tick_legacy_field(effect);
+                continue;
+            }
+            if matches!(effect, Effect::Mist) {
+                self.tick_mist(pos.player);
                 continue;
             }
             if matches!(effect, Effect::EchoedVoice) {
@@ -3167,6 +3198,7 @@ impl Battle {
                         self.end_heal_block(pos);
                     }
                 }
+                Effect::LegacyCondition(condition) => self.tick_legacy_condition(pos, condition),
                 Effect::LaserFocus => {
                     mon.laser_focus -= 1;
                     if mon.laser_focus == 0 {
@@ -3227,6 +3259,7 @@ impl Battle {
                 | Effect::LuckyChant
                 | Effect::EchoedVoice
                 | Effect::LegacyField(_)
+                | Effect::Mist
                 | Effect::TrickRoom
                 | Effect::Gravity
                 | Effect::WonderRoom
@@ -4277,6 +4310,15 @@ impl Battle {
             return true;
         }
         if !delayed {
+            if move_type == "Fire" && self.mon(source).under(LegacyCondition::Powder) {
+                self.stop_fire_with_powder(source, &move_data.name);
+                self.move_still(base);
+                if self.mon(source).hp == 0 {
+                    self.mark_fainted(source);
+                }
+                result.failed = true;
+                return true;
+            }
             self.metronome_try_move(source, move_data);
         }
         if let Some(magnitude) = magnitude {
@@ -4567,6 +4609,19 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Mist" {
+            self.protean_prepare(source, move_type);
+            if self.start_mist(source.player) {
+                self.each_event();
+                self.each_event();
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
+                result.failed = true;
+            }
+            return true;
+        }
         if matches!(move_data.name.as_str(), "Heal Bell" | "Aromatherapy") {
             self.protean_prepare(source, move_type);
             if self.cure_team(source, move_data) {
@@ -4724,7 +4779,10 @@ impl Battle {
                 for target in self.positions() {
                     let canceled = self.cancel_airborne_charge(target, queue);
                     let grounded = self.clear_magnet_rise(target);
-                    if canceled || grounded {
+                    let was_lifted = self
+                        .mon_mut(target)
+                        .clear_legacy_condition(LegacyCondition::Telekinesis);
+                    if canceled || grounded || was_lifted {
                         self.add(format!("|-activate|{}|move: Gravity", self.ident(target)));
                     }
                 }
@@ -5440,6 +5498,7 @@ impl Battle {
                 && !self.mon(pos).glaive_drawback
                 && !self.mon(pos).trampled_by(move_data)
                 && !self.locked_on_to(source, pos)
+                && (ohko || !self.mon(pos).under(LegacyCondition::Telekinesis))
                 && !self.rng.chance(
                     if ohko && !self.mon(pos).semi_invulnerable() {
                         let base = if sheer_cold && !self.mon(source).has_type("Ice") {
@@ -5726,6 +5785,18 @@ impl Battle {
                             self.add(format!("|-fail|{}|move: Heal Block", self.ident(target)));
                         } else {
                             succeeded = self.start_heal_block(target, 5);
+                        }
+                    }
+                    "Telekinesis" | "Embargo" | "Powder" => {
+                        let condition = LegacyCondition::for_move(&move_data.name);
+                        match self.start_legacy_condition(target, condition) {
+                            Some(true) => succeeded = true,
+                            Some(false) => {
+                                self.move_still(base);
+                                self.add(format!("|-fail|{source_name}"));
+                                self.report_no_move_effect();
+                            }
+                            None => {}
                         }
                     }
                     "Psycho Shift" => {
@@ -6195,6 +6266,7 @@ impl Battle {
                     } else {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
+                        self.report_no_move_effect();
                     }
                 }
                 if matches!(
@@ -7813,7 +7885,10 @@ impl Battle {
             && mon.effective_item() != "ironball"
             && !self.forces_grounded(target);
         let was_magnetized = self.clear_magnet_rise(target);
-        if airborne || canceled || was_magnetized {
+        let was_lifted = self
+            .mon_mut(target)
+            .clear_legacy_condition(LegacyCondition::Telekinesis);
+        if airborne || canceled || was_magnetized || was_lifted {
             self.mon_mut(target).track_volatile("smackdown");
             self.add(format!("|-start|{}|Smack Down", self.ident(target)));
         }
@@ -7955,6 +8030,7 @@ impl Battle {
         mon.last_foe_hit = None;
         mon.attackers_this_turn = [0; 2];
         mon.heal_block = 0;
+        mon.legacy_conditions = Default::default();
         mon.octolock = None;
         mon.fling_pending = false;
         mon.stockpile = Default::default();

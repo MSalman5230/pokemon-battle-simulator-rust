@@ -1956,6 +1956,14 @@ fn inherited_field_types_and_power_modifiers_expire_on_the_native_turn() {
 }
 
 #[test]
+fn inherited_conditions_control_items_stats_accuracy_and_fire() {
+    replay(include_str!("fixtures/custom-embargo-held-items.json"));
+    replay(include_str!("fixtures/custom-mist-boosts-and-defog.json"));
+    replay(include_str!("fixtures/custom-telekinesis-and-gravity.json"));
+    replay(include_str!("fixtures/custom-powder-fire-moves.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

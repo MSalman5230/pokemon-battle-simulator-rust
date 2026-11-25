@@ -2,6 +2,166 @@
 
 use super::{turn::Position, *};
 
+#[derive(Clone, Copy)]
+pub(super) enum LegacyCondition {
+    Telekinesis,
+    Embargo,
+    Powder,
+}
+
+#[derive(Clone, Copy, Default)]
+pub(super) struct LegacyConditions(pub(super) [u8; 3]);
+
+impl LegacyCondition {
+    pub(super) const ALL: [Self; 3] = [Self::Telekinesis, Self::Embargo, Self::Powder];
+
+    pub(super) fn for_move(name: &str) -> Self {
+        match name {
+            "Telekinesis" => Self::Telekinesis,
+            "Embargo" => Self::Embargo,
+            "Powder" => Self::Powder,
+            _ => unreachable!("not a legacy condition"),
+        }
+    }
+
+    pub(super) fn from_volatile(id: &str) -> Option<Self> {
+        match id {
+            "telekinesis" => Some(Self::Telekinesis),
+            "embargo" => Some(Self::Embargo),
+            "powder" => Some(Self::Powder),
+            _ => None,
+        }
+    }
+
+    fn labels(self) -> (&'static str, &'static str) {
+        match self {
+            Self::Telekinesis => ("Telekinesis", "telekinesis"),
+            Self::Embargo => ("Embargo", "embargo"),
+            Self::Powder => ("Powder", "powder"),
+        }
+    }
+
+    pub(super) fn residual_order(self) -> u32 {
+        match self {
+            Self::Telekinesis => 19,
+            Self::Embargo => 21,
+            Self::Powder => 0,
+        }
+    }
+}
+
+impl Pokemon {
+    pub(super) fn under(&self, condition: LegacyCondition) -> bool {
+        self.legacy_conditions.0[condition as usize] != 0
+    }
+
+    pub(super) fn clear_legacy_condition(&mut self, condition: LegacyCondition) -> bool {
+        if std::mem::take(&mut self.legacy_conditions.0[condition as usize]) == 0 {
+            return false;
+        }
+        self.untrack_volatile(condition.labels().1);
+        true
+    }
+}
+
+impl Battle {
+    /// Like the native Start event, `None` is an announced immunity and
+    /// `Some(false)` is an ordinary failure with no side effect.
+    pub(super) fn start_legacy_condition(
+        &mut self,
+        pos: Position,
+        condition: LegacyCondition,
+    ) -> Option<bool> {
+        let mon = self.mon(pos);
+        if mon.under(condition) {
+            return Some(false);
+        }
+        let duration = match condition {
+            LegacyCondition::Embargo => 5,
+            LegacyCondition::Powder => 1,
+            LegacyCondition::Telekinesis => {
+                if matches!(
+                    mon.base_species.base_species.as_str(),
+                    "Diglett" | "Dugtrio" | "Palossand" | "Sandygast"
+                ) || mon.base_species.name == "Gengar-Mega"
+                {
+                    self.add(format!("|-immune|{}", self.ident(pos)));
+                    return None;
+                }
+                if self.forces_grounded(pos) {
+                    return Some(false);
+                }
+                3
+            }
+        };
+        let (name, id) = condition.labels();
+        let mon = self.mon_mut(pos);
+        mon.legacy_conditions.0[condition as usize] = duration;
+        mon.track_volatile(id);
+        let event = if matches!(condition, LegacyCondition::Powder) {
+            "singleturn"
+        } else {
+            "start"
+        };
+        self.add(format!("|-{event}|{}|{name}", self.ident(pos)));
+        if matches!(condition, LegacyCondition::Embargo) && !self.mon(pos).item.is_empty() {
+            self.debug_ignored_item(pos, "End");
+        }
+        Some(true)
+    }
+
+    pub(super) fn tick_legacy_condition(&mut self, pos: Position, condition: LegacyCondition) {
+        let (name, id) = condition.labels();
+        let mon = self.mon_mut(pos);
+        let turns = &mut mon.legacy_conditions.0[condition as usize];
+        *turns -= 1;
+        if *turns == 0 {
+            mon.untrack_volatile(id);
+            if !matches!(condition, LegacyCondition::Powder) {
+                self.add(format!("|-end|{}|{name}", self.ident(pos)));
+            }
+        }
+    }
+
+    pub(super) fn stop_fire_with_powder(&mut self, pos: Position, move_name: &str) {
+        self.add(format!(
+            "|-activate|{}|move: Powder|[move] {move_name}",
+            self.ident(pos)
+        ));
+        let hp = self.mon(pos).max_hp.get();
+        let amount = ((hp + 2) / 4).max(1);
+        self.indirect_damage_amount(pos, amount, "|[silent]");
+    }
+
+    pub(super) fn mist_active(&self, player: Player) -> bool {
+        self.sides[player.index()].as_ref().unwrap().mist != 0
+    }
+
+    pub(super) fn start_mist(&mut self, player: Player) -> bool {
+        if self.mist_active(player) {
+            return false;
+        }
+        self.sides[player.index()].as_mut().unwrap().mist = 5;
+        self.add(format!("|-sidestart|{}|Mist", self.side_ident(player)));
+        true
+    }
+
+    pub(super) fn tick_mist(&mut self, player: Player) {
+        let mist = &mut self.sides[player.index()].as_mut().unwrap().mist;
+        *mist -= 1;
+        if *mist == 0 {
+            self.add(format!("|-sideend|{}|Mist", self.side_ident(player)));
+        }
+    }
+
+    pub(super) fn clear_mist(&mut self, player: Player) {
+        if self.mist_active(player) {
+            self.sides[player.index()].as_mut().unwrap().mist = 0;
+            self.add(format!("|-sideend|{}|Mist", self.side_ident(player)));
+        }
+    }
+}
+
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub(super) enum LegacyField {
     IonDeluge,

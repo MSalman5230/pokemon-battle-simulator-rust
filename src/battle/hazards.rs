@@ -68,6 +68,7 @@ impl Battle {
         {
             self.end_safeguard(target.player);
         }
+        self.clear_mist(target.player);
         let ident = self.ident(source);
         for player in [target.player, source.player] {
             for hazard in [
@@ -137,6 +138,7 @@ impl Battle {
             _ => {
                 !mon.has_type("Flying")
                     && mon.magnet_rise == 0
+                    && !mon.under(super::field_effects::LegacyCondition::Telekinesis)
                     && self.airborne_ability(pos).is_none()
             }
         }
@@ -208,6 +210,10 @@ impl Battle {
             && p2.tailwind == 0
             && p1.safeguard == 0
             && p2.safeguard == 0
+            && p1.mist == 0
+            && p2.mist == 0
+            && p1.lucky_chant == 0
+            && p2.lucky_chant == 0
         {
             return false;
         }
@@ -215,6 +221,8 @@ impl Battle {
         std::mem::swap(&mut p1.hazards, &mut p2.hazards);
         std::mem::swap(&mut p1.tailwind, &mut p2.tailwind);
         std::mem::swap(&mut p1.safeguard, &mut p2.safeguard);
+        std::mem::swap(&mut p1.mist, &mut p2.mist);
+        std::mem::swap(&mut p1.lucky_chant, &mut p2.lucky_chant);
         self.add("|-swapsideconditions");
         self.add(format!(
             "|-activate|{}|move: Court Change",

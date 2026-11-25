@@ -1,0 +1,1744 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"Telekinesis\",\"Dynamic Punch\",\"Earthquake\",\"Gravity\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chansey\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "telekinesis",
+                  "dynamicpunch",
+                  "earthquake",
+                  "gravity"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "telekinesis",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "dynamicpunch",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Telekinesis",
+                  "id": "telekinesis",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "telekinesis",
+                  "dynamicpunch",
+                  "earthquake",
+                  "gravity"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "telekinesis",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "dynamicpunch",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Telekinesis|p2a: Chansey",
+          "|-start|p2a: Chansey|Telekinesis",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Telekinesis|p2a: Chansey",
+          "|-start|p2a: Chansey|Telekinesis",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Telekinesis|p2a: Chansey",
+          "|-start|p2a: Chansey|Telekinesis",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Telekinesis",
+                  "id": "telekinesis",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "telekinesis",
+                  "dynamicpunch",
+                  "earthquake",
+                  "gravity"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "telekinesis",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "dynamicpunch",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Dynamic Punch|p2a: Chansey",
+          "|-supereffective|p2a: Chansey|1",
+          "|-damage|p2a: Chansey|203/325",
+          "|-start|p2a: Chansey|confusion",
+          "|-activate|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Recover|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Dynamic Punch|p2a: Chansey",
+          "|-supereffective|p2a: Chansey|1",
+          "|-damage|p2a: Chansey|203/325",
+          "|-start|p2a: Chansey|confusion",
+          "|-activate|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Recover|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Dynamic Punch|p2a: Chansey",
+          "|-supereffective|p2a: Chansey|1",
+          "|-damage|p2a: Chansey|203/325",
+          "|-start|p2a: Chansey|confusion",
+          "|-activate|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Recover|p2a: Chansey",
+          "|-heal|p2a: Chansey|325/325",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Telekinesis",
+                  "id": "telekinesis",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "telekinesis",
+                  "dynamicpunch",
+                  "earthquake",
+                  "gravity"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "telekinesis",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "dynamicpunch",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Earthquake|p2a: Chansey",
+          "|-immune|p2a: Chansey",
+          "|-end|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|-end|p2a: Chansey|Telekinesis",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Earthquake|p2a: Chansey",
+          "|-immune|p2a: Chansey",
+          "|-end|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|-end|p2a: Chansey|Telekinesis",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Earthquake|p2a: Chansey",
+          "|-immune|p2a: Chansey",
+          "|-end|p2a: Chansey|confusion",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|-end|p2a: Chansey|Telekinesis",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Telekinesis",
+                  "id": "telekinesis",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "telekinesis",
+                  "dynamicpunch",
+                  "earthquake",
+                  "gravity"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "telekinesis",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "dynamicpunch",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Telekinesis|p2a: Chansey",
+          "|-start|p2a: Chansey|Telekinesis",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Telekinesis|p2a: Chansey",
+          "|-start|p2a: Chansey|Telekinesis",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Telekinesis|p2a: Chansey",
+          "|-start|p2a: Chansey|Telekinesis",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Telekinesis",
+                  "id": "telekinesis",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "telekinesis",
+                  "dynamicpunch",
+                  "earthquake",
+                  "gravity"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "telekinesis",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "dynamicpunch",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Gravity|p1a: Smeargle",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p2a: Chansey|move: Gravity",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Gravity|p1a: Smeargle",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p2a: Chansey|move: Gravity",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Gravity|p1a: Smeargle",
+          "|-fieldstart|move: Gravity",
+          "|-activate|p2a: Chansey|move: Gravity",
+          "|move|p2a: Chansey|Recover||[still]",
+          "|-fail|p2a: Chansey|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Telekinesis",
+                  "id": "telekinesis",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "telekinesis",
+                  "dynamicpunch",
+                  "earthquake",
+                  "gravity"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "telekinesis",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "dynamicpunch",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
