@@ -1,0 +1,5471 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsrandomdoublesbattle",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsrandomdoublesbattle\",\"seed\":\"31415,9265,35897,19\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"seed\":\"1361,533,1,19\"}",
+        ">player p2 {\"name\":\"player1\",\"seed\":\"1361,533,2,19\"}"
+      ],
+      "turn": 1,
+      "seed": "31415,9265,35897,19",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Decidueye|Decidueye-Hisui, L53, M|100/100",
+          "|switch|p1b: Raichu|Raichu-Alola, L55, M|100/100",
+          "|switch|p2a: Thievul|Thievul, L57, M|100/100",
+          "|switch|p2b: Sirfetch’d|Sirfetch’d, L54, M|100/100",
+          "|turn|1"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Decidueye|Decidueye-Hisui, L53, M|183/183",
+          "|switch|p1b: Raichu|Raichu-Alola, L55, M|159/159",
+          "|switch|p2a: Thievul|Thievul, L57, M|100/100",
+          "|switch|p2b: Sirfetch’d|Sirfetch’d, L54, M|100/100",
+          "|turn|1"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Random Doubles Battle",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|Illusion Level Mod: Illusion disguises the Pokemon's true level",
+          "|rule|Level Clause Mod: Pokémon levels are not fixed at 50, with stats calculated accordingly.",
+          "|",
+          "|teamsize|p1|6",
+          "|teamsize|p2|6",
+          "|start",
+          "|switch|p1a: Decidueye|Decidueye-Hisui, L53, M|100/100",
+          "|switch|p1b: Raichu|Raichu-Alola, L55, M|100/100",
+          "|switch|p2a: Thievul|Thievul, L57, M|176/176",
+          "|switch|p2b: Sirfetch’d|Sirfetch’d, L54, M|159/159",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leaf Blade",
+                  "id": "leafblade",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Triple Arrows",
+                  "id": "triplearrows",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tailwind",
+                  "id": "tailwind",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Nuzzle",
+                  "id": "nuzzle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic",
+                  "id": "psychic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Decidueye",
+                "details": "Decidueye-Hisui, L53, M",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 117,
+                  "spa": 133,
+                  "spd": 133,
+                  "spe": 96
+                },
+                "moves": [
+                  "leafblade",
+                  "triplearrows",
+                  "tailwind",
+                  "protect"
+                ],
+                "baseAbility": "scrappy",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Raichu",
+                "details": "Raichu-Alola, L55, M",
+                "condition": "159/159",
+                "active": true,
+                "stats": {
+                  "atk": 127,
+                  "def": 88,
+                  "spa": 138,
+                  "spd": 127,
+                  "spe": 154
+                },
+                "moves": [
+                  "nuzzle",
+                  "thunderbolt",
+                  "fakeout",
+                  "psychic"
+                ],
+                "baseAbility": "surgesurfer",
+                "item": "focussash",
+                "pokeball": "pokeball",
+                "ability": "surgesurfer",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L46, F",
+                "condition": "144/144",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 120,
+                  "spa": 79,
+                  "spd": 102,
+                  "spe": 88
+                },
+                "moves": [
+                  "roost",
+                  "tailwind",
+                  "uturn",
+                  "bulletpunch"
+                ],
+                "baseAbility": "lightmetal",
+                "item": "scizorite",
+                "pokeball": "pokeball",
+                "ability": "lightmetal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Krookodile",
+                "details": "Krookodile, L50, F",
+                "condition": "181/181",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 111,
+                  "spa": 96,
+                  "spd": 101,
+                  "spe": 123
+                },
+                "moves": [
+                  "highhorsepower",
+                  "rockslide",
+                  "knockoff",
+                  "gunkshot"
+                ],
+                "baseAbility": "intimidate",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Grapploct",
+                "details": "Grapploct, L53, M",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 157,
+                  "def": 127,
+                  "spa": 106,
+                  "spd": 117,
+                  "spe": 77
+                },
+                "moves": [
+                  "protect",
+                  "payback",
+                  "stormthrow",
+                  "machpunch"
+                ],
+                "baseAbility": "technician",
+                "item": "blackbelt",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L54, M",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 86,
+                  "def": 151,
+                  "spa": 173,
+                  "spd": 135,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "freezedry",
+                  "mudshot",
+                  "icywind"
+                ],
+                "baseAbility": "icebody",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "icebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dark Pulse",
+                  "id": "darkpulse",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Parting Shot",
+                  "id": "partingshot",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Snarl",
+                  "id": "snarl",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Taunt",
+                  "id": "taunt",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "First Impression",
+                  "id": "firstimpression",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Knock Off",
+                  "id": "knockoff",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Close Combat",
+                  "id": "closecombat",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Thievul",
+                "details": "Thievul, L57, M",
+                "condition": "176/176",
+                "active": true,
+                "stats": {
+                  "atk": 88,
+                  "def": 100,
+                  "spa": 133,
+                  "spd": 139,
+                  "spe": 137
+                },
+                "moves": [
+                  "darkpulse",
+                  "partingshot",
+                  "snarl",
+                  "taunt"
+                ],
+                "baseAbility": "stakeout",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stakeout",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Sirfetch’d",
+                "details": "Sirfetch’d, L54, M",
+                "condition": "159/159",
+                "active": true,
+                "stats": {
+                  "atk": 178,
+                  "def": 135,
+                  "spa": 106,
+                  "spd": 121,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "firstimpression",
+                  "knockoff",
+                  "closecombat"
+                ],
+                "baseAbility": "scrappy",
+                "item": "leek",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Greninja",
+                "details": "Greninja, L52, M",
+                "condition": "163/163",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 101,
+                  "spa": 139,
+                  "spd": 105,
+                  "spe": 158
+                },
+                "moves": [
+                  "protect",
+                  "darkpulse",
+                  "gunkshot",
+                  "hydropump"
+                ],
+                "baseAbility": "torrent",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "torrent",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chandelure",
+                "details": "Chandelure, L50, F",
+                "condition": "146/146",
+                "active": false,
+                "stats": {
+                  "atk": 75,
+                  "def": 121,
+                  "spa": 176,
+                  "spd": 121,
+                  "spe": 111
+                },
+                "moves": [
+                  "energyball",
+                  "trick",
+                  "heatwave",
+                  "shadowball"
+                ],
+                "baseAbility": "flashfire",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "flashfire",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Pyroar",
+                "details": "Pyroar, L45, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 93,
+                  "spa": 126,
+                  "spd": 87,
+                  "spe": 123
+                },
+                "moves": [
+                  "hypervoice",
+                  "heatwave",
+                  "protect",
+                  "fireblast"
+                ],
+                "baseAbility": "unnerve",
+                "item": "pyroarite",
+                "pokeball": "pokeball",
+                "ability": "unnerve",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Indeedee",
+                "details": "Indeedee, L49, M",
+                "condition": "143/143",
+                "active": false,
+                "stats": {
+                  "atk": 83,
+                  "def": 84,
+                  "spa": 133,
+                  "spd": 123,
+                  "spe": 123
+                },
+                "moves": [
+                  "expandingforce",
+                  "trick",
+                  "hypervoice",
+                  "mysticalfire"
+                ],
+                "baseAbility": "psychicsurge",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "psychicsurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Decidueye",
+            "species": "Decidueye-Hisui",
+            "details": "Decidueye-Hisui, L53, M",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 117,
+              "spa": 133,
+              "spd": 133,
+              "spe": 96
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "leafblade",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "triplearrows",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Raichu",
+            "species": "Raichu-Alola",
+            "details": "Raichu-Alola, L55, M",
+            "hp": 159,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 127,
+              "def": 88,
+              "spa": 138,
+              "spd": 127,
+              "spe": 154
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "surgesurfer",
+            "item": "focussash",
+            "active": true,
+            "moves": [
+              {
+                "id": "nuzzle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "fakeout",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L46, F",
+            "hp": 144,
+            "maxhp": 144,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 120,
+              "spa": 79,
+              "spd": 102,
+              "spe": 88
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "lightmetal",
+            "item": "scizorite",
+            "active": false,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "bulletpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Krookodile",
+            "species": "Krookodile",
+            "details": "Krookodile, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 111,
+              "spa": 96,
+              "spd": 101,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "highhorsepower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "rockslide",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Grapploct",
+            "species": "Grapploct",
+            "details": "Grapploct, L53, M",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 157,
+              "def": 127,
+              "spa": 106,
+              "spd": 117,
+              "spe": 77
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "blackbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "payback",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "stormthrow",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "machpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L54, M",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 86,
+              "def": 151,
+              "spa": 173,
+              "spd": 135,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icebody",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "freezedry",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "mudshot",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Thievul",
+            "species": "Thievul",
+            "details": "Thievul, L57, M",
+            "hp": 176,
+            "maxhp": 176,
+            "status": "",
+            "stats": {
+              "atk": 88,
+              "def": 100,
+              "spa": 133,
+              "spd": 139,
+              "spe": 137
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stakeout",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "partingshot",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "snarl",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "taunt",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Sirfetch’d",
+            "species": "Sirfetch’d",
+            "details": "Sirfetch’d, L54, M",
+            "hp": 159,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 178,
+              "def": 135,
+              "spa": 106,
+              "spd": 121,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "leek",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "firstimpression",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Greninja",
+            "species": "Greninja",
+            "details": "Greninja, L52, M",
+            "hp": 163,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 101,
+              "spa": 139,
+              "spd": 105,
+              "spe": 158
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "torrent",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "hydropump",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Chandelure",
+            "species": "Chandelure",
+            "details": "Chandelure, L50, F",
+            "hp": 146,
+            "maxhp": 146,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 121,
+              "spa": 176,
+              "spd": 121,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flashfire",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "energyball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Pyroar",
+            "species": "Pyroar",
+            "details": "Pyroar, L45, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 93,
+              "spa": 126,
+              "spd": 87,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "unnerve",
+            "item": "pyroarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "fireblast",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Indeedee",
+            "species": "Indeedee",
+            "details": "Indeedee, L49, M",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 83,
+              "def": 84,
+              "spa": 133,
+              "spd": 123,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "psychicsurge",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "expandingforce",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "mysticalfire",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3, move 3 1",
+        ">p2 switch 3, move 3 2"
+      ],
+      "turn": 2,
+      "seed": "52910,10461,30206,20216",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Greninja|Greninja, L52, M|100/100",
+          "|move|p1b: Raichu|Fake Out|p2a: Greninja",
+          "|-damage|p2a: Greninja|85/100",
+          "|move|p2b: Sirfetch’d|Knock Off|p1b: Raichu",
+          "|-supereffective|p1b: Raichu|1",
+          "|-enditem|p1b: Raichu|Focus Sash",
+          "|-damage|p1b: Raichu|1/100",
+          "|move|p1a: Decidueye|Tailwind|p1a: Decidueye",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|switch|p2a: Greninja|Greninja, L52, M|100/100",
+          "|move|p1b: Raichu|Fake Out|p2a: Greninja",
+          "|-damage|p2a: Greninja|85/100",
+          "|move|p2b: Sirfetch’d|Knock Off|p1b: Raichu",
+          "|-supereffective|p1b: Raichu|1",
+          "|-enditem|p1b: Raichu|Focus Sash",
+          "|-damage|p1b: Raichu|1/159",
+          "|move|p1a: Decidueye|Tailwind|p1a: Decidueye",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|switch|p2a: Greninja|Greninja, L52, M|163/163",
+          "|move|p1b: Raichu|Fake Out|p2a: Greninja",
+          "|-damage|p2a: Greninja|140/163",
+          "|move|p2b: Sirfetch’d|Knock Off|p1b: Raichu",
+          "|-supereffective|p1b: Raichu|1",
+          "|-enditem|p1b: Raichu|Focus Sash",
+          "|-damage|p1b: Raichu|1/100",
+          "|move|p1a: Decidueye|Tailwind|p1a: Decidueye",
+          "|-sidestart|p1: player0|move: Tailwind",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leaf Blade",
+                  "id": "leafblade",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Triple Arrows",
+                  "id": "triplearrows",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tailwind",
+                  "id": "tailwind",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Nuzzle",
+                  "id": "nuzzle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Psychic",
+                  "id": "psychic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Decidueye",
+                "details": "Decidueye-Hisui, L53, M",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 117,
+                  "spa": 133,
+                  "spd": 133,
+                  "spe": 96
+                },
+                "moves": [
+                  "leafblade",
+                  "triplearrows",
+                  "tailwind",
+                  "protect"
+                ],
+                "baseAbility": "scrappy",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Raichu",
+                "details": "Raichu-Alola, L55, M",
+                "condition": "1/159",
+                "active": true,
+                "stats": {
+                  "atk": 127,
+                  "def": 88,
+                  "spa": 138,
+                  "spd": 127,
+                  "spe": 154
+                },
+                "moves": [
+                  "nuzzle",
+                  "thunderbolt",
+                  "fakeout",
+                  "psychic"
+                ],
+                "baseAbility": "surgesurfer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "surgesurfer",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L46, F",
+                "condition": "144/144",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 120,
+                  "spa": 79,
+                  "spd": 102,
+                  "spe": 88
+                },
+                "moves": [
+                  "roost",
+                  "tailwind",
+                  "uturn",
+                  "bulletpunch"
+                ],
+                "baseAbility": "lightmetal",
+                "item": "scizorite",
+                "pokeball": "pokeball",
+                "ability": "lightmetal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Krookodile",
+                "details": "Krookodile, L50, F",
+                "condition": "181/181",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 111,
+                  "spa": 96,
+                  "spd": 101,
+                  "spe": 123
+                },
+                "moves": [
+                  "highhorsepower",
+                  "rockslide",
+                  "knockoff",
+                  "gunkshot"
+                ],
+                "baseAbility": "intimidate",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Grapploct",
+                "details": "Grapploct, L53, M",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 157,
+                  "def": 127,
+                  "spa": 106,
+                  "spd": 117,
+                  "spe": 77
+                },
+                "moves": [
+                  "protect",
+                  "payback",
+                  "stormthrow",
+                  "machpunch"
+                ],
+                "baseAbility": "technician",
+                "item": "blackbelt",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L54, M",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 86,
+                  "def": 151,
+                  "spa": 173,
+                  "spd": 135,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "freezedry",
+                  "mudshot",
+                  "icywind"
+                ],
+                "baseAbility": "icebody",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "icebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Dark Pulse",
+                  "id": "darkpulse",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Gunk Shot",
+                  "id": "gunkshot",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hydro Pump",
+                  "id": "hydropump",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "First Impression",
+                  "id": "firstimpression",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Knock Off",
+                  "id": "knockoff",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Close Combat",
+                  "id": "closecombat",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Greninja",
+                "details": "Greninja, L52, M",
+                "condition": "140/163",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 101,
+                  "spa": 139,
+                  "spd": 105,
+                  "spe": 158
+                },
+                "moves": [
+                  "protect",
+                  "darkpulse",
+                  "gunkshot",
+                  "hydropump"
+                ],
+                "baseAbility": "torrent",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "torrent",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Sirfetch’d",
+                "details": "Sirfetch’d, L54, M",
+                "condition": "159/159",
+                "active": true,
+                "stats": {
+                  "atk": 178,
+                  "def": 135,
+                  "spa": 106,
+                  "spd": 121,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "firstimpression",
+                  "knockoff",
+                  "closecombat"
+                ],
+                "baseAbility": "scrappy",
+                "item": "leek",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Thievul",
+                "details": "Thievul, L57, M",
+                "condition": "176/176",
+                "active": false,
+                "stats": {
+                  "atk": 88,
+                  "def": 100,
+                  "spa": 133,
+                  "spd": 139,
+                  "spe": 137
+                },
+                "moves": [
+                  "darkpulse",
+                  "partingshot",
+                  "snarl",
+                  "taunt"
+                ],
+                "baseAbility": "stakeout",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stakeout",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chandelure",
+                "details": "Chandelure, L50, F",
+                "condition": "146/146",
+                "active": false,
+                "stats": {
+                  "atk": 75,
+                  "def": 121,
+                  "spa": 176,
+                  "spd": 121,
+                  "spe": 111
+                },
+                "moves": [
+                  "energyball",
+                  "trick",
+                  "heatwave",
+                  "shadowball"
+                ],
+                "baseAbility": "flashfire",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "flashfire",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Pyroar",
+                "details": "Pyroar, L45, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 93,
+                  "spa": 126,
+                  "spd": 87,
+                  "spe": 123
+                },
+                "moves": [
+                  "hypervoice",
+                  "heatwave",
+                  "protect",
+                  "fireblast"
+                ],
+                "baseAbility": "unnerve",
+                "item": "pyroarite",
+                "pokeball": "pokeball",
+                "ability": "unnerve",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Indeedee",
+                "details": "Indeedee, L49, M",
+                "condition": "143/143",
+                "active": false,
+                "stats": {
+                  "atk": 83,
+                  "def": 84,
+                  "spa": 133,
+                  "spd": 123,
+                  "spe": 123
+                },
+                "moves": [
+                  "expandingforce",
+                  "trick",
+                  "hypervoice",
+                  "mysticalfire"
+                ],
+                "baseAbility": "psychicsurge",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "psychicsurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Decidueye",
+            "species": "Decidueye-Hisui",
+            "details": "Decidueye-Hisui, L53, M",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 117,
+              "spa": 133,
+              "spd": 133,
+              "spe": 96
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "leafblade",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "triplearrows",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tailwind",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Raichu",
+            "species": "Raichu-Alola",
+            "details": "Raichu-Alola, L55, M",
+            "hp": 1,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 127,
+              "def": 88,
+              "spa": 138,
+              "spd": 127,
+              "spe": 154
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "surgesurfer",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "nuzzle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L46, F",
+            "hp": 144,
+            "maxhp": 144,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 120,
+              "spa": 79,
+              "spd": 102,
+              "spe": 88
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "lightmetal",
+            "item": "scizorite",
+            "active": false,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "bulletpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Krookodile",
+            "species": "Krookodile",
+            "details": "Krookodile, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 111,
+              "spa": 96,
+              "spd": 101,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "highhorsepower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "rockslide",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Grapploct",
+            "species": "Grapploct",
+            "details": "Grapploct, L53, M",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 157,
+              "def": 127,
+              "spa": 106,
+              "spd": 117,
+              "spe": 77
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "blackbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "payback",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "stormthrow",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "machpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L54, M",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 86,
+              "def": 151,
+              "spa": 173,
+              "spd": 135,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icebody",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "freezedry",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "mudshot",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Greninja",
+            "species": "Greninja",
+            "details": "Greninja, L52, M",
+            "hp": 140,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 101,
+              "spa": 139,
+              "spd": 105,
+              "spe": 158
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "torrent",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "hydropump",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Sirfetch’d",
+            "species": "Sirfetch’d",
+            "details": "Sirfetch’d, L54, M",
+            "hp": 159,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 178,
+              "def": 135,
+              "spa": 106,
+              "spd": 121,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "leek",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "firstimpression",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Thievul",
+            "species": "Thievul",
+            "details": "Thievul, L57, M",
+            "hp": 176,
+            "maxhp": 176,
+            "status": "",
+            "stats": {
+              "atk": 88,
+              "def": 100,
+              "spa": 133,
+              "spd": 139,
+              "spe": 137
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stakeout",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "partingshot",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "snarl",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "taunt",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Chandelure",
+            "species": "Chandelure",
+            "details": "Chandelure, L50, F",
+            "hp": 146,
+            "maxhp": 146,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 121,
+              "spa": 176,
+              "spd": 121,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flashfire",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "energyball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Pyroar",
+            "species": "Pyroar",
+            "details": "Pyroar, L45, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 93,
+              "spa": 126,
+              "spd": 87,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "unnerve",
+            "item": "pyroarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "fireblast",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Indeedee",
+            "species": "Indeedee",
+            "details": "Indeedee, L49, M",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 83,
+              "def": 84,
+              "spa": 133,
+              "spd": 123,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "psychicsurge",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "expandingforce",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "mysticalfire",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2 2, move 2 2",
+        ">p2 move 1, move 3 1"
+      ],
+      "turn": 3,
+      "seed": "62910,63724,12011,45447",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Greninja|Protect|p2a: Greninja",
+          "|-singleturn|p2a: Greninja|Protect",
+          "|move|p1b: Raichu|Thunderbolt|p2b: Sirfetch’d",
+          "|-damage|p2b: Sirfetch’d|59/100",
+          "|move|p1a: Decidueye|Triple Arrows|p2b: Sirfetch’d",
+          "|-damage|p2b: Sirfetch’d|19/100",
+          "|-unboost|p2b: Sirfetch’d|def|1",
+          "|move|p2b: Sirfetch’d|Knock Off|p1a: Decidueye",
+          "|-resisted|p1a: Decidueye|1",
+          "|-crit|p1a: Decidueye",
+          "|-damage|p1a: Decidueye|73/100",
+          "|-enditem|p1a: Decidueye|Sitrus Berry|[from] move: Knock Off|[of] p2b: Sirfetch’d",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Greninja|Protect|p2a: Greninja",
+          "|-singleturn|p2a: Greninja|Protect",
+          "|move|p1b: Raichu|Thunderbolt|p2b: Sirfetch’d",
+          "|-damage|p2b: Sirfetch’d|59/100",
+          "|move|p1a: Decidueye|Triple Arrows|p2b: Sirfetch’d",
+          "|-damage|p2b: Sirfetch’d|19/100",
+          "|-unboost|p2b: Sirfetch’d|def|1",
+          "|move|p2b: Sirfetch’d|Knock Off|p1a: Decidueye",
+          "|-resisted|p1a: Decidueye|1",
+          "|-crit|p1a: Decidueye",
+          "|-damage|p1a: Decidueye|134/183",
+          "|-enditem|p1a: Decidueye|Sitrus Berry|[from] move: Knock Off|[of] p2b: Sirfetch’d",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Greninja|Protect|p2a: Greninja",
+          "|-singleturn|p2a: Greninja|Protect",
+          "|move|p1b: Raichu|Thunderbolt|p2b: Sirfetch’d",
+          "|-damage|p2b: Sirfetch’d|95/159",
+          "|move|p1a: Decidueye|Triple Arrows|p2b: Sirfetch’d",
+          "|-damage|p2b: Sirfetch’d|31/159",
+          "|-unboost|p2b: Sirfetch’d|def|1",
+          "|move|p2b: Sirfetch’d|Knock Off|p1a: Decidueye",
+          "|-resisted|p1a: Decidueye|1",
+          "|-crit|p1a: Decidueye",
+          "|-damage|p1a: Decidueye|73/100",
+          "|-enditem|p1a: Decidueye|Sitrus Berry|[from] move: Knock Off|[of] p2b: Sirfetch’d",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leaf Blade",
+                  "id": "leafblade",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Triple Arrows",
+                  "id": "triplearrows",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tailwind",
+                  "id": "tailwind",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Nuzzle",
+                  "id": "nuzzle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Thunderbolt",
+                  "id": "thunderbolt",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Fake Out",
+                  "id": "fakeout",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Psychic",
+                  "id": "psychic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Decidueye",
+                "details": "Decidueye-Hisui, L53, M",
+                "condition": "134/183",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 117,
+                  "spa": 133,
+                  "spd": 133,
+                  "spe": 96
+                },
+                "moves": [
+                  "leafblade",
+                  "triplearrows",
+                  "tailwind",
+                  "protect"
+                ],
+                "baseAbility": "scrappy",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Raichu",
+                "details": "Raichu-Alola, L55, M",
+                "condition": "1/159",
+                "active": true,
+                "stats": {
+                  "atk": 127,
+                  "def": 88,
+                  "spa": 138,
+                  "spd": 127,
+                  "spe": 154
+                },
+                "moves": [
+                  "nuzzle",
+                  "thunderbolt",
+                  "fakeout",
+                  "psychic"
+                ],
+                "baseAbility": "surgesurfer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "surgesurfer",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L46, F",
+                "condition": "144/144",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 120,
+                  "spa": 79,
+                  "spd": 102,
+                  "spe": 88
+                },
+                "moves": [
+                  "roost",
+                  "tailwind",
+                  "uturn",
+                  "bulletpunch"
+                ],
+                "baseAbility": "lightmetal",
+                "item": "scizorite",
+                "pokeball": "pokeball",
+                "ability": "lightmetal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Krookodile",
+                "details": "Krookodile, L50, F",
+                "condition": "181/181",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 111,
+                  "spa": 96,
+                  "spd": 101,
+                  "spe": 123
+                },
+                "moves": [
+                  "highhorsepower",
+                  "rockslide",
+                  "knockoff",
+                  "gunkshot"
+                ],
+                "baseAbility": "intimidate",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Grapploct",
+                "details": "Grapploct, L53, M",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 157,
+                  "def": 127,
+                  "spa": 106,
+                  "spd": 117,
+                  "spe": 77
+                },
+                "moves": [
+                  "protect",
+                  "payback",
+                  "stormthrow",
+                  "machpunch"
+                ],
+                "baseAbility": "technician",
+                "item": "blackbelt",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L54, M",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 86,
+                  "def": 151,
+                  "spa": 173,
+                  "spd": 135,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "freezedry",
+                  "mudshot",
+                  "icywind"
+                ],
+                "baseAbility": "icebody",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "icebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Dark Pulse",
+                  "id": "darkpulse",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Gunk Shot",
+                  "id": "gunkshot",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Hydro Pump",
+                  "id": "hydropump",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "First Impression",
+                  "id": "firstimpression",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Knock Off",
+                  "id": "knockoff",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Close Combat",
+                  "id": "closecombat",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Greninja",
+                "details": "Greninja, L52, M",
+                "condition": "140/163",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 101,
+                  "spa": 139,
+                  "spd": 105,
+                  "spe": 158
+                },
+                "moves": [
+                  "protect",
+                  "darkpulse",
+                  "gunkshot",
+                  "hydropump"
+                ],
+                "baseAbility": "torrent",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "torrent",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Sirfetch’d",
+                "details": "Sirfetch’d, L54, M",
+                "condition": "31/159",
+                "active": true,
+                "stats": {
+                  "atk": 178,
+                  "def": 135,
+                  "spa": 106,
+                  "spd": 121,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "firstimpression",
+                  "knockoff",
+                  "closecombat"
+                ],
+                "baseAbility": "scrappy",
+                "item": "leek",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Thievul",
+                "details": "Thievul, L57, M",
+                "condition": "176/176",
+                "active": false,
+                "stats": {
+                  "atk": 88,
+                  "def": 100,
+                  "spa": 133,
+                  "spd": 139,
+                  "spe": 137
+                },
+                "moves": [
+                  "darkpulse",
+                  "partingshot",
+                  "snarl",
+                  "taunt"
+                ],
+                "baseAbility": "stakeout",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stakeout",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chandelure",
+                "details": "Chandelure, L50, F",
+                "condition": "146/146",
+                "active": false,
+                "stats": {
+                  "atk": 75,
+                  "def": 121,
+                  "spa": 176,
+                  "spd": 121,
+                  "spe": 111
+                },
+                "moves": [
+                  "energyball",
+                  "trick",
+                  "heatwave",
+                  "shadowball"
+                ],
+                "baseAbility": "flashfire",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "flashfire",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Pyroar",
+                "details": "Pyroar, L45, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 93,
+                  "spa": 126,
+                  "spd": 87,
+                  "spe": 123
+                },
+                "moves": [
+                  "hypervoice",
+                  "heatwave",
+                  "protect",
+                  "fireblast"
+                ],
+                "baseAbility": "unnerve",
+                "item": "pyroarite",
+                "pokeball": "pokeball",
+                "ability": "unnerve",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Indeedee",
+                "details": "Indeedee, L49, M",
+                "condition": "143/143",
+                "active": false,
+                "stats": {
+                  "atk": 83,
+                  "def": 84,
+                  "spa": 133,
+                  "spd": 123,
+                  "spe": 123
+                },
+                "moves": [
+                  "expandingforce",
+                  "trick",
+                  "hypervoice",
+                  "mysticalfire"
+                ],
+                "baseAbility": "psychicsurge",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "psychicsurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Decidueye",
+            "species": "Decidueye-Hisui",
+            "details": "Decidueye-Hisui, L53, M",
+            "hp": 134,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 117,
+              "spa": 133,
+              "spd": 133,
+              "spe": 96
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "leafblade",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "triplearrows",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tailwind",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Raichu",
+            "species": "Raichu-Alola",
+            "details": "Raichu-Alola, L55, M",
+            "hp": 1,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 127,
+              "def": 88,
+              "spa": 138,
+              "spd": 127,
+              "spe": 154
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "surgesurfer",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "nuzzle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L46, F",
+            "hp": 144,
+            "maxhp": 144,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 120,
+              "spa": 79,
+              "spd": 102,
+              "spe": 88
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "lightmetal",
+            "item": "scizorite",
+            "active": false,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "bulletpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Krookodile",
+            "species": "Krookodile",
+            "details": "Krookodile, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 111,
+              "spa": 96,
+              "spd": 101,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "highhorsepower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "rockslide",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Grapploct",
+            "species": "Grapploct",
+            "details": "Grapploct, L53, M",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 157,
+              "def": 127,
+              "spa": 106,
+              "spd": 117,
+              "spe": 77
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "blackbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "payback",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "stormthrow",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "machpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L54, M",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 86,
+              "def": 151,
+              "spa": 173,
+              "spd": 135,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icebody",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "freezedry",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "mudshot",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Greninja",
+            "species": "Greninja",
+            "details": "Greninja, L52, M",
+            "hp": 140,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 101,
+              "spa": 139,
+              "spd": 105,
+              "spe": 158
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "torrent",
+            "item": "lifeorb",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "hydropump",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Sirfetch’d",
+            "species": "Sirfetch’d",
+            "details": "Sirfetch’d, L54, M",
+            "hp": 31,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 178,
+              "def": 135,
+              "spa": 106,
+              "spd": 121,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "leek",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "firstimpression",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Thievul",
+            "species": "Thievul",
+            "details": "Thievul, L57, M",
+            "hp": 176,
+            "maxhp": 176,
+            "status": "",
+            "stats": {
+              "atk": 88,
+              "def": 100,
+              "spa": 133,
+              "spd": 139,
+              "spe": 137
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stakeout",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "partingshot",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "snarl",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "taunt",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Chandelure",
+            "species": "Chandelure",
+            "details": "Chandelure, L50, F",
+            "hp": 146,
+            "maxhp": 146,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 121,
+              "spa": 176,
+              "spd": 121,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flashfire",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "energyball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Pyroar",
+            "species": "Pyroar",
+            "details": "Pyroar, L45, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 93,
+              "spa": 126,
+              "spd": 87,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "unnerve",
+            "item": "pyroarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "fireblast",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Indeedee",
+            "species": "Indeedee",
+            "details": "Indeedee, L49, M",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 83,
+              "def": 84,
+              "spa": 133,
+              "spd": 123,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "psychicsurge",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "expandingforce",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "mysticalfire",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3, move 2 1",
+        ">p2 move 2 2, move 3 2"
+      ],
+      "turn": 3,
+      "seed": "15082,55647,19876,17628",
+      "requestState": "switch",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Raichu|Thunderbolt|p2a: Greninja",
+          "|-supereffective|p2a: Greninja|1",
+          "|-damage|p2a: Greninja|0 fnt",
+          "|faint|p2a: Greninja",
+          "|move|p1a: Decidueye|Tailwind||[still]",
+          "|-fail|p1a: Decidueye",
+          "|move|p2b: Sirfetch’d|Knock Off|p1b: Raichu",
+          "|-supereffective|p1b: Raichu|1",
+          "|-crit|p1b: Raichu",
+          "|-damage|p1b: Raichu|0 fnt",
+          "|faint|p1b: Raichu",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1b: Raichu|Thunderbolt|p2a: Greninja",
+          "|-supereffective|p2a: Greninja|1",
+          "|-damage|p2a: Greninja|0 fnt",
+          "|faint|p2a: Greninja",
+          "|move|p1a: Decidueye|Tailwind||[still]",
+          "|-fail|p1a: Decidueye",
+          "|move|p2b: Sirfetch’d|Knock Off|p1b: Raichu",
+          "|-supereffective|p1b: Raichu|1",
+          "|-crit|p1b: Raichu",
+          "|-damage|p1b: Raichu|0 fnt",
+          "|faint|p1b: Raichu",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|move|p1b: Raichu|Thunderbolt|p2a: Greninja",
+          "|-supereffective|p2a: Greninja|1",
+          "|-damage|p2a: Greninja|0 fnt",
+          "|faint|p2a: Greninja",
+          "|move|p1a: Decidueye|Tailwind||[still]",
+          "|-fail|p1a: Decidueye",
+          "|move|p2b: Sirfetch’d|Knock Off|p1b: Raichu",
+          "|-supereffective|p1b: Raichu|1",
+          "|-crit|p1b: Raichu",
+          "|-damage|p1b: Raichu|0 fnt",
+          "|faint|p1b: Raichu",
+          "|",
+          "|upkeep"
+        ]
+      ],
+      "requests": [
+        {
+          "forceSwitch": [
+            false,
+            true
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Decidueye",
+                "details": "Decidueye-Hisui, L53, M",
+                "condition": "134/183",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 117,
+                  "spa": 133,
+                  "spd": 133,
+                  "spe": 96
+                },
+                "moves": [
+                  "leafblade",
+                  "triplearrows",
+                  "tailwind",
+                  "protect"
+                ],
+                "baseAbility": "scrappy",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Raichu",
+                "details": "Raichu-Alola, L55, M",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 127,
+                  "def": 88,
+                  "spa": 138,
+                  "spd": 127,
+                  "spe": 154
+                },
+                "moves": [
+                  "nuzzle",
+                  "thunderbolt",
+                  "fakeout",
+                  "psychic"
+                ],
+                "baseAbility": "surgesurfer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "surgesurfer",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L46, F",
+                "condition": "144/144",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 120,
+                  "spa": 79,
+                  "spd": 102,
+                  "spe": 88
+                },
+                "moves": [
+                  "roost",
+                  "tailwind",
+                  "uturn",
+                  "bulletpunch"
+                ],
+                "baseAbility": "lightmetal",
+                "item": "scizorite",
+                "pokeball": "pokeball",
+                "ability": "lightmetal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Krookodile",
+                "details": "Krookodile, L50, F",
+                "condition": "181/181",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 111,
+                  "spa": 96,
+                  "spd": 101,
+                  "spe": 123
+                },
+                "moves": [
+                  "highhorsepower",
+                  "rockslide",
+                  "knockoff",
+                  "gunkshot"
+                ],
+                "baseAbility": "intimidate",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Grapploct",
+                "details": "Grapploct, L53, M",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 157,
+                  "def": 127,
+                  "spa": 106,
+                  "spd": 117,
+                  "spe": 77
+                },
+                "moves": [
+                  "protect",
+                  "payback",
+                  "stormthrow",
+                  "machpunch"
+                ],
+                "baseAbility": "technician",
+                "item": "blackbelt",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L54, M",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 86,
+                  "def": 151,
+                  "spa": 173,
+                  "spd": 135,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "freezedry",
+                  "mudshot",
+                  "icywind"
+                ],
+                "baseAbility": "icebody",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "icebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "forceSwitch": [
+            true,
+            false
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Greninja",
+                "details": "Greninja, L52, M",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 101,
+                  "spa": 139,
+                  "spd": 105,
+                  "spe": 158
+                },
+                "moves": [
+                  "protect",
+                  "darkpulse",
+                  "gunkshot",
+                  "hydropump"
+                ],
+                "baseAbility": "torrent",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "torrent",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Sirfetch’d",
+                "details": "Sirfetch’d, L54, M",
+                "condition": "31/159",
+                "active": true,
+                "stats": {
+                  "atk": 178,
+                  "def": 135,
+                  "spa": 106,
+                  "spd": 121,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "firstimpression",
+                  "knockoff",
+                  "closecombat"
+                ],
+                "baseAbility": "scrappy",
+                "item": "leek",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Thievul",
+                "details": "Thievul, L57, M",
+                "condition": "176/176",
+                "active": false,
+                "stats": {
+                  "atk": 88,
+                  "def": 100,
+                  "spa": 133,
+                  "spd": 139,
+                  "spe": 137
+                },
+                "moves": [
+                  "darkpulse",
+                  "partingshot",
+                  "snarl",
+                  "taunt"
+                ],
+                "baseAbility": "stakeout",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stakeout",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chandelure",
+                "details": "Chandelure, L50, F",
+                "condition": "146/146",
+                "active": false,
+                "stats": {
+                  "atk": 75,
+                  "def": 121,
+                  "spa": 176,
+                  "spd": 121,
+                  "spe": 111
+                },
+                "moves": [
+                  "energyball",
+                  "trick",
+                  "heatwave",
+                  "shadowball"
+                ],
+                "baseAbility": "flashfire",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "flashfire",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Pyroar",
+                "details": "Pyroar, L45, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 93,
+                  "spa": 126,
+                  "spd": 87,
+                  "spe": 123
+                },
+                "moves": [
+                  "hypervoice",
+                  "heatwave",
+                  "protect",
+                  "fireblast"
+                ],
+                "baseAbility": "unnerve",
+                "item": "pyroarite",
+                "pokeball": "pokeball",
+                "ability": "unnerve",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Indeedee",
+                "details": "Indeedee, L49, M",
+                "condition": "143/143",
+                "active": false,
+                "stats": {
+                  "atk": 83,
+                  "def": 84,
+                  "spa": 133,
+                  "spd": 123,
+                  "spe": 123
+                },
+                "moves": [
+                  "expandingforce",
+                  "trick",
+                  "hypervoice",
+                  "mysticalfire"
+                ],
+                "baseAbility": "psychicsurge",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "psychicsurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Decidueye",
+            "species": "Decidueye-Hisui",
+            "details": "Decidueye-Hisui, L53, M",
+            "hp": 134,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 117,
+              "spa": 133,
+              "spd": 133,
+              "spe": 96
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "leafblade",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "triplearrows",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tailwind",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Raichu",
+            "species": "Raichu-Alola",
+            "details": "Raichu-Alola, L55, M",
+            "hp": 0,
+            "maxhp": 159,
+            "status": "fnt",
+            "stats": {
+              "atk": 127,
+              "def": 88,
+              "spa": 138,
+              "spd": 127,
+              "spe": 154
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "surgesurfer",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "nuzzle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L46, F",
+            "hp": 144,
+            "maxhp": 144,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 120,
+              "spa": 79,
+              "spd": 102,
+              "spe": 88
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "lightmetal",
+            "item": "scizorite",
+            "active": false,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "bulletpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Krookodile",
+            "species": "Krookodile",
+            "details": "Krookodile, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 111,
+              "spa": 96,
+              "spd": 101,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "highhorsepower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "rockslide",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Grapploct",
+            "species": "Grapploct",
+            "details": "Grapploct, L53, M",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 157,
+              "def": 127,
+              "spa": 106,
+              "spd": 117,
+              "spe": 77
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "blackbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "payback",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "stormthrow",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "machpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L54, M",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 86,
+              "def": 151,
+              "spa": 173,
+              "spd": 135,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icebody",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "freezedry",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "mudshot",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Greninja",
+            "species": "Greninja",
+            "details": "Greninja, L52, M",
+            "hp": 0,
+            "maxhp": 163,
+            "status": "fnt",
+            "stats": {
+              "atk": 130,
+              "def": 101,
+              "spa": 139,
+              "spd": 105,
+              "spe": 158
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "torrent",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "hydropump",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Sirfetch’d",
+            "species": "Sirfetch’d",
+            "details": "Sirfetch’d, L54, M",
+            "hp": 31,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 178,
+              "def": 135,
+              "spa": 106,
+              "spd": 121,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "leek",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "firstimpression",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 17,
+                "maxpp": 20
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Thievul",
+            "species": "Thievul",
+            "details": "Thievul, L57, M",
+            "hp": 176,
+            "maxhp": 176,
+            "status": "",
+            "stats": {
+              "atk": 88,
+              "def": 100,
+              "spa": 133,
+              "spd": 139,
+              "spe": 137
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stakeout",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "partingshot",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "snarl",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "taunt",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Chandelure",
+            "species": "Chandelure",
+            "details": "Chandelure, L50, F",
+            "hp": 146,
+            "maxhp": 146,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 121,
+              "spa": 176,
+              "spd": 121,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flashfire",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "energyball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Pyroar",
+            "species": "Pyroar",
+            "details": "Pyroar, L45, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 93,
+              "spa": 126,
+              "spd": 87,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "unnerve",
+            "item": "pyroarite",
+            "active": false,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "fireblast",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Indeedee",
+            "species": "Indeedee",
+            "details": "Indeedee, L49, M",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 83,
+              "def": 84,
+              "spa": 133,
+              "spd": 123,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "psychicsurge",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "expandingforce",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "mysticalfire",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 pass, switch 5",
+        ">p2 switch 5, pass"
+      ],
+      "turn": 4,
+      "seed": "15082,55647,19876,17628",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Pyroar|Pyroar, L45, F|100/100",
+          "|switch|p1b: Grapploct|Grapploct, L53, M|100/100",
+          "|-ability|p2a: Pyroar|Unnerve",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Pyroar|Pyroar, L45, F|100/100",
+          "|switch|p1b: Grapploct|Grapploct, L53, M|175/175",
+          "|-ability|p2a: Pyroar|Unnerve",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Pyroar|Pyroar, L45, F|155/155",
+          "|switch|p1b: Grapploct|Grapploct, L53, M|100/100",
+          "|-ability|p2a: Pyroar|Unnerve",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leaf Blade",
+                  "id": "leafblade",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Triple Arrows",
+                  "id": "triplearrows",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tailwind",
+                  "id": "tailwind",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Payback",
+                  "id": "payback",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Storm Throw",
+                  "id": "stormthrow",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Mach Punch",
+                  "id": "machpunch",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Decidueye",
+                "details": "Decidueye-Hisui, L53, M",
+                "condition": "134/183",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 117,
+                  "spa": 133,
+                  "spd": 133,
+                  "spe": 96
+                },
+                "moves": [
+                  "leafblade",
+                  "triplearrows",
+                  "tailwind",
+                  "protect"
+                ],
+                "baseAbility": "scrappy",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Grapploct",
+                "details": "Grapploct, L53, M",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 157,
+                  "def": 127,
+                  "spa": 106,
+                  "spd": 117,
+                  "spe": 77
+                },
+                "moves": [
+                  "protect",
+                  "payback",
+                  "stormthrow",
+                  "machpunch"
+                ],
+                "baseAbility": "technician",
+                "item": "blackbelt",
+                "pokeball": "pokeball",
+                "ability": "technician",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Scizor",
+                "details": "Scizor, L46, F",
+                "condition": "144/144",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 120,
+                  "spa": 79,
+                  "spd": 102,
+                  "spe": 88
+                },
+                "moves": [
+                  "roost",
+                  "tailwind",
+                  "uturn",
+                  "bulletpunch"
+                ],
+                "baseAbility": "lightmetal",
+                "item": "scizorite",
+                "pokeball": "pokeball",
+                "ability": "lightmetal",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Krookodile",
+                "details": "Krookodile, L50, F",
+                "condition": "181/181",
+                "active": false,
+                "stats": {
+                  "atk": 148,
+                  "def": 111,
+                  "spa": 96,
+                  "spd": 101,
+                  "spe": 123
+                },
+                "moves": [
+                  "highhorsepower",
+                  "rockslide",
+                  "knockoff",
+                  "gunkshot"
+                ],
+                "baseAbility": "intimidate",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Raichu",
+                "details": "Raichu-Alola, L55, M",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 127,
+                  "def": 88,
+                  "spa": 138,
+                  "spd": 127,
+                  "spe": 154
+                },
+                "moves": [
+                  "nuzzle",
+                  "thunderbolt",
+                  "fakeout",
+                  "psychic"
+                ],
+                "baseAbility": "surgesurfer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "surgesurfer",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L54, M",
+                "condition": "162/162",
+                "active": false,
+                "stats": {
+                  "atk": 86,
+                  "def": 151,
+                  "spa": 173,
+                  "spd": 135,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "freezedry",
+                  "mudshot",
+                  "icywind"
+                ],
+                "baseAbility": "icebody",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "icebody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hyper Voice",
+                  "id": "hypervoice",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Heat Wave",
+                  "id": "heatwave",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Fire Blast",
+                  "id": "fireblast",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ],
+              "canMegaEvo": true
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "First Impression",
+                  "id": "firstimpression",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": true
+                },
+                {
+                  "move": "Knock Off",
+                  "id": "knockoff",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Close Combat",
+                  "id": "closecombat",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Pyroar",
+                "details": "Pyroar, L45, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 93,
+                  "spa": 126,
+                  "spd": 87,
+                  "spe": 123
+                },
+                "moves": [
+                  "hypervoice",
+                  "heatwave",
+                  "protect",
+                  "fireblast"
+                ],
+                "baseAbility": "unnerve",
+                "item": "pyroarite",
+                "pokeball": "pokeball",
+                "ability": "unnerve",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Sirfetch’d",
+                "details": "Sirfetch’d, L54, M",
+                "condition": "31/159",
+                "active": true,
+                "stats": {
+                  "atk": 178,
+                  "def": 135,
+                  "spa": 106,
+                  "spd": 121,
+                  "spe": 103
+                },
+                "moves": [
+                  "protect",
+                  "firstimpression",
+                  "knockoff",
+                  "closecombat"
+                ],
+                "baseAbility": "scrappy",
+                "item": "leek",
+                "pokeball": "pokeball",
+                "ability": "scrappy",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Thievul",
+                "details": "Thievul, L57, M",
+                "condition": "176/176",
+                "active": false,
+                "stats": {
+                  "atk": 88,
+                  "def": 100,
+                  "spa": 133,
+                  "spd": 139,
+                  "spe": 137
+                },
+                "moves": [
+                  "darkpulse",
+                  "partingshot",
+                  "snarl",
+                  "taunt"
+                ],
+                "baseAbility": "stakeout",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "stakeout",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Chandelure",
+                "details": "Chandelure, L50, F",
+                "condition": "146/146",
+                "active": false,
+                "stats": {
+                  "atk": 75,
+                  "def": 121,
+                  "spa": 176,
+                  "spd": 121,
+                  "spe": 111
+                },
+                "moves": [
+                  "energyball",
+                  "trick",
+                  "heatwave",
+                  "shadowball"
+                ],
+                "baseAbility": "flashfire",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "flashfire",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Greninja",
+                "details": "Greninja, L52, M",
+                "condition": "0 fnt",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 101,
+                  "spa": 139,
+                  "spd": 105,
+                  "spe": 158
+                },
+                "moves": [
+                  "protect",
+                  "darkpulse",
+                  "gunkshot",
+                  "hydropump"
+                ],
+                "baseAbility": "torrent",
+                "item": "lifeorb",
+                "pokeball": "pokeball",
+                "ability": "torrent",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Indeedee",
+                "details": "Indeedee, L49, M",
+                "condition": "143/143",
+                "active": false,
+                "stats": {
+                  "atk": 83,
+                  "def": 84,
+                  "spa": 133,
+                  "spd": 123,
+                  "spe": 123
+                },
+                "moves": [
+                  "expandingforce",
+                  "trick",
+                  "hypervoice",
+                  "mysticalfire"
+                ],
+                "baseAbility": "psychicsurge",
+                "item": "choicescarf",
+                "pokeball": "pokeball",
+                "ability": "psychicsurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Decidueye",
+            "species": "Decidueye-Hisui",
+            "details": "Decidueye-Hisui, L53, M",
+            "hp": 134,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 117,
+              "spa": 133,
+              "spd": 133,
+              "spe": 96
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "leafblade",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "triplearrows",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tailwind",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Grapploct",
+            "species": "Grapploct",
+            "details": "Grapploct, L53, M",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 157,
+              "def": 127,
+              "spa": 106,
+              "spd": 117,
+              "spe": 77
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "technician",
+            "item": "blackbelt",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "payback",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "stormthrow",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "machpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Scizor",
+            "species": "Scizor",
+            "details": "Scizor, L46, F",
+            "hp": 144,
+            "maxhp": 144,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 120,
+              "spa": 79,
+              "spd": 102,
+              "spe": 88
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "lightmetal",
+            "item": "scizorite",
+            "active": false,
+            "moves": [
+              {
+                "id": "roost",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tailwind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "uturn",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "bulletpunch",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Krookodile",
+            "species": "Krookodile",
+            "details": "Krookodile, L50, F",
+            "hp": 181,
+            "maxhp": 181,
+            "status": "",
+            "stats": {
+              "atk": 148,
+              "def": 111,
+              "spa": 96,
+              "spd": 101,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "highhorsepower",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "rockslide",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Raichu",
+            "species": "Raichu-Alola",
+            "details": "Raichu-Alola, L55, M",
+            "hp": 0,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 127,
+              "def": 88,
+              "spa": 138,
+              "spd": 127,
+              "spe": 154
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "surgesurfer",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "nuzzle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "thunderbolt",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "fakeout",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "psychic",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L54, M",
+            "hp": 162,
+            "maxhp": 162,
+            "status": "",
+            "stats": {
+              "atk": 86,
+              "def": 151,
+              "spa": 173,
+              "spd": 135,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "icebody",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "freezedry",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "mudshot",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Pyroar",
+            "species": "Pyroar",
+            "details": "Pyroar, L45, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 93,
+              "spa": 126,
+              "spd": 87,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "unnerve",
+            "item": "pyroarite",
+            "active": true,
+            "moves": [
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "fireblast",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Sirfetch’d",
+            "species": "Sirfetch’d",
+            "details": "Sirfetch’d, L54, M",
+            "hp": 31,
+            "maxhp": 159,
+            "status": "",
+            "stats": {
+              "atk": 178,
+              "def": 135,
+              "spa": 106,
+              "spd": 121,
+              "spe": 103
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "scrappy",
+            "item": "leek",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "firstimpression",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "knockoff",
+                "pp": 17,
+                "maxpp": 20
+              },
+              {
+                "id": "closecombat",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Thievul",
+            "species": "Thievul",
+            "details": "Thievul, L57, M",
+            "hp": 176,
+            "maxhp": 176,
+            "status": "",
+            "stats": {
+              "atk": 88,
+              "def": 100,
+              "spa": 133,
+              "spd": 139,
+              "spe": 137
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "stakeout",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "partingshot",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "snarl",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "taunt",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Chandelure",
+            "species": "Chandelure",
+            "details": "Chandelure, L50, F",
+            "hp": 146,
+            "maxhp": 146,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 121,
+              "spa": 176,
+              "spd": 121,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flashfire",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "energyball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "heatwave",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "shadowball",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Greninja",
+            "species": "Greninja",
+            "details": "Greninja, L52, M",
+            "hp": 0,
+            "maxhp": 163,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 101,
+              "spa": 139,
+              "spd": 105,
+              "spe": 158
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "torrent",
+            "item": "lifeorb",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "darkpulse",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "gunkshot",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "hydropump",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Indeedee",
+            "species": "Indeedee",
+            "details": "Indeedee, L49, M",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 83,
+              "def": 84,
+              "spa": 133,
+              "spd": 123,
+              "spe": 123
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "psychicsurge",
+            "item": "choicescarf",
+            "active": false,
+            "moves": [
+              {
+                "id": "expandingforce",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "hypervoice",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "mysticalfire",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

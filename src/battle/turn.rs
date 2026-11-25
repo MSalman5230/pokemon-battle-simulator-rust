@@ -315,7 +315,11 @@ impl Battle {
                     } else if self.last_active(pos) && self.first_bench(player, 0).is_some() && self.trap_info(pos).possible {
                         request["maybeTrapped"] = json!(true);
                     }
-                    if self.can_mega_in_slot(player, slot) { request["canMegaEvo"] = json!(true); }
+                    if self.can_mega(pos) && self.any_move_in_request(pos) {
+                        // A fainted active still has a Showdown request entry.
+                        // It can advertise the form even though it cannot act.
+                        request["canMegaEvo"] = json!(true);
+                    }
                     request
                 }).collect::<Vec<_>>(),
                 "side": self.side_request(player).unwrap(),
@@ -1727,7 +1731,7 @@ impl Battle {
                     }
                 }
             }
-            if !queue.first().is_some_and(|q| {
+            let replacements_pending = queue.first().is_some_and(|q| {
                 matches!(
                     q.kind,
                     ActionKind::Switch {
@@ -1735,7 +1739,8 @@ impl Battle {
                         ..
                     }
                 )
-            }) {
+            });
+            if !replacements_pending {
                 self.each_event();
             }
             if matches!(action.kind, ActionKind::Residual | ActionKind::RunSwitch) {
@@ -1744,7 +1749,7 @@ impl Battle {
                 }
             }
             let mut waiting = false;
-            for player in Player::ALL {
+            for player in Player::ALL.into_iter().filter(|_| !replacements_pending) {
                 for (slot, required) in self.force_switch(player).into_iter().enumerate() {
                     if !required {
                         continue;
@@ -4284,14 +4289,16 @@ impl Battle {
                     };
                     let tr = self.stat_rules.truncation;
                     let mon = self.mon_mut(target);
-                    if mon.hp == mon.max_hp.get() {
+                    if mon.hp == mon.max_hp.get() || mon.heal_block > 0 {
                         self.add(format!("|-fail|{}|heal", self.ident(target)));
                     } else {
                         mon.hp = (mon.hp + tr.modify(mon.max_hp.get(), fraction).max(1))
                             .min(mon.max_hp.get());
                         self.add_health_line("-heal", target, false);
-                        succeeded = true;
                     }
+                    // Weather-based recovery uses NOT_FAIL at full health.
+                    // Update events still run and can have RNG-consuming ties.
+                    succeeded = true;
                 }
                 if let Some(status) = &move_data.status {
                     succeeded |= self.try_status(target, status, source, move_data, true, base);
@@ -5609,13 +5616,13 @@ impl Pokemon {
         tailwind: bool,
     ) -> u32 {
         let mut stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
-        if tailwind {
-            stat *= 2;
-        }
         if self.fainted {
             // A queued replacement still uses the outgoing Pokemon's speed,
-            // but Showdown ignores its inactive ability and held item.
+            // but Showdown ignores its inactive item, ability, and side.
             return stat;
+        }
+        if tailwind {
+            stat *= 2;
         }
         if matches!(
             (self.ability.as_str(), weather),

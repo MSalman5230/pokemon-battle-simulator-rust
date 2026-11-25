@@ -1047,6 +1047,15 @@ const steelySpiritRosters = [
     [{...named('Perrserker', ['Metal Claw']), ability:'Steely Spirit'}, named('Lucario', ['Flash Cannon'])],
     [named('Vaporeon', ['Recover']), named('Umbreon', ['Recover'])],
 ];
+const faintedMegaRosters = [
+    [{...named('Greninja', ['Ice Beam']), nature:'Modest', evs:{spa:32}, item:'Choice Specs'},
+        named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Recover']), {...named('Pidgeot', ['Recover']), item:'Pidgeotite'}],
+];
+const fullMoonlightRosters = [
+    [named('Umbreon', ['Moonlight', 'Stomping Tantrum']), named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Recover']), named('Vaporeon', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1945,6 +1954,18 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         upperHandRosters, 'bss-upper-hand'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 2','move 1, move 1']],
         steelySpiritRosters, 'vgc-steely-spirit'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 2, move 1','move 1, move 1']],
+        faintedMegaRosters, 'vgc-fainted-slot-mega-request'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['move 2 1, move 1','move 1, move 1']], fullMoonlightRosters, 'vgc-full-health-moonlight'],
+    ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
+        ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
+        ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],
+    ['rosterranchrumble', [['team 4,2,7,6','team 2,1,3,5'], ['move 4 1, move 3 2','move 4 1, move 3 1'],
+        ['move 1 2, move 3 1','move 1 2, move 4 2'], [null,'switch 4, pass'],
+        ['move 3 1, move 4 1','move 1 1, switch 3'], ['move 3 2, move 4 2','move 1 1, move 2 1'],
+        ['switch 4, pass',null], ['move 1, move 4 1','move 2, move 2 1'], ['switch 3, pass','switch 3, pass']],
+        ['1361,533,1,19','1361,533,2,19'], 'ranch-simultaneous-partial-replacements', '31415,9265,35897,19'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -1348,6 +1348,26 @@ fn upper_hand_checks_priority_and_steely_spirit_boosts_allied_steel_attacks() {
 }
 
 #[test]
+fn replacement_batches_keep_outgoing_speed_and_allow_a_required_empty_slot() {
+    replay(include_str!(
+        "fixtures/random-doubles-tailwind-replacements.json"
+    ));
+    replay(include_str!(
+        "fixtures/ranch-simultaneous-partial-replacements.json"
+    ));
+}
+
+#[test]
+fn a_fainted_doubles_slot_retains_its_native_mega_advertisement() {
+    replay(include_str!("fixtures/vgc-fainted-slot-mega-request.json"));
+}
+
+#[test]
+fn full_health_moonlight_preserves_update_rng_and_is_not_a_move_failure() {
+    replay(include_str!("fixtures/vgc-full-health-moonlight.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
