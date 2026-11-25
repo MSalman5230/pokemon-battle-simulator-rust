@@ -1685,6 +1685,12 @@ fn role_play_starts_the_new_ability_and_fails_when_already_copied() {
 }
 
 #[test]
+fn reflect_type_copies_base_and_added_types_with_correct_reveal_timing() {
+    replay(include_str!("fixtures/bss-reflect-type.json"));
+    replay(include_str!("fixtures/vgc-reflect-type-added.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

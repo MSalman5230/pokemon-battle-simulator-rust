@@ -56,6 +56,8 @@ impl Battle {
         let temporary_types = model.temporary_types;
         let added_type = model.added_type;
         let spent_elements = model.spent_elements;
+        let unrevealed_types = model.unrevealed_types;
+        let unknown_type = source.player != target.player || model.unknown_type;
         let times_attacked = model.times_attacked;
         let moves: Vec<_> = model
             .moves
@@ -98,6 +100,8 @@ impl Battle {
         mon.speed = speed as i32;
         mon.boosts = boosts;
         mon.temporary_types = temporary_types;
+        mon.unrevealed_types = unrevealed_types;
+        mon.unknown_type = unknown_type;
         mon.added_type = added_type;
         mon.spent_elements = spent_elements;
         mon.times_attacked = times_attacked;

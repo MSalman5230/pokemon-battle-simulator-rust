@@ -867,6 +867,7 @@ impl Battle {
                     | "allyswitch"
                     | "electrify"
                     | "roleplay"
+                    | "reflecttype"
                     | "round"
                     | "swift"
                     | "surf"
@@ -2006,6 +2007,7 @@ impl Battle {
         }
         self.turn += 1;
         for pos in self.positions() {
+            self.announce_reflected_type(pos);
             let mon = self.mon_mut(pos);
             mon.revealed_trap = false;
             mon.revealed_disables = 0;
@@ -2013,6 +2015,9 @@ impl Battle {
             mon.acted = false;
             mon.stats_raised = false;
             mon.stats_lowered = false;
+            if mon.attackers_this_turn != [0; 2] {
+                mon.unknown_type = false;
+            }
             mon.attackers_this_turn = [0; 2];
             mon.hurt_this_turn = false;
             mon.move_failed_last_turn = std::mem::take(&mut mon.move_failed_this_turn);
@@ -4820,6 +4825,17 @@ impl Battle {
                     continue;
                 }
                 let mut succeeded = false;
+                if move_data.name == "Reflect Type" {
+                    if self.reflect_type(source, target) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|move failed because it did nothing");
+                        }
+                    }
+                }
                 if move_data.name == "Electrify" {
                     let mon = self.mon_mut(target);
                     if mon.electrified {
@@ -6050,6 +6066,8 @@ impl Battle {
                 if !matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally") {
                     mon.spent_elements |= Pokemon::element_bit(ty);
                     mon.added_type = None;
+                    mon.unrevealed_types = Default::default();
+                    mon.unknown_type = false;
                 }
                 let types = mon.types().collect::<Vec<_>>().join("/");
                 self.add(format!(

@@ -1,6 +1,6 @@
 //! Base, changed, and added Pokémon typing.
 
-use super::{BattleError, Pokemon, SetStats, to_id};
+use super::{Battle, BattleError, Pokemon, SetStats, to_id, turn::Position};
 
 pub(super) const TYPES: &[&str] = &[
     "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground",
@@ -36,7 +36,7 @@ pub(super) fn hidden_power_index(
 
 // A copied or reconstructed type list may include three types. Store type
 // indices rather than allocating or adding three pointers to every Pokémon.
-#[derive(Clone, Copy, Default)]
+#[derive(Clone, Copy, Default, PartialEq, Eq)]
 pub(super) struct TypeOverride([u8; 3]);
 
 impl TypeOverride {
@@ -83,6 +83,8 @@ impl Pokemon {
         });
         self.added_type = None;
         self.spent_elements = 0;
+        self.unrevealed_types = TypeOverride::default();
+        self.unknown_type = false;
     }
 
     pub(super) fn element_bit(ty: &str) -> u8 {
@@ -98,6 +100,10 @@ impl Pokemon {
     }
 
     pub fn types(&self) -> impl Iterator<Item = &str> {
+        self.base_types().chain(self.added_type)
+    }
+
+    fn base_types(&self) -> impl Iterator<Item = &str> {
         let original_types = if self
             .transformed
             .as_ref()
@@ -126,6 +132,59 @@ impl Pokemon {
                     ty
                 }
             })
-            .chain(self.added_type)
+    }
+}
+
+impl Battle {
+    pub(super) fn reflect_type(&mut self, source: Position, target: Position) -> bool {
+        let user = self.mon(source);
+        let model = self.mon(target);
+        if matches!(user.species.base_species.as_str(), "Arceus" | "Silvally") {
+            return false;
+        }
+        let copied: Vec<_> = model.base_types().filter(|&ty| ty != "???").collect();
+        let added = model.added_type;
+        if copied.is_empty() && added.is_none() {
+            return false;
+        }
+        let known = source.player == target.player && !model.unknown_type;
+        let old = if known {
+            TypeOverride::default()
+        } else if user.unrevealed_types.is_empty() {
+            let old: Vec<_> = user.base_types().collect();
+            TypeOverride::from_types(&old).unwrap()
+        } else {
+            user.unrevealed_types
+        };
+        let copied = TypeOverride::from_types(&copied).unwrap();
+        let user = self.mon_mut(source);
+        user.temporary_types = copied;
+        user.unrevealed_types = old;
+        user.unknown_type = !known;
+        user.added_type = added;
+        user.spent_elements = 0;
+        self.add(format!(
+            "|-start|{}|typechange|[from] move: Reflect Type|[of] {}",
+            self.ident(source),
+            self.ident(target)
+        ));
+        true
+    }
+
+    pub(super) fn announce_reflected_type(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.unrevealed_types.is_empty() || mon.illusion.is_some() || mon.fainted {
+            return;
+        }
+        if !mon.base_types().eq(mon.unrevealed_types.iter()) {
+            let types = mon.base_types().collect::<Vec<_>>().join("/");
+            let added = mon.added_type;
+            let name = self.ident(pos);
+            self.add(format!("|-start|{name}|typechange|{types}|[silent]"));
+            if let Some(added) = added {
+                self.add(format!("|-start|{name}|typeadd|{added}|[silent]"));
+            }
+        }
+        self.mon_mut(pos).unrevealed_types = TypeOverride::default();
     }
 }
