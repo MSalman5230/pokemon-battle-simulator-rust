@@ -19,6 +19,7 @@ mod damage;
 mod disable;
 mod forme;
 mod hazards;
+pub(crate) mod hydration;
 mod illusion;
 mod items;
 mod leech;
@@ -68,7 +69,7 @@ impl fmt::Display for BattleError {
 
 impl Error for BattleError {}
 
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub struct BattleStream {
     battle: Option<Battle>,
 }
@@ -124,6 +125,7 @@ pub enum Phase {
     Ended,
 }
 
+#[derive(Clone)]
 pub struct Battle {
     format: &'static Format,
     stat_rules: StatRules,
@@ -147,6 +149,7 @@ pub struct Battle {
     cant_undo: [bool; 2],
 }
 
+#[derive(Clone)]
 struct Side {
     name: String,
     party: Vec<Pokemon>,
@@ -159,6 +162,7 @@ struct Side {
     total_fainted: u8,
 }
 
+#[derive(Clone)]
 pub struct Pokemon {
     pub name: String,
     pub species: &'static Species,
@@ -222,6 +226,7 @@ pub struct Pokemon {
     pivot_move: Option<&'static str>,
 }
 
+#[derive(Clone)]
 pub struct MoveSlot {
     pub id: String,
     pub move_data: &'static Move,

@@ -1,0 +1,58 @@
+#!/usr/bin/env node
+// Capture one-ply search replies from Poke-RL's actual public-belief API.
+import assert from 'node:assert/strict';
+import {readFileSync, writeFileSync} from 'node:fs';
+import {createRequire} from 'node:module';
+
+const stage = new URL('../.tools/poke-rl-simulator/', import.meta.url);
+const require = createRequire(new URL('worker.cjs', stage));
+const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
+const lock = JSON.parse(readFileSync(new URL('package-lock.json', stage)));
+assert(lock.packages['node_modules/pokemon-showdown'].resolved.endsWith('/' + revision));
+const {Game, PublicState, permutations} = require('./worker.cjs');
+const {lookahead} = require('./lookahead.cjs');
+const corpus = JSON.parse(readFileSync(new URL('../benchmarks/verified-bss-corpus.json', import.meta.url)));
+const game = new Game(corpus.teams.map(row => row.team), [4, 33, 2, 4], 200, true);
+const previewId = ids => 14 + permutations.findIndex(p => p.join(',') === ids.join(','));
+const state = game.step([previewId([3, 0, 1]), previewId([0, 1, 2])]);
+const observation = structuredClone(state.views[0]);
+const teams = structuredClone(game.teams);
+const {turn, format} = observation;
+const sides = game.battle.sides.map(side => {
+    const pokemon = side.pokemon.map(mon => ({
+        identity: mon.species.baseSpecies, set: {...mon.set}, stats: {hp: mon.maxhp, ...mon.storedStats},
+        hp: mon.hp, maxhp: mon.maxhp, types: [...mon.types], status: mon.status,
+        ability: mon.ability, base_ability: mon.baseAbility, item: mon.item, times_attacked: 0,
+        moves: mon.moveSlots.map(m => ({id: m.id, pp: m.pp})),
+    }));
+    return {pokemon, boosts: {}, volatiles: [], observation: {}, fresh: true,
+        last_move: null, mega_used: false, total_fainted: 0, conditions: {}};
+});
+function world(seed, rollout_seeds) {
+    return {teams: structuredClone(teams), input: {format, turn, kind: 'turn', sides: structuredClone(sides),
+        field: {weather: '', weather_turns: 1, terrain: '', terrain_turns: 1, trickroom: 0, extra: {}},
+        wishes: {}, future_moves: {}}, seed, rollout_seeds};
+}
+const pivot = world([4, 30, 512, 100], [[1, 2, 3, 8], [1, 2, 3, 9]]);
+const confusion = world([90, 400, 42, 6], [[3, 4, 5, 1], [3, 4, 5, 2]]);
+confusion.input.sides[0].volatiles.push({id: 'confusion', elapsed: 2});
+const fragile = world([11, 3, 5, 18], [[5, 6, 1, 12]]);
+fragile.input.sides[1].pokemon[0].hp = 1;
+const injuredObservation = structuredClone(observation);
+injuredObservation.opponent.find(m => m.active).hp = 0.01;
+const cases = [
+    {name: 'paired pivots and basic attacks', input: {observation, worlds: [pivot, confusion], candidates: [3, 1, 8],
+        replies: 2, reply_probabilities: {'move:earthquake': 1}}},
+    {name: 'unknown action is reported per world', input: {observation, worlds: [pivot], candidates: [99],
+        replies: 1, reply_probabilities: {}}},
+    {name: 'replace a fainted opponent using its healthiest legal bench', input: {observation: injuredObservation,
+        worlds: [fragile], candidates: [0], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
+];
+for (const c of cases) c.expected = lookahead(c.input, Game, PublicState);
+assert(cases[0].expected.errors.length === 0, JSON.stringify(cases[0].expected.errors));
+assert(cases[0].expected.rows.some(row => row.continuations > 0), 'fixture must exercise pivot continuation');
+assert(cases[0].expected.rows.some(row => row.assumptions.length > 0), 'fixture must report reconstruction assumptions');
+assert(cases[2].expected.rows.some(row => row.continuations > 0 && row.observation.faints[1].length > 0),
+    'fixture must exercise replacement after a faint');
+writeFileSync(new URL('../tests/fixtures/lookahead.json', import.meta.url),
+    `{"revision":${JSON.stringify(revision)},"cases":[\n${cases.map(c => JSON.stringify(c)).join(',\n')}\n]}\n`);

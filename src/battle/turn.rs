@@ -1351,7 +1351,7 @@ impl Battle {
         (actives, count)
     }
 
-    fn update_speed(&mut self) {
+    pub(super) fn update_speed(&mut self) {
         for pos in self.positions() {
             if !self.mon(pos).fainted {
                 self.mon_mut(pos).speed = self.field_speed(pos);

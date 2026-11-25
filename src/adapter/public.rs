@@ -5,11 +5,13 @@ use crate::{
     choice::to_id,
     dex::{DEX, Mod},
 };
+use serde::Deserialize;
 use serde_json::{Map, Value, json};
 use std::collections::VecDeque;
 
 type Key = (usize, usize);
 
+#[derive(Clone)]
 struct Stint {
     previous: Value,
     moves: Vec<String>,
@@ -32,7 +34,7 @@ impl Stint {
     }
 }
 
-#[derive(Default)]
+#[derive(Clone, Default)]
 pub(super) struct PublicState {
     pub turn: u32,
     pub teams: [Vec<Value>; 2],
@@ -122,6 +124,77 @@ fn inc(value: &mut Value) {
 }
 
 impl PublicState {
+    pub(super) fn from_search(observation: &Value) -> Result<Self, String> {
+        #[derive(Deserialize)]
+        struct HistoryFields {
+            turn: u32,
+            own: Vec<Value>,
+            opponent: Vec<Value>,
+            conditions: [Map<String, Value>; 2],
+            weather: String,
+            terrain: String,
+            weather_since: Option<u32>,
+            terrain_since: Option<u32>,
+            pseudo: Map<String, Value>,
+            mega: [bool; 2],
+            history: VecDeque<Value>,
+            faints: [Vec<Value>; 2],
+        }
+        let fields = HistoryFields::deserialize(observation).map_err(|e| e.to_string())?;
+        if fields.history.iter().any(|entry| !entry.is_object()) {
+            return Err("invalid public history entry".into());
+        }
+        let mut teams = [fields.own, fields.opponent];
+        for team in &mut teams {
+            if team.len() != 6 {
+                return Err("search expects six public roster slots".into());
+            }
+            for (i, member) in team.iter_mut().enumerate() {
+                let mon = member
+                    .as_object_mut()
+                    .ok_or("invalid public roster member")?;
+                if !["species", "base_species"]
+                    .iter()
+                    .all(|id| mon.get(*id).is_some_and(Value::is_string))
+                    || !["boosts", "volatiles"]
+                        .iter()
+                        .all(|id| mon.get(*id).is_some_and(Value::is_object))
+                {
+                    return Err("invalid public Pokémon identity, boosts, or volatiles".into());
+                }
+                mon.insert("nickname".into(), json!(format!("unit{i}")));
+                let moves = mon
+                    .get("moves")
+                    .and_then(Value::as_array)
+                    .ok_or("invalid public moves")?;
+                let moves = moves
+                    .iter()
+                    .map(|m| {
+                        m.as_str()
+                            .or_else(|| m["id"].as_str())
+                            .ok_or("invalid public move ID")
+                    })
+                    .collect::<Result<Vec<_>, _>>()?;
+                mon.insert("moves".into(), json!(moves));
+            }
+        }
+        Ok(Self {
+            active: std::array::from_fn(|i| teams[i].iter().position(|m| m["active"] == true)),
+            teams,
+            turn: fields.turn,
+            conditions: fields.conditions,
+            weather: fields.weather,
+            terrain: fields.terrain,
+            weather_since: fields.weather_since,
+            terrain_since: fields.terrain_since,
+            pseudo: fields.pseudo,
+            mega: fields.mega,
+            history: fields.history,
+            faints: fields.faints,
+            ..Self::default()
+        })
+    }
+
     fn switch_mon(
         &mut self,
         team: usize,

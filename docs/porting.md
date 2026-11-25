@@ -89,4 +89,10 @@ markers. Its hypothetical damage calculator runs in an isolated battle and
 reuses the native damage formula. Tests compare each enumerated damage roll,
 accuracy, speed, and survival flags. Unsupported preparation, multihit, and
 other conditional cases do not fall back to heuristic damage estimates.
+
+The public-belief lookahead endpoint restores an isolated battle from each
+hypothetical world. It pairs candidates on the same opponent replies and
+rollout seeds and follows interrupted turns through switches. Replays compare
+public and critic observations and reconstruction assumptions. Unported world
+effects are reported per world rather than borrowed from a live game.
 The benchmark rejects any mismatch before timing the adapter.

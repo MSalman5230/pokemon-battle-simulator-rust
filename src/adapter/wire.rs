@@ -51,6 +51,19 @@ struct WireView<'a> {
     legal: &'a [Legal],
 }
 
+pub(super) fn search_views(game: &Game) -> serde_json::Result<[Value; 2]> {
+    let legal = game.legal(Player::P1);
+    let view = |critic| {
+        serde_json::to_value(WireView {
+            game,
+            player: Player::P1,
+            critic,
+            legal: &legal,
+        })
+    };
+    Ok([view(false)?, view(true)?])
+}
+
 impl Serialize for WireView<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         let (game, player) = (self.game, self.player);

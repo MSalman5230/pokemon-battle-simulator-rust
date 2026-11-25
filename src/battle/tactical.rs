@@ -72,7 +72,7 @@ const TARGET: Position = Position {
     player: Player::P2,
     slot: 0,
 };
-const BOOSTS: [BoostStat; 7] = [
+pub(super) const BOOSTS: [BoostStat; 7] = [
     BoostStat::Atk,
     BoostStat::Def,
     BoostStat::Spa,
@@ -81,7 +81,7 @@ const BOOSTS: [BoostStat; 7] = [
     BoostStat::Accuracy,
     BoostStat::Evasion,
 ];
-const TYPES: &[&str] = &[
+pub(super) const TYPES: &[&str] = &[
     "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground",
     "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy",
 ];

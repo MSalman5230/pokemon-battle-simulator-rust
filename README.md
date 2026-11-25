@@ -9,8 +9,8 @@ That result covers the fixed 32-game workload. The worker now validates
 ordinary BSS rosters in Rust, without a reference manifest. Unsupported
 mechanics and unimplemented legality constraints return errors. Random
 Battle, Random Doubles Battle, and Roster Ranch Rumble generate teams in Rust.
-Full battle parity and Poke-RL's lookahead are not complete. The worker
-implements tactics metadata and a subset of public-state damage queries.
+Full battle parity is not complete. The worker implements tactics metadata
+and tested subsets of public-state damage queries and one-turn lookahead.
 
 ## Local setup
 
@@ -60,6 +60,7 @@ node scripts/capture-oracle.mjs
 node scripts/capture-validation.mjs
 node scripts/capture-generate-teams.mjs
 node scripts/capture-tactics.mjs
+node scripts/capture-lookahead.mjs
 ```
 
 The tests use checked-in fixtures and do not need Node. The fixture generator

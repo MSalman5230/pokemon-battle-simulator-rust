@@ -1,7 +1,7 @@
 //! Experimental Poke-RL JSON-lines worker.
 
 use pokemon_battle_simulator::{
-    adapter::{FORMAT, Game, tactics},
+    adapter::{FORMAT, Game, lookahead, tactics},
     dex::DEX,
     rng::Seed,
     validation::TeamValidator,
@@ -94,6 +94,7 @@ impl Worker {
             Some("validate") => return validate(query, out),
             Some("tactics_metadata") => return encode(out, tactics::metadata()),
             Some("calculate") => return encode(out, tactics::calculate_many(&query["queries"])?),
+            Some("lookahead") => return encode(out, lookahead::evaluate(query)?),
             Some("new" | "step" | "close" | "trace") => {}
             Some(op) => return Err(format!("not ported: operation {op}")),
             None => return Err("missing operation".into()),

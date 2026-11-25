@@ -1,6 +1,7 @@
 //! Poke-RL compatibility layer. Public observations come only from the
 //! viewer's native channel. Critic observations are a separate opt-in result.
 
+pub mod lookahead;
 mod public;
 pub mod tactics;
 mod wire;
@@ -17,7 +18,7 @@ use crate::{
 };
 use public::{PublicState, fresh_mon};
 use serde_json::{Value, json};
-use std::sync::LazyLock;
+use std::sync::{Arc, LazyLock};
 
 pub const FORMAT: &str = "gen9championsbssregmc";
 
@@ -64,10 +65,11 @@ impl Legal {
     }
 }
 
+#[derive(Clone)]
 pub struct Game {
     stream: BattleStream,
-    teams: [Vec<Value>; 2],
-    originals: [Vec<OriginalSet>; 2],
+    teams: Arc<[Vec<Value>; 2]>,
+    originals: Arc<[Vec<OriginalSet>; 2]>,
     public: [PublicState; 2],
     log_pos: usize,
     max_turns: u32,
@@ -168,8 +170,8 @@ impl Game {
         let originals = std::array::from_fn(|i| teams[i].iter().map(OriginalSet::new).collect());
         let mut game = Self {
             stream,
-            originals,
-            teams,
+            originals: Arc::new(originals),
+            teams: Arc::new(teams),
             public: Default::default(),
             log_pos: 0,
             max_turns,
