@@ -2012,6 +2012,13 @@ fn doubles_pledges_promote_the_second_action_and_preserve_side_timers() {
 }
 
 #[test]
+fn shell_trap_waits_for_an_enemy_physical_hit_that_reaches_the_user() {
+    replay(include_str!(
+        "fixtures/custom-shell-trap-trigger-order.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

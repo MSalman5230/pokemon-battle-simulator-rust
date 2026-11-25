@@ -717,6 +717,7 @@ impl Battle {
                             "Focus Punch" => Some("focuspunch"),
                             "Chilly Reception" => Some("chillyreception"),
                             "Beak Blast" => Some("beakblast"),
+                            "Shell Trap" => Some("shelltrap"),
                             _ => None,
                         }
                     {
@@ -1265,6 +1266,7 @@ impl Battle {
                     | "firepledge"
                     | "grasspledge"
                     | "waterpledge"
+                    | "shelltrap"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -1972,6 +1974,7 @@ impl Battle {
         party[outgoing.slot].stats_raised = false;
         party[outgoing.slot].flinched = false;
         party[outgoing.slot].lost_focus = false;
+        party[outgoing.slot].shell_trap_hit = false;
         party[outgoing.slot].substitute_hp = 0;
         party[outgoing.slot].recharge = 0;
         party[outgoing.slot].charge = None;
@@ -2105,6 +2108,9 @@ impl Battle {
                             ));
                         } else if id == "beakblast" {
                             self.add(format!("|-singleturn|{}|move: Beak Blast", self.ident(pos)));
+                        } else if id == "shelltrap" {
+                            self.mon_mut(pos).shell_trap_hit = false;
+                            self.add(format!("|-singleturn|{}|move: Shell Trap", self.ident(pos)));
                         }
                     }
                 }
@@ -2641,6 +2647,7 @@ impl Battle {
             FocusPunch,
             ChillyReception,
             BeakBlast,
+            ShellTrap,
             HelpingHand,
             Counter,
             Recharge,
@@ -3038,6 +3045,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"beakblast") {
                 timers.push((pos, Effect::BeakBlast, priority(0, 2)));
             }
+            if mon.volatile_ids().contains(&"shelltrap") {
+                timers.push((pos, Effect::ShellTrap, priority(0, 2)));
+            }
             if mon.helping_hand != 0 {
                 timers.push((pos, Effect::HelpingHand, priority(0, 2)));
             }
@@ -3313,6 +3323,10 @@ impl Battle {
                 }
                 Effect::ChillyReception => mon.untrack_volatile("chillyreception"),
                 Effect::BeakBlast => mon.untrack_volatile("beakblast"),
+                Effect::ShellTrap => {
+                    mon.shell_trap_hit = false;
+                    mon.untrack_volatile("shelltrap");
+                }
                 Effect::HelpingHand => {
                     mon.helping_hand = 0;
                     mon.untrack_volatile("helpinghand");
@@ -3519,6 +3533,7 @@ impl Battle {
                     | Effect::HelpingHand
                     | Effect::FocusPunch
                     | Effect::BeakBlast
+                    | Effect::ShellTrap
                     | Effect::ChillyReception
                     | Effect::Counter
                     | Effect::Electrify => true,
@@ -4506,6 +4521,11 @@ impl Battle {
             self.add(format!("|-fail|{source_name}|move: {}", move_data.name));
             self.move_still(base);
             // Its TryMove hook deliberately returns null, not false.
+            return true;
+        }
+        if move_data.name == "Shell Trap" && !self.mon(source).shell_trap_hit {
+            self.move_still(base);
+            self.add(format!("|cant|{source_name}|Shell Trap|Shell Trap"));
             return true;
         }
         let priority = caller.map_or_else(
@@ -7636,6 +7656,18 @@ impl Battle {
                 if source != target && self.mon(target).volatile_ids().contains(&"rage") {
                     self.boost(target, &[(BoostStat::Atk, 1)], true);
                 }
+                if source.player != target.player
+                    && move_data.category == Category::Physical
+                    && self.mon(target).volatile_ids().contains(&"shelltrap")
+                {
+                    self.mon_mut(target).shell_trap_hit = true;
+                    if let Some(index) = queue.iter().position(|action| {
+                        action.actor == Some(target)
+                            && matches!(action.kind, ActionKind::Move { .. })
+                    }) {
+                        Self::promote_move(queue, index, false);
+                    }
+                }
                 self.debug_suppressed_hook(target, "onHit");
             }
             for &(target, _) in &damage {
@@ -8461,6 +8493,7 @@ impl Battle {
         mon.protection = None;
         mon.flinched = false;
         mon.lost_focus = false;
+        mon.shell_trap_hit = false;
         mon.substitute_hp = 0;
         mon.recharge = 0;
         mon.charge = None;

@@ -1842,6 +1842,10 @@ const legacyPledgeRosters = [
         named('Porygon2', ['Water Pledge', 'Grass Pledge', 'Fire Pledge', 'Thunderbolt'])],
     [named('Chansey', ['Recover']), named('Rapidash', ['Recover'])],
 ];
+const legacyShellTrapRosters = [
+    [named('Turtonator', ['Shell Trap', 'Substitute']), named('Chansey', ['Recover', 'Tackle'])],
+    [named('Jolteon', ['Tackle', 'Thunder Shock']), named('Porygon2', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3267,6 +3271,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2 1, move 1 1','move 1, move 1'], ['move 3 1, move 3 1','move 1, move 1'],
         ['move 3 1, move 4 1','move 1, move 1'], ['move 4, move 4 1','move 1, move 1'],
         ['move 4, move 4 1','move 1, move 1']], legacyPledgeRosters, 'custom-pledge-pairs-and-side-conditions'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1'],
+        ['move 1, move 2 -1','move 2 1, move 1'], ['move 2, move 1','move 1 1, move 1'],
+        ['move 1, move 1','move 1 1, move 1']], legacyShellTrapRosters, 'custom-shell-trap-trigger-order'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
