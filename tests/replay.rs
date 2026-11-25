@@ -1313,6 +1313,17 @@ fn wide_and_quick_guard_protect_the_side_until_feint_or_turn_end() {
 }
 
 #[test]
+fn turn_outcomes_power_retaliation_and_trigger_burning_jealousy() {
+    replay(include_str!("fixtures/bss-retaliation-power.json"));
+    replay(include_str!("fixtures/vgc-coaching-burning-jealousy.json"));
+}
+
+#[test]
+fn endure_caps_lethal_move_damage_before_focus_sash() {
+    replay(include_str!("fixtures/bss-endure.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

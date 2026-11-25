@@ -1007,6 +1007,18 @@ const sideGuardRosters = [
     [named('Hitmontop', ['Wide Guard', 'Quick Guard'], 'M'), named('Vaporeon', ['Recover'])],
     [named('Jolteon', ['Swift', 'Quick Attack']), named('Glaceon', ['Icy Wind', 'Feint', 'Recover'])],
 ];
+const retaliationPowerRosters = [
+    [named('Avalugg', ['Avalanche', 'Earthquake', 'Temper Flare'])],
+    [{...named('Rotom', ['Tackle', 'Recover'], 'N'), ability:'Levitate'}],
+];
+const coachingRosters = [
+    [named('Lucario', ['Coaching', 'Swords Dance']), named('Umbreon', ['Tackle'])],
+    [named('Flareon', ['Burning Jealousy']), named('Vaporeon', ['Recover'])],
+];
+const endureRosters = [
+    [{...named('Snorlax', ['Endure']), item:'Focus Sash'}],
+    [{...named('Annihilape', ['Close Combat']), item:'Choice Band', nature:'Adamant', evs:{atk:32}}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1884,6 +1896,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'],
         ['move 2, move 1','move 2 2, move 3'], ['move 1, move 1','move 1, move 2 2']],
         sideGuardRosters, 'vgc-side-guards'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'],
+        ['move 2','move 2'], ['move 3','move 2']], retaliationPowerRosters, 'bss-retaliation-power'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 -2, move 1 1','move 1, move 1'],
+        ['move 2, move 1 1','move 1, move 1']], coachingRosters, 'vgc-coaching-burning-jealousy'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], endureRosters, 'bss-endure'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

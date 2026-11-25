@@ -46,6 +46,7 @@ pub(super) enum Protection {
     BurningBulwark,
     Obstruct,
     SilkTrap,
+    Endure,
 }
 
 #[derive(Clone, Copy)]
@@ -81,6 +82,7 @@ impl Protection {
             "Burning Bulwark" => Self::BurningBulwark,
             "Obstruct" => Self::Obstruct,
             "Silk Trap" => Self::SilkTrap,
+            "Endure" => Self::Endure,
             _ => return None,
         })
     }
@@ -94,6 +96,7 @@ impl Protection {
             Self::BurningBulwark => "burningbulwark",
             Self::Obstruct => "obstruct",
             Self::SilkTrap => "silktrap",
+            Self::Endure => "endure",
         }
     }
 
@@ -107,6 +110,7 @@ impl Protection {
     fn start_label(self) -> &'static str {
         match self {
             Self::BanefulBunker | Self::SpikyShield | Self::BurningBulwark => "move: Protect",
+            Self::Endure => "move: Endure",
             _ => "Protect",
         }
     }
@@ -377,7 +381,7 @@ impl Battle {
     ) {
         let data = || DEX.moves(self.format.dex_mod, protect.volatile()).unwrap();
         let drop = match protect {
-            Protection::Protect => return,
+            Protection::Protect | Protection::Endure => return,
             Protection::KingsShield => (BoostStat::Atk, -1),
             Protection::Obstruct => (BoostStat::Def, -2),
             Protection::SilkTrap => (BoostStat::Spe, -1),
@@ -1122,6 +1126,12 @@ impl Battle {
                     | "silktrap"
                     | "wideguard"
                     | "quickguard"
+                    | "endure"
+                    | "avalanche"
+                    | "revenge"
+                    | "temperflare"
+                    | "coaching"
+                    | "burningjealousy"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -1503,6 +1513,7 @@ impl Battle {
         party[outgoing.slot].move_failed_this_turn = false;
         party[outgoing.slot].move_failed_last_turn = false;
         party[outgoing.slot].last_foe_hit = None;
+        party[outgoing.slot].attackers_this_turn = [0; 2];
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -1751,6 +1762,7 @@ impl Battle {
             mon.acted = false;
             mon.stats_raised = false;
             mon.stats_lowered = false;
+            mon.attackers_this_turn = [0; 2];
             mon.move_failed_last_turn = std::mem::take(&mut mon.move_failed_this_turn);
             mon.used_item_this_turn = false;
             if !mon.fainted {
@@ -1981,6 +1993,7 @@ impl Battle {
         enum Effect {
             Status,
             Protect,
+            Endure,
             Stall,
             Flinch,
             FocusPunch,
@@ -2221,6 +2234,9 @@ impl Battle {
             if mon.protection.is_some() {
                 timers.push((pos, Effect::Protect, priority(0, 2)));
             }
+            if mon.volatile_ids().contains(&"endure") {
+                timers.push((pos, Effect::Endure, priority(0, 2)));
+            }
             if mon.stall.is_some() {
                 timers.push((pos, Effect::Stall, priority(0, 2)));
             }
@@ -2413,6 +2429,7 @@ impl Battle {
                         mon.untrack_volatile(protect.volatile());
                     }
                 }
+                Effect::Endure => mon.untrack_volatile("endure"),
                 Effect::Flinch => {
                     mon.flinched = false;
                     mon.untrack_volatile("flinch");
@@ -2453,6 +2470,7 @@ impl Battle {
                 let mon = self.mon(pos);
                 let expiry = match effect {
                     Effect::Protect
+                    | Effect::Endure
                     | Effect::Flinch
                     | Effect::Attention
                     | Effect::Roost
@@ -3344,7 +3362,9 @@ impl Battle {
             }
             self.protean_prepare(source, move_type);
             let mon = self.mon_mut(source);
-            mon.protection = Some(protect);
+            if protect != Protection::Endure {
+                mon.protection = Some(protect);
+            }
             mon.track_volatile(protect.volatile());
             mon.track_volatile("stall");
             mon.stall = Some(((stall * 3).min(729), 2));
@@ -4467,12 +4487,27 @@ impl Battle {
                     }
                     power *= 2;
                 }
-                if move_data.name == "Stomping Tantrum" && battle.mon(source).move_failed_last_turn
+                if matches!(move_data.name.as_str(), "Stomping Tantrum" | "Temper Flare")
+                    && battle.mon(source).move_failed_last_turn
                 {
                     if battle.format.report_exact_hp {
-                        battle.add(
-                            "|debug|doubling Stomping Tantrum BP due to previous move failure",
-                        );
+                        battle.add(format!(
+                            "|debug|doubling {} BP due to previous move failure",
+                            move_data.name
+                        ));
+                    }
+                    power *= 2;
+                }
+                if matches!(move_data.name.as_str(), "Avalanche" | "Revenge")
+                    && battle.mon(source).attackers_this_turn[target.player.index()]
+                        & (1 << battle.mon(target).roster_index)
+                        != 0
+                {
+                    if battle.format.report_exact_hp {
+                        battle.add(format!(
+                            "|debug|BP doubled for getting hit by {}",
+                            battle.ident(target)
+                        ));
                     }
                     power *= 2;
                 }
@@ -4581,7 +4616,11 @@ impl Battle {
                     *hit_damage
                 };
                 let mon = self.mon(target);
-                let value = if self.event_ability(target) == "sturdy"
+                let value = if mon.volatile_ids().contains(&"endure") && value >= mon.hp {
+                    let value = mon.hp - 1;
+                    self.add(format!("|-activate|{}|move: Endure", self.ident(target)));
+                    value
+                } else if self.event_ability(target) == "sturdy"
                     && mon.hp == mon.max_hp.get()
                     && value >= mon.hp
                 {
@@ -4748,6 +4787,9 @@ impl Battle {
                         }
                         if move_data.name == "Alluring Voice" && self.mon(target).stats_raised {
                             self.apply_confusion(target, false);
+                        }
+                        if move_data.name == "Burning Jealousy" && self.mon(target).stats_raised {
+                            self.try_status(target, "brn", source, move_data, false, base);
                         }
                         if let Some(status) = &effect.status {
                             self.try_status(target, status, source, move_data, false, base);
@@ -4974,6 +5016,11 @@ impl Battle {
                 fainted += 1;
             }
             if target != source {
+                if direct_damage != 0 {
+                    let attacker = self.mon(source).roster_index;
+                    self.mon_mut(target).attackers_this_turn[source.player.index()] |=
+                        1 << attacker;
+                }
                 self.mon_mut(target).times_attacked += if smart_target { 1 } else { hits_landed };
             }
             if target.player != source.player && !self.mon(target).fainted {
@@ -5231,6 +5278,7 @@ impl Battle {
         mon.move_failed_this_turn = false;
         mon.move_failed_last_turn = false;
         mon.last_foe_hit = None;
+        mon.attackers_this_turn = [0; 2];
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
