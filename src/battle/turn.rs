@@ -1250,6 +1250,9 @@ impl Battle {
                     | "doodle"
                     | "teleport"
                     | "nightmare"
+                    | "grudge"
+                    | "rage"
+                    | "relicsong"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -3684,6 +3687,9 @@ impl Battle {
         };
         let snatched = external.is_some_and(|(effect, _)| matches!(effect, ExternalEffect::Snatch));
         let own_action = !reflected && !snatched && !delayed && caller.is_none();
+        if own_action {
+            self.clear_pre_move_volatiles(source);
+        }
         if own_action && self.mon(source).glaive_drawback {
             let mon = self.mon_mut(source);
             mon.glaive_drawback = false;
@@ -4149,6 +4155,14 @@ impl Battle {
                         .any(|effect| effect.volatile_status.as_deref() == Some("flinch")))
         } else {
             false
+        };
+        let secondary_multiplier = if !delayed && self.event_ability(source) == "serenegrace" {
+            if self.format.report_exact_hp && (!move_data.secondaries.is_empty() || added_flinch) {
+                self.add("|debug|doubling secondary chance");
+            }
+            2
+        } else {
+            1
         };
         let kind = if expanded {
             // Both ModifyMove passes retarget a changed target kind.
@@ -6018,6 +6032,11 @@ impl Battle {
                             self.report_no_move_effect();
                         }
                     }
+                    "Grudge" => {
+                        self.mon_mut(source).track_volatile("grudge");
+                        self.add(format!("|-singlemove|{source_name}|Grudge"));
+                        succeeded = true;
+                    }
                     "Spotlight" if self.slots() == 1 => {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
@@ -7474,6 +7493,9 @@ impl Battle {
                 ) {
                     self.clear_terrain();
                 }
+                if source != target && self.mon(target).volatile_ids().contains(&"rage") {
+                    self.boost(target, &[(BoostStat::Atk, 1)], true);
+                }
                 self.debug_suppressed_hook(target, "onHit");
             }
             for &(target, _) in &damage {
@@ -7526,10 +7548,17 @@ impl Battle {
                 let roll = self.rng.below(100);
                 if move_data
                     .self_chance
-                    .is_none_or(|chance| roll < u32::from(chance))
+                    .is_none_or(|chance| roll < u32::from(chance) * secondary_multiplier)
                 {
                     self.boost(source, &move_data.self_boosts, true);
                 }
+            }
+            if move_data.name == "Rage"
+                && self.mon(source).hp != 0
+                && !self.mon(source).volatile_ids().contains(&"rage")
+            {
+                self.mon_mut(source).track_volatile("rage");
+                self.add(format!("|-singlemove|{source_name}|Rage"));
             }
             if let Some(ty) = spent_element
                 && self.mon(source).hp != 0
@@ -7595,7 +7624,10 @@ impl Battle {
                         continue;
                     }
                     let roll = self.rng.below(100);
-                    if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
+                    if effect
+                        .chance
+                        .is_none_or(|chance| roll < u32::from(chance) * secondary_multiplier)
+                    {
                         if genesis {
                             self.set_terrain(source, Terrain::Psychic, None);
                         }
@@ -7681,7 +7713,12 @@ impl Battle {
                         }
                     }
                 }
-                if added_flinch && !dust && !cloak && self.rng.chance(1, 10) && hit_pokemon {
+                if added_flinch
+                    && !dust
+                    && !cloak
+                    && self.rng.chance(secondary_multiplier, 10)
+                    && hit_pokemon
+                {
                     self.apply_flinch(target);
                 }
                 if let Some(effect) = fling_secondary
@@ -7874,6 +7911,12 @@ impl Battle {
             damage.clear();
             damage.extend(split_darts.into_iter().flatten());
         }
+        if move_data.name == "Relic Song"
+            && hits_landed > 0
+            && (!sheer_force_removed || self.event_ability(source) != "sheerforce")
+        {
+            self.relic_song_forme(source);
+        }
         if sacrifice || final_gambit && self.mon(source).hp == 0 {
             self.mark_fainted(source);
         }
@@ -7883,7 +7926,7 @@ impl Battle {
                 let linked = self.mon(target).destiny_bond
                     && target.player != source.player
                     && self.mon(source).hp > 0;
-                self.mark_fainted(target);
+                self.mark_fainted_inner(target, (!delayed).then_some(source));
                 if linked {
                     self.add(format!(
                         "|-activate|{}|move: Destiny Bond",
@@ -8222,11 +8265,28 @@ impl Battle {
     }
 
     pub(super) fn mark_fainted(&mut self, target: Position) {
+        self.mark_fainted_inner(target, None);
+    }
+
+    fn mark_fainted_inner(&mut self, target: Position, attacker: Option<Position>) {
         self.last_faint = Some(target.player);
         let side = self.sides[target.player.index()].as_mut().unwrap();
         side.total_fainted = (side.total_fainted + 1).min(100);
         side.fainted_this_turn = true;
         self.add(format!("|faint|{}", self.ident(target)));
+        if self.mon(target).volatile_ids().contains(&"grudge")
+            && let Some(attacker) = attacker
+            && self.mon(attacker).hp != 0
+            && let Some(slot) = self.mon(attacker).last_move_slot
+        {
+            let used = &mut self.mon_mut(attacker).moves[slot];
+            used.pp = 0;
+            let name = &used.move_data.name;
+            self.add(format!(
+                "|-activate|{}|move: Grudge|{name}",
+                self.ident(attacker)
+            ));
+        }
         self.receive_fainted_ability(target);
         self.end_supreme_overlord(target, false);
         self.weather_ability_changed(target, true);
@@ -8309,6 +8369,17 @@ impl Battle {
             self.add("|debug|removing Destiny Bond before attack");
         }
         true
+    }
+
+    fn clear_pre_move_volatiles(&mut self, pos: Position) {
+        for (id, name) in [("grudge", "Grudge"), ("rage", "Rage")] {
+            if self.mon(pos).volatile_ids().contains(&id) {
+                if self.format.report_exact_hp {
+                    self.add(format!("|debug|removing {name} before attack"));
+                }
+                self.mon_mut(pos).untrack_volatile(id);
+            }
+        }
     }
 
     pub(super) fn boost(
@@ -8764,6 +8835,7 @@ impl Pokemon {
                 | "dazzling"
                 | "queenlymajesty"
                 | "sheerforce"
+                | "serenegrace"
                 | "harvest"
                 | "pickup"
                 | "berserk"

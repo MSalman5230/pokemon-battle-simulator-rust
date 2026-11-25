@@ -1988,6 +1988,13 @@ fn inherited_transfer_pivot_and_nightmare_match_native_lifecycles() {
 }
 
 #[test]
+fn inherited_move_reactions_and_relic_forme_match_native_order() {
+    replay(include_str!("fixtures/custom-rage-reaction.json"));
+    replay(include_str!("fixtures/custom-grudge-pp-source.json"));
+    replay(include_str!("fixtures/custom-relic-song-forme-cycle.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

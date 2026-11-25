@@ -1814,6 +1814,18 @@ const legacyNightmareRosters = [
     [named('Smeargle', ['Tackle', 'Nightmare', 'Recover'])],
     [named('Chansey', ['Rest', 'Recover'])],
 ];
+const legacyRageRosters = [
+    [named('Tauros', ['Rage', 'Recover'])],
+    [named('Chansey', ['Tackle'])],
+];
+const legacyGrudgeRosters = [
+    [{...named('Smeargle', ['Grudge', 'Recover']), level:5, ability:'Prankster'}, named('Abra', ['Recover'])],
+    [named('Arbok', ['Recover', 'Tackle'])],
+];
+const legacyRelicRosters = [
+    [{...named('Meloetta', ['Relic Song'], 'N'), ability:'Serene Grace'}, named('Jolteon', ['Recover'])],
+    [named('Umbreon', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3224,6 +3236,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1 1, move 1','move 1, move 1']], legacyDoodleRosters, 'custom-doodle-ability-shield'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 2'],
         ['move 3','move 2']], legacyNightmareRosters, 'custom-nightmare-sleep-lifecycle'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 2','move 1']],
+        legacyRageRosters, 'custom-rage-reaction'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 2'],
+        ['switch 2',null]], legacyGrudgeRosters, 'custom-grudge-pp-source'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['switch 2','move 1'], ['switch 2','move 1']], legacyRelicRosters, 'custom-relic-song-forme-cycle'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

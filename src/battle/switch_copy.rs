@@ -48,7 +48,8 @@ impl Pokemon {
                 "flinch" => self.flinched = source.flinched,
                 "focuspunch" => self.lost_focus = source.lost_focus,
                 "helpinghand" => self.helping_hand = source.helping_hand,
-                "chillyreception" | "focusenergy" | "curse" | "noretreat" | "charge" => {}
+                "chillyreception" | "focusenergy" | "curse" | "noretreat" | "charge" | "grudge"
+                | "rage" => {}
                 // The source could not execute a voluntary pivot while it's
                 // committed to an unfinished charge, rampage, or recharge.
                 // All other known effects either have noCopy or are unrelated.

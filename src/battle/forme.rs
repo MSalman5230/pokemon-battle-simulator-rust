@@ -71,6 +71,27 @@ impl Battle {
         self.temporary_ability_forme(pos, id, "");
     }
 
+    pub(super) fn relic_song_forme(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.hp == 0 || mon.base_species.base_species != "Meloetta" || mon.transformed.is_some() {
+            return;
+        }
+        let id = if mon.species.name == "Meloetta-Pirouette" {
+            "meloetta"
+        } else {
+            "meloettapirouette"
+        };
+        let species = DEX.species(self.format.dex_mod, id).unwrap();
+        let rules = self.stat_rules;
+        self.mon_mut(pos).set_current_species(species, rules);
+        let apparent = self.disguise(pos).map_or(species, |mon| mon.species);
+        self.add(format!(
+            "|-formechange|{}|{}|[msg]",
+            self.ident(pos),
+            apparent.name
+        ));
+    }
+
     fn temporary_ability_forme(&mut self, pos: Position, id: &str, message: &str) {
         let species = DEX.species(self.format.dex_mod, id).unwrap();
         if std::ptr::eq(self.mon(pos).species, species) {
