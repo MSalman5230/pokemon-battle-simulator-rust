@@ -1033,6 +1033,8 @@ impl Battle {
                     | "confuseray"
                     | "sweetkiss"
                     | "supersonic"
+                    | "bellydrum"
+                    | "quash"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -3658,6 +3660,51 @@ impl Battle {
                         self.terrain_activate(target, Terrain::Misty);
                     } else {
                         succeeded = self.apply_confusion(target, false);
+                    }
+                }
+                if move_data.name == "Belly Drum" {
+                    let mon = self.mon(target);
+                    let cost = mon.max_hp.get() / 2;
+                    if cost == 0 || mon.hp <= cost || mon.boosts.get(BoostStat::Atk) >= 6 {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    } else {
+                        // Direct HP loss skips Damage events. Update can
+                        // still notice a pinch berry afterwards.
+                        let delta = if self.event_ability(target) == "contrary" {
+                            -12
+                        } else {
+                            12
+                        };
+                        self.mon_mut(target).hp -= cost;
+                        self.add_health_line("-damage", target, false);
+                        let mon = self.mon_mut(target);
+                        let changed = mon.boosts.add(BoostStat::Atk, delta);
+                        mon.stats_raised |= changed > 0;
+                        mon.stats_lowered |= changed < 0;
+                        let stage = mon.boosts.get(BoostStat::Atk);
+                        if changed != 0 {
+                            self.add(format!(
+                                "|-setboost|{}|atk|{stage}|[from] move: Belly Drum",
+                                self.ident(target)
+                            ));
+                        }
+                        succeeded = true;
+                    }
+                }
+                if move_data.name == "Quash" {
+                    if self.slots() > 1
+                        && let Some(action) = queue.iter_mut().find(|action| {
+                            action.actor == Some(target)
+                                && matches!(action.kind, ActionKind::Move { .. })
+                        })
+                    {
+                        action.priority.order = 201;
+                        self.add(format!("|-activate|{}|move: Quash", self.ident(target)));
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
                     }
                 }
                 if move_data.name == "Soak" {

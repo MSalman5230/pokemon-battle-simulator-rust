@@ -1,0 +1,1591 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Azumarill\",\"moves\":[\"Belly Drum\"],\"gender\":\"F\",\"name\":\"Azumarill\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Huge Power\",\"item\":\"Sitrus Berry\"},{\"species\":\"Malamar\",\"moves\":[\"Belly Drum\"],\"gender\":\"F\",\"name\":\"Malamar\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Contrary\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Azumarill, L50, F|",
+          "|poke|p1|Malamar, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Azumarill, L50, F|",
+          "|poke|p1|Malamar, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Azumarill, L50, F|",
+          "|poke|p1|Malamar, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Malamar",
+                "details": "Malamar, L50, F",
+                "condition": "161/161",
+                "active": false,
+                "stats": {
+                  "atk": 112,
+                  "def": 108,
+                  "spa": 88,
+                  "spd": 95,
+                  "spe": 93
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "contrary",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "contrary",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "sitrusberry",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Malamar",
+            "species": "Malamar",
+            "details": "Malamar, L50, F",
+            "hp": 161,
+            "maxhp": 161,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 108,
+              "spa": 88,
+              "spd": 95,
+              "spe": 93
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "contrary",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Azumarill|Azumarill, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Azumarill|Azumarill, L50, F|175/175",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Azumarill|Azumarill, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Belly Drum",
+                  "id": "bellydrum",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "sitrusberry",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Malamar",
+                "details": "Malamar, L50, F",
+                "condition": "161/161",
+                "active": false,
+                "stats": {
+                  "atk": 112,
+                  "def": 108,
+                  "spa": 88,
+                  "spd": 95,
+                  "spe": 93
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "contrary",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "contrary",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "sitrusberry",
+            "active": true,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Malamar",
+            "species": "Malamar",
+            "details": "Malamar, L50, F",
+            "hp": 161,
+            "maxhp": 161,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 108,
+              "spa": 88,
+              "spd": 95,
+              "spe": 93
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "contrary",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|92/100",
+          "|move|p1a: Azumarill|Belly Drum|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|42/100",
+          "|-setboost|p1a: Azumarill|atk|6|[from] move: Belly Drum",
+          "|-enditem|p1a: Azumarill|Sitrus Berry|[eat]",
+          "|-heal|p1a: Azumarill|66/100|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|161/175",
+          "|move|p1a: Azumarill|Belly Drum|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|74/175",
+          "|-setboost|p1a: Azumarill|atk|6|[from] move: Belly Drum",
+          "|-enditem|p1a: Azumarill|Sitrus Berry|[eat]",
+          "|-heal|p1a: Azumarill|117/175|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|92/100",
+          "|move|p1a: Azumarill|Belly Drum|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|42/100",
+          "|-setboost|p1a: Azumarill|atk|6|[from] move: Belly Drum",
+          "|-enditem|p1a: Azumarill|Sitrus Berry|[eat]",
+          "|-heal|p1a: Azumarill|66/100|[from] item: Sitrus Berry",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Belly Drum",
+                  "id": "bellydrum",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "117/175",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Malamar",
+                "details": "Malamar, L50, F",
+                "condition": "161/161",
+                "active": false,
+                "stats": {
+                  "atk": 112,
+                  "def": 108,
+                  "spa": 88,
+                  "spd": 95,
+                  "spe": 93
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "contrary",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "contrary",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 117,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 6,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Malamar",
+            "species": "Malamar",
+            "details": "Malamar, L50, F",
+            "hp": 161,
+            "maxhp": 161,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 108,
+              "spa": 88,
+              "spd": 95,
+              "spe": 93
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "contrary",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|58/100",
+          "|move|p1a: Azumarill|Belly Drum||[still]",
+          "|-fail|p1a: Azumarill",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|103/175",
+          "|move|p1a: Azumarill|Belly Drum||[still]",
+          "|-fail|p1a: Azumarill",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Azumarill",
+          "|-damage|p1a: Azumarill|58/100",
+          "|move|p1a: Azumarill|Belly Drum||[still]",
+          "|-fail|p1a: Azumarill",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Belly Drum",
+                  "id": "bellydrum",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "103/175",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Malamar",
+                "details": "Malamar, L50, F",
+                "condition": "161/161",
+                "active": false,
+                "stats": {
+                  "atk": 112,
+                  "def": 108,
+                  "spa": 88,
+                  "spd": 95,
+                  "spe": 93
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "contrary",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "contrary",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 103,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 6,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Malamar",
+            "species": "Malamar",
+            "details": "Malamar, L50, F",
+            "hp": 161,
+            "maxhp": 161,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 108,
+              "spa": 88,
+              "spd": 95,
+              "spe": 93
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "contrary",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Malamar|Malamar, L50, F|100/100",
+          "|move|p2a: Umbreon|Tackle|p1a: Malamar",
+          "|-damage|p1a: Malamar|91/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Malamar|Malamar, L50, F|161/161",
+          "|move|p2a: Umbreon|Tackle|p1a: Malamar",
+          "|-damage|p1a: Malamar|148/161",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Malamar|Malamar, L50, F|100/100",
+          "|move|p2a: Umbreon|Tackle|p1a: Malamar",
+          "|-damage|p1a: Malamar|91/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Belly Drum",
+                  "id": "bellydrum",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Malamar",
+                "details": "Malamar, L50, F",
+                "condition": "148/161",
+                "active": true,
+                "stats": {
+                  "atk": 112,
+                  "def": 108,
+                  "spa": 88,
+                  "spd": 95,
+                  "spe": 93
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "contrary",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "contrary",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "103/175",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 17,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Malamar",
+            "species": "Malamar",
+            "details": "Malamar, L50, F",
+            "hp": 148,
+            "maxhp": 161,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 108,
+              "spa": 88,
+              "spd": 95,
+              "spe": 93
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "contrary",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 103,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 17,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Malamar|Belly Drum|p1a: Malamar",
+          "|-damage|p1a: Malamar|42/100",
+          "|-setboost|p1a: Malamar|atk|-6|[from] move: Belly Drum",
+          "|move|p2a: Umbreon|Tackle|p1a: Malamar",
+          "|-damage|p1a: Malamar|33/100",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Malamar|Belly Drum|p1a: Malamar",
+          "|-damage|p1a: Malamar|68/161",
+          "|-setboost|p1a: Malamar|atk|-6|[from] move: Belly Drum",
+          "|move|p2a: Umbreon|Tackle|p1a: Malamar",
+          "|-damage|p1a: Malamar|54/161",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Malamar|Belly Drum|p1a: Malamar",
+          "|-damage|p1a: Malamar|42/100",
+          "|-setboost|p1a: Malamar|atk|-6|[from] move: Belly Drum",
+          "|move|p2a: Umbreon|Tackle|p1a: Malamar",
+          "|-damage|p1a: Malamar|33/100",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Belly Drum",
+                  "id": "bellydrum",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Malamar",
+                "details": "Malamar, L50, F",
+                "condition": "54/161",
+                "active": true,
+                "stats": {
+                  "atk": 112,
+                  "def": 108,
+                  "spa": 88,
+                  "spd": 95,
+                  "spe": 93
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "contrary",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "contrary",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Azumarill",
+                "details": "Azumarill, L50, F",
+                "condition": "103/175",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 100,
+                  "spa": 80,
+                  "spd": 100,
+                  "spe": 70
+                },
+                "moves": [
+                  "bellydrum"
+                ],
+                "baseAbility": "hugepower",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hugepower",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 16,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Malamar",
+            "species": "Malamar",
+            "details": "Malamar, L50, F",
+            "hp": 54,
+            "maxhp": 161,
+            "status": "",
+            "stats": {
+              "atk": 112,
+              "def": 108,
+              "spa": 88,
+              "spd": 95,
+              "spe": 93
+            },
+            "boosts": {
+              "atk": -6,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "contrary",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Azumarill",
+            "species": "Azumarill",
+            "details": "Azumarill, L50, F",
+            "hp": 103,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 100,
+              "spa": 80,
+              "spd": 100,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hugepower",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "bellydrum",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 16,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

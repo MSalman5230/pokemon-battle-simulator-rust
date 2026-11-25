@@ -1252,6 +1252,16 @@ fn fluffy_punk_rock_and_spicy_spray_react_to_move_traits() {
 }
 
 #[test]
+fn belly_drum_pays_for_maximal_attack_or_reverses_with_contrary() {
+    replay(include_str!("fixtures/bss-belly-drum.json"));
+}
+
+#[test]
+fn quash_moves_an_eligible_queued_action_after_every_other_move() {
+    replay(include_str!("fixtures/vgc-quash.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

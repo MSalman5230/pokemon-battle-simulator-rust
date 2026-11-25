@@ -937,6 +937,15 @@ const spicySprayRosters = [
     [named('Vaporeon', ['Water Gun', 'Tackle'])],
     [{...named('Scovillain', ['Growth', 'Recover']), ability:'Chlorophyll', item:'Scovillainite'}],
 ];
+const bellyDrumRosters = [
+    [{...named('Azumarill', ['Belly Drum']), ability:'Huge Power', item:'Sitrus Berry'},
+        {...named('Malamar', ['Belly Drum']), ability:'Contrary'}],
+    [named('Umbreon', ['Tackle'])],
+];
+const quashRosters = [
+    [{...named('Sableye', ['Quash']), ability:'Prankster'}, named('Umbreon', ['Tackle'])],
+    [named('Jolteon', ['Tackle', 'Quick Attack']), named('Vaporeon', ['Water Gun'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1777,6 +1786,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         punkRockRosters, 'bss-punk-rock'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1 mega'], ['move 2','move 2']],
         spicySprayRosters, 'bss-spicy-spray'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['switch 2','move 1'], ['move 1','move 1']], bellyDrumRosters, 'bss-belly-drum'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 1','move 1 2, move 1 2'],
+        ['move 1 1, move 1 2','move 2 2, move 1 2']], quashRosters, 'vgc-quash'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
