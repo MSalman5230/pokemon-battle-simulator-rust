@@ -1111,6 +1111,9 @@ impl Battle {
                     | "sleeptalk"
                     | "torment"
                     | "octolock"
+                    | "anchorshot"
+                    | "spiritshackle"
+                    | "jawlock"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -1629,6 +1632,7 @@ impl Battle {
             self.end_ability(outgoing);
         }
         let rules = self.stat_rules;
+        self.clear_linked_traps(outgoing);
         let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
         if let Some(Pivot::Move(pass @ ("Baton Pass" | "Shed Tail"))) = pivot {
             let (active, incoming) = party.split_at_mut(bench_slot);
@@ -4941,13 +4945,16 @@ impl Battle {
                 }
                 if move_data.name == "No Retreat" {
                     let mon = self.mon_mut(target);
-                    mon.track_volatile("noretreat");
                     if !mon.volatile_ids().contains(&"trapped") {
+                        mon.track_volatile("noretreat");
                         mon.track_volatile("trapped");
                         self.add(format!("|-activate|{}|trapped", self.ident(target)));
                         self.add(format!("|-start|{}|move: No Retreat", self.ident(target)));
+                        succeeded = true;
+                    } else if !succeeded {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
                     }
-                    succeeded = true;
                 }
                 if move_data.name == "Charge" {
                     self.charge_electric(target, None);
@@ -5394,6 +5401,9 @@ impl Battle {
                     self.mon_mut(target).boosts = Boosts::default();
                     self.add(format!("|-clearboost|{}", self.ident(target)));
                 }
+                if move_data.name == "Jaw Lock" {
+                    self.start_mutual_trap(source, target);
+                }
                 if move_data.name == "Steel Roller" {
                     self.clear_terrain();
                 }
@@ -5513,6 +5523,9 @@ impl Battle {
                         if move_data.name == "Dire Claw" {
                             let status = ["psn", "par", "slp"][self.rng.below(3) as usize];
                             self.try_status(target, status, source, move_data, false, base);
+                        }
+                        if matches!(move_data.name.as_str(), "Anchor Shot" | "Spirit Shackle") {
+                            self.start_linked_trap(source, target);
                         }
                         if move_data.name == "Alluring Voice"
                             && self.mon(target).stats_raised
@@ -5999,6 +6012,7 @@ impl Battle {
         self.receive_fainted_ability(target);
         self.end_supreme_overlord(target, false);
         self.weather_ability_changed(target, true);
+        self.clear_linked_traps(target);
         let rules = self.stat_rules;
         let mon = self.mon_mut(target);
         mon.reset_forme(rules);

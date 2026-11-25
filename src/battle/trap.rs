@@ -10,6 +10,59 @@ pub(super) struct Trap {
 }
 
 impl Battle {
+    pub(super) fn start_linked_trap(&mut self, source: Position, target: Position) {
+        if self.mon(source).hp == 0
+            || self.mon(target).hp == 0
+            || self.mon(target).has_type("Ghost")
+            || self.mon(target).volatile_ids().contains(&"trapped")
+        {
+            return;
+        }
+        let source_id = (source.player, self.mon(source).roster_index as u8);
+        self.mon_mut(source).track_volatile("trapper");
+        let mon = self.mon_mut(target);
+        mon.linked_trap_from = Some(source_id);
+        mon.track_volatile("trapped");
+        self.add(format!("|-activate|{}|trapped", self.ident(target)));
+    }
+
+    pub(super) fn start_mutual_trap(&mut self, source: Position, target: Position) {
+        if [source, target].into_iter().any(|pos| {
+            let mon = self.mon(pos);
+            mon.has_type("Ghost") || mon.volatile_ids().contains(&"trapped")
+        }) {
+            return;
+        }
+        self.start_linked_trap(target, source);
+        self.start_linked_trap(source, target);
+    }
+
+    pub(super) fn clear_linked_traps(&mut self, leaving: Position) {
+        let trapped_by = self.mon_mut(leaving).linked_trap_from.take();
+        if self.mon(leaving).volatile_ids().contains(&"trapper") {
+            let source_id = (leaving.player, self.mon(leaving).roster_index as u8);
+            for pos in self.positions() {
+                let mon = self.mon_mut(pos);
+                if mon.linked_trap_from == Some(source_id) {
+                    mon.linked_trap_from = None;
+                    mon.untrack_volatile("trapped");
+                }
+            }
+        }
+        if let Some((player, index)) = trapped_by
+            && !self
+                .positions()
+                .any(|pos| self.mon(pos).linked_trap_from == trapped_by)
+        {
+            let trapper = self.positions().find(|&pos| {
+                pos.player == player && self.mon(pos).roster_index == usize::from(index)
+            });
+            if let Some(trapper) = trapper {
+                self.mon_mut(trapper).untrack_volatile("trapper");
+            }
+        }
+    }
+
     pub(super) fn start_octolock(&mut self, source: Position, target: Position) -> bool {
         if self.mon(target).octolock.is_some() {
             return false;

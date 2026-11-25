@@ -1454,6 +1454,12 @@ fn terrain_seeds_activate_on_field_changes_and_on_entry() {
 }
 
 #[test]
+fn linked_trapping_ends_when_the_other_pokemon_leaves() {
+    replay(include_str!("fixtures/bss-spirit-shackle.json"));
+    replay(include_str!("fixtures/bss-jaw-lock.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
