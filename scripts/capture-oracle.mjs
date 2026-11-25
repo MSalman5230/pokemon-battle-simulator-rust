@@ -103,6 +103,22 @@ const itemRosters = [
         {...named('Camerupt', ['Protect', 'Tackle']), item: 'Focus Sash'},
         {...named('Gholdengo', ['Shadow Ball', 'Recover']), ability: 'Good as Gold', item: 'Air Balloon'}],
 ];
+const weatherRosters = [
+    [{...named('Pelipper', ['Rain Dance', 'Protect']), ability: 'Drizzle', item: 'Damp Rock'},
+        {...named('Floatzel', ['Water Gun', 'Protect', 'Rain Dance']), ability: 'Swift Swim'},
+        {...named('Ninetales', ['Sunny Day', 'Water Gun', 'Protect']), ability: 'Drought'},
+        named('Vaporeon', ['Water Gun', 'Recover'])],
+    [{...named('Tyranitar', ['Sandstorm', 'Protect', 'Water Gun']), ability: 'Sand Stream'},
+        {...named('Excadrill', ['Tackle', 'Protect', 'Rain Dance']), ability: 'Sand Rush'},
+        {...named('Glaceon', ['Snowscape', 'Ice Beam', 'Protect']), ability: 'Slush Rush'},
+        named('Umbreon', ['Tackle'])],
+];
+const hazardRosters = [
+    [named('Smeargle', ['Spikes', 'Stealth Rock', 'Toxic Spikes', 'Sticky Web']),
+        named('Vaporeon', ['Recover']), named('Flareon', ['Tackle'])],
+    [named('Umbreon', ['Tackle', 'Recover']), named('Glaceon', ['Recover']),
+        {...named('Gengar', ['Recover']), item: 'Heavy-Duty Boots'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -124,6 +140,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2', 'switch 2'], ['move 1', 'move 2'], ['move 1', 'move 2'],
         [null, 'switch 3'], ['switch 3', 'move 2'], ['move 1', 'move 1'],
         ['move 3', 'move 2'], ['move 2', 'move 2'], ['move 4', 'move 1']], itemRosters, 'bss-items'],
+    ['vgc2026regmc', [['team 1234', 'team 1234'], ['move 2, move 1 1', 'move 1, move 1 2'],
+        ['switch 3, move 1 2', 'move 3 2, move 1 2'],
+        ['move 3, move 3', 'move 2, move 1 2'], ['move 2 1, move 1 2', 'move 2, switch 3'],
+        ['move 2 1, move 1 2', 'move 2, move 1']], weatherRosters, 'vgc-weather'],
+    ['bssregmc', [['team 123', 'team 123'], ['move 1', 'move 2'], ['move 2', 'move 2'],
+        ['move 3', 'move 2'], ['move 3', 'move 2'], ['move 4', 'move 2'],
+        ['move 1', 'switch 2'], ['move 4', 'switch 3'], ['move 2', 'switch 2']],
+        hazardRosters, 'bss-hazards'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -7,7 +7,7 @@ use crate::{
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub(super) struct Position {
-    player: Player,
+    pub(super) player: Player,
     slot: usize,
 }
 
@@ -428,6 +428,14 @@ impl Battle {
                 | "rockslide"
                 | "shadowball"
                 | "moonblast"
+                | "raindance"
+                | "sunnyday"
+                | "sandstorm"
+                | "snowscape"
+                | "stealthrock"
+                | "spikes"
+                | "toxicspikes"
+                | "stickyweb"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -454,7 +462,7 @@ impl Battle {
                 self.resolve_target(source, data.target, target);
                 action.priority.priority = f64::from(data.priority);
             }
-            action.priority.speed = self.mon(source).current_speed() as i32;
+            action.priority.speed = self.mon(source).current_speed(self.weather()) as i32;
         }
     }
 
@@ -523,7 +531,7 @@ impl Battle {
 
     fn insert_run_switch(&mut self, incoming: Position, queue: &mut Vec<Action>) {
         let mut action = Action::new(Some(incoming), ActionKind::RunSwitch);
-        self.mon_mut(incoming).update_speed();
+        self.mon_mut(incoming).speed = self.mon(incoming).current_speed(self.weather());
         self.prioritize(&mut action);
         let first = queue.partition_point(|q| q.priority.compare(action.priority).is_lt());
         let last =
@@ -557,9 +565,17 @@ impl Battle {
                     let (order, count) = self.ordered_actives(true);
                     for (pos, _) in order.into_iter().take(count) {
                         if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
+                            self.on_switch_in_hazards(pos);
+                            if self.check_win() {
+                                return;
+                            }
+                            if self.mon(pos).hp == 0 {
+                                continue;
+                            }
                             if self.mon(pos).ability == "pressure" {
                                 self.add(format!("|-ability|{}|Pressure", self.ident(pos)));
                             }
+                            self.switch_in_weather(pos);
                             self.on_switch_in_item(pos);
                         }
                     }
@@ -649,7 +665,10 @@ impl Battle {
             .flat_map(move |player| (0..slots).map(move |slot| Position { player, slot }))
     }
 
-    fn ordered_actives(&mut self, include_fainted: bool) -> ([(Position, u32); 4], usize) {
+    pub(super) fn ordered_actives(
+        &mut self,
+        include_fainted: bool,
+    ) -> ([(Position, u32); 4], usize) {
         // Even a field-wide event with no matching handler performs this
         // selection and consumes every speed-tie draw.
         let mut actives = [(
@@ -674,12 +693,12 @@ impl Battle {
     fn update_speed(&mut self) {
         for pos in self.positions() {
             if !self.mon(pos).fainted {
-                self.mon_mut(pos).update_speed();
+                self.mon_mut(pos).speed = self.mon(pos).current_speed(self.weather());
             }
         }
     }
 
-    fn each_event(&mut self) {
+    pub(super) fn each_event(&mut self) {
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
             self.on_update_item(pos);
@@ -694,10 +713,25 @@ impl Battle {
             Stall,
             Flinch,
             Leftovers,
+            Weather,
         }
         self.add("|");
         self.update_speed();
         let mut timers = Vec::new();
+        if self.weather().is_some() {
+            timers.push((
+                Position {
+                    player: Player::P1,
+                    slot: 0,
+                },
+                Effect::Weather,
+                Priority {
+                    order: 1,
+                    sub_order: 5,
+                    ..Priority::default()
+                },
+            ));
+        }
         for pos in self.positions() {
             let mon = self.mon(pos);
             let priority = |order, sub_order| Priority {
@@ -724,6 +758,13 @@ impl Battle {
         }
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
         for (pos, effect, _) in timers {
+            if matches!(effect, Effect::Weather) {
+                self.weather_residual();
+                if self.check_win() {
+                    return;
+                }
+                continue;
+            }
             let mon = self.mon_mut(pos);
             if mon.fainted {
                 continue;
@@ -733,6 +774,7 @@ impl Battle {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
                 }
+                Effect::Weather => unreachable!(),
                 Effect::Protect => mon.protected = false,
                 Effect::Flinch => mon.flinched = false,
                 Effect::Stall => {
@@ -828,7 +870,12 @@ impl Battle {
             return;
         }
 
-        if move_data.target != TargetKind::User {
+        if move_data.target.is_choosable()
+            || matches!(
+                move_data.target,
+                TargetKind::AllAdjacent | TargetKind::AllAdjacentFoes
+            )
+        {
             let pressure_targets = spread_targets
                 .iter()
                 .filter(|pos| pos.player != source.player && self.mon(**pos).ability == "pressure")
@@ -836,6 +883,31 @@ impl Battle {
             self.mon_mut(source).moves[slot].pp = self.mon(source).moves[slot]
                 .pp
                 .saturating_sub(pressure_targets as u8);
+        }
+        if let Some(hazard) = Hazard::from_move(&move_data.name) {
+            if move_data.flags.contains_key("mustpressure") {
+                let pressure = (0..self.slots())
+                    .map(|slot| Position {
+                        player: source.player.foe(),
+                        slot,
+                    })
+                    .filter(|&p| !self.mon(p).fainted && self.mon(p).ability == "pressure")
+                    .count() as u8;
+                self.mon_mut(source).moves[slot].pp =
+                    self.mon(source).moves[slot].pp.saturating_sub(pressure);
+            }
+            if !self.add_hazard(source.player.foe(), hazard) {
+                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.add(format!("|-fail|{source_name}"));
+            }
+            return;
+        }
+        if let Some(weather) = Weather::from_move(&move_data.name) {
+            if !self.set_weather(source, weather, None) {
+                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.add(format!("|-fail|{source_name}"));
+            }
+            return;
         }
         if move_data.name == "Protect" {
             let stall = self.mon(source).stall.map_or(1, |(counter, _)| counter);
@@ -987,22 +1059,39 @@ impl Battle {
             };
             let atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });
             let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
+            let def = if (self.weather() == Some(Weather::Sand)
+                && move_data.category == Category::Special
+                && mon.species.types.iter().any(|t| t == "Rock"))
+                || (self.weather() == Some(Weather::Snow)
+                    && move_data.category == Category::Physical
+                    && mon.species.types.iter().any(|t| t == "Ice"))
+            {
+                tr.modify(def, 6144)
+            } else {
+                def
+            };
             let atk = if user.attack_boosts_type(&move_data.move_type) {
                 tr.modify(atk, 6144)
             } else {
                 atk
             };
             let stab = user.species.types.contains(&move_data.move_type);
+            let mut power_modifier = user.item_power_modifier(&move_data.move_type);
+            if self.weather() == Some(Weather::Sand)
+                && user.ability == "sandforce"
+                && matches!(move_data.move_type.as_str(), "Rock" | "Ground" | "Steel")
+            {
+                power_modifier = crate::mechanics::chain(5325, power_modifier);
+            }
             let value = Damage {
                 level: user.level,
-                power: tr.modify(
-                    u32::from(move_data.base_power),
-                    user.item_power_modifier(&move_data.move_type),
-                ),
+                power: tr.modify(u32::from(move_data.base_power), power_modifier),
                 attack: atk,
                 defense: NonZeroU32::new(def.max(1)).unwrap(),
                 spread_or_bond: if spread { 3072 } else { 4096 },
-                weather: 4096,
+                weather: self
+                    .weather()
+                    .map_or(4096, |w| w.damage_modifier(&move_data.move_type)),
                 critical: crit,
                 stab: if stab { 6144 } else { 4096 },
                 effectiveness: effect,
@@ -1129,7 +1218,12 @@ impl Battle {
         self.add(format!("|faint|{}", self.ident(target)));
     }
 
-    fn boost(&mut self, pos: Position, boosts: &[(BoostStat, i8)], is_self: bool) -> bool {
+    pub(super) fn boost(
+        &mut self,
+        pos: Position,
+        boosts: &[(BoostStat, i8)],
+        is_self: bool,
+    ) -> bool {
         if self.mon(pos).hp == 0
             || !self
                 .party(pos.player.foe())
@@ -1169,7 +1263,7 @@ impl Battle {
         (accuracy * (3 + boost.max(0)) / (3 - boost.min(0))) as u32
     }
 
-    fn effectiveness(&self, move_data: &Move, target: Position) -> Option<i8> {
+    pub(super) fn effectiveness(&self, move_data: &Move, target: Position) -> Option<i8> {
         let mut modifier = 0;
         for typing in &self.mon(target).species.types {
             let case = DEX
@@ -1189,17 +1283,22 @@ impl Battle {
 }
 
 impl Pokemon {
-    fn current_speed(&self) -> u32 {
-        let stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
+    fn current_speed(&self, weather: Option<Weather>) -> u32 {
+        let mut stat = boosted_stat(self.stats.spe, self.boosts.get(BoostStat::Spe));
+        if matches!(
+            (self.ability.as_str(), weather),
+            ("swiftswim", Some(Weather::Rain))
+                | ("chlorophyll", Some(Weather::Sun))
+                | ("sandrush", Some(Weather::Sand))
+                | ("slushrush", Some(Weather::Snow))
+        ) {
+            stat *= 2;
+        }
         if self.status == Status::Paralysis {
             stat / 2
         } else {
             stat
         }
-    }
-
-    fn update_speed(&mut self) {
-        self.speed = self.current_speed();
     }
 
     fn attack_boosts_type(&self, move_type: &str) -> bool {
@@ -1224,6 +1323,15 @@ impl Pokemon {
                 | "goodasgold"
                 | "roughskin"
                 | "runaway"
+                | "drizzle"
+                | "drought"
+                | "sandstream"
+                | "snowwarning"
+                | "swiftswim"
+                | "chlorophyll"
+                | "sandrush"
+                | "slushrush"
+                | "sandforce"
         ) {
             return Some(BattleError::Unsupported(format!(
                 "ability {}",
@@ -1245,6 +1353,11 @@ impl Pokemon {
                 | "charcoal"
                 | "fairyfeather"
                 | "spelltag"
+                | "damprock"
+                | "heatrock"
+                | "smoothrock"
+                | "icyrock"
+                | "heavydutyboots"
         ) {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));
         }

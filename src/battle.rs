@@ -10,12 +10,16 @@ use crate::{
 };
 use serde::Serialize;
 
+mod hazards;
 mod items;
+use hazards::Hazard;
 mod status;
 mod turn;
+mod weather;
 pub use status::Status;
 use std::{error::Error, fmt, num::NonZeroU32};
 use turn::Action;
+pub use weather::Weather;
 
 #[derive(Debug, PartialEq, Eq)]
 pub enum BattleError {
@@ -102,12 +106,14 @@ pub struct Battle {
     turn: u32,
     winner: Option<Player>,
     last_faint: Option<Player>,
+    weather: Option<(Weather, u8)>,
     pending_actions: [Option<Vec<Action>>; 2],
 }
 
 struct Side {
     name: String,
     party: Vec<Pokemon>,
+    hazards: Vec<(Hazard, u8)>,
 }
 
 pub struct Pokemon {
@@ -234,6 +240,7 @@ impl Battle {
             turn: 0,
             winner: None,
             last_faint: None,
+            weather: None,
             pending_actions: [None, None],
         };
         battle.add(format!(
@@ -352,7 +359,11 @@ impl Battle {
             .filter(|r| *r != 0)
             .map_or_else(String::new, |r| r.to_string());
         self.add(format!("|player|{}|{name}|{avatar}|{rating}", player.id()));
-        self.sides[index] = Some(Side { name, party });
+        self.sides[index] = Some(Side {
+            name,
+            party,
+            hazards: Vec::new(),
+        });
         self.rng = rng;
         if self.sides.iter().all(Option::is_some) {
             self.begin_preview();

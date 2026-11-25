@@ -121,3 +121,13 @@ fn bss_replay_with_champions_sleep_and_freeze_timers() {
 fn bss_replay_with_held_items_and_ability_interactions() {
     replay(include_str!("fixtures/bss-items.json"));
 }
+
+#[test]
+fn vgc_replay_with_weather_setters_and_dynamic_speed() {
+    replay(include_str!("fixtures/vgc-weather.json"));
+}
+
+#[test]
+fn bss_replay_with_ordered_entry_hazards_and_poison_absorption() {
+    replay(include_str!("fixtures/bss-hazards.json"));
+}

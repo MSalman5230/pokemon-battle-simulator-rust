@@ -1,0 +1,4827 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Smeargle\",\"moves\":[\"Spikes\",\"Stealth Rock\",\"Toxic Spikes\",\"Sticky Web\"],\"gender\":\"F\",\"name\":\"Smeargle\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Flareon\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Flareon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Tackle\",\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Glaceon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Gengar\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Gengar\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Heavy-Duty Boots\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|poke|p2|Gengar, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|poke|p2|Gengar, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Smeargle, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Flareon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|poke|p2|Gengar, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 123",
+        ">p2 team 123"
+      ],
+      "turn": 1,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|3",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|3",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|130/130",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|3",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Smeargle|Smeargle, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Stealth Rock|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Stealth Rock",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Stealth Rock|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Stealth Rock",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Stealth Rock|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Stealth Rock",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Toxic Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Toxic Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Toxic Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Toxic Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Toxic Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Toxic Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Toxic Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Toxic Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Toxic Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Toxic Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Toxic Spikes|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Toxic Spikes",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 4,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 move 2"
+      ],
+      "turn": 6,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Smeargle|Sticky Web|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Sticky Web",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Sticky Web|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Sticky Web",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Smeargle|Sticky Web|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Sticky Web",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 2"
+      ],
+      "turn": 7,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Glaceon|Glaceon, L50, F|100/100",
+          "|-damage|p2a: Glaceon|87/100|[from] Spikes",
+          "|-damage|p2a: Glaceon|62/100|[from] Stealth Rock",
+          "|-status|p2a: Glaceon|tox",
+          "|-activate|p2a: Glaceon|move: Sticky Web",
+          "|-unboost|p2a: Glaceon|spe|1",
+          "|move|p1a: Smeargle|Spikes|p2a: Glaceon",
+          "|-sidestart|p2: player1|Spikes",
+          "|",
+          "|-damage|p2a: Glaceon|57/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p2a: Glaceon|Glaceon, L50, F|100/100",
+          "|-damage|p2a: Glaceon|87/100|[from] Spikes",
+          "|-damage|p2a: Glaceon|62/100|[from] Stealth Rock",
+          "|-status|p2a: Glaceon|tox",
+          "|-activate|p2a: Glaceon|move: Sticky Web",
+          "|-unboost|p2a: Glaceon|spe|1",
+          "|move|p1a: Smeargle|Spikes|p2a: Glaceon",
+          "|-sidestart|p2: player1|Spikes",
+          "|",
+          "|-damage|p2a: Glaceon|57/100 tox|[from] psn",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|switch|p2a: Glaceon|Glaceon, L50, F|140/140",
+          "|-damage|p2a: Glaceon|123/140|[from] Spikes",
+          "|-damage|p2a: Glaceon|88/140|[from] Stealth Rock",
+          "|-status|p2a: Glaceon|tox",
+          "|-activate|p2a: Glaceon|move: Sticky Web",
+          "|-unboost|p2a: Glaceon|spe|1",
+          "|move|p1a: Smeargle|Spikes|p2a: Glaceon",
+          "|-sidestart|p2: player1|Spikes",
+          "|",
+          "|-damage|p2a: Glaceon|80/140 tox|[from] psn",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "80/140 tox",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 80,
+            "maxhp": 140,
+            "status": "tox",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": -1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 4",
+        ">p2 switch 3"
+      ],
+      "turn": 8,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Gengar|Gengar, L50, F|100/100",
+          "|-sideend|p2: player1|move: Toxic Spikes|[of] p2a: Gengar",
+          "|move|p1a: Smeargle|Sticky Web||[still]",
+          "|-fail|p1a: Smeargle",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|switch|p2a: Gengar|Gengar, L50, F|100/100",
+          "|-sideend|p2: player1|move: Toxic Spikes|[of] p2a: Gengar",
+          "|move|p1a: Smeargle|Sticky Web||[still]",
+          "|-fail|p1a: Smeargle",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|switch|p2a: Gengar|Gengar, L50, F|135/135",
+          "|-sideend|p2: player1|move: Toxic Spikes|[of] p2a: Gengar",
+          "|move|p1a: Smeargle|Sticky Web||[still]",
+          "|-fail|p1a: Smeargle",
+          "|",
+          "|upkeep",
+          "|turn|8"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "80/140 tox",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 80,
+            "maxhp": 140,
+            "status": "tox",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 switch 2"
+      ],
+      "turn": 9,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|-damage|p2a: Umbreon|83/100|[from] Spikes",
+          "|-damage|p2a: Umbreon|71/100|[from] Stealth Rock",
+          "|-activate|p2a: Umbreon|move: Sticky Web",
+          "|-unboost|p2a: Umbreon|spe|1",
+          "|move|p1a: Smeargle|Stealth Rock||[still]",
+          "|-fail|p1a: Smeargle",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|-damage|p2a: Umbreon|83/100|[from] Spikes",
+          "|-damage|p2a: Umbreon|71/100|[from] Stealth Rock",
+          "|-activate|p2a: Umbreon|move: Sticky Web",
+          "|-unboost|p2a: Umbreon|spe|1",
+          "|move|p1a: Smeargle|Stealth Rock||[still]",
+          "|-fail|p1a: Smeargle",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|-damage|p2a: Umbreon|142/170|[from] Spikes",
+          "|-damage|p2a: Umbreon|121/170|[from] Stealth Rock",
+          "|-activate|p2a: Umbreon|move: Sticky Web",
+          "|-unboost|p2a: Umbreon|spe|1",
+          "|move|p1a: Smeargle|Stealth Rock||[still]",
+          "|-fail|p1a: Smeargle",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Spikes",
+                  "id": "spikes",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Stealth Rock",
+                  "id": "stealthrock",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic Spikes",
+                  "id": "toxicspikes",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                },
+                {
+                  "move": "Sticky Web",
+                  "id": "stickyweb",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "foeSide",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Smeargle",
+                "details": "Smeargle, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 40,
+                  "def": 55,
+                  "spa": 40,
+                  "spd": 65,
+                  "spe": 95
+                },
+                "moves": [
+                  "spikes",
+                  "stealthrock",
+                  "toxicspikes",
+                  "stickyweb"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flareon",
+                "details": "Flareon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 150,
+                  "def": 80,
+                  "spa": 115,
+                  "spd": 130,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "121/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "heavydutyboots",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "80/140 tox",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Smeargle",
+            "species": "Smeargle",
+            "details": "Smeargle, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 40,
+              "def": 55,
+              "spa": 40,
+              "spd": 65,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "spikes",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "stealthrock",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "toxicspikes",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "stickyweb",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flareon",
+            "species": "Flareon",
+            "details": "Flareon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 80,
+              "spa": 115,
+              "spd": 130,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 121,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": -1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 3,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "heavydutyboots",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 80,
+            "maxhp": 140,
+            "status": "tox",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
