@@ -1064,7 +1064,7 @@ impl Battle {
         }
         let mon = self.mon_mut(attacker);
         mon.half_hp_berry_deferred = false;
-        mon.hp = mon.hp.saturating_sub(damage);
+        mon.damage_hp(damage);
         self.add_health_line_with(
             "-damage",
             attacker,

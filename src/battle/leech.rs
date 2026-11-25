@@ -47,7 +47,7 @@ impl Battle {
             let mon = self.mon_mut(recipient);
             let original_hp = mon.hp;
             mon.half_hp_berry_deferred = false;
-            mon.hp = mon.hp.saturating_sub(amount);
+            mon.damage_hp(amount);
             self.add_health_line_with(
                 "-damage",
                 recipient,
@@ -105,7 +105,7 @@ impl Battle {
         }
         let loss = (mon.max_hp.get() / 8).max(1).min(mon.hp);
         mon.half_hp_berry_deferred = false;
-        mon.hp -= loss;
+        mon.damage_hp(loss);
         self.add_health_line_with(
             "-damage",
             target,

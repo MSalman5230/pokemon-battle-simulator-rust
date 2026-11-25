@@ -208,7 +208,7 @@ impl Battle {
         let mon = self.mon_mut(pos);
         // Showdown represents a confusion self-hit as single-hit Move damage.
         mon.half_hp_berry_deferred = matches!(mon.ability.as_str(), "berserk" | "angershell");
-        mon.hp = mon.hp.saturating_sub(damage);
+        mon.damage_hp(damage);
         self.add_health_line_with("-damage", pos, false, "|[from] confusion");
         if self.mon(pos).hp == 0 {
             self.mark_fainted(pos);
@@ -548,7 +548,7 @@ impl Battle {
             amount = (amount / 2).max(1);
         }
         mon.half_hp_berry_deferred = false;
-        mon.hp = mon.hp.saturating_sub(amount);
+        mon.damage_hp(amount);
         self.add_health_line_with("-damage", pos, false, &format!("|[from] {label}"));
         if self.mon(pos).hp == 0 {
             self.mark_fainted(pos);

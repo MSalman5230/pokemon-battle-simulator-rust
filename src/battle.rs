@@ -266,6 +266,7 @@ pub struct Pokemon {
     choice_lock: Option<usize>,
     active_turns: u32,
     active_move_actions: u32,
+    hurt_this_turn: bool,
     roosted: bool,
     temporary_types: types::TypeOverride,
     type_change_used: bool,
@@ -335,6 +336,13 @@ impl Pokemon {
             self.happiness
         };
         (u16::from(value) * 2 / 5).max(1)
+    }
+
+    fn damage_hp(&mut self, damage: u32) -> u32 {
+        let landed = damage.min(self.hp);
+        self.hp -= landed;
+        self.hurt_this_turn |= landed > 0;
+        landed
     }
 }
 
@@ -957,6 +965,7 @@ impl Pokemon {
             choice_lock: None,
             active_turns: 0,
             active_move_actions: 0,
+            hurt_this_turn: false,
             roosted: false,
             temporary_types: types::TypeOverride::default(),
             type_change_used: false,

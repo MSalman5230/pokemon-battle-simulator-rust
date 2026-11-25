@@ -722,7 +722,7 @@ impl Battle {
             return;
         }
         mon.half_hp_berry_deferred = false;
-        mon.hp = mon.hp.saturating_sub((mon.max_hp.get() / divisor).max(1));
+        mon.damage_hp((mon.max_hp.get() / divisor).max(1));
         self.add_health_line_with("-damage", pos, false, cause);
     }
 }

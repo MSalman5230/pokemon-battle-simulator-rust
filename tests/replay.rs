@@ -1445,6 +1445,22 @@ fn mega_sol_uses_sun_only_for_the_users_move_and_keeps_real_weather() {
 }
 
 #[test]
+fn assurance_uses_same_turn_damage_even_if_the_target_healed() {
+    replay(include_str!("fixtures/vgc-assurance.json"));
+}
+
+#[test]
+fn clear_smog_removes_boosts_and_infernal_parade_doubles_on_status() {
+    replay(include_str!("fixtures/bss-clear-smog.json"));
+    replay(include_str!("fixtures/bss-infernal-parade.json"));
+}
+
+#[test]
+fn electromorphosis_waits_for_the_attackers_stat_drops() {
+    replay(include_str!("fixtures/bss-charge-after-drops.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

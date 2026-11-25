@@ -1027,6 +1027,9 @@ impl Battle {
                     | "hiddenpower"
                     | "return"
                     | "frustration"
+                    | "assurance"
+                    | "infernalparade"
+                    | "clearsmog"
                     | "electroshot"
                     | "solarbeam"
                     | "solarblade"
@@ -1596,6 +1599,7 @@ impl Battle {
         party[outgoing.slot].choice_lock = None;
         party[outgoing.slot].active_turns = 0;
         party[outgoing.slot].active_move_actions = 0;
+        party[outgoing.slot].hurt_this_turn = false;
         party[outgoing.slot].roosted = false;
         party[outgoing.slot].set_temporary_type(None);
         party[outgoing.slot].yawn = None;
@@ -1871,6 +1875,7 @@ impl Battle {
             mon.stats_raised = false;
             mon.stats_lowered = false;
             mon.attackers_this_turn = [0; 2];
+            mon.hurt_this_turn = false;
             mon.move_failed_last_turn = std::mem::take(&mut mon.move_failed_this_turn);
             mon.used_item_this_turn = false;
             if !mon.fainted {
@@ -4872,9 +4877,18 @@ impl Battle {
                         .unwrap()
                 };
                 let mut power = battle.situational_base_power(source, target, move_data, power);
-                if move_data.name == "Hex" && battle.mon(target).status != Status::Healthy {
-                    if battle.format.report_exact_hp {
+                if matches!(move_data.name.as_str(), "Hex" | "Infernal Parade")
+                    && (battle.mon(target).status != Status::Healthy
+                        || battle.event_ability(target) == "comatose")
+                {
+                    if move_data.name == "Hex" && battle.format.report_exact_hp {
                         battle.add("|debug|BP doubled from status condition");
+                    }
+                    power *= 2;
+                }
+                if move_data.name == "Assurance" && battle.mon(target).hurt_this_turn {
+                    if battle.format.report_exact_hp {
+                        battle.add("|debug|BP doubled on damaged target");
                     }
                     power *= 2;
                 }
@@ -5030,8 +5044,7 @@ impl Battle {
                 let turn = self.turn;
                 let mon = self.mon_mut(target);
                 mon.half_hp_berry_deferred = half_hp_berry_deferred;
-                let landed = value.min(mon.hp);
-                mon.hp -= landed;
+                let landed = mon.damage_hp(value);
                 if landed > 0 {
                     landed_by_target[target.index()] += landed;
                     hp_after_damage[target.index()] = mon.hp;
@@ -5066,7 +5079,10 @@ impl Battle {
                 if matches!(move_data.name.as_str(), "Bug Bite" | "Pluck") {
                     self.eat_stolen_berry(source, target, &move_data.name);
                 }
-                self.charge_after_damage(target, move_data);
+                if move_data.name == "Clear Smog" {
+                    self.mon_mut(target).boosts = Boosts::default();
+                    self.add(format!("|-clearboost|{}", self.ident(target)));
+                }
             }
             for &(target, _) in &damage {
                 if move_data.flags.contains_key("contact")
@@ -5324,6 +5340,7 @@ impl Battle {
                 if self.event_ability(target) == "thermalexchange" && move_type == "Fire" {
                     self.ability_boost(target, "Thermal Exchange", BoostStat::Atk, 1, false);
                 }
+                self.charge_after_damage(target, move_data);
                 if self.event_ability(target) == "stamina" {
                     self.ability_boost(target, "Stamina", BoostStat::Def, 1, false);
                 }
@@ -5483,7 +5500,11 @@ impl Battle {
             if !struggle {
                 mon.half_hp_berry_deferred = false;
             }
-            mon.hp = mon.hp.saturating_sub(recoil);
+            if struggle {
+                mon.hp = mon.hp.saturating_sub(recoil);
+            } else {
+                mon.damage_hp(recoil);
+            }
             self.add_health_line_with(
                 "-damage",
                 source,
@@ -5636,7 +5657,7 @@ impl Battle {
         if mon.hp != 0 && mon.ability != "magicguard" {
             let original_hp = mon.hp;
             mon.half_hp_berry_deferred = false;
-            mon.hp = mon.hp.saturating_sub(mon.max_hp.get().div_ceil(2));
+            mon.damage_hp(mon.max_hp.get().div_ceil(2));
             self.add_health_line_with("-damage", pos, false, &format!("|[from] {effect}"));
             self.emergency_exit(pos, original_hp);
         }
