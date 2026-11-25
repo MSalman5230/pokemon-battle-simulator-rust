@@ -699,6 +699,16 @@ impl Battle {
         } else {
             4096
         };
+        let flower_gift_attack = if physical {
+            self.flower_gift_modifier(source)
+        } else {
+            4096
+        };
+        let flower_gift_defense = if !defense_uses_def {
+            self.flower_gift_modifier(target)
+        } else {
+            4096
+        };
         let ruin_attack = self.ruin_modifier(
             source,
             if physical {
@@ -806,7 +816,10 @@ impl Battle {
                     chain(paradox_defense, defense_weather_modifier),
                     defense_ability_modifier,
                 ),
-                chain(defense_item_modifier, ruin_defense),
+                chain(
+                    chain(flower_gift_defense, defense_item_modifier),
+                    ruin_defense,
+                ),
             ),
         );
         if stakeout {
@@ -822,7 +835,7 @@ impl Battle {
         {
             attack_modifier = crate::mechanics::chain(attack_modifier, 2048);
         }
-        attack_modifier = chain(attack_modifier, ruin_attack);
+        attack_modifier = chain(chain(attack_modifier, flower_gift_attack), ruin_attack);
         let atk = tr.modify(atk, attack_modifier);
         let stab = force_stab || user.has_type(move_type);
         let mut power_modifier = if source_active {

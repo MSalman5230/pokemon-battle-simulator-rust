@@ -2260,6 +2260,23 @@ const teraShiftRosters = [
     [{...named('Terapagos', ['Tackle'], 'M'), ability:'Tera Shift'}],
     [{...named('Aipom', ['Tail Slap', 'Tackle']), ability:'Skill Link'}],
 ];
+const iceFaceRosters = [
+    [{...named('Eiscue', ['Snowscape', 'Recover']), ability:'Ice Face'}],
+    [{...named('Aipom', ['Tail Slap', 'Swift']), ability:'Skill Link'}],
+];
+const gulpMissileRosters = [
+    [{...named('Cramorant', ['Surf', 'Dive']), ability:'Gulp Missile'}],
+    [named('Snorlax', ['Tackle'])],
+];
+const gulpGorgingRosters = [
+    [{...named('Cramorant', ['Surf', 'Recover']), ability:'Gulp Missile', ivs:{hp:29}}],
+    [named('Raticate', ['Super Fang', 'Tackle'])],
+];
+const flowerGiftRosters = [
+    [{...named('Cherrim', ['Recover']), ability:'Flower Gift'},
+        {...named('Torkoal', ['Tackle']), ability:'Drought'}],
+    [named('Starmie', ['Water Gun', 'Rain Dance'], 'N'), named('Snorlax', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3905,6 +3922,15 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         powerConstructRosters, 'custom-power-construct-preserves-missing-hp-and-persists-across-switch'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
         teraShiftRosters, 'custom-tera-shift-and-tera-shell-multihit-without-terastallizing'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 1']],
+        iceFaceRosters, 'custom-ice-face-blocks-first-physical-hit-and-restores-in-new-snow'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','move 1']],
+        gulpMissileRosters, 'custom-gulp-missile-loads-on-surf-and-dive'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2']],
+        gulpGorgingRosters, 'custom-gulp-missile-gorging-inflicts-paralysis'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1 2','move 1 2, move 1'],
+        ['move 1, move 1 2','move 2, move 1']],
+        flowerGiftRosters, 'custom-flower-gift-changes-form-and-boosts-allies-in-sun'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

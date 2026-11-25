@@ -1,0 +1,1451 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Cherrim\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Cherrim\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Flower Gift\"},{\"species\":\"Torkoal\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Torkoal\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Drought\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Starmie\",\"moves\":[\"Water Gun\",\"Rain Dance\"],\"gender\":\"N\",\"name\":\"Starmie\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Snorlax\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Cherrim, L50, F|",
+          "|poke|p1|Torkoal, L50, F|",
+          "|poke|p2|Starmie, L50|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Cherrim, L50, F|",
+          "|poke|p1|Torkoal, L50, F|",
+          "|poke|p2|Starmie, L50|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Cherrim, L50, F|",
+          "|poke|p1|Torkoal, L50, F|",
+          "|poke|p2|Starmie, L50|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Cherrim",
+                "details": "Cherrim, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 90,
+                  "spa": 107,
+                  "spd": 98,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "flowergift",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "flowergift",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Starmie",
+                "details": "Starmie, L50",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "watergun",
+                  "raindance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cherrim",
+            "species": "Cherrim",
+            "details": "Cherrim, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 90,
+              "spa": 107,
+              "spd": 98,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flowergift",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Cherrim|Cherrim, L50, F|145/145",
+          "|switch|p1b: Torkoal|Torkoal, L50, F|145/145",
+          "|switch|p2a: Starmie|Starmie, L50|135/135",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p1b: Torkoal",
+          "|-formechange|p1a: Cherrim|Cherrim-Sunshine|[msg]|[from] ability: Flower Gift",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Cherrim|Cherrim, L50, F|145/145",
+          "|switch|p1b: Torkoal|Torkoal, L50, F|145/145",
+          "|switch|p2a: Starmie|Starmie, L50|135/135",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p1b: Torkoal",
+          "|-formechange|p1a: Cherrim|Cherrim-Sunshine|[msg]|[from] ability: Flower Gift",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Cherrim|Cherrim, L50, F|145/145",
+          "|switch|p1b: Torkoal|Torkoal, L50, F|145/145",
+          "|switch|p2a: Starmie|Starmie, L50|135/135",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p1b: Torkoal",
+          "|-formechange|p1a: Cherrim|Cherrim-Sunshine|[msg]|[from] ability: Flower Gift",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Cherrim",
+                "details": "Cherrim, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 90,
+                  "spa": 107,
+                  "spd": 98,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "flowergift",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "flowergift",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Starmie",
+                "details": "Starmie, L50",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "watergun",
+                  "raindance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cherrim",
+            "species": "Cherrim-Sunshine",
+            "details": "Cherrim, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 90,
+              "spa": 107,
+              "spd": 98,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flowergift",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1 2",
+        ">p2 move 1 2, move 1"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Starmie|Water Gun|p1b: Torkoal",
+          "|debug|Sunny Day water suppress",
+          "|-supereffective|p1b: Torkoal|1",
+          "|-damage|p1b: Torkoal|125/145",
+          "|move|p1a: Cherrim|Recover||[still]",
+          "|-fail|p1a: Cherrim|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover||[still]",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Torkoal|Tackle|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|205/235",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Starmie|Water Gun|p1b: Torkoal",
+          "|debug|Sunny Day water suppress",
+          "|-supereffective|p1b: Torkoal|1",
+          "|-damage|p1b: Torkoal|125/145",
+          "|move|p1a: Cherrim|Recover||[still]",
+          "|-fail|p1a: Cherrim|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover||[still]",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Torkoal|Tackle|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|205/235",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Starmie|Water Gun|p1b: Torkoal",
+          "|debug|Sunny Day water suppress",
+          "|-supereffective|p1b: Torkoal|1",
+          "|-damage|p1b: Torkoal|125/145",
+          "|move|p1a: Cherrim|Recover||[still]",
+          "|-fail|p1a: Cherrim|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover||[still]",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Torkoal|Tackle|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|205/235",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Cherrim",
+                "details": "Cherrim, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 90,
+                  "spa": 107,
+                  "spd": 98,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "flowergift",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "flowergift",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "125/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Starmie",
+                "details": "Starmie, L50",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "watergun",
+                  "raindance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "205/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cherrim",
+            "species": "Cherrim-Sunshine",
+            "details": "Cherrim, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 90,
+              "spa": 107,
+              "spd": 98,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flowergift",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 125,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 205,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1 2",
+        ">p2 move 2, move 1"
+      ],
+      "turn": 3,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Starmie|Rain Dance|p2a: Starmie",
+          "|-weather|RainDance",
+          "|-formechange|p1a: Cherrim|Cherrim|[msg]|[from] ability: Flower Gift",
+          "|move|p1a: Cherrim|Recover||[still]",
+          "|-fail|p1a: Cherrim|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover|p2b: Snorlax",
+          "|-heal|p2b: Snorlax|235/235",
+          "|move|p1b: Torkoal|Tackle|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|215/235",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Starmie|Rain Dance|p2a: Starmie",
+          "|-weather|RainDance",
+          "|-formechange|p1a: Cherrim|Cherrim|[msg]|[from] ability: Flower Gift",
+          "|move|p1a: Cherrim|Recover||[still]",
+          "|-fail|p1a: Cherrim|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover|p2b: Snorlax",
+          "|-heal|p2b: Snorlax|235/235",
+          "|move|p1b: Torkoal|Tackle|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|215/235",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Starmie|Rain Dance|p2a: Starmie",
+          "|-weather|RainDance",
+          "|-formechange|p1a: Cherrim|Cherrim|[msg]|[from] ability: Flower Gift",
+          "|move|p1a: Cherrim|Recover||[still]",
+          "|-fail|p1a: Cherrim|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover|p2b: Snorlax",
+          "|-heal|p2b: Snorlax|235/235",
+          "|move|p1b: Torkoal|Tackle|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|215/235",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Cherrim",
+                "details": "Cherrim, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 90,
+                  "spa": 107,
+                  "spd": 98,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "flowergift",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "flowergift",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "125/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Starmie",
+                "details": "Starmie, L50",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 105,
+                  "spa": 120,
+                  "spd": 105,
+                  "spe": 135
+                },
+                "moves": [
+                  "watergun",
+                  "raindance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "215/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cherrim",
+            "species": "Cherrim",
+            "details": "Cherrim, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 90,
+              "spa": 107,
+              "spd": 98,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "flowergift",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 125,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Starmie",
+            "species": "Starmie",
+            "details": "Starmie, L50",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 105,
+              "spa": 120,
+              "spd": 105,
+              "spe": 135
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 215,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

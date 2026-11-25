@@ -180,6 +180,12 @@ impl Battle {
         });
         for (pos, _) in ordered.into_iter().take(count) {
             self.forecast(pos, weather);
+            if self.mon(pos).ability == "flowergift" {
+                self.sync_flower_gift(pos, weather);
+            }
+            if ending_suppressor.is_none() && self.mon(pos).ability == "iceface" {
+                self.restore_ice_face(pos, weather);
+            }
             if self.mon(pos).ability == "protosynthesis" {
                 self.sync_paradox(pos, weather, None);
             }

@@ -2405,6 +2405,22 @@ fn inherited_ability_forms_preserve_hp_and_match_their_native_transitions() {
 }
 
 #[test]
+fn inherited_weather_and_move_forms_match_native_battle_events() {
+    replay(include_str!(
+        "fixtures/custom-ice-face-blocks-first-physical-hit-and-restores-in-new-snow.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-gulp-missile-loads-on-surf-and-dive.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-gulp-missile-gorging-inflicts-paralysis.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-flower-gift-changes-form-and-boosts-allies-in-sun.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

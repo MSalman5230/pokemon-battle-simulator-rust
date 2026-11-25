@@ -1,0 +1,1207 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Eiscue\",\"moves\":[\"Snowscape\",\"Recover\"],\"gender\":\"F\",\"name\":\"Eiscue\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Ice Face\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Aipom\",\"moves\":[\"Tail Slap\",\"Swift\"],\"gender\":\"F\",\"name\":\"Aipom\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Skill Link\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Eiscue, L50, F|",
+          "|poke|p2|Aipom, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Eiscue, L50, F|",
+          "|poke|p2|Aipom, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Eiscue, L50, F|",
+          "|poke|p2|Aipom, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eiscue",
+                "details": "Eiscue, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 130,
+                  "spa": 85,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "snowscape",
+                  "recover"
+                ],
+                "baseAbility": "iceface",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "iceface",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "swift"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eiscue",
+            "species": "Eiscue",
+            "details": "Eiscue, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 130,
+              "spa": 85,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "iceface",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "snowscape",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eiscue|Eiscue, L50, F|150/150",
+          "|switch|p2a: Aipom|Aipom, L50, F|130/130",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eiscue|Eiscue, L50, F|150/150",
+          "|switch|p2a: Aipom|Aipom, L50, F|130/130",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Eiscue|Eiscue, L50, F|150/150",
+          "|switch|p2a: Aipom|Aipom, L50, F|130/130",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Snowscape",
+                  "id": "snowscape",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eiscue",
+                "details": "Eiscue, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 130,
+                  "spa": 85,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "snowscape",
+                  "recover"
+                ],
+                "baseAbility": "iceface",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "iceface",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Slap",
+                  "id": "tailslap",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "swift"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eiscue",
+            "species": "Eiscue",
+            "details": "Eiscue, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 130,
+              "spa": 85,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "iceface",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "snowscape",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "7104,42574,9152,10809",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Aipom|Tail Slap|p1a: Eiscue",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|-damage|p1a: Eiscue|150/150",
+          "|detailschange|p1a: Eiscue|Eiscue-Noice, L50, F",
+          "|-damage|p1a: Eiscue|134/150",
+          "|-damage|p1a: Eiscue|118/150",
+          "|-damage|p1a: Eiscue|102/150",
+          "|-damage|p1a: Eiscue|84/150",
+          "|-hitcount|p1a: Eiscue|5",
+          "|move|p1a: Eiscue|Snowscape|p1a: Eiscue",
+          "|-weather|Snowscape",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|detailschange|p1a: Eiscue|Eiscue, L50, F",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Aipom|Tail Slap|p1a: Eiscue",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|-damage|p1a: Eiscue|150/150",
+          "|detailschange|p1a: Eiscue|Eiscue-Noice, L50, F",
+          "|-damage|p1a: Eiscue|134/150",
+          "|-damage|p1a: Eiscue|118/150",
+          "|-damage|p1a: Eiscue|102/150",
+          "|-damage|p1a: Eiscue|84/150",
+          "|-hitcount|p1a: Eiscue|5",
+          "|move|p1a: Eiscue|Snowscape|p1a: Eiscue",
+          "|-weather|Snowscape",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|detailschange|p1a: Eiscue|Eiscue, L50, F",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Aipom|Tail Slap|p1a: Eiscue",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|-damage|p1a: Eiscue|150/150",
+          "|detailschange|p1a: Eiscue|Eiscue-Noice, L50, F",
+          "|-damage|p1a: Eiscue|134/150",
+          "|-damage|p1a: Eiscue|118/150",
+          "|-damage|p1a: Eiscue|102/150",
+          "|-damage|p1a: Eiscue|84/150",
+          "|-hitcount|p1a: Eiscue|5",
+          "|move|p1a: Eiscue|Snowscape|p1a: Eiscue",
+          "|-weather|Snowscape",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|detailschange|p1a: Eiscue|Eiscue, L50, F",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Snowscape",
+                  "id": "snowscape",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eiscue",
+                "details": "Eiscue, L50, F",
+                "condition": "84/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 130,
+                  "spa": 85,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "snowscape",
+                  "recover"
+                ],
+                "baseAbility": "iceface",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "iceface",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Slap",
+                  "id": "tailslap",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "swift"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eiscue",
+            "species": "Eiscue",
+            "details": "Eiscue, L50, F",
+            "hp": 84,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 130,
+              "spa": 85,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "iceface",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "snowscape",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "4124,63122,38965,57347",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Aipom|Swift|p1a: Eiscue",
+          "|-damage|p1a: Eiscue|62/150",
+          "|move|p1a: Eiscue|Recover|p1a: Eiscue",
+          "|-heal|p1a: Eiscue|137/150",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Aipom|Swift|p1a: Eiscue",
+          "|-damage|p1a: Eiscue|62/150",
+          "|move|p1a: Eiscue|Recover|p1a: Eiscue",
+          "|-heal|p1a: Eiscue|137/150",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Aipom|Swift|p1a: Eiscue",
+          "|-damage|p1a: Eiscue|62/150",
+          "|move|p1a: Eiscue|Recover|p1a: Eiscue",
+          "|-heal|p1a: Eiscue|137/150",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Snowscape",
+                  "id": "snowscape",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eiscue",
+                "details": "Eiscue, L50, F",
+                "condition": "137/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 130,
+                  "spa": 85,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "snowscape",
+                  "recover"
+                ],
+                "baseAbility": "iceface",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "iceface",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Slap",
+                  "id": "tailslap",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "swift"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eiscue",
+            "species": "Eiscue",
+            "details": "Eiscue, L50, F",
+            "hp": 137,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 130,
+              "spa": 85,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "iceface",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "snowscape",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "swift",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "31262,39613,52537,33084",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Aipom|Tail Slap|p1a: Eiscue",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|-damage|p1a: Eiscue|137/150",
+          "|detailschange|p1a: Eiscue|Eiscue-Noice, L50, F",
+          "|-damage|p1a: Eiscue|127/150",
+          "|-damage|p1a: Eiscue|114/150",
+          "|-damage|p1a: Eiscue|102/150",
+          "|-damage|p1a: Eiscue|90/150",
+          "|-hitcount|p1a: Eiscue|5",
+          "|move|p1a: Eiscue|Recover|p1a: Eiscue",
+          "|-heal|p1a: Eiscue|150/150",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Aipom|Tail Slap|p1a: Eiscue",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|-damage|p1a: Eiscue|137/150",
+          "|detailschange|p1a: Eiscue|Eiscue-Noice, L50, F",
+          "|-damage|p1a: Eiscue|127/150",
+          "|-damage|p1a: Eiscue|114/150",
+          "|-damage|p1a: Eiscue|102/150",
+          "|-damage|p1a: Eiscue|90/150",
+          "|-hitcount|p1a: Eiscue|5",
+          "|move|p1a: Eiscue|Recover|p1a: Eiscue",
+          "|-heal|p1a: Eiscue|150/150",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Aipom|Tail Slap|p1a: Eiscue",
+          "|-activate|p1a: Eiscue|ability: Ice Face",
+          "|-damage|p1a: Eiscue|137/150",
+          "|detailschange|p1a: Eiscue|Eiscue-Noice, L50, F",
+          "|-damage|p1a: Eiscue|127/150",
+          "|-damage|p1a: Eiscue|114/150",
+          "|-damage|p1a: Eiscue|102/150",
+          "|-damage|p1a: Eiscue|90/150",
+          "|-hitcount|p1a: Eiscue|5",
+          "|move|p1a: Eiscue|Recover|p1a: Eiscue",
+          "|-heal|p1a: Eiscue|150/150",
+          "|",
+          "|-weather|Snowscape|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Snowscape",
+                  "id": "snowscape",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Eiscue",
+                "details": "Eiscue-Noice, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 90,
+                  "spa": 85,
+                  "spd": 70,
+                  "spe": 150
+                },
+                "moves": [
+                  "snowscape",
+                  "recover"
+                ],
+                "baseAbility": "iceface",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "iceface",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Slap",
+                  "id": "tailslap",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Aipom",
+                "details": "Aipom, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 75,
+                  "spa": 60,
+                  "spd": 75,
+                  "spe": 105
+                },
+                "moves": [
+                  "tailslap",
+                  "swift"
+                ],
+                "baseAbility": "skilllink",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "skilllink",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Eiscue",
+            "species": "Eiscue-Noice",
+            "details": "Eiscue-Noice, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 90,
+              "spa": 85,
+              "spd": 70,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "iceface",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "snowscape",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Aipom",
+            "species": "Aipom",
+            "details": "Aipom, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 75,
+              "spa": 60,
+              "spd": 75,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "skilllink",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailslap",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "swift",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

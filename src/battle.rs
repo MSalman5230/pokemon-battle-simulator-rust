@@ -200,6 +200,7 @@ pub struct Battle {
     possible_ruin: bool,
     possible_soul_heart: bool,
     possible_victory_star: bool,
+    possible_flower_gift: bool,
     unsupported_called_move: Option<(&'static str, &'static str)>,
     last_battle_move: Option<&'static Move>,
     last_battle_move_z: bool,
@@ -327,6 +328,7 @@ pub struct Pokemon {
     pub roster_index: usize,
     illusion: Option<usize>,
     disguise_pending: bool,
+    ice_face_busted: bool,
     announced_hero: bool,
     triggered_battle_bond: bool,
     legendary_entry_boosts: u8,
@@ -559,6 +561,7 @@ impl Battle {
             possible_ruin: false,
             possible_soul_heart: false,
             possible_victory_star: false,
+            possible_flower_gift: false,
             unsupported_called_move: None,
             last_battle_move: None,
             last_battle_move_z: false,
@@ -697,6 +700,7 @@ impl Battle {
         self.possible_ruin |= party.iter().any(|p| ruin::ruin_label(&p.ability).is_some());
         self.possible_soul_heart |= party.iter().any(|p| p.ability == "soulheart");
         self.possible_victory_star |= party.iter().any(|p| p.ability == "victorystar");
+        self.possible_flower_gift |= party.iter().any(|p| p.ability == "flowergift");
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)
@@ -1097,6 +1101,7 @@ impl Pokemon {
             roster_index: index,
             illusion: None,
             disguise_pending: false,
+            ice_face_busted: false,
             announced_hero: false,
             triggered_battle_bond: false,
             legendary_entry_boosts: 0,

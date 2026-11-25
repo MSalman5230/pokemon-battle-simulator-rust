@@ -1980,7 +1980,8 @@ impl Battle {
                 match self.mon(pos).active_ability() {
                     "hospitality" => deferred_hospitality |= pos.mask(),
                     "imposter" => self.imposter_on_entry(pos),
-                    "unnerve" | "asoneglastrier" | "asonespectrier" | "mimicry" | "costar" => {}
+                    "unnerve" | "asoneglastrier" | "asonespectrier" | "mimicry" | "costar"
+                    | "iceface" | "flowergift" => {}
                     _ => self.start_ability(pos),
                 }
                 self.on_switch_in_item(pos);
@@ -1999,6 +2000,12 @@ impl Battle {
                 self.use_room_service(pos);
                 if self.mon(pos).ability == "costar" {
                     self.costar_on_entry(pos);
+                }
+                if self.mon(pos).ability == "iceface" {
+                    self.restore_ice_face(pos, self.effective_weather());
+                }
+                if self.mon(pos).ability == "flowergift" {
+                    self.sync_flower_gift(pos, self.effective_weather());
                 }
                 self.update_booster_energy(pos);
             }
@@ -2544,6 +2551,7 @@ impl Battle {
         self.possible_boost_copy |= self.mon(pos).ability == "opportunist";
         self.possible_soul_heart |= self.mon(pos).ability == "soulheart";
         self.possible_victory_star |= self.mon(pos).ability == "victorystar";
+        self.possible_flower_gift |= self.mon(pos).ability == "flowergift";
         if matches!(
             self.mon(pos).ability.as_str(),
             "asoneglastrier" | "asonespectrier"
@@ -2634,6 +2642,8 @@ impl Battle {
                 self.add(format!("|-start|{}|ability: Slow Start", self.ident(pos)));
             }
             "costar" => self.costar_on_entry(pos),
+            "iceface" => self.restore_ice_face(pos, self.effective_weather()),
+            "flowergift" => self.sync_flower_gift(pos, self.effective_weather()),
             "pastelveil" => self.pastel_veil_cure(pos, true),
             "windrider" if self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0 => {
                 self.ability_boost(pos, "Wind Rider", BoostStat::Atk, 1, false);
@@ -2808,6 +2818,9 @@ impl Battle {
             }
             self.try_trace(pos);
             self.disguise_update(pos);
+            if self.mon(pos).ice_face_busted {
+                self.ice_face_update(pos);
+            }
             if self.mon(pos).ability == "commander" {
                 self.update_commander(pos);
             }
@@ -5516,6 +5529,9 @@ impl Battle {
             if releasing_charge {
                 self.mon_mut(source).release_charge();
             } else {
+                if move_data.name == "Dive" {
+                    self.gulp_missile_load(source);
+                }
                 self.add(format!("|-prepare|{source_name}|{}", move_data.name));
                 if let Some(stat) = spec.boost {
                     self.boost(source, &[(stat, 1)], false);
@@ -8135,6 +8151,9 @@ impl Battle {
             } else {
                 spread_targets.as_slice()
             };
+            if move_data.name == "Surf" && self.mon(source).ability == "gulpmissile" {
+                self.gulp_missile_load(source);
+            }
             if !delayed
                 && self.mon(source).item.ends_with("gem")
                 && strike_targets.iter().any(|&target| target != source)
@@ -8282,7 +8301,9 @@ impl Battle {
                         item.effect.name
                     ));
                 }
-                let disguised = !shield && battle.disguise_form(target).is_some();
+                let disguised = !shield
+                    && (battle.disguise_form(target).is_some()
+                        || battle.ice_face_shields(target, move_data.category));
                 let mut effect = if disguised {
                     0
                 } else {
@@ -8483,6 +8504,9 @@ impl Battle {
                         "|-activate|{}|ability: Disguise",
                         self.ident(target)
                     ));
+                    0
+                } else if self.ice_face_shields(target, move_data.category) {
+                    self.break_ice_face(target);
                     0
                 } else {
                     *hit_damage
@@ -8964,6 +8988,7 @@ impl Battle {
                 }
                 match self.event_ability(target) {
                     "cottondown" => self.cotton_down(target),
+                    "gulpmissile" => self.gulp_missile_hit(target, source, move_data, base),
                     "steamengine" if matches!(move_type, "Fire" | "Water") => {
                         self.ability_boost(target, "Steam Engine", BoostStat::Spe, 6, false);
                     }
@@ -9485,6 +9510,7 @@ impl Battle {
         mon.fainted = true;
         mon.illusion = None;
         mon.disguise_pending = false;
+        mon.ice_face_busted = false;
         mon.reset_ability();
         mon.gorilla_lock = None;
         mon.pivot_move = None;
@@ -10025,6 +10051,9 @@ impl Pokemon {
                 // Terastallization itself is disabled by the Champions mod.
                 | "teraformzero"
                 | "zenmode"
+                | "flowergift"
+                | "gulpmissile"
+                | "iceface"
                 | "runaway"
                 | "drizzle"
                 | "drought"

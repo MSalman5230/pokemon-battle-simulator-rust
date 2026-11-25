@@ -49,7 +49,7 @@ pub(super) enum BoostOrigin {
     Hazard,
     Octolock,
     SyrupBomb,
-    CottonDown,
+    DamagingAbility,
     ZPower,
 }
 
@@ -69,7 +69,7 @@ impl BoostOrigin {
                 | Self::SupersweetSyrup
                 | Self::MirrorArmor
                 | Self::MagneticFlux
-                | Self::CottonDown
+                | Self::DamagingAbility
         )
     }
 
@@ -1540,7 +1540,7 @@ impl Battle {
                 pos,
                 holder,
                 &[(BoostStat::Spe, -1)],
-                BoostOrigin::CottonDown,
+                BoostOrigin::DamagingAbility,
             );
         }
     }

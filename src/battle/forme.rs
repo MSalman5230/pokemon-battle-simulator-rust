@@ -1,6 +1,7 @@
 //! In-battle form changes preserve the roster identity and preview details.
 
-use super::{turn::Position, *};
+use super::{abilities::BoostOrigin, turn::Position, *};
+use crate::{dex::Category, mechanics::BoostStat};
 
 impl Pokemon {
     pub(super) fn set_current_species(&mut self, species: &'static Species, rules: StatRules) {
@@ -36,6 +37,135 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn ice_face_shields(&self, pos: Position, category: Category) -> bool {
+        category == Category::Physical
+            && self.mon(pos).species.name == "Eiscue"
+            && self.event_ability(pos) == "iceface"
+    }
+
+    pub(super) fn break_ice_face(&mut self, pos: Position) {
+        self.add(format!("|-activate|{}|ability: Ice Face", self.ident(pos)));
+        self.mon_mut(pos).ice_face_busted = true;
+    }
+
+    pub(super) fn ice_face_update(&mut self, pos: Position) {
+        if self.mon(pos).ice_face_busted && self.event_ability(pos) == "iceface" {
+            self.mon_mut(pos).ice_face_busted = false;
+            if self.mon(pos).species.name == "Eiscue" {
+                let noice = DEX.species(self.format.dex_mod, "eiscuenoice").unwrap();
+                self.permanent_ability_forme(pos, noice, false);
+            }
+        }
+    }
+
+    pub(super) fn restore_ice_face(&mut self, pos: Position, weather: Option<Weather>) {
+        if matches!(weather, Some(Weather::Hail | Weather::Snow))
+            && self.mon(pos).hp > 0
+            && self.mon(pos).species.name == "Eiscue-Noice"
+            && self.event_ability(pos) == "iceface"
+        {
+            self.add(format!("|-activate|{}|ability: Ice Face", self.ident(pos)));
+            self.mon_mut(pos).ice_face_busted = false;
+            let shield = DEX.species(self.format.dex_mod, "eiscue").unwrap();
+            self.permanent_ability_forme(pos, shield, false);
+        }
+    }
+
+    pub(super) fn gulp_missile_load(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.species.name == "Cramorant"
+            && self.event_ability(pos) == "gulpmissile"
+            && mon.transformed.is_none()
+        {
+            let form = if mon.hp * 2 <= mon.max_hp.get() {
+                "cramorantgorging"
+            } else {
+                "cramorantgulping"
+            };
+            self.temporary_ability_forme(pos, form, "");
+        }
+    }
+
+    pub(super) fn gulp_missile_hit(
+        &mut self,
+        holder: Position,
+        attacker: Position,
+        move_data: &Move,
+        log: usize,
+    ) {
+        if self.mon(attacker).hp == 0
+            || !self.active_effects(attacker)
+            || self.mon(holder).semi_invulnerable()
+        {
+            return;
+        }
+        let loaded = match self.mon(holder).species.name.as_str() {
+            "Cramorant-Gulping" => false,
+            "Cramorant-Gorging" => true,
+            _ => return,
+        };
+        let suffix = format!("|[from] ability: Gulp Missile|[of] {}", self.ident(holder));
+        self.indirect_damage(attacker, 4, &suffix);
+        if loaded {
+            self.try_status(attacker, "par", holder, move_data, false, log);
+        } else {
+            self.boost_from(
+                attacker,
+                holder,
+                &[(BoostStat::Def, -1)],
+                BoostOrigin::DamagingAbility,
+            );
+        }
+        self.temporary_ability_forme(holder, "cramorant", "");
+    }
+
+    pub(super) fn sync_flower_gift(&mut self, pos: Position, weather: Option<Weather>) {
+        let mon = self.mon(pos);
+        if mon.hp == 0
+            || mon.transformed.is_some()
+            || mon.base_species.base_species != "Cherrim"
+            || self.event_ability(pos) != "flowergift"
+        {
+            return;
+        }
+        let form = if mon.personal_weather(weather).map(Weather::ordinary) == Some(Weather::Sun) {
+            "cherrimsunshine"
+        } else {
+            "cherrim"
+        };
+        self.temporary_ability_forme(pos, form, "[msg]|[from] ability: Flower Gift");
+    }
+
+    pub(super) fn flower_gift_modifier(&mut self, pos: Position) -> u32 {
+        if !self.possible_flower_gift {
+            return 4096;
+        }
+        let mut holders = [(pos, 0); 2];
+        let mut count = 0;
+        for ally in self.positions().filter(|p| p.player == pos.player) {
+            if self.mon(ally).ability == "flowergift" && self.active_effects(ally) {
+                holders[count] = (ally, self.mon(ally).speed);
+                count += 1;
+            }
+        }
+        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        let sun = self
+            .mon(pos)
+            .personal_weather(self.effective_weather())
+            .map(Weather::ordinary)
+            == Some(Weather::Sun);
+        let mut modifier = 4096;
+        for (ally, _) in holders.into_iter().take(count) {
+            if sun
+                && self.event_ability(ally) == "flowergift"
+                && self.mon(ally).base_species.base_species == "Cherrim"
+            {
+                modifier = crate::mechanics::chain(modifier, 6144);
+            }
+        }
+        modifier
+    }
+
     pub(super) fn tera_shell_active(&self, pos: Position) -> bool {
         let mon = self.mon(pos);
         mon.species.name == "Terapagos-Terastal"

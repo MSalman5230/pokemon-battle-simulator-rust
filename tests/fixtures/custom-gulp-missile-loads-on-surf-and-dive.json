@@ -1,0 +1,1003 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Cramorant\",\"moves\":[\"Surf\",\"Dive\"],\"gender\":\"F\",\"name\":\"Cramorant\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Gulp Missile\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Snorlax\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Cramorant, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Cramorant, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Cramorant, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Cramorant",
+                "details": "Cramorant, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 75,
+                  "spa": 105,
+                  "spd": 115,
+                  "spe": 105
+                },
+                "moves": [
+                  "surf",
+                  "dive"
+                ],
+                "baseAbility": "gulpmissile",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "gulpmissile",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cramorant",
+            "species": "Cramorant",
+            "details": "Cramorant, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 75,
+              "spa": 105,
+              "spd": 115,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gulpmissile",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "dive",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Cramorant|Cramorant, L50, F|145/145",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Cramorant|Cramorant, L50, F|145/145",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Cramorant|Cramorant, L50, F|145/145",
+          "|switch|p2a: Snorlax|Snorlax, L50, F|235/235",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Surf",
+                  "id": "surf",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Dive",
+                  "id": "dive",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Cramorant",
+                "details": "Cramorant, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 75,
+                  "spa": 105,
+                  "spd": 115,
+                  "spe": 105
+                },
+                "moves": [
+                  "surf",
+                  "dive"
+                ],
+                "baseAbility": "gulpmissile",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "gulpmissile",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cramorant",
+            "species": "Cramorant",
+            "details": "Cramorant, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 75,
+              "spa": 105,
+              "spd": 115,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gulpmissile",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "dive",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Cramorant|Surf|p2a: Snorlax",
+          "|-formechange|p1a: Cramorant|Cramorant-Gulping|",
+          "|-damage|p2a: Snorlax|192/235",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant",
+          "|-damage|p1a: Cramorant|102/145",
+          "|-damage|p2a: Snorlax|134/235|[from] ability: Gulp Missile|[of] p1a: Cramorant",
+          "|-unboost|p2a: Snorlax|def|1",
+          "|-formechange|p1a: Cramorant|Cramorant|",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Cramorant|Surf|p2a: Snorlax",
+          "|-formechange|p1a: Cramorant|Cramorant-Gulping|",
+          "|-damage|p2a: Snorlax|192/235",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant",
+          "|-damage|p1a: Cramorant|102/145",
+          "|-damage|p2a: Snorlax|134/235|[from] ability: Gulp Missile|[of] p1a: Cramorant",
+          "|-unboost|p2a: Snorlax|def|1",
+          "|-formechange|p1a: Cramorant|Cramorant|",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Cramorant|Surf|p2a: Snorlax",
+          "|-formechange|p1a: Cramorant|Cramorant-Gulping|",
+          "|-damage|p2a: Snorlax|192/235",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant",
+          "|-damage|p1a: Cramorant|102/145",
+          "|-damage|p2a: Snorlax|134/235|[from] ability: Gulp Missile|[of] p1a: Cramorant",
+          "|-unboost|p2a: Snorlax|def|1",
+          "|-formechange|p1a: Cramorant|Cramorant|",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Surf",
+                  "id": "surf",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allAdjacent",
+                  "disabled": false
+                },
+                {
+                  "move": "Dive",
+                  "id": "dive",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Cramorant",
+                "details": "Cramorant, L50, F",
+                "condition": "102/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 75,
+                  "spa": 105,
+                  "spd": 115,
+                  "spe": 105
+                },
+                "moves": [
+                  "surf",
+                  "dive"
+                ],
+                "baseAbility": "gulpmissile",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "gulpmissile",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "134/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cramorant",
+            "species": "Cramorant",
+            "details": "Cramorant, L50, F",
+            "hp": 102,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 75,
+              "spa": 105,
+              "spd": 115,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gulpmissile",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "dive",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 134,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Cramorant|Dive||[still]",
+          "|-formechange|p1a: Cramorant|Cramorant-Gulping|",
+          "|-prepare|p1a: Cramorant|Dive",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant|[miss]",
+          "|-miss|p2a: Snorlax|p1a: Cramorant",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Cramorant|Dive||[still]",
+          "|-formechange|p1a: Cramorant|Cramorant-Gulping|",
+          "|-prepare|p1a: Cramorant|Dive",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant|[miss]",
+          "|-miss|p2a: Snorlax|p1a: Cramorant",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Cramorant|Dive||[still]",
+          "|-formechange|p1a: Cramorant|Cramorant-Gulping|",
+          "|-prepare|p1a: Cramorant|Dive",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant|[miss]",
+          "|-miss|p2a: Snorlax|p1a: Cramorant",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dive",
+                  "id": "dive"
+                }
+              ],
+              "trapped": true
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Cramorant",
+                "details": "Cramorant, L50, F",
+                "condition": "102/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 75,
+                  "spa": 105,
+                  "spd": 115,
+                  "spe": 105
+                },
+                "moves": [
+                  "surf",
+                  "dive"
+                ],
+                "baseAbility": "gulpmissile",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "gulpmissile",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "134/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cramorant",
+            "species": "Cramorant-Gulping",
+            "details": "Cramorant, L50, F",
+            "hp": 102,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 75,
+              "spa": 105,
+              "spd": 115,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gulpmissile",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "dive",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 134,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "4124,63122,38965,57347",
+      "requestState": "",
+      "waiting": [
+        true,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Cramorant|Dive|p2a: Snorlax|[from] lockedmove",
+          "|-damage|p2a: Snorlax|46/235",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant",
+          "|-damage|p1a: Cramorant|56/145",
+          "|-damage|p2a: Snorlax|0 fnt|[from] ability: Gulp Missile|[of] p1a: Cramorant",
+          "|-formechange|p1a: Cramorant|Cramorant|",
+          "|faint|p2a: Snorlax",
+          "|",
+          "|win|player0"
+        ],
+        [
+          "|",
+          "|move|p1a: Cramorant|Dive|p2a: Snorlax|[from] lockedmove",
+          "|-damage|p2a: Snorlax|46/235",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant",
+          "|-damage|p1a: Cramorant|56/145",
+          "|-damage|p2a: Snorlax|0 fnt|[from] ability: Gulp Missile|[of] p1a: Cramorant",
+          "|-formechange|p1a: Cramorant|Cramorant|",
+          "|faint|p2a: Snorlax",
+          "|",
+          "|win|player0"
+        ],
+        [
+          "|",
+          "|move|p1a: Cramorant|Dive|p2a: Snorlax|[from] lockedmove",
+          "|-damage|p2a: Snorlax|46/235",
+          "|move|p2a: Snorlax|Tackle|p1a: Cramorant",
+          "|-damage|p1a: Cramorant|56/145",
+          "|-damage|p2a: Snorlax|0 fnt|[from] ability: Gulp Missile|[of] p1a: Cramorant",
+          "|-formechange|p1a: Cramorant|Cramorant|",
+          "|faint|p2a: Snorlax",
+          "|",
+          "|win|player0"
+        ]
+      ],
+      "requests": [
+        null,
+        null
+      ],
+      "teams": [
+        [
+          {
+            "name": "Cramorant",
+            "species": "Cramorant",
+            "details": "Cramorant, L50, F",
+            "hp": 56,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 75,
+              "spa": 105,
+              "spd": 115,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gulpmissile",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "surf",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "dive",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 0,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 17,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
