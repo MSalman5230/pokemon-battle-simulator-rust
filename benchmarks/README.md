@@ -53,6 +53,8 @@ seed, turn cap, and repeat options.
 Add `--trace-parity` before `--` to check every terminal game's spectator
 trace, excluding only Showdown's wall-clock markers. Trace requests are
 verification-only and do not change the timed workload or its hash.
+The [recorded trace run](verified-trace-bss-result.json) verified all 32
+traces and all 673 steps. The same timed workload ran 4.45× faster.
 
 The [recorded native-validation run](verified-native-bss-result.json) used
 Rust commit `70653a09946713dc4593e467e83d3ef6bb6c7a2c`. Both workers matched
