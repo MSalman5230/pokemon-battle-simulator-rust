@@ -25,6 +25,7 @@ const genericMoveFields = new Set([
     'noPPBoosts', 'critRatio', 'willCrit', 'alwaysHit', 'heal', 'boosts',
     'status', 'ignoreImmunity', 'self', 'recoil', 'drain', 'thawsTarget',
     'secondary', 'secondaries', 'multihit', 'multiaccuracy', 'selfBoost',
+    'ignoreDefensive', 'ignoreEvasion', 'tracksTarget',
 ]);
 const genericTarget = new Set(['self', 'normal', 'any', 'adjacentFoe', 'allAdjacent', 'allAdjacentFoes', 'randomNormal']);
 const supportedStatus = new Set(['brn', 'par', 'frz', 'slp', 'psn', 'tox']);
@@ -65,7 +66,9 @@ const data = mod => {
         moves: table(dex.moves.all(), e => {
             const move = props(e, ['name', 'type', 'category', 'target', 'basePower', 'priority',
                 'pp', 'noPPBoosts', 'accuracy', 'multihit', 'multiaccuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget', 'willCrit', 'alwaysHit']);
-            return {...move, generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
+            return {...move, ignoreDefensive: e.ignoreDefensive || undefined,
+                ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
+                generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
                 selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,
                 afterHitBoosts: e.selfBoost?.boosts ? Object.entries(e.selfBoost.boosts) : undefined,

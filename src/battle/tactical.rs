@@ -467,17 +467,28 @@ impl Battle {
         {
             return 1.0;
         }
-        let evasion = if matches!(self.event_ability(ACTOR), "illuminate" | "keeneye") {
+        let evasion = if move_data.ignore_evasion
+            || matches!(
+                self.event_ability(ACTOR),
+                "illuminate" | "keeneye" | "unaware"
+            ) {
             0
         } else {
             self.mon(TARGET).boosts.get(BoostStat::Evasion)
         };
-        let stage = (self.mon(ACTOR).boosts.get(BoostStat::Accuracy) - evasion).clamp(-6, 6);
-        let mut accuracy =
+        let aim = if self.event_ability(TARGET) == "unaware" {
+            0
+        } else {
+            self.mon(ACTOR).boosts.get(BoostStat::Accuracy)
+        };
+        let stage = (aim - evasion).clamp(-6, 6);
+        let base = if self.weather_evasion(TARGET, weather).0 {
+            self.stat_rules.truncation.modify(u32::from(base), 3277)
+        } else {
+            u32::from(base)
+        };
+        let accuracy =
             f64::from(base) * (f64::from(3 + stage.max(0)) / f64::from(3 - stage.min(0)));
-        if weather == Some(Weather::Sand) && self.event_ability(TARGET) == "sandveil" {
-            accuracy = f64::from(self.stat_rules.truncation.modify(accuracy as u32, 3277));
-        }
         (accuracy / 100.0).clamp(0.0, 1.0)
     }
 }

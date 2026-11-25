@@ -67,6 +67,23 @@ impl Battle {
         self.weather().filter(|_| !self.weather_suppressed())
     }
 
+    /// Numeric ModifyAccuracy multiplier and whether its cause is Snow Cloak.
+    pub(super) fn weather_evasion(&self, pos: Position, weather: Option<Weather>) -> (bool, bool) {
+        match (weather, self.event_ability(pos)) {
+            (Some(Weather::Sand), "sandveil") => (true, false),
+            (Some(Weather::Snow), "snowcloak") => (true, true),
+            _ => (false, false),
+        }
+    }
+
+    pub(super) fn active_weather_evasion(&self, pos: Position) -> (bool, bool) {
+        match (self.weather(), self.event_ability(pos)) {
+            (Some(Weather::Sand), "sandveil") => (!self.weather_suppressed(), false),
+            (Some(Weather::Snow), "snowcloak") if !self.weather_suppressed() => (true, true),
+            _ => (false, false),
+        }
+    }
+
     fn weather_suppressed(&self) -> bool {
         self.positions()
             .any(|pos| !self.mon(pos).fainted && self.weather_suppressor(pos).is_some())
@@ -149,6 +166,8 @@ impl Battle {
                 }
             } else if weather == Weather::Snow && self.mon(pos).ability == "icebody" {
                 self.ability_heal(pos, 16, "Ice Body", None);
+            } else if weather == Weather::Rain && self.event_ability(pos) == "raindish" {
+                self.ability_heal(pos, 16, "Rain Dish", None);
             } else if self.mon(pos).ability == "dryskin" {
                 match weather {
                     Weather::Rain => {

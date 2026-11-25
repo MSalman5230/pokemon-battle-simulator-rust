@@ -47,7 +47,9 @@ impl Battle {
             return true;
         };
         self.sort_unaware_handlers();
-        self.sort_unaware_handlers();
+        if !data.ignore_evasion {
+            self.sort_unaware_handlers();
+        }
         let user = self.mon(source);
         let mon = self.mon(target);
         if data.always_hit
@@ -72,7 +74,8 @@ impl Battle {
             },
         );
         let (en, ed) = stage_factor(
-            if (source != target && self.event_ability(source) == "unaware")
+            if data.ignore_evasion
+                || (source != target && self.event_ability(source) == "unaware")
                 || user.ability == "illuminate"
             {
                 0
@@ -83,9 +86,11 @@ impl Battle {
         let numerator = i32::from(base) * an * ed;
         let denominator = ad * en;
         let mut accuracy = numerator as f64 / denominator as f64;
-        if self.event_ability(target) == "sandveil"
-            && self.effective_weather() == Some(Weather::Sand)
-        {
+        let (weather_evasion, snow_cloak) = self.active_weather_evasion(target);
+        if snow_cloak && self.format.report_exact_hp {
+            self.add("|debug|Snow Cloak - decreasing accuracy");
+        }
+        if weather_evasion {
             accuracy = ((accuracy * 3277.0).trunc() + 2047.0) / 4096.0;
             accuracy = accuracy.trunc();
         }

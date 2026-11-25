@@ -1,0 +1,2304 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Gallade\",\"moves\":[\"Swords Dance\",\"Sacred Sword\",\"Recover\"],\"gender\":\"F\",\"name\":\"Gallade\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Clefable\",\"moves\":[\"Iron Defense\",\"Double Team\",\"Reflect\",\"Recover\"],\"gender\":\"F\",\"name\":\"Clefable\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Gallade, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Gallade, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Gallade, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gallade",
+                "details": "Gallade, L50, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "swordsdance",
+                  "sacredsword",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "irondefense",
+                  "doubleteam",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gallade",
+            "species": "Gallade",
+            "details": "Gallade, L50, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 85,
+              "spa": 85,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sacredsword",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "doubleteam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Gallade|Gallade, L50, F|100/100",
+          "|switch|p2a: Clefable|Clefable, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Gallade|Gallade, L50, F|143/143",
+          "|switch|p2a: Clefable|Clefable, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Gallade|Gallade, L50, F|100/100",
+          "|switch|p2a: Clefable|Clefable, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Sacred Sword",
+                  "id": "sacredsword",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gallade",
+                "details": "Gallade, L50, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "swordsdance",
+                  "sacredsword",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Double Team",
+                  "id": "doubleteam",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "irondefense",
+                  "doubleteam",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gallade",
+            "species": "Gallade",
+            "details": "Gallade, L50, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 85,
+              "spa": 85,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "sacredsword",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "doubleteam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Gallade|Swords Dance|p1a: Gallade",
+          "|-boost|p1a: Gallade|atk|2",
+          "|move|p2a: Clefable|Iron Defense|p2a: Clefable",
+          "|-boost|p2a: Clefable|def|2",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Gallade|Swords Dance|p1a: Gallade",
+          "|-boost|p1a: Gallade|atk|2",
+          "|move|p2a: Clefable|Iron Defense|p2a: Clefable",
+          "|-boost|p2a: Clefable|def|2",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Gallade|Swords Dance|p1a: Gallade",
+          "|-boost|p1a: Gallade|atk|2",
+          "|move|p2a: Clefable|Iron Defense|p2a: Clefable",
+          "|-boost|p2a: Clefable|def|2",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Sacred Sword",
+                  "id": "sacredsword",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gallade",
+                "details": "Gallade, L50, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "swordsdance",
+                  "sacredsword",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Double Team",
+                  "id": "doubleteam",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "irondefense",
+                  "doubleteam",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gallade",
+            "species": "Gallade",
+            "details": "Gallade, L50, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 85,
+              "spa": 85,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sacredsword",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "doubleteam",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Gallade|Recover||[still]",
+          "|-fail|p1a: Gallade|heal",
+          "|move|p2a: Clefable|Double Team|p2a: Clefable",
+          "|-boost|p2a: Clefable|evasion|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Gallade|Recover||[still]",
+          "|-fail|p1a: Gallade|heal",
+          "|move|p2a: Clefable|Double Team|p2a: Clefable",
+          "|-boost|p2a: Clefable|evasion|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Gallade|Recover||[still]",
+          "|-fail|p1a: Gallade|heal",
+          "|move|p2a: Clefable|Double Team|p2a: Clefable",
+          "|-boost|p2a: Clefable|evasion|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Sacred Sword",
+                  "id": "sacredsword",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gallade",
+                "details": "Gallade, L50, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "swordsdance",
+                  "sacredsword",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Double Team",
+                  "id": "doubleteam",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "irondefense",
+                  "doubleteam",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gallade",
+            "species": "Gallade",
+            "details": "Gallade, L50, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 85,
+              "spa": 85,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sacredsword",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 1
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "doubleteam",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 3"
+      ],
+      "turn": 4,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Gallade|Recover||[still]",
+          "|-fail|p1a: Gallade|heal",
+          "|move|p2a: Clefable|Reflect|p2a: Clefable",
+          "|-sidestart|p2: player1|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Gallade|Recover||[still]",
+          "|-fail|p1a: Gallade|heal",
+          "|move|p2a: Clefable|Reflect|p2a: Clefable",
+          "|-sidestart|p2: player1|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Gallade|Recover||[still]",
+          "|-fail|p1a: Gallade|heal",
+          "|move|p2a: Clefable|Reflect|p2a: Clefable",
+          "|-sidestart|p2: player1|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Sacred Sword",
+                  "id": "sacredsword",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gallade",
+                "details": "Gallade, L50, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "swordsdance",
+                  "sacredsword",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Double Team",
+                  "id": "doubleteam",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "irondefense",
+                  "doubleteam",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gallade",
+            "species": "Gallade",
+            "details": "Gallade, L50, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 85,
+              "spa": 85,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sacredsword",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 1
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "doubleteam",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "reflect",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 4"
+      ],
+      "turn": 5,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Gallade|Sacred Sword|p2a: Clefable",
+          "|-resisted|p2a: Clefable|1",
+          "|-damage|p2a: Clefable|73/100",
+          "|move|p2a: Clefable|Recover|p2a: Clefable",
+          "|-heal|p2a: Clefable|100/100",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Gallade|Sacred Sword|p2a: Clefable",
+          "|-resisted|p2a: Clefable|1",
+          "|-damage|p2a: Clefable|73/100",
+          "|move|p2a: Clefable|Recover|p2a: Clefable",
+          "|-heal|p2a: Clefable|100/100",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Gallade|Sacred Sword|p2a: Clefable",
+          "|-resisted|p2a: Clefable|1",
+          "|-damage|p2a: Clefable|125/170",
+          "|move|p2a: Clefable|Recover|p2a: Clefable",
+          "|-heal|p2a: Clefable|170/170",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Sacred Sword",
+                  "id": "sacredsword",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Gallade",
+                "details": "Gallade, L50, F",
+                "condition": "143/143",
+                "active": true,
+                "stats": {
+                  "atk": 145,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 135,
+                  "spe": 100
+                },
+                "moves": [
+                  "swordsdance",
+                  "sacredsword",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Double Team",
+                  "id": "doubleteam",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "irondefense",
+                  "doubleteam",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Gallade",
+            "species": "Gallade",
+            "details": "Gallade, L50, F",
+            "hp": 143,
+            "maxhp": 143,
+            "status": "",
+            "stats": {
+              "atk": 145,
+              "def": 85,
+              "spa": 85,
+              "spd": 135,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "sacredsword",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 1
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "doubleteam",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "reflect",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

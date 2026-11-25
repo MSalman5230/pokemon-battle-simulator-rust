@@ -170,6 +170,12 @@ pub struct Move {
     pub will_crit: Option<bool>,
     #[serde(default)]
     pub always_hit: bool,
+    #[serde(default)]
+    pub ignore_defensive: bool,
+    #[serde(default)]
+    pub ignore_evasion: bool,
+    #[serde(default)]
+    pub tracks_target: bool,
     pub boosts: Vec<(BoostStat, i8)>,
     pub self_boosts: Vec<(BoostStat, i8)>,
     pub self_chance: Option<u8>,

@@ -2347,6 +2347,7 @@ impl Battle {
             move_data.name
         ));
         if self.slots() > 1
+            && !move_data.tracks_target
             && let Some(target) = actual_target.filter(|_| {
                 kind.is_choosable()
                     || matches!(kind, TargetKind::RandomNormal | TargetKind::Scripted)
@@ -2977,8 +2978,13 @@ impl Battle {
                 return false;
             }
             if matches!(accuracy, Accuracy::Percent(_)) && !ohko {
+                if self.format.report_exact_hp && self.active_weather_evasion(pos).1 {
+                    self.add("|debug|Snow Cloak - decreasing accuracy");
+                }
                 self.sort_unaware_handlers();
-                self.sort_unaware_handlers();
+                if !move_data.ignore_evasion {
+                    self.sort_unaware_handlers();
+                }
             }
             if let Accuracy::Percent(accuracy) = accuracy
                 && !move_data.always_hit
@@ -2996,7 +3002,7 @@ impl Battle {
                         };
                         base + u32::from(self.mon(source).level - self.mon(pos).level)
                     } else {
-                        self.accuracy(source, pos, accuracy)
+                        self.accuracy(source, pos, move_data, accuracy)
                     },
                     100,
                 )
@@ -4013,15 +4019,14 @@ impl Battle {
         succeeded
     }
 
-    fn accuracy(&self, source: Position, target: Position, accuracy: u8) -> u32 {
-        let accuracy = if self.event_ability(target) == "sandveil"
-            && self.effective_weather() == Some(Weather::Sand)
-        {
+    fn accuracy(&self, source: Position, target: Position, data: &Move, accuracy: u8) -> u32 {
+        let accuracy = if self.active_weather_evasion(target).0 {
             self.stat_rules.truncation.modify(u32::from(accuracy), 3277) as i32
         } else {
             i32::from(accuracy)
         };
-        let evasion = if source != target && self.event_ability(source) == "unaware"
+        let evasion = if data.ignore_evasion
+            || source != target && self.event_ability(source) == "unaware"
             || matches!(self.mon(source).ability.as_str(), "illuminate" | "keeneye")
         {
             0
@@ -4215,6 +4220,8 @@ impl Pokemon {
                 | "strongjaw"
                 | "megalauncher"
                 | "sandveil"
+                | "snowcloak"
+                | "raindish"
                 | "sniper"
                 | "hugepower"
                 | "purepower"

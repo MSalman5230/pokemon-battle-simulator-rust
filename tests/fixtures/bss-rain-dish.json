@@ -1,0 +1,2482 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Ludicolo\",\"moves\":[\"Rain Dance\",\"Recover\"],\"gender\":\"F\",\"name\":\"Ludicolo\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Rain Dish\"},{\"species\":\"Espeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Tackle\",\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Golduck\",\"moves\":[\"Tackle\",\"Recover\"],\"gender\":\"F\",\"name\":\"Golduck\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Cloud Nine\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Ludicolo, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Golduck, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Ludicolo, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Golduck, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Ludicolo, L50, F|",
+          "|poke|p1|Espeon, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Golduck, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ludicolo",
+                "details": "Ludicolo, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 110,
+                  "spd": 120,
+                  "spe": 90
+                },
+                "moves": [
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "raindish",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "raindish",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Golduck",
+                "details": "Golduck, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 98,
+                  "spa": 115,
+                  "spd": 100,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ludicolo",
+            "species": "Ludicolo",
+            "details": "Ludicolo, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 110,
+              "spd": 120,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "raindish",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Golduck",
+            "species": "Golduck",
+            "details": "Golduck, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 98,
+              "spa": 115,
+              "spd": 100,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Ludicolo|Ludicolo, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Ludicolo|Ludicolo, L50, F|155/155",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Ludicolo|Ludicolo, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ludicolo",
+                "details": "Ludicolo, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 110,
+                  "spd": 120,
+                  "spe": 90
+                },
+                "moves": [
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "raindish",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "raindish",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Golduck",
+                "details": "Golduck, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 98,
+                  "spa": 115,
+                  "spd": 100,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ludicolo",
+            "species": "Ludicolo",
+            "details": "Ludicolo, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 110,
+              "spd": 120,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "raindish",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Golduck",
+            "species": "Golduck",
+            "details": "Golduck, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 98,
+              "spa": 115,
+              "spd": 100,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Ludicolo|Rain Dance|p1a: Ludicolo",
+          "|-weather|RainDance",
+          "|move|p2a: Umbreon|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|89/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|-heal|p1a: Ludicolo|95/100|[from] ability: Rain Dish",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Ludicolo|Rain Dance|p1a: Ludicolo",
+          "|-weather|RainDance",
+          "|move|p2a: Umbreon|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|139/155",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|-heal|p1a: Ludicolo|148/155|[from] ability: Rain Dish",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Ludicolo|Rain Dance|p1a: Ludicolo",
+          "|-weather|RainDance",
+          "|move|p2a: Umbreon|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|89/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|-heal|p1a: Ludicolo|95/100|[from] ability: Rain Dish",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ludicolo",
+                "details": "Ludicolo, L50, F",
+                "condition": "148/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 110,
+                  "spd": 120,
+                  "spe": 90
+                },
+                "moves": [
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "raindish",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "raindish",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Golduck",
+                "details": "Golduck, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 98,
+                  "spa": 115,
+                  "spd": 100,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ludicolo",
+            "species": "Ludicolo",
+            "details": "Ludicolo, L50, F",
+            "hp": 148,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 110,
+              "spd": 120,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "raindish",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Golduck",
+            "species": "Golduck",
+            "details": "Golduck, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 98,
+              "spa": 115,
+              "spd": 100,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|move|p2a: Umbreon|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|85/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|-heal|p1a: Ludicolo|90/100|[from] ability: Rain Dish",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|move|p2a: Umbreon|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|132/155",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|-heal|p1a: Ludicolo|141/155|[from] ability: Rain Dish",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|move|p2a: Umbreon|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|85/100",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|-heal|p1a: Ludicolo|90/100|[from] ability: Rain Dish",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ludicolo",
+                "details": "Ludicolo, L50, F",
+                "condition": "141/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 110,
+                  "spd": 120,
+                  "spe": 90
+                },
+                "moves": [
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "raindish",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "raindish",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Golduck",
+                "details": "Golduck, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 98,
+                  "spa": 115,
+                  "spd": 100,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ludicolo",
+            "species": "Ludicolo",
+            "details": "Ludicolo, L50, F",
+            "hp": 141,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 110,
+              "spd": 120,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "raindish",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Golduck",
+            "species": "Golduck",
+            "details": "Golduck, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 98,
+              "spa": 115,
+              "spd": 100,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 2"
+      ],
+      "turn": 4,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Golduck|Golduck, L50, F|100/100",
+          "|-ability|p2a: Golduck|Cloud Nine",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Golduck|Golduck, L50, F|100/100",
+          "|-ability|p2a: Golduck|Cloud Nine",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Golduck|Golduck, L50, F|155/155",
+          "|-ability|p2a: Golduck|Cloud Nine",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ludicolo",
+                "details": "Ludicolo, L50, F",
+                "condition": "141/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 110,
+                  "spd": 120,
+                  "spe": 90
+                },
+                "moves": [
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "raindish",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "raindish",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golduck",
+                "details": "Golduck, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 98,
+                  "spa": 115,
+                  "spd": 100,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ludicolo",
+            "species": "Ludicolo",
+            "details": "Ludicolo, L50, F",
+            "hp": 141,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 110,
+              "spd": 120,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "raindish",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 5,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golduck",
+            "species": "Golduck",
+            "details": "Golduck, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 98,
+              "spa": 115,
+              "spd": 100,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Golduck|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|79/100",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Golduck|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|123/155",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Golduck|Tackle|p1a: Ludicolo",
+          "|-damage|p1a: Ludicolo|79/100",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 4,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ludicolo",
+                "details": "Ludicolo, L50, F",
+                "condition": "123/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 110,
+                  "spd": 120,
+                  "spe": 90
+                },
+                "moves": [
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "raindish",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "raindish",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Golduck",
+                "details": "Golduck, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 98,
+                  "spa": 115,
+                  "spd": 100,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ludicolo",
+            "species": "Ludicolo",
+            "details": "Ludicolo, L50, F",
+            "hp": 123,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 110,
+              "spd": 120,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "raindish",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 4,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Golduck",
+            "species": "Golduck",
+            "details": "Golduck, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 98,
+              "spa": 115,
+              "spd": 100,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 2"
+      ],
+      "turn": 6,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|none",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|none",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|move|p1a: Ludicolo|Rain Dance||[still]",
+          "|-fail|p1a: Ludicolo",
+          "|",
+          "|-weather|none",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 3,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Ludicolo",
+                "details": "Ludicolo, L50, F",
+                "condition": "123/155",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 110,
+                  "spd": 120,
+                  "spe": 90
+                },
+                "moves": [
+                  "raindance",
+                  "recover"
+                ],
+                "baseAbility": "raindish",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "raindish",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Golduck",
+                "details": "Golduck, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 102,
+                  "def": 98,
+                  "spa": 115,
+                  "spd": 100,
+                  "spe": 105
+                },
+                "moves": [
+                  "tackle",
+                  "recover"
+                ],
+                "baseAbility": "cloudnine",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "cloudnine",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Ludicolo",
+            "species": "Ludicolo",
+            "details": "Ludicolo, L50, F",
+            "hp": 123,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 110,
+              "spd": 120,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "raindish",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 3,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Golduck",
+            "species": "Golduck",
+            "details": "Golduck, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 98,
+              "spa": 115,
+              "spd": 100,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "cloudnine",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

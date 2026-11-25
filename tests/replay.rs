@@ -820,6 +820,18 @@ fn unaware_ignores_relevant_boosts_and_respects_mold_breaker() {
 }
 
 #[test]
+fn weather_abilities_heal_and_change_accuracy_only_when_effective() {
+    replay(include_str!("fixtures/bss-rain-dish.json"));
+    replay(include_str!("fixtures/bss-snow-cloak.json"));
+}
+
+#[test]
+fn move_properties_ignore_stages_or_redirects_in_the_matching_events() {
+    replay(include_str!("fixtures/bss-sacred-sword.json"));
+    replay(include_str!("fixtures/vgc-snipe-shot.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

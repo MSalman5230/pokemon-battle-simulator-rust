@@ -213,6 +213,9 @@ impl Battle {
         if stakeout && self.format.report_exact_hp {
             self.add("|debug|Stakeout boost");
         }
+        if move_data.ignore_defensive && self.format.report_exact_hp {
+            self.add("|debug|Negating (sp)def boost/penalty.");
+        }
         self.sort_unaware_handlers();
         self.sort_unaware_handlers();
         let user = self.mon(source);
@@ -248,7 +251,8 @@ impl Battle {
         if source != target && self.event_ability(target) == "unaware" {
             atk_stage = 0;
         }
-        if source != target && self.event_ability(source) == "unaware" {
+        if move_data.ignore_defensive || source != target && self.event_ability(source) == "unaware"
+        {
             def_stage = 0;
         }
         let atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });

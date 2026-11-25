@@ -718,6 +718,22 @@ const batonBoundRosters = [
     [named('Vaporeon', ['Recover', 'Baton Pass']), named('Umbreon', ['Recover'])],
     [named('Ferrothorn', ['Leech Seed', 'Salt Cure', 'Recover', 'Infestation']), named('Mamoswine', ['Recover'])],
 ];
+const rainDishRosters = [
+    [{...named('Ludicolo', ['Rain Dance', 'Recover']), ability:'Rain Dish'}, named('Espeon', ['Recover'])],
+    [named('Umbreon', ['Tackle', 'Recover']), {...named('Golduck', ['Tackle', 'Recover']), ability:'Cloud Nine'}],
+];
+const snowCloakRosters = [
+    [{...named('Froslass', ['Snowscape', 'Recover']), ability:'Snow Cloak'}, named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Water Gun', 'Recover']), {...named('Haxorus', ['Water Gun']), ability:'Mold Breaker'}],
+];
+const sacredSwordRosters = [
+    [named('Gallade', ['Swords Dance', 'Sacred Sword', 'Recover']), named('Vaporeon', ['Recover'])],
+    [named('Clefable', ['Iron Defense', 'Double Team', 'Reflect', 'Recover']), named('Umbreon', ['Recover'])],
+];
+const snipeShotRosters = [
+    [named('Inteleon', ['Snipe Shot', 'Water Gun']), named('Umbreon', ['Recover'])],
+    [named('Togekiss', ['Follow Me', 'Recover']), named('Sylveon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1086,6 +1102,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2',null], ['move 1','move 2']], batonShieldRosters, 'bss-baton-pass-boosts-and-shield'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 4'], ['move 1','move 2'],
         ['move 2','move 3'], ['switch 2',null]], batonBoundRosters, 'bss-baton-pass-conditions'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','switch 2'],
+        ['move 1','move 1'], ['move 1','switch 2']], rainDishRosters, 'bss-rain-dish'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1'],
+        ['move 1','switch 2'], ['move 1','move 1']], snowCloakRosters, 'bss-snow-cloak'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 3','move 2'], ['move 3','move 3'],
+        ['move 2','move 4']], sacredSwordRosters, 'bss-sacred-sword'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 2 2, move 1','move 1, move 1'],
+        ['move 1 2, move 1','move 1, move 1']], snipeShotRosters, 'vgc-snipe-shot'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
