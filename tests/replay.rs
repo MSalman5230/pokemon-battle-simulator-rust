@@ -1217,6 +1217,11 @@ fn uproar_wakes_sleepers_locks_the_user_and_blocks_new_sleep_until_expiry() {
 }
 
 #[test]
+fn special_moves_can_target_physical_defense_without_changing_category() {
+    replay(include_str!("fixtures/bss-special-physical-defense.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

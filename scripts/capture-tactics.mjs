@@ -75,6 +75,10 @@ add('Reversal at the lowest HP bracket', 'reversal',
     mon('Machamp', 'Guts', '', {hp:.02,max_hp:200}), normal);
 add('a Flying holder of Iron Ball takes neutral Ground damage', 'earthquake',
     normal, mon('Zapdos', 'Pressure', 'Iron Ball'));
+add('Psyshock uses special offense against Fur Coat and Defense boosts', 'psyshock',
+    mon('Espeon', 'Synchronize', 'Choice Specs'), mon('Furfrou', 'Fur Coat', '', {boosts:{def:2}}));
+add('Psystrike uses physical defense including snow and not SpD', 'psystrike',
+    mon('Espeon', 'Synchronize'), mon('Glaceon', 'Snow Cloak', '', {boosts:{spd:2}}), {weather:'snowscape'});
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

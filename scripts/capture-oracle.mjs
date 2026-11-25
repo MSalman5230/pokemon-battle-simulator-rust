@@ -892,6 +892,10 @@ const defenseHookRosters = [
     [{...named('Mandibuzz', ['Recover']), ability:'Big Pecks'},
         {...named('Gallade', ['Recover'], 'M'), ability:'Justified'}],
 ];
+const specialPhysicalDefenseRosters = [
+    [named('Espeon', ['Psyshock', 'Psychic', 'Psystrike', 'Secret Sword'])],
+    [{...named('Furfrou', ['Cotton Guard', 'Recover']), ability:'Fur Coat'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1709,6 +1713,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 2'],
         ['move 1','move 3'], ['move 1','move 3'], ['move 3','move 2']],
         uproarRosters, 'bss-uproar'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'],
+        ['move 3','move 2'], ['move 4','move 2']], specialPhysicalDefenseRosters, 'bss-special-physical-defense'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

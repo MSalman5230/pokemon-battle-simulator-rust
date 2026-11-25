@@ -27,6 +27,7 @@ const genericMoveFields = new Set([
     'status', 'ignoreImmunity', 'self', 'recoil', 'drain', 'thawsTarget',
     'secondary', 'secondaries', 'multihit', 'multiaccuracy', 'selfBoost',
     'ignoreDefensive', 'ignoreEvasion', 'tracksTarget',
+    'overrideDefensiveStat',
 ]);
 const genericTarget = new Set(['self', 'normal', 'any', 'adjacentFoe', 'allAdjacent', 'allAdjacentFoes', 'randomNormal']);
 const supportedStatus = new Set(['brn', 'par', 'frz', 'slp', 'psn', 'tox']);
@@ -36,7 +37,9 @@ function hasOnly(object, keys) {
 function runsOnGenericPipeline(raw, move) {
     if (!raw || Object.keys(raw).some(k => !genericMoveFields.has(k)) ||
         !genericTarget.has(move.target) || raw.flags?.futuremove ||
-        typeof raw.ignoreImmunity === 'object' || (raw.status && !supportedStatus.has(raw.status))) return false;
+        typeof raw.ignoreImmunity === 'object' ||
+        (raw.overrideDefensiveStat && raw.overrideDefensiveStat !== 'def') ||
+        (raw.status && !supportedStatus.has(raw.status))) return false;
     if (move.multihit && !['normal', 'any', 'adjacentFoe'].includes(move.target)) return false;
     if (raw.self && !(raw.self.boosts && hasOnly(raw.self, ['boosts', 'chance']) ||
             ['mustrecharge', 'lockedmove'].includes(raw.self.volatileStatus) && hasOnly(raw.self, ['volatileStatus']))) return false;
@@ -68,6 +71,7 @@ const data = mod => {
             const move = props(e, ['name', 'type', 'category', 'target', 'basePower', 'priority',
                 'pp', 'noPPBoosts', 'accuracy', 'multihit', 'multiaccuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget', 'willCrit', 'alwaysHit']);
             return {...move, ignoreDefensive: e.ignoreDefensive || undefined,
+                targetsDefense: e.overrideDefensiveStat === 'def' || undefined,
                 ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
                 cantUseTwice: !!e.flags?.cantusetwice || undefined,
                 hasSheerForceBoost: e.hasSheerForceBoost || undefined,

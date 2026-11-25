@@ -188,7 +188,7 @@ impl Battle {
 
 impl Pokemon {
     pub(super) fn reversal_power(&self) -> u16 {
-        match self.hp * 48 / self.max_hp.get() {
+        match self.hp * 48 / self.max_hp {
             0..=1 => 200,
             2..=4 => 150,
             5..=9 => 100,
@@ -342,7 +342,9 @@ impl Battle {
         } else {
             user
         };
-        let (atk, mut atk_stage, def, mut def_stage) = if move_data.category == Category::Physical {
+        let physical = move_data.category == Category::Physical;
+        let defense_uses_def = physical || move_data.targets_defense;
+        let (atk, mut atk_stage) = if physical {
             (
                 if move_data.name == "Body Press" {
                     user.stats.def
@@ -354,16 +356,14 @@ impl Battle {
                 } else {
                     BoostStat::Atk
                 }),
-                mon.stats.def,
-                mon.boosts.get(BoostStat::Def),
             )
         } else {
-            (
-                user.stats.spa,
-                user.boosts.get(BoostStat::Spa),
-                mon.stats.spd,
-                mon.boosts.get(BoostStat::Spd),
-            )
+            (user.stats.spa, user.boosts.get(BoostStat::Spa))
+        };
+        let (def, mut def_stage) = if defense_uses_def {
+            (mon.stats.def, mon.boosts.get(BoostStat::Def))
+        } else {
+            (mon.stats.spd, mon.boosts.get(BoostStat::Spd))
         };
         if source != target && self.event_ability(target) == "unaware" {
             atk_stage = 0;
@@ -380,11 +380,9 @@ impl Battle {
         let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
         let damage_weather = self.effective_weather();
         let def = if (damage_weather == Some(Weather::Sand)
-            && move_data.category == Category::Special
+            && !defense_uses_def
             && mon.has_type("Rock"))
-            || (damage_weather == Some(Weather::Snow)
-                && move_data.category == Category::Physical
-                && mon.has_type("Ice"))
+            || (damage_weather == Some(Weather::Snow) && defense_uses_def && mon.has_type("Ice"))
         {
             tr.modify(def, 6144)
         } else {
@@ -398,9 +396,7 @@ impl Battle {
         if move_data.category == Category::Special && self.plus_minus_boost(source) {
             attack_modifier = chain(6144, attack_modifier);
         }
-        let def = if move_data.category == Category::Physical
-            && self.event_ability(target) == "furcoat"
-        {
+        let def = if defense_uses_def && self.event_ability(target) == "furcoat" {
             tr.modify(def, 8192)
         } else {
             def
