@@ -14,6 +14,7 @@ use serde::Serialize;
 mod abilities;
 use abilities::Attention;
 mod attract;
+mod bide;
 mod boost_copy;
 mod charge;
 mod commander;
@@ -265,6 +266,7 @@ pub struct Pokemon {
     laser_focus: u8,
     fury_cutter: Option<streaks::Streak>,
     rolling_attack: Option<streaks::RollingAttack>,
+    bide: Option<bide::Bide>,
     gem_boost: bool,
     electrified: bool,
     gastro_acid: bool,
@@ -1006,6 +1008,7 @@ impl Pokemon {
             laser_focus: 0,
             fury_cutter: None,
             rolling_attack: None,
+            bide: None,
             gem_boost: false,
             electrified: false,
             gastro_acid: false,

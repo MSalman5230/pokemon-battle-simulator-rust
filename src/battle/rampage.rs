@@ -24,6 +24,7 @@ impl Pokemon {
             || self.charge.is_some()
             || self.uproar.is_some()
             || self.rolling_attack.is_some()
+            || self.bide.is_some()
     }
 }
 

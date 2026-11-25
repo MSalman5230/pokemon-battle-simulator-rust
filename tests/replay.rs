@@ -2032,6 +2032,19 @@ fn pursuit_intercepts_the_outgoing_member_before_switch_and_pivot_requests() {
 }
 
 #[test]
+fn bide_stores_received_damage_and_releases_without_an_accuracy_roll() {
+    replay(include_str!(
+        "fixtures/custom-bide-fixed-damage-through-protect.json"
+    ));
+    replay(include_str!("fixtures/custom-bide-strikes-substitute.json"));
+    replay(include_str!("fixtures/custom-bide-ghost-immunity.json"));
+    replay(include_str!("fixtures/custom-bide-aborted-by-sleep.json"));
+    replay(include_str!(
+        "fixtures/custom-bide-retargets-after-switch.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

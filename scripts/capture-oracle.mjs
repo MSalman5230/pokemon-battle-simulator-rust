@@ -1858,6 +1858,19 @@ const legacyPursuitPivotRosters = [
     [named('Tyranitar', ['Pursuit', 'Recover'])],
     [named('Jolteon', ['U-turn']), named('Slowbro', ['Recover'])],
 ];
+const legacyBideUser = [named('Chansey', ['Bide', 'Recover'])];
+const legacyBideRosters = [
+    legacyBideUser, [named('Venusaur', ['Tackle', 'Protect', 'Substitute', 'Recover'])],
+];
+const legacyBideGhostRosters = [
+    legacyBideUser, [named('Dusclops', ['Tackle'])],
+];
+const legacyBideSleepRosters = [
+    legacyBideUser, [named('Venusaur', ['Tackle', 'Spore', 'Recover'])],
+];
+const legacyBideSwitchRosters = [
+    legacyBideUser, [named('Venusaur', ['Tackle']), named('Umbreon', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3292,6 +3305,16 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         legacyPursuitFaintRosters, 'custom-pursuit-cancels-fainted-switch'],
     ['customgame', [['team 1','team 12'], ['move 1','move 1'], [null,'switch 2']],
         legacyPursuitPivotRosters, 'custom-pursuit-before-pivot-request'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2']],
+        legacyBideRosters, 'custom-bide-fixed-damage-through-protect'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 3'], ['move 1','move 1']],
+        legacyBideRosters, 'custom-bide-strikes-substitute'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1']],
+        legacyBideGhostRosters, 'custom-bide-ghost-immunity'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 3']],
+        legacyBideSleepRosters, 'custom-bide-aborted-by-sleep'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','switch 2']],
+        legacyBideSwitchRosters, 'custom-bide-retargets-after-switch'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

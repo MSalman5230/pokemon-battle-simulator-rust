@@ -104,6 +104,11 @@ enum MoveInvocation {
         data: &'static Move,
         target: Position,
     },
+    BideStrike {
+        data: &'static Move,
+        target: Position,
+        damage: u32,
+    },
     SleepTalk {
         slot: usize,
         caller: usize,
@@ -1282,6 +1287,7 @@ impl Battle {
                     | "waterpledge"
                     | "shelltrap"
                     | "pursuit"
+                    | "bide"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -2033,6 +2039,7 @@ impl Battle {
         party[outgoing.slot].laser_focus = 0;
         party[outgoing.slot].fury_cutter = None;
         party[outgoing.slot].rolling_attack = None;
+        party[outgoing.slot].bide = None;
         party[outgoing.slot].gem_boost = false;
         party[outgoing.slot].electrified = false;
         party[outgoing.slot].gastro_acid = false;
@@ -2729,6 +2736,7 @@ impl Battle {
             LaserFocus,
             FuryCutter,
             RollingAttack,
+            Bide,
             EchoedVoice,
             LegacyField(LegacyField),
             LegacyCondition(LegacyCondition),
@@ -3163,6 +3171,9 @@ impl Battle {
             if mon.rolling_attack.is_some() {
                 timers.push((pos, Effect::RollingAttack, priority(0, 2)));
             }
+            if mon.bide.is_some() {
+                timers.push((pos, Effect::Bide, priority(0, 2)));
+            }
             if mon.recharge != 0 {
                 timers.push((pos, Effect::Recharge, priority(0, 2)));
             }
@@ -3366,6 +3377,14 @@ impl Battle {
                     }
                 }
                 Effect::RollingAttack => mon.tick_rolling_attack(),
+                Effect::Bide => {
+                    if let Some(state) = &mut mon.bide {
+                        state.remaining -= 1;
+                        if state.remaining == 0 {
+                            self.end_bide(pos);
+                        }
+                    }
+                }
                 Effect::FocusPunch => {
                     mon.lost_focus = false;
                     mon.untrack_volatile("focuspunch");
@@ -3590,6 +3609,7 @@ impl Battle {
                     | Effect::Electrify => true,
                     Effect::Stall => mon.stall.is_none(),
                     Effect::AllySwitchStall => mon.ally_switch_stall.is_none(),
+                    Effect::Bide => mon.bide.is_none(),
                     Effect::Charge | Effect::SemiInvulnerableTimer => mon.charge.is_none(),
                     Effect::Rampage => mon.rampage.is_none(),
                     Effect::Uproar => uproar_expired,
@@ -3838,7 +3858,11 @@ impl Battle {
         if result.ran_after_move {
             self.apply_pending_boost_copies();
         }
-        if !matches!(invocation, MoveInvocation::Future { .. }) && !self.mon(source).fainted {
+        if !matches!(
+            invocation,
+            MoveInvocation::Future { .. } | MoveInvocation::BideStrike { .. }
+        ) && !self.mon(source).fainted
+        {
             let mon = self.mon_mut(source);
             mon.move_failed_this_turn = result.failed || !attempted;
             if let Some(metronome) = mon.metronome.as_mut() {
@@ -3875,7 +3899,9 @@ impl Battle {
                 !matches!(effect, ExternalEffect::Snatch),
                 prankster,
             ),
-            MoveInvocation::Future { target, .. } => (None, 0, Some(target), false, false),
+            MoveInvocation::Future { target, .. } | MoveInvocation::BideStrike { target, .. } => {
+                (None, 0, Some(target), false, false)
+            }
             MoveInvocation::SleepTalk {
                 slot, prankster, ..
             }
@@ -3896,6 +3922,11 @@ impl Battle {
             _ => sleep_talk,
         };
         let delayed = matches!(invocation, MoveInvocation::Future { .. });
+        let bide_strike = match invocation {
+            MoveInvocation::BideStrike { damage, .. } => Some(damage),
+            _ => None,
+        };
+        let unannounced = delayed || bide_strike.is_some();
         let external = match invocation {
             MoveInvocation::External {
                 effect, priority, ..
@@ -3903,7 +3934,7 @@ impl Battle {
             _ => None,
         };
         let snatched = external.is_some_and(|(effect, _)| matches!(effect, ExternalEffect::Snatch));
-        let own_action = !reflected && !snatched && !delayed && caller.is_none();
+        let own_action = !reflected && !snatched && !unannounced && caller.is_none();
         if own_action {
             self.clear_pre_move_volatiles(source);
         }
@@ -3933,7 +3964,9 @@ impl Battle {
             MoveInvocation::Choice { slot, .. }
             | MoveInvocation::SleepTalk { slot, .. }
             | MoveInvocation::Copycat { slot, .. } => self.move_data(source, slot),
-            MoveInvocation::External { data, .. } | MoveInvocation::Future { data, .. } => data,
+            MoveInvocation::External { data, .. }
+            | MoveInvocation::Future { data, .. }
+            | MoveInvocation::BideStrike { data, .. } => data,
         };
         let z_priority = match invocation {
             MoveInvocation::Choice { z_priority, .. } => z_priority,
@@ -4089,7 +4122,7 @@ impl Battle {
         let gift = typed_item
             .and_then(|item| item.natural_gift.as_ref())
             .filter(|_| move_data.name == "Natural Gift");
-        let (mut move_type, converted) = if damaging_z {
+        let (mut move_type, converted) = if damaging_z || bide_strike.is_some() {
             (move_data.move_type.as_str(), false)
         } else if struggle {
             ("???", false)
@@ -4199,8 +4232,51 @@ impl Battle {
             ));
         }
         if own_action && !self.before_status_move(source, move_data, z_powered) {
+            if self.mon(source).bide.is_some() {
+                self.end_bide(source);
+            }
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
+            return false;
+        }
+        if own_action && let Some(bide) = self.mon(source).bide {
+            if bide.remaining > 1 {
+                self.add(format!("|-activate|{source_name}|move: Bide"));
+            } else {
+                self.add(format!("|-end|{source_name}|move: Bide"));
+                let target = bide.attacker.and_then(|(player, roster)| {
+                    self.positions().find(|&pos| {
+                        pos.player == player
+                            && self.mon(pos).roster_index == usize::from(roster)
+                            && !self.mon(pos).fainted
+                    })
+                });
+                if bide.damage == 0 {
+                    if let Some(previous) = self
+                        .log
+                        .iter()
+                        .rposition(|line| line.public.starts_with("|move|"))
+                    {
+                        self.move_still(previous);
+                    }
+                    self.add(format!("|-fail|{source_name}"));
+                } else if let Some(target) =
+                    target.or_else(|| self.random_target(source, TargetKind::Normal))
+                {
+                    self.run_move(
+                        source,
+                        MoveInvocation::BideStrike {
+                            data: base_data,
+                            target,
+                            damage: bide.damage * 2,
+                        },
+                        queue,
+                    );
+                } else {
+                    self.add(format!("|-miss|{source_name}"));
+                }
+                self.end_bide(source);
+            }
             return false;
         }
         if !own_action && self.gravity > 0 && move_data.flags.contains_key("gravity") {
@@ -4227,7 +4303,7 @@ impl Battle {
             ));
             return false;
         }
-        let electrified = !delayed && !struggle && self.mon(source).electrified;
+        let electrified = !unannounced && !struggle && self.mon(source).electrified;
         if electrified {
             move_type = "Electric";
         }
@@ -4356,7 +4432,8 @@ impl Battle {
             move_type = combo.element();
             result.spends_charge = false;
         }
-        if !delayed && move_type == "Normal" && self.legacy_field_active(LegacyField::IonDeluge) {
+        if !unannounced && move_type == "Normal" && self.legacy_field_active(LegacyField::IonDeluge)
+        {
             move_type = "Electric";
             result.spends_charge = !reflected;
             if self.format.report_exact_hp {
@@ -4383,7 +4460,7 @@ impl Battle {
             && self.grounded(source);
         let sheer_force_removed =
             !delayed && self.sheer_force_removes_secondaries(source, move_data);
-        let added_flinch = if !delayed && move_data.category != Category::Status {
+        let added_flinch = if !unannounced && move_data.category != Category::Status {
             let user = self.mon(source);
             let stench =
                 user.active_ability() == "stench" && self.event_ability(source) == "stench";
@@ -4399,14 +4476,14 @@ impl Battle {
         } else {
             false
         };
-        let rainbow = !delayed
+        let rainbow = !unannounced
             && self.pledge_active(source.player, Pledge::Water)
             && move_data.name != "Secret Power"
             && !move_data.secondaries.is_empty();
         if rainbow && self.format.report_exact_hp {
             self.add("|debug|doubling secondary chance");
         }
-        let secondary_multiplier = if !delayed && self.event_ability(source) == "serenegrace" {
+        let secondary_multiplier = if !unannounced && self.event_ability(source) == "serenegrace" {
             if self.format.report_exact_hp && (!move_data.secondaries.is_empty() || added_flinch) {
                 self.add("|debug|doubling secondary chance");
             }
@@ -4414,7 +4491,9 @@ impl Battle {
         } else {
             1
         };
-        let kind = if expanded {
+        let kind = if bide_strike.is_some() {
+            TargetKind::Normal
+        } else if expanded {
             // Both ModifyMove passes retarget a changed target kind.
             self.random_target(source, TargetKind::AllAdjacentFoes);
             target = self.random_target(source, TargetKind::AllAdjacentFoes);
@@ -4499,7 +4578,7 @@ impl Battle {
         let previous = self.last_battle_move;
         let previous_z = self.last_battle_move_z;
         let history_known = self.history_known;
-        if !delayed {
+        if !unannounced {
             self.last_battle_move = Some(move_data);
             self.last_battle_move_z = z_powered || move_data.is_z_move;
             self.history_known = true;
@@ -4508,7 +4587,7 @@ impl Battle {
         if move_data.name == "Body Press" && self.wonder_room > 0 {
             self.add("|-hint|Body Press uses Def boosts when Wonder Room is active.");
         }
-        let base = if delayed {
+        let base = if unannounced {
             self.log
                 .iter()
                 .rposition(|line| line.public.starts_with("|move|"))
@@ -4541,7 +4620,7 @@ impl Battle {
             self.apply_z_power(source, move_data);
         }
         let mut redirected = false;
-        if !delayed
+        if !unannounced
             && !lost_counter_target
             && !pursuit_catch
             && self.slots() > 1
@@ -4697,7 +4776,7 @@ impl Battle {
             self.move_still(base);
             return true;
         }
-        if !delayed
+        if !unannounced
             && let Some(target) = spread_targets.last().copied().or(actual_target)
             && let Some((holder, name)) =
                 self.try_move_guard(source, target, move_data, priority, sacrifice || mind_blown)
@@ -4711,7 +4790,7 @@ impl Battle {
             result.failed = true;
             return true;
         }
-        if !delayed {
+        if !unannounced {
             if move_type == "Fire" && self.mon(source).under(LegacyCondition::Powder) {
                 self.stop_fire_with_powder(source, &move_data.name);
                 self.move_still(base);
@@ -4722,6 +4801,16 @@ impl Battle {
                 return true;
             }
             self.metronome_try_move(source, move_data);
+        }
+        if move_data.name == "Bide"
+            && bide_strike.is_none()
+            && let Some(slot) = slot
+        {
+            self.protean_prepare(source, move_type);
+            self.start_bide(source, slot);
+            self.each_event();
+            self.each_event();
+            return true;
         }
         if let Some(magnitude) = magnitude {
             self.add(format!(
@@ -5683,7 +5772,8 @@ impl Battle {
         let spread = !darts && spread_targets.len() > 1;
         let potential = spread_targets.len();
         spread_targets.retain(|&target| {
-            if move_data.name == "Helping Hand"
+            if bide_strike.is_some()
+                || move_data.name == "Helping Hand"
                 || (!self.mon(target).commanding
                     && (self
                         .mon(target)
@@ -5713,6 +5803,9 @@ impl Battle {
         let mut protected = 0;
         let mut bypassed = 0;
         spread_targets.retain(|&mut_pos| {
+            if bide_strike.is_some() {
+                return true;
+            }
             if let Some(guard) =
                 self.blocking_side_guard(mut_pos.player, move_data, kind, priority, damaging_z)
             {
@@ -5889,7 +5982,7 @@ impl Battle {
         });
         failed_hit |= spread_targets.len() + protected != potential;
         smart_target &= spread_targets.len() > 1;
-        let ignores_type = !delayed && self.move_ignores_immunity(source, move_data, move_type);
+        let ignores_type = !unannounced && self.move_ignores_immunity(source, move_data, move_type);
         let potential = spread_targets.len();
         spread_targets.retain(|&pos| {
             if move_data.name == "Captivate"
@@ -6041,6 +6134,15 @@ impl Battle {
             }
         });
         if spread_targets.is_empty() {
+            if bide_strike.is_some() {
+                if self.format.report_exact_hp {
+                    self.add("|debug|damage calculation interrupted");
+                }
+                self.add(format!("|-fail|{source_name}"));
+                self.move_still(base);
+                self.report_no_move_effect();
+                return true;
+            }
             result.counts_as_success = false;
             result.failed = failed_hit || potential != 0;
             if spread {
@@ -7317,7 +7419,7 @@ impl Battle {
             && self.mon(source).species.name == "Greninja-Ash"
             && self.mon(source).transformed.is_none()
             && self.event_ability(source) == "battlebond";
-        let parental = !delayed
+        let parental = !unannounced
             && !z_powered
             && !spread
             && move_data.multihit.is_none()
@@ -7402,6 +7504,9 @@ impl Battle {
             let previous_strike_damage = total;
             let mut critical_hits = 0;
             let mut compute = |battle: &mut Self, target: Position, shield: bool| {
+                if let Some(damage) = bide_strike {
+                    return damage;
+                }
                 if ohko {
                     return battle.mon(target).max_hp.get();
                 }
@@ -7731,12 +7836,21 @@ impl Battle {
                 let half_hp_berry_deferred =
                     matches!(self.event_ability(target), "berserk" | "angershell") && !multihit;
                 let turn = self.turn;
+                let bide_source = self
+                    .mon(target)
+                    .bide
+                    .is_some()
+                    .then(|| (source.player, self.mon(source).roster_index as u8));
                 let mon = self.mon_mut(target);
                 mon.half_hp_berry_deferred = half_hp_berry_deferred;
                 let landed = mon.damage_hp(value);
                 if landed > 0 {
                     landed_by_target[target.index()] += landed;
                     hp_after_damage[target.index()] = mon.hp;
+                    if let (Some(state), Some(attacker)) = (&mut mon.bide, bide_source) {
+                        state.damage += landed;
+                        state.attacker = Some(attacker);
+                    }
                 }
                 if mon.volatile_ids().contains(&"focuspunch") {
                     mon.lost_focus = true;
@@ -8249,6 +8363,9 @@ impl Battle {
         {
             self.relic_song_forme(source);
         }
+        if bide_strike.is_some() {
+            self.end_bide(source);
+        }
         if sacrifice || final_gambit && self.mon(source).hp == 0 {
             self.mark_fainted(source);
         }
@@ -8268,7 +8385,7 @@ impl Battle {
                 }
                 fainted += 1;
             }
-            if target != source {
+            if target != source && bide_strike.is_none() {
                 if direct_damage != 0 {
                     let attacker = self.mon(source).roster_index;
                     self.mon_mut(target).attackers_this_turn[source.player.index()] |=
@@ -8276,7 +8393,8 @@ impl Battle {
                 }
                 self.mon_mut(target).times_attacked += if smart_target { 1 } else { hits_landed };
             }
-            if target.player != source.player && !self.mon(target).fainted {
+            if target.player != source.player && !self.mon(target).fainted && bide_strike.is_none()
+            {
                 self.mon_mut(target).last_foe_hit = Some(FoeHit {
                     source,
                     damage: direct_damage,
@@ -8361,20 +8479,22 @@ impl Battle {
         self.each_event();
         // Champions runs the target-side AfterMoveSecondary and EmergencyExit
         // hooks even when Sheer Force removes the move's secondary effects.
-        self.target_effects_after_move(
-            source,
-            &damage,
-            landed_by_target,
-            PostHit {
-                contact,
-                multihit,
-                smart_target,
-                delayed,
-            },
-        );
-        for &target in &spread_targets {
-            let index = target.index();
-            self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
+        if bide_strike.is_none() {
+            self.target_effects_after_move(
+                source,
+                &damage,
+                landed_by_target,
+                PostHit {
+                    contact,
+                    multihit,
+                    smart_target,
+                    delayed,
+                },
+            );
+            for &target in &spread_targets {
+                let index = target.index();
+                self.emergency_exit(target, hp_after_damage[index] + landed_by_target[index]);
+            }
         }
         let suppress_after_move = sheer_force_removed && self.event_ability(source) == "sheerforce";
         if move_data.name == "Fell Stinger" && fainted > 0 && !suppress_after_move {
@@ -8393,11 +8513,11 @@ impl Battle {
             self.mark_fainted(source);
         }
         let original_source_hp = self.mon(source).hp;
-        if !suppress_after_move && !delayed {
+        if !suppress_after_move && !unannounced {
             self.pay_life_orb_recoil(source);
             self.shell_bell_after_move(source, after_move_target, total);
         }
-        if !suppress_after_move && !delayed && hits_landed > 0 {
+        if !suppress_after_move && !unannounced && hits_landed > 0 {
             self.magician_after_hit(source, &spread_targets);
         }
         self.emergency_exit(source, original_source_hp);
@@ -8687,6 +8807,7 @@ impl Battle {
         mon.laser_focus = 0;
         mon.fury_cutter = None;
         mon.rolling_attack = None;
+        mon.bide = None;
         mon.gem_boost = false;
         mon.electrified = false;
         mon.gastro_acid = false;
@@ -9003,7 +9124,8 @@ impl Pokemon {
                 .map(|state| state.slot)
                 .or_else(|| self.charge.map(|state| state.slot))
                 .or_else(|| self.uproar.map(|state| state.slot))
-                .or_else(|| self.rolling_attack.map(|state| state.slot))?;
+                .or_else(|| self.rolling_attack.map(|state| state.slot))
+                .or_else(|| self.bide.map(|state| state.slot))?;
             let m = if slot == EXTRA_MOVE_SLOT {
                 self.extra_move.as_ref().unwrap()
             } else {
