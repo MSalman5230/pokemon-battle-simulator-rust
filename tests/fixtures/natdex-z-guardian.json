@@ -1,0 +1,647 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Tapu Fini\",\"moves\":[\"Nature's Madness\"],\"gender\":\"F\",\"name\":\"Tapu Fini\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Misty Surge\",\"item\":\"Tapunium Z\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Protect\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Tapu Fini, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Tapu Fini, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Tapu Fini, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tapu Fini",
+                "details": "Tapu Fini, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 135,
+                  "spa": 115,
+                  "spd": 150,
+                  "spe": 105
+                },
+                "moves": [
+                  "naturesmadness"
+                ],
+                "baseAbility": "mistysurge",
+                "item": "tapuniumz",
+                "pokeball": "pokeball",
+                "ability": "mistysurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tapu Fini",
+            "species": "Tapu Fini",
+            "details": "Tapu Fini, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 135,
+              "spa": 115,
+              "spd": 150,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "mistysurge",
+            "item": "tapuniumz",
+            "active": false,
+            "moves": [
+              {
+                "id": "naturesmadness",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Tapu Fini|Tapu Fini, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|-fieldstart|move: Misty Terrain|[from] ability: Misty Surge|[of] p1a: Tapu Fini",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Tapu Fini|Tapu Fini, L50, F|145/145",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|-fieldstart|move: Misty Terrain|[from] ability: Misty Surge|[of] p1a: Tapu Fini",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Tapu Fini|Tapu Fini, L50, F|100/100",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|-fieldstart|move: Misty Terrain|[from] ability: Misty Surge|[of] p1a: Tapu Fini",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Nature's Madness",
+                  "id": "naturesmadness",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Guardian of Alola",
+                  "target": "normal"
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tapu Fini",
+                "details": "Tapu Fini, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 135,
+                  "spa": 115,
+                  "spd": 150,
+                  "spe": 105
+                },
+                "moves": [
+                  "naturesmadness"
+                ],
+                "baseAbility": "mistysurge",
+                "item": "tapuniumz",
+                "pokeball": "pokeball",
+                "ability": "mistysurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tapu Fini",
+            "species": "Tapu Fini",
+            "details": "Tapu Fini, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 135,
+              "spa": 115,
+              "spd": 150,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "mistysurge",
+            "item": "tapuniumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "naturesmadness",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 zmove",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Vaporeon|Protect|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Protect",
+          "|-zpower|p1a: Tapu Fini",
+          "|move|p1a: Tapu Fini|Guardian of Alola|p2a: Vaporeon|[zeffect]",
+          "|-zbroken|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|81/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Vaporeon|Protect|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Protect",
+          "|-zpower|p1a: Tapu Fini",
+          "|move|p1a: Tapu Fini|Guardian of Alola|p2a: Vaporeon|[zeffect]",
+          "|-zbroken|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|81/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Vaporeon|Protect|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Protect",
+          "|-zpower|p1a: Tapu Fini",
+          "|move|p1a: Tapu Fini|Guardian of Alola|p2a: Vaporeon|[zeffect]",
+          "|-zbroken|p2a: Vaporeon",
+          "|-damage|p2a: Vaporeon|167/205",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Nature's Madness",
+                  "id": "naturesmadness",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tapu Fini",
+                "details": "Tapu Fini, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 135,
+                  "spa": 115,
+                  "spd": 150,
+                  "spe": 105
+                },
+                "moves": [
+                  "naturesmadness"
+                ],
+                "baseAbility": "mistysurge",
+                "item": "tapuniumz",
+                "pokeball": "pokeball",
+                "ability": "mistysurge",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "167/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tapu Fini",
+            "species": "Tapu Fini",
+            "details": "Tapu Fini, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 135,
+              "spa": 115,
+              "spd": 150,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "mistysurge",
+            "item": "tapuniumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "naturesmadness",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 167,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

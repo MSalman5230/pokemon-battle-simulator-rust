@@ -26,6 +26,19 @@ pub(crate) fn physical_shell_side_arm(dex_mod: Mod) -> &'static Move {
     &VARIANTS[usize::from(dex_mod == Mod::RegMb)]
 }
 
+pub(crate) fn physical_psychic_power(dex_mod: Mod, name: &str) -> &'static Move {
+    static VARIANTS: LazyLock<[[Move; 2]; 2]> = LazyLock::new(|| {
+        [Mod::Champions, Mod::RegMb].map(|dex_mod| {
+            ["photongeyser", "lightthatburnsthesky"].map(|id| {
+                let mut data = DEX.moves(dex_mod, id).unwrap().clone();
+                data.category = Category::Physical;
+                data
+            })
+        })
+    });
+    &VARIANTS[usize::from(dex_mod == Mod::RegMb)][usize::from(name != "Photon Geyser")]
+}
+
 #[derive(Debug, Deserialize)]
 pub struct Dex {
     pub revision: String,
@@ -203,6 +216,8 @@ pub struct Move {
     pub z_power: Option<ZPower>,
     #[serde(default)]
     pub is_z_move: bool,
+    #[serde(default)]
+    pub ignore_ability: bool,
     #[serde(default)]
     pub has_sheer_force_boost: bool,
     pub boosts: Vec<(BoostStat, i8)>,

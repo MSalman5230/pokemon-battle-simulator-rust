@@ -27,7 +27,7 @@ const genericMoveFields = new Set([
     'status', 'ignoreImmunity', 'self', 'recoil', 'drain', 'thawsTarget',
     'secondary', 'secondaries', 'multihit', 'multiaccuracy', 'selfBoost',
     'ignoreDefensive', 'ignoreEvasion', 'tracksTarget',
-    'overrideDefensiveStat',
+    'overrideDefensiveStat', 'ignoreAbility',
 ]);
 const genericTarget = new Set(['self', 'normal', 'any', 'adjacentFoe', 'allAdjacent', 'allAdjacentFoes', 'randomNormal']);
 const supportedStatus = new Set(['brn', 'par', 'frz', 'slp', 'psn', 'tox']);
@@ -98,6 +98,7 @@ const data = mod => {
                 callsMove: e.callsMove || undefined,
                 zPower: e.zMove && {basePower:e.zMove.basePower, boost:e.zMove.boost && Object.entries(e.zMove.boost), effect:e.zMove.effect},
                 isZMove: !!e.isZ || undefined,
+                ignoreAbility: e.ignoreAbility || undefined,
                 hasSheerForceBoost: e.hasSheerForceBoost || undefined,
                 generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),

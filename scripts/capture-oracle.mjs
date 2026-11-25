@@ -1534,6 +1534,35 @@ const customZSideGuardRosters = [
         named('Glaceon', ['Protect'])],
     [named('Vaporeon', ['Quick Guard']), named('Jolteon', ['Tail Whip'])],
 ];
+const customZSoulblazeRosters = [
+    [{...named('Kommo-o', ['Clanging Scales']), item:'Kommonium Z', ability:'Bulletproof'},
+        named('Glaceon', ['Protect'])],
+    [named('Vaporeon', ['Wide Guard']), named('Jolteon', ['Tail Whip'])],
+];
+const natDexZGenesisRosters = [
+    [{...named('Mew', ['Psychic', 'Recover']), item:'Mewnium Z', ability:'Synchronize'}],
+    [{...named('Vaporeon', ['Substitute', 'Protect']), item:'Covert Cloak'}],
+];
+const natDexZGuardianRosters = [
+    [{...named('Tapu Fini', ["Nature's Madness"]), item:'Tapunium Z', ability:'Misty Surge'}],
+    [named('Vaporeon', ['Protect'])],
+];
+const natDexZStormshardsRosters = [
+    [{...named('Lycanroc-Dusk', ['Stone Edge', 'Psychic Terrain']), item:'Lycanium Z', ability:'Tough Claws'}],
+    [named('Vaporeon', ['Substitute', 'Protect'])],
+];
+const natDexZSunrazeRosters = [
+    [{...named('Solgaleo', ['Sunsteel Strike']), item:'Solganium Z', ability:'Full Metal Body'}],
+    [{...named('Mimikyu', ['Protect']), ability:'Disguise'}],
+];
+const natDexZMoonrazeRosters = [
+    [{...named('Lunala', ['Moongeist Beam']), item:'Lunalium Z', ability:'Shadow Shield'}],
+    [{...named('Clefable', ['Dazzling Gleam']), ability:'Magic Guard'}],
+];
+const customZUltraRosters = [
+    [{...named('Necrozma-Ultra', ['Photon Geyser', 'Swords Dance']), item:'Ultranecrozium Z', ability:'Neuroforce'}],
+    [named('Venusaur', ['Protect', 'Growl'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2795,6 +2824,20 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         natDexZEeveeRosters, 'natdex-z-evoboost'],
     ['doublescustomgame', [['team 12','team 12'], ['move 1 1 zmove, move 1','move 1, move 1']],
         customZSideGuardRosters, 'custom-z-quick-guard'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 zmove, move 1','move 1, move 1']],
+        customZSoulblazeRosters, 'custom-z-soulblaze'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2','move 1'], ['move 1 zmove','move 1']],
+        natDexZGenesisRosters, 'natdex-z-genesis'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1 zmove','move 1']],
+        natDexZGuardianRosters, 'natdex-z-guardian'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2','move 1'], ['move 1 zmove','move 1']],
+        natDexZStormshardsRosters, 'natdex-z-stormshards'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1 zmove','move 1']],
+        natDexZSunrazeRosters, 'natdex-z-sunraze'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1 zmove','move 1']],
+        natDexZMoonrazeRosters, 'natdex-z-moonraze'],
+    ['customgame', [['team 1','team 1'], ['move 2','move 2'], ['move 1 zmove','move 1']],
+        customZUltraRosters, 'custom-z-ultra'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

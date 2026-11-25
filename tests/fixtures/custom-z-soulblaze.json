@@ -1,0 +1,1058 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Kommo-o\",\"moves\":[\"Clanging Scales\"],\"gender\":\"F\",\"name\":\"Kommo-o\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Bulletproof\",\"item\":\"Kommonium Z\"},{\"species\":\"Glaceon\",\"moves\":[\"Protect\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Wide Guard\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Jolteon\",\"moves\":[\"Tail Whip\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kommo-o, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kommo-o, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Kommo-o, L50, F|",
+          "|poke|p1|Glaceon, L50, F|",
+          "|poke|p2|Vaporeon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kommo-o",
+                "details": "Kommo-o, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 145,
+                  "spa": 120,
+                  "spd": 125,
+                  "spe": 105
+                },
+                "moves": [
+                  "clangingscales"
+                ],
+                "baseAbility": "bulletproof",
+                "item": "kommoniumz",
+                "pokeball": "pokeball",
+                "ability": "bulletproof",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "wideguard"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tailwhip"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kommo-o",
+            "species": "Kommo-o",
+            "details": "Kommo-o, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 145,
+              "spa": 120,
+              "spd": 125,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "bulletproof",
+            "item": "kommoniumz",
+            "active": false,
+            "moves": [
+              {
+                "id": "clangingscales",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "wideguard",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Kommo-o|Kommo-o, L50, F|150/150",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2b: Jolteon|Jolteon, L50, F|140/140",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Kommo-o|Kommo-o, L50, F|150/150",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2b: Jolteon|Jolteon, L50, F|140/140",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Kommo-o|Kommo-o, L50, F|150/150",
+          "|switch|p1b: Glaceon|Glaceon, L50, F|140/140",
+          "|switch|p2a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2b: Jolteon|Jolteon, L50, F|140/140",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Clanging Scales",
+                  "id": "clangingscales",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Clangorous Soulblaze",
+                  "target": "allAdjacentFoes"
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kommo-o",
+                "details": "Kommo-o, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 145,
+                  "spa": 120,
+                  "spd": 125,
+                  "spe": 105
+                },
+                "moves": [
+                  "clangingscales"
+                ],
+                "baseAbility": "bulletproof",
+                "item": "kommoniumz",
+                "pokeball": "pokeball",
+                "ability": "bulletproof",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Wide Guard",
+                  "id": "wideguard",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allySide",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "wideguard"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tailwhip"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kommo-o",
+            "species": "Kommo-o",
+            "details": "Kommo-o, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 145,
+              "spa": 120,
+              "spd": 125,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "bulletproof",
+            "item": "kommoniumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "clangingscales",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "wideguard",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 zmove, move 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "45332,56308,15006,15594",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p2a: Vaporeon|Wide Guard|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Wide Guard",
+          "|move|p2b: Jolteon|Tail Whip|p1a: Kommo-o|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Kommo-o|def|1",
+          "|-zpower|p1a: Kommo-o",
+          "|move|p1a: Kommo-o|Clangorous Soulblaze|p2b: Jolteon|[zeffect]|[spread] p2a,p2b",
+          "|debug|Spread modifier: 0.75",
+          "|-zbroken|p2a: Vaporeon",
+          "|debug|Spread modifier: 0.75",
+          "|-zbroken|p2b: Jolteon",
+          "|-damage|p2a: Vaporeon|184/205",
+          "|-damage|p2b: Jolteon|117/140",
+          "|-boost|p1a: Kommo-o|atk|1",
+          "|-boost|p1a: Kommo-o|def|1",
+          "|-boost|p1a: Kommo-o|spa|1",
+          "|-boost|p1a: Kommo-o|spd|1",
+          "|-boost|p1a: Kommo-o|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p2a: Vaporeon|Wide Guard|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Wide Guard",
+          "|move|p2b: Jolteon|Tail Whip|p1a: Kommo-o|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Kommo-o|def|1",
+          "|-zpower|p1a: Kommo-o",
+          "|move|p1a: Kommo-o|Clangorous Soulblaze|p2b: Jolteon|[zeffect]|[spread] p2a,p2b",
+          "|debug|Spread modifier: 0.75",
+          "|-zbroken|p2a: Vaporeon",
+          "|debug|Spread modifier: 0.75",
+          "|-zbroken|p2b: Jolteon",
+          "|-damage|p2a: Vaporeon|184/205",
+          "|-damage|p2b: Jolteon|117/140",
+          "|-boost|p1a: Kommo-o|atk|1",
+          "|-boost|p1a: Kommo-o|def|1",
+          "|-boost|p1a: Kommo-o|spa|1",
+          "|-boost|p1a: Kommo-o|spd|1",
+          "|-boost|p1a: Kommo-o|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Glaceon|Protect|p1b: Glaceon",
+          "|-singleturn|p1b: Glaceon|Protect",
+          "|move|p2a: Vaporeon|Wide Guard|p2a: Vaporeon",
+          "|-singleturn|p2a: Vaporeon|Wide Guard",
+          "|move|p2b: Jolteon|Tail Whip|p1a: Kommo-o|[spread] p1a",
+          "|-activate|p1b: Glaceon|move: Protect",
+          "|-unboost|p1a: Kommo-o|def|1",
+          "|-zpower|p1a: Kommo-o",
+          "|move|p1a: Kommo-o|Clangorous Soulblaze|p2b: Jolteon|[zeffect]|[spread] p2a,p2b",
+          "|debug|Spread modifier: 0.75",
+          "|-zbroken|p2a: Vaporeon",
+          "|debug|Spread modifier: 0.75",
+          "|-zbroken|p2b: Jolteon",
+          "|-damage|p2a: Vaporeon|184/205",
+          "|-damage|p2b: Jolteon|117/140",
+          "|-boost|p1a: Kommo-o|atk|1",
+          "|-boost|p1a: Kommo-o|def|1",
+          "|-boost|p1a: Kommo-o|spa|1",
+          "|-boost|p1a: Kommo-o|spd|1",
+          "|-boost|p1a: Kommo-o|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Clanging Scales",
+                  "id": "clangingscales",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Kommo-o",
+                "details": "Kommo-o, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 145,
+                  "spa": 120,
+                  "spd": 125,
+                  "spe": 105
+                },
+                "moves": [
+                  "clangingscales"
+                ],
+                "baseAbility": "bulletproof",
+                "item": "kommoniumz",
+                "pokeball": "pokeball",
+                "ability": "bulletproof",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Wide Guard",
+                  "id": "wideguard",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allySide",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "184/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "wideguard"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "117/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tailwhip"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Kommo-o",
+            "species": "Kommo-o",
+            "details": "Kommo-o, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 145,
+              "spa": 120,
+              "spd": 125,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 1,
+              "spd": 1,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "bulletproof",
+            "item": "kommoniumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "clangingscales",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 184,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "wideguard",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 117,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

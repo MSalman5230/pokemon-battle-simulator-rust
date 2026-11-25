@@ -947,6 +947,7 @@ impl Battle {
                     | "fishiousrend"
                     | "boltbeak"
                     | "revelationdance"
+                    | "photongeyser"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1419,7 +1420,7 @@ impl Battle {
                 .z_crystal(actor)
                 .and_then(|crystal| self.z_move_data(crystal, info.move_data))
                 .ok_or(BattleError::Choice("this move cannot be used as a Z-Move"))?;
-            if data.is_z_move && !data.generic {
+            if data.is_z_move && !super::z_move::signature_supported(data) {
                 return Err(BattleError::Unsupported(format!("Z-Move {}", data.name)));
             }
             Some(data)
@@ -3396,6 +3397,21 @@ impl Battle {
         } else {
             base_data
         };
+        if move_data.ignore_ability && !delayed {
+            self.ability_breaker = Some(source);
+        }
+        if matches!(
+            move_data.name.as_str(),
+            "Photon Geyser" | "Light That Burns the Sky"
+        ) {
+            let mon = self.mon(source);
+            if boosted_stat(mon.stats.atk, mon.boosts.get(BoostStat::Atk))
+                > boosted_stat(mon.stats.spa, mon.boosts.get(BoostStat::Spa))
+            {
+                move_data =
+                    crate::dex::physical_psychic_power(self.format.dex_mod, &move_data.name);
+            }
+        }
         let z_status = z_powered && move_data.category == Category::Status;
         let z_animated = z_status && !move_data.is_z_move;
         let damaging_z = z_powered && !z_status;
@@ -6181,6 +6197,23 @@ impl Battle {
                     // applying the target's damage, including to a Substitute.
                     return std::mem::take(&mut battle.mon_mut(source).hp);
                 }
+                if move_data.name == "Guardian of Alola" {
+                    let mon = battle.mon(target);
+                    let power = mon.hp * 3 / 4;
+                    if matches!(
+                        mon.protection,
+                        Some(
+                            Protection::Protect
+                                | Protection::BanefulBunker
+                                | Protection::KingsShield
+                                | Protection::SpikyShield
+                        )
+                    ) {
+                        battle.add(format!("|-zbroken|{}", battle.ident(target)));
+                        return ((power + 1) / 4).max(1);
+                    }
+                    return power.max(1);
+                }
                 let fixed_damage = match move_data.name.as_str() {
                     "Metal Burst" | "Comeuppance" => {
                         retaliation_hit.map(|hit| (hit.damage * 3 / 2).max(1))
@@ -6389,7 +6422,10 @@ impl Battle {
                 if self.behind_substitute(source, target, move_data) {
                     let value = compute(self, target, true);
                     self.strike_substitute(source, target, move_data, value, ohko);
-                    if move_data.name == "Steel Roller" {
+                    if matches!(
+                        move_data.name.as_str(),
+                        "Steel Roller" | "Splintered Stormshards"
+                    ) {
                         self.clear_terrain();
                     }
                     if shell_side_arm && target.player != source.player {
@@ -6497,7 +6533,10 @@ impl Battle {
                 if let Some(item) = thrown_item {
                     self.fling_hit(source, target, item);
                 }
-                if move_data.name == "Steel Roller" {
+                if matches!(
+                    move_data.name.as_str(),
+                    "Steel Roller" | "Splintered Stormshards"
+                ) {
                     self.clear_terrain();
                 }
                 self.debug_suppressed_hook(target, "onHit");
@@ -6616,11 +6655,15 @@ impl Battle {
                     .iter()
                     .filter(|_| !sheer_force_removed)
                 {
-                    if (dust || cloak) && effect.self_boosts.is_empty() {
+                    let genesis = damaging_z && move_data.name == "Genesis Supernova";
+                    if (dust || cloak) && effect.self_boosts.is_empty() && !genesis {
                         continue;
                     }
                     let roll = self.rng.below(100);
                     if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
+                        if genesis {
+                            self.set_terrain(source, Terrain::Psychic, None);
+                        }
                         if !hit_pokemon {
                             if !effect.self_boosts.is_empty() {
                                 self.boost(source, &effect.self_boosts, true);
@@ -7017,7 +7060,10 @@ impl Battle {
         if move_data.name == "Fell Stinger" && fainted > 0 && !suppress_after_move {
             self.boost(source, &[(BoostStat::Atk, 3)], true);
         }
-        if hits_landed > 0 && !move_data.after_hit_boosts.is_empty() {
+        if hits_landed > 0
+            && !move_data.after_hit_boosts.is_empty()
+            && !(sheer_force_removed && move_data.name == "Clangorous Soulblaze")
+        {
             self.boost(source, &move_data.after_hit_boosts, true);
         }
         if self.mon(source).hp == 0 && !self.mon(source).fainted {
@@ -7684,6 +7730,8 @@ impl Pokemon {
                 | "filter"
                 | "solidrock"
                 | "prismarmor"
+                | "neuroforce"
+                | "shadowshield"
                 | "bigpecks"
                 | "justified"
                 | "poisonheal"

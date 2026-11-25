@@ -1,0 +1,832 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Necrozma-Ultra\",\"moves\":[\"Photon Geyser\",\"Swords Dance\"],\"gender\":\"F\",\"name\":\"Necrozma-Ultra\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Neuroforce\",\"item\":\"Ultranecrozium Z\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Venusaur\",\"moves\":[\"Protect\",\"Growl\"],\"gender\":\"F\",\"name\":\"Venusaur\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Necrozma-Ultra, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Necrozma-Ultra, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Necrozma-Ultra, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Necrozma",
+                "details": "Necrozma-Ultra, L50, F",
+                "condition": "172/172",
+                "active": true,
+                "stats": {
+                  "atk": 187,
+                  "def": 117,
+                  "spa": 187,
+                  "spd": 117,
+                  "spe": 149
+                },
+                "moves": [
+                  "photongeyser",
+                  "swordsdance"
+                ],
+                "baseAbility": "neuroforce",
+                "item": "ultranecroziumz",
+                "pokeball": "pokeball",
+                "ability": "neuroforce",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "protect",
+                  "growl"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Necrozma",
+            "species": "Necrozma-Ultra",
+            "details": "Necrozma-Ultra, L50, F",
+            "hp": 172,
+            "maxhp": 172,
+            "status": "",
+            "stats": {
+              "atk": 187,
+              "def": 117,
+              "spa": 187,
+              "spd": 117,
+              "spe": 149
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "neuroforce",
+            "item": "ultranecroziumz",
+            "active": false,
+            "moves": [
+              {
+                "id": "photongeyser",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Necrozma|Necrozma-Ultra, L50, F|172/172",
+          "|switch|p2a: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Necrozma|Necrozma-Ultra, L50, F|172/172",
+          "|switch|p2a: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Necrozma|Necrozma-Ultra, L50, F|172/172",
+          "|switch|p2a: Venusaur|Venusaur, L50, F|155/155",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Photon Geyser",
+                  "id": "photongeyser",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Light That Burns the Sky",
+                  "target": "normal"
+                },
+                null
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Necrozma",
+                "details": "Necrozma-Ultra, L50, F",
+                "condition": "172/172",
+                "active": true,
+                "stats": {
+                  "atk": 187,
+                  "def": 117,
+                  "spa": 187,
+                  "spd": 117,
+                  "spe": 149
+                },
+                "moves": [
+                  "photongeyser",
+                  "swordsdance"
+                ],
+                "baseAbility": "neuroforce",
+                "item": "ultranecroziumz",
+                "pokeball": "pokeball",
+                "ability": "neuroforce",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "protect",
+                  "growl"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Necrozma",
+            "species": "Necrozma-Ultra",
+            "details": "Necrozma-Ultra, L50, F",
+            "hp": 172,
+            "maxhp": 172,
+            "status": "",
+            "stats": {
+              "atk": 187,
+              "def": 117,
+              "spa": 187,
+              "spd": 117,
+              "spe": 149
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "neuroforce",
+            "item": "ultranecroziumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "photongeyser",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Necrozma|Swords Dance|p1a: Necrozma",
+          "|-boost|p1a: Necrozma|atk|2",
+          "|move|p2a: Venusaur|Growl|p1a: Necrozma",
+          "|-unboost|p1a: Necrozma|atk|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Necrozma|Swords Dance|p1a: Necrozma",
+          "|-boost|p1a: Necrozma|atk|2",
+          "|move|p2a: Venusaur|Growl|p1a: Necrozma",
+          "|-unboost|p1a: Necrozma|atk|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Necrozma|Swords Dance|p1a: Necrozma",
+          "|-boost|p1a: Necrozma|atk|2",
+          "|move|p2a: Venusaur|Growl|p1a: Necrozma",
+          "|-unboost|p1a: Necrozma|atk|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Photon Geyser",
+                  "id": "photongeyser",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Light That Burns the Sky",
+                  "target": "normal"
+                },
+                null
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Necrozma",
+                "details": "Necrozma-Ultra, L50, F",
+                "condition": "172/172",
+                "active": true,
+                "stats": {
+                  "atk": 187,
+                  "def": 117,
+                  "spa": 187,
+                  "spd": 117,
+                  "spe": 149
+                },
+                "moves": [
+                  "photongeyser",
+                  "swordsdance"
+                ],
+                "baseAbility": "neuroforce",
+                "item": "ultranecroziumz",
+                "pokeball": "pokeball",
+                "ability": "neuroforce",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "protect",
+                  "growl"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Necrozma",
+            "species": "Necrozma-Ultra",
+            "details": "Necrozma-Ultra, L50, F",
+            "hp": 172,
+            "maxhp": 172,
+            "status": "",
+            "stats": {
+              "atk": 187,
+              "def": 117,
+              "spa": 187,
+              "spd": 117,
+              "spe": 149
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "neuroforce",
+            "item": "ultranecroziumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "photongeyser",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 zmove",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "",
+      "waiting": [
+        true,
+        true
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Venusaur|Protect|p2a: Venusaur",
+          "|-singleturn|p2a: Venusaur|Protect",
+          "|-zpower|p1a: Necrozma",
+          "|move|p1a: Necrozma|Light That Burns the Sky|p2a: Venusaur|[zeffect]",
+          "|-supereffective|p2a: Venusaur|1",
+          "|-zbroken|p2a: Venusaur",
+          "|-damage|p2a: Venusaur|0 fnt",
+          "|faint|p2a: Venusaur",
+          "|",
+          "|win|player0"
+        ],
+        [
+          "|",
+          "|move|p2a: Venusaur|Protect|p2a: Venusaur",
+          "|-singleturn|p2a: Venusaur|Protect",
+          "|-zpower|p1a: Necrozma",
+          "|move|p1a: Necrozma|Light That Burns the Sky|p2a: Venusaur|[zeffect]",
+          "|-supereffective|p2a: Venusaur|1",
+          "|-zbroken|p2a: Venusaur",
+          "|-damage|p2a: Venusaur|0 fnt",
+          "|faint|p2a: Venusaur",
+          "|",
+          "|win|player0"
+        ],
+        [
+          "|",
+          "|move|p2a: Venusaur|Protect|p2a: Venusaur",
+          "|-singleturn|p2a: Venusaur|Protect",
+          "|-zpower|p1a: Necrozma",
+          "|move|p1a: Necrozma|Light That Burns the Sky|p2a: Venusaur|[zeffect]",
+          "|-supereffective|p2a: Venusaur|1",
+          "|-zbroken|p2a: Venusaur",
+          "|-damage|p2a: Venusaur|0 fnt",
+          "|faint|p2a: Venusaur",
+          "|",
+          "|win|player0"
+        ]
+      ],
+      "requests": [
+        null,
+        null
+      ],
+      "teams": [
+        [
+          {
+            "name": "Necrozma",
+            "species": "Necrozma-Ultra",
+            "details": "Necrozma-Ultra, L50, F",
+            "hp": 172,
+            "maxhp": 172,
+            "status": "",
+            "stats": {
+              "atk": 187,
+              "def": 117,
+              "spa": 187,
+              "spd": 117,
+              "spe": 149
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "neuroforce",
+            "item": "ultranecroziumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "photongeyser",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 0,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

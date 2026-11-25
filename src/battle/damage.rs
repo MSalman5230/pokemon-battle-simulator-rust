@@ -139,6 +139,13 @@ impl Battle {
                 },
             );
         }
+        if source_active && user.active_ability() == "neuroforce" {
+            add(
+                user.speed,
+                7,
+                Hook::Ability(source, if effectiveness > 0 { 5120 } else { 4096 }, ""),
+            );
+        }
         match if source_active {
             user.item.as_str()
         } else {
@@ -168,11 +175,19 @@ impl Battle {
             add(defender.speed, 2, Hook::Fixed(modifier, ""));
         }
         match defender.ability.as_str() {
-            "multiscale" => add(
+            id @ ("multiscale" | "shadowshield") => add(
                 defender.speed,
                 7,
                 if defender.hp == defender.max_hp.get() {
-                    Hook::Ability(target, 2048, "Multiscale weaken")
+                    Hook::Ability(
+                        target,
+                        2048,
+                        if id == "multiscale" {
+                            "Multiscale weaken"
+                        } else {
+                            "Shadow Shield weaken"
+                        },
+                    )
                 } else {
                     Hook::Ability(target, 4096, "")
                 },

@@ -1,0 +1,647 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Solgaleo\",\"moves\":[\"Sunsteel Strike\"],\"gender\":\"F\",\"name\":\"Solgaleo\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Full Metal Body\",\"item\":\"Solganium Z\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Mimikyu\",\"moves\":[\"Protect\"],\"gender\":\"F\",\"name\":\"Mimikyu\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Disguise\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Solgaleo, L50, F|",
+          "|poke|p2|Mimikyu, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Solgaleo, L50, F|",
+          "|poke|p2|Mimikyu, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Solgaleo, L50, F|",
+          "|poke|p2|Mimikyu, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Solgaleo",
+                "details": "Solgaleo, L50, F",
+                "condition": "212/212",
+                "active": true,
+                "stats": {
+                  "atk": 157,
+                  "def": 127,
+                  "spa": 133,
+                  "spd": 109,
+                  "spe": 117
+                },
+                "moves": [
+                  "sunsteelstrike"
+                ],
+                "baseAbility": "fullmetalbody",
+                "item": "solganiumz",
+                "pokeball": "pokeball",
+                "ability": "fullmetalbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Mimikyu",
+                "details": "Mimikyu, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 100,
+                  "spa": 70,
+                  "spd": 125,
+                  "spe": 116
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "disguise",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "disguise",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Solgaleo",
+            "species": "Solgaleo",
+            "details": "Solgaleo, L50, F",
+            "hp": 212,
+            "maxhp": 212,
+            "status": "",
+            "stats": {
+              "atk": 157,
+              "def": 127,
+              "spa": 133,
+              "spd": 109,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "fullmetalbody",
+            "item": "solganiumz",
+            "active": false,
+            "moves": [
+              {
+                "id": "sunsteelstrike",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Mimikyu",
+            "species": "Mimikyu",
+            "details": "Mimikyu, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 100,
+              "spa": 70,
+              "spd": 125,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "disguise",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Solgaleo|Solgaleo, L50, F|100/100",
+          "|switch|p2a: Mimikyu|Mimikyu, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Solgaleo|Solgaleo, L50, F|212/212",
+          "|switch|p2a: Mimikyu|Mimikyu, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Solgaleo|Solgaleo, L50, F|100/100",
+          "|switch|p2a: Mimikyu|Mimikyu, L50, F|130/130",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sunsteel Strike",
+                  "id": "sunsteelstrike",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Searing Sunraze Smash",
+                  "target": "normal"
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Solgaleo",
+                "details": "Solgaleo, L50, F",
+                "condition": "212/212",
+                "active": true,
+                "stats": {
+                  "atk": 157,
+                  "def": 127,
+                  "spa": 133,
+                  "spd": 109,
+                  "spe": 117
+                },
+                "moves": [
+                  "sunsteelstrike"
+                ],
+                "baseAbility": "fullmetalbody",
+                "item": "solganiumz",
+                "pokeball": "pokeball",
+                "ability": "fullmetalbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Mimikyu",
+                "details": "Mimikyu, L50, F",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 100,
+                  "spa": 70,
+                  "spd": 125,
+                  "spe": 116
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "disguise",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "disguise",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Solgaleo",
+            "species": "Solgaleo",
+            "details": "Solgaleo, L50, F",
+            "hp": 212,
+            "maxhp": 212,
+            "status": "",
+            "stats": {
+              "atk": 157,
+              "def": 127,
+              "spa": 133,
+              "spd": 109,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "fullmetalbody",
+            "item": "solganiumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "sunsteelstrike",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Mimikyu",
+            "species": "Mimikyu",
+            "details": "Mimikyu, L50, F",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 100,
+              "spa": 70,
+              "spd": 125,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "disguise",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 zmove",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Mimikyu|Protect|p2a: Mimikyu",
+          "|-singleturn|p2a: Mimikyu|Protect",
+          "|-zpower|p1a: Solgaleo",
+          "|move|p1a: Solgaleo|Searing Sunraze Smash|p2a: Mimikyu|[zeffect]",
+          "|-supereffective|p2a: Mimikyu|1",
+          "|-zbroken|p2a: Mimikyu",
+          "|-damage|p2a: Mimikyu|30/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Mimikyu|Protect|p2a: Mimikyu",
+          "|-singleturn|p2a: Mimikyu|Protect",
+          "|-zpower|p1a: Solgaleo",
+          "|move|p1a: Solgaleo|Searing Sunraze Smash|p2a: Mimikyu|[zeffect]",
+          "|-supereffective|p2a: Mimikyu|1",
+          "|-zbroken|p2a: Mimikyu",
+          "|-damage|p2a: Mimikyu|30/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Mimikyu|Protect|p2a: Mimikyu",
+          "|-singleturn|p2a: Mimikyu|Protect",
+          "|-zpower|p1a: Solgaleo",
+          "|move|p1a: Solgaleo|Searing Sunraze Smash|p2a: Mimikyu|[zeffect]",
+          "|-supereffective|p2a: Mimikyu|1",
+          "|-zbroken|p2a: Mimikyu",
+          "|-damage|p2a: Mimikyu|40/130",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sunsteel Strike",
+                  "id": "sunsteelstrike",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Solgaleo",
+                "details": "Solgaleo, L50, F",
+                "condition": "212/212",
+                "active": true,
+                "stats": {
+                  "atk": 157,
+                  "def": 127,
+                  "spa": 133,
+                  "spd": 109,
+                  "spe": 117
+                },
+                "moves": [
+                  "sunsteelstrike"
+                ],
+                "baseAbility": "fullmetalbody",
+                "item": "solganiumz",
+                "pokeball": "pokeball",
+                "ability": "fullmetalbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Mimikyu",
+                "details": "Mimikyu, L50, F",
+                "condition": "40/130",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 100,
+                  "spa": 70,
+                  "spd": 125,
+                  "spe": 116
+                },
+                "moves": [
+                  "protect"
+                ],
+                "baseAbility": "disguise",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "disguise",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Solgaleo",
+            "species": "Solgaleo",
+            "details": "Solgaleo, L50, F",
+            "hp": 212,
+            "maxhp": 212,
+            "status": "",
+            "stats": {
+              "atk": 157,
+              "def": 127,
+              "spa": 133,
+              "spd": 109,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "fullmetalbody",
+            "item": "solganiumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "sunsteelstrike",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Mimikyu",
+            "species": "Mimikyu",
+            "details": "Mimikyu, L50, F",
+            "hp": 40,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 100,
+              "spa": 70,
+              "spd": 125,
+              "spe": 116
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "disguise",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

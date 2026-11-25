@@ -1,0 +1,641 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Lunala\",\"moves\":[\"Moongeist Beam\"],\"gender\":\"F\",\"name\":\"Lunala\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Shadow Shield\",\"item\":\"Lunalium Z\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Clefable\",\"moves\":[\"Dazzling Gleam\"],\"gender\":\"F\",\"name\":\"Clefable\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Magic Guard\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Lunala, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Lunala, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Lunala, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Lunala",
+                "details": "Lunala, L50, F",
+                "condition": "212/212",
+                "active": true,
+                "stats": {
+                  "atk": 133,
+                  "def": 109,
+                  "spa": 157,
+                  "spd": 127,
+                  "spe": 117
+                },
+                "moves": [
+                  "moongeistbeam"
+                ],
+                "baseAbility": "shadowshield",
+                "item": "lunaliumz",
+                "pokeball": "pokeball",
+                "ability": "shadowshield",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "dazzlinggleam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Lunala",
+            "species": "Lunala",
+            "details": "Lunala, L50, F",
+            "hp": 212,
+            "maxhp": 212,
+            "status": "",
+            "stats": {
+              "atk": 133,
+              "def": 109,
+              "spa": 157,
+              "spd": 127,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shadowshield",
+            "item": "lunaliumz",
+            "active": false,
+            "moves": [
+              {
+                "id": "moongeistbeam",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "dazzlinggleam",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Lunala|Lunala, L50, F|100/100",
+          "|switch|p2a: Clefable|Clefable, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Lunala|Lunala, L50, F|212/212",
+          "|switch|p2a: Clefable|Clefable, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Lunala|Lunala, L50, F|100/100",
+          "|switch|p2a: Clefable|Clefable, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Moongeist Beam",
+                  "id": "moongeistbeam",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Menacing Moonraze Maelstrom",
+                  "target": "normal"
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Lunala",
+                "details": "Lunala, L50, F",
+                "condition": "212/212",
+                "active": true,
+                "stats": {
+                  "atk": 133,
+                  "def": 109,
+                  "spa": 157,
+                  "spd": 127,
+                  "spe": 117
+                },
+                "moves": [
+                  "moongeistbeam"
+                ],
+                "baseAbility": "shadowshield",
+                "item": "lunaliumz",
+                "pokeball": "pokeball",
+                "ability": "shadowshield",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dazzling Gleam",
+                  "id": "dazzlinggleam",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "dazzlinggleam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Lunala",
+            "species": "Lunala",
+            "details": "Lunala, L50, F",
+            "hp": 212,
+            "maxhp": 212,
+            "status": "",
+            "stats": {
+              "atk": 133,
+              "def": 109,
+              "spa": 157,
+              "spd": 127,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shadowshield",
+            "item": "lunaliumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "moongeistbeam",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "dazzlinggleam",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 zmove",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|-zpower|p1a: Lunala",
+          "|move|p1a: Lunala|Menacing Moonraze Maelstrom|p2a: Clefable|[zeffect]",
+          "|-damage|p2a: Clefable|4/100",
+          "|move|p2a: Clefable|Dazzling Gleam|p1a: Lunala",
+          "|-damage|p1a: Lunala|90/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|-zpower|p1a: Lunala",
+          "|move|p1a: Lunala|Menacing Moonraze Maelstrom|p2a: Clefable|[zeffect]",
+          "|-damage|p2a: Clefable|4/100",
+          "|move|p2a: Clefable|Dazzling Gleam|p1a: Lunala",
+          "|-damage|p1a: Lunala|191/212",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|-zpower|p1a: Lunala",
+          "|move|p1a: Lunala|Menacing Moonraze Maelstrom|p2a: Clefable|[zeffect]",
+          "|-damage|p2a: Clefable|7/170",
+          "|move|p2a: Clefable|Dazzling Gleam|p1a: Lunala",
+          "|-damage|p1a: Lunala|90/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Moongeist Beam",
+                  "id": "moongeistbeam",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Lunala",
+                "details": "Lunala, L50, F",
+                "condition": "191/212",
+                "active": true,
+                "stats": {
+                  "atk": 133,
+                  "def": 109,
+                  "spa": 157,
+                  "spd": 127,
+                  "spe": 117
+                },
+                "moves": [
+                  "moongeistbeam"
+                ],
+                "baseAbility": "shadowshield",
+                "item": "lunaliumz",
+                "pokeball": "pokeball",
+                "ability": "shadowshield",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dazzling Gleam",
+                  "id": "dazzlinggleam",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "7/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "dazzlinggleam"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Lunala",
+            "species": "Lunala",
+            "details": "Lunala, L50, F",
+            "hp": 191,
+            "maxhp": 212,
+            "status": "",
+            "stats": {
+              "atk": 133,
+              "def": 109,
+              "spa": 157,
+              "spd": 127,
+              "spe": 117
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shadowshield",
+            "item": "lunaliumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "moongeistbeam",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 7,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "dazzlinggleam",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

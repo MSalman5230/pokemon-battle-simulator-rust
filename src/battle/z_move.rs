@@ -34,6 +34,17 @@ fn generic_name(typing: &str) -> Option<&'static str> {
     })
 }
 
+pub(super) fn signature_supported(data: &Move) -> bool {
+    data.generic
+        || matches!(
+            data.name.as_str(),
+            "Genesis Supernova"
+                | "Guardian of Alola"
+                | "Light That Burns the Sky"
+                | "Splintered Stormshards"
+        )
+}
+
 type Variants = HashMap<(&'static str, &'static str), Move>;
 
 fn generic_attack(dex_mod: Mod, base: &'static Move, typing: &'static str) -> &'static Move {

@@ -1814,6 +1814,17 @@ fn national_dex_z_status_effects_are_applied_before_the_base_move() {
 }
 
 #[test]
+fn legacy_signature_z_attacks_apply_their_inherited_damage_and_field_hooks() {
+    replay(include_str!("fixtures/custom-z-soulblaze.json"));
+    replay(include_str!("fixtures/natdex-z-genesis.json"));
+    replay(include_str!("fixtures/natdex-z-guardian.json"));
+    replay(include_str!("fixtures/natdex-z-stormshards.json"));
+    replay(include_str!("fixtures/natdex-z-sunraze.json"));
+    replay(include_str!("fixtures/natdex-z-moonraze.json"));
+    replay(include_str!("fixtures/custom-z-ultra.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
