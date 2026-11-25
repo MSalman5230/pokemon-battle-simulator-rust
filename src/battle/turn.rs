@@ -12,6 +12,10 @@ pub(super) struct Position {
 }
 
 impl Position {
+    fn mask(self) -> u8 {
+        1 << (self.player.index() * 2 + self.slot)
+    }
+
     pub(super) fn loc(self, source: Self) -> i8 {
         (self.slot as i8 + 1) * if self.player == source.player { -1 } else { 1 }
     }
@@ -232,7 +236,7 @@ impl Battle {
         });
     }
 
-    pub(super) fn start_selected(&mut self) {
+    pub(super) fn start_selected(&mut self) -> Result<(), BattleError> {
         self.add("|");
         for player in Player::ALL {
             self.add(format!(
@@ -250,7 +254,7 @@ impl Battle {
                 self.insert_run_switch(pos, &mut queue);
             }
         }
-        self.run_queue(queue);
+        self.run_queue(queue)
     }
 
     fn force_switch(&self, player: Player) -> Vec<bool> {
@@ -379,7 +383,7 @@ impl Battle {
             } else {
                 queue.append(&mut self.suspended);
             }
-            self.run_queue(queue);
+            self.run_queue(queue)?;
         }
         Ok(())
     }
@@ -726,6 +730,8 @@ impl Battle {
                     | "supercellslam"
                     | "highjumpkick"
                     | "jumpkick"
+                    | "dragontail"
+                    | "circlethrow"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -891,7 +897,99 @@ impl Battle {
         self.insert_action(queue, action);
     }
 
-    fn run_queue(&mut self, mut queue: Vec<Action>) {
+    fn run_switch_batch(&mut self, first: Position, queue: &mut Vec<Action>) {
+        // Simultaneous entry effects use a fresh speed order over the field.
+        let batch_len = queue
+            .iter()
+            .take_while(|q| matches!(q.kind, ActionKind::RunSwitch))
+            .count();
+        let mut switching = [None; 4];
+        switching[0] = Some(first);
+        for (i, action) in queue.drain(..batch_len).enumerate() {
+            switching[i + 1] = action.actor;
+        }
+        let (order, count) = self.ordered_actives(true);
+        for (pos, _) in order.into_iter().take(count) {
+            if switching.contains(&Some(pos))
+                && self.mon(pos).hp > 0
+                && self.mon(pos).ability == "unnerve"
+            {
+                self.add(format!("|-ability|{}|Unnerve", self.ident(pos)));
+            }
+        }
+        for (pos, _) in order.into_iter().take(count) {
+            if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
+                self.on_switch_in_hazards(pos);
+                if self.check_win() {
+                    return;
+                }
+                if self.mon(pos).hp == 0 {
+                    continue;
+                }
+                self.start_ability(pos);
+                self.on_switch_in_item(pos);
+            }
+        }
+    }
+
+    fn switch_party_member(
+        &mut self,
+        outgoing: Position,
+        bench_slot: usize,
+        pivot: Option<&str>,
+        drag: bool,
+    ) {
+        if !self.mon(outgoing).fainted && pivot.is_none() && !drag {
+            self.each_event();
+        }
+        let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
+        party[outgoing.slot].protected = false;
+        party[outgoing.slot].stall = None;
+        party[outgoing.slot].boosts = Boosts::default();
+        party[outgoing.slot].flinched = false;
+        party[outgoing.slot].recharge = 0;
+        party[outgoing.slot].confusion = 0;
+        party[outgoing.slot].rampage = None;
+        party[outgoing.slot].glaive_drawback = false;
+        party[outgoing.slot].volatile_order.clear();
+        party[outgoing.slot].imprisoned = false;
+        party[outgoing.slot].choice_lock = None;
+        party[outgoing.slot].active_turns = 0;
+        party[outgoing.slot].active_move_actions = 0;
+        party[outgoing.slot].roosted = false;
+        party[outgoing.slot].temporary_type = None;
+        party[outgoing.slot].yawn = 0;
+        party[outgoing.slot].taunt = 0;
+        party[outgoing.slot].encore = None;
+        party[outgoing.slot].attract = None;
+        party[outgoing.slot].disabled_slot = None;
+        party[outgoing.slot].last_move_slot = None;
+        party[outgoing.slot].acted = false;
+        if !party[outgoing.slot].fainted {
+            party[outgoing.slot].times_attacked = 0;
+        }
+        party[outgoing.slot].needs_replacement = false;
+        party[outgoing.slot].speed = party[outgoing.slot].stats.spe as i32;
+        party[outgoing.slot].pivot_move = None;
+        party[outgoing.slot].reset_ability();
+        if party[outgoing.slot].fainted {
+            party[outgoing.slot].status = Status::Healthy;
+        }
+        party.swap(outgoing.slot, bench_slot);
+        party[outgoing.slot].used_moves = 0;
+        if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
+            party[outgoing.slot].status = Status::Toxic(0);
+        }
+        if drag {
+            self.add_health_line("drag", outgoing, true);
+        } else if let Some(move_name) = pivot {
+            self.add_health_line_with("switch", outgoing, true, &format!("|[from] {move_name}"));
+        } else {
+            self.add_health_line("switch", outgoing, true);
+        }
+    }
+
+    fn run_queue(&mut self, mut queue: Vec<Action>) -> Result<(), BattleError> {
         while !queue.is_empty() {
             let action = queue.remove(0);
             match action.kind {
@@ -904,94 +1002,12 @@ impl Battle {
                 ActionKind::BeforeTurn => {
                     self.ordered_actives(false);
                 }
-                ActionKind::RunSwitch => {
-                    // Simultaneous entry effects use a fresh speed order over the field.
-                    let batch_len = queue
-                        .iter()
-                        .take_while(|q| matches!(q.kind, ActionKind::RunSwitch))
-                        .count();
-                    let mut switching = [None; 4];
-                    switching[0] = action.actor;
-                    for (i, action) in queue.drain(..batch_len).enumerate() {
-                        switching[i + 1] = action.actor;
-                    }
-                    let (order, count) = self.ordered_actives(true);
-                    for (pos, _) in order.into_iter().take(count) {
-                        if switching.contains(&Some(pos))
-                            && self.mon(pos).hp > 0
-                            && self.mon(pos).ability == "unnerve"
-                        {
-                            self.add(format!("|-ability|{}|Unnerve", self.ident(pos)));
-                        }
-                    }
-                    for (pos, _) in order.into_iter().take(count) {
-                        if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
-                            self.on_switch_in_hazards(pos);
-                            if self.check_win() {
-                                return;
-                            }
-                            if self.mon(pos).hp == 0 {
-                                continue;
-                            }
-                            self.start_ability(pos);
-                            self.on_switch_in_item(pos);
-                        }
-                    }
-                }
+                ActionKind::RunSwitch => self.run_switch_batch(action.actor.unwrap(), &mut queue),
                 ActionKind::Switch {
                     bench_slot, pivot, ..
                 } => {
                     let outgoing = action.actor.unwrap();
-                    if !self.mon(outgoing).fainted && pivot.is_none() {
-                        self.each_event();
-                    } // BeforeSwitchOut update
-                    let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
-                    party[outgoing.slot].protected = false;
-                    party[outgoing.slot].stall = None;
-                    party[outgoing.slot].boosts = Boosts::default();
-                    party[outgoing.slot].flinched = false;
-                    party[outgoing.slot].recharge = 0;
-                    party[outgoing.slot].confusion = 0;
-                    party[outgoing.slot].rampage = None;
-                    party[outgoing.slot].glaive_drawback = false;
-                    party[outgoing.slot].volatile_order.clear();
-                    party[outgoing.slot].imprisoned = false;
-                    party[outgoing.slot].choice_lock = None;
-                    party[outgoing.slot].active_turns = 0;
-                    party[outgoing.slot].active_move_actions = 0;
-                    party[outgoing.slot].roosted = false;
-                    party[outgoing.slot].temporary_type = None;
-                    party[outgoing.slot].yawn = 0;
-                    party[outgoing.slot].taunt = 0;
-                    party[outgoing.slot].encore = None;
-                    party[outgoing.slot].attract = None;
-                    party[outgoing.slot].disabled_slot = None;
-                    party[outgoing.slot].last_move_slot = None;
-                    party[outgoing.slot].acted = false;
-                    if !party[outgoing.slot].fainted {
-                        party[outgoing.slot].times_attacked = 0;
-                    }
-                    party[outgoing.slot].needs_replacement = false;
-                    party[outgoing.slot].pivot_move = None;
-                    party[outgoing.slot].reset_ability();
-                    if party[outgoing.slot].fainted {
-                        party[outgoing.slot].status = Status::Healthy;
-                    }
-                    party.swap(outgoing.slot, bench_slot);
-                    party[outgoing.slot].used_moves = 0;
-                    if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
-                        party[outgoing.slot].status = Status::Toxic(0);
-                    }
-                    if let Some(move_name) = pivot {
-                        self.add_health_line_with(
-                            "switch",
-                            outgoing,
-                            true,
-                            &format!("|[from] {move_name}"),
-                        );
-                    } else {
-                        self.add_health_line("switch", outgoing, true);
-                    }
+                    self.switch_party_member(outgoing, bench_slot, pivot, false);
                     self.insert_run_switch(outgoing, &mut queue);
                 }
                 ActionKind::Move {
@@ -1009,8 +1025,11 @@ impl Battle {
                 }
                 ActionKind::Residual => self.residual(),
             }
+            if self.drag_flags != 0 {
+                self.apply_drags(&mut queue)?;
+            }
             if self.phase == Phase::Ended || self.check_win() {
-                return;
+                return Ok(());
             }
             if queue.is_empty() {
                 for player in Player::ALL {
@@ -1054,7 +1073,7 @@ impl Battle {
             if waiting {
                 self.suspended = queue;
                 self.phase = Phase::Replace;
-                return;
+                return Ok(());
             }
             if queue
                 .first()
@@ -1083,6 +1102,38 @@ impl Battle {
         }
         self.add(format!("|turn|{}", self.turn));
         self.phase = Phase::Move;
+        Ok(())
+    }
+
+    fn apply_drags(&mut self, queue: &mut Vec<Action>) -> Result<(), BattleError> {
+        let flags = std::mem::take(&mut self.drag_flags);
+        for target in self.positions() {
+            if flags & target.mask() == 0 || self.mon(target).hp == 0 {
+                continue;
+            }
+            let slots = self.slots();
+            let candidates: Vec<_> = self
+                .party(target.player)
+                .unwrap()
+                .iter()
+                .enumerate()
+                .skip(slots)
+                .filter(|&(_, mon)| !mon.fainted)
+                .map(|(slot, _)| slot)
+                .collect();
+            if candidates.is_empty() {
+                continue;
+            }
+            let bench_slot = candidates[self.rng.below(candidates.len() as u32) as usize];
+            if let Some(error) = self.party(target.player).unwrap()[bench_slot].entry_error() {
+                return Err(error);
+            }
+            queue.retain(|q| q.actor != Some(target) || matches!(q.kind, ActionKind::RunSwitch));
+            self.switch_party_member(target, bench_slot, None, true);
+            self.reset_ability_order(target);
+            self.run_switch_batch(target, queue);
+        }
+        Ok(())
     }
 
     pub(super) fn start_ability(&mut self, pos: Position) {
@@ -2306,6 +2357,20 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
+                if matches!(move_data.name.as_str(), "Dragon Tail" | "Circle Throw")
+                    && self.mon(target).hp > 0
+                    && self.mon(source).hp > 0
+                    && self.first_bench(target.player, 0).is_some()
+                {
+                    if self.mon(target).ability == "suctioncups" {
+                        self.add(format!(
+                            "|-activate|{}|ability: Suction Cups",
+                            self.ident(target)
+                        ));
+                    } else {
+                        self.drag_flags |= target.mask();
+                    }
+                }
                 if (move_type == "Fire" || move_data.thaws_target)
                     && matches!(self.mon(target).status, Status::Freeze(_))
                 {
@@ -2687,6 +2752,7 @@ impl Pokemon {
                 | "trace"
                 | "illuminate"
                 | "skilllink"
+                | "suctioncups"
                 | "electricsurge"
                 | "grassysurge"
                 | "mistysurge"

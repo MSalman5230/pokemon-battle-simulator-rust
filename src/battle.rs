@@ -126,6 +126,7 @@ pub struct Battle {
     trick_room: u8,
     ability_order: u32,
     pending_actions: [Option<Vec<Action>>; 2],
+    drag_flags: u8,
     suspended: Vec<Action>,
     cant_undo: [bool; 2],
 }
@@ -310,6 +311,7 @@ impl Battle {
             trick_room: 0,
             ability_order: 0,
             pending_actions: [None, None],
+            drag_flags: 0,
             suspended: Vec::new(),
             cant_undo: [false; 2],
         };
@@ -507,7 +509,7 @@ impl Battle {
                 return Err(error);
             }
             self.select_leads();
-            self.start_selected();
+            self.start_selected()?;
         }
         Ok(())
     }

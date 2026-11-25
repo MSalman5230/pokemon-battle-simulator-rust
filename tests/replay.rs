@@ -365,3 +365,13 @@ fn bss_tidy_up_stored_power_and_crash_damage() {
 fn bss_own_tempo_prevents_confusion_and_intimidate() {
     replay(include_str!("fixtures/bss-own-tempo.json"));
 }
+
+#[test]
+fn bss_phazing_samples_a_bench_member_without_a_replacement_request() {
+    replay(include_str!("fixtures/bss-phazing.json"));
+}
+
+#[test]
+fn vgc_phazing_cancels_the_removed_pokemons_queued_move() {
+    replay(include_str!("fixtures/vgc-phazing.json"));
+}
