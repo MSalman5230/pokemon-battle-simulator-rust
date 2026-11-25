@@ -100,6 +100,7 @@ impl Battle {
             b.0.cmp(&a.0).then_with(|| a.1.cmp(&b.1))
         });
         let mut modifier = 4096;
+        let mut ripened = false;
         for &(_, _, hook) in hooks.iter() {
             let (next, debug) = match hook {
                 Hook::Fixed(value, debug) => (value, debug),
@@ -113,6 +114,7 @@ impl Battle {
                     (value, debug)
                 }
                 Hook::Berry(name, true) if !self.foe_unnerve(target) => {
+                    ripened = self.event_ability(target) == "ripen";
                     self.consume(target, name, true);
                     self.symbiosis_after_item(target);
                     if self.format.report_exact_hp {
@@ -134,6 +136,11 @@ impl Battle {
                 self.add(format!("|debug|{debug}"));
             }
             modifier = chain(modifier, next);
+        }
+        if ripened {
+            // Ripen's damage handler runs after the berry and other
+            // priority-zero damage modifiers.
+            modifier = chain(modifier, 2048);
         }
         modifier
     }

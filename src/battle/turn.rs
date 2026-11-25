@@ -4407,6 +4407,7 @@ impl Pokemon {
                 | "supremeoverlord"
                 | "receiver"
                 | "powerofalchemy"
+                | "ripen"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

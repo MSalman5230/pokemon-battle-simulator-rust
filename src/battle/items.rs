@@ -145,10 +145,10 @@ impl Battle {
             return;
         }
         self.consume(pos, name, true);
-        let amount = if self.event_ability(pos) == "contrary" {
-            -1
-        } else {
-            1
+        let amount = match self.event_ability(pos) {
+            "contrary" => -1,
+            "ripen" => 2,
+            _ => 1,
         };
         let mon = self.mon_mut(pos);
         let changed = mon.boosts.add(stat, amount);
@@ -287,15 +287,28 @@ impl Battle {
     }
 
     pub(super) fn item_heal(&mut self, pos: Position, amount: u32, item: &str) {
+        let ripen = self.event_ability(pos) == "ripen";
+        if ripen && item == "Leftovers" {
+            self.add(format!("|-activate|{}|ability: Ripen", self.ident(pos)));
+        }
         let mon = self.mon_mut(pos);
         if mon.hp == 0 || mon.hp == mon.max_hp.get() {
             return;
         }
-        mon.hp = (mon.hp + amount.max(1)).min(mon.max_hp.get());
+        let amount = amount.max(1)
+            * if ripen && item == "Sitrus Berry" {
+                2
+            } else {
+                1
+            };
+        mon.hp = (mon.hp + amount).min(mon.max_hp.get());
         self.add_health_line_with("-heal", pos, false, &format!("|[from] item: {item}"));
     }
 
     pub(super) fn consume(&mut self, pos: Position, item: &str, eaten: bool) {
+        if eaten && self.event_ability(pos) == "ripen" {
+            self.add(format!("|-activate|{}|ability: Ripen", self.ident(pos)));
+        }
         let id = self.lose_held_item(pos);
         // Air Balloon runs AfterUseItem directly without recording lastItem.
         if !id.is_empty() && id != "airballoon" {
