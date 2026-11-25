@@ -1162,6 +1162,8 @@ impl Battle {
             let change = self.mon_mut(pos).boosts.add(stat, amount);
             if change > 0 {
                 self.mon_mut(pos).stats_raised = true;
+            } else if change < 0 {
+                self.mon_mut(pos).stats_lowered = true;
             }
             if change != 0 && label == "Anger Point" {
                 let stage = self.mon(pos).boosts.get(stat);

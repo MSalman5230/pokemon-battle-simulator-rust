@@ -60,6 +60,12 @@ enum MoveInvocation {
     },
 }
 
+#[derive(Default)]
+struct MoveResult {
+    spends_charge: bool,
+    failed: bool,
+}
+
 impl Protection {
     fn volatile(self) -> &'static str {
         match self {
@@ -1018,6 +1024,8 @@ impl Battle {
                     | "flyingpress"
                     | "charge"
                     | "throatchop"
+                    | "lashout"
+                    | "stompingtantrum"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -1373,6 +1381,8 @@ impl Battle {
         party[outgoing.slot].attract = None;
         party[outgoing.slot].disabled_slot = None;
         party[outgoing.slot].last_move_slot = None;
+        party[outgoing.slot].move_failed_this_turn = false;
+        party[outgoing.slot].move_failed_last_turn = false;
         party[outgoing.slot].last_foe_hit = None;
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
@@ -1621,6 +1631,8 @@ impl Battle {
             mon.revealed_all_disables = false;
             mon.acted = false;
             mon.stats_raised = false;
+            mon.stats_lowered = false;
+            mon.move_failed_last_turn = std::mem::take(&mut mon.move_failed_this_turn);
             mon.used_item_this_turn = false;
             if !mon.fainted {
                 mon.active_turns += 1;
@@ -2365,10 +2377,13 @@ impl Battle {
         invocation: MoveInvocation,
         queue: &mut Vec<Action>,
     ) -> bool {
-        let mut spends_charge = false;
-        let attempted = self.run_move_inner(source, invocation, queue, &mut spends_charge);
-        if spends_charge {
+        let mut result = MoveResult::default();
+        let attempted = self.run_move_inner(source, invocation, queue, &mut result);
+        if result.spends_charge {
             self.use_electric_charge(source);
+        }
+        if !matches!(invocation, MoveInvocation::Future { .. }) && !self.mon(source).fainted {
+            self.mon_mut(source).move_failed_this_turn = result.failed || !attempted;
         }
         attempted
     }
@@ -2378,7 +2393,7 @@ impl Battle {
         source: Position,
         invocation: MoveInvocation,
         queue: &mut Vec<Action>,
-        spends_charge: &mut bool,
+        result: &mut MoveResult,
     ) -> bool {
         let (slot, loc, forced_target, reflected, prankster) = match invocation {
             MoveInvocation::Choice {
@@ -2417,7 +2432,7 @@ impl Battle {
             MoveInvocation::Choice { slot, .. } => self.move_data(source, slot),
             MoveInvocation::Reflected { data, .. } | MoveInvocation::Future { data, .. } => data,
         };
-        *spends_charge =
+        result.spends_charge =
             own_action && move_data.name != "Charge" && move_data.move_type == "Electric";
         let struggle = slot == Some(STRUGGLE_SLOT);
         let charge_spec = ChargeSpec::for_move(&move_data.name);
@@ -2516,7 +2531,7 @@ impl Battle {
             self.add(format!("|cant|{source_name}|move: Throat Chop"));
             return false;
         }
-        *spends_charge = own_action && move_data.name != "Charge" && move_type == "Electric";
+        result.spends_charge = own_action && move_data.name != "Charge" && move_type == "Electric";
         if move_data.name == "Focus Punch" && self.mon(source).lost_focus {
             self.add(format!("|cant|{source_name}|Focus Punch|Focus Punch"));
             return false;
@@ -2718,6 +2733,7 @@ impl Battle {
             self.log[base].public.push_str("|[notarget]");
             self.add(format!("|-fail|{source_name}"));
             self.note_consecutive_move(consecutive, move_data);
+            result.failed = true;
             return true;
         }
 
@@ -2758,6 +2774,7 @@ impl Battle {
         {
             self.add(format!("|-fail|{source_name}|move: {}", move_data.name));
             self.move_still(base);
+            // Its TryMove hook deliberately returns null, not false.
             return true;
         }
         let priority = self.base_move_priority(source, move_data) + i8::from(prankster);
@@ -2772,12 +2789,14 @@ impl Battle {
                 self.ident(holder),
                 move_data.name
             ));
+            result.failed = true;
             return true;
         }
         if !delayed && matches!(move_data.name.as_str(), "Future Sight" | "Doom Desire") {
             if !self.schedule_future_move(source, spread_targets[0], move_data) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -2785,6 +2804,7 @@ impl Battle {
             if self.first_bench(source.player, 0).is_none() {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             } else {
                 self.protean_prepare(source, move_type);
                 self.prepare_replacement_heal(source, effect);
@@ -2798,12 +2818,14 @@ impl Battle {
         if move_data.name == "Belch" && !self.mon(source).ate_berry {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
             return true;
         }
         if move_data.name == "No Retreat" && self.mon(source).volatile_ids().contains(&"noretreat")
         {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
             return true;
         }
         if sacrifice || mind_blown {
@@ -2818,6 +2840,7 @@ impl Battle {
                 if sacrifice {
                     self.mark_fainted(source);
                 }
+                result.failed = true;
                 return true;
             }
         }
@@ -2868,6 +2891,7 @@ impl Battle {
             if !self.set_screen(source, screen) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -2876,6 +2900,7 @@ impl Battle {
             if !self.start_tailwind(source.player) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             } else {
                 self.charge_from_tailwind(source.player);
             }
@@ -2889,11 +2914,13 @@ impl Battle {
                 && !self.mon(spread_targets[0]).semi_invulnerable()
             {
                 self.bounce_move(holder, source, move_data, queue);
+                result.failed = true;
                 return true;
             }
             if !self.add_hazard(source.player.foe(), hazard) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -2902,6 +2929,7 @@ impl Battle {
             if !self.court_change(source) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -2920,6 +2948,7 @@ impl Battle {
             if !self.perish_song(source, priority) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -2939,6 +2968,7 @@ impl Battle {
             if !self.set_weather(source, weather, None) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -2952,6 +2982,7 @@ impl Battle {
             } else if !snow_started {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -2961,6 +2992,7 @@ impl Battle {
             if mon.imprisoned {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             } else {
                 mon.imprisoned = true;
                 mon.track_volatile("imprison");
@@ -2975,6 +3007,7 @@ impl Battle {
             if !self.set_terrain(source, terrain, None) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -2982,6 +3015,7 @@ impl Battle {
             let mon = self.mon(source);
             if mon.hp == mon.max_hp.get() {
                 self.add(format!("|-fail|{source_name}|heal"));
+                result.failed = true;
             } else if matches!(mon.ability.as_str(), "insomnia" | "vitalspirit") {
                 let ability = if mon.ability == "insomnia" {
                     "Insomnia"
@@ -2991,6 +3025,7 @@ impl Battle {
                 self.add(format!(
                     "|-fail|{source_name}|[from] ability: {ability}|[of] {source_name}"
                 ));
+                result.failed = true;
             } else {
                 self.protean_prepare(source, move_type);
                 if self.status_blocked_by_ability(source, "slp", false)
@@ -3003,6 +3038,7 @@ impl Battle {
                 {
                     self.move_still(base);
                     self.add(format!("|-fail|{source_name}"));
+                    result.failed = true;
                     return true;
                 }
                 self.set_status(source, "slp", source.player, Some("Rest"));
@@ -3026,6 +3062,7 @@ impl Battle {
             } else {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -3035,6 +3072,7 @@ impl Battle {
             if mon.hp <= cost || mon.max_hp.get() == 1 {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
                 return true;
             }
             self.protean_prepare(source, move_type);
@@ -3043,6 +3081,8 @@ impl Battle {
                 self.add_health_line("-damage", source, false);
                 self.each_event();
                 self.each_event();
+            } else {
+                result.failed = true;
             }
             return true;
         }
@@ -3050,6 +3090,7 @@ impl Battle {
             let shed_tail = move_data.name == "Shed Tail";
             if shed_tail && self.first_bench(source.player, 0).is_none() {
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
                 return true;
             }
             self.protean_prepare(source, move_type);
@@ -3059,6 +3100,8 @@ impl Battle {
                 }
                 self.each_event();
                 self.each_event();
+            } else {
+                result.failed = true;
             }
             return true;
         }
@@ -3071,6 +3114,7 @@ impl Battle {
             } else {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             }
             return true;
         }
@@ -3089,6 +3133,7 @@ impl Battle {
                 }
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
                 return true;
             }
             self.protean_prepare(source, move_type);
@@ -3111,6 +3156,7 @@ impl Battle {
             if self.clear_destiny_bond(source, false) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             } else {
                 self.protean_prepare(source, move_type);
                 let mon = self.mon_mut(source);
@@ -3131,6 +3177,7 @@ impl Battle {
             if self.slots() == 1 {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
             } else {
                 self.protean_prepare(source, move_type);
                 let (name, id) = attention.name_id();
@@ -3153,16 +3200,19 @@ impl Battle {
             ));
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
             return true;
         }
         if move_data.name == "Poltergeist" && self.mon(spread_targets[0]).item.is_empty() {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
             return true;
         }
         if retaliation && !retaliation_hit.is_some_and(|hit| hit.turn == self.turn) {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
             return true;
         }
         if matches!(move_data.name.as_str(), "Sucker Punch" | "Thunderclap") {
@@ -3175,6 +3225,7 @@ impl Battle {
             if !pending_attack {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
                 return true;
             }
         }
@@ -3182,6 +3233,7 @@ impl Battle {
             self.protean_prepare(source, move_type);
         }
         let spread = !darts && spread_targets.len() > 1;
+        let potential = spread_targets.len();
         spread_targets.retain(|&target| {
             if self
                 .mon(target)
@@ -3203,8 +3255,11 @@ impl Battle {
             self.add(format!("|-miss|{source_name}|{}", self.ident(target)));
             false
         });
+        let mut failed_hit = spread_targets.len() != potential;
         // Preserve upstream's hit-step batching: all protection and immunity
         // checks, then all accuracy rolls, then all damage calculations.
+        let potential = spread_targets.len();
+        let mut protected = 0;
         spread_targets.retain(|&mut_pos| {
             if self.terrain() == Some(Terrain::Psychic)
                 && priority > 0
@@ -3222,6 +3277,9 @@ impl Battle {
                 && (protect == Protection::Protect || move_data.category != Category::Status)
                 && move_data.flags.contains_key("protect")
             {
+                // Protect and King's Shield return NOT_FAIL, unlike a type
+                // immunity or a stopped move from Psychic Terrain.
+                protected += 1;
                 if smart_target {
                     smart_target = false;
                 } else {
@@ -3329,8 +3387,10 @@ impl Battle {
                 true
             }
         });
+        failed_hit |= spread_targets.len() + protected != potential;
         smart_target &= spread_targets.len() > 1;
         let ignores_type = !delayed && self.move_ignores_immunity(source, move_data, move_type);
+        let potential = spread_targets.len();
         spread_targets.retain(|&pos| {
             if !ignores_type
                 && move_type == "Ground"
@@ -3391,6 +3451,7 @@ impl Battle {
         {
             self.move_still(base);
             self.add(format!("|-fail|{source_name}"));
+            result.failed = true;
             return true;
         }
         spread_targets.retain(|&pos| {
@@ -3448,6 +3509,7 @@ impl Battle {
             }
         });
         if spread_targets.is_empty() {
+            result.failed = failed_hit || potential != 0;
             if spread {
                 self.log[base].public.push_str("|[spread] ");
             }
@@ -3850,6 +3912,8 @@ impl Battle {
                     self.mark_fainted(source);
                 }
                 self.each_event();
+            } else {
+                result.failed = true;
             }
             return true;
         }
@@ -4000,6 +4064,15 @@ impl Battle {
                 if move_data.name == "Hex" && battle.mon(target).status != Status::Healthy {
                     if battle.format.report_exact_hp {
                         battle.add("|debug|BP doubled from status condition");
+                    }
+                    power *= 2;
+                }
+                if move_data.name == "Stomping Tantrum" && battle.mon(source).move_failed_last_turn
+                {
+                    if battle.format.report_exact_hp {
+                        battle.add(
+                            "|debug|doubling Stomping Tantrum BP due to previous move failure",
+                        );
                     }
                     power *= 2;
                 }
@@ -4698,6 +4771,8 @@ impl Battle {
         mon.attract = None;
         mon.disabled_slot = None;
         mon.last_move_slot = None;
+        mon.move_failed_this_turn = false;
+        mon.move_failed_last_turn = false;
         mon.last_foe_hit = None;
         mon.counter = None;
         mon.times_attacked = 0;
@@ -4756,6 +4831,8 @@ impl Battle {
             let changed = mon.boosts.add(stat, amount);
             if changed > 0 {
                 mon.stats_raised = true;
+            } else if changed < 0 {
+                mon.stats_lowered = true;
             }
             let event = if amount < 0 || mon.boosts.get(stat) == -6 {
                 "-unboost"

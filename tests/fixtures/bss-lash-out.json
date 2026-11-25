@@ -1,0 +1,1374 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Lash Out\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Jolteon\",\"moves\":[\"Tail Whip\",\"Recover\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Arcanine\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Arcanine\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Intimidate\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lashout"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tailwhip",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "lashout",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|100/100",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|170/170",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Umbreon|Umbreon, L50, F|100/100",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|140/140",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Lash Out",
+                  "id": "lashout",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lashout"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tailwhip",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lashout",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Jolteon|Tail Whip|p1a: Umbreon",
+          "|-unboost|p1a: Umbreon|def|1",
+          "|move|p1a: Umbreon|Lash Out|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|25/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Jolteon|Tail Whip|p1a: Umbreon",
+          "|-unboost|p1a: Umbreon|def|1",
+          "|move|p1a: Umbreon|Lash Out|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|25/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Jolteon|Tail Whip|p1a: Umbreon",
+          "|-unboost|p1a: Umbreon|def|1",
+          "|move|p1a: Umbreon|Lash Out|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|35/140",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Lash Out",
+                  "id": "lashout",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lashout"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "35/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tailwhip",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lashout",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 35,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Jolteon|Recover|p2a: Jolteon",
+          "|-heal|p2a: Jolteon|75/100",
+          "|move|p1a: Umbreon|Lash Out|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|42/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Jolteon|Recover|p2a: Jolteon",
+          "|-heal|p2a: Jolteon|75/100",
+          "|move|p1a: Umbreon|Lash Out|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|42/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Jolteon|Recover|p2a: Jolteon",
+          "|-heal|p2a: Jolteon|105/140",
+          "|move|p1a: Umbreon|Lash Out|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|59/140",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Lash Out",
+                  "id": "lashout",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lashout"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "59/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tailwhip",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lashout",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 59,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 2"
+      ],
+      "turn": 4,
+      "seed": "54274,43667,37867,24894",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|100/100",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Umbreon|atk|1",
+          "|move|p1a: Umbreon|Lash Out|p2a: Arcanine",
+          "|-damage|p2a: Arcanine|70/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|100/100",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Umbreon|atk|1",
+          "|move|p1a: Umbreon|Lash Out|p2a: Arcanine",
+          "|-damage|p2a: Arcanine|70/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-unboost|p1a: Umbreon|atk|1",
+          "|move|p1a: Umbreon|Lash Out|p2a: Arcanine",
+          "|-damage|p2a: Arcanine|116/165",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Lash Out",
+                  "id": "lashout",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lashout"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "116/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "59/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tailwhip",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": -1,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lashout",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 116,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 59,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

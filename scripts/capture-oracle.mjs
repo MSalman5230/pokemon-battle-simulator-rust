@@ -1055,6 +1055,15 @@ const klutzRosters = [
         {...named('Audino', ['Tackle']), ability:'Klutz', item:'Sitrus Berry'}],
     [named('Umbreon', ['Tackle', 'Earthquake', 'Knock Off', 'Seismic Toss'])],
 ];
+const tantrumRosters = [
+    [named('Arcanine', ['Recover', 'Stomping Tantrum', 'Tackle'])],
+    [named('Umbreon', ['Recover', 'Protect'])],
+];
+const lashOutRosters = [
+    [named('Umbreon', ['Lash Out'])],
+    [named('Jolteon', ['Tail Whip', 'Recover']),
+        {...named('Arcanine', ['Recover']), ability:'Intimidate'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1604,6 +1613,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 123','team 1'], ['move 1','move 1'], ['move 2','move 1'], ['switch 2','move 2'],
         ['move 1','move 3'], ['switch 3','move 4'], ['move 1','move 4']],
         klutzRosters, 'bss-klutz'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 3','move 2'], ['move 2','move 1']], tantrumRosters, 'bss-stomping-tantrum'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 1','move 2'],
+        ['move 1','switch 2']], lashOutRosters, 'bss-lash-out'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -1147,6 +1147,16 @@ fn klutz_suppresses_item_effects_without_removing_held_items() {
 }
 
 #[test]
+fn stomping_tantrum_distinguishes_failures_from_protected_attempts() {
+    replay(include_str!("fixtures/bss-stomping-tantrum.json"));
+}
+
+#[test]
+fn lash_out_only_boosts_when_a_stat_fell_this_turn() {
+    replay(include_str!("fixtures/bss-lash-out.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -269,6 +269,10 @@ impl Battle {
             self.add("|debug|charge boost");
         }
         let terrain_power = self.terrain_power_modifier(source, target, move_data, move_type);
+        let lash_out = move_data.name == "Lash Out" && self.mon(source).stats_lowered;
+        if lash_out && self.format.report_exact_hp {
+            self.add("|debug|lashout buff");
+        }
         let dry_skin = move_type == "Fire" && self.event_ability(target) == "dryskin";
         let misty_explosion = move_data.name == "Misty Explosion"
             && self.terrain() == Some(Terrain::Misty)
@@ -447,6 +451,9 @@ impl Battle {
             power_modifier = chain(power_modifier, 8192);
         }
         power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
+        if lash_out {
+            power_modifier = chain(power_modifier, 8192);
+        }
         if mon
             .semi_invulnerability()
             .is_some_and(|state| state.doubles_power(&move_data.name))
