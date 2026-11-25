@@ -117,6 +117,12 @@ the party state, and the battle RNG, even when the replay reaches its turn
 cap. It reports the first mismatch in each game. Use
 `CHAMPIONS_NATIVE_CORPUS` to select a different generated corpus.
 
+The [recorded 24-game sample](verified-native-generated-parity.json) matches
+all 574 checkpoints. Eighteen games ended naturally. The other six reached
+the 30-turn cap with exact results through their last recorded checkpoint.
+This is a native parity sample and does not measure throughput or establish
+coverage of every move, ability, or item.
+
 ## Profile adapter overhead
 
 `benchmarks/profile-oracle.mjs` runs the locked worker's `Game` in-process
