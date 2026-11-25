@@ -80,6 +80,24 @@ transformed.input.sides[0].pokemon[0].transformed = {
         {name: 'Protect', pp: 5}, {name: 'Volt Switch', pp: 5}],
     pp_used: {'Thunderbolt': 3, 'Protect': 5}, copied_effects: {focusenergy: {}},
 };
+const doubleSend = world([5, 12, 24, 36], [[8, 7, 6, 5]]);
+doubleSend.input.kind = 'send';
+for (const side of doubleSend.input.sides) {
+    side.pokemon[0].hp = 0;
+    side.total_fainted = 1;
+    side.fainted_this_turn = side.pokemon[0].set.name;
+    side.replacement = {kind:'faint'};
+}
+const doubleSendObservation = structuredClone(observation);
+doubleSendObservation.own.find(m => m.active).hp = 0;
+doubleSendObservation.opponent.find(m => m.active).hp = 0;
+const soloSend = structuredClone(doubleSend);
+soloSend.input.sides[1] = structuredClone(sides[1]);
+soloSend.input.sides[1].replacement = {kind:'none'};
+const perish = world([51, 11, 19, 24], [[8, 4, 12, 16]]);
+perish.input.sides[0].volatiles.push({id:'perish1',remaining:1});
+const room = world([35, 18, 6, 42], [[2, 5, 4, 9]]);
+room.input.field.extra.magicroom = {remaining:2};
 const cases = [
     {name: 'paired pivots and basic attacks', input: {observation, worlds: [pivot, confusion], candidates: [3, 1, 8],
         replies: 2, reply_probabilities: {'move:earthquake': 1}}},
@@ -101,6 +119,14 @@ const cases = [
         worlds: [savedTypes, unusedProtean], candidates: [1], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
     {name: 'restore Transform with copied stats, critical boost, spent PP and switch reset', input: {observation,
         worlds: [transformed], candidates: [0, 8], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
+    {name: 'sample simultaneous forced replacements from a public send request', input: {observation:doubleSendObservation,
+        worlds:[doubleSend], candidates:[8,9], replies:1, reply_probabilities:{'switch:1':1}}},
+    {name: 'a one-sided replacement has no simultaneous opponent reply', input: {observation:doubleSendObservation,
+        worlds:[soloSend], candidates:[8], replies:1, reply_probabilities:{}}},
+    {name: 'restore a Perish Song count before its final residual', input: {observation,
+        worlds:[perish], candidates:[1], replies:1, reply_probabilities:{'move:earthquake':1}}},
+    {name: 'restore Magic Room without re-running its entry effects', input: {observation,
+        worlds:[room], candidates:[1], replies:1, reply_probabilities:{'move:earthquake':1}}},
 ];
 for (const c of cases) c.expected = lookahead(c.input, Game, PublicState);
 assert(cases[0].expected.errors.length === 0, JSON.stringify(cases[0].expected.errors));
@@ -122,5 +148,9 @@ assert(cases[9].expected.rows.length === 2 && !cases[9].expected.errors.length,
 const [copied, reverted] = cases[9].expected.rows.map(row => row.observation.own[3]);
 assert(copied.species === 'Jolteon' && copied.moves[0].pp === 1 && copied.volatile_ids.includes('focusenergy'));
 assert(reverted.species === 'Swampert' && reverted.moves[0].id === 'earthquake' && reverted.moves[0].pp === 12);
+assert(cases[10].expected.rows.length === 2 && !cases[10].expected.errors.length, JSON.stringify(cases[10].expected.errors));
+assert.deepEqual(cases[11].expected.errors, [{world:0,error:'Opponent has no simultaneous reply'}]);
+assert(cases[12].expected.rows.some(row=>row.continuations>0));
+assert(cases[13].expected.rows.length === 1 && !cases[13].expected.errors.length, JSON.stringify(cases[13].expected.errors));
 writeFileSync(new URL('../tests/fixtures/lookahead.json', import.meta.url),
     `{"revision":${JSON.stringify(revision)},"cases":[\n${cases.map(c => JSON.stringify(c)).join(',\n')}\n]}\n`);

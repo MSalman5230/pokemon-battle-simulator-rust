@@ -3,8 +3,10 @@
 
 use super::{
     charge::ChargeSpec,
+    paradox::{ParadoxBoost, ParadoxKind},
     support::{FutureMove, Wish},
     tactical::BOOSTS,
+    turn::Pivot,
     *,
 };
 use serde::Deserialize;
@@ -50,12 +52,22 @@ pub(crate) struct WorldSide {
     mega_used: bool,
     #[serde(default)]
     total_fainted: u8,
+    fainted_last_turn: Option<String>,
+    fainted_this_turn: Option<String>,
+    #[serde(default)]
+    replacement: WorldReplacement,
     #[serde(default)]
     boosts: BTreeMap<String, i8>,
     #[serde(default)]
     conditions: Map<String, Value>,
     #[serde(default)]
     volatiles: Vec<WorldVolatile>,
+}
+
+#[derive(Default, Deserialize)]
+#[serde(default)]
+struct WorldReplacement {
+    kind: String,
 }
 
 #[derive(Deserialize)]
@@ -122,6 +134,8 @@ struct WorldObservation {
     protect_streak: u8,
     protect_turn: Option<u32>,
     substitute_hp: Option<u32>,
+    pending_pass: Option<String>,
+    last_action_kind: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -161,15 +175,17 @@ fn unsupported(detail: impl fmt::Display) -> BattleError {
 }
 
 pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>), BattleError> {
-    if input.format != "gen9championsbssregmc" || input.kind != "turn" || input.turn == 0 {
-        return Err(unsupported("requires a simultaneous BSS move decision"));
-    }
-    if input
-        .field
-        .extra
-        .keys()
-        .any(|id| !matches!(id.as_str(), "gravity" | "wonderroom"))
+    let send = input.kind == "send";
+    if input.format != "gen9championsbssregmc" || !(input.kind == "turn" || send) || input.turn == 0
     {
+        return Err(unsupported("requires a BSS move or replacement decision"));
+    }
+    if input.field.extra.keys().any(|id| {
+        !matches!(
+            id.as_str(),
+            "gravity" | "wonderroom" | "magicroom" | "fairylock" | "twisteddimension"
+        )
+    }) {
         return Err(unsupported("extra field conditions"));
     }
     let mut battle = Battle::new(Start {
@@ -179,7 +195,7 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
         force_random_chance: None,
     })?;
     for (player, side) in Player::ALL.into_iter().zip(&mut input.sides) {
-        if !(1..=3).contains(&side.pokemon.len()) || side.pokemon[0].hp == 0 {
+        if !(1..=3).contains(&side.pokemon.len()) || !send && side.pokemon[0].hp == 0 {
             return Err(unsupported(
                 "requires a live active and at most three selected Pokémon per side",
             ));
@@ -221,6 +237,14 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .total_fainted
             .max(side.pokemon.iter().filter(|mon| mon.hp == 0).count() as u8);
         native.mega_used = side.mega_used;
+        native.fainted_last_turn = side
+            .fainted_last_turn
+            .as_ref()
+            .is_some_and(|name| side.pokemon.iter().any(|mon| &mon.set.name == name));
+        native.fainted_this_turn = side
+            .fainted_this_turn
+            .as_ref()
+            .is_some_and(|name| side.pokemon.iter().any(|mon| &mon.set.name == name));
         for (j, (pokemon, given)) in native.party.iter_mut().zip(&side.pokemon).enumerate() {
             given.apply(pokemon, battle.format.dex_mod, &mut assumptions)?;
             pokemon.active_turns = if j != 0 {
@@ -243,6 +267,7 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
                 "auroraveil" => native.screens[Screen::AuroraVeil as usize] = value,
                 "tailwind" => native.tailwind = value,
                 "safeguard" => native.safeguard = value,
+                "mist" => native.mist = value,
                 _ => {
                     let hazard = match id.as_str() {
                         "spikes" if (1..=3).contains(&value) => Hazard::Spikes,
@@ -269,8 +294,25 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .min(5);
         let p = battle.mon_mut(Position { player, slot: 0 });
         side.restore_active(player, p, &input.sides, input.turn, &mut assumptions)?;
+        if p.ability == "truant" && side.observation.last_action_kind.as_deref() == Some("move") {
+            p.track_volatile("truant");
+        }
         if p.ability == "supremeoverlord" {
             p.fallen_allies = fallen;
+        }
+        if send && (player == Player::P1 || p.hp == 0 || side.replacement.kind == "pivot") {
+            p.needs_replacement = true;
+            p.pivot_move = match side
+                .observation
+                .pending_pass
+                .as_deref()
+                .map(to_id)
+                .as_deref()
+            {
+                Some("batonpass") => Some(Pivot::Move("Baton Pass")),
+                Some("shedtail") => Some(Pivot::Move("Shed Tail")),
+                _ => None,
+            };
         }
     }
     battle.weather = match input.field.weather.as_str() {
@@ -297,10 +339,22 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .and_then(|turns| u8::try_from(turns).ok())
             .filter(|turns| *turns != 0)
             .ok_or_else(|| unsupported(format!("{id} duration")))?;
-        if id == "gravity" {
-            battle.gravity = remaining;
-        } else {
-            battle.wonder_room = remaining;
+        match id.as_str() {
+            "gravity" => battle.gravity = remaining,
+            "wonderroom" => battle.wonder_room = remaining,
+            "magicroom" => {
+                battle.magic_room = Some(battle.target_timer(
+                    Position {
+                        player: Player::P1,
+                        slot: 0,
+                    },
+                    remaining,
+                ));
+                battle.set_items_suppressed(true);
+            }
+            "fairylock" => battle.fairy_lock = remaining,
+            "twisteddimension" => battle.twisted_dimension = true,
+            _ => unreachable!(),
         }
     }
     restore_delayed_effects(&mut battle, &input)?;
@@ -368,6 +422,9 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
     battle.update_speed();
     for player in Player::ALL {
         battle.refresh_observed_disables(Position { player, slot: 0 });
+    }
+    if send {
+        battle.phase = Phase::Replace;
     }
     Ok((
         BattleStream {
@@ -608,6 +665,13 @@ impl WorldSide {
                 "typechange" | "stall" | "lightscreen" | "reflect" => {}
                 "curse" => mon.track_volatile("curse"),
                 "truant" => mon.track_volatile("truant"),
+                "unburden" => mon.track_volatile("unburden"),
+                "tarshot" => mon.track_volatile("tarshot"),
+                "slowstart" => mon.slow_start = remaining(5),
+                "perish1" | "perish2" | "perish3" => {
+                    mon.perish_count = remaining(4);
+                    mon.track_volatile("perishsong");
+                }
                 "gastroacid" => {
                     mon.gastro_acid = true;
                     mon.track_volatile("gastroacid");
@@ -746,8 +810,8 @@ impl WorldSide {
                 "saltcure" => mon.track_volatile("saltcure"),
                 "minimize" => mon.track_volatile("minimize"),
                 "smackdown" => mon.track_volatile("smackdown"),
-                "magnetrise" if e.remaining.is_some_and(|n| n > 0 && n <= 5) => {
-                    mon.magnet_rise = e.remaining.unwrap();
+                "magnetrise" if (1..=5).contains(&remaining(5)) => {
+                    mon.magnet_rise = remaining(5);
                     mon.track_volatile("magnetrise");
                 }
                 "imprison" => {
@@ -771,6 +835,24 @@ impl WorldSide {
                     mon.track_volatile("mustrecharge");
                 }
                 "twoturnmove" if self.observation.charging.is_some() => {}
+                id if id.starts_with("protosynthesis") || id.starts_with("quarkdrive") => {
+                    let (ability, stat) = if let Some(stat) = id.strip_prefix("protosynthesis") {
+                        ("protosynthesis", stat)
+                    } else {
+                        ("quarkdrive", id.strip_prefix("quarkdrive").unwrap())
+                    };
+                    let stat = BOOSTS[..5]
+                        .iter()
+                        .copied()
+                        .find(|s| s.id() == stat)
+                        .ok_or_else(|| unsupported(format!("missing boosted stat for {id}")))?;
+                    mon.paradox_boost = Some(ParadoxBoost {
+                        kind: ParadoxKind::from_ability(ability).unwrap(),
+                        stat,
+                        from_item: false,
+                    });
+                    mon.track_volatile(ability);
+                }
                 _ => return Err(unsupported(format!("volatile {}", e.id))),
             }
         }

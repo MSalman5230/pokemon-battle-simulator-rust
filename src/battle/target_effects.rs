@@ -29,7 +29,7 @@ impl TargetTimer {
 }
 
 impl Battle {
-    fn target_timer(&self, pos: Position, turns: u8) -> TargetTimer {
+    pub(super) fn target_timer(&self, pos: Position, turns: u8) -> TargetTimer {
         TargetTimer {
             side: pos.player,
             roster: self.mon(pos).roster_index as u8,
