@@ -1,0 +1,16 @@
+{
+  "rust_revision": "234865f216f4a0465542a8bdd2cc1dc77b557890",
+  "showdown_revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "format": "gen9championscustomgame",
+  "workload": "Metronome versus Recover, up to seven turns per game",
+  "first_game": 1,
+  "games": 128,
+  "checkpoints": 1127,
+  "called_moves": 818,
+  "distinct_called_moves": 374,
+  "matching_games": 128,
+  "matching_checkpoints": 1127,
+  "corpus_sha256": "8e44dff26d69c78824ba0c138e00414c10ad959e172340226dc7cdcdc81aa671",
+  "capture": "node scripts/capture-wide-native.mjs .tools/wide-native-metronome-128.jsonl --teams benchmarks/metronome-rosters.json --games 128 --max-turns 7",
+  "verify": "CHAMPIONS_NATIVE_CORPUS=.tools/wide-native-metronome-128.jsonl cargo test --locked --test replay wide_native -- --ignored --nocapture"
+}
