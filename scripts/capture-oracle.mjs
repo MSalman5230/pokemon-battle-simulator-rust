@@ -563,6 +563,14 @@ const mercilessRosters = [
     [{...named('Toxapex', ['Toxic', 'Water Gun']), ability: 'Merciless'}, named('Glaceon', ['Recover'])],
     critRosters[1],
 ];
+const focusPunchRosters = [
+    [named('Snorlax', ['Focus Punch', 'Recover']), named('Glaceon', ['Recover'])],
+    [named('Toxapex', ['Fake Out', 'Recover', 'Tackle', 'Toxic']), named('Vaporeon', ['Recover'])],
+];
+const doublesFocusPunchRosters = [
+    [named('Snorlax', ['Focus Punch']), named('Glaceon', ['Focus Punch'])],
+    [named('Toxapex', ['Tackle']), named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -845,6 +853,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','switch 2']], critRosters, 'bss-crit-ratio'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1']],
         mercilessRosters, 'bss-merciless'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'],
+        ['move 1','move 3'], ['move 1','move 4']], focusPunchRosters, 'bss-focus-punch'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 1','move 1 2, move 1']],
+        doublesFocusPunchRosters, 'vgc-focus-punch'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

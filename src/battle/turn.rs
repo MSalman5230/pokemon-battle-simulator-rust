@@ -74,6 +74,7 @@ enum ActionKind {
     },
     RunSwitch,
     MegaEvolve,
+    FocusPunchCharge,
     BeforeTurn,
     Residual,
 }
@@ -100,6 +101,7 @@ impl Action {
                 immediate: false, ..
             } => 103,
             ActionKind::MegaEvolve => 104,
+            ActionKind::FocusPunchCharge => 107,
             ActionKind::Move { .. } => 200,
             ActionKind::Residual => 300,
         };
@@ -398,6 +400,18 @@ impl Battle {
                         let mut mega = Action::new(action.actor, ActionKind::MegaEvolve);
                         self.prioritize(&mut mega);
                         queue.push(mega);
+                    }
+                    if self.phase == Phase::Move
+                        && let ActionKind::Move { move_slot, .. } = action.kind
+                        && move_slot != RECHARGE_SLOT
+                        && self.move_data(action.actor.unwrap(), move_slot).name == "Focus Punch"
+                    {
+                        let mut charge = Action::new(action.actor, ActionKind::FocusPunchCharge);
+                        // The separate charge action has no explicit target even
+                        // when the actual punch does. Showdown resolves both.
+                        self.random_target(action.actor.unwrap(), TargetKind::Normal);
+                        self.prioritize(&mut charge);
+                        queue.push(charge);
                     }
                     if let ActionKind::Move {
                         move_slot,
@@ -836,6 +850,7 @@ impl Battle {
                     | "soak"
                     | "ragingbull"
                     | "focusenergy"
+                    | "focuspunch"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1064,6 +1079,7 @@ impl Battle {
         party[outgoing.slot].boosts = Boosts::default();
         party[outgoing.slot].stats_raised = false;
         party[outgoing.slot].flinched = false;
+        party[outgoing.slot].lost_focus = false;
         party[outgoing.slot].recharge = 0;
         party[outgoing.slot].charge = None;
         party[outgoing.slot].confusion = 0;
@@ -1126,6 +1142,20 @@ impl Battle {
                 }
                 ActionKind::BeforeTurn => {
                     self.ordered_actives(false);
+                }
+                ActionKind::FocusPunchCharge => {
+                    let pos = action.actor.unwrap();
+                    if self.mon(pos).hp > 0 {
+                        if self.format.report_exact_hp {
+                            self.add("|debug|priority charge callback: focuspunch");
+                        }
+                        self.mon_mut(pos).track_volatile("focuspunch");
+                        self.mon_mut(pos).lost_focus = false;
+                        self.add(format!(
+                            "|-singleturn|{}|move: Focus Punch",
+                            self.ident(pos)
+                        ));
+                    }
                 }
                 ActionKind::RunSwitch => self.run_switch_batch(action.actor.unwrap(), &mut queue),
                 ActionKind::Switch {
@@ -1402,6 +1432,7 @@ impl Battle {
             Protect,
             Stall,
             Flinch,
+            FocusPunch,
             Recharge,
             Charge,
             SemiInvulnerableTimer,
@@ -1535,6 +1566,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"saltcure") {
                 timers.push((pos, Effect::SaltCure, priority(13, 2)));
             }
+            if mon.volatile_ids().contains(&"focuspunch") {
+                timers.push((pos, Effect::FocusPunch, priority(0, 2)));
+            }
             if mon.roosted {
                 timers.push((pos, Effect::Roost, priority(25, 2)));
             }
@@ -1609,6 +1643,10 @@ impl Battle {
                 continue;
             }
             match effect {
+                Effect::FocusPunch => {
+                    mon.lost_focus = false;
+                    mon.untrack_volatile("focuspunch");
+                }
                 Effect::Leftovers => {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
@@ -1858,6 +1896,10 @@ impl Battle {
         if !reflected && !self.before_status_move(source, move_data) {
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
+            return false;
+        }
+        if move_data.name == "Focus Punch" && self.mon(source).lost_focus {
+            self.add(format!("|cant|{source_name}|Focus Punch|Focus Punch"));
             return false;
         }
         if !struggle && slot.is_some_and(|slot| self.mon(source).disabled_by_choice(slot)) {
@@ -2959,6 +3001,9 @@ impl Battle {
                 let mon = self.mon_mut(target);
                 let landed = value.min(mon.hp);
                 mon.hp -= landed;
+                if mon.volatile_ids().contains(&"focuspunch") {
+                    mon.lost_focus = true;
+                }
                 *hit_damage = landed;
                 total += landed;
                 self.add_health_line("-damage", target, false);
@@ -3038,6 +3083,7 @@ impl Battle {
                         if effect.volatile_status.as_deref() == Some("flinch")
                             && self.mon(target).hp > 0
                             && self.event_ability(target) != "innerfocus"
+                            && !self.mon(target).volatile_ids().contains(&"focuspunch")
                         {
                             self.mon_mut(target).flinched = true;
                             self.mon_mut(target).track_volatile("flinch");
@@ -3299,6 +3345,7 @@ impl Battle {
         mon.stall = None;
         mon.protection = None;
         mon.flinched = false;
+        mon.lost_focus = false;
         mon.recharge = 0;
         mon.charge = None;
         mon.confusion = 0;

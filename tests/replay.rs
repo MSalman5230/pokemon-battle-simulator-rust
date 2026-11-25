@@ -704,3 +704,9 @@ fn bss_crit_ratio_sources_stack_and_respect_shell_armor() {
 fn bss_merciless_guarantees_criticals_against_poisoned_targets() {
     replay(include_str!("fixtures/bss-merciless.json"));
 }
+
+#[test]
+fn focus_punch_prepares_in_speed_order_and_loses_no_pp_when_interrupted() {
+    replay(include_str!("fixtures/bss-focus-punch.json"));
+    replay(include_str!("fixtures/vgc-focus-punch.json"));
+}
