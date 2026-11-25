@@ -955,6 +955,8 @@ impl Battle {
                     | "mistyterrain"
                     | "psychicterrain"
                     | "icespinner"
+                    | "stoneaxe"
+                    | "ceaselessedge"
                     | "grassyglide"
                     | "encore"
                     | "tidyup"
@@ -2257,6 +2259,11 @@ impl Battle {
             self.clear_destiny_bond(source, false);
             return false;
         }
+        let consecutive = move_data.cant_use_twice
+            && self
+                .mon(source)
+                .last_move_slot
+                .is_some_and(|last| self.mon(source).moves[last].move_data.name == move_data.name);
         if !reflected && move_data.name != "Destiny Bond" {
             self.clear_destiny_bond(source, true);
         }
@@ -2392,6 +2399,7 @@ impl Battle {
         if spread_targets.is_empty() && !sacrifice && !mind_blown {
             self.log[base].public.push_str("|[notarget]");
             self.add(format!("|-fail|{source_name}"));
+            self.note_consecutive_move(consecutive, move_data);
             return true;
         }
 
@@ -3003,7 +3011,7 @@ impl Battle {
                     self.add("|debug|Snow Cloak - decreasing accuracy");
                 }
                 self.sort_unaware_handlers();
-                if !move_data.ignore_evasion {
+                if !self.move_ignores_evasion(source, move_data) {
                     self.sort_unaware_handlers();
                 }
             }
@@ -3060,6 +3068,7 @@ impl Battle {
                     self.mark_fainted(source);
                 }
             }
+            self.note_consecutive_move(consecutive, move_data);
             return true;
         }
 
@@ -3363,6 +3372,11 @@ impl Battle {
         let mut landed_by_target = [0u32; 4];
         let mut hp_after_damage = [0u32; 4];
         let mut hits_landed = 0;
+        let attack_hazard = match move_data.name.as_str() {
+            "Stone Axe" => Some(Hazard::StealthRock),
+            "Ceaseless Edge" => Some(Hazard::Spikes),
+            _ => None,
+        };
         let mut hit_substitute = false;
         let binding = super::partial_trap::binding_move(&move_data.name);
         for hit in 1..=max_hits {
@@ -3502,6 +3516,11 @@ impl Battle {
                 if self.behind_substitute(source, target, move_data) {
                     let value = compute(self, target, true);
                     self.strike_substitute(source, target, move_data, value, ohko);
+                    if self.mon(source).hp > 0
+                        && let Some(hazard) = attack_hazard
+                    {
+                        self.add_hazard(source.player.foe(), hazard);
+                    }
                     shielded |= target.mask();
                     hit_substitute = true;
                 }
@@ -3815,9 +3834,21 @@ impl Battle {
                     }
                 }
             }
+            if self.mon(source).hp > 0
+                && let Some(hazard) = attack_hazard
+                && damage.iter().any(|&(_, amount)| amount > 0)
+            {
+                self.add_hazard(source.player.foe(), hazard);
+            }
             self.emergency_exit(source, original_source_hp);
             self.each_event();
             hits_landed += 1;
+        }
+        let hint_before_faint = consecutive
+            && (self.mon(source).hp == 0
+                || damage.iter().any(|&(target, _)| self.mon(target).hp == 0));
+        if hint_before_faint {
+            self.note_consecutive_move(true, move_data);
         }
         if sacrifice {
             self.mark_fainted(source);
@@ -3930,6 +3961,9 @@ impl Battle {
                 }
             }
         }
+        if consecutive && !hint_before_faint {
+            self.note_consecutive_move(true, move_data);
+        }
         if spread {
             let labels: Vec<_> = spread_targets.into_iter().map(Position::label).collect();
             self.log[base]
@@ -3937,6 +3971,15 @@ impl Battle {
                 .push_str(&format!("|[spread] {}", labels.join(",")));
         }
         true
+    }
+
+    fn note_consecutive_move(&mut self, forced: bool, data: &Move) {
+        if forced {
+            self.add(format!(
+                "|-hint|Some effects can force a Pokemon to use {} again in a row.",
+                data.name
+            ));
+        }
     }
 
     pub(super) fn half_max_hp_recoil(&mut self, pos: Position, effect: &str) {
@@ -4070,9 +4113,8 @@ impl Battle {
         } else {
             i32::from(accuracy)
         };
-        let evasion = if data.ignore_evasion
+        let evasion = if self.move_ignores_evasion(source, data)
             || source != target && self.event_ability(source) == "unaware"
-            || matches!(self.mon(source).ability.as_str(), "illuminate" | "keeneye")
         {
             0
         } else {
@@ -4100,7 +4142,8 @@ impl Battle {
         move_data: &Move,
         move_type: &str,
     ) -> bool {
-        self.event_ability(source) == "scrappy" && matches!(move_type, "Normal" | "Fighting")
+        matches!(self.event_ability(source), "scrappy" | "mindseye")
+            && matches!(move_type, "Normal" | "Fighting")
             || match &move_data.ignore_immunity {
                 Value::Bool(value) => *value,
                 Value::Object(types) => types
@@ -4109,6 +4152,14 @@ impl Battle {
                     .unwrap_or(false),
                 _ => move_data.category == Category::Status,
             }
+    }
+
+    pub(super) fn move_ignores_evasion(&self, source: Position, data: &Move) -> bool {
+        data.ignore_evasion
+            || matches!(
+                self.event_ability(source),
+                "illuminate" | "keeneye" | "mindseye"
+            )
     }
 
     pub(super) fn effectiveness_of(
@@ -4278,6 +4329,7 @@ impl Pokemon {
                 | "leafguard"
                 | "earlybird"
                 | "scrappy"
+                | "mindseye"
                 | "shielddust"
                 | "telepathy"
                 | "immunity"

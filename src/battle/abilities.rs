@@ -757,6 +757,7 @@ impl Battle {
             "mirrorarmor" => Some(DropHook::MirrorArmor),
             "illuminate" => Some(DropHook::ProtectAccuracy("Illuminate")),
             "keeneye" => Some(DropHook::ProtectAccuracy("Keen Eye")),
+            "mindseye" => Some(DropHook::ProtectAccuracy("Mind's Eye")),
             "innerfocus" => Some(DropHook::IntimidateBlock("Inner Focus")),
             "oblivious" => Some(DropHook::IntimidateBlock("Oblivious")),
             "owntempo" => Some(DropHook::IntimidateBlock("Own Tempo")),

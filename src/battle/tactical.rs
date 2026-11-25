@@ -468,11 +468,9 @@ impl Battle {
         {
             return 1.0;
         }
-        let evasion = if move_data.ignore_evasion
-            || matches!(
-                self.event_ability(ACTOR),
-                "illuminate" | "keeneye" | "unaware"
-            ) {
+        let evasion = if self.move_ignores_evasion(ACTOR, move_data)
+            || self.event_ability(ACTOR) == "unaware"
+        {
             0
         } else {
             self.mon(TARGET).boosts.get(BoostStat::Evasion)

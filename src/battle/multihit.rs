@@ -47,7 +47,8 @@ impl Battle {
             return true;
         };
         self.sort_unaware_handlers();
-        if !data.ignore_evasion {
+        let ignores_evasion = self.move_ignores_evasion(source, data);
+        if !ignores_evasion {
             self.sort_unaware_handlers();
         }
         let user = self.mon(source);
@@ -74,10 +75,7 @@ impl Battle {
             },
         );
         let (en, ed) = stage_factor(
-            if data.ignore_evasion
-                || (source != target && self.event_ability(source) == "unaware")
-                || user.ability == "illuminate"
-            {
+            if ignores_evasion || (source != target && self.event_ability(source) == "unaware") {
                 0
             } else {
                 mon.boosts.get(BoostStat::Evasion)

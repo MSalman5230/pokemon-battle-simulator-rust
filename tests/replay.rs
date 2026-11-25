@@ -845,6 +845,17 @@ fn ability_hit_hooks_preserve_secondary_rng_and_ignore_only_matching_immunities(
 }
 
 #[test]
+fn attacks_place_hazards_only_on_hits_even_through_substitute() {
+    replay(include_str!("fixtures/bss-attack-hazards.json"));
+}
+
+#[test]
+fn moves_that_cannot_be_selected_twice_still_work_when_forced() {
+    replay(include_str!("fixtures/bss-gigaton-hammer.json"));
+    replay(include_str!("fixtures/bss-blood-moon.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

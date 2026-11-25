@@ -176,6 +176,8 @@ pub struct Move {
     pub ignore_evasion: bool,
     #[serde(default)]
     pub tracks_target: bool,
+    #[serde(default)]
+    pub cant_use_twice: bool,
     pub boosts: Vec<(BoostStat, i8)>,
     pub self_boosts: Vec<(BoostStat, i8)>,
     pub self_chance: Option<u8>,

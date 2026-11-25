@@ -75,6 +75,10 @@ impl Battle {
                 .disabled_slot
                 .is_some_and(|(disabled, _)| disabled == slot)
             || (mon.moves[slot].id == "lastresort" && !mon.can_use_last_resort())
+            || (mon.moves[slot].move_data.cant_use_twice
+                && mon
+                    .last_move_slot
+                    .is_some_and(|last| mon.moves[last].id == mon.moves[slot].id))
             || (mon.active_move_actions > 0
                 && matches!(mon.moves[slot].id.as_str(), "fakeout" | "firstimpression"))
             || (mon.taunt > 0

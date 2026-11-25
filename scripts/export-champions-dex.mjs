@@ -34,7 +34,7 @@ function hasOnly(object, keys) {
 }
 function runsOnGenericPipeline(raw, move) {
     if (!raw || Object.keys(raw).some(k => !genericMoveFields.has(k)) ||
-        !genericTarget.has(move.target) || raw.flags?.futuremove || raw.flags?.cantusetwice ||
+        !genericTarget.has(move.target) || raw.flags?.futuremove ||
         typeof raw.ignoreImmunity === 'object' || (raw.status && !supportedStatus.has(raw.status))) return false;
     if (move.multihit && !['normal', 'any', 'adjacentFoe'].includes(move.target)) return false;
     if (raw.self && !(raw.self.boosts && hasOnly(raw.self, ['boosts', 'chance']) ||
@@ -68,6 +68,7 @@ const data = mod => {
                 'pp', 'noPPBoosts', 'accuracy', 'multihit', 'multiaccuracy', 'critRatio', 'flags', 'isNonstandard', 'heal', 'status', 'ignoreImmunity', 'drain', 'recoil', 'thawsTarget', 'willCrit', 'alwaysHit']);
             return {...move, ignoreDefensive: e.ignoreDefensive || undefined,
                 ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
+                cantUseTwice: !!e.flags?.cantusetwice || undefined,
                 generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
                 selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,
