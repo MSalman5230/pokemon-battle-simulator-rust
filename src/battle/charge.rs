@@ -10,6 +10,7 @@ pub(super) enum SemiInvulnerable {
     Underwater,
     Underground,
     Airborne { bounce: bool },
+    SkyDrop,
 }
 
 impl SemiInvulnerable {
@@ -18,7 +19,7 @@ impl SemiInvulnerable {
             Self::Vanished => false,
             Self::Underwater => matches!(move_name, "Surf" | "Whirlpool"),
             Self::Underground => matches!(move_name, "Earthquake" | "Magnitude"),
-            Self::Airborne { .. } => matches!(
+            Self::Airborne { .. } | Self::SkyDrop => matches!(
                 move_name,
                 "Gust"
                     | "Twister"
@@ -34,7 +35,7 @@ impl SemiInvulnerable {
     pub(super) fn damage_modifier(self, move_name: &str) -> Option<u32> {
         let doubled = match self {
             Self::Vanished => return None,
-            Self::Airborne { bounce: true } => return None,
+            Self::Airborne { bounce: true } | Self::SkyDrop => return None,
             Self::Airborne { bounce: false } => matches!(move_name, "Gust" | "Twister"),
             _ => self.exposed_to(move_name),
         };
@@ -122,11 +123,15 @@ impl Pokemon {
     }
 
     pub(super) fn semi_invulnerability(&self) -> Option<SemiInvulnerable> {
+        if self.sky_drop_rider {
+            return Some(SemiInvulnerable::SkyDrop);
+        }
         match self.charge.filter(|state| !state.released)?.id {
             "dive" => Some(SemiInvulnerable::Underwater),
             "dig" => Some(SemiInvulnerable::Underground),
             "bounce" => Some(SemiInvulnerable::Airborne { bounce: true }),
             "fly" => Some(SemiInvulnerable::Airborne { bounce: false }),
+            "skydrop" => Some(SemiInvulnerable::SkyDrop),
             "phantomforce" | "shadowforce" => Some(SemiInvulnerable::Vanished),
             _ => None,
         }
@@ -134,6 +139,10 @@ impl Pokemon {
 
     pub(super) fn semi_invulnerable(&self) -> bool {
         self.semi_invulnerability().is_some()
+    }
+
+    pub(super) fn is_sky_dropped(&self) -> bool {
+        self.sky_drop_rider || self.sky_drop_target.is_some()
     }
 
     pub(super) fn tick_charge(&mut self) {
@@ -146,7 +155,65 @@ impl Pokemon {
     }
 }
 
+#[derive(Clone, Copy)]
+pub(super) enum DropEnd {
+    Land,
+    Cancel,
+    Interrupt,
+}
+
 impl Battle {
+    pub(super) fn sky_drop_rider(&self, carrier: Position) -> Option<Position> {
+        let (player, roster) = self.mon(carrier).sky_drop_target?;
+        (0..self.slots())
+            .map(|slot| Position { player, slot })
+            .find(|&pos| self.mon(pos).roster_index == usize::from(roster))
+    }
+
+    pub(super) fn start_sky_drop(
+        &mut self,
+        carrier: Position,
+        rider: Position,
+        slot: usize,
+        loc: i8,
+    ) {
+        let roster = self.mon(rider).roster_index as u8;
+        let mon = self.mon_mut(carrier);
+        mon.sky_drop_target = Some((rider.player, roster));
+        mon.begin_charge(
+            ChargeSpec {
+                id: "skydrop",
+                boost: None,
+                instant: None,
+                weak_in_bad_weather: false,
+            },
+            slot,
+            loc,
+        );
+        self.mon_mut(rider).sky_drop_rider = true;
+        self.add(format!(
+            "|-prepare|{}|Sky Drop|{}",
+            self.ident(carrier),
+            self.ident(rider)
+        ));
+    }
+
+    pub(super) fn finish_sky_drop(&mut self, carrier: Position, how: DropEnd) {
+        if let Some(rider) = self.sky_drop_rider(carrier) {
+            self.mon_mut(rider).sky_drop_rider = false;
+            if matches!(how, DropEnd::Interrupt) {
+                self.add(format!("|-end|{}|Sky Drop|[interrupt]", self.ident(rider)));
+            }
+        }
+        let mon = self.mon_mut(carrier);
+        mon.sky_drop_target = None;
+        if matches!(how, DropEnd::Land) {
+            mon.release_charge();
+        } else {
+            mon.clear_charge();
+        }
+    }
+
     pub(super) fn charge_electric(&mut self, pos: Position, triggered_by: Option<(&str, &str)>) {
         self.mon_mut(pos).track_volatile("charge");
         let ident = self.ident(pos);

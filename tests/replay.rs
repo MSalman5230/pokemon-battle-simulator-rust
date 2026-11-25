@@ -2087,6 +2087,26 @@ fn inherited_callers_choose_the_same_moves_and_targets_as_showdown() {
 }
 
 #[test]
+fn sky_drop_locks_the_carrier_and_lifts_its_target_until_landing_or_gravity() {
+    replay(include_str!(
+        "fixtures/custom-sky-drop-lifts-and-releases-target.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-sky-drop-rejects-heavy-target.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-sky-drop-flying-target-is-immune.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-sky-drop-airspeed-and-gravity.json"
+    ));
+    replay(include_str!("fixtures/custom-sky-drop-faster-rider.json"));
+    replay(include_str!(
+        "fixtures/custom-sky-drop-releases-rider-after-faint.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

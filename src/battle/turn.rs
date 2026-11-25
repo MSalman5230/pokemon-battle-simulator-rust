@@ -2,7 +2,7 @@ use super::boost_copy::PendingBoostCopy;
 use super::*;
 use super::{
     abilities::{BoostOrigin, PostHit},
-    charge::ChargeSpec,
+    charge::{ChargeSpec, DropEnd},
     damage::RegularHit,
     field_effects::{LegacyCondition, LegacyField},
     leech::DrainKind,
@@ -1323,6 +1323,7 @@ impl Battle {
                     | "naturepower"
                     | "mirrormove"
                     | "mefirst"
+                    | "skydrop"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -2011,6 +2012,9 @@ impl Battle {
         }
         let rules = self.stat_rules;
         self.clear_linked_traps(outgoing);
+        if self.mon(outgoing).sky_drop_target.is_some() {
+            self.finish_sky_drop(outgoing, DropEnd::Cancel);
+        }
         if self.mon(outgoing).commanded_by.is_some() {
             self.release_commander(outgoing.other_slot());
         }
@@ -2032,6 +2036,8 @@ impl Battle {
         party[outgoing.slot].substitute_hp = 0;
         party[outgoing.slot].recharge = 0;
         party[outgoing.slot].charge = None;
+        party[outgoing.slot].sky_drop_target = None;
+        party[outgoing.slot].sky_drop_rider = false;
         party[outgoing.slot].confusion = 0;
         party[outgoing.slot].rampage = None;
         party[outgoing.slot].uproar = None;
@@ -2445,6 +2451,7 @@ impl Battle {
         if self.mon(target).hp == 0
             || self.mon(source).hp == 0
             || self.mon(target).is_command_locked()
+            || self.mon(target).is_sky_dropped()
             || self.first_bench(target.player, 0).is_none()
         {
             return false;
@@ -3221,7 +3228,7 @@ impl Battle {
             if mon.charge.is_some() {
                 timers.push((pos, Effect::Charge, priority(0, 2)));
             }
-            if mon.semi_invulnerable() {
+            if mon.charge.is_some() && mon.semi_invulnerable() {
                 timers.push((pos, Effect::SemiInvulnerableTimer, priority(0, 2)));
             }
             if mon.rampage.is_some() {
@@ -3596,7 +3603,12 @@ impl Battle {
                 }
                 Effect::Rampage => self.tick_rampage(pos),
                 Effect::Uproar => self.tick_uproar(pos),
-                Effect::Charge => mon.tick_charge(),
+                Effect::Charge => {
+                    mon.tick_charge();
+                    if mon.charge.is_none() && mon.sky_drop_target.is_some() {
+                        self.finish_sky_drop(pos, DropEnd::Cancel);
+                    }
+                }
                 // The move's condition has its own duration and participates
                 // in ordering. The parent charge expires at the same time.
                 Effect::SemiInvulnerableTimer => {}
@@ -3870,7 +3882,10 @@ impl Battle {
         // Showdown sorts the callbacks, including those that later decide
         // the move cannot be stolen. Equal speeds still consume PRNG draws.
         speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
-        (count != 0).then_some(holders[0].0)
+        holders[..count]
+            .iter()
+            .map(|&(pos, _)| pos)
+            .find(|&pos| !self.mon(pos).is_sky_dropped())
     }
 
     fn run_called_move(
@@ -3988,6 +4003,8 @@ impl Battle {
         queue: &mut Vec<Action>,
     ) -> (bool, Position) {
         let roster_index = self.mon(source).roster_index;
+        let releasing_sky_drop = matches!(invocation, MoveInvocation::Choice { .. })
+            && self.mon(source).sky_drop_target.is_some();
         let mut result = MoveResult::default();
         let attempted = self.run_move_inner(source, invocation, queue, &mut result);
         if matches!(invocation, MoveInvocation::Choice { .. }) {
@@ -3999,6 +4016,12 @@ impl Battle {
             };
         }
         let source = self.position_after_move(source, roster_index);
+        if releasing_sky_drop
+            && self.mon(source).sky_drop_target.is_some()
+            && (!attempted || result.failed)
+        {
+            self.finish_sky_drop(source, DropEnd::Cancel);
+        }
         if result.spends_charge {
             self.use_electric_charge(source);
         }
@@ -4087,6 +4110,20 @@ impl Battle {
                 self.add("|debug|removing Glaive Rush drawback before attack");
             }
         }
+        if own_action && self.mon(source).sky_drop_rider {
+            let mon = self.mon_mut(source);
+            mon.active_move_actions = mon.active_move_actions.saturating_sub(1);
+            if self.format.report_exact_hp {
+                self.add("|debug|Sky drop nullifying.");
+            }
+            self.end_bide(source);
+            if self.mon(source).sky_drop_target.is_some() {
+                self.finish_sky_drop(source, DropEnd::Cancel);
+            } else {
+                self.mon_mut(source).clear_charge();
+            }
+            return true;
+        }
         if let Some(slot) = slot
             && (slot == RECHARGE_SLOT || self.mon(source).recharge > 0)
         {
@@ -4167,6 +4204,12 @@ impl Battle {
         let struggle = slot == Some(STRUGGLE_SLOT);
         let charge_spec = ChargeSpec::for_move(&move_data.name);
         let releasing_charge = own_action && self.mon(source).charge.is_some();
+        let sky_drop = move_data.name == "Sky Drop";
+        let held_sky_drop = if sky_drop && releasing_charge {
+            self.sky_drop_rider(source)
+        } else {
+            None
+        };
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
             && matches!(
                 move_weather.map(Weather::ordinary),
@@ -4360,6 +4403,7 @@ impl Battle {
             _ => None,
         };
         let original_target = forced_target
+            .or(held_sky_drop.filter(|&pos| !self.mon(pos).fainted))
             .or(tracked_target)
             .or_else(|| self.resolve_target(source, base_target, loc));
         let lost_counter_target =
@@ -4382,7 +4426,11 @@ impl Battle {
             if self.mon(source).bide.is_some() {
                 self.end_bide(source);
             }
-            self.mon_mut(source).clear_charge();
+            if self.mon(source).sky_drop_target.is_some() {
+                self.finish_sky_drop(source, DropEnd::Cancel);
+            } else {
+                self.mon_mut(source).clear_charge();
+            }
             self.clear_destiny_bond(source, false);
             return false;
         }
@@ -4503,7 +4551,7 @@ impl Battle {
             }
             _ => move_data.accuracy,
         };
-        if pursuit_catch {
+        if pursuit_catch || (sky_drop && !releasing_charge) {
             accuracy = Accuracy::Bypass(true);
         }
         if own_action
@@ -4604,7 +4652,7 @@ impl Battle {
         } else {
             "Special"
         };
-        let contact = self.move_makes_contact(source, move_data);
+        let contact = (!sky_drop || releasing_charge) && self.move_makes_contact(source, move_data);
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
             && self.grounded(source);
@@ -5531,12 +5579,20 @@ impl Battle {
                 self.gravity = 5;
                 self.add("|-fieldstart|move: Gravity");
                 for target in self.positions() {
+                    let sky = self.mon(target).sky_drop_target.is_some();
+                    if sky {
+                        self.finish_sky_drop(target, DropEnd::Interrupt);
+                        queue.retain(|action| {
+                            action.actor != Some(target)
+                                || !matches!(action.kind, ActionKind::Move { .. })
+                        });
+                    }
                     let canceled = self.cancel_airborne_charge(target, queue);
                     let grounded = self.clear_magnet_rise(target);
                     let was_lifted = self
                         .mon_mut(target)
                         .clear_legacy_condition(LegacyCondition::Telekinesis);
-                    if canceled || grounded || was_lifted {
+                    if sky || canceled || grounded || was_lifted {
                         self.add(format!("|-activate|{}|move: Gravity", self.ident(target)));
                     }
                 }
@@ -5967,6 +6023,7 @@ impl Battle {
         let potential = spread_targets.len();
         spread_targets.retain(|&target| {
             if bide_strike.is_some()
+                || held_sky_drop == Some(target)
                 || move_data.name == "Helping Hand"
                 || (!self.mon(target).commanding
                     && (self
@@ -6426,6 +6483,48 @@ impl Battle {
                 result.failed = true;
             }
             return true;
+        }
+        if sky_drop {
+            let target = spread_targets[0];
+            if releasing_charge {
+                self.finish_sky_drop(source, DropEnd::Land);
+                if held_sky_drop != Some(target) {
+                    self.move_still(base);
+                    self.add(format!("|-fail|{source_name}"));
+                    result.failed = true;
+                    return true;
+                }
+                if self.mon(target).has_type("Flying") {
+                    self.add(format!("|-immune|{}", self.ident(target)));
+                    result.failed = true;
+                    return true;
+                }
+            } else {
+                let mon = self.mon(target);
+                if target.player == source.player || mon.substitute_hp > 0 {
+                    self.move_still(base);
+                    self.add(format!("|-fail|{source_name}"));
+                } else if self.weight(target) >= 2000 {
+                    self.add(format!(
+                        "|-fail|{}|move: Sky Drop|[heavy]",
+                        self.ident(target)
+                    ));
+                } else {
+                    self.move_still(base);
+                    self.start_sky_drop(
+                        source,
+                        target,
+                        slot.expect("Sky Drop requires a move slot"),
+                        if caller.is_some() {
+                            target.loc(source)
+                        } else {
+                            loc
+                        },
+                    );
+                }
+                result.failed = true;
+                return true;
+            }
         }
         if move_data.name == "Spectral Thief" {
             self.steal_positive_stages(source, spread_targets[0], base);
@@ -8103,6 +8202,9 @@ impl Battle {
                 if let Some(combo @ (Pledge::Fire | Pledge::Grass)) = pledge_combo {
                     self.start_pledge_condition(target.player, combo);
                 }
+                if sky_drop && self.mon(target).hp > 0 {
+                    self.add(format!("|-end|{}|Sky Drop", self.ident(target)));
+                }
                 if matches!(
                     move_data.name.as_str(),
                     "Wake-Up Slap" | "Smelling Salts" | "Incinerate"
@@ -8953,6 +9055,9 @@ impl Battle {
         side.total_fainted = (side.total_fainted + 1).min(100);
         side.fainted_this_turn = true;
         self.add(format!("|faint|{}", self.ident(target)));
+        if self.mon(target).sky_drop_target.is_some() {
+            self.finish_sky_drop(target, DropEnd::Interrupt);
+        }
         if self.mon(target).volatile_ids().contains(&"grudge")
             && let Some(attacker) = attacker
             && self.mon(attacker).hp != 0
@@ -8992,6 +9097,8 @@ impl Battle {
         mon.substitute_hp = 0;
         mon.recharge = 0;
         mon.charge = None;
+        mon.sky_drop_target = None;
+        mon.sky_drop_rider = false;
         mon.confusion = 0;
         mon.rampage = None;
         mon.uproar = None;

@@ -470,6 +470,14 @@ impl Battle {
             self.add("|debug|charge boost");
         }
         let terrain_power = self.terrain_power_modifier(source, target, move_data, move_type);
+        // Showdown's Sky Drop BasePower callback receives the attacker first.
+        // Its "midair target" message does not mean Gust doubles against a rider.
+        let sky_drop_power = matches!(move_data.name.as_str(), "Gust" | "Twister")
+            && self.mon(source).is_sky_dropped()
+            && self.sky_drop_rider(target) != Some(source);
+        if sky_drop_power && self.format.report_exact_hp {
+            self.add("|debug|BP doubled on midair target");
+        }
         let sport = self.legacy_sport(move_type);
         if self.format.report_exact_hp
             && let Some(label) = sport
@@ -753,9 +761,10 @@ impl Battle {
         if retaliate || move_data.name == "Brine" && mon.hp * 2 <= mon.max_hp.get() {
             power_modifier = chain(power_modifier, 8192);
         }
-        if mon
-            .semi_invulnerability()
-            .is_some_and(|state| state.doubles_power(&move_data.name))
+        if sky_drop_power
+            || mon
+                .semi_invulnerability()
+                .is_some_and(|state| state.doubles_power(&move_data.name))
         {
             power_modifier = chain(power_modifier, 8192);
         }

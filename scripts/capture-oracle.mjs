@@ -1906,6 +1906,27 @@ const legacyAssistRosters = [
 const legacyMetronomeRosters = [
     [named('Mew', ['Metronome'], 'N')], [named('Chansey', ['Recover'])],
 ];
+const legacySkyDropUser = [{...named('Aerodactyl', ['Sky Drop', 'Recover']), item:'Power Herb'}];
+const legacySkyDropRosters = [
+    legacySkyDropUser, [named('Chansey', ['Tackle']), named('Porygon2', ['Recover'])],
+];
+const legacySkyDropHeavyRosters = [
+    legacySkyDropUser, [named('Snorlax', ['Tackle'])],
+];
+const legacySkyDropFlyingRosters = [
+    legacySkyDropUser, [named('Pidgeot', ['Tackle'])],
+];
+const legacySkyDropGravityRosters = [
+    [named('Aerodactyl', ['Sky Drop']), {...named('Sableye', ['Gravity', 'Recover']), ability:'Prankster'}],
+    [named('Chansey', ['Tackle']), named('Porygon2', ['Gust', 'Tackle'])],
+];
+const legacySkyDropSpeedRosters = [
+    [named('Wingull', ['Sky Drop'])], [named('Jolteon', ['Tackle'])],
+];
+const legacySkyDropFaintRosters = [
+    [named('Aerodactyl', ['Sky Drop']), named('Shuckle', ['Recover']), named('Porygon2', ['Recover'])],
+    [named('Chansey', ['Tackle']), {...named('Rampardos', ['Smack Down']), item:'Choice Band'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3371,6 +3392,19 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         'custom-metronome-chooses-pinned-attack', '1,2,3,8'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1']], legacyMetronomeRosters,
         'custom-metronome-chooses-pinned-hazard', '1,2,3,15'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 1','move 1']],
+        legacySkyDropRosters, 'custom-sky-drop-lifts-and-releases-target'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        legacySkyDropHeavyRosters, 'custom-sky-drop-rejects-heavy-target'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        legacySkyDropFlyingRosters, 'custom-sky-drop-flying-target-is-immune'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 2','move 1 1, move 1 1'],
+        ['move 1, move 1','move 1 1, move 2 1']], legacySkyDropGravityRosters,
+        'custom-sky-drop-airspeed-and-gravity'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        legacySkyDropSpeedRosters, 'custom-sky-drop-faster-rider'],
+    ['doublescustomgame', [['team 123','team 12'], ['move 1 1, move 1','move 1 2, move 1 1']],
+        legacySkyDropFaintRosters, 'custom-sky-drop-releases-rider-after-faint'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

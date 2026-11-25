@@ -3,7 +3,7 @@
 use super::{turn::Position, *};
 
 impl Battle {
-    fn weight(&mut self, pos: Position) -> u32 {
+    pub(super) fn weight(&mut self, pos: Position) -> u32 {
         let mon = self.mon(pos);
         let mut weight = u32::from(mon.weighthg);
         let float = mon.effective_item() == "floatstone";

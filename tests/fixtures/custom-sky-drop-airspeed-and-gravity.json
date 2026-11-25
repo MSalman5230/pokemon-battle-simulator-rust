@@ -1,0 +1,1473 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Aerodactyl\",\"moves\":[\"Sky Drop\"],\"gender\":\"F\",\"name\":\"Aerodactyl\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Sableye\",\"moves\":[\"Gravity\",\"Recover\"],\"gender\":\"F\",\"name\":\"Sableye\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Prankster\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Chansey\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Chansey\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Porygon2\",\"moves\":[\"Gust\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Porygon2\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Aerodactyl, L50, F|",
+          "|poke|p1|Sableye, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Porygon2, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Aerodactyl, L50, F|",
+          "|poke|p1|Sableye, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Porygon2, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Aerodactyl, L50, F|",
+          "|poke|p1|Sableye, L50, F|",
+          "|poke|p2|Chansey, L50, F|",
+          "|poke|p2|Porygon2, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aerodactyl",
+                "details": "Aerodactyl, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 85,
+                  "spa": 80,
+                  "spd": 95,
+                  "spe": 150
+                },
+                "moves": [
+                  "skydrop"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "gust",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aerodactyl",
+            "species": "Aerodactyl",
+            "details": "Aerodactyl, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 85,
+              "spa": 80,
+              "spd": 95,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "skydrop",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "gust",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Aerodactyl|Aerodactyl, L50, F|155/155",
+          "|switch|p1b: Sableye|Sableye, L50, F|125/125",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Porygon2|Porygon2, L50, F|160/160",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Aerodactyl|Aerodactyl, L50, F|155/155",
+          "|switch|p1b: Sableye|Sableye, L50, F|125/125",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Porygon2|Porygon2, L50, F|160/160",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Aerodactyl|Aerodactyl, L50, F|155/155",
+          "|switch|p1b: Sableye|Sableye, L50, F|125/125",
+          "|switch|p2a: Chansey|Chansey, L50, F|325/325",
+          "|switch|p2b: Porygon2|Porygon2, L50, F|160/160",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sky Drop",
+                  "id": "skydrop",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "any",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aerodactyl",
+                "details": "Aerodactyl, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 85,
+                  "spa": 80,
+                  "spd": 95,
+                  "spe": 150
+                },
+                "moves": [
+                  "skydrop"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Gust",
+                  "id": "gust",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "gust",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aerodactyl",
+            "species": "Aerodactyl",
+            "details": "Aerodactyl, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 85,
+              "spa": 80,
+              "spd": 95,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "skydrop",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gust",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 2",
+        ">p2 move 1 1, move 1 1"
+      ],
+      "turn": 2,
+      "seed": "56224,59251,18573,26068",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Sableye|Recover||[still]",
+          "|-fail|p1b: Sableye|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Aerodactyl|Sky Drop||[still]",
+          "|-prepare|p1a: Aerodactyl|Sky Drop|p2a: Chansey",
+          "|move|p2b: Porygon2|Gust|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|145/155",
+          "|debug|Sky drop nullifying.",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Sableye|Recover||[still]",
+          "|-fail|p1b: Sableye|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Aerodactyl|Sky Drop||[still]",
+          "|-prepare|p1a: Aerodactyl|Sky Drop|p2a: Chansey",
+          "|move|p2b: Porygon2|Gust|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|145/155",
+          "|debug|Sky drop nullifying.",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1b: Sableye|Recover||[still]",
+          "|-fail|p1b: Sableye|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Aerodactyl|Sky Drop||[still]",
+          "|-prepare|p1a: Aerodactyl|Sky Drop|p2a: Chansey",
+          "|move|p2b: Porygon2|Gust|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|145/155",
+          "|debug|Sky drop nullifying.",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Sky Drop",
+                  "id": "skydrop"
+                }
+              ],
+              "trapped": true
+            },
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aerodactyl",
+                "details": "Aerodactyl, L50, F",
+                "condition": "145/155",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 85,
+                  "spa": 80,
+                  "spd": 95,
+                  "spe": 150
+                },
+                "moves": [
+                  "skydrop"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Gust",
+                  "id": "gust",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "gust",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aerodactyl",
+            "species": "Aerodactyl",
+            "details": "Aerodactyl, L50, F",
+            "hp": 145,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 85,
+              "spa": 80,
+              "spd": 95,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "skydrop",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gust",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1",
+        ">p2 move 1 1, move 2 1"
+      ],
+      "turn": 3,
+      "seed": "34226,36013,62117,47012",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1b: Sableye|Gravity|p1b: Sableye",
+          "|-fieldstart|move: Gravity",
+          "|-end|p2a: Chansey|Sky Drop|[interrupt]",
+          "|-activate|p1a: Aerodactyl|move: Gravity",
+          "|move|p2b: Porygon2|Tackle|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|130/155",
+          "|move|p2a: Chansey|Tackle|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|126/155",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1b: Sableye|Gravity|p1b: Sableye",
+          "|-fieldstart|move: Gravity",
+          "|-end|p2a: Chansey|Sky Drop|[interrupt]",
+          "|-activate|p1a: Aerodactyl|move: Gravity",
+          "|move|p2b: Porygon2|Tackle|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|130/155",
+          "|move|p2a: Chansey|Tackle|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|126/155",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1b: Sableye|Gravity|p1b: Sableye",
+          "|-fieldstart|move: Gravity",
+          "|-end|p2a: Chansey|Sky Drop|[interrupt]",
+          "|-activate|p1a: Aerodactyl|move: Gravity",
+          "|move|p2b: Porygon2|Tackle|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|130/155",
+          "|move|p2a: Chansey|Tackle|p1a: Aerodactyl",
+          "|-resisted|p1a: Aerodactyl|1",
+          "|-damage|p1a: Aerodactyl|126/155",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Struggle",
+                  "id": "struggle",
+                  "target": "randomNormal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Gravity",
+                  "id": "gravity",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Aerodactyl",
+                "details": "Aerodactyl, L50, F",
+                "condition": "126/155",
+                "active": true,
+                "stats": {
+                  "atk": 125,
+                  "def": 85,
+                  "spa": 80,
+                  "spd": 95,
+                  "spe": 150
+                },
+                "moves": [
+                  "skydrop"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "gravity",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Gust",
+                  "id": "gust",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "any",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Chansey",
+                "details": "Chansey, L50, F",
+                "condition": "325/325",
+                "active": true,
+                "stats": {
+                  "atk": 25,
+                  "def": 25,
+                  "spa": 55,
+                  "spd": 125,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "gust",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Aerodactyl",
+            "species": "Aerodactyl",
+            "details": "Aerodactyl, L50, F",
+            "hp": 126,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 125,
+              "def": 85,
+              "spa": 80,
+              "spd": 95,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "skydrop",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gravity",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Chansey",
+            "species": "Chansey",
+            "details": "Chansey, L50, F",
+            "hp": 325,
+            "maxhp": 325,
+            "status": "",
+            "stats": {
+              "atk": 25,
+              "def": 25,
+              "spa": 55,
+              "spd": 125,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "gust",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

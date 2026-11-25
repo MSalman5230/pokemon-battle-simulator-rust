@@ -1109,9 +1109,11 @@ impl Battle {
                 candidate.player != source.player
                     && mon.hp > 0
                     && (mon.under(super::field_effects::LegacyCondition::Spotlight)
-                        || mon.attention.is_some_and(|kind| {
-                            kind != Attention::RagePowder || !self.status_immune(source, "powder")
-                        }))
+                        || (!mon.is_sky_dropped()
+                            && mon.attention.is_some_and(|kind| {
+                                kind != Attention::RagePowder
+                                    || !self.status_immune(source, "powder")
+                            })))
                     && move_data
                         .target
                         .valid_location(2, source.slot as u8, candidate.loc(source))

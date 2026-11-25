@@ -127,7 +127,7 @@ impl Battle {
         if mon.fainted {
             return Trap::default();
         }
-        if mon.is_command_locked() {
+        if mon.is_command_locked() || mon.sky_drop_rider {
             return Trap {
                 actual: true,
                 possible: true,
@@ -178,15 +178,14 @@ impl Battle {
     pub fn trapped_in_request(&self, player: Player, slot: usize) -> bool {
         let pos = Position { player, slot };
         let mon = self.mon(pos);
-        if mon.is_command_locked() {
-            return true;
-        }
-        let visible_trap = (mon.volatile_ids().contains(&"trapped")
-            || mon.volatile_ids().contains(&"ingrain")
-            || self.fairy_lock != 0
-            || self.is_bound(pos)
-            || self.octolock_source(pos).is_some())
-            && !self.ignores_trapping(pos);
+        let visible_trap = mon.is_command_locked()
+            || mon.sky_drop_rider
+            || (mon.volatile_ids().contains(&"trapped")
+                || mon.volatile_ids().contains(&"ingrain")
+                || self.fairy_lock != 0
+                || self.is_bound(pos)
+                || self.octolock_source(pos).is_some())
+                && !self.ignores_trapping(pos);
         mon.hard_locked()
             || mon.revealed_trap
             || ((visible_trap || (!self.last_active(pos) && self.trap_info(pos).actual))
