@@ -1943,9 +1943,13 @@ impl Battle {
         {
             return false;
         }
-        if self.event_ability(target) == "suctioncups" {
+        if let Some(label) = match self.event_ability(target) {
+            "suctioncups" => Some("Suction Cups"),
+            "guarddog" => Some("Guard Dog"),
+            _ => None,
+        } {
             self.add(format!(
-                "|-activate|{}|ability: Suction Cups",
+                "|-activate|{}|ability: {label}",
                 self.ident(target)
             ));
         } else if self.mon(target).volatile_ids().contains(&"ingrain") {
@@ -1986,6 +1990,9 @@ impl Battle {
         self.switch_in_terrain(pos);
         if self.mon(pos).ability == "intimidate" {
             self.intimidate(pos);
+        }
+        if self.event_ability(pos) == "supersweetsyrup" {
+            self.supersweet_syrup(pos);
         }
         if self.mon(pos).ability == "frisk" {
             self.frisk(pos);
@@ -6323,6 +6330,9 @@ impl Pokemon {
                 | "solarpower"
                 | "megasol"
                 | "parentalbond"
+                | "sweetveil"
+                | "supersweetsyrup"
+                | "guarddog"
                 | "fairyaura"
                 | "darkaura"
                 | "aurabreak"

@@ -27,6 +27,7 @@ pub(super) enum BoostOrigin {
     Move { has_secondaries: bool },
     Secondary,
     Intimidate,
+    SupersweetSyrup,
     MirrorArmor,
     Hazard,
     Octolock,
@@ -40,7 +41,10 @@ impl BoostOrigin {
     }
 
     fn quiet(self) -> bool {
-        matches!(self, Self::Secondary | Self::Intimidate | Self::MirrorArmor)
+        matches!(
+            self,
+            Self::Secondary | Self::Intimidate | Self::SupersweetSyrup | Self::MirrorArmor
+        )
     }
 
     fn reveal_protection(self) -> bool {
@@ -1265,6 +1269,10 @@ impl Battle {
                 self.add(format!("|-immune|{}", self.ident(target)));
                 continue;
             }
+            if self.event_ability(target) == "guarddog" {
+                self.ability_boost(target, "Guard Dog", BoostStat::Atk, 1, false);
+                continue;
+            }
             let lowered = self.boost_from(
                 target,
                 pos,
@@ -1275,6 +1283,66 @@ impl Battle {
                 self.ability_boost(target, "Rattled", BoostStat::Spe, 1, false);
             }
         }
+    }
+
+    pub(super) fn supersweet_syrup(&mut self, pos: Position) {
+        if self.mon(pos).syrup_triggered {
+            return;
+        }
+        self.mon_mut(pos).syrup_triggered = true;
+        self.add(format!("|-ability|{}|Supersweet Syrup", self.ident(pos)));
+        for target in self
+            .positions()
+            .filter(|target| target.player != pos.player)
+        {
+            if self.mon(target).hp == 0 {
+                continue;
+            }
+            if self.mon(target).substitute_hp > 0 {
+                self.add(format!("|-immune|{}", self.ident(target)));
+            } else {
+                self.boost_from(
+                    target,
+                    pos,
+                    &[(BoostStat::Evasion, -1)],
+                    BoostOrigin::SupersweetSyrup,
+                );
+            }
+        }
+    }
+
+    pub(super) fn sweet_veil_blocks(&mut self, pos: Position, yawn: bool) -> bool {
+        let mut veils = [(pos, 0); 2];
+        let mut count = 0;
+        for holder in self
+            .positions()
+            .filter(|holder| holder.player == pos.player)
+        {
+            if self.event_ability(holder) == "sweetveil" {
+                veils[count] = (holder, self.mon(holder).speed);
+                count += 1;
+            }
+        }
+        if count == 0 {
+            return false;
+        }
+        speed_sort_by(&mut veils[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        if self.format.report_exact_hp {
+            self.add(if yawn {
+                "|debug|Sweet Veil blocking yawn"
+            } else {
+                "|debug|Sweet Veil interrupts sleep"
+            });
+        }
+        self.add(format!(
+            "|-block|{}|ability: Sweet Veil|[of] {}",
+            self.ident(pos),
+            self.ident(veils[0].0)
+        ));
+        if !yawn && self.format.report_exact_hp {
+            self.add("|debug|set status [slp] interrupted");
+        }
+        true
     }
 
     pub(super) fn boost_from(

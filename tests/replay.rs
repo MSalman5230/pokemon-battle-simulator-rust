@@ -1522,6 +1522,17 @@ fn disable_checks_accuracy_before_failing_on_a_target_with_no_last_move() {
 }
 
 #[test]
+fn sweet_veil_protects_allies_and_supersweet_syrup_triggers_once() {
+    replay(include_str!("fixtures/vgc-sweet-veil.json"));
+    replay(include_str!("fixtures/bss-supersweet-syrup.json"));
+}
+
+#[test]
+fn guard_dog_reverses_intimidate_and_blocks_forced_switches() {
+    replay(include_str!("fixtures/bss-guard-dog.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

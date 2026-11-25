@@ -444,6 +444,9 @@ impl Battle {
         id: &str,
         reveal: bool,
     ) -> bool {
+        if id == "slp" && self.sweet_veil_blocks(pos, false) {
+            return true;
+        }
         let label = match (self.event_ability(pos), id) {
             ("immunity", "psn" | "tox") => "Immunity",
             ("thermalexchange", "brn") => "Thermal Exchange",
@@ -479,6 +482,9 @@ impl Battle {
     }
 
     pub(super) fn yawn_blocked_by_ability(&mut self, pos: Position) -> bool {
+        if self.sweet_veil_blocks(pos, true) {
+            return true;
+        }
         let label = match self.event_ability(pos) {
             "purifyingsalt" => "Purifying Salt",
             "insomnia" => "Insomnia",

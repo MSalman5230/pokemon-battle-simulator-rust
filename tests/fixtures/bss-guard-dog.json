@@ -1,0 +1,796 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Mabosstiff\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Mabosstiff\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Guard Dog\"},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Arcanine\",\"moves\":[\"Roar\"],\"gender\":\"F\",\"name\":\"Arcanine\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Intimidate\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Mabosstiff, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Mabosstiff, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Mabosstiff, L50, F|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Arcanine, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Mabosstiff",
+                "details": "Mabosstiff, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "guarddog",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "guarddog",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "roar"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Mabosstiff",
+            "species": "Mabosstiff",
+            "details": "Mabosstiff, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guarddog",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "roar",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Mabosstiff|Mabosstiff, L50, F|100/100",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|100/100",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-ability|p1a: Mabosstiff|Guard Dog|boost",
+          "|-boost|p1a: Mabosstiff|atk|1",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Mabosstiff|Mabosstiff, L50, F|155/155",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|100/100",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-ability|p1a: Mabosstiff|Guard Dog|boost",
+          "|-boost|p1a: Mabosstiff|atk|1",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Mabosstiff|Mabosstiff, L50, F|100/100",
+          "|switch|p2a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p2a: Arcanine|Intimidate|boost",
+          "|-ability|p1a: Mabosstiff|Guard Dog|boost",
+          "|-boost|p1a: Mabosstiff|atk|1",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Mabosstiff",
+                "details": "Mabosstiff, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "guarddog",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "guarddog",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Roar",
+                  "id": "roar",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "roar"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Mabosstiff",
+            "species": "Mabosstiff",
+            "details": "Mabosstiff, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guarddog",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "roar",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Mabosstiff|Recover||[still]",
+          "|-fail|p1a: Mabosstiff|heal",
+          "|move|p2a: Arcanine|Roar|p1a: Mabosstiff",
+          "|-activate|p1a: Mabosstiff|ability: Guard Dog",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Mabosstiff|Recover||[still]",
+          "|-fail|p1a: Mabosstiff|heal",
+          "|move|p2a: Arcanine|Roar|p1a: Mabosstiff",
+          "|-activate|p1a: Mabosstiff|ability: Guard Dog",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Mabosstiff|Recover||[still]",
+          "|-fail|p1a: Mabosstiff|heal",
+          "|move|p2a: Arcanine|Roar|p1a: Mabosstiff",
+          "|-activate|p1a: Mabosstiff|ability: Guard Dog",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Mabosstiff",
+                "details": "Mabosstiff, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 110,
+                  "spa": 80,
+                  "spd": 90,
+                  "spe": 105
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "guarddog",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "guarddog",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Roar",
+                  "id": "roar",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "roar"
+                ],
+                "baseAbility": "intimidate",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Mabosstiff",
+            "species": "Mabosstiff",
+            "details": "Mabosstiff, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 110,
+              "spa": 80,
+              "spd": 90,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "guarddog",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "roar",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

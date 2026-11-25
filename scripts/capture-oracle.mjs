@@ -1212,6 +1212,18 @@ const disableFirstMoveRosters = [
     [named('Glalie', ['Disable'])],
     [named('Torkoal', ['Tackle'])],
 ];
+const sweetVeilRosters = [
+    [{...named('Ribombee', ['Recover']), ability:'Sweet Veil'}, named('Vaporeon', ['Recover'])],
+    [named('Amoonguss', ['Spore']), named('Gengar', ['Yawn'])],
+];
+const guardDogRosters = [
+    [{...named('Mabosstiff', ['Recover']), ability:'Guard Dog'}, named('Vaporeon', ['Recover'])],
+    [{...named('Arcanine', ['Roar']), ability:'Intimidate'}],
+];
+const syrupRosters = [
+    [{...named('Dipplin', ['Recover']), ability:'Supersweet Syrup'}, named('Vaporeon', ['Recover'])],
+    [named('Umbreon', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -2185,6 +2197,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 mega, move 1','move 1, move 1']],
         parentalSpreadRosters, 'vgc-parental-bond-spread'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], disableFirstMoveRosters, 'bss-disable-before-first-move'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1 2, move 1 2']],
+        sweetVeilRosters, 'vgc-sweet-veil'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1']], guardDogRosters, 'bss-guard-dog'],
+    ['bssregmc', [['team 12','team 1'], ['switch 2','move 1'], ['switch 2','move 1']],
+        syrupRosters, 'bss-supersweet-syrup'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],
