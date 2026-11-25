@@ -1978,6 +1978,7 @@ impl Battle {
                 }
                 self.use_matching_terrain_seed(pos);
                 self.use_room_service(pos);
+                self.update_booster_energy(pos);
             }
         }
         for (pos, _) in order.into_iter().take(count) {
@@ -2527,6 +2528,12 @@ impl Battle {
             self.forecast(pos, self.effective_weather());
         }
         self.switch_in_terrain(pos);
+        if matches!(
+            self.mon(pos).ability.as_str(),
+            "protosynthesis" | "quarkdrive"
+        ) {
+            self.sync_paradox(pos, self.effective_weather(), self.terrain());
+        }
         if self.mon(pos).ability == "intimidate" {
             self.intimidate(pos);
         }
@@ -2655,6 +2662,9 @@ impl Battle {
 
     pub(super) fn speed_stat(&mut self, pos: Position) -> u32 {
         self.sort_unaware_handlers();
+        if self.format.report_exact_hp && self.mon(pos).paradox_boost.is_some() {
+            self.paradox_modifier(pos, BoostStat::Spe);
+        }
         let stat = self.mon(pos).current_speed(
             self.effective_weather(),
             self.terrain(),
@@ -5786,6 +5796,7 @@ impl Battle {
             if !self.set_terrain(source, terrain, None) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
                 result.failed = true;
             }
             return true;
@@ -9175,6 +9186,7 @@ impl Battle {
             self.release_commander(target.other_slot());
         }
         self.end_supreme_overlord(target, false);
+        self.end_paradox_ability(target);
         self.weather_ability_changed(target, true);
         self.clear_linked_traps(target);
         let rules = self.stat_rules;
@@ -9623,6 +9635,13 @@ impl Pokemon {
         if swamp {
             multiplier /= 4;
         }
+        if self
+            .paradox_boost
+            .is_some_and(|boost| boost.stat == BoostStat::Spe)
+            && !self.active_ability().is_empty()
+        {
+            multiplier = crate::mechanics::chain(multiplier, 6144);
+        }
         if multiplier != 4096 {
             stat = crate::mechanics::Truncation::Cartridge.modify(stat, multiplier);
         }
@@ -9646,6 +9665,8 @@ impl Pokemon {
                 | "battlearmor"
                 | "goodasgold"
                 | "roughskin"
+                | "protosynthesis"
+                | "quarkdrive"
                 | "runaway"
                 | "drizzle"
                 | "drought"
@@ -10042,6 +10063,7 @@ impl Pokemon {
                 | "ejectpack"
                 | "micleberry"
                 | "mirrorherb"
+                | "boosterenergy"
                 | "stickybarb"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX

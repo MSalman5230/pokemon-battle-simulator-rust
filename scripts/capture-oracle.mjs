@@ -2054,6 +2054,20 @@ const ejectPackPartingShotRosters = [
     [{...named('Snorlax', ['Tackle']), item:'Eject Pack'}, named('Umbreon', ['Recover'])],
     [named('Persian-Alola', ['Parting Shot']), named('Flareon', ['Recover'])],
 ];
+const protoBoosterAfterWeatherRosters = [
+    [{...named('Great Tusk', ['Iron Defense', 'Tackle'], 'N'), item:'Booster Energy', ability:'Protosynthesis'}],
+    [{...named('Torkoal', ['Rain Dance', 'Tackle']), ability:'Drought'}],
+];
+const protoBoosterSpeedRosters = [
+    [{...named('Flutter Mane', ['Hex'], 'N'), item:'Booster Energy', ability:'Protosynthesis', nature:'Timid'},
+        named('Porygon2', ['Recover'])],
+    [named('Jolteon', ['Tackle'])],
+];
+const quarkDriveBoosterRosters = [
+    [{...named('Pincurchin', ['Misty Terrain']), ability:'Electric Surge'},
+        {...named('Iron Hands', ['Tackle'], 'N'), item:'Booster Energy', ability:'Quark Drive'}],
+    [{...named('Espeon', ['Trick', 'Tackle']), item:'Leftovers'}, named('Venusaur', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3596,6 +3610,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ejectPackIntimidateRosters, 'custom-eject-pack-can-trigger-during-entry'],
     ['customgame', [['team 12','team 12'], ['move 1','move 1'], [null,'switch 2']],
         ejectPackPartingShotRosters, 'custom-eject-pack-ignores-parting-shot'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2']],
+        protoBoosterAfterWeatherRosters, 'custom-protosynthesis-reevaluates-the-highest-stat-after-sun'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1']],
+        protoBoosterSpeedRosters, 'custom-booster-energy-speeds-up-flutter-mane-until-switch'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1 2','move 1 2, move 1'],
+        ['move 1, move 1 2','move 2 2, move 1']],
+        quarkDriveBoosterRosters, 'custom-quark-drive-field-then-protected-booster-energy'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

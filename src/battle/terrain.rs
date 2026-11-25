@@ -99,6 +99,9 @@ impl Battle {
             if self.mon(pos).active_ability() == "mimicry" {
                 self.apply_mimicry(pos);
             }
+            if self.mon(pos).ability == "quarkdrive" {
+                self.sync_paradox(pos, None, self.terrain());
+            }
             self.use_matching_terrain_seed(pos);
         }
     }

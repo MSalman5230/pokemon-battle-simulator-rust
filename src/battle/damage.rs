@@ -618,6 +618,30 @@ impl Battle {
                 self.add(format!("|debug|{label}"));
             }
         }
+        let paradox_attack = if source_active && self.mon(source).paradox_boost.is_some() {
+            self.paradox_modifier(
+                source,
+                if physical {
+                    BoostStat::Atk
+                } else {
+                    BoostStat::Spa
+                },
+            )
+        } else {
+            4096
+        };
+        let paradox_defense = if self.mon(target).paradox_boost.is_some() {
+            self.paradox_modifier(
+                target,
+                if defense_uses_def {
+                    BoostStat::Def
+                } else {
+                    BoostStat::Spd
+                },
+            )
+        } else {
+            4096
+        };
         let user = self.mon(source);
         let mon = self.mon(target);
         if source != target && self.event_ability(target) == "unaware" {
@@ -649,7 +673,10 @@ impl Battle {
             4096
         };
         let mut attack_modifier = if source_active {
-            user.attack_modifier(move_data.category, move_type)
+            chain(
+                paradox_attack,
+                user.attack_modifier(move_data.category, move_type),
+            )
         } else {
             4096
         };
@@ -688,7 +715,10 @@ impl Battle {
         let def = tr.modify(
             def,
             chain(
-                chain(defense_weather_modifier, defense_ability_modifier),
+                chain(
+                    chain(paradox_defense, defense_weather_modifier),
+                    defense_ability_modifier,
+                ),
                 defense_item_modifier,
             ),
         );

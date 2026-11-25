@@ -144,6 +144,8 @@ pub struct Species {
     pub has_condition: bool,
     #[serde(default)]
     pub can_evolve: bool,
+    #[serde(default)]
+    pub is_paradox: bool,
     pub move_mega: Option<MoveMega>,
     #[serde(default)]
     pub transformed_z_restricted: bool,

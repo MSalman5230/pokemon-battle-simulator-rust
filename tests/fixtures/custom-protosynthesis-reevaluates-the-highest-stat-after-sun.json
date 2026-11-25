@@ -1,0 +1,943 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Great Tusk\",\"moves\":[\"Iron Defense\",\"Tackle\"],\"gender\":\"N\",\"name\":\"Great Tusk\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Protosynthesis\",\"item\":\"Booster Energy\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Torkoal\",\"moves\":[\"Rain Dance\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Torkoal\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Drought\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Great Tusk, L50|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Great Tusk, L50|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Great Tusk, L50|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Great Tusk",
+                "details": "Great Tusk, L50",
+                "condition": "190/190",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 151,
+                  "spa": 73,
+                  "spd": 73,
+                  "spe": 107
+                },
+                "moves": [
+                  "irondefense",
+                  "tackle"
+                ],
+                "baseAbility": "protosynthesis",
+                "item": "boosterenergy",
+                "pokeball": "pokeball",
+                "ability": "protosynthesis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "raindance",
+                  "tackle"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Great Tusk",
+            "species": "Great Tusk",
+            "details": "Great Tusk, L50",
+            "hp": 190,
+            "maxhp": 190,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 151,
+              "spa": 73,
+              "spd": 73,
+              "spe": 107
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "protosynthesis",
+            "item": "boosterenergy",
+            "active": false,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Great Tusk|Great Tusk, L50|190/190",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|145/145",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p2a: Torkoal",
+          "|-activate|p1a: Great Tusk|ability: Protosynthesis",
+          "|-start|p1a: Great Tusk|protosynthesisatk",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Great Tusk|Great Tusk, L50|190/190",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|145/145",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p2a: Torkoal",
+          "|-activate|p1a: Great Tusk|ability: Protosynthesis",
+          "|-start|p1a: Great Tusk|protosynthesisatk",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Great Tusk|Great Tusk, L50|190/190",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|145/145",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p2a: Torkoal",
+          "|-activate|p1a: Great Tusk|ability: Protosynthesis",
+          "|-start|p1a: Great Tusk|protosynthesisatk",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Great Tusk",
+                "details": "Great Tusk, L50",
+                "condition": "190/190",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 151,
+                  "spa": 73,
+                  "spd": 73,
+                  "spe": 107
+                },
+                "moves": [
+                  "irondefense",
+                  "tackle"
+                ],
+                "baseAbility": "protosynthesis",
+                "item": "boosterenergy",
+                "pokeball": "pokeball",
+                "ability": "protosynthesis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "raindance",
+                  "tackle"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Great Tusk",
+            "species": "Great Tusk",
+            "details": "Great Tusk, L50",
+            "hp": 190,
+            "maxhp": 190,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 151,
+              "spa": 73,
+              "spd": 73,
+              "spe": 107
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "protosynthesis",
+            "item": "boosterenergy",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Great Tusk|Iron Defense|p1a: Great Tusk",
+          "|-boost|p1a: Great Tusk|def|2",
+          "|move|p2a: Torkoal|Rain Dance|p2a: Torkoal",
+          "|-weather|RainDance",
+          "|-end|p1a: Great Tusk|Protosynthesis",
+          "|-enditem|p1a: Great Tusk|Booster Energy",
+          "|-activate|p1a: Great Tusk|ability: Protosynthesis|[fromitem]",
+          "|-start|p1a: Great Tusk|protosynthesisdef",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Great Tusk|Iron Defense|p1a: Great Tusk",
+          "|-boost|p1a: Great Tusk|def|2",
+          "|move|p2a: Torkoal|Rain Dance|p2a: Torkoal",
+          "|-weather|RainDance",
+          "|-end|p1a: Great Tusk|Protosynthesis",
+          "|-enditem|p1a: Great Tusk|Booster Energy",
+          "|-activate|p1a: Great Tusk|ability: Protosynthesis|[fromitem]",
+          "|-start|p1a: Great Tusk|protosynthesisdef",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Great Tusk|Iron Defense|p1a: Great Tusk",
+          "|-boost|p1a: Great Tusk|def|2",
+          "|move|p2a: Torkoal|Rain Dance|p2a: Torkoal",
+          "|-weather|RainDance",
+          "|-end|p1a: Great Tusk|Protosynthesis",
+          "|-enditem|p1a: Great Tusk|Booster Energy",
+          "|-activate|p1a: Great Tusk|ability: Protosynthesis|[fromitem]",
+          "|-start|p1a: Great Tusk|protosynthesisdef",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Great Tusk",
+                "details": "Great Tusk, L50",
+                "condition": "190/190",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 151,
+                  "spa": 73,
+                  "spd": 73,
+                  "spe": 107
+                },
+                "moves": [
+                  "irondefense",
+                  "tackle"
+                ],
+                "baseAbility": "protosynthesis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "protosynthesis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "raindance",
+                  "tackle"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Great Tusk",
+            "species": "Great Tusk",
+            "details": "Great Tusk, L50",
+            "hp": 190,
+            "maxhp": 190,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 151,
+              "spa": 73,
+              "spd": 73,
+              "spe": 107
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "protosynthesis",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Great Tusk|Tackle|p2a: Torkoal",
+          "|-damage|p2a: Torkoal|129/145",
+          "|move|p2a: Torkoal|Tackle|p1a: Great Tusk",
+          "|debug|Protosynthesis def boost",
+          "|-damage|p1a: Great Tusk|185/190",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Great Tusk|Tackle|p2a: Torkoal",
+          "|-damage|p2a: Torkoal|129/145",
+          "|move|p2a: Torkoal|Tackle|p1a: Great Tusk",
+          "|debug|Protosynthesis def boost",
+          "|-damage|p1a: Great Tusk|185/190",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Great Tusk|Tackle|p2a: Torkoal",
+          "|-damage|p2a: Torkoal|129/145",
+          "|move|p2a: Torkoal|Tackle|p1a: Great Tusk",
+          "|debug|Protosynthesis def boost",
+          "|-damage|p1a: Great Tusk|185/190",
+          "|",
+          "|-weather|RainDance|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Iron Defense",
+                  "id": "irondefense",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Great Tusk",
+                "details": "Great Tusk, L50",
+                "condition": "185/190",
+                "active": true,
+                "stats": {
+                  "atk": 151,
+                  "def": 151,
+                  "spa": 73,
+                  "spd": 73,
+                  "spe": 107
+                },
+                "moves": [
+                  "irondefense",
+                  "tackle"
+                ],
+                "baseAbility": "protosynthesis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "protosynthesis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Rain Dance",
+                  "id": "raindance",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "129/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "raindance",
+                  "tackle"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Great Tusk",
+            "species": "Great Tusk",
+            "details": "Great Tusk, L50",
+            "hp": 185,
+            "maxhp": 190,
+            "status": "",
+            "stats": {
+              "atk": 151,
+              "def": 151,
+              "spa": 73,
+              "spd": 73,
+              "spe": 107
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "protosynthesis",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "irondefense",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 129,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "raindance",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

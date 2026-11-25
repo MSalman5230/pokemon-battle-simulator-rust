@@ -251,6 +251,7 @@ impl Battle {
         self.on_switch_in_item(pos);
         self.use_matching_terrain_seed(pos);
         self.use_room_service(pos);
+        self.update_booster_energy(pos);
         self.white_herb(pos);
     }
 
@@ -543,6 +544,7 @@ impl Battle {
     }
 
     pub(super) fn on_update_item(&mut self, pos: Position) {
+        self.update_booster_energy(pos);
         let mon = self.mon(pos);
         if mon.hp > 0 && mon.effective_item() == "mentalherb" {
             self.mental_herb(pos);

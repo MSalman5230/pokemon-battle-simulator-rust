@@ -1,0 +1,1077 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Flutter Mane\",\"moves\":[\"Hex\"],\"gender\":\"N\",\"name\":\"Flutter Mane\",\"level\":50,\"nature\":\"Timid\",\"ability\":\"Protosynthesis\",\"item\":\"Booster Energy\"},{\"species\":\"Porygon2\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Porygon2\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Jolteon\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Flutter Mane, L50|",
+          "|poke|p1|Porygon2, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Flutter Mane, L50|",
+          "|poke|p1|Porygon2, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Flutter Mane, L50|",
+          "|poke|p1|Porygon2, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flutter Mane",
+                "details": "Flutter Mane, L50",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 67,
+                  "def": 75,
+                  "spa": 155,
+                  "spd": 155,
+                  "spe": 170
+                },
+                "moves": [
+                  "hex"
+                ],
+                "baseAbility": "protosynthesis",
+                "item": "boosterenergy",
+                "pokeball": "pokeball",
+                "ability": "protosynthesis",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flutter Mane",
+            "species": "Flutter Mane",
+            "details": "Flutter Mane, L50",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 67,
+              "def": 75,
+              "spa": 155,
+              "spd": 155,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "protosynthesis",
+            "item": "boosterenergy",
+            "active": false,
+            "moves": [
+              {
+                "id": "hex",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flutter Mane|Flutter Mane, L50|130/130",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|140/140",
+          "|-enditem|p1a: Flutter Mane|Booster Energy",
+          "|-activate|p1a: Flutter Mane|ability: Protosynthesis|[fromitem]",
+          "|-start|p1a: Flutter Mane|protosynthesisspe",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flutter Mane|Flutter Mane, L50|130/130",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|140/140",
+          "|-enditem|p1a: Flutter Mane|Booster Energy",
+          "|-activate|p1a: Flutter Mane|ability: Protosynthesis|[fromitem]",
+          "|-start|p1a: Flutter Mane|protosynthesisspe",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Flutter Mane|Flutter Mane, L50|130/130",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|140/140",
+          "|-enditem|p1a: Flutter Mane|Booster Energy",
+          "|-activate|p1a: Flutter Mane|ability: Protosynthesis|[fromitem]",
+          "|-start|p1a: Flutter Mane|protosynthesisspe",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hex",
+                  "id": "hex",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flutter Mane",
+                "details": "Flutter Mane, L50",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 67,
+                  "def": 75,
+                  "spa": 155,
+                  "spd": 155,
+                  "spe": 170
+                },
+                "moves": [
+                  "hex"
+                ],
+                "baseAbility": "protosynthesis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "protosynthesis",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flutter Mane",
+            "species": "Flutter Mane",
+            "details": "Flutter Mane, L50",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 67,
+              "def": 75,
+              "spa": 155,
+              "spd": 155,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "protosynthesis",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hex",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|",
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|move|p1a: Flutter Mane|Hex|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|86/140",
+          "|debug|Protosynthesis spe boost",
+          "|move|p2a: Jolteon|Tackle|p1a: Flutter Mane",
+          "|-immune|p1a: Flutter Mane",
+          "|",
+          "|debug|Protosynthesis spe boost",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|",
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|move|p1a: Flutter Mane|Hex|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|86/140",
+          "|debug|Protosynthesis spe boost",
+          "|move|p2a: Jolteon|Tackle|p1a: Flutter Mane",
+          "|-immune|p1a: Flutter Mane",
+          "|",
+          "|debug|Protosynthesis spe boost",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|",
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|move|p1a: Flutter Mane|Hex|p2a: Jolteon",
+          "|-damage|p2a: Jolteon|86/140",
+          "|debug|Protosynthesis spe boost",
+          "|move|p2a: Jolteon|Tackle|p1a: Flutter Mane",
+          "|-immune|p1a: Flutter Mane",
+          "|",
+          "|debug|Protosynthesis spe boost",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Hex",
+                  "id": "hex",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Flutter Mane",
+                "details": "Flutter Mane, L50",
+                "condition": "130/130",
+                "active": true,
+                "stats": {
+                  "atk": 67,
+                  "def": 75,
+                  "spa": 155,
+                  "spd": 155,
+                  "spe": 170
+                },
+                "moves": [
+                  "hex"
+                ],
+                "baseAbility": "protosynthesis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "protosynthesis",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "160/160",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "86/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Flutter Mane",
+            "species": "Flutter Mane",
+            "details": "Flutter Mane, L50",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 67,
+              "def": 75,
+              "spa": 155,
+              "spd": 155,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "protosynthesis",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "hex",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 86,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|",
+          "|-end|p1a: Flutter Mane|Protosynthesis|[silent]",
+          "|switch|p1a: Porygon2|Porygon2, L50, F|160/160",
+          "|move|p2a: Jolteon|Tackle|p1a: Porygon2",
+          "|-damage|p1a: Porygon2|147/160",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|",
+          "|-end|p1a: Flutter Mane|Protosynthesis|[silent]",
+          "|switch|p1a: Porygon2|Porygon2, L50, F|160/160",
+          "|move|p2a: Jolteon|Tackle|p1a: Porygon2",
+          "|-damage|p1a: Porygon2|147/160",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|debug|Protosynthesis spe boost",
+          "|debug|Protosynthesis spe boost",
+          "|",
+          "|-end|p1a: Flutter Mane|Protosynthesis|[silent]",
+          "|switch|p1a: Porygon2|Porygon2, L50, F|160/160",
+          "|move|p2a: Jolteon|Tackle|p1a: Porygon2",
+          "|-damage|p1a: Porygon2|147/160",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Porygon2",
+                "details": "Porygon2, L50, F",
+                "condition": "147/160",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 110,
+                  "spa": 125,
+                  "spd": 115,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Flutter Mane",
+                "details": "Flutter Mane, L50",
+                "condition": "130/130",
+                "active": false,
+                "stats": {
+                  "atk": 67,
+                  "def": 75,
+                  "spa": 155,
+                  "spd": 155,
+                  "spe": 170
+                },
+                "moves": [
+                  "hex"
+                ],
+                "baseAbility": "protosynthesis",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "protosynthesis",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "86/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Porygon2",
+            "species": "Porygon2",
+            "details": "Porygon2, L50, F",
+            "hp": 147,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 110,
+              "spa": 125,
+              "spd": 115,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Flutter Mane",
+            "species": "Flutter Mane",
+            "details": "Flutter Mane, L50",
+            "hp": 130,
+            "maxhp": 130,
+            "status": "",
+            "stats": {
+              "atk": 67,
+              "def": 75,
+              "spa": 155,
+              "spd": 155,
+              "spe": 170
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "protosynthesis",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "hex",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 86,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

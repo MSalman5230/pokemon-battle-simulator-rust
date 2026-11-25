@@ -180,6 +180,9 @@ impl Battle {
         });
         for (pos, _) in ordered.into_iter().take(count) {
             self.forecast(pos, weather);
+            if self.mon(pos).ability == "protosynthesis" {
+                self.sync_paradox(pos, weather, None);
+            }
         }
     }
 

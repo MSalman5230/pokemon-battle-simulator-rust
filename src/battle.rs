@@ -33,6 +33,7 @@ mod leech;
 mod legacy_attacks;
 mod mega;
 mod multihit;
+mod paradox;
 mod partial_trap;
 mod perish;
 mod pledges;
@@ -303,6 +304,7 @@ pub struct Pokemon {
     cud_chew: Option<items::CudChew>,
     mirror_herb: boost_copy::PendingBoostCopy,
     eject_pack_ready: bool,
+    paradox_boost: Option<paradox::ParadoxBoost>,
     pub ability: String,
     base_ability: String,
     ability_order: u32,
@@ -1058,6 +1060,7 @@ impl Pokemon {
             cud_chew: None,
             mirror_herb: boost_copy::PendingBoostCopy::default(),
             eject_pack_ready: false,
+            paradox_boost: None,
             base_ability: ability.clone(),
             ability,
             ability_order: 0,

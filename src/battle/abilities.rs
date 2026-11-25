@@ -189,6 +189,7 @@ impl Pokemon {
     pub(super) fn can_transfer_item(&self, item: &crate::dex::Item) -> bool {
         !item.unremovable
             && item.protected_form_base.as_deref() != Some(self.base_species.base_species.as_str())
+            && !(self.base_species.is_paradox && item.effect.name == "Booster Energy")
             && !(item.is_primal_orb
                 && item
                     .item_user
@@ -578,6 +579,7 @@ impl Battle {
 
     pub(super) fn end_ability(&mut self, pos: Position) {
         self.end_supreme_overlord(pos, false);
+        self.end_paradox_ability(pos);
         if self.mon(pos).ability == "opportunist" {
             self.mon_mut(pos).opportunist = PendingBoostCopy::default();
         }

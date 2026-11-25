@@ -1,0 +1,1457 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Pincurchin\",\"moves\":[\"Misty Terrain\"],\"gender\":\"F\",\"name\":\"Pincurchin\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Electric Surge\"},{\"species\":\"Iron Hands\",\"moves\":[\"Tackle\"],\"gender\":\"N\",\"name\":\"Iron Hands\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Quark Drive\",\"item\":\"Booster Energy\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Espeon\",\"moves\":[\"Trick\",\"Tackle\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Leftovers\"},{\"species\":\"Venusaur\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Venusaur\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Pincurchin, L50, F|",
+          "|poke|p1|Iron Hands, L50|",
+          "|poke|p2|Espeon, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Pincurchin, L50, F|",
+          "|poke|p1|Iron Hands, L50|",
+          "|poke|p2|Espeon, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Pincurchin, L50, F|",
+          "|poke|p1|Iron Hands, L50|",
+          "|poke|p2|Espeon, L50, F|",
+          "|poke|p2|Venusaur, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pincurchin",
+                "details": "Pincurchin, L50, F",
+                "condition": "123/123",
+                "active": true,
+                "stats": {
+                  "atk": 121,
+                  "def": 115,
+                  "spa": 111,
+                  "spd": 105,
+                  "spe": 35
+                },
+                "moves": [
+                  "mistyterrain"
+                ],
+                "baseAbility": "electricsurge",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "electricsurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Iron Hands",
+                "details": "Iron Hands, L50",
+                "condition": "229/229",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 128,
+                  "spa": 70,
+                  "spd": 88,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "quarkdrive",
+                "item": "boosterenergy",
+                "pokeball": "pokeball",
+                "ability": "quarkdrive",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "trick",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pincurchin",
+            "species": "Pincurchin",
+            "details": "Pincurchin, L50, F",
+            "hp": 123,
+            "maxhp": 123,
+            "status": "",
+            "stats": {
+              "atk": 121,
+              "def": 115,
+              "spa": 111,
+              "spd": 105,
+              "spe": 35
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electricsurge",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "mistyterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Iron Hands",
+            "species": "Iron Hands",
+            "details": "Iron Hands, L50",
+            "hp": 229,
+            "maxhp": 229,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 128,
+              "spa": 70,
+              "spd": 88,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "quarkdrive",
+            "item": "boosterenergy",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": false,
+            "moves": [
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Pincurchin|Pincurchin, L50, F|123/123",
+          "|switch|p1b: Iron Hands|Iron Hands, L50|229/229",
+          "|switch|p2a: Espeon|Espeon, L50, F|140/140",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|-fieldstart|move: Electric Terrain|[from] ability: Electric Surge|[of] p1a: Pincurchin",
+          "|-activate|p1b: Iron Hands|ability: Quark Drive",
+          "|-start|p1b: Iron Hands|quarkdriveatk",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Pincurchin|Pincurchin, L50, F|123/123",
+          "|switch|p1b: Iron Hands|Iron Hands, L50|229/229",
+          "|switch|p2a: Espeon|Espeon, L50, F|140/140",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|-fieldstart|move: Electric Terrain|[from] ability: Electric Surge|[of] p1a: Pincurchin",
+          "|-activate|p1b: Iron Hands|ability: Quark Drive",
+          "|-start|p1b: Iron Hands|quarkdriveatk",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Pincurchin|Pincurchin, L50, F|123/123",
+          "|switch|p1b: Iron Hands|Iron Hands, L50|229/229",
+          "|switch|p2a: Espeon|Espeon, L50, F|140/140",
+          "|switch|p2b: Venusaur|Venusaur, L50, F|155/155",
+          "|-fieldstart|move: Electric Terrain|[from] ability: Electric Surge|[of] p1a: Pincurchin",
+          "|-activate|p1b: Iron Hands|ability: Quark Drive",
+          "|-start|p1b: Iron Hands|quarkdriveatk",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Misty Terrain",
+                  "id": "mistyterrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pincurchin",
+                "details": "Pincurchin, L50, F",
+                "condition": "123/123",
+                "active": true,
+                "stats": {
+                  "atk": 121,
+                  "def": 115,
+                  "spa": 111,
+                  "spd": 105,
+                  "spe": 35
+                },
+                "moves": [
+                  "mistyterrain"
+                ],
+                "baseAbility": "electricsurge",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "electricsurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Iron Hands",
+                "details": "Iron Hands, L50",
+                "condition": "229/229",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 128,
+                  "spa": 70,
+                  "spd": 88,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "quarkdrive",
+                "item": "boosterenergy",
+                "pokeball": "pokeball",
+                "ability": "quarkdrive",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Trick",
+                  "id": "trick",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "trick",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pincurchin",
+            "species": "Pincurchin",
+            "details": "Pincurchin, L50, F",
+            "hp": 123,
+            "maxhp": 123,
+            "status": "",
+            "stats": {
+              "atk": 121,
+              "def": 115,
+              "spa": 111,
+              "spd": 105,
+              "spe": 35
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electricsurge",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "mistyterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Iron Hands",
+            "species": "Iron Hands",
+            "details": "Iron Hands, L50",
+            "hp": 229,
+            "maxhp": 229,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 128,
+              "spa": 70,
+              "spd": 88,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "quarkdrive",
+            "item": "boosterenergy",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1 2",
+        ">p2 move 1 2, move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Espeon|Trick||[still]",
+          "|-fail|p2a: Espeon",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Iron Hands|Tackle|p2b: Venusaur",
+          "|debug|Quark Drive atk boost",
+          "|-damage|p2b: Venusaur|119/155",
+          "|move|p1a: Pincurchin|Misty Terrain|p1a: Pincurchin",
+          "|-fieldstart|move: Misty Terrain",
+          "|-end|p1b: Iron Hands|Quark Drive",
+          "|-enditem|p1b: Iron Hands|Booster Energy",
+          "|-activate|p1b: Iron Hands|ability: Quark Drive|[fromitem]",
+          "|-start|p1b: Iron Hands|quarkdriveatk",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Espeon|Trick||[still]",
+          "|-fail|p2a: Espeon",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Iron Hands|Tackle|p2b: Venusaur",
+          "|debug|Quark Drive atk boost",
+          "|-damage|p2b: Venusaur|119/155",
+          "|move|p1a: Pincurchin|Misty Terrain|p1a: Pincurchin",
+          "|-fieldstart|move: Misty Terrain",
+          "|-end|p1b: Iron Hands|Quark Drive",
+          "|-enditem|p1b: Iron Hands|Booster Energy",
+          "|-activate|p1b: Iron Hands|ability: Quark Drive|[fromitem]",
+          "|-start|p1b: Iron Hands|quarkdriveatk",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Espeon|Trick||[still]",
+          "|-fail|p2a: Espeon",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Venusaur|Recover||[still]",
+          "|-fail|p2b: Venusaur|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1b: Iron Hands|Tackle|p2b: Venusaur",
+          "|debug|Quark Drive atk boost",
+          "|-damage|p2b: Venusaur|119/155",
+          "|move|p1a: Pincurchin|Misty Terrain|p1a: Pincurchin",
+          "|-fieldstart|move: Misty Terrain",
+          "|-end|p1b: Iron Hands|Quark Drive",
+          "|-enditem|p1b: Iron Hands|Booster Energy",
+          "|-activate|p1b: Iron Hands|ability: Quark Drive|[fromitem]",
+          "|-start|p1b: Iron Hands|quarkdriveatk",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Misty Terrain",
+                  "id": "mistyterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pincurchin",
+                "details": "Pincurchin, L50, F",
+                "condition": "123/123",
+                "active": true,
+                "stats": {
+                  "atk": 121,
+                  "def": 115,
+                  "spa": 111,
+                  "spd": 105,
+                  "spe": 35
+                },
+                "moves": [
+                  "mistyterrain"
+                ],
+                "baseAbility": "electricsurge",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "electricsurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Iron Hands",
+                "details": "Iron Hands, L50",
+                "condition": "229/229",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 128,
+                  "spa": 70,
+                  "spd": 88,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "quarkdrive",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "quarkdrive",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Trick",
+                  "id": "trick",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "trick",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "119/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pincurchin",
+            "species": "Pincurchin",
+            "details": "Pincurchin, L50, F",
+            "hp": 123,
+            "maxhp": 123,
+            "status": "",
+            "stats": {
+              "atk": 121,
+              "def": 115,
+              "spa": 111,
+              "spd": 105,
+              "spe": 35
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electricsurge",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "mistyterrain",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Iron Hands",
+            "species": "Iron Hands",
+            "details": "Iron Hands, L50",
+            "hp": 229,
+            "maxhp": 229,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 128,
+              "spa": 70,
+              "spd": 88,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "quarkdrive",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "trick",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 119,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1 2",
+        ">p2 move 2 2, move 1"
+      ],
+      "turn": 3,
+      "seed": "54274,43667,37867,24894",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Espeon|Tackle|p1b: Iron Hands",
+          "|-damage|p1b: Iron Hands|218/229",
+          "|move|p2b: Venusaur|Recover|p2b: Venusaur",
+          "|-heal|p2b: Venusaur|155/155",
+          "|move|p1b: Iron Hands|Tackle|p2b: Venusaur",
+          "|debug|Quark Drive atk boost",
+          "|-damage|p2b: Venusaur|123/155",
+          "|move|p1a: Pincurchin|Misty Terrain||[still]",
+          "|-fail|p1a: Pincurchin",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Espeon|Tackle|p1b: Iron Hands",
+          "|-damage|p1b: Iron Hands|218/229",
+          "|move|p2b: Venusaur|Recover|p2b: Venusaur",
+          "|-heal|p2b: Venusaur|155/155",
+          "|move|p1b: Iron Hands|Tackle|p2b: Venusaur",
+          "|debug|Quark Drive atk boost",
+          "|-damage|p2b: Venusaur|123/155",
+          "|move|p1a: Pincurchin|Misty Terrain||[still]",
+          "|-fail|p1a: Pincurchin",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Espeon|Tackle|p1b: Iron Hands",
+          "|-damage|p1b: Iron Hands|218/229",
+          "|move|p2b: Venusaur|Recover|p2b: Venusaur",
+          "|-heal|p2b: Venusaur|155/155",
+          "|move|p1b: Iron Hands|Tackle|p2b: Venusaur",
+          "|debug|Quark Drive atk boost",
+          "|-damage|p2b: Venusaur|123/155",
+          "|move|p1a: Pincurchin|Misty Terrain||[still]",
+          "|-fail|p1a: Pincurchin",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Misty Terrain",
+                  "id": "mistyterrain",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Pincurchin",
+                "details": "Pincurchin, L50, F",
+                "condition": "123/123",
+                "active": true,
+                "stats": {
+                  "atk": 121,
+                  "def": 115,
+                  "spa": 111,
+                  "spd": 105,
+                  "spe": 35
+                },
+                "moves": [
+                  "mistyterrain"
+                ],
+                "baseAbility": "electricsurge",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "electricsurge",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Iron Hands",
+                "details": "Iron Hands, L50",
+                "condition": "218/229",
+                "active": true,
+                "stats": {
+                  "atk": 160,
+                  "def": 128,
+                  "spa": 70,
+                  "spd": 88,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "quarkdrive",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "quarkdrive",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Trick",
+                  "id": "trick",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "trick",
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "leftovers",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Venusaur",
+                "details": "Venusaur, L50, F",
+                "condition": "123/155",
+                "active": true,
+                "stats": {
+                  "atk": 102,
+                  "def": 103,
+                  "spa": 120,
+                  "spd": 120,
+                  "spe": 100
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Pincurchin",
+            "species": "Pincurchin",
+            "details": "Pincurchin, L50, F",
+            "hp": 123,
+            "maxhp": 123,
+            "status": "",
+            "stats": {
+              "atk": 121,
+              "def": 115,
+              "spa": 111,
+              "spd": 105,
+              "spe": 35
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "electricsurge",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "mistyterrain",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Iron Hands",
+            "species": "Iron Hands",
+            "details": "Iron Hands, L50",
+            "hp": 218,
+            "maxhp": 229,
+            "status": "",
+            "stats": {
+              "atk": 160,
+              "def": 128,
+              "spa": 70,
+              "spd": 88,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "quarkdrive",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "leftovers",
+            "active": true,
+            "moves": [
+              {
+                "id": "trick",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Venusaur",
+            "species": "Venusaur",
+            "details": "Venusaur, L50, F",
+            "hp": 123,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 102,
+              "def": 103,
+              "spa": 120,
+              "spd": 120,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

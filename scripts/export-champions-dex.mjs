@@ -82,6 +82,7 @@ const data = mod => {
                 'isNonstandard', 'maxHP', 'requiredItem']),
             hasCondition: dex.conditions.getByID(e.id).exists,
             canEvolve: !!e.nfe || undefined,
+            isParadox: e.tags?.includes('Paradox') || undefined,
             moveMega: altForme?.isMega && altForme.requiredMove ? {target:altForme.id, moveId:Dex.toID(altForme.requiredMove)} : undefined,
             transformedZRestricted: (e.isMega || e.isPrimal || e.forme === 'Ultra') || undefined,
             unreleasedHidden: !!e.unreleasedHidden,

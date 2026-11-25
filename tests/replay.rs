@@ -2223,6 +2223,19 @@ fn boost_reaction_items_run_only_at_their_native_event_boundaries() {
 }
 
 #[test]
+fn paradox_stat_boosts_transition_between_field_and_booster_energy() {
+    replay(include_str!(
+        "fixtures/custom-protosynthesis-reevaluates-the-highest-stat-after-sun.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-booster-energy-speeds-up-flutter-mane-until-switch.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-quark-drive-field-then-protected-booster-energy.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
