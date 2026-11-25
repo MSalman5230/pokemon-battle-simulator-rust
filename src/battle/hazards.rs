@@ -136,6 +136,7 @@ impl Battle {
                     } else if !boots
                         && mon.status == Status::Healthy
                         && !self.status_immune(pos, "psn")
+                        && self.status_blocked_by_terrain(pos, "psn").is_none()
                     {
                         let status = if layers >= 2 {
                             Status::Toxic(0)

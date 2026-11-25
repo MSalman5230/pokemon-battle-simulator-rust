@@ -225,6 +225,7 @@ impl Battle {
             || self.mon(attacker).hp == 0
             || self.mon(attacker).status != Status::Healthy
             || self.status_immune(attacker, "brn")
+            || self.status_blocked_by_terrain(attacker, "brn").is_some()
         {
             return;
         }

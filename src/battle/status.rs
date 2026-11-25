@@ -128,7 +128,10 @@ impl Battle {
     }
 
     pub(super) fn apply_confusion(&mut self, pos: Position, fatigue: bool) -> bool {
-        if self.mon(pos).hp == 0 || self.mon(pos).confusion > 0 {
+        if self.mon(pos).hp == 0
+            || self.mon(pos).confusion > 0
+            || (self.terrain() == Some(Terrain::Misty) && self.mon(pos).grounded())
+        {
             return false;
         }
         let reason = if fatigue { "|[fatigue]" } else { "" };
@@ -223,6 +226,12 @@ impl Battle {
             return false;
         }
 
+        if let Some(terrain) = self.status_blocked_by_terrain(pos, id) {
+            if primary {
+                self.terrain_activate(pos, terrain);
+            }
+            return false;
+        }
         self.apply_status(pos, id, Some(&data.name));
         true
     }
@@ -249,7 +258,11 @@ impl Battle {
         mon.untrack_volatile("yawn");
         self.add(format!("|-end|{}|move: Yawn|[silent]", self.ident(pos)));
         if self.mon(pos).status == Status::Healthy && !self.status_immune(pos, "slp") {
-            self.apply_status(pos, "slp", None);
+            if let Some(terrain) = self.status_blocked_by_terrain(pos, "slp") {
+                self.terrain_activate(pos, terrain);
+            } else {
+                self.apply_status(pos, "slp", None);
+            }
         }
     }
 

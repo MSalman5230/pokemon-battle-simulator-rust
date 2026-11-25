@@ -23,11 +23,13 @@ use hazards::Hazard;
 use rampage::Rampage;
 use screens::Screen;
 mod status;
+mod terrain;
 mod trap;
 mod turn;
 mod weather;
 pub use status::Status;
 use std::{error::Error, fmt, num::NonZeroU32};
+pub use terrain::Terrain;
 use turn::Action;
 pub use weather::Weather;
 
@@ -120,6 +122,7 @@ pub struct Battle {
     winner: Option<Player>,
     last_faint: Option<Player>,
     weather: Option<(Weather, u8)>,
+    terrain: Option<(Terrain, u8)>,
     trick_room: u8,
     ability_order: u32,
     pending_actions: [Option<Vec<Action>>; 2],
@@ -302,6 +305,7 @@ impl Battle {
             winner: None,
             last_faint: None,
             weather: None,
+            terrain: None,
             trick_room: 0,
             ability_order: 0,
             pending_actions: [None, None],

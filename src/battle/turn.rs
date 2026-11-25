@@ -713,6 +713,12 @@ impl Battle {
                     | "tripleaxel"
                     | "triplekick"
                     | "trickroom"
+                    | "electricterrain"
+                    | "grassyterrain"
+                    | "mistyterrain"
+                    | "psychicterrain"
+                    | "icespinner"
+                    | "grassyglide"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -757,7 +763,7 @@ impl Battle {
                 } else {
                     let data = self.move_data(source, move_slot);
                     self.resolve_target(source, data.target, target);
-                    action.priority.priority = f64::from(data.priority);
+                    action.priority.priority = f64::from(self.move_priority(source, data));
                 }
             }
             action.priority.speed = self.field_speed(source);
@@ -1048,6 +1054,7 @@ impl Battle {
             self.add(format!("|-ability|{}|Pressure", self.ident(pos)));
         }
         self.switch_in_weather(pos);
+        self.switch_in_terrain(pos);
         if self.mon(pos).ability == "intimidate" {
             self.intimidate(pos);
         }
@@ -1101,6 +1108,15 @@ impl Battle {
         )
     }
 
+    fn move_priority(&self, pos: Position, data: &Move) -> i8 {
+        data.priority
+            + i8::from(
+                data.name == "Grassy Glide"
+                    && self.terrain() == Some(Terrain::Grassy)
+                    && self.mon(pos).grounded(),
+            )
+    }
+
     pub(super) fn each_event(&mut self) {
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
@@ -1129,6 +1145,8 @@ impl Battle {
             Disable,
             Screen(Screen),
             TrickRoom,
+            Terrain,
+            GrassyHeal,
         }
         self.add("|");
         self.update_speed();
@@ -1161,6 +1179,20 @@ impl Battle {
                 },
             ));
         }
+        if self.terrain().is_some() {
+            timers.push((
+                Position {
+                    player: Player::P1,
+                    slot: 0,
+                },
+                Effect::Terrain,
+                Priority {
+                    order: 27,
+                    sub_order: 7,
+                    ..Priority::default()
+                },
+            ));
+        }
         for player in Player::ALL {
             for screen in Screen::ALL {
                 if self.has_screen(player, screen) {
@@ -1186,6 +1218,9 @@ impl Battle {
             };
             if let Some((order, _, _)) = mon.status.residual() {
                 timers.push((pos, Effect::Status, priority(order, 0)));
+            }
+            if self.terrain() == Some(Terrain::Grassy) {
+                timers.push((pos, Effect::GrassyHeal, priority(5, 2)));
             }
             if mon.ability == "speedboost" {
                 timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
@@ -1244,6 +1279,10 @@ impl Battle {
                 }
                 continue;
             }
+            if matches!(effect, Effect::Terrain) {
+                self.tick_terrain();
+                continue;
+            }
             let mon = self.mon_mut(pos);
             if mon.fainted {
                 continue;
@@ -1253,7 +1292,10 @@ impl Battle {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
                 }
-                Effect::Weather | Effect::Screen(_) | Effect::TrickRoom => unreachable!(),
+                Effect::Weather | Effect::Screen(_) | Effect::TrickRoom | Effect::Terrain => {
+                    unreachable!()
+                }
+                Effect::GrassyHeal => self.grassy_heal(pos),
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::Disable => self.tick_disable(pos),
                 Effect::Taunt => self.tick_taunt(pos),
@@ -1537,11 +1579,19 @@ impl Battle {
             }
             return true;
         }
+        if let Some(terrain) = Terrain::from_move(&move_data.name) {
+            self.protean_prepare(source, move_type);
+            if !self.set_terrain(source, terrain, None) {
+                self.log[base].public = format!("|move|{source_name}|{}||[still]", move_data.name);
+                self.add(format!("|-fail|{source_name}"));
+            }
+            return true;
+        }
         if move_data.name == "Rest" {
             let mon = self.mon(source);
             if mon.hp == mon.max_hp.get() {
                 self.add(format!("|-fail|{source_name}|heal"));
-            } else if self.status_immune(source, "slp") {
+            } else if matches!(mon.ability.as_str(), "insomnia" | "vitalspirit") {
                 let ability = if mon.ability == "insomnia" {
                     "Insomnia"
                 } else {
@@ -1552,6 +1602,14 @@ impl Battle {
                 ));
             } else {
                 self.protean_prepare(source, move_type);
+                if let Some(terrain) = self.status_blocked_by_terrain(source, "slp") {
+                    if terrain == Terrain::Electric {
+                        self.terrain_activate(source, terrain);
+                    }
+                    self.log[base].public = format!("|move|{source_name}|Rest||[still]");
+                    self.add(format!("|-fail|{source_name}"));
+                    return true;
+                }
                 self.apply_status(source, "slp", Some("Rest"));
                 let mon = self.mon_mut(source);
                 if matches!(mon.status, Status::Sleep(_)) {
@@ -1605,9 +1663,21 @@ impl Battle {
         }
         self.protean_prepare(source, move_type);
         let spread = spread_targets.len() > 1;
+        let priority = self.move_priority(source, move_data);
         // Preserve upstream's hit-step batching: all protection and immunity
         // checks, then all accuracy rolls, then all damage calculations.
         spread_targets.retain(|&mut_pos| {
+            if self.terrain() == Some(Terrain::Psychic)
+                && priority > 0
+                && mut_pos.player != source.player
+            {
+                if self.mon(mut_pos).grounded() {
+                    self.terrain_activate(mut_pos, Terrain::Psychic);
+                    return false;
+                } else if move_data.priority > 0 {
+                    self.add("|-hint|Psychic Terrain doesn't affect airborne Pokémon.");
+                }
+            }
             if self.mon(mut_pos).protected && move_data.flags.contains_key("protect") {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
                 false
@@ -1767,6 +1837,10 @@ impl Battle {
                         self.add(format!("|-fail|{source_name}"));
                         continue;
                     }
+                    if self.status_blocked_by_terrain(target, "slp") == Some(Terrain::Electric) {
+                        self.terrain_activate(target, Terrain::Electric);
+                        continue;
+                    }
                     let mon = self.mon_mut(target);
                     mon.yawn = 2;
                     mon.track_volatile("yawn");
@@ -1892,6 +1966,8 @@ impl Battle {
                         self.mon(target).ability.as_str(),
                         "battlearmor" | "shellarmor"
                     );
+                let terrain_power =
+                    self.terrain_power_modifier(source, target, move_data, move_type);
                 let user = self.mon(source);
                 let mon = self.mon(target);
                 let (atk, atk_stage, def, def_stage) = if move_data.category == Category::Physical {
@@ -1949,6 +2025,7 @@ impl Battle {
                 {
                     power_modifier = crate::mechanics::chain(power_modifier, 6144);
                 }
+                power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
                 let mut final_modifier = match user.item.as_str() {
                     "lifeorb" => 5324,
                     "expertbelt" if effect > 0 => 4915,
@@ -2052,6 +2129,9 @@ impl Battle {
                         );
                     }
                 }
+            }
+            if move_data.name == "Ice Spinner" {
+                self.clear_terrain();
             }
             if !move_data.boosts.is_empty() {
                 for &(target, _) in &damage {
@@ -2488,6 +2568,10 @@ impl Pokemon {
                 | "trace"
                 | "illuminate"
                 | "skilllink"
+                | "electricsurge"
+                | "grassysurge"
+                | "mistysurge"
+                | "psychicsurge"
                 | "shedskin"
                 | "clearbody"
                 | "whitesmoke"
@@ -2562,6 +2646,7 @@ impl Pokemon {
                 | "wiseglasses"
                 | "muscleband"
                 | "loadeddice"
+                | "terrainextender"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

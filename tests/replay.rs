@@ -325,3 +325,13 @@ fn vgc_multihit_counts_only_the_strikes_that_execute_after_focus_sash() {
 fn vgc_trick_room_reverses_speed_without_reversing_priority_and_can_end_early() {
     replay(include_str!("fixtures/vgc-trick-room.json"));
 }
+
+#[test]
+fn vgc_grassy_terrain_modifies_grounded_power_priority_and_healing() {
+    replay(include_str!("fixtures/vgc-grassy-terrain.json"));
+}
+
+#[test]
+fn bss_terrain_protects_grounded_pokemon_from_status_and_priority() {
+    replay(include_str!("fixtures/bss-terrain-protection.json"));
+}
