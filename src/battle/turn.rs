@@ -3183,17 +3183,20 @@ impl Battle {
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
             && self.grounded(source);
-        let stench_flinch = if !delayed
-            && move_data.category != Category::Status
-            && self.event_ability(source) == "stench"
-        {
-            if self.format.report_exact_hp {
+        let sheer_force_removed =
+            !delayed && self.sheer_force_removes_secondaries(source, move_data);
+        let added_flinch = if !delayed && move_data.category != Category::Status {
+            let user = self.mon(source);
+            let stench = user.ability == "stench" && self.event_ability(source) == "stench";
+            if stench && self.format.report_exact_hp {
                 self.add("|debug|Adding Stench flinch");
             }
-            !move_data
-                .secondaries
-                .iter()
-                .any(|effect| effect.volatile_status.as_deref() == Some("flinch"))
+            (stench || matches!(self.mon(source).effective_item(), "kingsrock" | "razorfang"))
+                && (sheer_force_removed
+                    || !move_data
+                        .secondaries
+                        .iter()
+                        .any(|effect| effect.volatile_status.as_deref() == Some("flinch")))
         } else {
             false
         };
@@ -5088,8 +5091,6 @@ impl Battle {
         let mut hp_after_damage = [0u32; 4];
         let mut hits_landed = 0;
         let mut split_darts = [None; 2];
-        let sheer_force_removed =
-            !delayed && self.sheer_force_removes_secondaries(source, move_data);
         let attack_hazard = if sheer_force_removed {
             None
         } else {
@@ -5518,10 +5519,9 @@ impl Battle {
                 self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
             }
             for &target in strike_targets {
-                if sheer_force_removed
-                    || (move_data.secondaries.is_empty()
-                        && !stench_flinch
-                        && fling_secondary.is_none())
+                if (sheer_force_removed || move_data.secondaries.is_empty())
+                    && !added_flinch
+                    && fling_secondary.is_none()
                 {
                     break;
                 }
@@ -5538,7 +5538,11 @@ impl Battle {
                         self.add("|debug|Covert Cloak prevent secondary");
                     }
                 }
-                for effect in &move_data.secondaries {
+                for effect in move_data
+                    .secondaries
+                    .iter()
+                    .filter(|_| !sheer_force_removed)
+                {
                     if (dust || cloak) && effect.self_boosts.is_empty() {
                         continue;
                     }
@@ -5603,7 +5607,7 @@ impl Battle {
                         }
                     }
                 }
-                if stench_flinch && !dust && !cloak && self.rng.chance(1, 10) && hit_pokemon {
+                if added_flinch && !dust && !cloak && self.rng.chance(1, 10) && hit_pokemon {
                     self.apply_flinch(target);
                 }
                 if let Some(effect) = fling_secondary
@@ -6678,6 +6682,8 @@ impl Pokemon {
                 | "choiceband"
                 | "choicespecs"
                 | "quickclaw"
+                | "kingsrock"
+                | "razorfang"
                 | "lightball"
                 | "bindingband"
                 | "covertcloak"

@@ -1467,6 +1467,11 @@ fn fling_uses_the_held_item_and_can_discard_it_without_hitting() {
 }
 
 #[test]
+fn kings_rock_adds_flinching_after_sheer_force_and_when_thrown() {
+    replay(include_str!("fixtures/bss-kings-rock.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
