@@ -50,15 +50,16 @@ a mismatch, the harness fails without reporting a speedup.
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,
 seed, turn cap, and repeat options.
 
-The [recorded default-workload run](verified-default-bss-result.json) used
-Rust commit `3b7fd74c3107132feed6398d54fe8575397c2b26`. Both workers matched
+The [recorded native-validation run](verified-native-bss-result.json) used
+Rust commit `70653a09946713dc4593e467e83d3ef6bb6c7a2c`. Both workers matched
 all replies in the untimed parity replay, including 673 steps across 32
 completed games with no truncations. The median across five timed replays on
-the same i5-6300HQ was 337.7 steps/s for Showdown and 1,501.9 for Rust
-(4.45×). This verifies the fixed workload, not every team combination, seed,
+the same i5-6300HQ was 342.5 steps/s for Showdown and 1,526.0 for Rust
+(4.46×). This verifies the fixed workload, not every team combination, seed,
 mode, or worker operation.
 
-To reproduce the recorded run's external admission mode, generate the pinned
+To reproduce the [earlier run's](verified-default-bss-result.json) external
+admission mode, generate the pinned
 manifest with `node scripts/verify-bss-teams.mjs .tools/poke-rl-simulator/teams_train.json .tools/verified-training-corpus.json`
 and append `--verified-teams .tools/verified-training-corpus.json` to the worker
 command after `--`. In that mode, only exact rosters from the manifest are admitted.

@@ -65,8 +65,9 @@ for that format are implemented.
 
 The experimental Poke-RL worker passes exact response replay on the curated
 BSS benchmark and the fixed 32-game default benchmark using the training
-manifest. The [recorded default run](../benchmarks/verified-default-bss-result.json)
-matched 673 steps without truncation and measured a 4.45× release speedup.
+corpus. The [recorded default run](../benchmarks/verified-native-bss-result.json)
+matched 673 steps without truncation and measured a 4.46× release speedup
+with native validation enabled.
 This is a benchmark milestone, not general parity. Native Flat Rules
 validation covers BSS and VGC Reg M-B/M-C, including Bo3, for ordinary modern
 sets. The worker uses it by default and admits the 128 rosters in the locked
