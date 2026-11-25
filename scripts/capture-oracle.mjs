@@ -551,6 +551,18 @@ const corrosionRosters = [
     [{...named('Salazzle', ['Toxic', 'Parting Shot']), ability: 'Corrosion'}, named('Glaceon', ['Recover'])],
     [{...named('Kingambit', ['Recover']), ability: 'Defiant'}, named('Vaporeon', ['Recover'])],
 ];
+const contraryRosters = [
+    [{...named('Serperior', ['Leaf Storm', 'Swords Dance', 'Recover']), ability: 'Contrary'}, named('Glaceon', ['Recover'])],
+    [{...named('Snorlax', ['Growl', 'Recover']), ability: 'Intimidate'}, named('Vaporeon', ['Recover'])],
+];
+const critRosters = [
+    [{...named('Kingdra', ['Focus Energy', 'Water Gun']), ability: 'Sniper', item: 'Scope Lens'}, named('Glaceon', ['Recover'])],
+    [named('Umbreon', ['Recover', 'Tackle']), {...named('Cloyster', ['Recover']), ability: 'Shell Armor'}],
+];
+const mercilessRosters = [
+    [{...named('Toxapex', ['Toxic', 'Water Gun']), ability: 'Merciless'}, named('Glaceon', ['Recover'])],
+    critRosters[1],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -827,6 +839,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ragingBullRosters, 'bss-raging-bull-furcoat'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1'], ['switch 2',null]],
         corrosionRosters, 'bss-corrosion-defiant'],
+    ['bssregmc', [['team 12','team 12'], ['move 2','move 1'], ['move 1','move 2'], ['move 1','move 1']],
+        contraryRosters, 'bss-contrary'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 2'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 2','switch 2']], critRosters, 'bss-crit-ratio'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1']],
+        mercilessRosters, 'bss-merciless'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

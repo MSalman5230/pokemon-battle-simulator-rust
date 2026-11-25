@@ -132,6 +132,34 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn crit_ratio(&self, source: Position, target: Position, data: &Move) -> u8 {
+        let user = self.mon(source);
+        if user.ability == "merciless"
+            && matches!(self.mon(target).status, Status::Poison | Status::Toxic(_))
+        {
+            return 4;
+        }
+        let item = match user.item.as_str() {
+            "scopelens" | "razorclaw" => 1,
+            "leek"
+                if matches!(
+                    to_id(&user.base_species.base_species).as_str(),
+                    "farfetchd" | "sirfetchd"
+                ) =>
+            {
+                2
+            }
+            _ => 0,
+        };
+        data.crit_ratio
+            .unwrap_or(1)
+            .saturating_add(
+                item + u8::from(user.ability == "superluck")
+                    + 2 * u8::from(user.volatile_ids().contains(&"focusenergy")),
+            )
+            .min(4)
+    }
+
     pub(super) fn damp_holder(&mut self, event: &str, interrupts: bool) -> Option<Position> {
         let mut holders = [(
             Position {
@@ -647,6 +675,16 @@ impl Battle {
         if self.mon(target).hp == 0 {
             return false;
         }
+        let effective;
+        let changes = if self.event_ability(target) == "contrary" {
+            effective = changes
+                .iter()
+                .map(|&(s, n)| (s, n.saturating_neg()))
+                .collect::<Vec<_>>();
+            effective.as_slice()
+        } else {
+            changes
+        };
         let mon = self.mon(target);
         let mut hooks = [(target, 0, DropHook::FlowerVeil); 3];
         let own = match mon.ability.as_str() {
@@ -727,7 +765,9 @@ impl Battle {
         }
         let mut success = false;
         for (i, &(stat, amount)) in changes.iter().enumerate() {
-            if removed & (1 << i) == 0 && self.boost(target, &[(stat, amount)], origin.quiet()) {
+            if removed & (1 << i) == 0
+                && self.apply_boosts(target, &[(stat, amount)], origin.quiet(), false)
+            {
                 success = true;
                 if amount < 0 && target.player != source.player {
                     match self.event_ability(target) {
@@ -773,7 +813,13 @@ impl Battle {
             return false;
         }
         let mut success = false;
+        let invert = self.event_ability(pos) == "contrary";
         for &(stat, amount) in boosts {
+            let amount = if invert {
+                amount.saturating_neg()
+            } else {
+                amount
+            };
             let change = self.mon_mut(pos).boosts.add(stat, amount);
             if change > 0 {
                 self.mon_mut(pos).stats_raised = true;

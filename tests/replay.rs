@@ -689,3 +689,18 @@ fn bss_raging_bull_uses_tauros_forme_and_shatters_screens_before_damage() {
 fn bss_corrosion_poisons_steel_and_defiant_reacts_to_each_foe_stat_drop() {
     replay(include_str!("fixtures/bss-corrosion-defiant.json"));
 }
+
+#[test]
+fn bss_contrary_inverts_self_and_foe_stat_changes_before_caps() {
+    replay(include_str!("fixtures/bss-contrary.json"));
+}
+
+#[test]
+fn bss_crit_ratio_sources_stack_and_respect_shell_armor() {
+    replay(include_str!("fixtures/bss-crit-ratio.json"));
+}
+
+#[test]
+fn bss_merciless_guarantees_criticals_against_poisoned_targets() {
+    replay(include_str!("fixtures/bss-merciless.json"));
+}

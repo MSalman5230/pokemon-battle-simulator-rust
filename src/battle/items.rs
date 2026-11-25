@@ -145,18 +145,25 @@ impl Battle {
             return;
         }
         self.consume(pos, name, true);
+        let amount = if self.event_ability(pos) == "contrary" {
+            -1
+        } else {
+            1
+        };
         let mon = self.mon_mut(pos);
-        let amount = mon.boosts.add(stat, 1);
-        let reason = if amount > 0 {
-            mon.stats_raised = true;
+        let changed = mon.boosts.add(stat, amount);
+        let reason = if changed != 0 {
+            mon.stats_raised |= changed > 0;
             format!("|[from] item: {name}")
         } else {
             String::new()
         };
         self.add(format!(
-            "|-boost|{}|{}|{amount}{reason}",
+            "|{}|{}|{}|{}{reason}",
+            if amount < 0 { "-unboost" } else { "-boost" },
             self.ident(pos),
-            stat.id()
+            stat.id(),
+            changed.abs(),
         ));
         self.symbiosis_after_item(pos);
     }

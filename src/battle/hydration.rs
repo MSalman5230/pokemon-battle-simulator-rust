@@ -399,6 +399,7 @@ impl WorldSide {
                     mon.track_volatile("yawn");
                 }
                 "flashfire" => mon.track_volatile("flashfire"),
+                "focusenergy" => mon.track_volatile("focusenergy"),
                 "saltcure" => mon.track_volatile("saltcure"),
                 "imprison" => {
                     mon.imprisoned = true;

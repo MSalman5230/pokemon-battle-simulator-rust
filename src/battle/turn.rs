@@ -835,6 +835,7 @@ impl Battle {
                     | "mindblown"
                     | "soak"
                     | "ragingbull"
+                    | "focusenergy"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -2548,6 +2549,16 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Focus Energy" {
+                    if self.mon(target).volatile_ids().contains(&"focusenergy") {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    } else {
+                        self.mon_mut(target).track_volatile("focusenergy");
+                        self.add(format!("|-start|{}|move: Focus Energy", self.ident(target)));
+                        succeeded = true;
+                    }
+                }
                 if move_data.name == "Soak" {
                     let mon = self.mon(target);
                     if mon.types().eq(["Water"])
@@ -2890,7 +2901,7 @@ impl Battle {
                 } else {
                     self.effectiveness_of(move_data, move_type, target).unwrap()
                 };
-                let crit_ratio = move_data.crit_ratio.unwrap_or(1).min(4);
+                let crit_ratio = self.crit_ratio(source, target, move_data);
                 let crit_roll = move_data.will_crit.unwrap_or_else(|| {
                     crit_ratio != 0
                         && self
@@ -3330,6 +3341,17 @@ impl Battle {
         boosts: &[(BoostStat, i8)],
         is_self: bool,
     ) -> bool {
+        let invert = self.event_ability(pos) == "contrary";
+        self.apply_boosts(pos, boosts, is_self, invert)
+    }
+
+    pub(super) fn apply_boosts(
+        &mut self,
+        pos: Position,
+        boosts: &[(BoostStat, i8)],
+        is_self: bool,
+        invert: bool,
+    ) -> bool {
         if self.mon(pos).hp == 0
             || !self
                 .party(pos.player.foe())
@@ -3341,6 +3363,11 @@ impl Battle {
         }
         let mut succeeded = false;
         for &(stat, amount) in boosts {
+            let amount = if invert {
+                amount.saturating_neg()
+            } else {
+                amount
+            };
             let mon = self.mon_mut(pos);
             let changed = mon.boosts.add(stat, amount);
             if changed > 0 {
@@ -3594,6 +3621,9 @@ impl Pokemon {
                 | "corrosion"
                 | "furcoat"
                 | "defiant"
+                | "contrary"
+                | "merciless"
+                | "superluck"
         )
     }
 
@@ -3658,6 +3688,9 @@ impl Pokemon {
                 | "silkscarf"
                 | "silverpowder"
                 | "twistedspoon"
+                | "scopelens"
+                | "razorclaw"
+                | "leek"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)
