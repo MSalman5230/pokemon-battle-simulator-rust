@@ -27,6 +27,7 @@ function options(args) {
             'debug-parity': {type: 'boolean'},
             'diagnose-parity': {type: 'boolean'},
             'capture-replay': {type: 'string'},
+            'trace-parity': {type: 'boolean'},
             ...Object.fromEntries(Object.entries(defaults).map(
                 ([name, value]) => [name, {type: 'string', default: String(value)}],
             )),
@@ -35,12 +36,15 @@ function options(args) {
     if (values.help) {
         console.log('Usage: node benchmarks/throughput.mjs [--games 32] [--batch-size 16] ' +
             '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] ' +
-            '[--debug-parity | --diagnose-parity | --capture-replay FILE] [-- CANDIDATE [ARGS...]]');
+            '[--debug-parity | --diagnose-parity | --capture-replay FILE] [--trace-parity] [-- CANDIDATE [ARGS...]]');
         return null;
     }
     assert(split < 0 || candidate.length, 'Pass a worker command after --');
     const diagnose = !!values['diagnose-parity'];
+    const traceParity = !!values['trace-parity'];
     assert(!diagnose || (candidate.length && !values['capture-replay']), '--diagnose-parity requires a candidate worker');
+    assert(!traceParity || (candidate.length && !diagnose && !values['capture-replay']),
+        '--trace-parity requires a candidate worker and the batched replay');
     const settings = {};
     for (const name of Object.keys(defaults)) {
         const value = Number(values[name]);
@@ -50,7 +54,7 @@ function options(args) {
     assert(settings['batch-size'] <= settings.games, '--batch-size must not exceed --games');
     assert(settings.seed <= 0xffffffff, '--seed must fit in an unsigned 32-bit integer');
     return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity'],
-        capturePath: values['capture-replay'], diagnose};
+        capturePath: values['capture-replay'], diagnose, traceParity};
 }
 
 function openWorker([command, ...args]) {
@@ -106,7 +110,11 @@ const fingerprint = result => sha256(JSON.stringify(result, (_, value) =>
     value && typeof value === 'object' && !Array.isArray(value) ?
         Object.fromEntries(Object.keys(value).sort().map(key => [key, value[key]])) : value));
 
-async function record(worker, teams, settings, debugParity, captureCoverage) {
+// Native headless traces omit Showdown's wall-clock markers. Every other
+// spectator-protocol line is compared in order.
+const withoutTime = trace => trace.filter(line => !line.startsWith('|t:|'));
+
+async function record(worker, teams, settings, debugParity, captureCoverage, traceParity) {
     let rng = settings.seed;
     function word() {
         rng ^= rng << 13;
@@ -169,11 +177,17 @@ async function record(worker, teams, settings, debugParity, captureCoverage) {
                 op: 'step', game: String(slot), actions: active.get(slot).views.map(choose),
             })),
         }, slots.length);
+        const stepFrame = frames.at(-1);
         for (const [i, slot] of slots.entries()) {
             const state = states[i];
             if (state.ended || state.truncated) {
                 if (state.truncated) truncated++;
                 else ended++;
+                if (traceParity) {
+                    const query = frame(-(ended + truncated), {op: 'trace', game: String(slot)});
+                    const expected = withoutTime(await worker.exchange(query));
+                    (stepFrame.traces ??= []).push({query, expected});
+                }
                 if (started < settings.games) active.set(slot, await reset(slot));
                 else active.delete(slot);
             } else {
@@ -212,6 +226,11 @@ async function warmAndVerify(worker, frames, name) {
             throw new Error(JSON.stringify({backend: name, request: JSON.parse(entry.wire), difference}));
         }
         assert.equal(actual, entry.digest, `${name} differs from the reference at request ${entry.id}`);
+        for (const {query, expected} of entry.traces ?? []) {
+            const actualTrace = withoutTime(await worker.exchange(query));
+            const difference = firstDifference(actualTrace, expected);
+            if (difference) throw new Error(JSON.stringify({backend: name, request: JSON.parse(query.wire), difference}));
+        }
     }
 }
 
@@ -280,7 +299,7 @@ function median(values) {
 async function main() {
     const config = options(process.argv.slice(2));
     if (!config) return;
-    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose} = config;
+    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose, traceParity} = config;
     const lock = readFileSync(join(oracle, 'package-lock.json'));
     const teamsFile = readFileSync(teamsPath ?? join(oracle, 'teams_train.json'));
     const workerPath = join(oracle, 'worker.cjs');
@@ -295,7 +314,7 @@ async function main() {
         ping = await recorder.exchange(frame(0, {op: 'ping'}));
         assert.equal(ping.format, format);
         assert.equal(ping.revision, revision);
-        workload = await record(recorder, teams, settings, debugParity || diagnose, !!capturePath);
+        workload = await record(recorder, teams, settings, debugParity || diagnose, !!capturePath, traceParity);
     } finally {
         recorder.close();
     }
@@ -357,6 +376,7 @@ async function main() {
         iterations_per_replay: workload.iterations,
         ended_per_replay: workload.ended,
         truncated_per_replay: workload.truncated,
+        ...(traceParity && {verified_traces: workload.ended + workload.truncated}),
         results,
         ...(candidate.length && {
             candidate_command: candidate,

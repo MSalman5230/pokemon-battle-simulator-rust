@@ -50,6 +50,10 @@ a mismatch, the harness fails without reporting a speedup.
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,
 seed, turn cap, and repeat options.
 
+Add `--trace-parity` before `--` to check every terminal game's spectator
+trace, excluding only Showdown's wall-clock markers. Trace requests are
+verification-only and do not change the timed workload or its hash.
+
 The [recorded native-validation run](verified-native-bss-result.json) used
 Rust commit `70653a09946713dc4593e467e83d3ef6bb6c7a2c`. Both workers matched
 all replies in the untimed parity replay, including 673 steps across 32

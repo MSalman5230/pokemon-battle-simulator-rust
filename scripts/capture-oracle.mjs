@@ -528,6 +528,10 @@ const dampAftermathRosters = [
     [aftermathRosters[0][0], {...named('Golduck', ['Recover']), ability: 'Damp'}],
     [aftermathRosters[1][0], named('Vaporeon', ['Recover']), aftermathRosters[1][1]],
 ];
+const chestoRestRosters = [
+    [{...named('Vaporeon', ['Rest', 'Recover']), item: 'Chesto Berry'}, named('Glaceon', ['Recover'])],
+    [named('Snorlax', ['Tackle']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -788,6 +792,7 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1']], aftermathRosters, 'bss-aftermath'],
     ['vgc2026regmc', [['team 12','team 123'], ['move 1 1, move 1','move 1, move 1']],
         dampAftermathRosters, 'vgc-damp-aftermath'],
+    ['bssregmc', [['team 12','team 12'], ['move 2','move 1'], ['move 1','move 1']], chestoRestRosters, 'bss-chesto-rest'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -650,3 +650,8 @@ fn bss_aftermath_damages_the_contact_attacker_before_faint_resolution() {
 fn vgc_damp_on_the_attackers_partner_prevents_aftermath() {
     replay(include_str!("fixtures/vgc-damp-aftermath.json"));
 }
+
+#[test]
+fn bss_rest_completes_healing_before_chesto_berry_is_consumed() {
+    replay(include_str!("fixtures/bss-chesto-rest.json"));
+}

@@ -2190,7 +2190,7 @@ impl Battle {
                     self.add(format!("|-fail|{source_name}"));
                     return true;
                 }
-                self.apply_status(source, "slp", source.player, Some("Rest"));
+                self.set_status(source, "slp", source.player, Some("Rest"));
                 let mon = self.mon_mut(source);
                 if matches!(mon.status, Status::Sleep(_)) {
                     mon.status = Status::Sleep(3);

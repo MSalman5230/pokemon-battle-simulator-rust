@@ -320,6 +320,17 @@ impl Battle {
         source: Player,
         move_name: Option<&str>,
     ) {
+        self.set_status(pos, id, source, move_name);
+        self.cure_with_berry(pos);
+    }
+
+    pub(super) fn set_status(
+        &mut self,
+        pos: Position,
+        id: &str,
+        source: Player,
+        move_name: Option<&str>,
+    ) {
         let mut status = Status::from_id(id);
         let reason = if let Status::Sleep(_) = status {
             status = Status::Sleep(if self.rng.below(3) == 0 { 2 } else { 3 });
@@ -331,7 +342,6 @@ impl Battle {
         mon.status = status;
         mon.slept_by_foe = id == "slp" && source != pos.player;
         self.add(format!("|-status|{}|{id}{reason}", self.ident(pos)));
-        self.cure_with_berry(pos);
     }
 
     pub(super) fn tick_yawn(&mut self, pos: Position) {
