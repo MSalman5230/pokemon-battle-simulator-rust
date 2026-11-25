@@ -58,6 +58,15 @@ impl Weather {
     }
 }
 
+impl Pokemon {
+    pub(super) fn personal_weather(&self, weather: Option<Weather>) -> Option<Weather> {
+        weather.filter(|weather| {
+            !matches!(weather, Weather::Sun | Weather::Rain)
+                || self.effective_item() != "utilityumbrella"
+        })
+    }
+}
+
 impl Battle {
     pub fn weather(&self) -> Option<Weather> {
         self.weather.map(|(weather, _)| weather)
@@ -180,9 +189,23 @@ impl Battle {
                 }
             } else if weather == Weather::Snow && self.mon(pos).ability == "icebody" {
                 self.ability_heal(pos, 16, "Ice Body", None);
-            } else if weather == Weather::Rain && self.event_ability(pos) == "raindish" {
+            } else if weather == Weather::Rain
+                && self.event_ability(pos) == "raindish"
+                && self.mon(pos).effective_item() != "utilityumbrella"
+            {
                 self.ability_heal(pos, 16, "Rain Dish", None);
-            } else if self.mon(pos).ability == "dryskin" {
+            } else if weather == Weather::Sun
+                && self.event_ability(pos) == "solarpower"
+                && self.mon(pos).effective_item() != "utilityumbrella"
+            {
+                self.indirect_damage(
+                    pos,
+                    8,
+                    &format!("|[from] ability: Solar Power|[of] {}", self.ident(pos)),
+                );
+            } else if self.mon(pos).ability == "dryskin"
+                && self.mon(pos).effective_item() != "utilityumbrella"
+            {
                 match weather {
                     Weather::Rain => {
                         self.ability_heal(pos, 8, "Dry Skin", None);

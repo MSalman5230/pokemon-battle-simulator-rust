@@ -529,6 +529,14 @@ impl Battle {
         } else {
             4096
         };
+        if !physical
+            && source_active
+            && self.event_ability(source) == "solarpower"
+            && damage_weather == Some(Weather::Sun)
+            && user.effective_item() != "utilityumbrella"
+        {
+            attack_modifier = chain(6144, attack_modifier);
+        }
         if move_data.category == Category::Special && self.plus_minus_boost(source) {
             attack_modifier = chain(6144, attack_modifier);
         }
@@ -621,7 +629,9 @@ impl Battle {
             attack: atk,
             defense: NonZeroU32::new(def.max(1)).unwrap(),
             spread_or_bond: if spread { 3072 } else { 4096 },
-            weather: damage_weather.map_or(4096, |w| w.damage_modifier(move_type)),
+            weather: mon
+                .personal_weather(damage_weather)
+                .map_or(4096, |w| w.damage_modifier(move_type)),
             critical: crit,
             stab: if !stab {
                 4096

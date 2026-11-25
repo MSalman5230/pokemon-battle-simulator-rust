@@ -374,7 +374,12 @@ impl Battle {
             ("purifyingsalt", _) => "Purifying Salt",
             ("insomnia", "slp") => "Insomnia",
             ("vitalspirit", "slp") => "Vital Spirit",
-            ("leafguard", _) if self.effective_weather() == Some(Weather::Sun) => "Leaf Guard",
+            ("leafguard", _)
+                if self.mon(pos).personal_weather(self.effective_weather())
+                    == Some(Weather::Sun) =>
+            {
+                "Leaf Guard"
+            }
             _ => return false,
         };
         if reveal {
@@ -400,7 +405,12 @@ impl Battle {
             "purifyingsalt" => "Purifying Salt",
             "insomnia" => "Insomnia",
             "vitalspirit" => "Vital Spirit",
-            "leafguard" if self.effective_weather() == Some(Weather::Sun) => "Leaf Guard",
+            "leafguard"
+                if self.mon(pos).personal_weather(self.effective_weather())
+                    == Some(Weather::Sun) =>
+            {
+                "Leaf Guard"
+            }
             _ => return false,
         };
         self.add(format!(

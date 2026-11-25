@@ -2788,8 +2788,12 @@ impl Battle {
         let charge_spec = ChargeSpec::for_move(&move_data.name);
         let releasing_charge = own_action && self.mon(source).charge.is_some();
         let weather = self.effective_weather();
+        let move_weather = self.mon(source).personal_weather(weather);
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
-            && matches!(weather, Some(Weather::Rain | Weather::Sand | Weather::Snow));
+            && matches!(
+                move_weather,
+                Some(Weather::Rain | Weather::Sand | Weather::Snow)
+            );
         let counter = CounterMove::for_move(move_data);
         let retaliation =
             counter.is_some() || matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
@@ -2823,7 +2827,7 @@ impl Battle {
         };
         let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
         let power = match move_data.name.as_str() {
-            "Weather Ball" if weather.is_some() => move_data.base_power * 2,
+            "Weather Ball" if move_weather.is_some() => move_data.base_power * 2,
             "Terrain Pulse" if terrain_pulse.is_some() => move_data.base_power * 2,
             "Stored Power" | "Power Trip" => {
                 move_data.base_power + self.mon(source).boosts.positive() * 20
@@ -2845,7 +2849,7 @@ impl Battle {
         let (move_type, converted) = if struggle {
             ("???", false)
         } else if weather_ball {
-            (weather.map_or("Normal", Weather::ball_type), false)
+            (move_weather.map_or("Normal", Weather::ball_type), false)
         } else if let Some(terrain) = terrain_pulse {
             (terrain.element(), false)
         } else if move_data.name == "Hidden Power" {
@@ -2938,7 +2942,12 @@ impl Battle {
         if own_action && move_data.name != "Destiny Bond" {
             self.clear_destiny_bond(source, true);
         }
-        let mut accuracy = match (move_data.name.as_str(), weather) {
+        let weather_at_target = if move_data.name == "Blizzard" {
+            weather
+        } else {
+            target.and_then(|target| self.mon(target).personal_weather(weather))
+        };
+        let mut accuracy = match (move_data.name.as_str(), weather_at_target) {
             ("Blizzard", Some(Weather::Snow)) => Accuracy::Bypass(true),
             ("Hurricane" | "Thunder", Some(Weather::Rain)) if target.is_some() => {
                 Accuracy::Bypass(true)
@@ -3314,7 +3323,7 @@ impl Battle {
                 if let Some(stat) = spec.boost {
                     self.boost(source, &[(stat, 1)], false);
                 }
-                let weather_skip = spec.instant.is_some() && spec.instant == weather;
+                let weather_skip = spec.instant.is_some() && spec.instant == move_weather;
                 let herb_skip = !weather_skip && self.mon(source).effective_item() == "powerherb";
                 self.move_still(base);
                 if weather_skip || herb_skip {
@@ -4540,7 +4549,8 @@ impl Battle {
                     move_data.name.as_str(),
                     "Moonlight" | "Morning Sun" | "Synthesis"
                 ) {
-                    let fraction = match self.effective_weather() {
+                    let fraction = match self.mon(target).personal_weather(self.effective_weather())
+                    {
                         Some(Weather::Sun) => 2732,
                         Some(_) => 1024,
                         None => 2048,
@@ -4593,7 +4603,7 @@ impl Battle {
                     }
                     succeeded = true;
                 }
-                let boosts = if move_data.name == "Growth" && weather == Some(Weather::Sun) {
+                let boosts = if move_data.name == "Growth" && move_weather == Some(Weather::Sun) {
                     &[(BoostStat::Atk, 2), (BoostStat::Spa, 2)]
                 } else {
                     move_data.boosts.as_slice()
@@ -5900,7 +5910,7 @@ impl Pokemon {
             stat *= 2;
         }
         if matches!(
-            (self.ability.as_str(), weather),
+            (self.ability.as_str(), self.personal_weather(weather)),
             ("swiftswim", Some(Weather::Rain))
                 | ("chlorophyll", Some(Weather::Sun))
                 | ("sandrush", Some(Weather::Sand))
@@ -6068,6 +6078,7 @@ impl Pokemon {
                 | "quickdraw"
                 | "poisontouch"
                 | "cheekpouch"
+                | "solarpower"
                 | "steelyspirit"
                 | "analytic"
                 | "galewings"
@@ -6212,6 +6223,7 @@ impl Pokemon {
                 | "apicotberry"
                 | "powerherb"
                 | "abilityshield"
+                | "utilityumbrella"
                 | "whiteherb"
                 | "floatstone"
                 | "blackbelt"

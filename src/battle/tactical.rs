@@ -396,7 +396,12 @@ impl Battle {
         let Some(effect) = self.effectiveness_of(data, move_type, TARGET, ignores_type) else {
             return Ok(result);
         };
-        result.accuracy = self.preview_accuracy(data, weather);
+        let accuracy_weather = if move_id == "blizzard" {
+            weather
+        } else {
+            self.mon(TARGET).personal_weather(weather)
+        };
+        result.accuracy = self.preview_accuracy(data, accuracy_weather);
         let item = self.mon(TARGET).effective_item();
         let disguise = self.disguise_form(TARGET).is_some();
         result.survive_full = item == "focussash" || self.event_ability(TARGET) == "sturdy";
@@ -415,7 +420,7 @@ impl Battle {
         }
         let attack = self.mon(ACTOR);
         let power = match move_id {
-            "weatherball" if weather.is_some() => 100,
+            "weatherball" if attack.personal_weather(weather).is_some() => 100,
             "ragefist" => 50 + 50 * attack.times_attacked.min(6) as u16,
             "lastrespects" => 50 + 50 * u16::from(self.sides[0].as_ref().unwrap().total_fainted),
             "flail" | "reversal" => attack.reversal_power(),
