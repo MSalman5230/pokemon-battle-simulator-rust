@@ -17,6 +17,7 @@ impl Pokemon {
                 "taunt" => self.taunt = source.taunt,
                 "leechseed" => self.seeded_from = source.seeded_from,
                 "partiallytrapped" => self.partial_trap = source.partial_trap,
+                "perishsong" => self.perish_count = source.perish_count,
                 "confusion" => self.confusion = source.confusion,
                 "stall" => self.stall = source.stall,
                 "protect" | "kingsshield" => self.protection = source.protection,

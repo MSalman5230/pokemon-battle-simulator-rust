@@ -1099,6 +1099,12 @@ fn cosmetic_formes_preserve_party_identity_and_switch_details() {
 }
 
 #[test]
+fn perish_song_counts_down_and_batches_same_turn_faints() {
+    replay(include_str!("fixtures/bss-perish-song-ending.json"));
+    replay(include_str!("fixtures/vgc-perish-song.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

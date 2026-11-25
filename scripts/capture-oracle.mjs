@@ -1002,6 +1002,16 @@ const cosmeticRosters = [
         named('Vivillon-Polar', ['Gust'])],
     [named('Umbreon', ['Recover'])],
 ];
+const perishRosters = [
+    [named('Jolteon', ['Perish Song', 'Recover'])],
+    [named('Umbreon', ['Recover'])],
+];
+const perishDoublesRosters = [
+    [named('Jolteon', ['Perish Song', 'Recover']), named('Vaporeon', ['Recover']),
+        named('Flareon', ['Recover'])],
+    [{...named('Exploud', ['Recover']), ability:'Soundproof'}, named('Umbreon', ['Recover']),
+        named('Espeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1522,6 +1532,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','switch 3']], rivalryRosters, 'bss-rivalry'],
     ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1'],
         ['move 1','move 1']], cosmeticRosters, 'bss-cosmetic-forms'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ...Array(3).fill(['move 2','move 1'])],
+        perishRosters, 'bss-perish-song-ending'],
+    ['vgc2026regmc', [['team 123','team 123'], ['move 1, move 1','move 1, move 1'],
+        ['switch 3, move 1','move 1, move 1'], ...Array(2).fill(['move 1, move 1','move 1, move 1']),
+        ['pass, switch 3','pass, switch 3']], perishDoublesRosters, 'vgc-perish-song'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

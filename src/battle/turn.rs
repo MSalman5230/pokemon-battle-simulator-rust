@@ -1050,6 +1050,7 @@ impl Battle {
                     | "focusenergy"
                     | "helpinghand"
                     | "noretreat"
+                    | "perishsong"
                     | "focuspunch"
                     | "beakblast"
                     | "revivalblessing"
@@ -1356,6 +1357,7 @@ impl Battle {
         party[outgoing.slot].yawn = None;
         party[outgoing.slot].seeded_from = None;
         party[outgoing.slot].partial_trap = None;
+        party[outgoing.slot].perish_count = 0;
         party[outgoing.slot].taunt = 0;
         party[outgoing.slot].encore = None;
         party[outgoing.slot].attract = None;
@@ -1853,6 +1855,7 @@ impl Battle {
             Curse,
             SaltCure,
             PartialTrap,
+            PerishSong,
             Taunt,
             Encore,
             Disable,
@@ -1963,6 +1966,9 @@ impl Battle {
             if mon.taunt > 0 {
                 timers.push((pos, Effect::Taunt, priority(15, 2)));
             }
+            if mon.perish_count != 0 {
+                timers.push((pos, Effect::PerishSong, priority(24, 2)));
+            }
             if mon.encore.is_some() {
                 timers.push((pos, Effect::Encore, priority(16, 2)));
             }
@@ -2053,6 +2059,7 @@ impl Battle {
             }
         }
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
+        let mut perish_faints = Vec::new();
         for (pos, effect, _) in timers {
             if matches!(effect, Effect::Weather) {
                 self.weather_residual();
@@ -2063,10 +2070,22 @@ impl Battle {
             }
             if let Effect::Screen(screen) = effect {
                 self.tick_screen(pos.player, screen);
+                if !perish_faints.is_empty()
+                    && self.has_screen(pos.player, screen)
+                    && self.resolve_perish_faints(&mut perish_faints)
+                {
+                    return;
+                }
                 continue;
             }
             if matches!(effect, Effect::Tailwind) {
                 self.tick_tailwind(pos.player);
+                if !perish_faints.is_empty()
+                    && self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0
+                    && self.resolve_perish_faints(&mut perish_faints)
+                {
+                    return;
+                }
                 continue;
             }
             if matches!(effect, Effect::Wish) {
@@ -2084,11 +2103,16 @@ impl Battle {
                 self.trick_room -= 1;
                 if self.trick_room == 0 {
                     self.add("|-fieldend|move: Trick Room");
+                } else if self.resolve_perish_faints(&mut perish_faints) {
+                    return;
                 }
                 continue;
             }
             if matches!(effect, Effect::Terrain) {
                 self.tick_terrain();
+                if self.terrain.is_some() && self.resolve_perish_faints(&mut perish_faints) {
+                    return;
+                }
                 continue;
             }
             let mon = self.mon_mut(pos);
@@ -2096,6 +2120,14 @@ impl Battle {
                 continue;
             }
             match effect {
+                Effect::PerishSong => {
+                    if self.tick_perish_song(pos) {
+                        // An expiring condition queues fainting but doesn't
+                        // resolve it until the next non-expiring callback.
+                        perish_faints.push(pos);
+                        continue;
+                    }
+                }
                 Effect::FocusPunch => {
                     mon.lost_focus = false;
                     mon.untrack_volatile("focuspunch");
@@ -2207,8 +2239,41 @@ impl Battle {
                     }
                 }
             }
+            if !perish_faints.is_empty() {
+                let mon = self.mon(pos);
+                let expiry = match effect {
+                    Effect::Protect
+                    | Effect::Flinch
+                    | Effect::Attention
+                    | Effect::Roost
+                    | Effect::HelpingHand
+                    | Effect::FocusPunch
+                    | Effect::BeakBlast
+                    | Effect::ChillyReception
+                    | Effect::Counter => true,
+                    Effect::Stall => mon.stall.is_none(),
+                    Effect::Charge | Effect::SemiInvulnerableTimer => mon.charge.is_none(),
+                    Effect::Rampage => mon.rampage.is_none(),
+                    Effect::Recharge => mon.recharge == 0,
+                    _ => false,
+                };
+                if !expiry && self.resolve_perish_faints(&mut perish_faints) {
+                    return;
+                }
+            }
         }
         self.add("|upkeep");
+        self.resolve_perish_faints(&mut perish_faints);
+    }
+
+    fn resolve_perish_faints(&mut self, queued: &mut Vec<Position>) -> bool {
+        if queued.is_empty() {
+            return false;
+        }
+        for pos in queued.drain(..) {
+            self.mark_fainted(pos);
+        }
+        self.check_win()
     }
 
     fn check_win(&mut self) -> bool {
@@ -2795,6 +2860,14 @@ impl Battle {
             }
             self.each_event();
             self.each_event();
+            return true;
+        }
+        if move_data.name == "Perish Song" {
+            self.protean_prepare(source, move_type);
+            if !self.perish_song(source, priority) {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+            }
             return true;
         }
         if move_data.name == "Trick Room" {
@@ -4536,6 +4609,7 @@ impl Battle {
         mon.yawn = None;
         mon.seeded_from = None;
         mon.partial_trap = None;
+        mon.perish_count = 0;
         mon.taunt = 0;
         mon.encore = None;
         mon.attract = None;

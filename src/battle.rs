@@ -27,6 +27,7 @@ mod leech;
 mod mega;
 mod multihit;
 mod partial_trap;
+mod perish;
 mod rampage;
 mod screens;
 use charge::Charge;
@@ -259,6 +260,7 @@ pub struct Pokemon {
     yawn: Option<status::Yawn>,
     seeded_from: Option<Position>,
     partial_trap: Option<partial_trap::PartialTrap>,
+    perish_count: u8,
     taunt: u8,
     encore: Option<(usize, u8)>,
     revealed_disables: u32,
@@ -887,6 +889,7 @@ impl Pokemon {
             yawn: None,
             seeded_from: None,
             partial_trap: None,
+            perish_count: 0,
             taunt: 0,
             encore: None,
             revealed_disables: 0,
