@@ -70,6 +70,7 @@ enum ExternalEffect {
     MagicBounce,
     MagicCoat,
     Snatch,
+    Dancer,
 }
 
 impl ExternalEffect {
@@ -78,6 +79,7 @@ impl ExternalEffect {
             Self::MagicBounce => "|[from] ability: Magic Bounce",
             Self::MagicCoat => "|[from] Magic Coat",
             Self::Snatch => "|[from] Snatch",
+            Self::Dancer => "|[from] ability: Dancer",
         }
     }
 }
@@ -158,6 +160,7 @@ struct MoveResult {
     ran_after_move: bool,
     failed: bool,
     counts_as_success: bool,
+    danced: Option<(&'static Move, Position)>,
 }
 
 pub(super) enum BoostLabel<'a> {
@@ -2552,6 +2555,7 @@ impl Battle {
         self.possible_soul_heart |= self.mon(pos).ability == "soulheart";
         self.possible_victory_star |= self.mon(pos).ability == "victorystar";
         self.possible_flower_gift |= self.mon(pos).ability == "flowergift";
+        self.possible_dancer |= self.mon(pos).ability == "dancer";
         if matches!(
             self.mon(pos).ability.as_str(),
             "asoneglastrier" | "asonespectrier"
@@ -4044,6 +4048,59 @@ impl Battle {
         self.ability_breaker = prior_breaker;
     }
 
+    fn run_dancers(
+        &mut self,
+        source: Position,
+        first_target: Position,
+        data: &'static Move,
+        queue: &mut Vec<Action>,
+    ) {
+        let mut dancers = [(source, 0, 0); 3];
+        let mut count = 0;
+        for pos in self.positions().filter(|&pos| pos != source) {
+            let mon = self.mon(pos);
+            if mon.hp > 0 && !mon.semi_invulnerable() && self.event_ability(pos) == "dancer" {
+                dancers[count] = (pos, mon.stats.spe, mon.ability_order);
+                count += 1;
+            }
+        }
+        dancers[..count].sort_by_key(|&(_, speed, order)| (speed, std::cmp::Reverse(order)));
+        for (dancer, _, _) in dancers.into_iter().take(count) {
+            if self.check_win() {
+                return;
+            }
+            if self.mon(dancer).fainted {
+                continue;
+            }
+            self.add(format!("|-activate|{}|ability: Dancer", self.ident(dancer)));
+            let selected = if first_target.player != dancer.player && source.player == dancer.player
+            {
+                first_target
+            } else {
+                source
+            };
+            let target = match data.target {
+                TargetKind::Normal
+                | TargetKind::AdjacentAlly
+                | TargetKind::AdjacentAllyOrSelf
+                | TargetKind::Any
+                | TargetKind::AdjacentFoe => (!self.mon(selected).fainted).then_some(selected),
+                _ => None,
+            };
+            self.run_external_move(
+                dancer,
+                MoveInvocation::External {
+                    data,
+                    target,
+                    effect: ExternalEffect::Dancer,
+                    priority: self.move_priority(dancer, data),
+                    prankster: false,
+                },
+                queue,
+            );
+        }
+    }
+
     fn snatch_prepared(&self, source: Position, data: &Move, queue: &[Action]) -> bool {
         let mon = self.mon(source);
         match data.name.as_str() {
@@ -4252,6 +4309,13 @@ impl Battle {
                     result.counts_as_success && !mon.move_failed_this_turn;
             }
         }
+        if attempted
+            && !result.failed
+            && result.counts_as_success
+            && let Some((data, target)) = result.danced
+        {
+            self.run_dancers(source, target, data, queue);
+        }
         (attempted, source)
     }
 
@@ -4278,7 +4342,7 @@ impl Battle {
                 None,
                 0,
                 target,
-                !matches!(effect, ExternalEffect::Snatch),
+                !matches!(effect, ExternalEffect::Snatch | ExternalEffect::Dancer),
                 prankster,
             ),
             MoveInvocation::Future { target, .. } | MoveInvocation::BideStrike { target, .. } => {
@@ -4637,6 +4701,13 @@ impl Battle {
             .filter(|_| !lost_counter_target)
             .map(|hit| hit.source)
             .or(original_target);
+        if self.possible_dancer
+            && matches!(invocation, MoveInvocation::Choice { .. })
+            && !damaging_z
+            && base_data.flags.contains_key("dance")
+        {
+            result.danced = Some((base_data, target.unwrap_or(source)));
+        }
         if darts && target.is_some_and(|pos| self.mon(pos).fainted && pos.player == source.player) {
             target = self.random_target(source, TargetKind::Normal);
         }
@@ -10054,6 +10125,7 @@ impl Pokemon {
                 | "flowergift"
                 | "gulpmissile"
                 | "iceface"
+                | "dancer"
                 | "runaway"
                 | "drizzle"
                 | "drought"

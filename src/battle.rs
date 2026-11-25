@@ -201,6 +201,7 @@ pub struct Battle {
     possible_soul_heart: bool,
     possible_victory_star: bool,
     possible_flower_gift: bool,
+    possible_dancer: bool,
     unsupported_called_move: Option<(&'static str, &'static str)>,
     last_battle_move: Option<&'static Move>,
     last_battle_move_z: bool,
@@ -562,6 +563,7 @@ impl Battle {
             possible_soul_heart: false,
             possible_victory_star: false,
             possible_flower_gift: false,
+            possible_dancer: false,
             unsupported_called_move: None,
             last_battle_move: None,
             last_battle_move_z: false,
@@ -701,6 +703,7 @@ impl Battle {
         self.possible_soul_heart |= party.iter().any(|p| p.ability == "soulheart");
         self.possible_victory_star |= party.iter().any(|p| p.ability == "victorystar");
         self.possible_flower_gift |= party.iter().any(|p| p.ability == "flowergift");
+        self.possible_dancer |= party.iter().any(|p| p.ability == "dancer");
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)

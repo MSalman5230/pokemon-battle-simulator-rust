@@ -2421,6 +2421,16 @@ fn inherited_weather_and_move_forms_match_native_battle_events() {
 }
 
 #[test]
+fn dancer_copies_successful_moves_without_pp_or_recursive_copies() {
+    replay(include_str!(
+        "fixtures/custom-dancer-copies-successful-dances-without-pp.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-dancer-orders-copies-by-raw-speed-and-chooses-targets.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

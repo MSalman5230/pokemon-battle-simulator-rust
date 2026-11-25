@@ -2277,6 +2277,16 @@ const flowerGiftRosters = [
         {...named('Torkoal', ['Tackle']), ability:'Drought'}],
     [named('Starmie', ['Water Gun', 'Rain Dance'], 'N'), named('Snorlax', ['Recover'])],
 ];
+const dancerSinglesRosters = [
+    [named('Quaquaval', ['Aqua Step', 'Swords Dance'])],
+    [{...named('Oricorio-Pom-Pom', ['Protect', 'Recover']), ability:'Dancer'}],
+];
+const dancerDoublesRosters = [
+    [named('Volcarona', ['Fiery Dance']),
+        {...named('Oricorio-Pom-Pom', ['Recover']), nature:'Brave', ability:'Dancer'}],
+    [named('Snorlax', ['Recover']),
+        {...named('Oricorio-Sensu', ['Recover']), nature:'Timid', ability:'Dancer'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3931,6 +3941,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1 2','move 1 2, move 1'],
         ['move 1, move 1 2','move 2, move 1']],
         flowerGiftRosters, 'custom-flower-gift-changes-form-and-boosts-allies-in-sun'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'],
+        ['move 2','move 2']], dancerSinglesRosters, 'custom-dancer-copies-successful-dances-without-pp'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1']],
+        dancerDoublesRosters, 'custom-dancer-orders-copies-by-raw-speed-and-chooses-targets'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

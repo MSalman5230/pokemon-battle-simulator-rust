@@ -1,0 +1,1180 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Quaquaval\",\"moves\":[\"Aqua Step\",\"Swords Dance\"],\"gender\":\"F\",\"name\":\"Quaquaval\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Oricorio-Pom-Pom\",\"moves\":[\"Protect\",\"Recover\"],\"gender\":\"F\",\"name\":\"Oricorio-Pom-Pom\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Dancer\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Quaquaval, L50, F|",
+          "|poke|p2|Oricorio-Pom-Pom, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Quaquaval, L50, F|",
+          "|poke|p2|Oricorio-Pom-Pom, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Quaquaval, L50, F|",
+          "|poke|p2|Oricorio-Pom-Pom, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Quaquaval",
+                "details": "Quaquaval, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 100,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "aquastep",
+                  "swordsdance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Oricorio",
+                "details": "Oricorio-Pom-Pom, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 118,
+                  "spd": 90,
+                  "spe": 113
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "dancer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dancer",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Quaquaval",
+            "species": "Quaquaval",
+            "details": "Quaquaval, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 100,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "aquastep",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Oricorio",
+            "species": "Oricorio-Pom-Pom",
+            "details": "Oricorio-Pom-Pom, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 118,
+              "spd": 90,
+              "spe": 113
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dancer",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Quaquaval|Quaquaval, L50, F|160/160",
+          "|switch|p2a: Oricorio|Oricorio-Pom-Pom, L50, F|150/150",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Quaquaval|Quaquaval, L50, F|160/160",
+          "|switch|p2a: Oricorio|Oricorio-Pom-Pom, L50, F|150/150",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Quaquaval|Quaquaval, L50, F|160/160",
+          "|switch|p2a: Oricorio|Oricorio-Pom-Pom, L50, F|150/150",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Aqua Step",
+                  "id": "aquastep",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Quaquaval",
+                "details": "Quaquaval, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 100,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "aquastep",
+                  "swordsdance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Oricorio",
+                "details": "Oricorio-Pom-Pom, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 118,
+                  "spd": 90,
+                  "spe": 113
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "dancer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dancer",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Quaquaval",
+            "species": "Quaquaval",
+            "details": "Quaquaval, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 100,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "aquastep",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Oricorio",
+            "species": "Oricorio-Pom-Pom",
+            "details": "Oricorio-Pom-Pom, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 118,
+              "spd": 90,
+              "spe": 113
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dancer",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Oricorio|Protect|p2a: Oricorio",
+          "|-singleturn|p2a: Oricorio|Protect",
+          "|move|p1a: Quaquaval|Aqua Step|p2a: Oricorio",
+          "|-activate|p2a: Oricorio|move: Protect",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Oricorio|Protect|p2a: Oricorio",
+          "|-singleturn|p2a: Oricorio|Protect",
+          "|move|p1a: Quaquaval|Aqua Step|p2a: Oricorio",
+          "|-activate|p2a: Oricorio|move: Protect",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Oricorio|Protect|p2a: Oricorio",
+          "|-singleturn|p2a: Oricorio|Protect",
+          "|move|p1a: Quaquaval|Aqua Step|p2a: Oricorio",
+          "|-activate|p2a: Oricorio|move: Protect",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Aqua Step",
+                  "id": "aquastep",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Quaquaval",
+                "details": "Quaquaval, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 100,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "aquastep",
+                  "swordsdance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Oricorio",
+                "details": "Oricorio-Pom-Pom, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 118,
+                  "spd": 90,
+                  "spe": 113
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "dancer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dancer",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Quaquaval",
+            "species": "Quaquaval",
+            "details": "Quaquaval, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 100,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "aquastep",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Oricorio",
+            "species": "Oricorio-Pom-Pom",
+            "details": "Oricorio-Pom-Pom, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 118,
+              "spd": 90,
+              "spe": 113
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dancer",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Oricorio|Recover||[still]",
+          "|-fail|p2a: Oricorio|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Quaquaval|Aqua Step|p2a: Oricorio",
+          "|-damage|p2a: Oricorio|69/150",
+          "|-boost|p1a: Quaquaval|spe|1",
+          "|-activate|p2a: Oricorio|ability: Dancer",
+          "|move|p2a: Oricorio|Aqua Step|p1a: Quaquaval|[from] ability: Dancer",
+          "|-resisted|p1a: Quaquaval|1",
+          "|-damage|p1a: Quaquaval|145/160",
+          "|-boost|p2a: Oricorio|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Oricorio|Recover||[still]",
+          "|-fail|p2a: Oricorio|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Quaquaval|Aqua Step|p2a: Oricorio",
+          "|-damage|p2a: Oricorio|69/150",
+          "|-boost|p1a: Quaquaval|spe|1",
+          "|-activate|p2a: Oricorio|ability: Dancer",
+          "|move|p2a: Oricorio|Aqua Step|p1a: Quaquaval|[from] ability: Dancer",
+          "|-resisted|p1a: Quaquaval|1",
+          "|-damage|p1a: Quaquaval|145/160",
+          "|-boost|p2a: Oricorio|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Oricorio|Recover||[still]",
+          "|-fail|p2a: Oricorio|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Quaquaval|Aqua Step|p2a: Oricorio",
+          "|-damage|p2a: Oricorio|69/150",
+          "|-boost|p1a: Quaquaval|spe|1",
+          "|-activate|p2a: Oricorio|ability: Dancer",
+          "|move|p2a: Oricorio|Aqua Step|p1a: Quaquaval|[from] ability: Dancer",
+          "|-resisted|p1a: Quaquaval|1",
+          "|-damage|p1a: Quaquaval|145/160",
+          "|-boost|p2a: Oricorio|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Aqua Step",
+                  "id": "aquastep",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Quaquaval",
+                "details": "Quaquaval, L50, F",
+                "condition": "145/160",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 100,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "aquastep",
+                  "swordsdance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Oricorio",
+                "details": "Oricorio-Pom-Pom, L50, F",
+                "condition": "69/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 118,
+                  "spd": 90,
+                  "spe": 113
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "dancer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dancer",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Quaquaval",
+            "species": "Quaquaval",
+            "details": "Quaquaval, L50, F",
+            "hp": 145,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 100,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "aquastep",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "swordsdance",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Oricorio",
+            "species": "Oricorio-Pom-Pom",
+            "details": "Oricorio-Pom-Pom, L50, F",
+            "hp": 69,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 118,
+              "spd": 90,
+              "spe": 113
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dancer",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 4,
+      "seed": "50886,5712,59628,20063",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Oricorio|Recover|p2a: Oricorio",
+          "|-heal|p2a: Oricorio|144/150",
+          "|move|p1a: Quaquaval|Swords Dance|p1a: Quaquaval",
+          "|-boost|p1a: Quaquaval|atk|2",
+          "|-activate|p2a: Oricorio|ability: Dancer",
+          "|move|p2a: Oricorio|Swords Dance|p2a: Oricorio|[from] ability: Dancer",
+          "|-boost|p2a: Oricorio|atk|2",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Oricorio|Recover|p2a: Oricorio",
+          "|-heal|p2a: Oricorio|144/150",
+          "|move|p1a: Quaquaval|Swords Dance|p1a: Quaquaval",
+          "|-boost|p1a: Quaquaval|atk|2",
+          "|-activate|p2a: Oricorio|ability: Dancer",
+          "|move|p2a: Oricorio|Swords Dance|p2a: Oricorio|[from] ability: Dancer",
+          "|-boost|p2a: Oricorio|atk|2",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p2a: Oricorio|Recover|p2a: Oricorio",
+          "|-heal|p2a: Oricorio|144/150",
+          "|move|p1a: Quaquaval|Swords Dance|p1a: Quaquaval",
+          "|-boost|p1a: Quaquaval|atk|2",
+          "|-activate|p2a: Oricorio|ability: Dancer",
+          "|move|p2a: Oricorio|Swords Dance|p2a: Oricorio|[from] ability: Dancer",
+          "|-boost|p2a: Oricorio|atk|2",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Aqua Step",
+                  "id": "aquastep",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Swords Dance",
+                  "id": "swordsdance",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Quaquaval",
+                "details": "Quaquaval, L50, F",
+                "condition": "145/160",
+                "active": true,
+                "stats": {
+                  "atk": 140,
+                  "def": 100,
+                  "spa": 105,
+                  "spd": 95,
+                  "spe": 105
+                },
+                "moves": [
+                  "aquastep",
+                  "swordsdance"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Oricorio",
+                "details": "Oricorio-Pom-Pom, L50, F",
+                "condition": "144/150",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 90,
+                  "spa": 118,
+                  "spd": 90,
+                  "spe": 113
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "dancer",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "dancer",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Quaquaval",
+            "species": "Quaquaval",
+            "details": "Quaquaval, L50, F",
+            "hp": 145,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 140,
+              "def": 100,
+              "spa": 105,
+              "spd": 95,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "aquastep",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "swordsdance",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Oricorio",
+            "species": "Oricorio-Pom-Pom",
+            "details": "Oricorio-Pom-Pom, L50, F",
+            "hp": 144,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 90,
+              "spa": 118,
+              "spd": 90,
+              "spe": 113
+            },
+            "boosts": {
+              "atk": 2,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "dancer",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

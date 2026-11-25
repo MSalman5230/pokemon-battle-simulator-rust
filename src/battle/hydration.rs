@@ -350,6 +350,13 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .iter()
             .any(|p| p.ability == "flowergift" || p.base_ability == "flowergift")
     });
+    battle.possible_dancer = Player::ALL.into_iter().any(|player| {
+        battle
+            .party(player)
+            .unwrap()
+            .iter()
+            .any(|p| p.ability == "dancer" || p.base_ability == "dancer")
+    });
     battle.update_speed();
     for player in Player::ALL {
         battle.refresh_observed_disables(Position { player, slot: 0 });
