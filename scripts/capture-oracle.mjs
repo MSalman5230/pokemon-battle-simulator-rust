@@ -358,6 +358,12 @@ const diveRosters = [
     [named('Vaporeon', ['Dive', 'Recover']), named('Umbreon', ['Recover'])],
     [named('Slowbro', ['Surf', 'Tackle', 'Recover']), {...named('Machamp', ['Tackle']), ability: 'No Guard'}],
 ];
+const resistBerryRosters = [
+    [{...named('Haxorus', ['Close Combat']), ability: 'Unnerve'},
+        {...named('Heracross', ['Tackle', 'Close Combat']), item: 'Life Orb'}],
+    [{...named('Snorlax', ['Recover']), item: 'Chople Berry'},
+        {...named('Glaceon', ['Recover']), item: 'Chilan Berry'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -529,6 +535,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2', 'switch 2'], ['move 2', 'move 1']], stakeoutRosters, 'bss-stakeout'],
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 1', 'move 3'], ['move 1', 'move 2'],
         ['move 1', 'move 3'], ['move 1', 'switch 2'], ['move 1', 'move 1'], ['move 1', 'move 1']], diveRosters, 'bss-dive'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['switch 2', 'move 1'],
+        ['move 1', 'move 1'], ['move 2', 'move 1'], ['move 1', 'switch 2'], ['move 1', 'move 1']],
+        resistBerryRosters, 'bss-resist-berries'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

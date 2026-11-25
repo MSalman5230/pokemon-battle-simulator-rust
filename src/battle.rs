@@ -14,6 +14,7 @@ mod abilities;
 use abilities::Attention;
 mod attract;
 mod charge;
+mod damage;
 mod disable;
 mod hazards;
 mod items;

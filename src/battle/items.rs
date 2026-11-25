@@ -4,6 +4,30 @@ use super::turn::Position;
 use super::*;
 use crate::mechanics::BoostStat;
 
+pub(super) fn resistance_berry(id: &str) -> Option<(&'static str, &'static str)> {
+    Some(match id {
+        "chilanberry" => ("Normal", "Chilan Berry"),
+        "occaberry" => ("Fire", "Occa Berry"),
+        "passhoberry" => ("Water", "Passho Berry"),
+        "wacanberry" => ("Electric", "Wacan Berry"),
+        "rindoberry" => ("Grass", "Rindo Berry"),
+        "yacheberry" => ("Ice", "Yache Berry"),
+        "chopleberry" => ("Fighting", "Chople Berry"),
+        "kebiaberry" => ("Poison", "Kebia Berry"),
+        "shucaberry" => ("Ground", "Shuca Berry"),
+        "cobaberry" => ("Flying", "Coba Berry"),
+        "payapaberry" => ("Psychic", "Payapa Berry"),
+        "tangaberry" => ("Bug", "Tanga Berry"),
+        "chartiberry" => ("Rock", "Charti Berry"),
+        "kasibberry" => ("Ghost", "Kasib Berry"),
+        "habanberry" => ("Dragon", "Haban Berry"),
+        "colburberry" => ("Dark", "Colbur Berry"),
+        "babiriberry" => ("Steel", "Babiri Berry"),
+        "roseliberry" => ("Fairy", "Roseli Berry"),
+        _ => return None,
+    })
+}
+
 impl Battle {
     pub(super) fn on_switch_in_item(&mut self, pos: Position) {
         if self.mon(pos).item == "airballoon" {

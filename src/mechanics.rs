@@ -191,15 +191,10 @@ pub struct Damage {
 
 impl Damage {
     pub fn roll(self, truncation: Truncation, rng: &mut Rng) -> u32 {
-        self.roll_with_final_event(truncation, rng, |_| {})
+        self.roll_with_randomness(truncation, rng.below(16))
     }
 
-    pub(crate) fn roll_with_final_event(
-        self,
-        truncation: Truncation,
-        rng: &mut Rng,
-        before_final: impl FnOnce(&mut Rng),
-    ) -> u32 {
+    pub(crate) fn roll_with_randomness(self, truncation: Truncation, randomness: u32) -> u32 {
         let t = truncation;
         let level_factor = u64::from(self.level) * 2 / 5 + 2;
         let base = t.word(level_factor * u64::from(self.power) * u64::from(self.attack));
@@ -209,7 +204,7 @@ impl Damage {
         if self.critical {
             damage = t.word(u64::from(damage) * 3 / 2) as u32;
         }
-        damage = (t.word(u64::from(damage) * (100 - u64::from(rng.below(16)))) / 100) as u32;
+        damage = (t.word(u64::from(damage) * (100 - u64::from(randomness))) / 100) as u32;
         damage = t.modify(damage, self.stab);
         let effectiveness = self.effectiveness.clamp(-6, 6);
         if effectiveness >= 0 {
@@ -220,7 +215,6 @@ impl Damage {
         if self.burned {
             damage = t.modify(damage, 2048);
         }
-        before_final(rng);
         damage = t.modify(damage, self.final_modifier);
         if self.bypassed_protect {
             damage = t.modify(damage, 1024);

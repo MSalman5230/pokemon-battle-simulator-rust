@@ -2514,30 +2514,7 @@ impl Battle {
                     power_modifier = crate::mechanics::chain(power_modifier, 6144);
                 }
                 power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
-                let mut final_modifier = match user.item.as_str() {
-                    "lifeorb" => 5324,
-                    "expertbelt" if effect > 0 => 4915,
-                    _ => 4096,
-                };
-                if mon.glaive_drawback {
-                    final_modifier = crate::mechanics::chain(final_modifier, 8192);
-                }
-                if hits_underwater && mon.diving() {
-                    final_modifier = crate::mechanics::chain(final_modifier, 8192);
-                }
-                if (mon.ability == "multiscale" && mon.hp == mon.max_hp.get())
-                    || (mon.ability == "auraguard" && move_data.flags.contains_key("contact"))
-                {
-                    if user.ability == "sniper" && crit {
-                        final_modifier = crate::mechanics::chain(final_modifier, 6144);
-                    }
-                    final_modifier = crate::mechanics::chain(final_modifier, 2048);
-                }
-                final_modifier = crate::mechanics::chain(
-                    final_modifier,
-                    self.screens_damage_modifier(source, target, move_data.category, crit),
-                );
-                let value = Damage {
+                let mut hit_damage = Damage {
                     level: user.level,
                     power: tr.modify(u32::from(power), power_modifier),
                     attack: atk,
@@ -2558,16 +2535,10 @@ impl Battle {
                     burned: user.status == Status::Burn
                         && user.ability != "guts"
                         && move_data.category == Category::Physical,
-                    final_modifier,
+                    final_modifier: 4096,
                     bypassed_protect: false,
-                }
-                .roll_with_final_event(tr, &mut self.rng, |rng| {
-                    // All screens register onAnyModifyDamage. Their handlers tie
-                    // even when their own side/category then makes them no-ops.
-                    for choices in (2..=screen_handlers).rev() {
-                        rng.below(choices);
-                    }
-                });
+                };
+                let randomness = self.rng.below(16);
                 if spread && self.format.report_exact_hp {
                     self.add("|debug|Spread modifier: 0.75");
                 }
@@ -2587,7 +2558,14 @@ impl Battle {
                 if crit {
                     self.add(format!("|-crit|{}", self.ident(target)));
                 }
-                damage.push((target, value));
+                hit_damage.final_modifier = self.final_damage_modifier(
+                    source,
+                    target,
+                    move_data,
+                    (move_type, effect, crit),
+                    screen_handlers,
+                );
+                damage.push((target, hit_damage.roll_with_randomness(tr, randomness)));
             }
             for (target, hit_damage) in &mut damage {
                 let target = *target;
@@ -3228,9 +3206,10 @@ impl Pokemon {
                 | "petayaberry"
                 | "apicotberry"
                 | "powerherb"
-        ) && DEX
-            .item(crate::dex::Mod::Champions, &self.item)
-            .is_none_or(|item| item.mega_stone.is_none())
+        ) && super::items::resistance_berry(&self.item).is_none()
+            && DEX
+                .item(crate::dex::Mod::Champions, &self.item)
+                .is_none_or(|item| item.mega_stone.is_none())
         {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));
         }

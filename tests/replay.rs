@@ -455,3 +455,8 @@ fn bss_stakeout_applies_only_on_the_targets_switch_in_turn() {
 fn bss_dive_blocks_ordinary_attacks_but_allows_surf_and_no_guard() {
     replay(include_str!("fixtures/bss-dive.json"));
 }
+
+#[test]
+fn bss_resist_berries_check_type_effectiveness_and_unnerve() {
+    replay(include_str!("fixtures/bss-resist-berries.json"));
+}

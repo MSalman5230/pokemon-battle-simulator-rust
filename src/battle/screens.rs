@@ -50,27 +50,25 @@ impl Battle {
         target: Position,
         category: Category,
         critical: bool,
-    ) -> u32 {
+    ) -> (u32, &'static str) {
         if source == target || critical || self.mon(source).ability == "infiltrator" {
-            return 4096;
+            return (4096, "");
         }
         let own = &self.sides[target.player.index()].as_ref().unwrap().screens;
-        let blocked = match category {
-            Category::Physical => {
-                own[Screen::Reflect.index()] != 0 || own[Screen::AuroraVeil.index()] != 0
-            }
-            Category::Special => {
-                own[Screen::Light.index()] != 0 || own[Screen::AuroraVeil.index()] != 0
-            }
-            Category::Status => false,
+        let debug = match category {
+            Category::Physical if own[Screen::Reflect.index()] != 0 => "Reflect weaken",
+            Category::Special if own[Screen::Light.index()] != 0 => "Light Screen weaken",
+            _ if own[Screen::AuroraVeil.index()] != 0 => "Aurora Veil weaken",
+            _ => return (4096, ""),
         };
-        if !blocked {
-            4096
-        } else if self.format.game_type.active_slots() > 1 {
-            2732
-        } else {
-            2048
-        }
+        (
+            if self.format.game_type.active_slots() > 1 {
+                2732
+            } else {
+                2048
+            },
+            debug,
+        )
     }
 
     pub(super) fn set_screen(&mut self, source: Position, screen: Screen) -> bool {
