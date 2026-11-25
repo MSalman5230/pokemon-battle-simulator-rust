@@ -766,6 +766,7 @@ impl Battle {
                     | "skullbash"
                     | "geomancy"
                     | "expandingforce"
+                    | "dive"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1267,6 +1268,7 @@ impl Battle {
             Flinch,
             Recharge,
             Charge,
+            DiveTimer,
             Rampage,
             Attention,
             Leftovers,
@@ -1400,6 +1402,9 @@ impl Battle {
             if mon.charge.is_some() {
                 timers.push((pos, Effect::Charge, priority(0, 2)));
             }
+            if mon.diving() {
+                timers.push((pos, Effect::DiveTimer, priority(0, 2)));
+            }
             if mon.rampage.is_some() {
                 timers.push((pos, Effect::Rampage, priority(0, 2)));
             }
@@ -1476,6 +1481,9 @@ impl Battle {
                 }
                 Effect::Rampage => self.tick_rampage(pos),
                 Effect::Charge => mon.tick_charge(),
+                // The Dive condition has its own duration and participates
+                // in ordering. The parent charge expires at the same time.
+                Effect::DiveTimer => {}
                 Effect::Attention => {
                     if let Some(kind) = mon.attention.take() {
                         mon.untrack_volatile(kind.name_id().1);
@@ -1740,7 +1748,7 @@ impl Battle {
         }
         if let Some(spec) = charge_spec {
             if releasing_charge {
-                self.mon_mut(source).untrack_volatile(spec.id);
+                self.mon_mut(source).release_charge();
             } else {
                 self.add(format!("|-prepare|{source_name}|{}", move_data.name));
                 if let Some(stat) = spec.boost {
@@ -1972,12 +1980,29 @@ impl Battle {
         self.protean_prepare(source, move_type);
         let spread = spread_targets.len() > 1;
         let priority = self.move_priority(source, move_data);
+        let hits_underwater = matches!(move_data.name.as_str(), "Surf" | "Whirlpool");
+        spread_targets.retain(|&target| {
+            if !self.mon(target).diving()
+                || hits_underwater
+                || self.mon(source).ability == "noguard"
+                || self.mon(target).ability == "noguard"
+                || (move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
+            {
+                return true;
+            }
+            if !spread {
+                self.log[base].public.push_str("|[miss]");
+            }
+            self.add(format!("|-miss|{source_name}|{}", self.ident(target)));
+            false
+        });
         // Preserve upstream's hit-step batching: all protection and immunity
         // checks, then all accuracy rolls, then all damage calculations.
         spread_targets.retain(|&mut_pos| {
             if self.terrain() == Some(Terrain::Psychic)
                 && priority > 0
                 && mut_pos.player != source.player
+                && !self.mon(mut_pos).diving()
             {
                 if self.mon(mut_pos).grounded() {
                     self.terrain_activate(mut_pos, Terrain::Psychic);
@@ -2088,6 +2113,7 @@ impl Battle {
         }
         spread_targets.retain(|&pos| {
             if ohko
+                && !self.mon(pos).diving()
                 && (self.mon(source).level < self.mon(pos).level
                     || (sheer_cold && self.mon(pos).has_type("Ice")))
             {
@@ -2102,7 +2128,7 @@ impl Battle {
                 && self.mon(pos).ability != "noguard"
                 && !self.mon(pos).glaive_drawback
                 && !self.rng.chance(
-                    if ohko {
+                    if ohko && !self.mon(pos).diving() {
                         let base = if sheer_cold && !self.mon(source).has_type("Ice") {
                             20
                         } else {
@@ -2494,6 +2520,9 @@ impl Battle {
                     _ => 4096,
                 };
                 if mon.glaive_drawback {
+                    final_modifier = crate::mechanics::chain(final_modifier, 8192);
+                }
+                if hits_underwater && mon.diving() {
                     final_modifier = crate::mechanics::chain(final_modifier, 8192);
                 }
                 if (mon.ability == "multiscale" && mon.hp == mon.max_hp.get())

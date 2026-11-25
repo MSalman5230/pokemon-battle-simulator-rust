@@ -450,3 +450,8 @@ fn vgc_expanding_force_becomes_a_spread_move_on_psychic_terrain() {
 fn bss_stakeout_applies_only_on_the_targets_switch_in_turn() {
     replay(include_str!("fixtures/bss-stakeout.json"));
 }
+
+#[test]
+fn bss_dive_blocks_ordinary_attacks_but_allows_surf_and_no_guard() {
+    replay(include_str!("fixtures/bss-dive.json"));
+}

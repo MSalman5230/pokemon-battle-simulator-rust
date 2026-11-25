@@ -9,6 +9,7 @@ pub(super) struct Charge {
     pub(super) target: i8,
     id: &'static str,
     turns: u8,
+    released: bool,
 }
 
 #[derive(Clone, Copy)]
@@ -28,6 +29,7 @@ impl ChargeSpec {
             "Meteor Beam" => ("meteorbeam", Some(BoostStat::Spa), None),
             "Skull Bash" => ("skullbash", Some(BoostStat::Def), None),
             "Geomancy" => ("geomancy", None, None),
+            "Dive" => ("dive", None, None),
             _ => return None,
         };
         Some(Self {
@@ -46,6 +48,7 @@ impl Pokemon {
             target,
             id: spec.id,
             turns: 2,
+            released: false,
         });
         self.track_volatile("twoturnmove");
         self.track_volatile(spec.id);
@@ -56,6 +59,19 @@ impl Pokemon {
             self.untrack_volatile("twoturnmove");
             self.untrack_volatile(state.id);
         }
+    }
+
+    pub(super) fn release_charge(&mut self) {
+        if let Some(state) = &mut self.charge {
+            state.released = true;
+            let id = state.id;
+            self.untrack_volatile(id);
+        }
+    }
+
+    pub(super) fn diving(&self) -> bool {
+        self.charge
+            .is_some_and(|state| state.id == "dive" && !state.released)
     }
 
     pub(super) fn tick_charge(&mut self) {

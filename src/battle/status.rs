@@ -131,7 +131,9 @@ impl Battle {
         if self.mon(pos).hp == 0
             || self.mon(pos).ability == "owntempo"
             || self.mon(pos).confusion > 0
-            || (self.terrain() == Some(Terrain::Misty) && self.mon(pos).grounded())
+            || (self.terrain() == Some(Terrain::Misty)
+                && self.mon(pos).grounded()
+                && !self.mon(pos).diving())
         {
             return false;
         }
@@ -197,6 +199,9 @@ impl Battle {
 
     pub(super) fn status_immune(&self, pos: Position, key: &str) -> bool {
         let mon = self.mon(pos);
+        if mon.diving() && matches!(key, "sandstorm" | "hail") {
+            return true;
+        }
         (matches!(key, "powder" | "sandstorm")
             && (mon.item == "safetygoggles" || mon.ability == "overcoat"))
             || mon.types().any(|typing| {
