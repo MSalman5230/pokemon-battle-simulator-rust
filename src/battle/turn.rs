@@ -99,6 +99,7 @@ struct MoveResult {
     spends_stockpile: bool,
     ran_after_move: bool,
     failed: bool,
+    counts_as_success: bool,
 }
 
 impl Protection {
@@ -1738,6 +1739,7 @@ impl Battle {
         party[outgoing.slot].volatile_order.clear();
         party[outgoing.slot].imprisoned = false;
         party[outgoing.slot].choice_lock = None;
+        party[outgoing.slot].metronome = None;
         party[outgoing.slot].active_turns = 0;
         party[outgoing.slot].active_move_actions = 0;
         party[outgoing.slot].hurt_this_turn = false;
@@ -2038,6 +2040,9 @@ impl Battle {
             mon.attackers_this_turn = [0; 2];
             mon.hurt_this_turn = false;
             mon.move_failed_last_turn = std::mem::take(&mut mon.move_failed_this_turn);
+            if let Some(metronome) = mon.metronome.as_mut() {
+                metronome.last_turn_succeeded = std::mem::take(&mut metronome.this_turn_succeeded);
+            }
             mon.used_item_this_turn = false;
             if !mon.fainted {
                 mon.active_turns += 1;
@@ -3167,7 +3172,12 @@ impl Battle {
             self.apply_pending_boost_copies();
         }
         if !matches!(invocation, MoveInvocation::Future { .. }) && !self.mon(source).fainted {
-            self.mon_mut(source).move_failed_this_turn = result.failed || !attempted;
+            let mon = self.mon_mut(source);
+            mon.move_failed_this_turn = result.failed || !attempted;
+            if let Some(metronome) = mon.metronome.as_mut() {
+                metronome.this_turn_succeeded =
+                    result.counts_as_success && !mon.move_failed_this_turn;
+            }
         }
         (attempted, source)
     }
@@ -3628,6 +3638,7 @@ impl Battle {
         if !delayed {
             self.last_battle_move = Some(move_data);
             self.history_known = true;
+            result.counts_as_success = true;
         }
         if move_data.name == "Body Press" && self.wonder_room > 0 {
             self.add("|-hint|Body Press uses Def boosts when Wonder Room is active.");
@@ -3768,6 +3779,9 @@ impl Battle {
             ));
             result.failed = true;
             return true;
+        }
+        if !delayed {
+            self.metronome_try_move(source, move_data);
         }
         if move_data.name == "Aura Wheel" && self.mon(source).species.base_species != "Morpeko" {
             self.move_still(base);
@@ -4831,6 +4845,7 @@ impl Battle {
             }
         });
         if spread_targets.is_empty() {
+            result.counts_as_success = false;
             result.failed = failed_hit || potential != 0;
             if spread {
                 self.log[base].public.push_str("|[spread] ");
@@ -6894,6 +6909,7 @@ impl Battle {
         mon.volatile_order.clear();
         mon.imprisoned = false;
         mon.choice_lock = None;
+        mon.metronome = None;
         mon.roosted = false;
         mon.set_temporary_type(None);
         mon.yawn = None;
@@ -7512,6 +7528,7 @@ impl Pokemon {
                 | "focusband"
                 | "ejectbutton"
                 | "shellbell"
+                | "metronome"
                 | "airballoon"
                 | "lifeorb"
                 | "rockyhelmet"

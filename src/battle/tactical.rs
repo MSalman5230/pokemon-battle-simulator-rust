@@ -171,6 +171,9 @@ impl DamageProbe {
         battle.gravity = u8::from(self.pseudo.contains_key("gravity"));
         battle.wonder_room = u8::from(self.pseudo.contains_key("wonderroom"));
         battle.set_items_suppressed(self.pseudo.contains_key("magicroom"));
+        if battle.mon(ACTOR).effective_item() == "metronome" {
+            return Err(unsupported("Metronome's consecutive move history"));
+        }
         for (i, conditions) in self.conditions.iter().enumerate() {
             let side = battle.sides[i].as_mut().unwrap();
             side.total_fainted = self.faints[i];

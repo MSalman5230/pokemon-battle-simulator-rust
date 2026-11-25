@@ -1740,6 +1740,11 @@ fn shell_bell_heals_from_real_damage_and_focus_band_rolls_on_every_damage_event(
 }
 
 #[test]
+fn metronome_item_stacks_successful_repeats_caps_and_resets() {
+    replay(include_str!("fixtures/bss-metronome-item.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

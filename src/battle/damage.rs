@@ -11,6 +11,7 @@ enum Hook {
     Fixed(u32, &'static str),
     Ability(Position, u32, &'static str),
     HeldItem(u32),
+    Metronome(u32),
     Berry(&'static str, bool),
     Screens,
 }
@@ -124,6 +125,9 @@ impl Battle {
             hooks[count] = (speed, suborder, hook);
             count += 1;
         };
+        if source_active && let Some(state) = user.metronome {
+            add(user.speed, 2, Hook::Metronome(state.damage_factor()));
+        }
         if source_active && user.active_ability() == "sniper" {
             add(
                 user.speed,
@@ -240,6 +244,12 @@ impl Battle {
         for &(_, _, hook) in hooks.iter() {
             let (next, debug) = match hook {
                 Hook::Fixed(value, debug) => (value, debug),
+                Hook::Metronome(value) => {
+                    if self.format.report_exact_hp {
+                        self.add(format!("|debug|Current Metronome boost: {value}/4096"));
+                    }
+                    (value, "")
+                }
                 Hook::HeldItem(value) => {
                     if self.debug_ignored_item(source, "ModifyDamage") {
                         continue;

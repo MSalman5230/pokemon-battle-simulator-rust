@@ -84,6 +84,7 @@ const data = mod => {
                 ohko: !!e.ohko || undefined,
                 ignoreEvasion: e.ignoreEvasion || undefined, tracksTarget: e.tracksTarget || undefined,
                 cantUseTwice: !!e.flags?.cantusetwice || undefined,
+                callsMove: e.callsMove || undefined,
                 hasSheerForceBoost: e.hasSheerForceBoost || undefined,
                 generic: runsOnGenericPipeline(dex.data.Moves[e.id], e), handlers: handlers(e), secondary: !!e.secondary || !!e.secondaries?.length,
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),

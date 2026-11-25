@@ -529,6 +529,9 @@ impl WorldSide {
         turn: u32,
         assumptions: &mut Vec<Value>,
     ) -> Result<(), BattleError> {
+        if mon.item == "metronome" {
+            return Err(unsupported("Metronome's consecutive move history"));
+        }
         for (id, &amount) in &self.boosts {
             let stat = BOOSTS
                 .into_iter()

@@ -14,6 +14,20 @@ pub(super) struct CudChew {
     ticks: u8,
 }
 
+#[derive(Clone, Copy, Default)]
+pub(super) struct Metronome {
+    last_move: Option<&'static Move>,
+    consecutive: u8,
+    pub last_turn_succeeded: bool,
+    pub this_turn_succeeded: bool,
+}
+
+impl Metronome {
+    pub(super) fn damage_factor(self) -> u32 {
+        [4096, 4915, 5734, 6553, 7372, 8192][usize::from(self.consecutive)]
+    }
+}
+
 pub(super) fn resistance_berry(id: &str) -> Option<(&'static str, &'static str)> {
     Some(match id {
         "chilanberry" => ("Normal", "Chilan Berry"),
@@ -167,9 +181,39 @@ impl Battle {
     }
 
     pub(super) fn on_switch_in_item(&mut self, pos: Position) {
+        if self.mon(pos).item == "metronome" && self.mon(pos).metronome.is_none() {
+            let mon = self.mon_mut(pos);
+            mon.metronome = Some(Metronome::default());
+            mon.track_volatile("metronome");
+        }
         if self.mon(pos).item == "airballoon" && !self.debug_ignored_item(pos, "SwitchIn") {
             self.add(format!("|-item|{}|Air Balloon", self.ident(pos)));
         }
+    }
+
+    pub(super) fn metronome_try_move(&mut self, pos: Position, data: &'static Move) {
+        let mon = self.mon_mut(pos);
+        if mon.metronome.is_none() {
+            return;
+        }
+        if mon.effective_item() != "metronome" {
+            mon.metronome = None;
+            mon.untrack_volatile("metronome");
+            return;
+        }
+        if data.calls_move {
+            return;
+        }
+        let state = mon.metronome.as_mut().unwrap();
+        let same = state
+            .last_move
+            .is_some_and(|previous| previous.name == data.name);
+        state.consecutive = if same && (state.last_turn_succeeded || mon.charge.is_some()) {
+            state.consecutive.saturating_add(1).min(5)
+        } else {
+            u8::from(mon.charge.is_some())
+        };
+        state.last_move = Some(data);
     }
 
     pub(super) fn debug_ignored_item(&mut self, pos: Position, event: &str) -> bool {

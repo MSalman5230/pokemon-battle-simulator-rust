@@ -1439,6 +1439,10 @@ const focusBandSaveRosters = [
     [named('Talonflame', ['Brave Bird'])],
     [{...named('Pichu', ['Tackle']), item:'Focus Band'}],
 ];
+const metronomeRosters = [
+    [{...named('Sylveon', ['Water Gun', 'Tail Whip']), item:'Metronome'}, named('Arcanine', ['Recover'])],
+    [named('Vaporeon', ['Recover', 'Protect', 'Tail Whip'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2649,6 +2653,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
         focusBandRosters, 'bss-focus-band-draws'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], focusBandSaveRosters, 'bss-focus-band-save', '1,2,3,13'],
+    ['bssregmc', [['team 12','team 1'], ...Array(6).fill(['move 1','move 1']), ['move 1','move 2'],
+        ['move 1','move 1'], ['move 2','move 3'], ['move 1','move 1'], ['switch 2','move 3'],
+        ['switch 2','move 3'], ['move 1','move 3']], metronomeRosters, 'bss-metronome-item'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -195,6 +195,8 @@ pub struct Move {
     #[serde(default)]
     pub cant_use_twice: bool,
     #[serde(default)]
+    pub calls_move: bool,
+    #[serde(default)]
     pub has_sheer_force_boost: bool,
     pub boosts: Vec<(BoostStat, i8)>,
     pub self_boosts: Vec<(BoostStat, i8)>,
