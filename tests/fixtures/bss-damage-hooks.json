@@ -1,0 +1,5114 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Metagross\",\"moves\":[\"Tackle\",\"Meteor Mash\",\"Water Gun\"],\"gender\":\"F\",\"name\":\"Metagross\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Clear Body\",\"item\":\"Expert Belt\"},{\"species\":\"Arcanine\",\"moves\":[\"Water Gun\",\"Toxic\",\"Recover\"],\"gender\":\"F\",\"name\":\"Arcanine\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Intimidate\",\"item\":\"Wise Glasses\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Armarouge\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Armarouge\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Weak Armor\"},{\"species\":\"Torkoal\",\"moves\":[\"Recover\",\"Growl\"],\"gender\":\"F\",\"name\":\"Torkoal\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"White Smoke\"},{\"species\":\"Dragonair\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Dragonair\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Shed Skin\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Metagross, L50, F|",
+          "|poke|p1|Arcanine, L50, F|",
+          "|poke|p2|Armarouge, L50, F|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|poke|p2|Dragonair, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Metagross, L50, F|",
+          "|poke|p1|Arcanine, L50, F|",
+          "|poke|p2|Armarouge, L50, F|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|poke|p2|Dragonair, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Metagross, L50, F|",
+          "|poke|p1|Arcanine, L50, F|",
+          "|poke|p2|Armarouge, L50, F|",
+          "|poke|p2|Torkoal, L50, F|",
+          "|poke|p2|Dragonair, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 123"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Metagross|Metagross, L50, F|100/100",
+          "|switch|p2a: Armarouge|Armarouge, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Metagross|Metagross, L50, F|155/155",
+          "|switch|p2a: Armarouge|Armarouge, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Metagross|Metagross, L50, F|100/100",
+          "|switch|p2a: Armarouge|Armarouge, L50, F|160/160",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Meteor Mash",
+                  "id": "meteormash",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "160/160",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 160,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Armarouge|Recover||[still]",
+          "|-fail|p2a: Armarouge|heal",
+          "|move|p1a: Metagross|Tackle|p2a: Armarouge",
+          "|-damage|p2a: Armarouge|86/100",
+          "|-ability|p2a: Armarouge|Weak Armor|boost",
+          "|-unboost|p2a: Armarouge|def|1",
+          "|-boost|p2a: Armarouge|spe|2",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Armarouge|Recover||[still]",
+          "|-fail|p2a: Armarouge|heal",
+          "|move|p1a: Metagross|Tackle|p2a: Armarouge",
+          "|-damage|p2a: Armarouge|86/100",
+          "|-ability|p2a: Armarouge|Weak Armor|boost",
+          "|-unboost|p2a: Armarouge|def|1",
+          "|-boost|p2a: Armarouge|spe|2",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Armarouge|Recover||[still]",
+          "|-fail|p2a: Armarouge|heal",
+          "|move|p1a: Metagross|Tackle|p2a: Armarouge",
+          "|-damage|p2a: Armarouge|139/160",
+          "|-ability|p2a: Armarouge|Weak Armor|boost",
+          "|-unboost|p2a: Armarouge|def|1",
+          "|-boost|p2a: Armarouge|spe|2",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Meteor Mash",
+                  "id": "meteormash",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "139/160",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 139,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Armarouge|Recover|p2a: Armarouge",
+          "|-heal|p2a: Armarouge|100/100",
+          "|move|p1a: Metagross|Water Gun|p2a: Armarouge",
+          "|-supereffective|p2a: Armarouge|1",
+          "|-damage|p2a: Armarouge|70/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Armarouge|Recover|p2a: Armarouge",
+          "|-heal|p2a: Armarouge|100/100",
+          "|move|p1a: Metagross|Water Gun|p2a: Armarouge",
+          "|-supereffective|p2a: Armarouge|1",
+          "|-damage|p2a: Armarouge|70/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Armarouge|Recover|p2a: Armarouge",
+          "|-heal|p2a: Armarouge|160/160",
+          "|move|p1a: Metagross|Water Gun|p2a: Armarouge",
+          "|-supereffective|p2a: Armarouge|1",
+          "|-damage|p2a: Armarouge|112/160",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Meteor Mash",
+                  "id": "meteormash",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 switch 2"
+      ],
+      "turn": 4,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|100/100",
+          "|move|p1a: Metagross|Meteor Mash|p2a: Torkoal|[miss]",
+          "|-miss|p1a: Metagross|p2a: Torkoal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|100/100",
+          "|move|p1a: Metagross|Meteor Mash|p2a: Torkoal|[miss]",
+          "|-miss|p1a: Metagross|p2a: Torkoal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Torkoal|Torkoal, L50, F|145/145",
+          "|move|p1a: Metagross|Meteor Mash|p2a: Torkoal|[miss]",
+          "|-miss|p1a: Metagross|p2a: Torkoal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Meteor Mash",
+                  "id": "meteormash",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Metagross|Meteor Mash|p2a: Torkoal",
+          "|-resisted|p2a: Torkoal|1",
+          "|-damage|p2a: Torkoal|82/100",
+          "|-boost|p1a: Metagross|atk|1",
+          "|move|p2a: Torkoal|Growl|p1a: Metagross",
+          "|-fail|p1a: Metagross|unboost|[from] ability: Clear Body|[of] p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Meteor Mash|p2a: Torkoal",
+          "|-resisted|p2a: Torkoal|1",
+          "|-damage|p2a: Torkoal|82/100",
+          "|-boost|p1a: Metagross|atk|1",
+          "|move|p2a: Torkoal|Growl|p1a: Metagross",
+          "|-fail|p1a: Metagross|unboost|[from] ability: Clear Body|[of] p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Metagross|Meteor Mash|p2a: Torkoal",
+          "|-resisted|p2a: Torkoal|1",
+          "|-damage|p2a: Torkoal|120/145",
+          "|-boost|p1a: Metagross|atk|1",
+          "|move|p2a: Torkoal|Growl|p1a: Metagross",
+          "|-fail|p1a: Metagross|unboost|[from] ability: Clear Body|[of] p1a: Metagross",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Meteor Mash",
+                  "id": "meteormash",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": true,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "120/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 1,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": false,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 120,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Arcanine|Arcanine, L50, F|100/100",
+          "|-ability|p1a: Arcanine|Intimidate|boost",
+          "|-fail|p2a: Torkoal|unboost|[from] ability: White Smoke|[of] p2a: Torkoal",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|100/100",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p1a: Arcanine|Arcanine, L50, F|165/165",
+          "|-ability|p1a: Arcanine|Intimidate|boost",
+          "|-fail|p2a: Torkoal|unboost|[from] ability: White Smoke|[of] p2a: Torkoal",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|100/100",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p1a: Arcanine|Arcanine, L50, F|100/100",
+          "|-ability|p1a: Arcanine|Intimidate|boost",
+          "|-fail|p2a: Torkoal|unboost|[from] ability: White Smoke|[of] p2a: Torkoal",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|145/145",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 7,
+      "seed": "20898,18934,47363,16957",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Arcanine|Water Gun|p2a: Torkoal",
+          "|-supereffective|p2a: Torkoal|1",
+          "|-damage|p2a: Torkoal|65/100",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|100/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Arcanine|Water Gun|p2a: Torkoal",
+          "|-supereffective|p2a: Torkoal|1",
+          "|-damage|p2a: Torkoal|65/100",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|100/100",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ],
+        [
+          "|",
+          "|move|p1a: Arcanine|Water Gun|p2a: Torkoal",
+          "|-supereffective|p2a: Torkoal|1",
+          "|-damage|p2a: Torkoal|95/145",
+          "|move|p2a: Torkoal|Recover|p2a: Torkoal",
+          "|-heal|p2a: Torkoal|145/145",
+          "|",
+          "|upkeep",
+          "|turn|7"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 switch 3"
+      ],
+      "turn": 8,
+      "seed": "9229,60870,33850,16231",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Dragonair|Dragonair, L50, F|100/100",
+          "|move|p1a: Arcanine|Toxic|p2a: Dragonair",
+          "|-status|p2a: Dragonair|tox",
+          "|",
+          "|-activate|p2a: Dragonair|ability: Shed Skin",
+          "|-curestatus|p2a: Dragonair|tox|[msg]",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|switch|p2a: Dragonair|Dragonair, L50, F|100/100",
+          "|move|p1a: Arcanine|Toxic|p2a: Dragonair",
+          "|-status|p2a: Dragonair|tox",
+          "|",
+          "|-activate|p2a: Dragonair|ability: Shed Skin",
+          "|-curestatus|p2a: Dragonair|tox|[msg]",
+          "|upkeep",
+          "|turn|8"
+        ],
+        [
+          "|",
+          "|switch|p2a: Dragonair|Dragonair, L50, F|136/136",
+          "|move|p1a: Arcanine|Toxic|p2a: Dragonair",
+          "|-status|p2a: Dragonair|tox",
+          "|",
+          "|-activate|p2a: Dragonair|ability: Shed Skin",
+          "|-curestatus|p2a: Dragonair|tox|[msg]",
+          "|upkeep",
+          "|turn|8"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 9,
+      "seed": "61380,11535,34528,49510",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Arcanine|Toxic|p2a: Dragonair|[miss]",
+          "|-miss|p1a: Arcanine|p2a: Dragonair",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p1a: Arcanine|Toxic|p2a: Dragonair|[miss]",
+          "|-miss|p1a: Arcanine|p2a: Dragonair",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ],
+        [
+          "|",
+          "|move|p1a: Arcanine|Toxic|p2a: Dragonair|[miss]",
+          "|-miss|p1a: Arcanine|p2a: Dragonair",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|9"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 10,
+      "seed": "61380,11535,34528,49510",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Arcanine|Recover||[still]",
+          "|-fail|p1a: Arcanine|heal",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ],
+        [
+          "|",
+          "|move|p1a: Arcanine|Recover||[still]",
+          "|-fail|p1a: Arcanine|heal",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ],
+        [
+          "|",
+          "|move|p1a: Arcanine|Recover||[still]",
+          "|-fail|p1a: Arcanine|heal",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|10"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 3",
+        ">p2 move 1"
+      ],
+      "turn": 11,
+      "seed": "61380,11535,34528,49510",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Arcanine|Recover||[still]",
+          "|-fail|p1a: Arcanine|heal",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|11"
+        ],
+        [
+          "|",
+          "|move|p1a: Arcanine|Recover||[still]",
+          "|-fail|p1a: Arcanine|heal",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|11"
+        ],
+        [
+          "|",
+          "|move|p1a: Arcanine|Recover||[still]",
+          "|-fail|p1a: Arcanine|heal",
+          "|move|p2a: Dragonair|Recover||[still]",
+          "|-fail|p2a: Dragonair|heal",
+          "|",
+          "|upkeep",
+          "|turn|11"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Water Gun",
+                  "id": "watergun",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Toxic",
+                  "id": "toxic",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Arcanine",
+                "details": "Arcanine, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 100,
+                  "spa": 120,
+                  "spd": 100,
+                  "spe": 115
+                },
+                "moves": [
+                  "watergun",
+                  "toxic",
+                  "recover"
+                ],
+                "baseAbility": "intimidate",
+                "item": "wiseglasses",
+                "pokeball": "pokeball",
+                "ability": "intimidate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Metagross",
+                "details": "Metagross, L50, F",
+                "condition": "155/155",
+                "active": false,
+                "stats": {
+                  "atk": 155,
+                  "def": 150,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 90
+                },
+                "moves": [
+                  "tackle",
+                  "meteormash",
+                  "watergun"
+                ],
+                "baseAbility": "clearbody",
+                "item": "expertbelt",
+                "pokeball": "pokeball",
+                "ability": "clearbody",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Dragonair",
+                "details": "Dragonair, L50, F",
+                "condition": "136/136",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 85,
+                  "spa": 90,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "shedskin",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "shedskin",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Armarouge",
+                "details": "Armarouge, L50, F",
+                "condition": "112/160",
+                "active": false,
+                "stats": {
+                  "atk": 80,
+                  "def": 120,
+                  "spa": 145,
+                  "spd": 100,
+                  "spe": 95
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "weakarmor",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "weakarmor",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Torkoal",
+                "details": "Torkoal, L50, F",
+                "condition": "145/145",
+                "active": false,
+                "stats": {
+                  "atk": 105,
+                  "def": 160,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 40
+                },
+                "moves": [
+                  "recover",
+                  "growl"
+                ],
+                "baseAbility": "whitesmoke",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "whitesmoke",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Arcanine",
+            "species": "Arcanine",
+            "details": "Arcanine, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 100,
+              "spa": 120,
+              "spd": 100,
+              "spe": 115
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "intimidate",
+            "item": "wiseglasses",
+            "active": true,
+            "moves": [
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "toxic",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Metagross",
+            "species": "Metagross",
+            "details": "Metagross, L50, F",
+            "hp": 155,
+            "maxhp": 155,
+            "status": "",
+            "stats": {
+              "atk": 155,
+              "def": 150,
+              "spa": 115,
+              "spd": 110,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "clearbody",
+            "item": "expertbelt",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "meteormash",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "watergun",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Dragonair",
+            "species": "Dragonair",
+            "details": "Dragonair, L50, F",
+            "hp": 136,
+            "maxhp": 136,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 85,
+              "spa": 90,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "shedskin",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Armarouge",
+            "species": "Armarouge",
+            "details": "Armarouge, L50, F",
+            "hp": 112,
+            "maxhp": 160,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 120,
+              "spa": 145,
+              "spd": 100,
+              "spe": 95
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "weakarmor",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Torkoal",
+            "species": "Torkoal",
+            "details": "Torkoal, L50, F",
+            "hp": 145,
+            "maxhp": 145,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 160,
+              "spa": 105,
+              "spd": 90,
+              "spe": 40
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "whitesmoke",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              },
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

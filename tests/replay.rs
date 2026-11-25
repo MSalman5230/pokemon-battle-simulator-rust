@@ -260,3 +260,8 @@ fn bss_magic_guard_blocks_indirect_damage_without_preventing_status() {
 fn bss_last_resort_unlocks_after_using_other_moves_and_resets_on_switch_in() {
     replay(include_str!("fixtures/bss-last-resort.json"));
 }
+
+#[test]
+fn bss_armor_items_secondary_self_boost_and_shed_skin() {
+    replay(include_str!("fixtures/bss-damage-hooks.json"));
+}

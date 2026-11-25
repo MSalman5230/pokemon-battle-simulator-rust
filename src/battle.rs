@@ -605,6 +605,9 @@ impl Pokemon {
         if set.moves.is_empty() {
             return Err(BattleError::Input("set has no moves"));
         }
+        if set.moves.len() > u32::BITS as usize {
+            return Err(BattleError::Unsupported("more than 32 move slots".into()));
+        }
         for name in &set.moves {
             let data = DEX
                 .moves(format.dex_mod, &to_id(name))

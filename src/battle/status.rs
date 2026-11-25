@@ -195,7 +195,10 @@ impl Battle {
 
     pub(super) fn status_residual(&mut self, pos: Position) {
         let mon = self.mon_mut(pos);
-        let (_, divisor, label) = mon.status.residual().unwrap();
+        let Some((_, divisor, label)) = mon.status.residual() else {
+            // Earlier residual hooks can cure a status before its queued turn.
+            return;
+        };
         let mut amount = (mon.max_hp.get() / divisor).max(1);
         if let Status::Toxic(stage) = mon.status {
             let stage = (stage + 1).min(15);

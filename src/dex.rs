@@ -179,6 +179,8 @@ pub struct Secondary {
     pub status: Option<String>,
     pub volatile_status: Option<String>,
     pub boosts: Vec<(BoostStat, i8)>,
+    #[serde(default)]
+    pub self_boosts: Vec<(BoostStat, i8)>,
 }
 
 #[derive(Debug, Deserialize)]

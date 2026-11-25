@@ -37,7 +37,8 @@ function runsOnGenericPipeline(raw, move) {
         typeof raw.ignoreImmunity === 'object' || (raw.status && !supportedStatus.has(raw.status))) return false;
     if (raw.self && (!raw.self.boosts || !hasOnly(raw.self, ['boosts', 'chance']))) return false;
     for (const effect of move.secondaries ?? []) {
-        if (!hasOnly(effect, ['chance', 'status', 'volatileStatus', 'boosts']) ||
+        if (!hasOnly(effect, ['chance', 'status', 'volatileStatus', 'boosts', 'self']) ||
+            (effect.self && (!effect.self.boosts || !hasOnly(effect.self, ['boosts']))) ||
             (effect.status && !supportedStatus.has(effect.status)) ||
             (effect.volatileStatus && effect.volatileStatus !== 'flinch')) return false;
     }
@@ -65,7 +66,8 @@ const data = mod => {
                 self: !!e.self, condition: !!e.condition, boosts: Object.entries(e.boosts ?? {}),
                 selfBoosts: Object.entries(e.self?.boosts ?? {}), selfChance: e.self?.chance,
                 secondaries: (e.secondaries ?? []).map(s => ({chance: s.chance, status: s.status,
-                    volatileStatus: s.volatileStatus, boosts: Object.entries(s.boosts ?? {})}))};
+                    volatileStatus: s.volatileStatus, boosts: Object.entries(s.boosts ?? {}),
+                    selfBoosts: s.self?.boosts && Object.entries(s.self.boosts)}))};
         }),
         abilities: table(dex.abilities.all(), e =>
             ({...props(e, ['name', 'isNonstandard']), handlers: handlers(e)})),

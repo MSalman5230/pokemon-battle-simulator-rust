@@ -89,8 +89,18 @@ impl Pokemon {
                 .is_some_and(|i| self.moves[i].id != self.moves[slot].id)
     }
 
-    pub(super) fn item_power_modifier(&self, move_type: &str) -> u32 {
+    pub(super) fn item_power_modifier(
+        &self,
+        move_type: &str,
+        category: crate::dex::Category,
+    ) -> u32 {
+        use crate::dex::Category;
         if matches!(
+            (self.item.as_str(), category),
+            ("wiseglasses", Category::Special) | ("muscleband", Category::Physical)
+        ) {
+            4505
+        } else if matches!(
             (self.item.as_str(), move_type),
             ("mysticwater", "Water")
                 | ("miracleseed", "Grass")

@@ -1037,6 +1037,7 @@ impl Battle {
             Stall,
             Flinch,
             Leftovers,
+            ShedSkin,
             Weather,
             SpeedBoost,
             Roost,
@@ -1102,6 +1103,9 @@ impl Battle {
             if mon.item == "leftovers" {
                 timers.push((pos, Effect::Leftovers, priority(5, 4)));
             }
+            if mon.ability == "shedskin" {
+                timers.push((pos, Effect::ShedSkin, priority(5, 3)));
+            }
             if mon.protected {
                 timers.push((pos, Effect::Protect, priority(0, 2)));
             }
@@ -1137,6 +1141,7 @@ impl Battle {
                 Effect::Weather | Effect::Screen(_) => unreachable!(),
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::Disable => self.tick_disable(pos),
+                Effect::ShedSkin => self.shed_skin(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Roost => {
                     mon.roosted = false;
@@ -1638,7 +1643,7 @@ impl Battle {
             let stab = user.has_type(move_type);
             let mut power_modifier = crate::mechanics::chain(
                 user.ability_power_modifier(move_data, move_type, self.weather()),
-                user.item_power_modifier(move_type),
+                user.item_power_modifier(move_type, move_data.category),
             );
             if converted {
                 power_modifier = crate::mechanics::chain(4915, power_modifier);
@@ -1646,7 +1651,11 @@ impl Battle {
             if move_data.name == "Knock Off" && mon.can_take_item(self.format.dex_mod).is_some() {
                 power_modifier = crate::mechanics::chain(power_modifier, 6144);
             }
-            let mut final_modifier = if user.item == "lifeorb" { 5324 } else { 4096 };
+            let mut final_modifier = match user.item.as_str() {
+                "lifeorb" => 5324,
+                "expertbelt" if effect > 0 => 4915,
+                _ => 4096,
+            };
             if (mon.ability == "multiscale" && mon.hp == mon.max_hp.get())
                 || (mon.ability == "auraguard" && move_data.flags.contains_key("contact"))
             {
@@ -1768,6 +1777,9 @@ impl Battle {
                     if !effect.boosts.is_empty() {
                         self.boost_from(target, source, &effect.boosts, true, false);
                     }
+                    if !effect.self_boosts.is_empty() {
+                        self.boost(source, &effect.self_boosts, true);
+                    }
                     if effect.volatile_status.as_deref() == Some("flinch")
                         && self.mon(target).hp > 0
                     {
@@ -1831,6 +1843,14 @@ impl Battle {
             }
             if self.mon(target).ability == "stamina" {
                 self.ability_boost(target, "Stamina", BoostStat::Def, 1, false);
+            }
+            if self.mon(target).ability == "weakarmor" && move_data.category == Category::Physical {
+                self.ability_boosts(
+                    target,
+                    "Weak Armor",
+                    &[(BoostStat::Def, -1), (BoostStat::Spe, 2)],
+                    false,
+                );
             }
             if self.mon(target).item == "airballoon" {
                 self.consume(target, "Air Balloon", false);
@@ -2109,6 +2129,11 @@ impl Pokemon {
                 | "eartheater"
                 | "wellbakedbody"
                 | "magicguard"
+                | "weakarmor"
+                | "shedskin"
+                | "clearbody"
+                | "whitesmoke"
+                | "fullmetalbody"
                 | "soundproof"
                 | "auraguard"
                 | "sturdy"
@@ -2175,6 +2200,9 @@ impl Pokemon {
                 | "softsand"
                 | "magnet"
                 | "lightclay"
+                | "expertbelt"
+                | "wiseglasses"
+                | "muscleband"
         ) && DEX
             .item(crate::dex::Mod::Champions, &self.item)
             .is_none_or(|item| item.mega_stone.is_none())

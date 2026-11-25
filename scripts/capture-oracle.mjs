@@ -200,6 +200,13 @@ const lastResortRosters = [
     [named('Snorlax', ['Tackle', 'Water Gun', 'Last Resort']), named('Vaporeon', ['Recover'])],
     [named('Umbreon', ['Recover']), named('Glaceon', ['Recover'])],
 ];
+const armorRosters = [
+    [{...named('Metagross', ['Tackle', 'Meteor Mash', 'Water Gun']), ability: 'Clear Body', item: 'Expert Belt'},
+        {...named('Arcanine', ['Water Gun', 'Toxic', 'Recover']), ability: 'Intimidate', item: 'Wise Glasses'}],
+    [{...named('Armarouge', ['Recover']), ability: 'Weak Armor'},
+        {...named('Torkoal', ['Recover', 'Growl']), ability: 'White Smoke'},
+        {...named('Dragonair', ['Recover']), ability: 'Shed Skin'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -273,6 +280,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'],
         ['move 3', 'move 1'], ['switch 2', 'move 1'], ['switch 2', 'move 1']],
         lastResortRosters, 'bss-last-resort'],
+    ['bssregmc', [['team 12', 'team 123'], ['move 1', 'move 1'], ['move 3', 'move 1'],
+        ['move 2', 'switch 2'], ['move 2', 'move 2'], ['switch 2', 'move 1'], ['move 1', 'move 1'],
+        ['move 2', 'switch 3'], ['move 2', 'move 1'], ['move 3', 'move 1'], ['move 3', 'move 1']],
+        armorRosters, 'bss-damage-hooks'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

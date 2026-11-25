@@ -212,6 +212,8 @@ impl Battle {
                 self.add(format!(
                     "|-fail|{ident}|unboost|atk|[from] ability: Inner Focus|[of] {ident}"
                 ));
+            } else if let Some(ability) = self.mon(target).stat_drop_protection() {
+                self.fail_stat_drop(target, ability);
             } else {
                 self.boost_from(target, pos, &[(BoostStat::Atk, -1)], true, false);
             }
@@ -230,9 +232,23 @@ impl Battle {
             return false;
         }
         let mut success = false;
+        let protection = (target != source)
+            .then(|| self.mon(target).stat_drop_protection())
+            .flatten();
+        if let Some(ability) = protection
+            && !quiet
+            && changes
+                .iter()
+                .any(|&(stat, amount)| amount < 0 && self.mon(target).boosts.get(stat) > -6)
+        {
+            self.fail_stat_drop(target, ability);
+        }
         let mirror = self.mon(target).ability == "mirrorarmor" && target != source && !reflected;
         for &(stat, amount) in changes {
             let current = self.mon(target).boosts.get(stat);
+            if amount < 0 && protection.is_some() {
+                continue;
+            }
             if mirror && amount < 0 && current > -6 {
                 if self.mon(source).hp != 0 {
                     self.add(format!("|-ability|{}|Mirror Armor", self.ident(target)));
@@ -267,6 +283,16 @@ impl Battle {
         amount: i8,
         quiet: bool,
     ) -> bool {
+        self.ability_boosts(pos, label, &[(stat, amount)], quiet)
+    }
+
+    pub(super) fn ability_boosts(
+        &mut self,
+        pos: Position,
+        label: &str,
+        boosts: &[(BoostStat, i8)],
+        quiet: bool,
+    ) -> bool {
         if self.mon(pos).hp == 0
             || !self
                 .party(pos.player.foe())
@@ -276,18 +302,42 @@ impl Battle {
         {
             return false;
         }
-        let change = self.mon_mut(pos).boosts.add(stat, amount);
-        if change > 0 {
-            self.add(format!("|-ability|{}|{label}|boost", self.ident(pos)));
-            self.add(format!(
-                "|-boost|{}|{}|{change}",
-                self.ident(pos),
-                stat.id()
-            ));
-        } else if quiet {
-            self.add(format!("|-boost|{}|{}|0", self.ident(pos), stat.id()));
+        let mut success = false;
+        for &(stat, amount) in boosts {
+            let change = self.mon_mut(pos).boosts.add(stat, amount);
+            if change != 0 || quiet {
+                if change != 0 && !success {
+                    self.add(format!("|-ability|{}|{label}|boost", self.ident(pos)));
+                    success = true;
+                }
+                let tag = if change < 0 { "-unboost" } else { "-boost" };
+                self.add(format!(
+                    "|{tag}|{}|{}|{}",
+                    self.ident(pos),
+                    stat.id(),
+                    change.abs()
+                ));
+            }
         }
-        change > 0
+        success
+    }
+
+    fn fail_stat_drop(&mut self, pos: Position, ability: &str) {
+        let ident = self.ident(pos);
+        self.add(format!(
+            "|-fail|{ident}|unboost|[from] ability: {ability}|[of] {ident}"
+        ));
+    }
+
+    pub(super) fn shed_skin(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.hp > 0 && mon.status != Status::Healthy && self.rng.chance(33, 100) {
+            if self.format.report_exact_hp {
+                self.add("|debug|shed skin");
+            }
+            self.add(format!("|-activate|{}|ability: Shed Skin", self.ident(pos)));
+            self.cure_status(pos, "[msg]");
+        }
     }
 
     pub(super) fn speed_boost(&mut self, pos: Position) {
@@ -304,6 +354,15 @@ impl Battle {
 }
 
 impl Pokemon {
+    fn stat_drop_protection(&self) -> Option<&'static str> {
+        Some(match self.ability.as_str() {
+            "clearbody" => "Clear Body",
+            "whitesmoke" => "White Smoke",
+            "fullmetalbody" => "Full Metal Body",
+            _ => return None,
+        })
+    }
+
     pub(super) fn converted_move_type(&self, original: &'static str) -> (&'static str, bool) {
         if original != "Normal" {
             return (original, false);
