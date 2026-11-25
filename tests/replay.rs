@@ -1500,6 +1500,17 @@ fn magnet_rise_and_smack_down_change_ground_immunity_and_cancel_airtime() {
 }
 
 #[test]
+fn block_checks_substitute_and_trapping_immunity() {
+    replay(include_str!("fixtures/bss-block.json"));
+}
+
+#[test]
+fn howl_and_teeter_dance_apply_to_their_doubles_targets() {
+    replay(include_str!("fixtures/vgc-howl.json"));
+    replay(include_str!("fixtures/vgc-teeter-dance.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

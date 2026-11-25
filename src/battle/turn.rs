@@ -1123,6 +1123,11 @@ impl Battle {
                     | "swallow"
                     | "smackdown"
                     | "magnetrise"
+                    | "block"
+                    | "meanlook"
+                    | "spiderweb"
+                    | "howl"
+                    | "teeterdance"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -2982,6 +2987,10 @@ impl Battle {
                 Some(Weather::Rain | Weather::Sand | Weather::Snow)
             );
         let counter = CounterMove::for_move(move_data);
+        let trapping_status = matches!(
+            move_data.name.as_str(),
+            "Block" | "Mean Look" | "Spider Web"
+        );
         let retaliation =
             counter.is_some() || matches!(move_data.name.as_str(), "Metal Burst" | "Comeuppance");
         let sheer_cold = move_data.name == "Sheer Cold";
@@ -4309,9 +4318,11 @@ impl Battle {
             }
         });
         smart_target &= spread_targets.len() > 1;
-        if matches!(move_data.name.as_str(), "Octolock" | "Worry Seed") {
+        if trapping_status || matches!(move_data.name.as_str(), "Octolock" | "Worry Seed") {
             spread_targets.retain(|&target| {
-                if if move_data.name == "Octolock" {
+                if if trapping_status {
+                    self.mon(target).has_type("Ghost")
+                } else if move_data.name == "Octolock" {
                     self.status_immune(target, "trapped")
                 } else {
                     matches!(self.mon(target).ability.as_str(), "insomnia" | "truant")
@@ -4475,6 +4486,9 @@ impl Battle {
             let mut any_success = false;
             let mut hit_labels = Vec::new();
             let life_dew = move_data.name == "Life Dew";
+            let teeter_dance = move_data.name == "Teeter Dance";
+            let list_all_targets = life_dew || teeter_dance;
+            let mut confusion_failed = false;
             for target in spread_targets {
                 if ability_replacement {
                     any_success |= self.replace_ability_from_move(source, target, &move_data.name);
@@ -4509,7 +4523,7 @@ impl Battle {
                         succeeded = true;
                     }
                 }
-                if spread && life_dew {
+                if spread && list_all_targets {
                     hit_labels.push(target.label());
                 }
                 if matches!(
@@ -4557,11 +4571,13 @@ impl Battle {
                 if confusing_boost
                     || matches!(
                         move_data.name.as_str(),
-                        "Confuse Ray" | "Sweet Kiss" | "Supersonic"
+                        "Confuse Ray" | "Sweet Kiss" | "Supersonic" | "Teeter Dance"
                     )
                 {
                     if self.mon(target).confusion > 0 {
-                        if !succeeded {
+                        if teeter_dance {
+                            confusion_failed = true;
+                        } else if !succeeded {
                             self.move_still(base);
                             self.add(format!("|-fail|{source_name}"));
                         }
@@ -4611,6 +4627,17 @@ impl Battle {
                         mon.track_volatile("magnetrise");
                         self.add(format!("|-start|{}|Magnet Rise", self.ident(target)));
                         succeeded = true;
+                    }
+                }
+                if trapping_status {
+                    if self.start_linked_trap(source, target) {
+                        succeeded = true;
+                    } else {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|move failed because it did nothing");
+                        }
                     }
                 }
                 if move_data.name == "Strength Sap" {
@@ -5064,13 +5091,20 @@ impl Battle {
                 }
                 if succeeded {
                     any_success = true;
-                    if spread && !life_dew {
+                    if spread && !list_all_targets {
                         hit_labels.push(target.label());
                     }
                 }
             }
+            if teeter_dance && !any_success && confusion_failed {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                if self.format.report_exact_hp {
+                    self.add("|debug|move failed because it did nothing");
+                }
+            }
             if spread {
-                if life_dew && !any_success {
+                if list_all_targets && !any_success {
                     hit_labels.clear();
                 }
                 self.log[base]

@@ -10,13 +10,13 @@ pub(super) struct Trap {
 }
 
 impl Battle {
-    pub(super) fn start_linked_trap(&mut self, source: Position, target: Position) {
+    pub(super) fn start_linked_trap(&mut self, source: Position, target: Position) -> bool {
         if self.mon(source).hp == 0
             || self.mon(target).hp == 0
             || self.mon(target).has_type("Ghost")
             || self.mon(target).volatile_ids().contains(&"trapped")
         {
-            return;
+            return false;
         }
         let source_id = (source.player, self.mon(source).roster_index as u8);
         self.mon_mut(source).track_volatile("trapper");
@@ -24,6 +24,7 @@ impl Battle {
         mon.linked_trap_from = Some(source_id);
         mon.track_volatile("trapped");
         self.add(format!("|-activate|{}|trapped", self.ident(target)));
+        true
     }
 
     pub(super) fn start_mutual_trap(&mut self, source: Position, target: Position) {

@@ -1206,6 +1206,20 @@ const smackDownFlyRosters = [
     [named('Noivern', ['Fly', 'Recover'])],
     [named('Tyranitar', ['Smack Down', 'Earthquake'])],
 ];
+const blockRosters = [
+    [named('Snorlax', ['Block', 'Recover'])],
+    [named('Vaporeon', ['Substitute', 'Recover']), named('Dusknoir', ['Recover'])],
+];
+const howlRosters = [
+    [named('Arcanine', ['Howl']), {...named('Exploud', ['Recover']), ability:'Soundproof'},
+        named('Leafeon', ['Recover'])],
+    [named('Umbreon', ['Recover']), named('Glaceon', ['Recover'])],
+];
+const teeterDanceRosters = [
+    [{...named('Lilligant', ['Teeter Dance']), ability:'Chlorophyll'},
+        {...named('Golduck', ['Recover']), ability:'Own Tempo'}],
+    [named('Umbreon', ['Protect', 'Recover']), named('Vaporeon', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2297,6 +2311,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','move 1']], magnetRiseRosters, 'bss-magnet-rise'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2']],
         smackDownFlyRosters, 'bss-smack-down-fly'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 1','switch 2'],
+        ['move 1','switch 2']], blockRosters, 'bss-block'],
+    ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['move 1, switch 3','move 1, move 1']], howlRosters, 'vgc-howl'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1']],
+        teeterDanceRosters, 'vgc-teeter-dance'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
