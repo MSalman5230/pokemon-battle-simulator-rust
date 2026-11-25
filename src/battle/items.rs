@@ -450,6 +450,27 @@ impl Battle {
         self.transfer_stolen_item(holder, attacker, true, "Pickpocket", true);
     }
 
+    pub(super) fn red_card_after_move(&mut self, holder: Position, attacker: Position) {
+        if holder == attacker
+            || self.mon(holder).hp == 0
+            || self.mon(attacker).hp == 0
+            || !self.active_effects(attacker)
+            || self.mon(holder).effective_item() != "redcard"
+            || self.drag_flags & (holder.mask() | attacker.mask()) != 0
+            || self.first_bench(attacker.player, 0).is_none()
+        {
+            return;
+        }
+        self.consume_with_reason(
+            holder,
+            "Red Card",
+            false,
+            &format!("|[of] {}", self.ident(attacker)),
+        );
+        self.symbiosis_after_item(holder);
+        self.schedule_drag(holder, attacker);
+    }
+
     fn transfer_stolen_item(
         &mut self,
         recipient: Position,
@@ -619,6 +640,10 @@ impl Battle {
     }
 
     pub(super) fn consume(&mut self, pos: Position, item: &str, eaten: bool) {
+        self.consume_with_reason(pos, item, eaten, if eaten { "|[eat]" } else { "" });
+    }
+
+    fn consume_with_reason(&mut self, pos: Position, item: &str, eaten: bool, reason: &str) {
         if eaten && self.event_ability(pos) == "ripen" {
             self.add(format!("|-activate|{}|ability: Ripen", self.ident(pos)));
         }
@@ -633,7 +658,6 @@ impl Battle {
                 mon.ripen_pending = false;
             }
         }
-        let reason = if eaten { "|[eat]" } else { "" };
         self.add(format!("|-enditem|{}|{item}{reason}", self.ident(pos)));
     }
 

@@ -222,35 +222,52 @@ impl Battle {
         }
     }
 
-    pub(super) fn target_abilities_after_move(
+    pub(super) fn target_effects_after_move(
         &mut self,
         source: Position,
-        targets: &[Position],
+        hits: &[(Position, u32)],
         damage: [u32; 4],
         data: &Move,
         multihit: bool,
         smart_target: bool,
     ) {
-        let mut holders = [(source, 0); 4];
+        let mut holders = [(source, 0, false); 8];
         let mut count = 0;
-        for &target in targets {
+        for &(target, _) in hits {
+            if !self.active_effects(target) {
+                continue;
+            }
+            let mon = self.mon(target);
             if matches!(
-                self.mon(target).ability.as_str(),
+                mon.ability.as_str(),
                 "berserk" | "angershell" | "pickpocket"
-            ) && self.active_effects(target)
-            {
-                holders[count] = (target, self.mon(target).speed);
+            ) {
+                holders[count] = (target, mon.speed, false);
+                count += 1;
+            }
+            if mon.item == "redcard" {
+                holders[count] = (target, mon.speed, true);
                 count += 1;
             }
         }
-        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        speed_sort_by(&mut holders[..count], &mut self.rng, |a, b| {
+            b.1.cmp(&a.1).then_with(|| a.2.cmp(&b.2))
+        });
         let total: u32 = damage.iter().sum();
-        for &(target, _) in &holders[..count] {
-            if self.event_ability(target) == "pickpocket" {
-                if data.flags.contains_key("contact") {
-                    self.pickpocket_after_move(target, source);
-                }
+        for &(target, _, item) in &holders[..count] {
+            if item {
+                self.red_card_after_move(target, source);
                 continue;
+            }
+            match self.event_ability(target) {
+                "pickpocket" => {
+                    if data.flags.contains_key("contact") {
+                        self.pickpocket_after_move(target, source);
+                    }
+                    continue;
+                }
+                "berserk" | "angershell" => {}
+                _ => continue,
             }
             let mon = self.mon_mut(target);
             mon.half_hp_berry_deferred = false;

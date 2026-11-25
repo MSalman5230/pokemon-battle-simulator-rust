@@ -1443,6 +1443,12 @@ fn stench_adds_a_flinch_roll_only_to_attacks_that_lack_one() {
 }
 
 #[test]
+fn red_card_forces_a_switch_unless_the_attacker_cannot_be_dragged() {
+    replay(include_str!("fixtures/bss-red-card.json"));
+    replay(include_str!("fixtures/bss-red-card-guard-dog.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

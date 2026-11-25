@@ -834,7 +834,7 @@ impl Battle {
         Ok(actions)
     }
 
-    fn first_bench(&self, player: Player, exclude: u32) -> Option<usize> {
+    pub(super) fn first_bench(&self, player: Player, exclude: u32) -> Option<usize> {
         self.party(player)
             .unwrap()
             .iter()
@@ -1968,7 +1968,7 @@ impl Battle {
         Ok(())
     }
 
-    fn schedule_drag(&mut self, source: Position, target: Position) -> bool {
+    pub(super) fn schedule_drag(&mut self, source: Position, target: Position) -> bool {
         if self.mon(target).hp == 0
             || self.mon(source).hp == 0
             || self.first_bench(target.player, 0).is_none()
@@ -5737,7 +5737,7 @@ impl Battle {
             self.mark_fainted(source);
         }
         let mut fainted = 0;
-        for (target, direct_damage) in damage {
+        for &(target, direct_damage) in &damage {
             if self.mon(target).hp == 0 {
                 let linked = self.mon(target).destiny_bond
                     && target.player != source.player
@@ -5830,9 +5830,9 @@ impl Battle {
         self.each_event();
         // Champions runs the target-side AfterMoveSecondary and EmergencyExit
         // hooks even when Sheer Force removes the move's secondary effects.
-        self.target_abilities_after_move(
+        self.target_effects_after_move(
             source,
-            &spread_targets,
+            &damage,
             landed_by_target,
             move_data,
             multihit,
@@ -6623,6 +6623,7 @@ impl Pokemon {
                 | "brightpowder"
                 | "laxincense"
                 | "whiteherb"
+                | "redcard"
                 | "floatstone"
                 | "blackbelt"
                 | "blackglasses"
