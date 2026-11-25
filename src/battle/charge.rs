@@ -6,6 +6,7 @@ use crate::mechanics::BoostStat;
 
 #[derive(Clone, Copy)]
 pub(super) enum SemiInvulnerable {
+    Vanished,
     Underwater,
     Underground,
     Airborne { bounce: bool },
@@ -14,6 +15,7 @@ pub(super) enum SemiInvulnerable {
 impl SemiInvulnerable {
     pub(super) fn exposed_to(self, move_name: &str) -> bool {
         match self {
+            Self::Vanished => false,
             Self::Underwater => matches!(move_name, "Surf" | "Whirlpool"),
             Self::Underground => matches!(move_name, "Earthquake" | "Magnitude"),
             Self::Airborne { .. } => matches!(
@@ -31,6 +33,7 @@ impl SemiInvulnerable {
 
     pub(super) fn damage_modifier(self, move_name: &str) -> Option<u32> {
         let doubled = match self {
+            Self::Vanished => return None,
             Self::Airborne { bounce: true } => return None,
             Self::Airborne { bounce: false } => matches!(move_name, "Gust" | "Twister"),
             _ => self.exposed_to(move_name),
@@ -73,6 +76,9 @@ impl ChargeSpec {
             "Dig" => ("dig", None, None),
             "Bounce" => ("bounce", None, None),
             "Fly" => ("fly", None, None),
+            "Phantom Force" => ("phantomforce", None, None),
+            "Shadow Force" => ("shadowforce", None, None),
+            "Sky Attack" => ("skyattack", None, None),
             _ => return None,
         };
         Some(Self {
@@ -118,6 +124,7 @@ impl Pokemon {
             "dig" => Some(SemiInvulnerable::Underground),
             "bounce" => Some(SemiInvulnerable::Airborne { bounce: true }),
             "fly" => Some(SemiInvulnerable::Airborne { bounce: false }),
+            "phantomforce" | "shadowforce" => Some(SemiInvulnerable::Vanished),
             _ => None,
         }
     }

@@ -987,6 +987,14 @@ const hungerSwitchRosters = [
     [{...named('Morpeko', ['Aura Wheel']), ability:'Hunger Switch'}, named('Umbreon', ['Recover'])],
     [{...named('Jolteon', ['Recover']), ability:'Volt Absorb'}],
 ];
+const phantomForceRosters = [
+    [named('Dragapult', ['Phantom Force']), named('Glaceon', ['Water Gun'])],
+    [named('Umbreon', ['Foul Play', 'Protect']), named('Vaporeon', ['Shadow Ball', 'Recover'])],
+];
+const skyAttackRosters = [
+    [{...named('Noivern', ['Sky Attack']), item:'Power Herb'}],
+    [named('Vaporeon', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1853,6 +1861,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 1'],
         ['switch 2','move 1'], ['switch 2','move 1'], ['move 1','move 1']],
         hungerSwitchRosters, 'bss-hunger-switch'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 1','move 1 1, move 1 1'],
+        ['move 1, move 1 1','move 2, move 2']], phantomForceRosters, 'vgc-phantom-force'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1']],
+        skyAttackRosters, 'bss-sky-attack'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

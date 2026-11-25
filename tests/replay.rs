@@ -1296,6 +1296,12 @@ fn forecast_tracks_weather_and_suppression_while_hunger_switch_changes_aura_whee
 }
 
 #[test]
+fn phantom_force_breaks_protect_and_sky_attack_consumes_power_herb() {
+    replay(include_str!("fixtures/vgc-phantom-force.json"));
+    replay(include_str!("fixtures/bss-sky-attack.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

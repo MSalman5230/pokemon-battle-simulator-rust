@@ -1041,6 +1041,9 @@ impl Battle {
                     | "lifedew"
                     | "finalgambit"
                     | "aurawheel"
+                    | "phantomforce"
+                    | "shadowforce"
+                    | "skyattack"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -3622,14 +3625,26 @@ impl Battle {
             self.note_consecutive_move(consecutive, move_data);
             return true;
         }
-        if move_data.name == "Feint" {
+        if matches!(
+            move_data.name.as_str(),
+            "Feint" | "Phantom Force" | "Shadow Force"
+        ) {
             for &target in &spread_targets {
                 let mon = self.mon_mut(target);
                 if let Some(protection) = mon.protection.take() {
                     mon.untrack_volatile(protection.volatile());
                     mon.stall = None;
                     mon.untrack_volatile("stall");
-                    self.add(format!("|-activate|{}|move: Feint", self.ident(target)));
+                    let attr = if move_data.name == "Feint" {
+                        ""
+                    } else {
+                        "|[broken]"
+                    };
+                    self.add(format!(
+                        "|-activate|{}|move: {}{attr}",
+                        self.ident(target),
+                        move_data.name
+                    ));
                 }
             }
         }
