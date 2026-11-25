@@ -1826,6 +1826,17 @@ const legacyRelicRosters = [
     [{...named('Meloetta', ['Relic Song'], 'N'), ability:'Serene Grace'}, named('Jolteon', ['Recover'])],
     [named('Umbreon', ['Recover'])],
 ];
+const legacyCommanderRosters = [
+    [{...named('Dondozo', ['Order Up', 'Recover']), ability:'Unaware'},
+        {...named('Tatsugiri-Droopy', ['Surf']), ability:'Commander'},
+        named('Porygon2', ['Recover'])],
+    [named('Chansey', ['Tackle', 'Final Gambit']), named('Torkoal', ['Whirlwind', 'Recover'])],
+];
+const legacyCommanderEntryRosters = [
+    [{...named('Tatsugiri-Stretchy', ['Surf']), ability:'Commander'},
+        named('Jolteon', ['Recover']), {...named('Dondozo', ['Order Up']), ability:'Unaware'}],
+    [named('Porygon2', ['Tackle']), named('Torkoal', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3242,6 +3253,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2',null]], legacyGrudgeRosters, 'custom-grudge-pp-source'],
     ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 1'],
         ['switch 2','move 1'], ['switch 2','move 1']], legacyRelicRosters, 'custom-relic-song-forme-cycle'],
+    ['doublescustomgame', [['team 123','team 12'], ['move 1 2, pass','move 1 2, move 1 1'],
+        ['move 2, pass','move 2 1, move 2'], ['switch 3, pass',null],
+        ['move 1, move 1','pass, move 2']], legacyCommanderRosters, 'custom-commander-release-and-order-up'],
+    ['doublescustomgame', [['team 123','team 12'], ['move 1, switch 3','move 1 1, move 1'],
+        ['pass, move 1 1','move 1 2, move 1']], legacyCommanderEntryRosters, 'custom-commander-cancels-queued-move'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

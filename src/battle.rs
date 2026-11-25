@@ -16,6 +16,7 @@ use abilities::Attention;
 mod attract;
 mod boost_copy;
 mod charge;
+mod commander;
 mod control;
 mod damage;
 mod disable;
@@ -250,6 +251,8 @@ pub struct Pokemon {
     attackers_this_turn: [u32; 2],
     heal_block: u8,
     legacy_conditions: field_effects::LegacyConditions,
+    commanded_by: Option<u8>,
+    commanding: bool,
     octolock: Option<(Player, usize)>,
     linked_trap_from: Option<(Player, u8)>,
     fling_pending: bool,
@@ -595,7 +598,7 @@ impl Battle {
                     item: &mon.item,
                     pokeball: &mon.pokeball,
                     ability: &mon.ability,
-                    commanding: false,
+                    commanding: mon.commanding && !mon.fainted,
                     reviving: mon.reviving,
                 })
                 .collect(),
@@ -986,6 +989,8 @@ impl Pokemon {
             attackers_this_turn: [0; 2],
             heal_block: 0,
             legacy_conditions: Default::default(),
+            commanded_by: None,
+            commanding: false,
             octolock: None,
             linked_trap_from: None,
             fling_pending: false,

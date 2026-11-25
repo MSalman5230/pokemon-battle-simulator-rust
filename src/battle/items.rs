@@ -788,6 +788,7 @@ impl Battle {
             || self.mon(holder).hp == 0
             || self.debug_ignored_item(holder, "AfterMoveSecondary")
             || self.mon(holder).effective_item() != "ejectbutton"
+            || self.mon(holder).is_command_locked()
             || self.drag_flags & holder.mask() != 0
             || self.first_bench(holder.player, 0).is_none()
             || self

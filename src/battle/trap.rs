@@ -127,6 +127,12 @@ impl Battle {
         if mon.fainted {
             return Trap::default();
         }
+        if mon.is_command_locked() {
+            return Trap {
+                actual: true,
+                possible: true,
+            };
+        }
         let affected = |ability: &str| match ability {
             "arenatrap" => self.grounded(pos),
             "magnetpull" => mon.has_type("Steel"),
@@ -172,6 +178,9 @@ impl Battle {
     pub fn trapped_in_request(&self, player: Player, slot: usize) -> bool {
         let pos = Position { player, slot };
         let mon = self.mon(pos);
+        if mon.is_command_locked() {
+            return true;
+        }
         let visible_trap = (mon.volatile_ids().contains(&"trapped")
             || mon.volatile_ids().contains(&"ingrain")
             || self.fairy_lock != 0

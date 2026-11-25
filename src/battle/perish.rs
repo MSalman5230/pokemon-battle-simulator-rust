@@ -11,9 +11,10 @@ impl Battle {
             if mon.fainted {
                 continue;
             }
-            if mon.semi_invulnerable()
-                && self.event_ability(source) != "noguard"
-                && self.event_ability(target) != "noguard"
+            if mon.commanding
+                || (mon.semi_invulnerable()
+                    && self.event_ability(source) != "noguard"
+                    && self.event_ability(target) != "noguard")
             {
                 self.add(format!(
                     "|-miss|{}|{}",

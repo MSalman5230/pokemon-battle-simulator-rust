@@ -1995,6 +1995,16 @@ fn inherited_move_reactions_and_relic_forme_match_native_order() {
 }
 
 #[test]
+fn commander_blocks_targeting_and_passing_ends_after_dondozo_faints() {
+    replay(include_str!(
+        "fixtures/custom-commander-release-and-order-up.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-commander-cancels-queued-move.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

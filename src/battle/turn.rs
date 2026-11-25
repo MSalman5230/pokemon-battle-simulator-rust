@@ -794,7 +794,11 @@ impl Battle {
         for (slot, force_switch) in flags.into_iter().enumerate() {
             let actor = Position { player, slot };
             let mon = self.mon(actor);
-            let needs_action = if replace { force_switch } else { !mon.fainted };
+            let needs_action = if replace {
+                force_switch
+            } else {
+                !mon.fainted && !mon.commanding
+            };
             if !needs_action {
                 if choices.peek() == Some(&&SlotChoice::Pass) {
                     choices.next();
@@ -1253,6 +1257,7 @@ impl Battle {
                     | "grudge"
                     | "rage"
                     | "relicsong"
+                    | "orderup"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -1905,6 +1910,16 @@ impl Battle {
                 self.hospitality(pos);
             }
         }
+        if self.slots() == 2
+            && order[..count]
+                .iter()
+                .any(|&(pos, _)| self.mon(pos).ability == "commander")
+        {
+            for (pos, _) in order.into_iter().take(count) {
+                self.update_commander(pos);
+            }
+            queue.retain(|action| !action.actor.is_some_and(|pos| self.mon(pos).commanding));
+        }
         if self.possible_opportunist {
             for (pos, _) in order.into_iter().take(count) {
                 self.apply_pending_boost_copy(pos);
@@ -1934,6 +1949,9 @@ impl Battle {
         }
         let rules = self.stat_rules;
         self.clear_linked_traps(outgoing);
+        if self.mon(outgoing).commanded_by.is_some() {
+            self.release_commander(outgoing.other_slot());
+        }
         let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
         if let Some(Pivot::Move(pass @ ("Baton Pass" | "Shed Tail"))) = pivot {
             let (active, incoming) = party.split_at_mut(bench_slot);
@@ -1983,6 +2001,8 @@ impl Battle {
         party[outgoing.slot].attackers_this_turn = [0; 2];
         party[outgoing.slot].heal_block = 0;
         party[outgoing.slot].legacy_conditions = Default::default();
+        party[outgoing.slot].commanding = false;
+        party[outgoing.slot].commanded_by = None;
         party[outgoing.slot].octolock = None;
         party[outgoing.slot].fling_pending = false;
         party[outgoing.slot].stockpile = Default::default();
@@ -2133,7 +2153,7 @@ impl Battle {
                     move_slot, target, ..
                 } => {
                     let source = action.actor.unwrap();
-                    if self.mon(source).fainted {
+                    if self.mon(source).fainted || self.mon(source).commanding {
                         continue;
                     }
                     self.mon_mut(source).acted = true;
@@ -2323,6 +2343,7 @@ impl Battle {
     pub(super) fn schedule_drag(&mut self, source: Position, target: Position) -> bool {
         if self.mon(target).hp == 0
             || self.mon(source).hp == 0
+            || self.mon(target).is_command_locked()
             || self.first_bench(target.player, 0).is_none()
         {
             return false;
@@ -2415,6 +2436,9 @@ impl Battle {
             self.curious_medicine(pos);
         }
         self.start_trace(pos);
+        if self.mon(pos).ability == "commander" {
+            self.update_commander(pos);
+        }
     }
 
     pub(super) fn positions(&self) -> impl Iterator<Item = Position> + use<> {
@@ -2553,6 +2577,9 @@ impl Battle {
             }
             self.try_trace(pos);
             self.disguise_update(pos);
+            if self.mon(pos).ability == "commander" {
+                self.update_commander(pos);
+            }
             if self.event_ability(pos) == "owntempo" && self.mon(pos).confusion > 0 {
                 self.add(format!("|-activate|{}|ability: Own Tempo", self.ident(pos)));
                 self.cure_confusion(pos);
@@ -5011,7 +5038,9 @@ impl Battle {
         if move_data.name == "Chilly Reception" {
             self.protean_prepare(source, move_type);
             let snow_started = self.set_weather(source, Weather::Snow, None);
-            if self.first_bench(source.player, 0).is_some() {
+            if self.mon(source).commanded_by.is_none()
+                && self.first_bench(source.player, 0).is_some()
+            {
                 self.mon_mut(source).pivot_move = Some(Pivot::Move("Chilly Reception"));
                 self.each_event();
                 self.each_event();
@@ -5178,7 +5207,7 @@ impl Battle {
             }
             self.protean_prepare(source, move_type);
             if self.make_substitute(source, shed_tail) {
-                if shed_tail {
+                if shed_tail && self.mon(source).commanded_by.is_none() {
                     self.mon_mut(source).pivot_move = Some(Pivot::Move("Shed Tail"));
                 }
                 self.each_event();
@@ -5189,7 +5218,9 @@ impl Battle {
             return true;
         }
         if matches!(move_data.name.as_str(), "Baton Pass" | "Teleport") {
-            if self.first_bench(source.player, 0).is_some() {
+            if self.mon(source).commanded_by.is_none()
+                && self.first_bench(source.player, 0).is_some()
+            {
                 self.protean_prepare(source, move_type);
                 self.mon_mut(source).pivot_move =
                     Some(Pivot::Move(if move_data.name == "Teleport" {
@@ -5205,6 +5236,9 @@ impl Battle {
                 }
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+                if self.mon(source).commanded_by.is_some() {
+                    self.report_no_move_effect();
+                }
                 result.failed = true;
             }
             return true;
@@ -5388,14 +5422,16 @@ impl Battle {
         let spread = !darts && spread_targets.len() > 1;
         let potential = spread_targets.len();
         spread_targets.retain(|&target| {
-            if self
-                .mon(target)
-                .semi_invulnerability()
-                .is_none_or(|state| state.exposed_to(&move_data.name))
-                || self.locked_on_to(source, target)
-                || self.mon(source).active_ability() == "noguard"
-                || self.mon(target).active_ability() == "noguard"
-                || (move_data.name == "Toxic" && self.mon(source).has_type("Poison"))
+            if move_data.name == "Helping Hand"
+                || (!self.mon(target).commanding
+                    && (self
+                        .mon(target)
+                        .semi_invulnerability()
+                        .is_none_or(|state| state.exposed_to(&move_data.name))
+                        || self.locked_on_to(source, target)
+                        || self.mon(source).active_ability() == "noguard"
+                        || self.mon(target).active_ability() == "noguard"
+                        || (move_data.name == "Toxic" && self.mon(source).has_type("Poison"))))
             {
                 return true;
             }
@@ -6609,6 +6645,7 @@ impl Battle {
                         BoostOrigin::from_move(move_data),
                     );
                     if (lowered || self.mon(target).active_ability() == "mirrorarmor")
+                        && self.mon(source).commanded_by.is_none()
                         && self.first_bench(source.player, 0).is_some()
                     {
                         self.mon_mut(source).pivot_move = Some(Pivot::Move("Parting Shot"));
@@ -7529,6 +7566,7 @@ impl Battle {
             };
             if pivot.is_some()
                 && self.mon(source).hp != 0
+                && self.mon(source).commanded_by.is_none()
                 && self.first_bench(source.player, 0).is_some()
             {
                 self.mon_mut(source).pivot_move = pivot;
@@ -8048,6 +8086,9 @@ impl Battle {
         if move_data.name == "Fell Stinger" && fainted > 0 && !suppress_after_move {
             self.boost(source, &[(BoostStat::Atk, 3)], true);
         }
+        if move_data.name == "Order Up" && hits_landed > 0 && !suppress_after_move {
+            self.order_up_boost(source);
+        }
         if hits_landed > 0
             && !move_data.after_hit_boosts.is_empty()
             && !(sheer_force_removed && move_data.name == "Clangorous Soulblaze")
@@ -8288,6 +8329,9 @@ impl Battle {
             ));
         }
         self.receive_fainted_ability(target);
+        if self.mon(target).commanded_by.is_some() {
+            self.release_commander(target.other_slot());
+        }
         self.end_supreme_overlord(target, false);
         self.weather_ability_changed(target, true);
         self.clear_linked_traps(target);
@@ -8338,6 +8382,8 @@ impl Battle {
         mon.attackers_this_turn = [0; 2];
         mon.heal_block = 0;
         mon.legacy_conditions = Default::default();
+        mon.commanding = false;
+        mon.commanded_by = None;
         mon.octolock = None;
         mon.fling_pending = false;
         mon.stockpile = Default::default();
@@ -8836,6 +8882,7 @@ impl Pokemon {
                 | "queenlymajesty"
                 | "sheerforce"
                 | "serenegrace"
+                | "commander"
                 | "harvest"
                 | "pickup"
                 | "berserk"
