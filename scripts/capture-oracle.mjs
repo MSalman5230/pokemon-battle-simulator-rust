@@ -452,6 +452,12 @@ const sleepClauseRosters = [
 ];
 const sleepTerrainRosters = [[{...sleepClauseRosters[0][0], moves: ['Spore', 'Yawn', 'Misty Terrain', 'Recover']},
     sleepClauseRosters[0][1]], sleepClauseRosters[1]];
+const openSheetRosters = [[
+    {...rosters[0][0], name: 'Secret nickname', item: 'Choice Band', ability: 'Guts', nature: 'Adamant',
+        evs: {atk: 32, spe: 32, hp: 2}, shiny: true, level: 49, teraType: 'Fire'},
+    {...named('Rotom-Wash', ['Protect', 'Thunderbolt'], 'N'), ability: 'Levitate', nature: 'Timid'},
+    ...rosters[0].slice(2),
+], rosters[1]];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -673,6 +679,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1', 'switch 3'], ['move 3', 'move 1'], ['move 4', 'move 1']], sleepClauseRosters, 'draft-sleep-clause'],
     ['draft', [['team 12', 'team 123'], ['move 1', 'switch 2'], ['move 2', 'switch 3'],
         ['move 3', 'move 1'], ['move 1', 'move 1']], sleepTerrainRosters, 'draft-sleep-terrain'],
+    ['vgc2026regmc', [['>show-openteamsheets'], ['team 1234', 'team 1234'], ['>show-openteamsheets']],
+        openSheetRosters, 'vgc-open-sheets'],
+    ['vgc2026regmcbo3', [['team 1234', 'team 1234']], openSheetRosters, 'vgc-forced-open-sheets'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
@@ -716,7 +725,7 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         });
     }
     await checkpoint(inputs);
-    for (const choices of play) await checkpoint(choices.flatMap((c, i) => c ? ['>p' + (i + 1) + ' ' + c] : []));
+    for (const choices of play) await checkpoint(choices.flatMap((c, i) => !c ? [] : [c.startsWith('>') ? c : '>p' + (i + 1) + ' ' + c]));
     await stream.writeEnd();
     save(label + '.json', {formatid, checkpoints});
 }

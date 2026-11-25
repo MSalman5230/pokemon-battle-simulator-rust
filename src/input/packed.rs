@@ -5,6 +5,79 @@ use crate::{
     choice::to_id,
     dex::{DEX, Mod},
 };
+use std::fmt::Write as _;
+
+/// Non-stat preview data, in Showdown's case-preserving packed-team syntax.
+pub(crate) fn pack_open_sheet<'a>(
+    sets: impl Iterator<Item = (&'a Set, u16, u8)>,
+    show_tera: bool,
+) -> String {
+    fn push_name(out: &mut String, name: &str) {
+        out.extend(name.chars().filter(char::is_ascii_alphanumeric));
+    }
+    let mut out = String::new();
+    for (set, level, gender) in sets {
+        if !out.is_empty() {
+            out.push(']');
+        }
+        let raw_species = if set.species.is_empty() {
+            &set.name
+        } else {
+            &set.species
+        };
+        let crown = match (to_id(raw_species).as_str(), to_id(&set.item).as_str()) {
+            ("zacian", "rustedsword") => Some(("Zacian-Crowned", "behemothblade")),
+            ("zamazenta", "rustedshield") => Some(("Zamazenta-Crowned", "behemothbash")),
+            _ => None,
+        };
+        out.push_str(crown.map_or(raw_species, |(name, _)| name));
+        out.push_str("||");
+        push_name(&mut out, &set.item);
+        out.push('|');
+        push_name(&mut out, &set.ability);
+        out.push('|');
+        let mut replaced = false;
+        for (i, name) in set.moves.iter().enumerate() {
+            if i != 0 {
+                out.push(',');
+            }
+            if let Some((_, signature)) = crown
+                && !replaced
+                && to_id(name) == "ironhead"
+            {
+                out.push_str(signature);
+                replaced = true;
+            } else {
+                push_name(&mut out, name);
+            }
+        }
+        out.push('|');
+        out.push_str(&set.nature);
+        out.push_str("||");
+        if gender != b'N' {
+            out.push(char::from(gender));
+        }
+        out.push_str("|||");
+        if level != 100 {
+            write!(out, "{level}").unwrap();
+        }
+        out.push('|');
+        let hp_type = set
+            .hp_type
+            .as_deref()
+            .filter(|_| set.moves.iter().any(|m| to_id(m) == "hiddenpower"))
+            .unwrap_or("");
+        let tera = if show_tera {
+            set.tera_type.as_deref().unwrap_or("")
+        } else {
+            ""
+        };
+        if !hp_type.is_empty() || !tera.is_empty() {
+            write!(out, ",{hp_type},,,,{tera}").unwrap();
+        }
+    }
+    out
+}
 
 pub(crate) fn unpack(data: &str) -> Result<Vec<Set>, &'static str> {
     let data = data.trim();

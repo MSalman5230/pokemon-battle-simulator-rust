@@ -1,7 +1,7 @@
 //! Input messages for the headless subset of Showdown's battle stream.
 
 mod packed;
-pub(crate) use packed::unpack;
+pub(crate) use packed::{pack_open_sheet, unpack};
 
 use crate::choice::{Choice, ChoiceError};
 use crate::rng::{InvalidSeed, Seed};
@@ -45,6 +45,7 @@ pub enum Input {
     SetPlayer(Player, PlayerOptions),
     Choose(Player, Choice),
     Reseed(Seed),
+    ShowOpenTeamSheets,
 }
 
 #[derive(Debug, Deserialize)]
@@ -196,6 +197,7 @@ impl FromStr for Input {
                     .map_err(InputError::Choice)
             }
             ">reseed" => data.parse().map(Self::Reseed).map_err(InputError::Seed),
+            ">show-openteamsheets" => Ok(Self::ShowOpenTeamSheets),
             _ => Err(InputError::Syntax("unsupported headless battle command")),
         }
     }

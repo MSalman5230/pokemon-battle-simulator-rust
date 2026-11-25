@@ -88,6 +88,7 @@ impl BattleStream {
                 battle.rng = Rng::new(seed);
                 Ok(())
             }
+            Input::ShowOpenTeamSheets => battle.show_open_team_sheets(),
             Input::Start(_) => unreachable!(),
         }
     }
@@ -143,6 +144,7 @@ pub struct Battle {
 struct Side {
     name: String,
     party: Vec<Pokemon>,
+    open_sheet: String,
     hazards: Vec<(Hazard, u8)>,
     mega_used: bool,
     screens: [u8; 3],
@@ -293,6 +295,8 @@ impl Battle {
                 | "gen9championsvgc2026regmc"
                 | "gen9championsbssregmb"
                 | "gen9championsvgc2026regmb"
+                | "gen9championsvgc2026regmcbo3"
+                | "gen9championsvgc2026regmbbo3"
                 | "gen9championscustomgame"
                 | "gen9championsdoublescustomgame"
                 | "gen9championsou"
@@ -433,10 +437,16 @@ impl Battle {
         // order, but do not consume RNG on a rejected input.
         let mut rng = self.rng.clone();
         let party = sets
-            .into_iter()
+            .iter()
             .enumerate()
             .map(|(i, set)| Pokemon::new(self.format, i, set, &mut rng))
             .collect::<Result<Vec<_>, _>>()?;
+        let open_sheet = crate::input::pack_open_sheet(
+            sets.iter()
+                .zip(&party)
+                .map(|(set, mon)| (set, mon.level, mon.gender)),
+            !self.format.has_rule("terastalclause"),
+        );
         let name = if options.name.is_empty() {
             format!("Player {}", index + 1)
         } else {
@@ -456,6 +466,7 @@ impl Battle {
         self.sides[index] = Some(Side {
             name,
             party,
+            open_sheet,
             hazards: Vec::new(),
             mega_used: false,
             screens: [0; 3],
@@ -487,6 +498,26 @@ impl Battle {
             self.add("|teampreview");
         }
         self.phase = Phase::Preview;
+        if self.format.has_rule("forceopenteamsheets") {
+            self.show_open_team_sheets()
+                .expect("both teams present before preview");
+        }
+    }
+
+    fn show_open_team_sheets(&mut self) -> Result<(), BattleError> {
+        if self.turn != 0 {
+            return Ok(());
+        }
+        if self.sides.iter().any(Option::is_none) {
+            return Err(BattleError::Input(
+                "both players are needed for open team sheets",
+            ));
+        }
+        for player in Player::ALL {
+            let sheet = &self.sides[player.index()].as_ref().unwrap().open_sheet;
+            self.add(format!("|showteam|{}|{sheet}", player.id()));
+        }
+        Ok(())
     }
 
     fn choose(&mut self, player: Player, choice: Choice) -> Result<(), BattleError> {
@@ -607,7 +638,7 @@ impl Pokemon {
         self.volatile_order.retain(|v| *v != id);
     }
 
-    fn new(format: &Format, index: usize, set: Set, rng: &mut Rng) -> Result<Self, BattleError> {
+    fn new(format: &Format, index: usize, set: &Set, rng: &mut Rng) -> Result<Self, BattleError> {
         let species_name = if set.species.is_empty() {
             &set.name
         } else {

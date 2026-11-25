@@ -560,3 +560,13 @@ fn draft_sleep_clause_counts_benched_foe_inflicted_sleep_but_not_rest() {
 fn draft_misty_terrain_blocks_sleep_before_the_sleep_clause() {
     replay(include_str!("fixtures/draft-sleep-terrain.json"));
 }
+
+#[test]
+fn vgc_open_sheets_show_no_private_stats_and_only_before_turn_one() {
+    replay(include_str!("fixtures/vgc-open-sheets.json"));
+}
+
+#[test]
+fn vgc_bo3_battle_emits_forced_open_sheets_in_preview() {
+    replay(include_str!("fixtures/vgc-forced-open-sheets.json"));
+}
