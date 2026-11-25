@@ -19,6 +19,7 @@ mod control;
 mod damage;
 mod disable;
 mod forme;
+mod guards;
 mod hazards;
 pub(crate) mod hydration;
 mod illusion;
@@ -31,6 +32,7 @@ mod perish;
 mod rampage;
 mod screens;
 use charge::Charge;
+use guards::SideGuard;
 use hazards::Hazard;
 use rampage::Rampage;
 use screens::Screen;
@@ -183,6 +185,7 @@ struct Side {
     hazards: Vec<(Hazard, u8)>,
     mega_used: bool,
     screens: [u8; 3],
+    guards: [Option<SideGuard>; 2],
     wishes: [Option<support::Wish>; 2],
     future_moves: [Option<support::FutureMove>; 2],
     replacement_heals: [Vec<support::ReplacementHeal>; 2],
@@ -562,6 +565,7 @@ impl Battle {
             hazards: Vec::new(),
             mega_used: false,
             screens: [0; 3],
+            guards: [None; 2],
             wishes: [None; 2],
             future_moves: [None; 2],
             replacement_heals: [Vec::new(), Vec::new()],

@@ -1,0 +1,1998 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsvgc2026regmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsvgc2026regmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Hitmontop\",\"moves\":[\"Wide Guard\",\"Quick Guard\"],\"gender\":\"M\",\"name\":\"Hitmontop\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Vaporeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Jolteon\",\"moves\":[\"Swift\",\"Quick Attack\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Glaceon\",\"moves\":[\"Icy Wind\",\"Feint\",\"Recover\"],\"gender\":\"F\",\"name\":\"Glaceon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] VGC 2026 Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Hitmontop, L50, M|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|4"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] VGC 2026 Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Hitmontop, L50, M|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|4"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] VGC 2026 Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Hitmontop, L50, M|",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|poke|p2|Glaceon, L50, F|",
+          "|teampreview|4"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 4,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Hitmontop",
+                "details": "Hitmontop, L50, M",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 55,
+                  "spd": 130,
+                  "spe": 90
+                },
+                "moves": [
+                  "wideguard",
+                  "quickguard"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 4,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "quickattack"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "icywind",
+                  "feint",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Hitmontop",
+            "species": "Hitmontop",
+            "details": "Hitmontop, L50, M",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 55,
+              "spd": 130,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "wideguard",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "quickguard",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "quickattack",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "feint",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Hitmontop|Hitmontop, L50, M|100/100",
+          "|switch|p1b: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|100/100",
+          "|switch|p2b: Glaceon|Glaceon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Hitmontop|Hitmontop, L50, M|125/125",
+          "|switch|p1b: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|100/100",
+          "|switch|p2b: Glaceon|Glaceon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Hitmontop|Hitmontop, L50, M|100/100",
+          "|switch|p1b: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|140/140",
+          "|switch|p2b: Glaceon|Glaceon, L50, F|140/140",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Wide Guard",
+                  "id": "wideguard",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Quick Guard",
+                  "id": "quickguard",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Hitmontop",
+                "details": "Hitmontop, L50, M",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 55,
+                  "spd": 130,
+                  "spe": 90
+                },
+                "moves": [
+                  "wideguard",
+                  "quickguard"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Quick Attack",
+                  "id": "quickattack",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Icy Wind",
+                  "id": "icywind",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Feint",
+                  "id": "feint",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "quickattack"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "icywind",
+                  "feint",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Hitmontop",
+            "species": "Hitmontop",
+            "details": "Hitmontop, L50, M",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 55,
+              "spd": 130,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "wideguard",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "quickguard",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "quickattack",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "feint",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "56150,61,58353,25742",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Hitmontop|Wide Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Wide Guard",
+          "|move|p2a: Jolteon|Swift|p1a: Hitmontop|[spread] ",
+          "|-activate|p1a: Hitmontop|move: Wide Guard",
+          "|-activate|p1b: Vaporeon|move: Wide Guard",
+          "|move|p2b: Glaceon|Icy Wind|p1b: Vaporeon|[spread] ",
+          "|-activate|p1a: Hitmontop|move: Wide Guard",
+          "|-activate|p1b: Vaporeon|move: Wide Guard",
+          "|move|p1b: Vaporeon|Recover||[still]",
+          "|-fail|p1b: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Hitmontop|Wide Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Wide Guard",
+          "|move|p2a: Jolteon|Swift|p1a: Hitmontop|[spread] ",
+          "|-activate|p1a: Hitmontop|move: Wide Guard",
+          "|-activate|p1b: Vaporeon|move: Wide Guard",
+          "|move|p2b: Glaceon|Icy Wind|p1b: Vaporeon|[spread] ",
+          "|-activate|p1a: Hitmontop|move: Wide Guard",
+          "|-activate|p1b: Vaporeon|move: Wide Guard",
+          "|move|p1b: Vaporeon|Recover||[still]",
+          "|-fail|p1b: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Hitmontop|Wide Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Wide Guard",
+          "|move|p2a: Jolteon|Swift|p1a: Hitmontop|[spread] ",
+          "|-activate|p1a: Hitmontop|move: Wide Guard",
+          "|-activate|p1b: Vaporeon|move: Wide Guard",
+          "|move|p2b: Glaceon|Icy Wind|p1b: Vaporeon|[spread] ",
+          "|-activate|p1a: Hitmontop|move: Wide Guard",
+          "|-activate|p1b: Vaporeon|move: Wide Guard",
+          "|move|p1b: Vaporeon|Recover||[still]",
+          "|-fail|p1b: Vaporeon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Wide Guard",
+                  "id": "wideguard",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Quick Guard",
+                  "id": "quickguard",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Hitmontop",
+                "details": "Hitmontop, L50, M",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 55,
+                  "spd": 130,
+                  "spe": 90
+                },
+                "moves": [
+                  "wideguard",
+                  "quickguard"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Quick Attack",
+                  "id": "quickattack",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Icy Wind",
+                  "id": "icywind",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Feint",
+                  "id": "feint",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "quickattack"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "icywind",
+                  "feint",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Hitmontop",
+            "species": "Hitmontop",
+            "details": "Hitmontop, L50, M",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 55,
+              "spd": 130,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "wideguard",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "quickguard",
+                "pp": 16,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "quickattack",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "feint",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2, move 1",
+        ">p2 move 2 2, move 3"
+      ],
+      "turn": 3,
+      "seed": "16838,16016,9865,54939",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Hitmontop|Quick Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Quick Guard",
+          "|move|p2a: Jolteon|Quick Attack|p1b: Vaporeon",
+          "|-activate|p1b: Vaporeon|move: Quick Guard",
+          "|move|p1b: Vaporeon|Recover||[still]",
+          "|-fail|p1b: Vaporeon|heal",
+          "|move|p2b: Glaceon|Recover||[still]",
+          "|-fail|p2b: Glaceon|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Hitmontop|Quick Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Quick Guard",
+          "|move|p2a: Jolteon|Quick Attack|p1b: Vaporeon",
+          "|-activate|p1b: Vaporeon|move: Quick Guard",
+          "|move|p1b: Vaporeon|Recover||[still]",
+          "|-fail|p1b: Vaporeon|heal",
+          "|move|p2b: Glaceon|Recover||[still]",
+          "|-fail|p2b: Glaceon|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Hitmontop|Quick Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Quick Guard",
+          "|move|p2a: Jolteon|Quick Attack|p1b: Vaporeon",
+          "|-activate|p1b: Vaporeon|move: Quick Guard",
+          "|move|p1b: Vaporeon|Recover||[still]",
+          "|-fail|p1b: Vaporeon|heal",
+          "|move|p2b: Glaceon|Recover||[still]",
+          "|-fail|p2b: Glaceon|heal",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Wide Guard",
+                  "id": "wideguard",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Quick Guard",
+                  "id": "quickguard",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Hitmontop",
+                "details": "Hitmontop, L50, M",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 55,
+                  "spd": 130,
+                  "spe": 90
+                },
+                "moves": [
+                  "wideguard",
+                  "quickguard"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Quick Attack",
+                  "id": "quickattack",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Icy Wind",
+                  "id": "icywind",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Feint",
+                  "id": "feint",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "quickattack"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "icywind",
+                  "feint",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Hitmontop",
+            "species": "Hitmontop",
+            "details": "Hitmontop, L50, M",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 55,
+              "spd": 130,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "wideguard",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "quickguard",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "quickattack",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "feint",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1, move 1",
+        ">p2 move 1, move 2 2"
+      ],
+      "turn": 4,
+      "seed": "24261,38534,33528,14061",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Hitmontop|Wide Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Wide Guard",
+          "|move|p2b: Glaceon|Feint|p1b: Vaporeon",
+          "|-activate|p1b: Vaporeon|move: Feint",
+          "|-damage|p1b: Vaporeon|92/100",
+          "|move|p2a: Jolteon|Swift|p1a: Hitmontop|[spread] p1a,p1b",
+          "|-damage|p1a: Hitmontop|84/100",
+          "|-damage|p1b: Vaporeon|81/100",
+          "|move|p1b: Vaporeon|Recover|p1b: Vaporeon",
+          "|-heal|p1b: Vaporeon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Hitmontop|Wide Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Wide Guard",
+          "|move|p2b: Glaceon|Feint|p1b: Vaporeon",
+          "|-activate|p1b: Vaporeon|move: Feint",
+          "|-damage|p1b: Vaporeon|190/205",
+          "|move|p2a: Jolteon|Swift|p1a: Hitmontop|[spread] p1a,p1b",
+          "|-damage|p1a: Hitmontop|105/125",
+          "|-damage|p1b: Vaporeon|167/205",
+          "|move|p1b: Vaporeon|Recover|p1b: Vaporeon",
+          "|-heal|p1b: Vaporeon|205/205",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Hitmontop|Wide Guard|p1a: Hitmontop",
+          "|-singleturn|p1a: Hitmontop|Wide Guard",
+          "|move|p2b: Glaceon|Feint|p1b: Vaporeon",
+          "|-activate|p1b: Vaporeon|move: Feint",
+          "|-damage|p1b: Vaporeon|92/100",
+          "|move|p2a: Jolteon|Swift|p1a: Hitmontop|[spread] p1a,p1b",
+          "|-damage|p1a: Hitmontop|84/100",
+          "|-damage|p1b: Vaporeon|81/100",
+          "|move|p1b: Vaporeon|Recover|p1b: Vaporeon",
+          "|-heal|p1b: Vaporeon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Wide Guard",
+                  "id": "wideguard",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Quick Guard",
+                  "id": "quickguard",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allySide",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 5,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Hitmontop",
+                "details": "Hitmontop, L50, M",
+                "condition": "105/125",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 115,
+                  "spa": 55,
+                  "spd": 130,
+                  "spe": 90
+                },
+                "moves": [
+                  "wideguard",
+                  "quickguard"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Swift",
+                  "id": "swift",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Quick Attack",
+                  "id": "quickattack",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Icy Wind",
+                  "id": "icywind",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Feint",
+                  "id": "feint",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "swift",
+                  "quickattack"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Glaceon",
+                "details": "Glaceon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 80,
+                  "def": 130,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "icywind",
+                  "feint",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Hitmontop",
+            "species": "Hitmontop",
+            "details": "Hitmontop, L50, M",
+            "hp": 105,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 115,
+              "spa": 55,
+              "spd": 130,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "wideguard",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "quickguard",
+                "pp": 15,
+                "maxpp": 16
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 5,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "swift",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "quickattack",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Glaceon",
+            "species": "Glaceon",
+            "details": "Glaceon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 80,
+              "def": 130,
+              "spa": 150,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "icywind",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "feint",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

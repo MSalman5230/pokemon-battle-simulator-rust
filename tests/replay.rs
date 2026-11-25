@@ -1308,6 +1308,11 @@ fn contact_guards_apply_their_effects_and_unseen_fist_deals_quarter_damage() {
 }
 
 #[test]
+fn wide_and_quick_guard_protect_the_side_until_feint_or_turn_end() {
+    replay(include_str!("fixtures/vgc-side-guards.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

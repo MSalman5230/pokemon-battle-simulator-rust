@@ -1003,6 +1003,10 @@ const unseenFistRosters = [
     [{...named('Golurk', ['Shadow Punch', 'Shadow Ball'], 'N'), item:'Golurkite'}],
     [named('Toxapex', ['Protect', 'Recover'])],
 ];
+const sideGuardRosters = [
+    [named('Hitmontop', ['Wide Guard', 'Quick Guard'], 'M'), named('Vaporeon', ['Recover'])],
+    [named('Jolteon', ['Swift', 'Quick Attack']), named('Glaceon', ['Icy Wind', 'Feint', 'Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1877,6 +1881,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         personalGuardsRosters, 'bss-personal-guards'],
     ['bssregmc', [['team 1','team 1'], ['move 1 mega','move 1'], ['move 1','move 2'], ['move 2','move 1']],
         unseenFistRosters, 'bss-unseen-fist'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['move 2, move 1','move 2 2, move 3'], ['move 1, move 1','move 1, move 2 2']],
+        sideGuardRosters, 'vgc-side-guards'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

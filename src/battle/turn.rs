@@ -1120,6 +1120,8 @@ impl Battle {
                     | "burningbulwark"
                     | "obstruct"
                     | "silktrap"
+                    | "wideguard"
+                    | "quickguard"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -2017,6 +2019,7 @@ impl Battle {
             Encore,
             Disable,
             Screen(Screen),
+            SideGuard(SideGuard),
             Tailwind,
             TrickRoom,
             Terrain,
@@ -2068,6 +2071,22 @@ impl Battle {
             ));
         }
         for player in Player::ALL {
+            for &guard in self.sides[player.index()]
+                .as_ref()
+                .unwrap()
+                .guards
+                .iter()
+                .flatten()
+            {
+                timers.push((
+                    Position { player, slot: 0 },
+                    Effect::SideGuard(guard),
+                    Priority {
+                        sub_order: 4,
+                        ..Priority::default()
+                    },
+                ));
+            }
             if self.sides[player.index()].as_ref().unwrap().tailwind > 0 {
                 timers.push((
                     Position { player, slot: 0 },
@@ -2230,6 +2249,10 @@ impl Battle {
         speed_sort_by(&mut timers, &mut self.rng, |a, b| a.2.compare(b.2));
         let mut perish_faints = Vec::new();
         for (pos, effect, _) in timers {
+            if let Effect::SideGuard(guard) = effect {
+                self.clear_side_guard(pos.player, guard);
+                continue;
+            }
             if matches!(effect, Effect::Weather) {
                 self.weather_residual();
                 if self.check_win() {
@@ -2334,6 +2357,7 @@ impl Battle {
                 Effect::WhiteHerb => self.white_herb(pos),
                 Effect::Weather
                 | Effect::Screen(_)
+                | Effect::SideGuard(_)
                 | Effect::TrickRoom
                 | Effect::Terrain
                 | Effect::Wish
@@ -3099,6 +3123,25 @@ impl Battle {
             }
             return true;
         }
+        if let Some(guard) = SideGuard::for_move(&move_data.name) {
+            let more_actions = queue.iter().any(|action| {
+                matches!(
+                    action.kind,
+                    ActionKind::Move { .. } | ActionKind::Switch { .. }
+                )
+            });
+            if more_actions && self.start_side_guard(source, guard) {
+                let mon = self.mon_mut(source);
+                let stall = mon.stall.map_or(1, |(counter, _)| counter);
+                mon.track_volatile("stall");
+                mon.stall = Some(((stall * 3).min(729), 2));
+            } else {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+            }
+            return true;
+        }
         if move_data.name == "Haze" {
             self.protean_prepare(source, move_type);
             self.add("|-clearallboost");
@@ -3423,6 +3466,24 @@ impl Battle {
         let mut protected = 0;
         let mut bypassed = 0;
         spread_targets.retain(|&mut_pos| {
+            if move_data.flags.contains_key("protect")
+                && let Some(guard) = self.blocking_side_guard(mut_pos.player, kind, priority)
+            {
+                if self.event_ability(source) == "unseenfist"
+                    && move_data.flags.contains_key("contact")
+                {
+                    bypassed |= mut_pos.mask();
+                } else {
+                    protected += 1;
+                    self.add(format!(
+                        "|-activate|{}|move: {}",
+                        self.ident(mut_pos),
+                        guard.name()
+                    ));
+                    self.stop_protected_rampage(source);
+                    return false;
+                }
+            }
             if self.terrain() == Some(Terrain::Psychic)
                 && priority > 0
                 && mut_pos.player != source.player
@@ -3704,9 +3765,13 @@ impl Battle {
             "Feint" | "Phantom Force" | "Shadow Force"
         ) {
             for &target in &spread_targets {
+                let lost_side_guard = self.clear_side_guards(target.player);
                 let mon = self.mon_mut(target);
-                if let Some(protection) = mon.protection.take() {
+                let lost_protection = mon.protection.take();
+                if let Some(protection) = lost_protection {
                     mon.untrack_volatile(protection.volatile());
+                }
+                if lost_protection.is_some() || lost_side_guard {
                     mon.stall = None;
                     mon.untrack_volatile("stall");
                     let attr = if move_data.name == "Feint" {
