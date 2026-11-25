@@ -490,3 +490,8 @@ fn bss_illusion_hides_public_identity_until_direct_damage() {
 fn vgc_illusion_can_use_the_active_ally_to_its_right() {
     replay(include_str!("fixtures/vgc-illusion.json"));
 }
+
+#[test]
+fn bss_white_herb_clears_negative_stages_after_move_and_entry_effects() {
+    replay(include_str!("fixtures/bss-white-herb.json"));
+}

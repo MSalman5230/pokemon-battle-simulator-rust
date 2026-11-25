@@ -228,8 +228,14 @@ impl PublicState {
             if stint.revealed_ability {
                 target["ability"] = old_state["ability"].clone();
             }
-            self.teams[team][old] = stint.previous.clone();
-            self.teams[team][old]["active"] = json!(false);
+            let decoy = &mut self.teams[team][old];
+            // The reference restores with Object.assign. Fields discovered
+            // this stint that were absent from the snapshot are not deleted.
+            decoy
+                .as_object_mut()
+                .unwrap()
+                .extend(stint.previous.as_object().unwrap().clone());
+            decoy["active"] = json!(false);
         }
     }
 
@@ -421,6 +427,16 @@ impl PublicState {
                     });
                 }
             }
+            "-clearnegativeboost" => {
+                if let Some(key) = key {
+                    let boosts = self.mon_mut(key)["boosts"].as_object_mut().unwrap();
+                    for stage in boosts.values_mut() {
+                        if stage.as_i64().is_some_and(|value| value < 0) {
+                            *stage = json!(0);
+                        }
+                    }
+                }
+            }
             "-item" => {
                 if let Some(key) = key {
                     self.mon_mut(key)["item"] = json!(to_id(get(3)));
@@ -603,6 +619,7 @@ mod tests {
             "|switch|p1a: decoy|Espeon, L50|100/100",
             "|move|p1a: decoy|Nasty Plot|p1a: decoy",
             "|-boost|p1a: decoy|spa|2",
+            "|-status|p1a: decoy|brn",
             "|-damage|p1a: decoy|92/100 brn",
             "|-enditem|p1a: decoy|Lum Berry|[eat]",
             "|replace|p1a: real|Zoroark-Hisui, L50",
@@ -615,6 +632,7 @@ mod tests {
         assert_eq!(decoy["moves"], serde_json::json!(["recover"]));
         assert_eq!(decoy["hp"], 1.0);
         assert!(decoy["item"].is_null());
+        assert_eq!(decoy["status_since"], 2);
         assert_eq!(actual["moves"], serde_json::json!(["nastyplot"]));
         assert_eq!(actual["pp_used"]["nastyplot"], 1);
         assert_eq!(actual["first_native_move"]["turn"], 2);

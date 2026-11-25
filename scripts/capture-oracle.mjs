@@ -394,6 +394,11 @@ const illusionRosters = [
     [named('Umbreon', ['Will-O-Wisp', 'Peck', 'Recover']), named('Glaceon', ['Recover'])],
 ];
 const illusionPartnerRosters = [[illusionRosters[0][0], illusionRosters[0][2]], illusionRosters[1]];
+const whiteHerbRosters = [
+    [{...named('Vaporeon', ['Work Up', 'Close Combat', 'Recover']), item: 'White Herb'},
+        {...named('Glaceon', ['Recover']), item: 'White Herb'}],
+    [named('Snorlax', ['Recover']), {...named('Arcanine', ['Recover']), ability: 'Intimidate'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -583,6 +588,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 3', 'move 3'], ['switch 3', 'move 3'], ['move 1', 'move 2']], illusionRosters, 'bss-illusion'],
     ['vgc2026regmc', [['team 12', 'team 12'], ['move 1, move 1', 'move 2 1, move 1']],
         illusionPartnerRosters, 'vgc-illusion'],
+    ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 1'],
+        ['switch 2', 'switch 2'], ['move 1', 'move 1']], whiteHerbRosters, 'bss-white-herb'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

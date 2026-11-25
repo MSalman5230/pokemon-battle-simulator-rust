@@ -35,6 +35,44 @@ impl Battle {
         }
     }
 
+    fn on_gained_item(&mut self, pos: Position) {
+        self.on_switch_in_item(pos);
+        self.white_herb(pos);
+    }
+
+    pub(super) fn white_herb(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        if mon.hp == 0 || mon.item != "whiteherb" || !mon.boosts.clear_negative() {
+            return;
+        }
+        self.consume(pos, "White Herb", false);
+        self.add(format!("|-clearnegativeboost|{}|[silent]", self.ident(pos)));
+        self.symbiosis_after_item(pos);
+    }
+
+    pub(super) fn white_herbs_after_action(&mut self) {
+        let mut holders = [(
+            Position {
+                player: Player::P1,
+                slot: 0,
+            },
+            0,
+        ); 4];
+        let mut count = 0;
+        for pos in self.positions() {
+            let mon = self.mon(pos);
+            if !mon.fainted && mon.item == "whiteherb" {
+                holders[count] = (pos, mon.speed);
+                count += 1;
+            }
+        }
+        let holders = &mut holders[..count];
+        speed_sort_by(holders, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for &(pos, _) in holders.iter() {
+            self.white_herb(pos);
+        }
+    }
+
     pub(super) fn focus_sash(&mut self, pos: Position, damage: u32) -> u32 {
         let mon = self.mon(pos);
         if mon.item == "focussash" && mon.hp == mon.max_hp.get() && damage >= mon.hp {
@@ -146,7 +184,7 @@ impl Battle {
         }
         let id = std::mem::take(&mut self.mon_mut(ally).item);
         self.mon_mut(recipient).item = id;
-        self.on_switch_in_item(recipient);
+        self.on_gained_item(recipient);
         self.add(format!(
             "|-activate|{}|ability: Symbiosis|{}|[of] {}",
             self.ident(ally),
@@ -189,7 +227,7 @@ impl Battle {
             };
             let id = std::mem::take(&mut self.mon_mut(target).item);
             self.mon_mut(user).item = id;
-            self.on_switch_in_item(user);
+            self.on_gained_item(user);
             self.add(format!(
                 "|-item|{}|{name}|[from] ability: Magician|[of] {target_name}",
                 self.ident(user)
@@ -224,7 +262,7 @@ impl Battle {
         ] {
             if let Some(item) = new {
                 self.mon_mut(pos).item = id;
-                self.on_switch_in_item(pos);
+                self.on_gained_item(pos);
                 self.add(format!(
                     "|-item|{}|{}|[from] move: {move_name}",
                     self.ident(pos),

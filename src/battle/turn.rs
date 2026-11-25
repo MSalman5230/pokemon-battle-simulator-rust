@@ -970,6 +970,9 @@ impl Battle {
                 self.on_switch_in_item(pos);
             }
         }
+        for (pos, _) in order.into_iter().take(count) {
+            self.white_herb(pos);
+        }
     }
 
     fn switch_party_member(
@@ -1045,6 +1048,7 @@ impl Battle {
                     let pos = action.actor.unwrap();
                     if !self.mon(pos).fainted {
                         self.mega_evolve(pos);
+                        self.white_herbs_after_action();
                     }
                 }
                 ActionKind::BeforeTurn => {
@@ -1067,8 +1071,12 @@ impl Battle {
                     }
                     self.mon_mut(source).acted = true;
                     self.mon_mut(source).active_move_actions += 1;
+                    let recharging = move_slot == RECHARGE_SLOT || self.mon(source).recharge > 0;
                     if self.run_move(source, move_slot, target, &mut queue) {
                         self.end_rampage_attempt(source);
+                        if !recharging {
+                            self.white_herbs_after_action();
+                        }
                     }
                 }
                 ActionKind::Residual => self.residual(),
@@ -1289,6 +1297,7 @@ impl Battle {
             Rampage,
             Attention,
             Leftovers,
+            WhiteHerb,
             ShedSkin,
             Weather,
             SpeedBoost,
@@ -1401,6 +1410,9 @@ impl Battle {
             if mon.item == "leftovers" {
                 timers.push((pos, Effect::Leftovers, priority(5, 4)));
             }
+            if mon.item == "whiteherb" {
+                timers.push((pos, Effect::WhiteHerb, priority(29, 8)));
+            }
             if mon.ability == "shedskin" {
                 timers.push((pos, Effect::ShedSkin, priority(5, 3)));
             }
@@ -1462,6 +1474,7 @@ impl Battle {
                     let amount = mon.max_hp.get() / 16;
                     self.item_heal(pos, amount, "Leftovers");
                 }
+                Effect::WhiteHerb => self.white_herb(pos),
                 Effect::Weather | Effect::Screen(_) | Effect::TrickRoom | Effect::Terrain => {
                     unreachable!()
                 }
@@ -3271,6 +3284,7 @@ impl Pokemon {
                 | "apicotberry"
                 | "powerherb"
                 | "abilityshield"
+                | "whiteherb"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
                 .item(crate::dex::Mod::Champions, &self.item)

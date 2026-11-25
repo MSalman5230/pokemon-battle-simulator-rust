@@ -293,6 +293,17 @@ impl BoostStat {
 pub struct Boosts([i8; 7]);
 
 impl Boosts {
+    pub(crate) fn clear_negative(&mut self) -> bool {
+        let mut changed = false;
+        for stage in &mut self.0 {
+            if *stage < 0 {
+                *stage = 0;
+                changed = true;
+            }
+        }
+        changed
+    }
+
     pub fn positive(self) -> u16 {
         self.0.into_iter().map(|boost| boost.max(0) as u16).sum()
     }
