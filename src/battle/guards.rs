@@ -1,4 +1,4 @@
-//! Turn-scoped side protection.
+//! Side protection against attacks and status effects.
 
 use super::{turn::Position, *};
 use crate::choice::TargetKind;
@@ -34,6 +34,63 @@ impl SideGuard {
 }
 
 impl Battle {
+    pub(super) fn start_safeguard(&mut self, player: Player) -> bool {
+        let turns = &mut self.sides[player.index()].as_mut().unwrap().safeguard;
+        if *turns > 0 {
+            return false;
+        }
+        *turns = 5;
+        self.add(format!("|-sidestart|{}|Safeguard", self.side_ident(player)));
+        true
+    }
+
+    pub(super) fn end_safeguard(&mut self, player: Player) {
+        self.sides[player.index()].as_mut().unwrap().safeguard = 0;
+        self.add(format!("|-sideend|{}|Safeguard", self.side_ident(player)));
+    }
+
+    pub(super) fn tick_safeguard(&mut self, player: Player) {
+        let turns = &mut self.sides[player.index()].as_mut().unwrap().safeguard;
+        if *turns > 0 {
+            *turns -= 1;
+            if *turns == 0 {
+                self.end_safeguard(player);
+            }
+        }
+    }
+
+    pub(super) fn safeguard_blocks(
+        &mut self,
+        target: Position,
+        source: Position,
+        move_effect: bool,
+        reveal: bool,
+        volatile: bool,
+    ) -> bool {
+        if target == source
+            || self.sides[target.player.index()]
+                .as_ref()
+                .unwrap()
+                .safeguard
+                == 0
+        {
+            return false;
+        }
+        if move_effect
+            && target.player != source.player
+            && self.event_ability(source) == "infiltrator"
+        {
+            return false;
+        }
+        if !volatile && self.format.report_exact_hp {
+            self.add("|debug|interrupting setStatus");
+        }
+        if reveal {
+            self.add(format!("|-activate|{}|move: Safeguard", self.ident(target)));
+        }
+        true
+    }
+
     pub(super) fn start_side_guard(&mut self, pos: Position, guard: SideGuard) -> bool {
         let side = self.sides[pos.player.index()].as_mut().unwrap();
         if side.guards.contains(&Some(guard)) {

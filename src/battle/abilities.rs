@@ -1021,7 +1021,10 @@ impl Battle {
         }
         let prevented = self.status_blocked_by_ability(attacker, id, false)
             || self.flower_veil_status(attacker, holder, id, false);
-        if prevented || self.field_blocks_status(attacker, id, holder.player, false) {
+        if prevented
+            || self.field_blocks_status(attacker, id, holder.player, false)
+            || self.safeguard_blocks(attacker, holder, false, false, false)
+        {
             return;
         }
         let suffix = format!("|[from] ability: {label}|[of] {}", self.ident(holder));

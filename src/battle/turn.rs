@@ -1081,6 +1081,7 @@ impl Battle {
                     | "sleeptalk"
                     | "torment"
                     | "octolock"
+                    | "safeguard"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -2136,6 +2137,7 @@ impl Battle {
             Disable,
             Screen(Screen),
             SideGuard(SideGuard),
+            Safeguard,
             Tailwind,
             TrickRoom,
             Terrain,
@@ -2189,6 +2191,17 @@ impl Battle {
             ));
         }
         for player in Player::ALL {
+            if self.sides[player.index()].as_ref().unwrap().safeguard > 0 {
+                timers.push((
+                    Position { player, slot: 0 },
+                    Effect::Safeguard,
+                    Priority {
+                        order: 26,
+                        sub_order: 3,
+                        ..Priority::default()
+                    },
+                ));
+            }
             for &guard in self.sides[player.index()]
                 .as_ref()
                 .unwrap()
@@ -2383,6 +2396,10 @@ impl Battle {
                 self.clear_side_guard(pos.player, guard);
                 continue;
             }
+            if matches!(effect, Effect::Safeguard) {
+                self.tick_safeguard(pos.player);
+                continue;
+            }
             if matches!(effect, Effect::Weather) {
                 self.weather_residual();
                 if self.check_win() {
@@ -2494,6 +2511,7 @@ impl Battle {
                 Effect::Weather
                 | Effect::Screen(_)
                 | Effect::SideGuard(_)
+                | Effect::Safeguard
                 | Effect::TrickRoom
                 | Effect::Terrain
                 | Effect::Wish
@@ -3335,6 +3353,15 @@ impl Battle {
             }
             return true;
         }
+        if move_data.name == "Safeguard" {
+            self.protean_prepare(source, move_type);
+            if !self.start_safeguard(source.player) {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+            }
+            return true;
+        }
         if let Some(hazard) = Hazard::from_move(&move_data.name) {
             self.protean_prepare(source, move_type);
             if !reflected
@@ -4116,7 +4143,7 @@ impl Battle {
                         == Some(Terrain::Misty)
                     {
                         self.terrain_activate(target, Terrain::Misty);
-                    } else {
+                    } else if !self.safeguard_blocks(target, source, true, true, true) {
                         succeeded = self.apply_confusion(target, false);
                     }
                 }
@@ -4462,6 +4489,9 @@ impl Battle {
                     }
                     if self.status_blocked_by_terrain(target, "slp") == Some(Terrain::Electric) {
                         self.terrain_activate(target, Terrain::Electric);
+                        continue;
+                    }
+                    if self.safeguard_blocks(target, source, true, true, true) {
                         continue;
                     }
                     let mon = self.mon_mut(target);
@@ -5087,7 +5117,10 @@ impl Battle {
                             let status = ["psn", "par", "slp"][self.rng.below(3) as usize];
                             self.try_status(target, status, source, move_data, false, base);
                         }
-                        if move_data.name == "Alluring Voice" && self.mon(target).stats_raised {
+                        if move_data.name == "Alluring Voice"
+                            && self.mon(target).stats_raised
+                            && !self.safeguard_blocks(target, source, true, false, true)
+                        {
                             self.apply_confusion(target, false);
                         }
                         if move_data.name == "Burning Jealousy" && self.mon(target).stats_raised {
@@ -5110,7 +5143,9 @@ impl Battle {
                             self.mon_mut(target).flinched = true;
                             self.mon_mut(target).track_volatile("flinch");
                         }
-                        if effect.volatile_status.as_deref() == Some("confusion") {
+                        if effect.volatile_status.as_deref() == Some("confusion")
+                            && !self.safeguard_blocks(target, source, true, false, true)
+                        {
                             self.apply_confusion(target, false);
                         }
                         if effect.volatile_status.as_deref() == Some("healblock") {

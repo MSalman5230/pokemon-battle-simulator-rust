@@ -60,6 +60,14 @@ impl Battle {
                 BoostOrigin::from_move(data),
             );
         self.break_screens(target.player);
+        if self.sides[target.player.index()]
+            .as_ref()
+            .unwrap()
+            .safeguard
+            > 0
+        {
+            self.end_safeguard(target.player);
+        }
         let ident = self.ident(source);
         for player in [target.player, source.player] {
             for hazard in [
@@ -173,12 +181,15 @@ impl Battle {
             && p2.hazards.is_empty()
             && p1.tailwind == 0
             && p2.tailwind == 0
+            && p1.safeguard == 0
+            && p2.safeguard == 0
         {
             return false;
         }
         std::mem::swap(&mut p1.screens, &mut p2.screens);
         std::mem::swap(&mut p1.hazards, &mut p2.hazards);
         std::mem::swap(&mut p1.tailwind, &mut p2.tailwind);
+        std::mem::swap(&mut p1.safeguard, &mut p2.safeguard);
         self.add("|-swapsideconditions");
         self.add(format!(
             "|-activate|{}|move: Court Change",
@@ -288,7 +299,10 @@ impl Battle {
                         let id = if layers >= 2 { "tox" } else { "psn" };
                         let prevented = self.status_blocked_by_ability(pos, id, false)
                             || self.flower_veil_status(pos, foe, id, false);
-                        if !prevented && !self.field_blocks_status(pos, id, foe.player, false) {
+                        if !prevented
+                            && !self.field_blocks_status(pos, id, foe.player, false)
+                            && !self.safeguard_blocks(pos, foe, false, false, false)
+                        {
                             self.apply_status(pos, id, foe.player, None);
                         }
                     }

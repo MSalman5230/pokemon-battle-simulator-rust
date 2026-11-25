@@ -290,7 +290,16 @@ impl Battle {
 
         let prevented = self.status_blocked_by_ability(pos, id, primary)
             || self.flower_veil_status(pos, source, id, primary && data.secondaries.is_empty());
-        if prevented || self.field_blocks_status(pos, id, source.player, primary) {
+        if prevented
+            || self.field_blocks_status(pos, id, source.player, primary)
+            || self.safeguard_blocks(
+                pos,
+                source,
+                true,
+                primary && data.secondaries.is_empty(),
+                false,
+            )
+        {
             return false;
         }
         self.set_status(pos, id, source.player, Some(&data.name));
@@ -341,6 +350,7 @@ impl Battle {
         if !self.status_blocked_by_ability(source, id, true)
             && !self.flower_veil_status(source, target, id, true)
             && !self.field_blocks_status(source, id, target.player, true)
+            && !self.safeguard_blocks(source, target, false, true, false)
         {
             self.set_status(source, id, target.player, None);
             // Two Synchronize holders both activate. The original recipient

@@ -1389,6 +1389,11 @@ fn torment_disables_repeats_and_octolock_tracks_the_trapper_until_it_leaves() {
 }
 
 #[test]
+fn safeguard_blocks_status_for_five_turns_unless_the_move_infiltrates() {
+    replay(include_str!("fixtures/bss-safeguard.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -215,6 +215,7 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
                 "lightscreen" => native.screens[Screen::Light as usize] = value,
                 "auroraveil" => native.screens[Screen::AuroraVeil as usize] = value,
                 "tailwind" => native.tailwind = value,
+                "safeguard" => native.safeguard = value,
                 _ => {
                     let hazard = match id.as_str() {
                         "spikes" if (1..=3).contains(&value) => Hazard::Spikes,
