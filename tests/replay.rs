@@ -1126,6 +1126,12 @@ fn effect_spore_rolls_one_status_and_respects_powder_immunity() {
 }
 
 #[test]
+fn electric_charge_accumulates_from_moves_and_abilities_until_an_electric_attempt() {
+    replay(include_str!("fixtures/bss-electric-charge.json"));
+    replay(include_str!("fixtures/vgc-wind-power.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

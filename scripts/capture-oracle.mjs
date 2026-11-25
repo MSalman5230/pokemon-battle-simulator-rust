@@ -1029,6 +1029,16 @@ const effectSporeRosters = [
     [{...named('Magikarp', ['Tackle']), item:'Lum Berry'}, named('Leafeon', ['Tackle'])],
     [{...named('Amoonguss', ['Recover']), ability:'Effect Spore'}],
 ];
+const electricChargeRosters = [
+    [{...named('Bellibolt', ['Charge', 'Thunder Shock', 'Water Gun', 'Recover']),
+        ability:'Electromorphosis'}],
+    [named('Umbreon', ['Tackle', 'Protect', 'Recover'])],
+];
+const windPowerRosters = [
+    [named('Jolteon', ['Tailwind', 'Recover']),
+        {...named('Kilowattrel', ['Thunder Shock', 'Recover']), ability:'Wind Power'}],
+    [named('Umbreon', ['Gust', 'Recover']), named('Vaporeon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1565,6 +1575,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12','team 1'], ...Array(6).fill(['move 1','move 1'])],
         [[{...effectSporeRosters[0][0], item:''}, effectSporeRosters[0][1]], effectSporeRosters[1]],
         'bss-effect-spore-sleep', '1,2,3,8'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 3','move 1'], ['move 2','move 1'],
+        ['move 4','move 1'], ['move 2','move 2'], ['move 2','move 3']],
+        electricChargeRosters, 'bss-electric-charge'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1 1','move 1 2, move 1'],
+        ['move 2, move 1 1','move 2, move 1']], windPowerRosters, 'vgc-wind-power'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -1016,6 +1016,7 @@ impl Battle {
                     | "bounce"
                     | "fly"
                     | "flyingpress"
+                    | "charge"
                     | "suckerpunch"
                     | "thunderclap"
                     | "grassknot"
@@ -2343,6 +2344,21 @@ impl Battle {
         invocation: MoveInvocation,
         queue: &mut Vec<Action>,
     ) -> bool {
+        let mut spends_charge = false;
+        let attempted = self.run_move_inner(source, invocation, queue, &mut spends_charge);
+        if spends_charge {
+            self.use_electric_charge(source);
+        }
+        attempted
+    }
+
+    fn run_move_inner(
+        &mut self,
+        source: Position,
+        invocation: MoveInvocation,
+        queue: &mut Vec<Action>,
+        spends_charge: &mut bool,
+    ) -> bool {
         let (slot, loc, forced_target, reflected, prankster) = match invocation {
             MoveInvocation::Choice {
                 slot,
@@ -2380,6 +2396,8 @@ impl Battle {
             MoveInvocation::Choice { slot, .. } => self.move_data(source, slot),
             MoveInvocation::Reflected { data, .. } | MoveInvocation::Future { data, .. } => data,
         };
+        *spends_charge =
+            own_action && move_data.name != "Charge" && move_data.move_type == "Electric";
         let struggle = slot == Some(STRUGGLE_SLOT);
         let charge_spec = ChargeSpec::for_move(&move_data.name);
         let releasing_charge = own_action && self.mon(source).charge.is_some();
@@ -2473,6 +2491,7 @@ impl Battle {
             self.clear_destiny_bond(source, false);
             return false;
         }
+        *spends_charge = own_action && move_data.name != "Charge" && move_type == "Electric";
         if move_data.name == "Focus Punch" && self.mon(source).lost_focus {
             self.add(format!("|cant|{source_name}|Focus Punch|Focus Punch"));
             return false;
@@ -2832,6 +2851,8 @@ impl Battle {
             if !self.start_tailwind(source.player) {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
+            } else {
+                self.charge_from_tailwind(source.player);
             }
             return true;
         }
@@ -3781,6 +3802,10 @@ impl Battle {
                     }
                     succeeded = true;
                 }
+                if move_data.name == "Charge" {
+                    self.charge_electric(target, None);
+                    succeeded = true;
+                }
                 if succeeded {
                     any_success = true;
                     if spread {
@@ -4081,6 +4106,9 @@ impl Battle {
                     let restored = (landed * u32::from(a) + u32::from(b) / 2) / u32::from(b);
                     self.transfer_health(source, target, restored, DrainKind::Move);
                 }
+            }
+            for &(target, _) in &damage {
+                self.charge_after_damage(target, move_data);
             }
             for &(target, _) in &damage {
                 if move_data.flags.contains_key("contact")
@@ -5009,6 +5037,8 @@ impl Pokemon {
                 | "hustle"
                 | "firemane"
                 | "effectspore"
+                | "electromorphosis"
+                | "windpower"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

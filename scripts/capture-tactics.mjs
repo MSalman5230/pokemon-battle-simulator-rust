@@ -67,6 +67,8 @@ add('Zoom Lens sees no pending target action in isolated damage queries', 'rocks
     mon('Durant', 'Hustle', 'Zoom Lens'), normal);
 add('fractional stat stage is applied before accuracy callbacks', 'rockslide',
     mon('Durant', 'Hustle', 'Zoom Lens', {boosts:{accuracy:-1}}), normal);
+add('Charge volatile powers the electric attack', 'thundershock',
+    mon('Bellibolt', 'Electromorphosis', '', {volatiles:{charge:{}}}), normal);
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

@@ -265,6 +265,7 @@ impl Combatant {
         for id in self.volatiles.keys() {
             match id.as_str() {
                 "flashfire" => mon.track_volatile("flashfire"),
+                "charge" => mon.track_volatile("charge"),
                 "focusenergy" => mon.track_volatile("focusenergy"),
                 "roost" => mon.roosted = true,
                 id if safe_ignored_volatile(id) => {}

@@ -1,5 +1,6 @@
 //! Two-turn moves, including charge turns that grant semi-invulnerability.
 
+use super::turn::Position;
 use super::*;
 use crate::mechanics::BoostStat;
 
@@ -131,6 +132,54 @@ impl Pokemon {
             if state.turns == 0 {
                 self.clear_charge();
             }
+        }
+    }
+}
+
+impl Battle {
+    pub(super) fn charge_electric(&mut self, pos: Position, triggered_by: Option<(&str, &str)>) {
+        self.mon_mut(pos).track_volatile("charge");
+        let ident = self.ident(pos);
+        if let Some((move_name, ability)) = triggered_by {
+            self.add(format!(
+                "|-start|{ident}|Charge|{move_name}|[from] ability: {ability}"
+            ));
+        } else {
+            self.add(format!("|-start|{ident}|Charge"));
+        }
+    }
+
+    pub(super) fn use_electric_charge(&mut self, pos: Position) {
+        if self.mon(pos).volatile_ids().contains(&"charge") {
+            self.mon_mut(pos).untrack_volatile("charge");
+            self.add(format!("|-end|{}|Charge|[silent]", self.ident(pos)));
+        }
+    }
+
+    pub(super) fn charge_after_damage(&mut self, target: Position, data: &Move) {
+        if self.mon(target).hp == 0 {
+            return;
+        }
+        let cause = match self.event_ability(target) {
+            "electromorphosis" => "Electromorphosis",
+            "windpower" if data.flags.contains_key("wind") => "Wind Power",
+            _ => return,
+        };
+        self.charge_electric(target, Some((&data.name, cause)));
+    }
+
+    pub(super) fn charge_from_tailwind(&mut self, player: Player) {
+        let mut holders = [(Position { player, slot: 0 }, 0); 2];
+        let mut len = 0;
+        for pos in self.positions().filter(|pos| pos.player == player) {
+            if self.event_ability(pos) == "windpower" {
+                holders[len] = (pos, self.mon(pos).speed);
+                len += 1;
+            }
+        }
+        speed_sort_by(&mut holders[..len], &mut self.rng, |a, b| b.1.cmp(&a.1));
+        for &(pos, _) in &holders[..len] {
+            self.charge_electric(pos, Some(("Tailwind", "Wind Power")));
         }
     }
 }

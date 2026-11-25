@@ -254,6 +254,12 @@ impl Battle {
         {
             self.add(format!("|debug|Boosting from Helping Hand: {multiplier}"));
         }
+        let electric_charge = source_active
+            && move_type == "Electric"
+            && self.mon(source).volatile_ids().contains(&"charge");
+        if electric_charge && self.format.report_exact_hp {
+            self.add("|debug|charge boost");
+        }
         let terrain_power = self.terrain_power_modifier(source, target, move_data, move_type);
         let dry_skin = move_type == "Fire" && self.event_ability(target) == "dryskin";
         let misty_explosion = move_data.name == "Misty Explosion"
@@ -428,6 +434,9 @@ impl Battle {
         }
         if let Some(multiplier) = helping {
             power_modifier = chain(power_modifier, (multiplier * 4096.0) as u32);
+        }
+        if electric_charge {
+            power_modifier = chain(power_modifier, 8192);
         }
         power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
         if mon
