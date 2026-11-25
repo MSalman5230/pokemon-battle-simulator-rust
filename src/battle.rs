@@ -32,6 +32,7 @@ use hazards::Hazard;
 use rampage::Rampage;
 use screens::Screen;
 mod status;
+mod substitute;
 mod support;
 mod tactical;
 mod terrain;
@@ -176,6 +177,7 @@ pub struct Pokemon {
     stats_raised: bool,
     speed: i32,
     pub hp: u32,
+    substitute_hp: u32,
     pub status: Status,
     slept_by_foe: bool,
     pub times_attacked: u32,
@@ -781,6 +783,7 @@ impl Pokemon {
             stats_raised: false,
             speed: stats.spe as i32,
             hp: max_hp.get(),
+            substitute_hp: 0,
             status: Status::Healthy,
             slept_by_foe: false,
             times_attacked: 0,

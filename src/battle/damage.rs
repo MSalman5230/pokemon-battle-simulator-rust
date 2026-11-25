@@ -90,7 +90,9 @@ impl Battle {
             _ => {}
         }
         if let Some((berry_type, name)) = resistance_berry(&defender.item) {
-            let matches = berry_type == typing && (effectiveness > 0 || typing == "Normal");
+            let matches = berry_type == typing
+                && (effectiveness > 0 || typing == "Normal")
+                && !self.behind_substitute(source, target, data);
             add(defender.speed, 8, Hook::Berry(name, matches));
         }
         let hooks = &mut hooks[..count];

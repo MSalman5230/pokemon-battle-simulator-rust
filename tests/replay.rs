@@ -740,3 +740,12 @@ fn synchronize_reflects_before_berries_and_obeys_type_and_ability_immunity() {
 fn mortal_spin_clears_the_users_side_only_after_a_successful_hit() {
     replay(include_str!("fixtures/vgc-mortal-spin.json"));
 }
+
+#[test]
+fn substitute_separates_shield_damage_and_shed_tail_preserves_remaining_shield_hp() {
+    replay(include_str!("fixtures/bss-substitute.json"));
+    replay(include_str!("fixtures/bss-shed-tail.json"));
+    replay(include_str!("fixtures/vgc-substitute-spread.json"));
+    replay(include_str!("fixtures/bss-substitute-focus.json"));
+    replay(include_str!("fixtures/bss-substitute-multihit.json"));
+}

@@ -605,6 +605,27 @@ const mortalSpinRosters = [
     [named('Glimmora', ['Mortal Spin', 'Recover']), named('Glaceon', ['Recover'])],
     [named('Ferrothorn', ['Leech Seed', 'Protect']), named('Vaporeon', ['Stealth Rock', 'Protect', 'Recover'])],
 ];
+const substituteRosters = [
+    [{...named('Vaporeon', ['Substitute', 'Recover', 'Tackle']), nature: 'Timid', item: 'Rocky Helmet'}, named('Glaceon', ['Recover'])],
+    [named('Umbreon', ['Toxic', 'Tackle', 'Hyper Voice', 'Recover']), named('Espeon', ['Recover'])],
+];
+const shedTailRosters = [
+    [named('Orthworm', ['Shed Tail', 'Recover']), named('Glaceon', ['Recover', 'Protect'])],
+    [named('Snorlax', ['Tackle', 'Recover', 'Hyper Voice']), named('Espeon', ['Recover'])],
+];
+const mixedShieldRosters = [
+    [named('Vaporeon', ['Surf']), named('Flareon', ['Recover'])],
+    [named('Espeon', ['Substitute']), named('Goodra', ['Recover'])],
+];
+const shieldFocusRosters = [
+    [named('Pawmot', ['Substitute', 'Focus Punch']), named('Glaceon', ['Recover'])],
+    [named('Toxapex', ['Tackle']), named('Espeon', ['Recover'])],
+];
+const multiShieldRosters = [
+    [substituteRosters[0][0], substituteRosters[0][1]],
+    [{...named('Cloyster', ['Icicle Spear']), ability: 'Skill Link', nature: 'Brave'},
+        {...named('Noivern', ['Tackle']), ability: 'Infiltrator'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -910,6 +931,15 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 12'], ['move 2, move 1','move 1 1, move 1'],
         ['move 1, move 1','move 2, move 2'], ['move 1, move 1','move 1 2, move 3']],
         mortalSpinRosters, 'vgc-mortal-spin'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','move 2'], ['move 2','move 3'],
+        ...Array(3).fill(['move 2','move 2'])], substituteRosters, 'bss-substitute'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['switch 2',null], ['move 1','move 1'],
+        ['move 1','move 3']], shedTailRosters, 'bss-shed-tail'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1']],
+        mixedShieldRosters, 'vgc-substitute-spread'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1']], shieldFocusRosters, 'bss-substitute-focus'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','switch 2'], ['move 2','move 1']],
+        multiShieldRosters, 'bss-substitute-multihit'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

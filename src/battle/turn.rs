@@ -920,6 +920,8 @@ impl Battle {
                     | "hex"
                     | "haze"
                     | "mortalspin"
+                    | "substitute"
+                    | "shedtail"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -1150,6 +1152,12 @@ impl Battle {
         party[outgoing.slot].stats_raised = false;
         party[outgoing.slot].flinched = false;
         party[outgoing.slot].lost_focus = false;
+        let passed_substitute = if pivot == Some("Shed Tail") {
+            party[outgoing.slot].substitute_hp
+        } else {
+            0
+        };
+        party[outgoing.slot].substitute_hp = 0;
         party[outgoing.slot].recharge = 0;
         party[outgoing.slot].charge = None;
         party[outgoing.slot].confusion = 0;
@@ -1186,6 +1194,10 @@ impl Battle {
             party[outgoing.slot].status = Status::Healthy;
         }
         party.swap(outgoing.slot, bench_slot);
+        if passed_substitute > 0 {
+            party[outgoing.slot].substitute_hp = passed_substitute;
+            party[outgoing.slot].track_volatile("substitute");
+        }
         party[outgoing.slot].used_moves = 0;
         if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
             party[outgoing.slot].status = Status::Toxic(0);
@@ -2415,6 +2427,22 @@ impl Battle {
             }
             return true;
         }
+        if matches!(move_data.name.as_str(), "Substitute" | "Shed Tail") {
+            let shed_tail = move_data.name == "Shed Tail";
+            if shed_tail && self.first_bench(source.player, 0).is_none() {
+                self.add(format!("|-fail|{source_name}"));
+                return true;
+            }
+            self.protean_prepare(source, move_type);
+            if self.make_substitute(source, shed_tail) {
+                if shed_tail {
+                    self.mon_mut(source).pivot_move = Some("Shed Tail");
+                }
+                self.each_event();
+                self.each_event();
+            }
+            return true;
+        }
         if matches!(
             move_data.name.as_str(),
             "Protect" | "Detect" | "King's Shield"
@@ -2749,6 +2777,14 @@ impl Battle {
         }
 
         if move_data.category == Category::Status {
+            spread_targets.retain(|&target| {
+                if !self.behind_substitute(source, target, move_data) {
+                    return true;
+                }
+                self.add(format!("|-fail|{source_name}"));
+                self.move_still(base);
+                false
+            });
             let mut succeeded = false;
             for target in spread_targets {
                 if move_data.name == "Focus Energy" {
@@ -3025,6 +3061,7 @@ impl Battle {
         let (max_hits, per_strike_accuracy) = self.hits(source, move_data);
         let mut total = 0;
         let mut hits_landed = 0;
+        let mut hit_substitute = false;
         for hit in 1..=max_hits {
             if (self.mon(source).hp == 0 && !sacrifice)
                 || spread_targets
@@ -3046,39 +3083,38 @@ impl Battle {
                 power
             };
             damage.clear();
-            for &target in &spread_targets {
+            let compute = |battle: &mut Self, target: Position, shield: bool| {
                 if ohko {
-                    damage.push((target, self.mon(target).max_hp.get()));
-                    continue;
+                    return battle.mon(target).max_hp.get();
                 }
                 let fixed_damage = match move_data.name.as_str() {
                     "Metal Burst" | "Comeuppance" => {
                         retaliation_hit.map(|hit| (hit.damage * 3 / 2).max(1))
                     }
-                    "Seismic Toss" | "Night Shade" => Some(u32::from(self.mon(source).level)),
-                    "Super Fang" => Some((self.mon(target).hp / 2).max(1)),
-                    "Endeavor" => Some(self.mon(target).hp - self.mon(source).hp),
+                    "Seismic Toss" | "Night Shade" => Some(u32::from(battle.mon(source).level)),
+                    "Super Fang" => Some((battle.mon(target).hp / 2).max(1)),
+                    "Endeavor" => Some(battle.mon(target).hp - battle.mon(source).hp),
                     _ => None,
                 };
                 if let Some(value) = fixed_damage {
-                    damage.push((target, value));
-                    continue;
+                    return value;
                 }
-                if stacked_power && self.format.report_exact_hp {
-                    self.add(format!("|debug|BP: {power}"));
+                if stacked_power && battle.format.report_exact_hp {
+                    battle.add(format!("|debug|BP: {power}"));
                 }
                 let power = if power == 0 {
-                    self.weight_move_power(&move_data.name, source, target)
+                    battle
+                        .weight_move_power(&move_data.name, source, target)
                         .unwrap_or(power)
                 } else if matches!(
                     move_data.name.as_str(),
                     "Eruption" | "Water Spout" | "Dragon Energy"
                 ) {
-                    let user = self.mon(source);
+                    let user = battle.mon(source);
                     let numerator = u32::from(power) * user.hp;
                     let denominator = user.max_hp.get();
-                    if self.format.report_exact_hp {
-                        self.add(format!(
+                    if battle.format.report_exact_hp {
+                        battle.add(format!(
                             "|debug|BP: {}",
                             f64::from(numerator) / f64::from(denominator)
                         ));
@@ -3089,51 +3125,53 @@ impl Battle {
                 };
                 if move_data.name == "Poltergeist" {
                     let item = DEX
-                        .item(self.format.dex_mod, &self.mon(target).item)
+                        .item(battle.format.dex_mod, &battle.mon(target).item)
                         .unwrap();
-                    self.add(format!(
+                    battle.add(format!(
                         "|-activate|{}|move: Poltergeist|{}",
-                        self.ident(target),
+                        battle.ident(target),
                         item.effect.name
                     ));
                 }
-                let disguised = self.disguise_form(target).is_some();
+                let disguised = !shield && battle.disguise_form(target).is_some();
                 let effect = if disguised {
                     0
                 } else {
-                    self.effectiveness_of(move_data, move_type, target).unwrap()
+                    battle
+                        .effectiveness_of(move_data, move_type, target)
+                        .unwrap()
                 };
                 let mut power = power;
-                if move_data.name == "Hex" && self.mon(target).status != Status::Healthy {
-                    if self.format.report_exact_hp {
-                        self.add("|debug|BP doubled from status condition");
+                if move_data.name == "Hex" && battle.mon(target).status != Status::Healthy {
+                    if battle.format.report_exact_hp {
+                        battle.add("|debug|BP doubled from status condition");
                     }
                     power *= 2;
                 }
-                let crit_ratio = self.crit_ratio(source, target, move_data);
+                let crit_ratio = battle.crit_ratio(source, target, move_data);
                 let crit_roll = move_data.will_crit.unwrap_or_else(|| {
                     crit_ratio != 0
-                        && self
+                        && battle
                             .rng
                             .chance(1, [0, 24, 8, 2, 1][usize::from(crit_ratio)])
                 });
                 let crit = crit_roll
                     && !disguised
-                    && !matches!(self.event_ability(target), "battlearmor" | "shellarmor");
+                    && !matches!(battle.event_ability(target), "battlearmor" | "shellarmor");
                 // BasePower handlers run after the critical-hit draw, unlike
                 // the earlier basePowerCallback used by Hex.
-                if move_data.name == "Fickle Beam" && self.rng.chance(3, 10) {
+                if move_data.name == "Fickle Beam" && battle.rng.chance(3, 10) {
                     power *= 2;
-                    self.log[base]
+                    battle.log[base]
                         .public
                         .push_str("|[anim] Fickle Beam All Out");
-                    self.add(format!("|-activate|{source_name}|move: Fickle Beam"));
+                    battle.add(format!("|-activate|{source_name}|move: Fickle Beam"));
                 } else if matches!(move_data.name.as_str(), "Barb Barrage" | "Venoshock")
-                    && matches!(self.mon(target).status, Status::Poison | Status::Toxic(_))
+                    && matches!(battle.mon(target).status, Status::Poison | Status::Toxic(_))
                 {
                     power *= 2;
                 }
-                let value = self.regular_hit(
+                let value = battle.regular_hit(
                     source,
                     target,
                     move_data,
@@ -3152,7 +3190,24 @@ impl Battle {
                         roll: None,
                     },
                 );
-                damage.push((target, value));
+                value
+            };
+            // TryPrimaryHit handles each shield first, before the ordinary
+            // spread calculations consume any critical or damage draws.
+            let mut shielded = 0;
+            for &target in &spread_targets {
+                if self.behind_substitute(source, target, move_data) {
+                    let value = compute(self, target, true);
+                    self.strike_substitute(source, target, move_data, value, ohko);
+                    shielded |= target.mask();
+                    hit_substitute = true;
+                }
+            }
+            for &target in &spread_targets {
+                if shielded & target.mask() == 0 {
+                    let value = compute(self, target, false);
+                    damage.push((target, value));
+                }
             }
             for (target, hit_damage) in &mut damage {
                 let target = *target;
@@ -3203,7 +3258,7 @@ impl Battle {
                     }
                 }
             }
-            if move_data.name == "Ice Spinner" {
+            if move_data.name == "Ice Spinner" && !damage.is_empty() {
                 self.clear_terrain();
             }
             if !move_data.boosts.is_empty() {
@@ -3216,7 +3271,7 @@ impl Battle {
                     );
                 }
             }
-            if !move_data.self_boosts.is_empty() {
+            if !move_data.self_boosts.is_empty() && !damage.is_empty() {
                 let roll = self.rng.below(100);
                 if move_data
                     .self_chance
@@ -3225,16 +3280,16 @@ impl Battle {
                     self.boost(source, &move_data.self_boosts, true);
                 }
             }
-            if move_data.self_recharge && self.mon(source).hp > 0 {
+            if move_data.self_recharge && self.mon(source).hp > 0 && !damage.is_empty() {
                 let mon = self.mon_mut(source);
                 mon.recharge = 2;
                 mon.track_volatile("mustrecharge");
                 self.add(format!("|-mustrecharge|{source_name}"));
             }
-            if move_data.self_rampage {
+            if move_data.self_rampage && !damage.is_empty() {
                 self.rampage_hit(source, slot.expect("rampage moves are not reflectable"));
             }
-            if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 {
+            if move_data.name == "Glaive Rush" && self.mon(source).hp > 0 && !damage.is_empty() {
                 let mon = self.mon_mut(source);
                 mon.glaive_drawback = true;
                 mon.track_volatile("glaiverush");
@@ -3440,7 +3495,7 @@ impl Battle {
         if fainted > 0 && !self.mon(source).fainted && self.mon(source).ability == "moxie" {
             self.ability_boost(source, "Moxie", BoostStat::Atk, fainted, false);
         }
-        let recoil = if struggle {
+        let recoil = if struggle && !hit_substitute {
             (self.mon(source).max_hp.get() + 2) / 4
         } else if let Some([num, den]) = move_data.recoil
             && total > 0
@@ -3528,6 +3583,7 @@ impl Battle {
         mon.protection = None;
         mon.flinched = false;
         mon.lost_focus = false;
+        mon.substitute_hp = 0;
         mon.recharge = 0;
         mon.charge = None;
         mon.confusion = 0;
