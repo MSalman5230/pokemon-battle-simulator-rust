@@ -1288,6 +1288,9 @@ impl Battle {
                     | "shelltrap"
                     | "pursuit"
                     | "bide"
+                    | "conversion2"
+                    | "mimic"
+                    | "sketch"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -1985,6 +1988,7 @@ impl Battle {
             incoming[0].receive_pass(&active[outgoing.slot], pass == "Shed Tail");
         }
         party[outgoing.slot].reset_forme(rules);
+        party[outgoing.slot].reset_move_history();
         party[outgoing.slot].protection = None;
         party[outgoing.slot].stall = None;
         party[outgoing.slot].ally_switch_stall = None;
@@ -4366,7 +4370,9 @@ impl Battle {
             self.cure_status(source, &format!("[from] move: {}", move_data.name));
         }
         if struggle {
-            self.mon_mut(source).last_move_slot = None;
+            let mon = self.mon_mut(source);
+            mon.last_move_slot = None;
+            mon.last_declared_move = Some(base_data);
             self.add(format!("|-activate|{source_name}|move: Struggle"));
         } else if own_action && let Some(slot) = slot {
             let mon = self.mon_mut(source);
@@ -4379,6 +4385,7 @@ impl Battle {
                 mon.used_moves |= 1 << slot;
             }
             mon.last_move_slot = (!z_powered && slot != EXTRA_MOVE_SLOT).then_some(slot);
+            mon.last_declared_move = Some(if z_powered { move_data } else { base_data });
             mon.last_move_target = loc;
             if slot != EXTRA_MOVE_SLOT && mon.holds_choice_item() && mon.choice_lock.is_none() {
                 mon.choice_lock = Some(slot);
@@ -4579,6 +4586,13 @@ impl Battle {
         let previous_z = self.last_battle_move_z;
         let history_known = self.history_known;
         if !unannounced {
+            let mon = self.mon_mut(source);
+            mon.last_used_type = Some(if z_powered {
+                z_weather.unwrap_or(&base_data.move_type)
+            } else {
+                move_type
+            });
+            mon.last_used_type_known = true;
             self.last_battle_move = Some(move_data);
             self.last_battle_move_z = z_powered || move_data.is_z_move;
             self.history_known = true;
@@ -6424,6 +6438,18 @@ impl Battle {
                             self.bestow_item(source, target)
                         } else {
                             self.start_nightmare(target)
+                        };
+                        if !succeeded {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                            self.report_no_move_effect();
+                        }
+                    }
+                    "Mimic" | "Sketch" | "Conversion 2" => {
+                        succeeded = if move_data.name == "Conversion 2" {
+                            self.conversion_two(source, target)
+                        } else {
+                            self.copy_move_slot(source, target, move_data.name == "Sketch")
                         };
                         if !succeeded {
                             self.move_still(base);
@@ -8752,6 +8778,7 @@ impl Battle {
         let rules = self.stat_rules;
         let mon = self.mon_mut(target);
         mon.reset_forme(rules);
+        mon.reset_move_history();
         mon.fainted = true;
         mon.illusion = None;
         mon.disguise_pending = false;

@@ -545,6 +545,9 @@ impl WorldSide {
             name.and_then(|nm| mon.moves.iter().position(|m| m.id == to_id(nm)))
         };
         mon.last_move_slot = slot_for(mon, self.last_move.as_deref());
+        mon.last_declared_move = mon.last_move_slot.map(|slot| mon.moves[slot].move_data);
+        mon.last_used_type = None;
+        mon.last_used_type_known = false;
         for e in &self.volatiles {
             let remaining = |base: u8| {
                 e.remaining

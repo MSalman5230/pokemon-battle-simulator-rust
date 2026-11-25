@@ -2045,6 +2045,19 @@ fn bide_stores_received_damage_and_releases_without_an_accuracy_roll() {
 }
 
 #[test]
+fn mimic_sketch_and_conversion_two_use_distinct_native_move_histories() {
+    replay(include_str!(
+        "fixtures/custom-mimic-restores-original-pp.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-sketch-persists-across-switches.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-conversion-two-uses-executed-type.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

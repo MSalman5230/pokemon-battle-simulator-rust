@@ -19,6 +19,7 @@ mod boost_copy;
 mod charge;
 mod commander;
 mod control;
+mod copy_moves;
 mod damage;
 mod disable;
 mod field_effects;
@@ -306,6 +307,10 @@ pub struct Pokemon {
     hidden_power_index: u8,
     fallen_allies: u8,
     pub moves: Vec<MoveSlot>,
+    mimicked_moves: Option<Box<copy_moves::MimickedMoves>>,
+    last_declared_move: Option<&'static Move>,
+    last_used_type: Option<&'static str>,
+    last_used_type_known: bool,
     extra_move: Option<Box<MoveSlot>>,
     pub roster_index: usize,
     illusion: Option<usize>,
@@ -1045,6 +1050,10 @@ impl Pokemon {
             half_hp_berry_deferred: false,
             fallen_allies: 0,
             moves,
+            mimicked_moves: None,
+            last_declared_move: None,
+            last_used_type: None,
+            last_used_type_known: true,
             extra_move: None,
             pokeball: if pokeball.is_empty() {
                 "pokeball".into()
