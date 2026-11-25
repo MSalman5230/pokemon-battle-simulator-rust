@@ -64,6 +64,12 @@ enum MoveInvocation {
         data: &'static Move,
         target: Position,
     },
+    SleepTalk {
+        slot: usize,
+        caller: usize,
+        priority: i8,
+        prankster: bool,
+    },
 }
 
 #[derive(Default)]
@@ -834,81 +840,9 @@ impl Battle {
             .map(|(i, _)| i)
     }
 
-    fn select_move(
-        &self,
-        actor: Position,
-        selection: &MoveChoice,
-        target: Option<i8>,
-        mega: bool,
-    ) -> Result<ActionKind, BattleError> {
-        if let Some((move_slot, _, id)) = self.mon(actor).forced_move() {
-            let valid = match selection {
-                MoveChoice::Auto => true,
-                MoveChoice::Slot(slot) => slot.get() == 1 && target.is_none(),
-                MoveChoice::Name(name) => {
-                    name == id
-                        && (self.slots() == 1 || target.is_some())
-                        && target.is_none_or(|loc| {
-                            TargetKind::Normal.valid_location(
-                                self.slots() as u8,
-                                actor.slot as u8,
-                                loc,
-                            )
-                        })
-                }
-            };
-            if !valid || mega {
-                return Err(BattleError::Choice("only the forced move is available"));
-            }
-            return Ok(ActionKind::Move {
-                move_slot,
-                target: self.mon(actor).charge.map_or(0, |state| state.target),
-                mega: false,
-            });
-        }
-        let moves = &self.mon(actor).moves;
-        let visibly_available = self.any_move_in_request(actor);
-        let really_available = moves
-            .iter()
-            .enumerate()
-            .any(|(i, _)| !self.actual_disabled(actor, i));
-        if !really_available {
-            if mega
-                || target.is_some()
-                || !matches!(selection, MoveChoice::Auto | MoveChoice::Slot(_))
-                    && !matches!(selection, MoveChoice::Name(name) if name == "struggle")
-            {
-                return Err(BattleError::Choice("only Struggle is available"));
-            }
-            if let MoveChoice::Slot(n) = selection
-                && ((!visibly_available && n.get() != 1)
-                    || (visibly_available && n.get() > moves.len()))
-            {
-                return Err(BattleError::Choice("only Struggle is available"));
-            }
-            return Ok(ActionKind::Move {
-                move_slot: STRUGGLE_SLOT,
-                target: 0,
-                mega: false,
-            });
-        }
-        let move_slot = match selection {
-            MoveChoice::Slot(n) => Some(n.get() - 1),
-            MoveChoice::Name(name) => moves.iter().position(|m| &m.id == name),
-            MoveChoice::Auto => moves
-                .iter()
-                .enumerate()
-                .position(|(i, _)| !self.actual_disabled(actor, i)),
-        }
-        .ok_or(BattleError::Choice("unknown move slot"))?;
-        let info = moves
-            .get(move_slot)
-            .filter(|m| m.pp > 0)
-            .ok_or(BattleError::Choice("invalid move slot or no PP remaining"))?;
-        // A projected generic move has only implemented data effects.
-        // The remaining moves must have explicit, audited special handling.
-        if !info.move_data.generic
-            && !matches!(
+    fn move_supported(info: &MoveSlot) -> bool {
+        info.move_data.generic
+            || matches!(
                 info.id.as_str(),
                 "tackle"
                     | "quickattack"
@@ -1144,6 +1078,7 @@ impl Battle {
                     | "aquaring"
                     | "instruct"
                     | "shellsidearm"
+                    | "sleeptalk"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -1218,7 +1153,82 @@ impl Battle {
                     | "wrap"
                     | "batonpass"
             )
-        {
+    }
+
+    fn select_move(
+        &self,
+        actor: Position,
+        selection: &MoveChoice,
+        target: Option<i8>,
+        mega: bool,
+    ) -> Result<ActionKind, BattleError> {
+        if let Some((move_slot, _, id)) = self.mon(actor).forced_move() {
+            let valid = match selection {
+                MoveChoice::Auto => true,
+                MoveChoice::Slot(slot) => slot.get() == 1 && target.is_none(),
+                MoveChoice::Name(name) => {
+                    name == id
+                        && (self.slots() == 1 || target.is_some())
+                        && target.is_none_or(|loc| {
+                            TargetKind::Normal.valid_location(
+                                self.slots() as u8,
+                                actor.slot as u8,
+                                loc,
+                            )
+                        })
+                }
+            };
+            if !valid || mega {
+                return Err(BattleError::Choice("only the forced move is available"));
+            }
+            return Ok(ActionKind::Move {
+                move_slot,
+                target: self.mon(actor).charge.map_or(0, |state| state.target),
+                mega: false,
+            });
+        }
+        let moves = &self.mon(actor).moves;
+        let visibly_available = self.any_move_in_request(actor);
+        let really_available = moves
+            .iter()
+            .enumerate()
+            .any(|(i, _)| !self.actual_disabled(actor, i));
+        if !really_available {
+            if mega
+                || target.is_some()
+                || !matches!(selection, MoveChoice::Auto | MoveChoice::Slot(_))
+                    && !matches!(selection, MoveChoice::Name(name) if name == "struggle")
+            {
+                return Err(BattleError::Choice("only Struggle is available"));
+            }
+            if let MoveChoice::Slot(n) = selection
+                && ((!visibly_available && n.get() != 1)
+                    || (visibly_available && n.get() > moves.len()))
+            {
+                return Err(BattleError::Choice("only Struggle is available"));
+            }
+            return Ok(ActionKind::Move {
+                move_slot: STRUGGLE_SLOT,
+                target: 0,
+                mega: false,
+            });
+        }
+        let move_slot = match selection {
+            MoveChoice::Slot(n) => Some(n.get() - 1),
+            MoveChoice::Name(name) => moves.iter().position(|m| &m.id == name),
+            MoveChoice::Auto => moves
+                .iter()
+                .enumerate()
+                .position(|(i, _)| !self.actual_disabled(actor, i)),
+        }
+        .ok_or(BattleError::Choice("unknown move slot"))?;
+        let info = moves
+            .get(move_slot)
+            .filter(|m| m.pp > 0)
+            .ok_or(BattleError::Choice("invalid move slot or no PP remaining"))?;
+        // A projected generic move has only implemented data effects.
+        // The remaining moves must have explicit, audited special handling.
+        if !Self::move_supported(info) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
         let kind = self.mon(actor).requested_target(info.move_data);
@@ -1755,6 +1765,11 @@ impl Battle {
                     }
                     self.residual();
                 }
+            }
+            if let Some(name) = self.unsupported_called_move.take() {
+                return Err(BattleError::Unsupported(format!(
+                    "Sleep Talk called {name}"
+                )));
             }
             let drags = if self.drag_flags != 0 {
                 self.apply_drags(&mut queue)
@@ -2690,9 +2705,18 @@ impl Battle {
             } => (Some(slot), loc, None, false, prankster),
             MoveInvocation::Reflected { target, .. } => (None, 0, Some(target), true, false),
             MoveInvocation::Future { target, .. } => (None, 0, Some(target), false, false),
+            MoveInvocation::SleepTalk {
+                slot, prankster, ..
+            } => (Some(slot), 0, None, false, prankster),
+        };
+        let sleep_talk = match invocation {
+            MoveInvocation::SleepTalk {
+                caller, priority, ..
+            } => Some((caller, priority)),
+            _ => None,
         };
         let delayed = matches!(invocation, MoveInvocation::Future { .. });
-        let own_action = !reflected && !delayed;
+        let own_action = !reflected && !delayed && sleep_talk.is_none();
         if own_action && self.mon(source).glaive_drawback {
             let mon = self.mon_mut(source);
             mon.glaive_drawback = false;
@@ -2716,7 +2740,9 @@ impl Battle {
             return true;
         }
         let mut move_data = match invocation {
-            MoveInvocation::Choice { slot, .. } => self.move_data(source, slot),
+            MoveInvocation::Choice { slot, .. } | MoveInvocation::SleepTalk { slot, .. } => {
+                self.move_data(source, slot)
+            }
             MoveInvocation::Reflected { data, .. } | MoveInvocation::Future { data, .. } => data,
         };
         result.spends_charge =
@@ -2745,6 +2771,8 @@ impl Battle {
                 || releasing_charge);
         let called_from = if reflected {
             "|[from] ability: Magic Bounce"
+        } else if sleep_talk.is_some() {
+            "|[from] move: Sleep Talk"
         } else if continuing {
             "|[from] lockedmove"
         } else {
@@ -2825,16 +2853,33 @@ impl Battle {
             self.clear_destiny_bond(source, false);
             return false;
         }
-        if reflected && self.mon(source).throat_chop > 0 && move_data.flags.contains_key("sound") {
+        if (reflected || sleep_talk.is_some())
+            && self.mon(source).throat_chop > 0
+            && move_data.flags.contains_key("sound")
+        {
             self.add(format!("|cant|{source_name}|move: Throat Chop"));
             return false;
         }
-        result.spends_charge = own_action && move_data.name != "Charge" && move_type == "Electric";
+        if sleep_talk.is_some()
+            && self.mon(source).heal_block > 0
+            && move_data.flags.contains_key("heal")
+        {
+            self.add(format!(
+                "|cant|{source_name}|move: Heal Block|{}",
+                move_data.name
+            ));
+            return false;
+        }
+        result.spends_charge =
+            !reflected && !delayed && move_data.name != "Charge" && move_type == "Electric";
         if move_data.name == "Focus Punch" && self.mon(source).lost_focus {
             self.add(format!("|cant|{source_name}|Focus Punch|Focus Punch"));
             return false;
         }
-        if !struggle && slot.is_some_and(|slot| self.mon(source).disabled_by_choice(slot)) {
+        if own_action
+            && !struggle
+            && slot.is_some_and(|slot| self.mon(source).disabled_by_choice(slot))
+        {
             self.add(format!("|move|{source_name}|{}||[still]", move_data.name));
             if self.format.report_exact_hp {
                 self.add("|debug|Disabled by Choice item lock");
@@ -2871,7 +2916,7 @@ impl Battle {
         if struggle {
             self.mon_mut(source).last_move_slot = None;
             self.add(format!("|-activate|{source_name}|move: Struggle"));
-        } else if let Some(slot) = slot {
+        } else if own_action && let Some(slot) = slot {
             let mon = self.mon_mut(source);
             if !continuing {
                 mon.moves[slot].pp -= 1;
@@ -3057,7 +3102,7 @@ impl Battle {
             return true;
         }
 
-        if let Some(slot) = slot
+        if let Some(slot) = sleep_talk.map(|(caller, _)| caller).or(slot)
             && !struggle
             && !continuing
         {
@@ -3097,7 +3142,10 @@ impl Battle {
             // Its TryMove hook deliberately returns null, not false.
             return true;
         }
-        let priority = self.base_move_priority(source, move_data) + i8::from(prankster);
+        let priority = sleep_talk.map_or_else(
+            || self.base_move_priority(source, move_data) + i8::from(prankster),
+            |(_, priority)| priority,
+        );
         if !delayed
             && let Some(target) = spread_targets.last().copied().or(actual_target)
             && let Some((holder, name)) =
@@ -3118,6 +3166,51 @@ impl Battle {
             self.add(
                 "|-hint|Only a Pokemon whose form is Morpeko or Morpeko-Hangry can use this move.",
             );
+            return true;
+        }
+        if move_data.name == "Sleep Talk" {
+            let may_call = matches!(self.mon(source).status, Status::Sleep(_))
+                || self.event_ability(source) == "comatose";
+            let eligible = |data: &Move| {
+                !["nosleeptalk", "charge"]
+                    .iter()
+                    .any(|&flag| data.flags.contains_key(flag))
+            };
+            let choices: Vec<_> = if may_call {
+                self.mon(source)
+                    .moves
+                    .iter()
+                    .enumerate()
+                    .filter_map(|(slot, m)| eligible(m.move_data).then_some(slot))
+                    .collect()
+            } else {
+                Vec::new()
+            };
+            if choices.is_empty() {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                result.failed = true;
+                return true;
+            }
+            let called_slot = choices[self.rng.below(choices.len() as u32) as usize];
+            let called = &self.mon(source).moves[called_slot];
+            if !Self::move_supported(called) {
+                self.unsupported_called_move = Some(&called.move_data.name);
+                return true;
+            }
+            self.run_move(
+                source,
+                MoveInvocation::SleepTalk {
+                    slot: called_slot,
+                    caller: slot.expect("Sleep Talk is never reflected or recursively called"),
+                    priority,
+                    prankster,
+                },
+                queue,
+            );
+            result.failed = self.mon(source).move_failed_this_turn;
+            self.each_event();
+            self.each_event();
             return true;
         }
         if !delayed && matches!(move_data.name.as_str(), "Future Sight" | "Doom Desire") {

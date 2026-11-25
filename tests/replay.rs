@@ -1378,6 +1378,11 @@ fn shell_side_arm_uses_the_stronger_category_and_its_contact_rules() {
 }
 
 #[test]
+fn sleep_talk_selects_eligible_moves_and_pressure_consumes_the_callers_pp() {
+    replay(include_str!("fixtures/bss-sleep-talk.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

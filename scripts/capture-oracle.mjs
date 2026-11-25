@@ -1064,6 +1064,10 @@ const shellSideArmRosters = [
     [named('Slowbro-Galar', ['Shell Side Arm'])],
     [named('Umbreon', ['Recover']), named('Cloyster', ['Recover'])],
 ];
+const sleepTalkRosters = [
+    [named('Vaporeon', ['Sleep Talk', 'Water Gun', 'Solar Beam'])],
+    [{...named('Mewtwo', ['Spore', 'Recover'], 'N'), ability:'Pressure'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1971,6 +1975,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         instructRosters, 'vgc-instruct'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 1','switch 2']],
         shellSideArmRosters, 'bss-shell-side-arm'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'],
+        ['move 1','move 2'], ['move 1','move 2']], sleepTalkRosters, 'bss-sleep-talk'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

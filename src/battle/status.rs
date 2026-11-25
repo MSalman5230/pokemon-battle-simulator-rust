@@ -71,7 +71,9 @@ impl Battle {
                 } else {
                     self.mon_mut(pos).status = Status::Sleep(turns - decrement);
                     self.add(format!("|cant|{}|slp", self.ident(pos)));
-                    return false;
+                    if data.name != "Sleep Talk" {
+                        return false;
+                    }
                 }
             }
             Status::Freeze(turns) if !data.flags.contains_key("defrost") => {
