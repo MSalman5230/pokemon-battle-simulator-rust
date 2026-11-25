@@ -1428,6 +1428,7 @@ fn auras_modify_power_and_aura_break_reverses_the_modifier() {
 #[test]
 fn stalwart_targets_through_follow_me() {
     replay(include_str!("fixtures/vgc-stalwart.json"));
+    replay(include_str!("fixtures/vgc-stalwart-side-target.json"));
 }
 
 #[test]

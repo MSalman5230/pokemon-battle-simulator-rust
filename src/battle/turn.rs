@@ -54,6 +54,7 @@ enum MoveInvocation {
     Choice {
         slot: usize,
         loc: i8,
+        original_target: Option<(Player, u8)>,
         prankster: bool,
     },
     Reflected {
@@ -198,6 +199,7 @@ pub(super) struct Action {
     // Use the originally selected move when re-sorting after a faint can
     // restore the actor's original moveset (Transform/Imposter).
     move_data: Option<&'static Move>,
+    original_target: Option<(Player, u8)>,
     priority: Priority,
     fractional_priority: f64,
     prankster: bool,
@@ -228,6 +230,7 @@ impl Action {
             actor,
             kind,
             move_data: None,
+            original_target: None,
             fractional_priority: 0.0,
             prankster: false,
             priority: Priority {
@@ -674,6 +677,7 @@ impl Battle {
                             mega,
                         };
                     }
+                    self.bind_original_target(&mut action);
                     self.prioritize(&mut action);
                     queue.push(action);
                 }
@@ -1319,6 +1323,26 @@ impl Battle {
         }
     }
 
+    fn bind_original_target(&self, action: &mut Action) {
+        let ActionKind::Move { target, .. } = action.kind else {
+            return;
+        };
+        if self.slots() != 2 || !(1..=2).contains(&target.unsigned_abs()) {
+            return;
+        }
+        let source = action.actor.unwrap();
+        let player = if target > 0 {
+            source.player.foe()
+        } else {
+            source.player
+        };
+        let position = Position {
+            player,
+            slot: usize::from(target.unsigned_abs()) - 1,
+        };
+        action.original_target = Some((player, self.mon(position).roster_index as u8));
+    }
+
     fn assign_fractional_priority(&mut self, action: &mut Action) {
         let actor = action.actor.unwrap();
         if self.event_ability(actor) == "stall" {
@@ -1402,6 +1426,9 @@ impl Battle {
                 },
             };
             if !self.mon(position).fainted || position.player == source.player {
+                if kind == TargetKind::AdjacentAllyOrSelf && self.mon(position).fainted {
+                    return Some(source);
+                }
                 return Some(position);
             }
         }
@@ -1464,6 +1491,7 @@ impl Battle {
             },
         );
         self.assign_fractional_priority(&mut action);
+        self.bind_original_target(&mut action);
         self.prioritize(&mut action);
         self.insert_action(queue, action);
     }
@@ -1509,6 +1537,7 @@ impl Battle {
                 mega: false,
             };
         }
+        self.bind_original_target(&mut action);
         self.prioritize(&mut action);
         action.priority.order = 3;
         queue.insert(0, action);
@@ -1781,6 +1810,7 @@ impl Battle {
                         MoveInvocation::Choice {
                             slot: move_slot,
                             loc: target,
+                            original_target: action.original_target,
                             prankster: action.prankster,
                         },
                         &mut queue,
@@ -2833,6 +2863,7 @@ impl Battle {
                 slot,
                 loc,
                 prankster,
+                ..
             } => (Some(slot), loc, None, false, prankster),
             MoveInvocation::Reflected { target, .. } => (None, 0, Some(target), true, false),
             MoveInvocation::Future { target, .. } => (None, 0, Some(target), false, false),
@@ -2979,8 +3010,25 @@ impl Battle {
         let darts = move_data.name == "Dragon Darts";
         let curse = move_data.name == "Curse";
         let base_target = move_base_target(move_data, source, loc);
-        let original_target =
-            forced_target.or_else(|| self.resolve_target(source, base_target, loc));
+        let tracked_target = match invocation {
+            MoveInvocation::Choice {
+                original_target: Some((player, roster_index)),
+                ..
+            } if move_data.tracks_target
+                || matches!(self.event_ability(source), "stalwart" | "propellertail") =>
+            {
+                (0..self.slots())
+                    .map(|slot| Position { player, slot })
+                    .find(|&pos| {
+                        let mon = self.mon(pos);
+                        !mon.fainted && mon.roster_index == usize::from(roster_index)
+                    })
+            }
+            _ => None,
+        };
+        let original_target = forced_target
+            .or(tracked_target)
+            .or_else(|| self.resolve_target(source, base_target, loc));
         let lost_counter_target =
             counter.is_some() && retaliation_hit.is_some_and(|hit| self.mon(hit.source).fainted);
         let mut target = retaliation_hit
