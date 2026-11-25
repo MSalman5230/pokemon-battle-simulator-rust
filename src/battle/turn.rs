@@ -302,7 +302,7 @@ impl Battle {
                     } else {
                         mon.moves.iter().enumerate().map(|(move_slot, m)| {
                             let mut request = json!({
-                                "move": m.move_data.name, "id": m.id, "pp": m.pp, "maxpp": m.max_pp,
+                                "move": mon.request_move_name(m), "id": m.id, "pp": m.pp, "maxpp": m.max_pp,
                                 "target": mon.requested_target(m.move_data), "disabled": self.move_disabled_in_request(player, slot, move_slot),
                             });
                             if let Some(source) = self.disable_source(pos, move_slot) {
@@ -1024,6 +1024,9 @@ impl Battle {
                     | "worryseed"
                     | "simplebeam"
                     | "entrainment"
+                    | "hiddenpower"
+                    | "return"
+                    | "frustration"
                     | "electroshot"
                     | "solarbeam"
                     | "solarblade"
@@ -1221,7 +1224,14 @@ impl Battle {
         }
         let move_slot = match selection {
             MoveChoice::Slot(n) => Some(n.get() - 1),
-            MoveChoice::Name(name) => moves.iter().position(|m| &m.id == name),
+            MoveChoice::Name(name) => {
+                let id = if name.starts_with("hiddenpower") {
+                    "hiddenpower"
+                } else {
+                    name
+                };
+                moves.iter().position(|m| m.id == id)
+            }
             MoveChoice::Auto => moves
                 .iter()
                 .enumerate()
@@ -2828,6 +2838,8 @@ impl Battle {
                     )
             }
             "Rage Fist" => 50 + 50 * self.mon(source).times_attacked.min(6) as u16,
+            "Return" => self.mon(source).friendship_power(false),
+            "Frustration" => self.mon(source).friendship_power(true),
             _ => move_data.base_power,
         };
         let (move_type, converted) = if struggle {
@@ -2836,6 +2848,8 @@ impl Battle {
             (weather.map_or("Normal", Weather::ball_type), false)
         } else if let Some(terrain) = terrain_pulse {
             (terrain.element(), false)
+        } else if move_data.name == "Hidden Power" {
+            (self.mon(source).hidden_power_type(), false)
         } else if move_data.name == "Aura Wheel"
             && self.mon(source).species.name == "Morpeko-Hangry"
         {

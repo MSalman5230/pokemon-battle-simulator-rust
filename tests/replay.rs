@@ -1399,6 +1399,11 @@ fn ability_replacement_handles_sleep_boosts_immunity_and_ability_shield() {
 }
 
 #[test]
+fn natdex_legacy_moves_use_friendship_and_hidden_power_type_in_damage_and_requests() {
+    replay(include_str!("fixtures/natdex-legacy-moves.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -49,7 +49,7 @@ mod types;
 mod weather;
 mod weight;
 pub use status::Status;
-use std::{error::Error, fmt, num::NonZeroU32};
+use std::{borrow::Cow, error::Error, fmt, num::NonZeroU32};
 pub use tactical::{DamagePreview, DamageProbe};
 pub use terrain::Terrain;
 use turn::{Action, FoeHit, Position};
@@ -245,6 +245,8 @@ pub struct Pokemon {
     ability_order: u32,
     half_hp_berry_deferred: bool,
     pub pokeball: String,
+    happiness: u8,
+    hidden_power_index: u8,
     fallen_allies: u8,
     pub moves: Vec<MoveSlot>,
     pub roster_index: usize,
@@ -297,6 +299,43 @@ pub struct MoveSlot {
     pub max_pp: u8,
 }
 
+impl Pokemon {
+    fn request_move_id<'a>(&self, slot: &'a MoveSlot) -> Cow<'a, str> {
+        match slot.id.as_str() {
+            "hiddenpower" => format!("hiddenpower{}60", to_id(self.hidden_power_type())).into(),
+            "return" | "frustration" => format!(
+                "{}{}",
+                slot.id,
+                self.friendship_power(slot.id == "frustration")
+            )
+            .into(),
+            _ => slot.id.as_str().into(),
+        }
+    }
+
+    fn request_move_name<'a>(&self, slot: &'a MoveSlot) -> Cow<'a, str> {
+        match slot.id.as_str() {
+            "hiddenpower" => format!("Hidden Power {}", self.hidden_power_type()).into(),
+            "return" | "frustration" => format!(
+                "{} {}",
+                slot.move_data.name,
+                self.friendship_power(slot.id == "frustration")
+            )
+            .into(),
+            _ => slot.move_data.name.as_str().into(),
+        }
+    }
+
+    fn friendship_power(&self, frustration: bool) -> u16 {
+        let value = if frustration {
+            255 - self.happiness
+        } else {
+            self.happiness
+        };
+        (u16::from(value) * 2 / 5).max(1)
+    }
+}
+
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PreviewRequest<'a> {
@@ -321,7 +360,7 @@ struct SwitchRequest<'a> {
     condition: String,
     active: bool,
     stats: OtherStats,
-    moves: Vec<&'a str>,
+    moves: Vec<Cow<'a, str>>,
     base_ability: &'a str,
     item: &'a str,
     pokeball: &'a str,
@@ -480,7 +519,7 @@ impl Battle {
                         .as_ref()
                         .map_or(mon.stats, |form| form.original_stats)
                         .into(),
-                    moves: mon.moves.iter().map(|m| m.id.as_str()).collect(),
+                    moves: mon.moves.iter().map(|m| mon.request_move_id(m)).collect(),
                     base_ability: &mon.base_ability,
                     item: &mon.item,
                     pokeball: &mon.pokeball,
@@ -802,14 +841,16 @@ impl Pokemon {
         if set.moves.len() > u32::BITS as usize {
             return Err(BattleError::Unsupported("more than 32 move slots".into()));
         }
+        let mut hp_type = set.hp_type.as_deref().filter(|entry| !entry.is_empty());
         for name in &set.moves {
-            let data = DEX
+            let mut data = DEX
                 .moves(format.dex_mod, &to_id(name))
                 .ok_or_else(|| BattleError::Unknown(format!("move {name}")))?;
-            let id = to_id(&data.name);
-            if id.starts_with("hiddenpower") || matches!(id.as_str(), "return" | "frustration") {
-                return Err(BattleError::Unsupported(format!("request data for {name}")));
+            if data.name.starts_with("Hidden Power ") {
+                hp_type.get_or_insert(&data.move_type);
+                data = DEX.moves(format.dex_mod, "hiddenpower").unwrap();
             }
+            let id = to_id(&data.name);
             let pp = max_pp(data.pp, data.no_pp_boosts);
             moves.push(MoveSlot {
                 id,
@@ -818,6 +859,7 @@ impl Pokemon {
                 max_pp: pp,
             });
         }
+        let hidden_power_index = types::hidden_power_index(hp_type, set.ivs)?;
         let name = if set.name.is_empty() || set.name == *species_name {
             species.base_species.clone()
         } else {
@@ -894,6 +936,8 @@ impl Pokemon {
             } else {
                 pokeball
             },
+            happiness: set.happiness.unwrap_or(255),
+            hidden_power_index,
             roster_index: index,
             illusion: None,
             disguise_pending: false,

@@ -1,11 +1,38 @@
 //! Base, changed, and added Pokémon typing.
 
-use super::Pokemon;
+use super::{BattleError, Pokemon, SetStats, to_id};
 
 pub(super) const TYPES: &[&str] = &[
     "Normal", "Fire", "Water", "Electric", "Grass", "Ice", "Fighting", "Poison", "Ground",
     "Flying", "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark", "Steel", "Fairy",
 ];
+
+pub(super) const HIDDEN_POWER_TYPES: [&str; 16] = [
+    "Fighting", "Flying", "Poison", "Ground", "Rock", "Bug", "Ghost", "Steel", "Fire", "Water",
+    "Grass", "Electric", "Psychic", "Ice", "Dragon", "Dark",
+];
+
+pub(super) fn hidden_power_index(
+    explicit: Option<&str>,
+    ivs: Option<SetStats>,
+) -> Result<u8, BattleError> {
+    if let Some(explicit) = explicit.filter(|entry| !entry.is_empty()) {
+        let id = to_id(explicit);
+        return HIDDEN_POWER_TYPES
+            .iter()
+            .position(|name| name.eq_ignore_ascii_case(&id))
+            .map(|i| i as u8)
+            .ok_or_else(|| BattleError::Unsupported(format!("Hidden Power type {explicit}")));
+    }
+    let Some(ivs) = ivs else { return Ok(15) };
+    let parity = [ivs.hp, ivs.atk, ivs.def, ivs.spe, ivs.spa, ivs.spd]
+        .into_iter()
+        .enumerate()
+        .fold(0, |bits, (idx, value)| {
+            bits | ((value.clamp(0, 31) & 1) << idx)
+        });
+    Ok((parity * 15 / 63) as u8)
+}
 
 // A copied or reconstructed type list may include three types. Store type
 // indices rather than allocating or adding three pointers to every Pokémon.
@@ -46,6 +73,10 @@ impl TypeOverride {
 }
 
 impl Pokemon {
+    pub(super) fn hidden_power_type(&self) -> &'static str {
+        HIDDEN_POWER_TYPES[usize::from(self.hidden_power_index)]
+    }
+
     pub(super) fn set_temporary_type(&mut self, ty: Option<&str>) {
         self.temporary_types = ty.map_or_else(TypeOverride::default, |ty| {
             TypeOverride::from_types(&[ty]).expect("moves change to a known type")

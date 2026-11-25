@@ -100,6 +100,8 @@ add('Terrains double the Tactical Terrain Pulse power without changing its type'
 add('Shell Side Arm takes the stronger physical route', 'shellsidearm', mon('Slowbro-Galar', 'Own Tempo'), normal);
 add('Shell Side Arm takes the stronger special route', 'shellsidearm',
     mon('Slowbro-Galar', 'Own Tempo'), mon('Cloyster', 'Skill Link'));
+add('Return uses the supplied friendship', 'return', mon('Pidgeot', 'Keen Eye', '', {}, {happiness:128}), normal);
+add('Frustration at maximum friendship retains one base power', 'frustration', normal, fire);
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

@@ -1085,6 +1085,11 @@ const replaceAbilityRosters = [
     [{...named('Whimsicott', ['Spore', 'Worry Seed', 'Simple Beam', 'Entrainment']), ability:'Prankster'}],
     [named('Vaporeon', ['Calm Mind']), {...named('Jolteon', ['Calm Mind']), item:'Ability Shield'}],
 ];
+const legacyMoveRosters = [
+    [{...named('Pidgeot', ['Return', 'Frustration', 'Hidden Power Ice']), happiness:128, ability:'Keen Eye'},
+        {...named('Jolteon', ['Hidden Power']), ivs:{hp:31, atk:30, def:30, spa:31, spd:31, spe:31}}],
+    [named('Gliscor', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -2004,6 +2009,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'], ['move 2','move 1'],
         ['move 3','move 1'], ['move 4','move 1'], ['move 4','move 1'], ['move 2','switch 2']],
         replaceAbilityRosters, 'bss-ability-replacement'],
+    ['natdexdraft', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move hiddenpowerice60','move 1'], ['switch 2','move 1'], ['move 1','move 1']],
+        legacyMoveRosters, 'natdex-legacy-moves'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],
