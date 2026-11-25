@@ -118,14 +118,13 @@ async function capture(formatid, n) {
     const checkpoints = [];
     function snapshot(lines) {
         const b = stream.battle;
-        const newLog = b.log.slice(logCursor).filter(l =>
-            !l.startsWith('|t:|') && !l.startsWith('|uhtml|otsrequest|'));
+        const newLog = b.log.slice(logCursor).filter(l => !l.startsWith('|t:|'));
         logCursor = b.log.length;
         const channels = extractChannelMessages(newLog.join('\n'), [0, 1, 2]);
         checkpoints.push({
             lines, turn: b.turn, seed: b.prng.getSeed(), requestState: b.requestState,
             waiting: b.sides.map(s => s.isChoiceDone()),
-            channels: [0, 1, 2].map(id => channels[id]),
+            channels: [0, 1, 2].map(id => channels[id].filter(l => !/^\|uhtml(?:change)?\|otsrequest\|/.test(l))),
             requests: b.sides.map(s => structuredClone(s.activeRequest)),
             teams: b.sides.map(s => s.pokemon.map(p => ({
                 name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp,

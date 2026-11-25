@@ -1371,6 +1371,10 @@ const roundRosters = [
     [named('Jolteon', ['Round']), named('Snorlax', ['Round'])],
     [named('Vaporeon', ['Round', 'Protect']), named('Umbreon', ['Tackle'])],
 ];
+const allySwitchRosters = [
+    [named('Rotom-Wash', ['Ally Switch', 'Recover']), named('Garchomp', ['Dragon Claw'])],
+    [named('Vaporeon', ['Water Gun']), named('Jolteon', ['Quick Attack'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2541,6 +2545,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], afterYouRosters, 'bss-after-you-fails'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 2','move 1 2, move 1 2'],
         ['move 1 1, move 1 2','move 2, move 1 2']], roundRosters, 'vgc-round-chain'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        allySwitchRosters, 'bss-ally-switch-fails'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1 1','move 1 1, move 1 2'],
+        ['move 1 2, move 1','move 1 2, move 1 1']], allySwitchRosters, 'vgc-ally-switch'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

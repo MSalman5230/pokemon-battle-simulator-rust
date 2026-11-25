@@ -1669,6 +1669,12 @@ fn round_chains_across_both_sides_even_if_the_initial_hit_is_protected() {
 }
 
 #[test]
+fn ally_switch_swaps_queued_actors_but_preserves_selected_target_slots() {
+    replay(include_str!("fixtures/vgc-ally-switch.json"));
+    replay(include_str!("fixtures/bss-ally-switch-fails.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

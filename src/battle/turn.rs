@@ -15,6 +15,13 @@ pub(super) struct Position {
 }
 
 impl Position {
+    fn other_slot(self) -> Self {
+        Self {
+            slot: 1 - self.slot,
+            ..self
+        }
+    }
+
     pub(super) fn index(self) -> usize {
         self.player.index() * 2 + self.slot
     }
@@ -857,6 +864,7 @@ impl Battle {
                 "tackle"
                     | "quickattack"
                     | "afteryou"
+                    | "allyswitch"
                     | "round"
                     | "swift"
                     | "surf"
@@ -1692,6 +1700,7 @@ impl Battle {
         party[outgoing.slot].reset_forme(rules);
         party[outgoing.slot].protection = None;
         party[outgoing.slot].stall = None;
+        party[outgoing.slot].ally_switch_stall = None;
         party[outgoing.slot].boosts = Boosts::default();
         party[outgoing.slot].stats_raised = false;
         party[outgoing.slot].flinched = false;
@@ -1879,7 +1888,7 @@ impl Battle {
                     self.mon_mut(source).acted = true;
                     self.mon_mut(source).active_move_actions += 1;
                     let recharging = move_slot == RECHARGE_SLOT || self.mon(source).recharge > 0;
-                    if self.run_move(
+                    let (attempted, source) = self.run_move(
                         source,
                         MoveInvocation::Choice {
                             slot: move_slot,
@@ -1889,7 +1898,8 @@ impl Battle {
                             round_followup: action.round_followup,
                         },
                         &mut queue,
-                    ) {
+                    );
+                    if attempted {
                         if self.mon(source).volatile_ids().contains(&"beakblast")
                             && self.move_data(source, move_slot).name == "Beak Blast"
                         {
@@ -2138,6 +2148,49 @@ impl Battle {
             .flat_map(move |player| (0..slots).map(move |slot| Position { player, slot }))
     }
 
+    fn position_after_move(&self, source: Position, roster_index: usize) -> Position {
+        if self.mon(source).roster_index == roster_index {
+            source
+        } else {
+            source.other_slot()
+        }
+    }
+
+    fn ally_switch(&mut self, source: Position, queue: &mut [Action]) {
+        let partner = source.other_slot();
+        self.add(format!(
+            "|swap|{}|{}|[from] move: Ally Switch",
+            self.ident(source),
+            partner.slot
+        ));
+        self.sides[source.player.index()]
+            .as_mut()
+            .unwrap()
+            .party
+            .swap(source.slot, partner.slot);
+        if let Some(holder) = &mut self.ability_breaker
+            && holder.player == source.player
+        {
+            *holder = holder.other_slot();
+        }
+        // Actions belong to Pokémon, but their explicit target locations and
+        // slot conditions do not (including Leech Seed and delayed attacks).
+        for action in queue {
+            if let Some(actor) = &mut action.actor
+                && actor.player == source.player
+            {
+                *actor = actor.other_slot();
+                if let ActionKind::Revive { party_slot } = &mut action.kind
+                    && *party_slot < 2
+                {
+                    *party_slot = 1 - *party_slot;
+                }
+            }
+        }
+        self.apply_replacement_heals(source);
+        self.apply_replacement_heals(partner);
+    }
+
     pub(super) fn ordered_actives(
         &mut self,
         include_fainted: bool,
@@ -2269,6 +2322,7 @@ impl Battle {
             Protect,
             Endure,
             Stall,
+            AllySwitchStall,
             Flinch,
             FocusPunch,
             ChillyReception,
@@ -2601,6 +2655,9 @@ impl Battle {
             if mon.stall.is_some() {
                 timers.push((pos, Effect::Stall, priority(0, 2)));
             }
+            if mon.ally_switch_stall.is_some() {
+                timers.push((pos, Effect::AllySwitchStall, priority(0, 2)));
+            }
             if mon.flinched {
                 timers.push((pos, Effect::Flinch, priority(0, 2)));
             }
@@ -2890,6 +2947,15 @@ impl Battle {
                         mon.untrack_volatile("stall");
                     }
                 }
+                Effect::AllySwitchStall => {
+                    mon.ally_switch_stall =
+                        mon.ally_switch_stall.and_then(|(counter, duration)| {
+                            (duration > 1).then_some((counter, duration - 1))
+                        });
+                    if mon.ally_switch_stall.is_none() {
+                        mon.untrack_volatile("allyswitch");
+                    }
+                }
                 Effect::Status => {
                     self.status_residual(pos);
                     if self.check_win() {
@@ -2911,6 +2977,7 @@ impl Battle {
                     | Effect::ChillyReception
                     | Effect::Counter => true,
                     Effect::Stall => mon.stall.is_none(),
+                    Effect::AllySwitchStall => mon.ally_switch_stall.is_none(),
                     Effect::Charge | Effect::SemiInvulnerableTimer => mon.charge.is_none(),
                     Effect::Rampage => mon.rampage.is_none(),
                     Effect::Uproar => uproar_expired,
@@ -2995,9 +3062,11 @@ impl Battle {
         source: Position,
         invocation: MoveInvocation,
         queue: &mut Vec<Action>,
-    ) -> bool {
+    ) -> (bool, Position) {
+        let roster_index = self.mon(source).roster_index;
         let mut result = MoveResult::default();
         let attempted = self.run_move_inner(source, invocation, queue, &mut result);
+        let source = self.position_after_move(source, roster_index);
         if result.spends_charge {
             self.use_electric_charge(source);
         }
@@ -3010,7 +3079,7 @@ impl Battle {
         if !matches!(invocation, MoveInvocation::Future { .. }) && !self.mon(source).fainted {
             self.mon_mut(source).move_failed_this_turn = result.failed || !attempted;
         }
-        attempted
+        (attempted, source)
     }
 
     fn run_move_inner(
@@ -3621,7 +3690,7 @@ impl Battle {
                 self.unsupported_called_move = Some(&called.move_data.name);
                 return true;
             }
-            self.run_move(
+            let (_, source) = self.run_move(
                 source,
                 MoveInvocation::SleepTalk {
                     slot: called_slot,
@@ -3681,6 +3750,42 @@ impl Battle {
             })
         {
             Self::promote_move(queue, index, true);
+        }
+        if move_data.name == "Ally Switch" {
+            let stall = self
+                .mon(source)
+                .ally_switch_stall
+                .map_or(1, |(counter, _)| counter);
+            if stall > 1 {
+                if self.format.report_exact_hp {
+                    self.add(format!(
+                        "|debug|Ally Switch success chance: {}%",
+                        (100 + stall / 2) / stall
+                    ));
+                }
+                if !self.rng.chance(1, u32::from(stall)) {
+                    let mon = self.mon_mut(source);
+                    mon.ally_switch_stall = None;
+                    mon.untrack_volatile("allyswitch");
+                    self.move_still(base);
+                    self.add(format!("|-fail|{source_name}"));
+                    result.failed = true;
+                    return true;
+                }
+            }
+            let mon = self.mon_mut(source);
+            mon.ally_switch_stall = Some(((stall * 3).min(729), 2));
+            mon.track_volatile("allyswitch");
+            self.protean_prepare(source, move_type);
+            if self.slots() == 1 || self.mon(source.other_slot()).fainted {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}|move: Ally Switch"));
+            } else {
+                self.ally_switch(source, queue);
+                self.each_event();
+                self.each_event();
+            }
+            return true;
         }
         if move_data.name == "Stuff Cheeks" && !self.has_held_berry(source) {
             self.move_still(base);
@@ -6518,6 +6623,7 @@ impl Battle {
         mon.pivot_move = None;
         mon.reviving = false;
         mon.stall = None;
+        mon.ally_switch_stall = None;
         mon.protection = None;
         mon.flinched = false;
         mon.lost_focus = false;
