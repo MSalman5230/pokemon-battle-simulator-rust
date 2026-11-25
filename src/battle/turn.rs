@@ -3171,7 +3171,7 @@ impl Battle {
                 {
                     power *= 2;
                 }
-                let value = battle.regular_hit(
+                battle.regular_hit(
                     source,
                     target,
                     move_data,
@@ -3189,8 +3189,7 @@ impl Battle {
                         screen_handlers,
                         roll: None,
                     },
-                );
-                value
+                )
             };
             // TryPrimaryHit handles each shield first, before the ordinary
             // spread calculations consume any critical or damage draws.

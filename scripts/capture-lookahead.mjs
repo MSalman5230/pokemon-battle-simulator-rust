@@ -40,6 +40,15 @@ const fragile = world([11, 3, 5, 18], [[5, 6, 1, 12]]);
 fragile.input.sides[1].pokemon[0].hp = 1;
 const injuredObservation = structuredClone(observation);
 injuredObservation.opponent.find(m => m.active).hp = 0.01;
+const shield = world([12, 34, 56, 78], [[7, 2, 3, 4]]);
+const next = shield.input.sides[0].pokemon[1];
+shield.input.sides[0].volatiles.push({id: 'substitute', source: next.identity});
+// A named bench source has no current field slot in singles. It must not
+// redirect the residual damage to the currently active Pokémon.
+shield.input.sides[1].volatiles.push({id: 'leechseed', source_side: 'me', source: next.identity});
+const hazardOrder = world([4, 30, 512, 100], [[1, 2, 3, 8]]);
+hazardOrder.input.sides[0].conditions = {toxicspikes: 1, stealthrock: 1, spikes: 2};
+hazardOrder.input.sides[0].pokemon[1].hp = 1;
 const cases = [
     {name: 'paired pivots and basic attacks', input: {observation, worlds: [pivot, confusion], candidates: [3, 1, 8],
         replies: 2, reply_probabilities: {'move:earthquake': 1}}},
@@ -47,6 +56,10 @@ const cases = [
         replies: 1, reply_probabilities: {}}},
     {name: 'replace a fainted opponent using its healthiest legal bench', input: {observation: injuredObservation,
         worlds: [fragile], candidates: [0], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
+    {name: 'restore Substitute from its owner and Leech Seed from a named bench source', input: {observation,
+        worlds: [shield], candidates: [1], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
+    {name: 'preserve insertion order for hazards on replacement', input: {observation,
+        worlds: [hazardOrder], candidates: [8], replies: 1, reply_probabilities: {'move:earthquake': 1}}},
 ];
 for (const c of cases) c.expected = lookahead(c.input, Game, PublicState);
 assert(cases[0].expected.errors.length === 0, JSON.stringify(cases[0].expected.errors));
@@ -54,5 +67,7 @@ assert(cases[0].expected.rows.some(row => row.continuations > 0), 'fixture must 
 assert(cases[0].expected.rows.some(row => row.assumptions.length > 0), 'fixture must report reconstruction assumptions');
 assert(cases[2].expected.rows.some(row => row.continuations > 0 && row.observation.faints[1].length > 0),
     'fixture must exercise replacement after a faint');
+assert(cases[3].expected.rows.some(row => row.assumptions.some(a => a.fact === 'substitute HP')));
+assert(cases[4].expected.rows.some(row => row.observation.faints[0].length > 0));
 writeFileSync(new URL('../tests/fixtures/lookahead.json', import.meta.url),
     `{"revision":${JSON.stringify(revision)},"cases":[\n${cases.map(c => JSON.stringify(c)).join(',\n')}\n]}\n`);

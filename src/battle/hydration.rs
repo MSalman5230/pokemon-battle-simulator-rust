@@ -7,7 +7,7 @@ use super::{
     *,
 };
 use serde::Deserialize;
-use serde_json::{Value, json};
+use serde_json::{Map, Value, json};
 use std::collections::BTreeMap;
 
 #[derive(Deserialize)]
@@ -35,7 +35,7 @@ pub(crate) struct WorldSide {
     #[serde(default)]
     boosts: BTreeMap<String, i8>,
     #[serde(default)]
-    conditions: BTreeMap<String, u8>,
+    conditions: Map<String, Value>,
     #[serde(default)]
     volatiles: Vec<WorldVolatile>,
 }
@@ -83,6 +83,7 @@ struct WorldObservation {
     charging: Option<Charging>,
     protect_streak: u8,
     protect_turn: Option<u32>,
+    substitute_hp: Option<u32>,
 }
 
 #[derive(Deserialize)]
@@ -102,6 +103,7 @@ struct WorldVolatile {
     move_name: Option<String>,
     #[serde(alias = "sourceSide")]
     source_side: Option<String>,
+    source: Option<String>,
 }
 
 #[derive(Deserialize)]
@@ -187,7 +189,11 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             };
             pokemon.active_move_actions = u32::from(j == 0 && !side.fresh);
         }
-        for (id, &value) in &side.conditions {
+        for (id, value) in &side.conditions {
+            let value = value
+                .as_u64()
+                .and_then(|count| u8::try_from(count).ok())
+                .ok_or_else(|| unsupported(format!("side condition {id} count")))?;
             match id.as_str() {
                 "reflect" => native.screens[Screen::Reflect as usize] = value,
                 "lightscreen" => native.screens[Screen::Light as usize] = value,
@@ -213,7 +219,7 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
     }
     for (player, side) in Player::ALL.into_iter().zip(&input.sides) {
         let p = battle.mon_mut(Position { player, slot: 0 });
-        side.restore_active(player, p, input.turn, &mut assumptions)?;
+        side.restore_active(player, p, &input.sides, input.turn, &mut assumptions)?;
     }
     battle.weather = match input.field.weather.as_str() {
         "" => None,
@@ -324,6 +330,7 @@ impl WorldSide {
         &self,
         player: Player,
         mon: &mut Pokemon,
+        sides: &[WorldSide; 2],
         turn: u32,
         assumptions: &mut Vec<Value>,
     ) -> Result<(), BattleError> {
@@ -377,11 +384,43 @@ impl WorldSide {
                         None => player.foe(),
                         _ => return Err(unsupported("Leech Seed source side")),
                     };
+                    let slot = e
+                        .source
+                        .as_ref()
+                        .and_then(|name| {
+                            sides[source.index()]
+                                .pokemon
+                                .iter()
+                                .position(|p| &p.identity == name)
+                        })
+                        .unwrap_or(0);
                     mon.seeded_from = Some(Position {
                         player: source,
-                        slot: 0,
+                        slot,
                     });
                     mon.track_volatile("leechseed");
+                }
+                "substitute" => {
+                    let owner = e
+                        .source
+                        .as_ref()
+                        .and_then(|name| self.pokemon.iter().find(|p| &p.identity == name))
+                        .unwrap_or(&self.pokemon[0]);
+                    let hp = self
+                        .observation
+                        .substitute_hp
+                        .unwrap_or(owner.maxhp.get() / 4);
+                    if hp == 0 {
+                        return Err(unsupported("nonpositive Substitute HP"));
+                    }
+                    if self.observation.substitute_hp.is_none() {
+                        assumptions.push(
+                            json!({"fact":"substitute HP", "species":self.pokemon[0].identity,
+                            "source":owner.identity, "assumed":hp}),
+                        );
+                    }
+                    mon.substitute_hp = hp;
+                    mon.track_volatile("substitute");
                 }
                 "yawn" => {
                     // The reference assumes a same-side source unless the input

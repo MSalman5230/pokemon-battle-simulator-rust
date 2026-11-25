@@ -18,7 +18,7 @@ impl Battle {
         let Some(source) = self.mon(target).seeded_from else {
             return;
         };
-        if self.mon(source).hp == 0 {
+        if source.slot >= self.format.game_type.active_slots() || self.mon(source).hp == 0 {
             if self.format.report_exact_hp {
                 self.add("|debug|Nothing to leech into");
             }
