@@ -16,6 +16,7 @@ mod attract;
 mod disable;
 mod hazards;
 mod items;
+mod leech;
 mod mega;
 mod multihit;
 mod rampage;
@@ -31,7 +32,7 @@ mod weather;
 pub use status::Status;
 use std::{error::Error, fmt, num::NonZeroU32};
 pub use terrain::Terrain;
-use turn::{Action, FoeHit};
+use turn::{Action, FoeHit, Position};
 pub use weather::Weather;
 
 #[derive(Debug, PartialEq, Eq)]
@@ -189,6 +190,7 @@ pub struct Pokemon {
     acted: bool,
     gender: u8,
     yawn: u8,
+    seeded_from: Option<Position>,
     taunt: u8,
     encore: Option<(usize, u8)>,
     revealed_disables: u32,
@@ -726,6 +728,7 @@ impl Pokemon {
             acted: false,
             gender: gender.as_bytes()[0],
             yawn: 0,
+            seeded_from: None,
             taunt: 0,
             encore: None,
             revealed_disables: 0,

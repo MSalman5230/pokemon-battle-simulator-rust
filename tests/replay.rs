@@ -390,3 +390,8 @@ fn vgc_follow_me_preempts_ability_redirection_and_powder_respects_typing() {
 fn bss_conditional_secondaries_follow_same_turn_boosts_and_sample_status() {
     replay(include_str!("fixtures/bss-conditional-secondary.json"));
 }
+
+#[test]
+fn bss_leech_seed_heals_the_replacement_in_the_seeders_slot() {
+    replay(include_str!("fixtures/bss-leech-seed.json"));
+}

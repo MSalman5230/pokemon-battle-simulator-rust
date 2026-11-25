@@ -748,6 +748,7 @@ impl Battle {
                     | "ragepowder"
                     | "alluringvoice"
                     | "direclaw"
+                    | "leechseed"
             )
         {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
@@ -977,6 +978,7 @@ impl Battle {
         party[outgoing.slot].roosted = false;
         party[outgoing.slot].temporary_type = None;
         party[outgoing.slot].yawn = 0;
+        party[outgoing.slot].seeded_from = None;
         party[outgoing.slot].taunt = 0;
         party[outgoing.slot].encore = None;
         party[outgoing.slot].attract = None;
@@ -1253,6 +1255,7 @@ impl Battle {
             SpeedBoost,
             Roost,
             Yawn,
+            LeechSeed,
             Taunt,
             Encore,
             Disable,
@@ -1350,6 +1353,9 @@ impl Battle {
             if mon.yawn > 0 {
                 timers.push((pos, Effect::Yawn, priority(23, 2)));
             }
+            if mon.seeded_from.is_some() {
+                timers.push((pos, Effect::LeechSeed, priority(8, 2)));
+            }
             if mon.roosted {
                 timers.push((pos, Effect::Roost, priority(25, 2)));
             }
@@ -1416,6 +1422,12 @@ impl Battle {
                 }
                 Effect::GrassyHeal => self.grassy_heal(pos),
                 Effect::Yawn => self.tick_yawn(pos),
+                Effect::LeechSeed => {
+                    self.tick_leech_seed(pos);
+                    if self.check_win() {
+                        return;
+                    }
+                }
                 Effect::Disable => self.tick_disable(pos),
                 Effect::Taunt => self.tick_taunt(pos),
                 Effect::Encore => self.tick_encore(pos),
@@ -1946,6 +1958,7 @@ impl Battle {
                 || (move_data.flags.contains_key("powder")
                     && source != pos
                     && self.status_immune(pos, "powder"))
+                || (move_data.name == "Leech Seed" && self.mon(pos).has_type("Grass"))
             {
                 self.add(format!("|-immune|{}", self.ident(pos)));
                 false
@@ -1997,6 +2010,14 @@ impl Battle {
         if move_data.category == Category::Status {
             let mut succeeded = false;
             for target in spread_targets {
+                if move_data.name == "Leech Seed" {
+                    if self.leech_seed(source, target) {
+                        succeeded = true;
+                    } else {
+                        self.log[base].public = format!("|move|{source_name}|Leech Seed||[still]");
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                }
                 if move_data.name == "Tidy Up" {
                     let removed = self.tidy_hazards(source);
                     let raised =
@@ -2673,6 +2694,7 @@ impl Battle {
         mon.roosted = false;
         mon.temporary_type = None;
         mon.yawn = 0;
+        mon.seeded_from = None;
         mon.taunt = 0;
         mon.encore = None;
         mon.attract = None;

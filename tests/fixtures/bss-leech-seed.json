@@ -1,0 +1,2719 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Tangrowth\",\"moves\":[\"Leech Seed\",\"Recover\"],\"gender\":\"F\",\"name\":\"Tangrowth\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"No Guard\"},{\"species\":\"Swampert\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Swampert\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Clefable\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Clefable\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Magic Guard\"},{\"species\":\"Vileplume\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Vileplume\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Tangrowth, L50, F|",
+          "|poke|p1|Swampert, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|poke|p2|Vileplume, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Tangrowth, L50, F|",
+          "|poke|p1|Swampert, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|poke|p2|Vileplume, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Tangrowth, L50, F|",
+          "|poke|p1|Swampert, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Clefable, L50, F|",
+          "|poke|p2|Vileplume, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tangrowth",
+                "details": "Tangrowth, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 145,
+                  "spa": 130,
+                  "spd": 70,
+                  "spe": 70
+                },
+                "moves": [
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Swampert",
+                "details": "Swampert, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 110,
+                  "spa": 105,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tangrowth",
+            "species": "Tangrowth",
+            "details": "Tangrowth, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 145,
+              "spa": 130,
+              "spd": 70,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "leechseed",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Swampert",
+            "species": "Swampert",
+            "details": "Swampert, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 110,
+              "spa": 105,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 123"
+      ],
+      "turn": 1,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Tangrowth|Tangrowth, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Tangrowth|Tangrowth, L50, F|175/175",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|3",
+          "|start",
+          "|switch|p1a: Tangrowth|Tangrowth, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leech Seed",
+                  "id": "leechseed",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tangrowth",
+                "details": "Tangrowth, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 145,
+                  "spa": 130,
+                  "spd": 70,
+                  "spe": 70
+                },
+                "moves": [
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Swampert",
+                "details": "Swampert, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 110,
+                  "spa": 105,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tangrowth",
+            "species": "Tangrowth",
+            "details": "Tangrowth, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 145,
+              "spa": 130,
+              "spd": 70,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "leechseed",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Swampert",
+            "species": "Swampert",
+            "details": "Swampert, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 110,
+              "spa": 105,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Tangrowth",
+          "|-damage|p1a: Tangrowth|94/100",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Umbreon",
+          "|-start|p2a: Umbreon|move: Leech Seed",
+          "|",
+          "|-damage|p2a: Umbreon|87/100|[from] Leech Seed|[of] p1a: Tangrowth",
+          "|-heal|p1a: Tangrowth|100/100|[silent]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Tangrowth",
+          "|-damage|p1a: Tangrowth|165/175",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Umbreon",
+          "|-start|p2a: Umbreon|move: Leech Seed",
+          "|",
+          "|-damage|p2a: Umbreon|87/100|[from] Leech Seed|[of] p1a: Tangrowth",
+          "|-heal|p1a: Tangrowth|175/175|[silent]",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Tackle|p1a: Tangrowth",
+          "|-damage|p1a: Tangrowth|94/100",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Umbreon",
+          "|-start|p2a: Umbreon|move: Leech Seed",
+          "|",
+          "|-damage|p2a: Umbreon|149/170|[from] Leech Seed|[of] p1a: Tangrowth",
+          "|-heal|p1a: Tangrowth|100/100|[silent]",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leech Seed",
+                  "id": "leechseed",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tangrowth",
+                "details": "Tangrowth, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 145,
+                  "spa": 130,
+                  "spd": 70,
+                  "spe": 70
+                },
+                "moves": [
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Swampert",
+                "details": "Swampert, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 110,
+                  "spa": 105,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "149/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tangrowth",
+            "species": "Tangrowth",
+            "details": "Tangrowth, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 145,
+              "spa": 130,
+              "spd": 70,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "leechseed",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Swampert",
+            "species": "Swampert",
+            "details": "Swampert, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 110,
+              "spa": 105,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 149,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Swampert|Swampert, L50, F|100/100",
+          "|move|p2a: Umbreon|Tackle|p1a: Swampert",
+          "|-damage|p1a: Swampert|92/100",
+          "|",
+          "|-damage|p2a: Umbreon|75/100|[from] Leech Seed|[of] p1a: Swampert",
+          "|-heal|p1a: Swampert|100/100|[silent]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p1a: Swampert|Swampert, L50, F|175/175",
+          "|move|p2a: Umbreon|Tackle|p1a: Swampert",
+          "|-damage|p1a: Swampert|162/175",
+          "|",
+          "|-damage|p2a: Umbreon|75/100|[from] Leech Seed|[of] p1a: Swampert",
+          "|-heal|p1a: Swampert|175/175|[silent]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p1a: Swampert|Swampert, L50, F|100/100",
+          "|move|p2a: Umbreon|Tackle|p1a: Swampert",
+          "|-damage|p1a: Swampert|92/100",
+          "|",
+          "|-damage|p2a: Umbreon|128/170|[from] Leech Seed|[of] p1a: Swampert",
+          "|-heal|p1a: Swampert|100/100|[silent]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Swampert",
+                "details": "Swampert, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 110,
+                  "spa": 105,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Tangrowth",
+                "details": "Tangrowth, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 120,
+                  "def": 145,
+                  "spa": 130,
+                  "spd": 70,
+                  "spe": 70
+                },
+                "moves": [
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "128/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Swampert",
+            "species": "Swampert",
+            "details": "Swampert, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 110,
+              "spa": 105,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Tangrowth",
+            "species": "Tangrowth",
+            "details": "Tangrowth, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 145,
+              "spa": 130,
+              "spd": 70,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "leechseed",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 128,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 switch 2"
+      ],
+      "turn": 4,
+      "seed": "54274,43667,37867,24894",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Clefable|Clefable, L50, F|100/100",
+          "|switch|p1a: Tangrowth|Tangrowth, L50, F|100/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Clefable|Clefable, L50, F|100/100",
+          "|switch|p1a: Tangrowth|Tangrowth, L50, F|175/175",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p2a: Clefable|Clefable, L50, F|170/170",
+          "|switch|p1a: Tangrowth|Tangrowth, L50, F|100/100",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leech Seed",
+                  "id": "leechseed",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tangrowth",
+                "details": "Tangrowth, L50, F",
+                "condition": "175/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 145,
+                  "spa": 130,
+                  "spd": 70,
+                  "spe": 70
+                },
+                "moves": [
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Swampert",
+                "details": "Swampert, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 110,
+                  "spa": 105,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "128/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tangrowth",
+            "species": "Tangrowth",
+            "details": "Tangrowth, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 145,
+              "spa": 130,
+              "spd": 70,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "leechseed",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Swampert",
+            "species": "Swampert",
+            "details": "Swampert, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 110,
+              "spa": 105,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 128,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 5,
+      "seed": "14735,5508,9502,51264",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Clefable|Tackle|p1a: Tangrowth",
+          "|-damage|p1a: Tangrowth|93/100",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Clefable",
+          "|-start|p2a: Clefable|move: Leech Seed",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Clefable|Tackle|p1a: Tangrowth",
+          "|-damage|p1a: Tangrowth|164/175",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Clefable",
+          "|-start|p2a: Clefable|move: Leech Seed",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p2a: Clefable|Tackle|p1a: Tangrowth",
+          "|-damage|p1a: Tangrowth|93/100",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Clefable",
+          "|-start|p2a: Clefable|move: Leech Seed",
+          "|",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leech Seed",
+                  "id": "leechseed",
+                  "pp": 10,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tangrowth",
+                "details": "Tangrowth, L50, F",
+                "condition": "164/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 145,
+                  "spa": 130,
+                  "spd": 70,
+                  "spe": 70
+                },
+                "moves": [
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Swampert",
+                "details": "Swampert, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 110,
+                  "spa": 105,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "128/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": false,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tangrowth",
+            "species": "Tangrowth",
+            "details": "Tangrowth, L50, F",
+            "hp": 164,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 145,
+              "spa": 130,
+              "spd": 70,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "leechseed",
+                "pp": 10,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Swampert",
+            "species": "Swampert",
+            "details": "Swampert, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 110,
+              "spa": 105,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 128,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 3"
+      ],
+      "turn": 6,
+      "seed": "9229,60870,33850,16231",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Vileplume|Vileplume, L50, F|100/100",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Vileplume",
+          "|-immune|p2a: Vileplume",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p2a: Vileplume|Vileplume, L50, F|100/100",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Vileplume",
+          "|-immune|p2a: Vileplume",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|switch|p2a: Vileplume|Vileplume, L50, F|150/150",
+          "|move|p1a: Tangrowth|Leech Seed|p2a: Vileplume",
+          "|-immune|p2a: Vileplume",
+          "|",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Leech Seed",
+                  "id": "leechseed",
+                  "pp": 9,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Tangrowth",
+                "details": "Tangrowth, L50, F",
+                "condition": "164/175",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 145,
+                  "spa": 130,
+                  "spd": 70,
+                  "spe": 70
+                },
+                "moves": [
+                  "leechseed",
+                  "recover"
+                ],
+                "baseAbility": "noguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "noguard",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Swampert",
+                "details": "Swampert, L50, F",
+                "condition": "175/175",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 110,
+                  "spa": 105,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Vileplume",
+                "details": "Vileplume, L50, F",
+                "condition": "150/150",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 105,
+                  "spa": 130,
+                  "spd": 110,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "128/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Clefable",
+                "details": "Clefable, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 90,
+                  "def": 93,
+                  "spa": 115,
+                  "spd": 110,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "magicguard",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "magicguard",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Tangrowth",
+            "species": "Tangrowth",
+            "details": "Tangrowth, L50, F",
+            "hp": 164,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 145,
+              "spa": 130,
+              "spd": 70,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "noguard",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "leechseed",
+                "pp": 9,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Swampert",
+            "species": "Swampert",
+            "details": "Swampert, L50, F",
+            "hp": 175,
+            "maxhp": 175,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 110,
+              "spa": 105,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Vileplume",
+            "species": "Vileplume",
+            "details": "Vileplume, L50, F",
+            "hp": 150,
+            "maxhp": 150,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 105,
+              "spa": 130,
+              "spd": 110,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 128,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Clefable",
+            "species": "Clefable",
+            "details": "Clefable, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 90,
+              "def": 93,
+              "spa": 115,
+              "spd": 110,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "magicguard",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -308,6 +308,10 @@ const conditionalSecondaryRosters = [
     [named('Wigglytuff', ['Alluring Voice', 'Follow Me', 'Dire Claw', 'Recover']), named('Vaporeon', ['Recover'])],
     [named('Umbreon', ['Calm Mind', 'Recover']), named('Glaceon', ['Recover'])],
 ];
+const leechRosters = [
+    [{...named('Tangrowth', ['Leech Seed', 'Recover']), ability: 'No Guard'}, named('Swampert', ['Recover'])],
+    [named('Umbreon', ['Tackle']), {...named('Clefable', ['Tackle']), ability: 'Magic Guard'}, named('Vileplume', ['Tackle'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -455,6 +459,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['bssregmc', [['team 12', 'team 12'], ['move 1', 'move 1'], ['move 2', 'move 2'],
         ['move 3', 'move 2'], ['move 3', 'move 2'], ['move 3', 'move 2'], ['move 4', 'move 2']],
         conditionalSecondaryRosters, 'bss-conditional-secondary', '1,2,3,6'],
+    ['bssregmc', [['team 12', 'team 123'], ['move 1', 'move 1'], ['switch 2', 'move 1'],
+        ['switch 2', 'switch 2'], ['move 1', 'move 1'], ['move 1', 'switch 3']], leechRosters, 'bss-leech-seed'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
