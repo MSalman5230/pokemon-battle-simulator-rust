@@ -6241,6 +6241,8 @@ impl Pokemon {
                 | "powerherb"
                 | "abilityshield"
                 | "utilityumbrella"
+                | "brightpowder"
+                | "laxincense"
                 | "whiteherb"
                 | "floatstone"
                 | "blackbelt"

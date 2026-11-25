@@ -86,9 +86,22 @@ impl Battle {
             if zoom {
                 self.add("|debug|Zoom Lens boosting accuracy");
             }
+            if self.active_effects(target) {
+                match self.mon(target).effective_item() {
+                    "brightpowder" => self.add("|debug|brightpowder - decreasing accuracy"),
+                    "laxincense" => self.add("|debug|lax incense - decreasing accuracy"),
+                    _ => {}
+                }
+            }
         }
         if matches!(self.mon(source).item.as_str(), "widelens" | "zoomlens") {
             self.debug_ignored_item(source, "ModifyAccuracy");
+        }
+        if matches!(
+            self.mon(target).item.as_str(),
+            "brightpowder" | "laxincense"
+        ) {
+            self.debug_ignored_item(target, "ModifyAccuracy");
         }
     }
 
@@ -112,12 +125,18 @@ impl Battle {
             modifier = crate::mechanics::chain(modifier, 2048);
         }
         if zoom {
-            crate::mechanics::chain(modifier, 4915)
+            modifier = crate::mechanics::chain(modifier, 4915);
         } else if self.mon(source).effective_item() == "widelens" && self.active_effects(source) {
-            crate::mechanics::chain(modifier, 4505)
-        } else {
-            modifier
+            modifier = crate::mechanics::chain(modifier, 4505);
         }
+        if matches!(
+            self.mon(target).effective_item(),
+            "brightpowder" | "laxincense"
+        ) && self.active_effects(target)
+        {
+            modifier = crate::mechanics::chain(modifier, 3686);
+        }
+        modifier
     }
 
     fn tangled_feet(&self, target: Position) -> bool {

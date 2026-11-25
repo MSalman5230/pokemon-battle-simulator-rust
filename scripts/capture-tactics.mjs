@@ -102,6 +102,8 @@ add('Shell Side Arm takes the stronger special route', 'shellsidearm',
     mon('Slowbro-Galar', 'Own Tempo'), mon('Cloyster', 'Skill Link'));
 add('Return uses the supplied friendship', 'return', mon('Pidgeot', 'Keen Eye', '', {}, {happiness:128}), normal);
 add('Frustration at maximum friendship retains one base power', 'frustration', normal, fire);
+add('Bright Powder decreases accuracy after the attackers lens modifier', 'thunder',
+    {...electric, item:'Wide Lens'}, {...normal, item:'Bright Powder'});
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));
