@@ -72,6 +72,7 @@ pub struct Format {
     pub max_team_size: usize,
     pub max_move_count: usize,
     pub picked_team_size: Option<usize>,
+    pub best_of: Option<usize>,
     pub default_level: u16,
     pub adjust_level: Option<u16>,
     pub adjust_level_down: Option<u16>,

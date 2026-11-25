@@ -112,6 +112,7 @@ for (const f of Dex.formats.all().filter(f => /^\[Gen 9 Champions\]/.test(f.name
         name: f.name, mod: f.mod, gameType: f.gameType, generator: f.team || null,
         rules: [...r.keys()], minTeamSize: r.minTeamSize, maxTeamSize: r.maxTeamSize,
         maxMoveCount: r.maxMoveCount, pickedTeamSize: r.pickedTeamSize, defaultLevel: r.defaultLevel,
+        bestOf: r.valueRules.has('bestof') ? Number(r.valueRules.get('bestof')) : undefined,
         adjustLevel: r.adjustLevel, adjustLevelDown: r.adjustLevelDown, maxLevel: r.maxLevel,
         unboundedTruncation: !!f.battle?.trunc, reportExactHp: !!f.debug, ruleLog,
     };

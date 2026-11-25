@@ -62,7 +62,7 @@ pub struct Start {
     pub force_random_chance: Option<bool>,
 }
 
-#[derive(Debug, Default, Deserialize)]
+#[derive(Debug, Clone, Default, Deserialize)]
 #[serde(default)]
 pub struct PlayerOptions {
     pub name: String,
@@ -73,14 +73,14 @@ pub struct PlayerOptions {
     pub seed: Option<Seed>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Deserialize)]
 #[serde(untagged)]
 pub enum Team {
     Sets(Vec<Set>),
     Packed(String),
 }
 
-#[derive(Debug, Default, PartialEq, Eq, Deserialize)]
+#[derive(Debug, Clone, Default, PartialEq, Eq, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
 pub struct Set {
     pub name: String,
