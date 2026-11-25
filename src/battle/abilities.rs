@@ -1078,20 +1078,30 @@ impl Battle {
                 let mon = self.mon(candidate);
                 candidate.player != source.player
                     && mon.hp > 0
-                    && mon.attention.is_some_and(|kind| {
-                        kind != Attention::RagePowder || !self.status_immune(source, "powder")
-                    })
+                    && (mon.under(super::field_effects::LegacyCondition::Spotlight)
+                        || mon.attention.is_some_and(|kind| {
+                            kind != Attention::RagePowder || !self.status_immune(source, "powder")
+                        }))
                     && move_data
                         .target
                         .valid_location(2, source.slot as u8, candidate.loc(source))
             })
             .min_by_key(|&candidate| {
                 let mon = self.mon(candidate);
-                (std::cmp::Reverse(mon.speed), mon.ability_order)
+                (
+                    !mon.under(super::field_effects::LegacyCondition::Spotlight),
+                    std::cmp::Reverse(mon.speed),
+                    mon.ability_order,
+                )
             })
         {
             if self.format.report_exact_hp {
-                let (name, _) = self.mon(follower).attention.unwrap().name_id();
+                let mon = self.mon(follower);
+                let name = if mon.under(super::field_effects::LegacyCondition::Spotlight) {
+                    "Spotlight"
+                } else {
+                    mon.attention.unwrap().name_id().0
+                };
                 self.add(format!("|debug|{name} redirected target of move"));
             }
             return Some(follower);

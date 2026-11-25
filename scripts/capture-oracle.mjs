@@ -1780,6 +1780,14 @@ const legacyPowderRosters = [
     [named('Vivillon', ['Powder', 'Recover'])],
     [{...named('Torkoal', ['Ember', 'Sunny Day', 'Recover']), evs:{hp:2}}],
 ];
+const legacyCraftyRosters = [
+    [named('Smeargle', ['Crafty Shield', 'Spotlight']), named('Chansey', ['Follow Me', 'Recover'])],
+    [named('Porygon2', ['Thunder Wave', 'Tackle']), named('Jolteon', ['Tackle'])],
+];
+const legacyMatBlockRosters = [
+    [named('Greninja', ['Mat Block', 'Protect']), named('Shuckle', ['Recover'])],
+    [named('Chansey', ['Seismic Toss', 'Growl']), named('Snorlax', ['Tackle'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3172,6 +3180,11 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','move 1'], ['move 4','move 1']], legacyTelekinesisRosters, 'custom-telekinesis-and-gravity'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 1','move 3'],
         ['move 2','move 2']], legacyPowderRosters, 'custom-powder-fire-moves'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 2','move 1 1, move 1 2'],
+        ['move 2 -2, move 2','move 2 1, move 1 1'], ['move 2 -2, move 1','move 2 1, move 1 1']],
+        legacyCraftyRosters, 'custom-crafty-shield-and-spotlight'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1 1, move 1 2'],
+        ['move 1, move 1','move 2, move 1 2']], legacyMatBlockRosters, 'custom-mat-block-first-action'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

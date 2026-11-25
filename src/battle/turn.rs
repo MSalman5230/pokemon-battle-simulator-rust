@@ -1221,6 +1221,9 @@ impl Battle {
                     | "embargo"
                     | "powder"
                     | "mist"
+                    | "craftyshield"
+                    | "matblock"
+                    | "spotlight"
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
@@ -4727,11 +4730,17 @@ impl Battle {
                     ActionKind::Move { .. } | ActionKind::Switch { .. }
                 )
             });
-            if more_actions && self.start_side_guard(source, guard) {
-                let mon = self.mon_mut(source);
-                let stall = mon.stall.map_or(1, |(counter, _)| counter);
-                mon.track_volatile("stall");
-                mon.stall = Some(((stall * 3).min(729), 2));
+            let too_late = guard == SideGuard::MatBlock && self.mon(source).active_move_actions > 1;
+            if too_late {
+                self.add("|-hint|Mat Block only works on your first turn out.");
+            }
+            if !too_late && more_actions && self.start_side_guard(source, guard) {
+                if guard.grows_stall() {
+                    let mon = self.mon_mut(source);
+                    let stall = mon.stall.map_or(1, |(counter, _)| counter);
+                    mon.track_volatile("stall");
+                    mon.stall = Some(((stall * 3).min(729), 2));
+                }
             } else {
                 self.move_still(base);
                 self.add(format!("|-fail|{source_name}"));
@@ -5225,18 +5234,24 @@ impl Battle {
         let mut protected = 0;
         let mut bypassed = 0;
         spread_targets.retain(|&mut_pos| {
-            if (damaging_z || move_data.flags.contains_key("protect"))
-                && let Some(guard) = self.blocking_side_guard(mut_pos.player, kind, priority)
+            if let Some(guard) =
+                self.blocking_side_guard(mut_pos.player, move_data, kind, priority, damaging_z)
             {
-                if damaging_z && !move_data.flags.contains_key("protect")
-                    || matches!(self.event_ability(source), "unseenfist" | "piercingdrill")
-                        && contact
+                if guard.checks_protect()
+                    && (damaging_z && !move_data.flags.contains_key("protect")
+                        || matches!(self.event_ability(source), "unseenfist" | "piercingdrill")
+                            && contact)
                 {
                     bypassed |= mut_pos.mask();
                 } else {
                     protected += 1;
+                    let move_label = if guard == SideGuard::MatBlock {
+                        format!("|{}", move_data.name)
+                    } else {
+                        String::new()
+                    };
                     self.add(format!(
-                        "|-activate|{}|move: {}",
+                        "|-activate|{}|move: {}{move_label}",
                         self.ident(mut_pos),
                         guard.name()
                     ));
@@ -5787,7 +5802,11 @@ impl Battle {
                             succeeded = self.start_heal_block(target, 5);
                         }
                     }
-                    "Telekinesis" | "Embargo" | "Powder" => {
+                    "Spotlight" if self.slots() == 1 => {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    }
+                    "Telekinesis" | "Embargo" | "Powder" | "Spotlight" => {
                         let condition = LegacyCondition::for_move(&move_data.name);
                         match self.start_legacy_condition(target, condition) {
                             Some(true) => succeeded = true,

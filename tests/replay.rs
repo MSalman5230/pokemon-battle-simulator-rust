@@ -1964,6 +1964,14 @@ fn inherited_conditions_control_items_stats_accuracy_and_fire() {
 }
 
 #[test]
+fn inherited_guards_and_spotlight_apply_at_native_priority() {
+    replay(include_str!(
+        "fixtures/custom-crafty-shield-and-spotlight.json"
+    ));
+    replay(include_str!("fixtures/custom-mat-block-first-action.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

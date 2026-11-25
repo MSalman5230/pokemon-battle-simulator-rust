@@ -1,12 +1,14 @@
 //! Side protection against attacks and status effects.
 
 use super::{turn::Position, *};
-use crate::choice::TargetKind;
+use crate::{choice::TargetKind, dex::Category};
 
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub(super) enum SideGuard {
     Wide,
     Quick,
+    Crafty,
+    MatBlock,
 }
 
 impl SideGuard {
@@ -14,6 +16,8 @@ impl SideGuard {
         Some(match name {
             "Wide Guard" => Self::Wide,
             "Quick Guard" => Self::Quick,
+            "Crafty Shield" => Self::Crafty,
+            "Mat Block" => Self::MatBlock,
             _ => return None,
         })
     }
@@ -22,13 +26,28 @@ impl SideGuard {
         match self {
             Self::Wide => "Wide Guard",
             Self::Quick => "Quick Guard",
+            Self::Crafty => "Crafty Shield",
+            Self::MatBlock => "Mat Block",
         }
     }
 
-    fn blocks(self, kind: TargetKind, priority: i8) -> bool {
+    pub(super) fn checks_protect(self) -> bool {
+        self != Self::Crafty
+    }
+
+    pub(super) fn grows_stall(self) -> bool {
+        matches!(self, Self::Wide | Self::Quick)
+    }
+
+    fn blocks(self, data: &Move, kind: TargetKind, priority: i8) -> bool {
         match self {
             Self::Wide => matches!(kind, TargetKind::AllAdjacent | TargetKind::AllAdjacentFoes),
             Self::Quick => priority > 0,
+            Self::Crafty => {
+                data.category == Category::Status
+                    && !matches!(kind, TargetKind::All | TargetKind::User)
+            }
+            Self::MatBlock => kind != TargetKind::User && data.category != Category::Status,
         }
     }
 }
@@ -132,8 +151,10 @@ impl Battle {
     pub(super) fn blocking_side_guard(
         &self,
         player: Player,
+        data: &Move,
         kind: TargetKind,
         priority: i8,
+        damaging_z: bool,
     ) -> Option<SideGuard> {
         self.sides[player.index()]
             .as_ref()
@@ -142,7 +163,11 @@ impl Battle {
             .iter()
             .copied()
             .flatten()
-            .find(|guard| guard.blocks(kind, priority))
+            .filter(|guard| {
+                guard.blocks(data, kind, priority)
+                    && (!guard.checks_protect() || damaging_z || data.flags.contains_key("protect"))
+            })
+            .min_by_key(|guard| !guard.grows_stall())
     }
 
     pub(super) fn clear_side_guard(&mut self, player: Player, guard: SideGuard) {
