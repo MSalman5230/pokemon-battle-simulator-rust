@@ -49,6 +49,16 @@ fn stat_berry(id: &str) -> Option<(&'static str, BoostStat)> {
     })
 }
 
+fn status_berry_matches(id: &str, status: Status) -> bool {
+    matches!(
+        (id, status),
+        ("aspearberry", Status::Freeze(_))
+            | ("cheriberry", Status::Paralysis)
+            | ("pechaberry", Status::Poison | Status::Toxic(_))
+            | ("rawstberry", Status::Burn)
+    )
+}
+
 impl Battle {
     pub(super) fn prepare_accuracy_modifiers(
         &mut self,
@@ -280,6 +290,28 @@ impl Battle {
         }
         self.pinch_stat_berry(pos);
         self.cure_with_berry(pos);
+        self.check_other_berries(pos);
+    }
+
+    fn check_other_berries(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        let id = mon.effective_item();
+        let ready = match id {
+            "oranberry" => mon.hp * 2 <= mon.max_hp.get() && mon.heal_block == 0,
+            "persimberry" => mon.confusion > 0,
+            "leppaberry" => mon.moves.iter().any(|slot| slot.pp == 0),
+            _ => status_berry_matches(id, mon.status),
+        };
+        if !ready || mon.hp == 0 || self.foe_unnerve(pos) {
+            return;
+        }
+        let item = DEX.item(self.format.dex_mod, id).unwrap();
+        let id = id.to_owned();
+        let name = &item.effect.name;
+        self.consume(pos, name, true);
+        self.berry_effect(pos, &id, item, None);
+        self.after_eating_berry(pos, name, false);
+        self.symbiosis_after_item(pos);
     }
 
     pub(super) fn has_held_berry(&self, pos: Position) -> bool {
@@ -753,7 +785,7 @@ impl Battle {
             return;
         }
         let amount = amount.max(1)
-            * if ripen && item == "Sitrus Berry" {
+            * if ripen && item.ends_with(" Berry") {
                 2
             } else {
                 1
@@ -828,6 +860,9 @@ impl Battle {
                 let amount = self.mon(pos).max_hp.get() / 4;
                 self.item_heal_from(pos, amount, &item.effect.name, source);
             }
+            "oranberry" => self.item_heal_from(pos, 10, &item.effect.name, source),
+            "persimberry" if self.mon(pos).confusion > 0 => self.cure_confusion(pos),
+            "leppaberry" => self.replenish_pp_with_leppa(pos),
             "lumberry" => {
                 self.cure_status(pos, "[msg]");
                 if self.mon(pos).confusion > 0 {
@@ -837,12 +872,36 @@ impl Battle {
             "chestoberry" if matches!(self.mon(pos).status, Status::Sleep(_)) => {
                 self.cure_status(pos, "[msg]")
             }
+            id if status_berry_matches(id, self.mon(pos).status) => self.cure_status(pos, "[msg]"),
             _ => {
                 if let Some((name, stat)) = stat_berry(id) {
                     self.apply_stat_berry(pos, name, stat);
                 }
             }
         }
+    }
+
+    fn replenish_pp_with_leppa(&mut self, pos: Position) {
+        let amount = if self.event_ability(pos) == "ripen" {
+            20
+        } else {
+            10
+        };
+        let slots = &mut self.mon_mut(pos).moves;
+        let Some(slot) = slots
+            .iter()
+            .position(|m| m.pp == 0)
+            .or_else(|| slots.iter().position(|m| m.pp < m.max_pp))
+        else {
+            return;
+        };
+        let slot = &mut slots[slot];
+        slot.pp = (slot.pp + amount).min(slot.max_pp);
+        let name = &slot.move_data.name;
+        self.add(format!(
+            "|-activate|{}|item: Leppa Berry|{name}|[consumed]",
+            self.ident(pos)
+        ));
     }
 
     pub(super) fn consume(&mut self, pos: Position, item: &str, eaten: bool) {

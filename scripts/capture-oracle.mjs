@@ -1411,6 +1411,18 @@ const copycatChargeRosters = [
     [named('Jolteon', ['Copycat', 'Recover'])],
     [named('Vaporeon', ['Dig', 'Recover'])],
 ];
+const statusBerryRosters = (item, move) => [
+    [named('Gengar', [move])],
+    [{...named('Vaporeon', ['Recover']), item}],
+];
+const oranBerryRosters = [
+    [named('Raticate', ['Super Fang'])],
+    [{...named('Appletun', ['Tackle']), item:'Oran Berry', ability:'Ripen', evs:{hp:1}}],
+];
+const leppaBerryRosters = [
+    [named('Dragapult', ['Spite', 'Leer'])],
+    [{...named('Appletun', ['Recover']), item:'Leppa Berry', ability:'Ripen'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2606,6 +2618,15 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         copycatRosters, 'bss-copycat'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1'], ['move 1','move 2']],
         copycatChargeRosters, 'bss-copycat-charge'],
+    ...[['Cheri Berry','Glare'], ['Pecha Berry','Toxic'], ['Rawst Berry','Will-O-Wisp'], ['Persim Berry','Confuse Ray']]
+        .map(([item, move]) => ['bssregmc', [['team 1','team 1'], ['move 1','move 1']],
+            statusBerryRosters(item, move), 'bss-' + item.toLowerCase().replaceAll(' ', '-')]),
+    ['bssregmc', [['team 1','team 1'], ...Array(3).fill(['move 1','move 1'])],
+        statusBerryRosters('Aspear Berry', 'Ice Beam'), 'bss-aspear-berry', '1,2,3,13'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        oranBerryRosters, 'bss-oran-berry'],
+    ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1'], ['move 1','move 1']],
+        leppaBerryRosters, 'bss-leppa-berry'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

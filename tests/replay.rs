@@ -1713,6 +1713,21 @@ fn copycat_can_resolve_a_forced_move_absent_from_the_users_moveset() {
 }
 
 #[test]
+fn individual_status_berries_cure_only_their_status() {
+    replay(include_str!("fixtures/bss-aspear-berry.json"));
+    replay(include_str!("fixtures/bss-cheri-berry.json"));
+    replay(include_str!("fixtures/bss-pecha-berry.json"));
+    replay(include_str!("fixtures/bss-rawst-berry.json"));
+    replay(include_str!("fixtures/bss-persim-berry.json"));
+}
+
+#[test]
+fn oran_and_leppa_berries_apply_their_own_ripened_recovery() {
+    replay(include_str!("fixtures/bss-oran-berry.json"));
+    replay(include_str!("fixtures/bss-leppa-berry.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
