@@ -1501,6 +1501,16 @@ fn dire_claw_sleep_has_no_primary_move_suffix_and_fell_stinger_boosts_on_ko() {
 }
 
 #[test]
+fn stat_split_exchanges_raw_stats_until_switch_and_stat_swap_exchanges_only_stages() {
+    replay(include_str!("fixtures/bss-stat-split-swap.json"));
+}
+
+#[test]
+fn wonder_room_swaps_base_defenses_but_uses_special_defense_stages_for_body_press() {
+    replay(include_str!("fixtures/bss-wonder-room.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -164,7 +164,12 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
     if input.format != "gen9championsbssregmc" || input.kind != "turn" || input.turn == 0 {
         return Err(unsupported("requires a simultaneous BSS move decision"));
     }
-    if input.field.extra.keys().any(|id| id != "gravity") {
+    if input
+        .field
+        .extra
+        .keys()
+        .any(|id| !matches!(id.as_str(), "gravity" | "wonderroom"))
+    {
         return Err(unsupported("extra field conditions"));
     }
     let mut battle = Battle::new(Start {
@@ -283,12 +288,17 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
         other => return Err(unsupported(format!("terrain {other}"))),
     };
     battle.trick_room = input.field.trickroom;
-    if let Some(gravity) = input.field.extra.get("gravity") {
-        battle.gravity = gravity["remaining"]
+    for (id, state) in &input.field.extra {
+        let remaining = state["remaining"]
             .as_u64()
             .and_then(|turns| u8::try_from(turns).ok())
             .filter(|turns| *turns != 0)
-            .ok_or_else(|| unsupported("Gravity duration"))?;
+            .ok_or_else(|| unsupported(format!("{id} duration")))?;
+        if id == "gravity" {
+            battle.gravity = remaining;
+        } else {
+            battle.wonder_room = remaining;
+        }
     }
     restore_delayed_effects(&mut battle, &input)?;
     battle.possible_unaware = Player::ALL.into_iter().any(|player| {

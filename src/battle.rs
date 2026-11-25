@@ -31,6 +31,7 @@ mod partial_trap;
 mod perish;
 mod rampage;
 mod screens;
+mod stat_moves;
 use charge::Charge;
 use guards::SideGuard;
 use hazards::Hazard;
@@ -170,6 +171,7 @@ pub struct Battle {
     terrain: Option<(Terrain, u8)>,
     trick_room: u8,
     gravity: u8,
+    wonder_room: u8,
     ability_order: u32,
     ability_breaker: Option<Position>,
     possible_unaware: bool,
@@ -210,6 +212,7 @@ pub struct Pokemon {
     points: SetStats,
     nature: Nature,
     pub stats: Stats,
+    stats_before_change: Option<Box<Stats>>,
     pub boosts: Boosts,
     stats_raised: bool,
     stats_lowered: bool,
@@ -463,6 +466,7 @@ impl Battle {
             terrain: None,
             trick_room: 0,
             gravity: 0,
+            wonder_room: 0,
             ability_order: 0,
             ability_breaker: None,
             possible_unaware: false,
@@ -528,11 +532,7 @@ impl Battle {
                     details: &mon.details,
                     condition: health(mon.hp, mon.max_hp, mon.status.id(), true).secret,
                     active: index < self.format.game_type.active_slots(),
-                    stats: mon
-                        .transformed
-                        .as_ref()
-                        .map_or(mon.stats, |form| form.original_stats)
-                        .into(),
+                    stats: mon.request_stats().into(),
                     moves: mon.moves.iter().map(|m| mon.request_move_id(m)).collect(),
                     base_ability: &mon.base_ability,
                     item: &mon.item,
@@ -907,6 +907,7 @@ impl Pokemon {
             points: set.evs,
             nature,
             stats,
+            stats_before_change: None,
             boosts: Boosts::default(),
             stats_raised: false,
             stats_lowered: false,

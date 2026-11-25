@@ -209,7 +209,14 @@ impl Battle {
         let damage = confusion_damage(
             mon.level,
             boosted_stat(mon.stats.atk, mon.boosts.get(BoostStat::Atk)),
-            boosted_stat(mon.stats.def, mon.boosts.get(BoostStat::Def)),
+            boosted_stat(
+                if self.wonder_room > 0 {
+                    mon.stats.spd
+                } else {
+                    mon.stats.def
+                },
+                mon.boosts.get(BoostStat::Def),
+            ),
             self.stat_rules.truncation,
             &mut self.rng,
         );

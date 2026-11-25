@@ -1192,6 +1192,14 @@ const fellStingerRosters = [
     [named('Beedrill', ['Fell Stinger'])],
     [named('Abra', ['Calm Mind']), named('Vaporeon', ['Recover'])],
 ];
+const statChangeRosters = [
+    [named('Bronzong', ['Power Split', 'Power Swap']), named('Vaporeon', ['Recover'])],
+    [named('Machamp', ['Swords Dance', 'Recover', 'Low Kick'])],
+];
+const wonderRoomRosters = [
+    [named('Steelix', ['Wonder Room', 'Amnesia', 'Body Press'])],
+    [named('Vaporeon', ['Calm Mind', 'Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -2156,6 +2164,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         intimidateSubstituteRosters, 'bss-intimidate-substitute'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], direClawSleepRosters, 'bss-dire-claw-sleep', '481,271,827,14'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], [null,'switch 2']], fellStingerRosters, 'bss-fell-stinger'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['switch 2','move 3'],
+        ['switch 2','move 2']], statChangeRosters, 'bss-stat-split-swap'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 3','move 2'],
+        ['move 1','move 2']], wonderRoomRosters, 'bss-wonder-room'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

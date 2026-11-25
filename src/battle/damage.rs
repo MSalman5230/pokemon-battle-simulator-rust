@@ -507,7 +507,11 @@ impl Battle {
                     offensive.stats.atk
                 },
                 offensive.boosts.get(if move_data.name == "Body Press" {
-                    BoostStat::Def
+                    if self.wonder_room > 0 {
+                        BoostStat::Spd
+                    } else {
+                        BoostStat::Def
+                    }
                 } else {
                     BoostStat::Atk
                 }),
@@ -516,9 +520,23 @@ impl Battle {
             (user.stats.spa, user.boosts.get(BoostStat::Spa))
         };
         let (def, mut def_stage) = if defense_uses_def {
-            (mon.stats.def, mon.boosts.get(BoostStat::Def))
+            (
+                if self.wonder_room > 0 {
+                    mon.stats.spd
+                } else {
+                    mon.stats.def
+                },
+                mon.boosts.get(BoostStat::Def),
+            )
         } else {
-            (mon.stats.spd, mon.boosts.get(BoostStat::Spd))
+            (
+                if self.wonder_room > 0 {
+                    mon.stats.def
+                } else {
+                    mon.stats.spd
+                },
+                mon.boosts.get(BoostStat::Spd),
+            )
         };
         if source != target && self.event_ability(target) == "unaware" {
             atk_stage = 0;

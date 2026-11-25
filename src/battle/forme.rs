@@ -5,6 +5,7 @@ use super::{turn::Position, *};
 impl Pokemon {
     pub(super) fn set_current_species(&mut self, species: &'static Species, rules: StatRules) {
         self.species = species;
+        self.stats_before_change = None;
         self.set_temporary_type(None);
         self.stats = Stats::map(|stat| {
             rules.stat(
@@ -19,12 +20,15 @@ impl Pokemon {
     }
 
     pub(super) fn reset_forme(&mut self, rules: StatRules) {
+        let saved_stats = self.stats_before_change.take();
         if let Some(f) = self.transformed.take() {
             self.set_current_species(self.base_species, rules);
             self.moves = f.original_moves;
-            self.stats = f.original_stats;
+            self.stats = saved_stats.map_or(f.original_stats, |stats| *stats);
         } else if !std::ptr::eq(self.species, self.base_species) {
             self.set_current_species(self.base_species, rules);
+        } else if let Some(stats) = saved_stats {
+            self.stats = *stats;
         }
     }
 }

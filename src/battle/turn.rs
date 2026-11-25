@@ -1040,6 +1040,13 @@ impl Battle {
                     | "gravapple"
                     | "steelroller"
                     | "fellstinger"
+                    | "powersplit"
+                    | "guardsplit"
+                    | "powerswap"
+                    | "guardswap"
+                    | "heartswap"
+                    | "speedswap"
+                    | "wonderroom"
                     | "electroshot"
                     | "solarbeam"
                     | "solarblade"
@@ -2175,6 +2182,7 @@ impl Battle {
             Tailwind,
             TrickRoom,
             Gravity,
+            WonderRoom,
             Terrain,
             GrassyHeal,
             AquaRing,
@@ -2222,6 +2230,20 @@ impl Battle {
                 Priority {
                     order: 27,
                     sub_order: 2,
+                    ..Priority::default()
+                },
+            ));
+        }
+        if self.wonder_room > 0 {
+            timers.push((
+                Position {
+                    player: Player::P1,
+                    slot: 0,
+                },
+                Effect::WonderRoom,
+                Priority {
+                    order: 27,
+                    sub_order: 5,
                     ..Priority::default()
                 },
             ));
@@ -2510,6 +2532,15 @@ impl Battle {
                 }
                 continue;
             }
+            if matches!(effect, Effect::WonderRoom) {
+                self.wonder_room -= 1;
+                if self.wonder_room == 0 {
+                    self.add("|-fieldend|move: Wonder Room");
+                } else if self.resolve_perish_faints(&mut perish_faints) {
+                    return;
+                }
+                continue;
+            }
             if matches!(effect, Effect::Terrain) {
                 self.tick_terrain();
                 if self.terrain.is_some() && self.resolve_perish_faints(&mut perish_faints) {
@@ -2577,6 +2608,7 @@ impl Battle {
                 | Effect::Safeguard
                 | Effect::TrickRoom
                 | Effect::Gravity
+                | Effect::WonderRoom
                 | Effect::Terrain
                 | Effect::Wish
                 | Effect::FutureMove
@@ -3147,6 +3179,9 @@ impl Battle {
         if weather_ball && self.format.report_exact_hp {
             self.add(format!("|debug|BP: {power}"));
         }
+        if move_data.name == "Body Press" && self.wonder_room > 0 {
+            self.add("|-hint|Body Press uses Def boosts when Wonder Room is active.");
+        }
         let base = if delayed {
             self.log
                 .iter()
@@ -3570,6 +3605,17 @@ impl Battle {
                         self.add(format!("|-activate|{}|move: Gravity", self.ident(target)));
                     }
                 }
+            }
+            return true;
+        }
+        if move_data.name == "Wonder Room" {
+            self.protean_prepare(source, move_type);
+            if self.wonder_room > 0 {
+                self.wonder_room = 0;
+                self.add("|-fieldend|move: Wonder Room");
+            } else {
+                self.wonder_room = 5;
+                self.add(format!("|-fieldstart|move: Wonder Room|[of] {source_name}"));
             }
             return true;
         }
@@ -4250,6 +4296,7 @@ impl Battle {
                     continue;
                 }
                 let mut succeeded = false;
+                succeeded |= self.apply_stat_move(source, target, &move_data.name);
                 if spread && life_dew {
                     hit_labels.push(target.label());
                 }
