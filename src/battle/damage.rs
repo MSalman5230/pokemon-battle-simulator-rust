@@ -213,6 +213,14 @@ impl Battle {
         if expanded && self.format.report_exact_hp {
             self.add("|debug|terrain buff");
         }
+        let source_active = self.active_effects(source);
+        let helping = self.mon(source).helping_hand;
+        let helping = (helping != 0 && source_active).then(|| 1.5_f64.powi(i32::from(helping)));
+        if let Some(multiplier) = helping
+            && self.format.report_exact_hp
+        {
+            self.add(format!("|debug|Boosting from Helping Hand: {multiplier}"));
+        }
         let terrain_power = self.terrain_power_modifier(source, target, move_data, move_type);
         let dry_skin = move_type == "Fire" && self.event_ability(target) == "dryskin";
         let misty_explosion = move_data.name == "Misty Explosion"
@@ -237,7 +245,6 @@ impl Battle {
         {
             self.add("|debug|Reckless boost");
         }
-        let source_active = self.active_effects(source);
         let stakeout = source_active
             && self.mon(source).ability == "stakeout"
             && self.mon(target).active_turns == 0;
@@ -365,6 +372,9 @@ impl Battle {
         }
         if move_data.name == "Knock Off" && mon.transferable_item(self.format.dex_mod).is_some() {
             power_modifier = crate::mechanics::chain(power_modifier, 6144);
+        }
+        if let Some(multiplier) = helping {
+            power_modifier = chain(power_modifier, (multiplier * 4096.0) as u32);
         }
         power_modifier = crate::mechanics::chain(power_modifier, terrain_power);
         let mut hit_damage = Damage {

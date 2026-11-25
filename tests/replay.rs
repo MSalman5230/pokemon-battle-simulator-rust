@@ -993,6 +993,16 @@ fn wide_lens_chains_with_weather_evasion_before_accuracy_rounding() {
 }
 
 #[test]
+fn helping_hand_boosts_a_pending_partner_and_expires() {
+    replay(include_str!("fixtures/vgc-helping-hand.json"));
+}
+
+#[test]
+fn prankster_priority_dark_immunity_and_psychic_terrain() {
+    replay(include_str!("fixtures/bss-prankster.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

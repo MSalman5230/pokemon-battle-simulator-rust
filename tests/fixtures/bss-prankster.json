@@ -1,0 +1,2023 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Sableye\",\"moves\":[\"Will-O-Wisp\",\"Recover\"],\"gender\":\"F\",\"name\":\"Sableye\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Prankster\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Espeon\",\"moves\":[\"Tail Whip\",\"Psychic Terrain\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Sableye, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Espeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Sableye, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Espeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Sableye, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Espeon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "willowisp",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "tailwhip",
+                  "psychicterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "willowisp",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "psychicterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Sableye|Sableye, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Sableye|Sableye, L50, F|125/125",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Sableye|Sableye, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Will-O-Wisp",
+                  "id": "willowisp",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "willowisp",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "tailwhip",
+                  "psychicterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "willowisp",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "psychicterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Umbreon",
+          "|-hint|Since gen 7, Dark is immune to Prankster moves.",
+          "|-immune|p2a: Umbreon",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Umbreon",
+          "|-hint|Since gen 7, Dark is immune to Prankster moves.",
+          "|-immune|p2a: Umbreon",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Umbreon",
+          "|-hint|Since gen 7, Dark is immune to Prankster moves.",
+          "|-immune|p2a: Umbreon",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Will-O-Wisp",
+                  "id": "willowisp",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "willowisp",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "tailwhip",
+                  "psychicterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "willowisp",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "psychicterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 switch 2"
+      ],
+      "turn": 3,
+      "seed": "30982,33910,19571,50263",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Espeon|Espeon, L50, F|100/100",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon",
+          "|-status|p2a: Espeon|brn",
+          "|",
+          "|-damage|p2a: Espeon|94/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Espeon|Espeon, L50, F|100/100",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon",
+          "|-status|p2a: Espeon|brn",
+          "|",
+          "|-damage|p2a: Espeon|94/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|switch|p2a: Espeon|Espeon, L50, F|140/140",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon",
+          "|-status|p2a: Espeon|brn",
+          "|",
+          "|-damage|p2a: Espeon|132/140 brn|[from] brn",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Will-O-Wisp",
+                  "id": "willowisp",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "willowisp",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic Terrain",
+                  "id": "psychicterrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "132/140 brn",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "tailwhip",
+                  "psychicterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "willowisp",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 132,
+            "maxhp": 140,
+            "status": "brn",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "psychicterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 4,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon|[miss]",
+          "|-miss|p1a: Sableye|p2a: Espeon",
+          "|move|p2a: Espeon|Tail Whip|p1a: Sableye",
+          "|-unboost|p1a: Sableye|def|1",
+          "|",
+          "|-damage|p2a: Espeon|88/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon|[miss]",
+          "|-miss|p1a: Sableye|p2a: Espeon",
+          "|move|p2a: Espeon|Tail Whip|p1a: Sableye",
+          "|-unboost|p1a: Sableye|def|1",
+          "|",
+          "|-damage|p2a: Espeon|88/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon|[miss]",
+          "|-miss|p1a: Sableye|p2a: Espeon",
+          "|move|p2a: Espeon|Tail Whip|p1a: Sableye",
+          "|-unboost|p1a: Sableye|def|1",
+          "|",
+          "|-damage|p2a: Espeon|124/140 brn|[from] brn",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Will-O-Wisp",
+                  "id": "willowisp",
+                  "pp": 13,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "willowisp",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic Terrain",
+                  "id": "psychicterrain",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "124/140 brn",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "tailwhip",
+                  "psychicterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "willowisp",
+                "pp": 13,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 124,
+            "maxhp": 140,
+            "status": "brn",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "psychicterrain",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 5,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Sableye|Recover||[still]",
+          "|-fail|p1a: Sableye|heal",
+          "|move|p2a: Espeon|Psychic Terrain|p2a: Espeon",
+          "|-fieldstart|move: Psychic Terrain",
+          "|",
+          "|-damage|p2a: Espeon|82/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Sableye|Recover||[still]",
+          "|-fail|p1a: Sableye|heal",
+          "|move|p2a: Espeon|Psychic Terrain|p2a: Espeon",
+          "|-fieldstart|move: Psychic Terrain",
+          "|",
+          "|-damage|p2a: Espeon|82/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|5"
+        ],
+        [
+          "|",
+          "|move|p1a: Sableye|Recover||[still]",
+          "|-fail|p1a: Sableye|heal",
+          "|move|p2a: Espeon|Psychic Terrain|p2a: Espeon",
+          "|-fieldstart|move: Psychic Terrain",
+          "|",
+          "|-damage|p2a: Espeon|116/140 brn|[from] brn",
+          "|upkeep",
+          "|turn|5"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Will-O-Wisp",
+                  "id": "willowisp",
+                  "pp": 13,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "willowisp",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic Terrain",
+                  "id": "psychicterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "116/140 brn",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "tailwhip",
+                  "psychicterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -1,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "willowisp",
+                "pp": 13,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 116,
+            "maxhp": 140,
+            "status": "brn",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "psychicterrain",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 6,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon",
+          "|-activate|p2a: Espeon|move: Psychic Terrain",
+          "|move|p2a: Espeon|Tail Whip|p1a: Sableye",
+          "|-unboost|p1a: Sableye|def|1",
+          "|",
+          "|-damage|p2a: Espeon|77/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon",
+          "|-activate|p2a: Espeon|move: Psychic Terrain",
+          "|move|p2a: Espeon|Tail Whip|p1a: Sableye",
+          "|-unboost|p1a: Sableye|def|1",
+          "|",
+          "|-damage|p2a: Espeon|77/100 brn|[from] brn",
+          "|upkeep",
+          "|turn|6"
+        ],
+        [
+          "|",
+          "|move|p1a: Sableye|Will-O-Wisp|p2a: Espeon",
+          "|-activate|p2a: Espeon|move: Psychic Terrain",
+          "|move|p2a: Espeon|Tail Whip|p1a: Sableye",
+          "|-unboost|p1a: Sableye|def|1",
+          "|",
+          "|-damage|p2a: Espeon|108/140 brn|[from] brn",
+          "|upkeep",
+          "|turn|6"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Will-O-Wisp",
+                  "id": "willowisp",
+                  "pp": 12,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Sableye",
+                "details": "Sableye, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 95,
+                  "def": 95,
+                  "spa": 85,
+                  "spd": 85,
+                  "spe": 70
+                },
+                "moves": [
+                  "willowisp",
+                  "recover"
+                ],
+                "baseAbility": "prankster",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "prankster",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tail Whip",
+                  "id": "tailwhip",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                },
+                {
+                  "move": "Psychic Terrain",
+                  "id": "psychicterrain",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "all",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "108/140 brn",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "tailwhip",
+                  "psychicterrain"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Sableye",
+            "species": "Sableye",
+            "details": "Sableye, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 95,
+              "def": 95,
+              "spa": 85,
+              "spd": 85,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": -2,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "prankster",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "willowisp",
+                "pp": 12,
+                "maxpp": 16
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 108,
+            "maxhp": 140,
+            "status": "brn",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tailwhip",
+                "pp": 18,
+                "maxpp": 20
+              },
+              {
+                "id": "psychicterrain",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

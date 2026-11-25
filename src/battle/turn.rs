@@ -48,6 +48,7 @@ enum MoveInvocation {
     Choice {
         slot: usize,
         loc: i8,
+        prankster: bool,
     },
     Reflected {
         data: &'static Move,
@@ -143,6 +144,7 @@ pub(super) struct Action {
     kind: ActionKind,
     priority: Priority,
     fractional_priority: f64,
+    prankster: bool,
 }
 
 const STRUGGLE_SLOT: usize = usize::MAX;
@@ -170,6 +172,7 @@ impl Action {
             actor,
             kind,
             fractional_priority: 0.0,
+            prankster: false,
             priority: Priority {
                 order,
                 ..Priority::default()
@@ -1039,6 +1042,7 @@ impl Battle {
                     | "soak"
                     | "ragingbull"
                     | "focusenergy"
+                    | "helpinghand"
                     | "focuspunch"
                     | "beakblast"
                     | "revivalblessing"
@@ -1113,8 +1117,10 @@ impl Battle {
                 } else {
                     let data = self.move_data(source, move_slot);
                     self.resolve_target(source, move_base_target(data, source, target), target);
-                    action.priority.priority =
-                        f64::from(self.move_priority(source, data)) + action.fractional_priority;
+                    action.prankster = self.prankster_boosts(source, data);
+                    action.priority.priority = f64::from(
+                        self.base_move_priority(source, data) + i8::from(action.prankster),
+                    ) + action.fractional_priority;
                 }
             }
             action.priority.speed = self.field_speed(source);
@@ -1331,6 +1337,7 @@ impl Battle {
         party[outgoing.slot].attention = None;
         party[outgoing.slot].glaive_drawback = false;
         party[outgoing.slot].destiny_bond = false;
+        party[outgoing.slot].helping_hand = 0;
         party[outgoing.slot].volatile_order.clear();
         party[outgoing.slot].imprisoned = false;
         party[outgoing.slot].choice_lock = None;
@@ -1493,6 +1500,7 @@ impl Battle {
                         MoveInvocation::Choice {
                             slot: move_slot,
                             loc: target,
+                            prankster: action.prankster,
                         },
                         &mut queue,
                     ) {
@@ -1743,6 +1751,14 @@ impl Battle {
     }
 
     pub(super) fn move_priority(&self, pos: Position, data: &Move) -> i8 {
+        self.base_move_priority(pos, data) + i8::from(self.prankster_boosts(pos, data))
+    }
+
+    fn prankster_boosts(&self, pos: Position, data: &Move) -> bool {
+        data.category == Category::Status && self.event_ability(pos) == "prankster"
+    }
+
+    fn base_move_priority(&self, pos: Position, data: &Move) -> i8 {
         data.priority
             + i8::from(
                 data.name == "Grassy Glide"
@@ -1797,6 +1813,7 @@ impl Battle {
             FocusPunch,
             ChillyReception,
             BeakBlast,
+            HelpingHand,
             Counter,
             Recharge,
             Charge,
@@ -1961,6 +1978,9 @@ impl Battle {
             if mon.volatile_ids().contains(&"beakblast") {
                 timers.push((pos, Effect::BeakBlast, priority(0, 2)));
             }
+            if mon.helping_hand != 0 {
+                timers.push((pos, Effect::HelpingHand, priority(0, 2)));
+            }
             if mon.counter.is_some() {
                 timers.push((pos, Effect::Counter, priority(0, 2)));
             }
@@ -2057,6 +2077,10 @@ impl Battle {
                 }
                 Effect::ChillyReception => mon.untrack_volatile("chillyreception"),
                 Effect::BeakBlast => mon.untrack_volatile("beakblast"),
+                Effect::HelpingHand => {
+                    mon.helping_hand = 0;
+                    mon.untrack_volatile("helpinghand");
+                }
                 Effect::Counter => {
                     if let Some(counter) = mon.counter.take() {
                         mon.untrack_volatile(counter.move_kind.id());
@@ -2220,10 +2244,14 @@ impl Battle {
         invocation: MoveInvocation,
         queue: &mut Vec<Action>,
     ) -> bool {
-        let (slot, loc, forced_target, reflected) = match invocation {
-            MoveInvocation::Choice { slot, loc } => (Some(slot), loc, None, false),
-            MoveInvocation::Reflected { target, .. } => (None, 0, Some(target), true),
-            MoveInvocation::Future { target, .. } => (None, 0, Some(target), false),
+        let (slot, loc, forced_target, reflected, prankster) = match invocation {
+            MoveInvocation::Choice {
+                slot,
+                loc,
+                prankster,
+            } => (Some(slot), loc, None, false, prankster),
+            MoveInvocation::Reflected { target, .. } => (None, 0, Some(target), true, false),
+            MoveInvocation::Future { target, .. } => (None, 0, Some(target), false, false),
         };
         let delayed = matches!(invocation, MoveInvocation::Future { .. });
         let own_action = !reflected && !delayed;
@@ -2991,7 +3019,7 @@ impl Battle {
             self.protean_prepare(source, move_type);
         }
         let spread = !darts && spread_targets.len() > 1;
-        let priority = self.move_priority(source, move_data);
+        let priority = self.base_move_priority(source, move_data) + i8::from(prankster);
         spread_targets.retain(|&target| {
             if self
                 .mon(target)
@@ -3174,6 +3202,25 @@ impl Battle {
             }
         });
         smart_target &= spread_targets.len() > 1;
+        if prankster && self.event_ability(source) == "prankster" {
+            spread_targets.retain(|&pos| {
+                if pos.player == source.player || !self.status_immune(pos, "prankster") {
+                    return true;
+                }
+                if self.format.report_exact_hp {
+                    self.add("|debug|natural prankster immunity");
+                }
+                if self.mon(pos).illusion.is_some()
+                    || move_data.status.as_deref().is_none_or(|status| {
+                        !self.status_immune(pos, if status == "tox" { "psn" } else { status })
+                    })
+                {
+                    self.add("|-hint|Since gen 7, Dark is immune to Prankster moves.");
+                }
+                self.add(format!("|-immune|{}", self.ident(pos)));
+                false
+            });
+        }
         if move_data.name == "Disable"
             && spread_targets
                 .iter()
@@ -3280,7 +3327,23 @@ impl Battle {
                 {
                     continue;
                 }
-                if move_data.name == "Focus Energy" {
+                if move_data.name == "Helping Hand" {
+                    if self.mon(target).active_turns != 0
+                        && Self::queued_move(queue, target).is_none()
+                    {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    } else {
+                        let mon = self.mon_mut(target);
+                        mon.helping_hand += 1;
+                        mon.track_volatile("helpinghand");
+                        self.add(format!(
+                            "|-singleturn|{}|Helping Hand|[of] {source_name}",
+                            self.ident(target)
+                        ));
+                        succeeded = true;
+                    }
+                } else if move_data.name == "Focus Energy" {
                     if self.mon(target).volatile_ids().contains(&"focusenergy") {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
@@ -4376,6 +4439,7 @@ impl Battle {
         mon.attention = None;
         mon.glaive_drawback = false;
         mon.destiny_bond = false;
+        mon.helping_hand = 0;
         mon.volatile_order.clear();
         mon.imprisoned = false;
         mon.choice_lock = None;
@@ -4734,6 +4798,7 @@ impl Pokemon {
                 | "bigpecks"
                 | "justified"
                 | "poisonheal"
+                | "prankster"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"
