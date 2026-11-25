@@ -16,6 +16,39 @@ enum Hook {
 }
 
 impl Battle {
+    pub(super) fn shell_side_arm(
+        &mut self,
+        source: Position,
+        target: Position,
+        data: &'static Move,
+    ) -> &'static Move {
+        let user = self.mon(source);
+        let target = self.mon(target);
+        let power = (2 * u64::from(user.level) / 5 + 2) * 90;
+        let damage = |attack, attack_stage, defense, defense_stage| {
+            power * u64::from(boosted_stat(attack, attack_stage))
+                / u64::from(boosted_stat(defense, defense_stage).max(1))
+                / 50
+        };
+        let physical = damage(
+            user.stats.atk,
+            user.boosts.get(BoostStat::Atk),
+            target.stats.def,
+            target.boosts.get(BoostStat::Def),
+        );
+        let special = damage(
+            user.stats.spa,
+            user.boosts.get(BoostStat::Spa),
+            target.stats.spd,
+            target.boosts.get(BoostStat::Spd),
+        );
+        if physical > special || physical == special && self.rng.chance(1, 2) {
+            crate::dex::physical_shell_side_arm(self.format.dex_mod)
+        } else {
+            data
+        }
+    }
+
     pub(super) fn situational_base_power(
         &mut self,
         source: Position,

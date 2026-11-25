@@ -1373,6 +1373,11 @@ fn instruct_repeats_the_last_move_now_using_its_original_target_and_pp() {
 }
 
 #[test]
+fn shell_side_arm_uses_the_stronger_category_and_its_contact_rules() {
+    replay(include_str!("fixtures/bss-shell-side-arm.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

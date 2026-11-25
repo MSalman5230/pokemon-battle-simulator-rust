@@ -1060,6 +1060,10 @@ const instructRosters = [
     [named('Oranguru', ['Instruct']), named('Jolteon', ['Tackle'])],
     [named('Umbreon', ['Recover']), named('Vaporeon', ['Recover']), named('Flareon', ['Recover'])],
 ];
+const shellSideArmRosters = [
+    [named('Slowbro-Galar', ['Shell Side Arm'])],
+    [named('Umbreon', ['Recover']), named('Cloyster', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1965,6 +1969,8 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 123'], ['move 1 -2, move 1 1','move 1, move 1'],
         ['move 1 1, move 1 2','move 1, move 1'], ['move 1 2, move 1 1','move 1, switch 3']],
         instructRosters, 'vgc-instruct'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 1','switch 2']],
+        shellSideArmRosters, 'bss-shell-side-arm'],
     ['randomdoublesbattle', [['move 3, move 3 1','switch 3, move 3 2'], ['move 2 2, move 2 2','move 1, move 3 1'],
         ['move 3, move 2 1','move 2 2, move 3 2'], ['pass, switch 5','switch 5, pass']],
         ['1361,533,1,19','1361,533,2,19'], 'random-doubles-tailwind-replacements', '31415,9265,35897,19'],

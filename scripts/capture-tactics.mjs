@@ -95,6 +95,9 @@ add('Gyro Ball uses modified speed without reversing it', 'gyroball',
 add('Electro Ball uses a floored speed ratio', 'electroball', electric, mon('Snorlax', 'Immunity'));
 add('Terrains double the Tactical Terrain Pulse power without changing its type', 'terrainpulse',
     mon('Clawitzer', 'Mega Launcher'), normal, {terrain:'mistyterrain'});
+add('Shell Side Arm takes the stronger physical route', 'shellsidearm', mon('Slowbro-Galar', 'Own Tempo'), normal);
+add('Shell Side Arm takes the stronger special route', 'shellsidearm',
+    mon('Slowbro-Galar', 'Own Tempo'), mon('Cloyster', 'Skill Link'));
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

@@ -1143,6 +1143,7 @@ impl Battle {
                     | "upperhand"
                     | "aquaring"
                     | "instruct"
+                    | "shellsidearm"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -2714,7 +2715,7 @@ impl Battle {
             mon.untrack_volatile("mustrecharge");
             return true;
         }
-        let move_data = match invocation {
+        let mut move_data = match invocation {
             MoveInvocation::Choice { slot, .. } => self.move_data(source, slot),
             MoveInvocation::Reflected { data, .. } | MoveInvocation::Future { data, .. } => data,
         };
@@ -2894,6 +2895,15 @@ impl Battle {
         if !delayed {
             self.stance_change(source, move_data);
         }
+        let shell_side_arm = move_data.name == "Shell Side Arm";
+        if shell_side_arm && let Some(target) = target {
+            move_data = self.shell_side_arm(source, target, move_data);
+        }
+        let shell_category = if move_data.category == Category::Physical {
+            "Physical"
+        } else {
+            "Special"
+        };
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
             && self.grounded(source);
@@ -3571,6 +3581,11 @@ impl Battle {
         }
         if !delayed {
             self.protean_prepare(source, move_type);
+        }
+        if shell_side_arm && spread_targets[0].player != source.player {
+            self.log[base]
+                .public
+                .push_str(&format!("|[anim] Shell Side Arm {shell_category}"));
         }
         let spread = !darts && spread_targets.len() > 1;
         let potential = spread_targets.len();
@@ -4748,6 +4763,9 @@ impl Battle {
                 if self.behind_substitute(source, target, move_data) {
                     let value = compute(self, target, true);
                     self.strike_substitute(source, target, move_data, value, ohko);
+                    if shell_side_arm && target.player != source.player {
+                        self.add(format!("|-hint|{shell_category} Shell Side Arm"));
+                    }
                     shielded |= target.mask();
                     hit_substitute = true;
                 }
@@ -4821,6 +4839,9 @@ impl Battle {
                 }
             }
             for &(target, _) in &damage {
+                if shell_side_arm && target.player != source.player {
+                    self.add(format!("|-hint|{shell_category} Shell Side Arm"));
+                }
                 if matches!(move_data.name.as_str(), "Bug Bite" | "Pluck") {
                     self.eat_stolen_berry(source, target, &move_data.name);
                 }

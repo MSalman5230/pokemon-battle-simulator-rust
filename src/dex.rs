@@ -14,6 +14,18 @@ pub static DEX: LazyLock<Dex> = LazyLock::new(|| {
         .expect("checked-in Champions dex must deserialize")
 });
 
+pub(crate) fn physical_shell_side_arm(dex_mod: Mod) -> &'static Move {
+    static VARIANTS: LazyLock<[Move; 2]> = LazyLock::new(|| {
+        [Mod::Champions, Mod::RegMb].map(|mod_id| {
+            let mut data = DEX.moves(mod_id, "shellsidearm").unwrap().clone();
+            data.category = Category::Physical;
+            data.flags.insert("contact".into(), 1);
+            data
+        })
+    });
+    &VARIANTS[usize::from(dex_mod == Mod::RegMb)]
+}
+
 #[derive(Debug, Deserialize)]
 pub struct Dex {
     pub revision: String,
@@ -141,7 +153,7 @@ pub enum HitCount {
     Range([u8; 2]),
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Move {
     pub name: String,
@@ -204,7 +216,7 @@ pub struct Move {
     pub secondaries: Vec<Secondary>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Secondary {
     pub chance: Option<u16>,

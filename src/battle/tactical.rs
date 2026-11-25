@@ -371,6 +371,7 @@ impl Battle {
                     | "gyroball"
                     | "electroball"
                     | "terrainpulse"
+                    | "shellsidearm"
             )
         {
             return Err(unsupported(format!("move {move_id}")));
@@ -382,6 +383,11 @@ impl Battle {
             self.ability_breaker = Some(ACTOR);
         }
         self.stance_change(ACTOR, data);
+        let data = if move_id == "shellsidearm" {
+            self.shell_side_arm(ACTOR, TARGET, data)
+        } else {
+            data
+        };
         // The damage-only oracle runs ModifyMove but not the full move's
         // ModifyType phase. Weather Ball can double its power and still use
         // its declared Normal type, and Pixilate does not turn Tackle Fairy.
