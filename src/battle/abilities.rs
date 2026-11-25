@@ -97,11 +97,7 @@ enum DropHook {
 
 impl Pokemon {
     pub(super) fn active_ability(&self) -> &str {
-        if self.gastro_acid
-            && !DEX
-                .ability(&self.ability)
-                .is_some_and(|ability| ability.cannot_suppress)
-        {
+        if self.ignores_own_ability() {
             ""
         } else {
             &self.ability
@@ -632,6 +628,9 @@ impl Battle {
     }
 
     pub(super) fn end_ability(&mut self, pos: Position) {
+        if self.mon(pos).ability == "neutralizinggas" {
+            self.end_neutralizing_gas(pos);
+        }
         self.end_supreme_overlord(pos, false);
         self.end_paradox_ability(pos);
         self.end_slow_start(pos);
@@ -762,7 +761,7 @@ impl Battle {
     /// skips breakable handlers while that attack is being resolved.
     pub(super) fn ability_suppressed(&self, holder: Position) -> bool {
         let mon = self.mon(holder);
-        (mon.gastro_acid && mon.active_ability().is_empty())
+        mon.ignores_own_ability()
             || self.ignores_ability_of(holder)
                 && DEX
                     .ability(&mon.ability)
@@ -771,7 +770,7 @@ impl Battle {
 
     pub(super) fn log_suppressed_ability(&mut self, holder: Position, event: &str) {
         let mon = self.mon(holder);
-        let label = if mon.gastro_acid && mon.active_ability().is_empty() {
+        let label = if mon.ignores_own_ability() {
             "Gastro Acid or Neutralizing Gas"
         } else {
             "Mold Breaker"
@@ -2228,6 +2227,9 @@ impl Pokemon {
             self.ability.clone_from(&self.base_ability);
         }
         self.type_change_used = false;
+        self.gas_ending = false;
+        self.gas_exposed = false;
+        self.gluttony_ready = true;
         self.cud_chew = None;
         self.trace_seeking = false;
         self.opportunist = PendingBoostCopy::default();

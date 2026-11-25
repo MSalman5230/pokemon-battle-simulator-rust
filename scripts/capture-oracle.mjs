@@ -2287,6 +2287,20 @@ const dancerDoublesRosters = [
     [named('Snorlax', ['Recover']),
         {...named('Oricorio-Sensu', ['Recover']), nature:'Timid', ability:'Dancer'}],
 ];
+const neutralizingWeatherRosters = item => [
+    [{...named('Weezing', ['Tackle']), ability:'Neutralizing Gas'}, named('Snorlax', ['Recover'])],
+    [{...named('Ninetales', ['Ember']), ability:'Drought', item}],
+];
+const doubleGasRosters = [
+    [{...named('Weezing', ['Tackle']), ability:'Neutralizing Gas', nature:'Jolly'},
+        {...named('Weezing-Galar', ['Tackle']), ability:'Neutralizing Gas'},
+        named('Snorlax', ['Recover']), named('Chansey', ['Recover'])],
+    [{...named('Ninetales', ['Recover']), ability:'Drought'}, named('Umbreon', ['Recover'])],
+];
+const gastroGasRosters = [
+    [{...named('Weezing', ['Tackle']), ability:'Neutralizing Gas'}],
+    [{...named('Arbok', ['Gastro Acid', 'Recover']), ability:'Intimidate'}],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3945,6 +3959,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 2','move 2']], dancerSinglesRosters, 'custom-dancer-copies-successful-dances-without-pp'],
     ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1']],
         dancerDoublesRosters, 'custom-dancer-orders-copies-by-raw-speed-and-chooses-targets'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1']],
+        neutralizingWeatherRosters(''), 'custom-neutralizing-gas-suppresses-entry-until-leaving'],
+    ['customgame', [['team 12','team 1'], ['move 1','move 1'], ['switch 2','move 1']],
+        neutralizingWeatherRosters('Ability Shield'), 'custom-ability-shield-protects-from-neutralizing-gas'],
+    ['doublescustomgame', [['team 1234','team 12'], ['switch 3, move 1 2','move 1, move 1'],
+        ['move 1, switch 4','move 1, move 1']], doubleGasRosters, 'custom-neutralizing-gas-ends-only-when-the-last-holder-leaves'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        gastroGasRosters, 'custom-gastro-acid-ends-gas-and-restarts-intimidate'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

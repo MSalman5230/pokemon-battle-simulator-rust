@@ -581,11 +581,14 @@ impl Battle {
         self.add("|start");
         self.apply_crowned_forms();
         let mut queue = Vec::new();
+        let mut introduced = 0;
         for player in Player::ALL {
             for slot in 0..self.slots() {
                 let pos = Position { player, slot };
                 self.prepare_illusion(pos);
                 self.add_health_line("switch", pos, true);
+                introduced |= pos.mask();
+                self.refresh_gas_exposure(introduced);
                 self.insert_run_switch(pos, &mut queue);
             }
         }
@@ -1951,19 +1954,23 @@ impl Battle {
         }
         let (order, count) = self.ordered_actives(true);
         for (pos, _) in order.into_iter().take(count) {
-            if switching.contains(&Some(pos)) && self.mon(pos).ability == "terashift" {
-                self.tera_shift(pos);
+            if switching.contains(&Some(pos)) && self.mon(pos).hp != 0 {
+                match self.mon(pos).ability.as_str() {
+                    "terashift" => self.tera_shift(pos),
+                    "neutralizinggas" => self.start_neutralizing_gas(pos),
+                    _ => {}
+                }
             }
         }
         for (pos, _) in order.into_iter().take(count) {
             if switching.contains(&Some(pos))
                 && self.mon(pos).hp > 0
                 && matches!(
-                    self.mon(pos).active_ability(),
+                    self.mon(pos).ability.as_str(),
                     "unnerve" | "asoneglastrier" | "asonespectrier"
                 )
             {
-                self.start_ability(pos);
+                self.start_switch_ability(pos);
             }
         }
         let mut deferred_hospitality = 0;
@@ -1980,12 +1987,16 @@ impl Battle {
                 if let Some(label) = self.weather_suppressor(pos) {
                     self.add(format!("|-ability|{}|{label}", self.ident(pos)));
                 }
-                match self.mon(pos).active_ability() {
-                    "hospitality" => deferred_hospitality |= pos.mask(),
-                    "imposter" => self.imposter_on_entry(pos),
+                match self.mon(pos).ability.as_str() {
+                    "hospitality" if !self.mon(pos).ignores_own_ability() => {
+                        deferred_hospitality |= pos.mask();
+                    }
+                    "imposter" if !self.mon(pos).ignores_own_ability() => {
+                        self.imposter_on_entry(pos)
+                    }
                     "unnerve" | "asoneglastrier" | "asonespectrier" | "mimicry" | "costar"
                     | "iceface" | "flowergift" => {}
-                    _ => self.start_ability(pos),
+                    _ => self.start_switch_ability(pos),
                 }
                 self.on_switch_in_item(pos);
             }
@@ -1996,19 +2007,16 @@ impl Battle {
                 if matches!(self.mon(pos).ability.as_str(), "schooling" | "shieldsdown") {
                     self.threshold_forme(pos, true);
                 }
-                if self.mon(pos).active_ability() == "mimicry" {
-                    self.apply_mimicry(pos);
+                if self.mon(pos).ability == "mimicry" {
+                    self.start_switch_ability(pos);
                 }
                 self.use_matching_terrain_seed(pos);
                 self.use_room_service(pos);
-                if self.mon(pos).ability == "costar" {
-                    self.costar_on_entry(pos);
-                }
-                if self.mon(pos).ability == "iceface" {
-                    self.restore_ice_face(pos, self.effective_weather());
-                }
-                if self.mon(pos).ability == "flowergift" {
-                    self.sync_flower_gift(pos, self.effective_weather());
+                if matches!(
+                    self.mon(pos).ability.as_str(),
+                    "costar" | "iceface" | "flowergift"
+                ) {
+                    self.start_switch_ability(pos);
                 }
                 self.update_booster_energy(pos);
             }
@@ -2156,6 +2164,7 @@ impl Battle {
         if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
             party[outgoing.slot].status = Status::Toxic(0);
         }
+        self.refresh_gas_exposure(u8::MAX);
         self.prepare_illusion(outgoing);
         if drag {
             self.add_health_line("drag", outgoing, true);
@@ -2540,8 +2549,24 @@ impl Battle {
         true
     }
 
+    fn start_switch_ability(&mut self, pos: Position) {
+        if self.mon(pos).ignores_own_ability() {
+            if self.format.report_exact_hp
+                && DEX.ability(&self.mon(pos).ability).is_some_and(|a| {
+                    a.handlers
+                        .iter()
+                        .any(|hook| matches!(hook.as_str(), "onStart" | "onSwitchIn"))
+                })
+            {
+                self.log_suppressed_ability(pos, "SwitchIn");
+            }
+        } else {
+            self.start_ability(pos);
+        }
+    }
+
     pub(super) fn start_ability(&mut self, pos: Position) {
-        if self.mon(pos).gastro_acid && self.mon(pos).active_ability().is_empty() {
+        if self.mon(pos).ignores_own_ability() {
             if self.format.report_exact_hp
                 && DEX
                     .ability(&self.mon(pos).ability)
@@ -2576,6 +2601,9 @@ impl Battle {
         }
         if self.mon(pos).ability == "ripen" {
             self.mon_mut(pos).ripen_pending = false;
+        }
+        if self.mon(pos).ability == "gluttony" {
+            self.mon_mut(pos).gluttony_ready = true;
         }
         if self.mon(pos).ability == "truant" {
             let missed_turn =
@@ -2812,6 +2840,9 @@ impl Battle {
     }
 
     pub(super) fn each_event(&mut self) {
+        if self.possible_neutralizing_gas {
+            self.refresh_gas_exposure(u8::MAX);
+        }
         let (order, count) = self.ordered_actives(false);
         for (pos, _) in order.into_iter().take(count) {
             self.debug_suppressed_hook(pos, "onUpdate");
@@ -3543,8 +3574,7 @@ impl Battle {
             if mon.fainted {
                 continue;
             }
-            if mon.gastro_acid
-                && mon.active_ability().is_empty()
+            if mon.ignores_own_ability()
                 && matches!(
                     effect,
                     Effect::ShedSkin
@@ -9565,6 +9595,9 @@ impl Battle {
             ));
         }
         self.receive_fainted_ability(target);
+        if self.mon(target).ability == "neutralizinggas" {
+            self.end_neutralizing_gas(target);
+        }
         if self.mon(target).commanded_by.is_some() {
             self.release_commander(target.other_slot());
         }
@@ -9651,6 +9684,9 @@ impl Battle {
         // normal field-speed updates skip a fainted Pokémon.
         mon.speed = mon.stats.spe as i32;
         self.regress_fainted_zygarde(target);
+        if self.possible_neutralizing_gas {
+            self.refresh_gas_exposure(u8::MAX);
+        }
     }
 
     fn clear_destiny_bond(&mut self, pos: Position, notify_debug: bool) -> bool {
@@ -10126,6 +10162,7 @@ impl Pokemon {
                 | "gulpmissile"
                 | "iceface"
                 | "dancer"
+                | "neutralizinggas"
                 | "runaway"
                 | "drizzle"
                 | "drought"

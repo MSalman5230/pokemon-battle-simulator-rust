@@ -837,7 +837,9 @@ impl Battle {
         let mon = self.mon(pos);
         mon.hp > 0
             && (mon.hp * 4 <= mon.max_hp.get()
-                || mon.hp * 2 <= mon.max_hp.get() && self.event_ability(pos) == "gluttony")
+                || mon.hp * 2 <= mon.max_hp.get()
+                    && mon.gluttony_ready
+                    && self.event_ability(pos) == "gluttony")
     }
 
     fn pinch_effect_berry(&mut self, pos: Position) {

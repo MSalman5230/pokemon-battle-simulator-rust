@@ -1,0 +1,1059 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Weezing\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Weezing\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Neutralizing Gas\"},{\"species\":\"Snorlax\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Ninetales\",\"moves\":[\"Ember\"],\"gender\":\"F\",\"name\":\"Ninetales\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Drought\",\"item\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Weezing, L50, F|",
+          "|poke|p1|Snorlax, L50, F|",
+          "|poke|p2|Ninetales, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Weezing, L50, F|",
+          "|poke|p1|Snorlax, L50, F|",
+          "|poke|p2|Ninetales, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Weezing, L50, F|",
+          "|poke|p1|Snorlax, L50, F|",
+          "|poke|p2|Ninetales, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weezing",
+                "details": "Weezing, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 140,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "neutralizinggas",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "neutralizinggas",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ninetales",
+                "details": "Ninetales, L50, F",
+                "condition": "148/148",
+                "active": true,
+                "stats": {
+                  "atk": 96,
+                  "def": 95,
+                  "spa": 101,
+                  "spd": 120,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weezing",
+            "species": "Weezing",
+            "details": "Weezing, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 140,
+              "spa": 105,
+              "spd": 90,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "neutralizinggas",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ninetales",
+            "species": "Ninetales",
+            "details": "Ninetales, L50, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 96,
+              "def": 95,
+              "spa": 101,
+              "spd": 120,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Weezing|Weezing, L50, F|140/140",
+          "|switch|p2a: Ninetales|Ninetales, L50, F|148/148",
+          "|-ability|p1a: Weezing|Neutralizing Gas",
+          "|debug|SwitchIn handler suppressed by Gastro Acid or Neutralizing Gas",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Weezing|Weezing, L50, F|140/140",
+          "|switch|p2a: Ninetales|Ninetales, L50, F|148/148",
+          "|-ability|p1a: Weezing|Neutralizing Gas",
+          "|debug|SwitchIn handler suppressed by Gastro Acid or Neutralizing Gas",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Weezing|Weezing, L50, F|140/140",
+          "|switch|p2a: Ninetales|Ninetales, L50, F|148/148",
+          "|-ability|p1a: Weezing|Neutralizing Gas",
+          "|debug|SwitchIn handler suppressed by Gastro Acid or Neutralizing Gas",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weezing",
+                "details": "Weezing, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 140,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "neutralizinggas",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "neutralizinggas",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ninetales",
+                "details": "Ninetales, L50, F",
+                "condition": "148/148",
+                "active": true,
+                "stats": {
+                  "atk": 96,
+                  "def": 95,
+                  "spa": 101,
+                  "spd": 120,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weezing",
+            "species": "Weezing",
+            "details": "Weezing, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 140,
+              "spa": 105,
+              "spd": 90,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "neutralizinggas",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ninetales",
+            "species": "Ninetales",
+            "details": "Ninetales, L50, F",
+            "hp": 148,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 96,
+              "def": 95,
+              "spa": 101,
+              "spd": 120,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Ninetales|Ember|p1a: Weezing",
+          "|-damage|p1a: Weezing|113/140",
+          "|move|p1a: Weezing|Tackle|p2a: Ninetales",
+          "|-damage|p2a: Ninetales|130/148",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Ninetales|Ember|p1a: Weezing",
+          "|-damage|p1a: Weezing|113/140",
+          "|move|p1a: Weezing|Tackle|p2a: Ninetales",
+          "|-damage|p2a: Ninetales|130/148",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Ninetales|Ember|p1a: Weezing",
+          "|-damage|p1a: Weezing|113/140",
+          "|move|p1a: Weezing|Tackle|p2a: Ninetales",
+          "|-damage|p2a: Ninetales|130/148",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Weezing",
+                "details": "Weezing, L50, F",
+                "condition": "113/140",
+                "active": true,
+                "stats": {
+                  "atk": 110,
+                  "def": 140,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "neutralizinggas",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "neutralizinggas",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": false,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ninetales",
+                "details": "Ninetales, L50, F",
+                "condition": "130/148",
+                "active": true,
+                "stats": {
+                  "atk": 96,
+                  "def": 95,
+                  "spa": 101,
+                  "spd": 120,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Weezing",
+            "species": "Weezing",
+            "details": "Weezing, L50, F",
+            "hp": 113,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 140,
+              "spa": 105,
+              "spd": 90,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "neutralizinggas",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ninetales",
+            "species": "Ninetales",
+            "details": "Ninetales, L50, F",
+            "hp": 130,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 96,
+              "def": 95,
+              "spa": 101,
+              "spd": 120,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "7104,42574,9152,10809",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|-end|p1a: Weezing|ability: Neutralizing Gas",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p2a: Ninetales",
+          "|switch|p1a: Snorlax|Snorlax, L50, F|235/235",
+          "|move|p2a: Ninetales|Ember|p1a: Snorlax",
+          "|debug|Sunny Day fire boost",
+          "|-damage|p1a: Snorlax|207/235",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-end|p1a: Weezing|ability: Neutralizing Gas",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p2a: Ninetales",
+          "|switch|p1a: Snorlax|Snorlax, L50, F|235/235",
+          "|move|p2a: Ninetales|Ember|p1a: Snorlax",
+          "|debug|Sunny Day fire boost",
+          "|-damage|p1a: Snorlax|207/235",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-end|p1a: Weezing|ability: Neutralizing Gas",
+          "|-weather|SunnyDay|[from] ability: Drought|[of] p2a: Ninetales",
+          "|switch|p1a: Snorlax|Snorlax, L50, F|235/235",
+          "|move|p2a: Ninetales|Ember|p1a: Snorlax",
+          "|debug|Sunny Day fire boost",
+          "|-damage|p1a: Snorlax|207/235",
+          "|",
+          "|-weather|SunnyDay|[upkeep]",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "207/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Weezing",
+                "details": "Weezing, L50, F",
+                "condition": "113/140",
+                "active": false,
+                "stats": {
+                  "atk": 110,
+                  "def": 140,
+                  "spa": 105,
+                  "spd": 90,
+                  "spe": 80
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "neutralizinggas",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "neutralizinggas",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Ember",
+                  "id": "ember",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Ninetales",
+                "details": "Ninetales, L50, F",
+                "condition": "130/148",
+                "active": true,
+                "stats": {
+                  "atk": 96,
+                  "def": 95,
+                  "spa": 101,
+                  "spd": 120,
+                  "spe": 120
+                },
+                "moves": [
+                  "ember"
+                ],
+                "baseAbility": "drought",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "drought",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 207,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Weezing",
+            "species": "Weezing",
+            "details": "Weezing, L50, F",
+            "hp": 113,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 110,
+              "def": 140,
+              "spa": 105,
+              "spd": 90,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "neutralizinggas",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Ninetales",
+            "species": "Ninetales",
+            "details": "Ninetales, L50, F",
+            "hp": 130,
+            "maxhp": 148,
+            "status": "",
+            "stats": {
+              "atk": 96,
+              "def": 95,
+              "spa": 101,
+              "spd": 120,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "drought",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "ember",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

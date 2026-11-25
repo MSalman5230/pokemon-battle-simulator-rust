@@ -357,6 +357,14 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
             .iter()
             .any(|p| p.ability == "dancer" || p.base_ability == "dancer")
     });
+    battle.possible_neutralizing_gas = Player::ALL.into_iter().any(|player| {
+        battle
+            .party(player)
+            .unwrap()
+            .iter()
+            .any(|p| p.ability == "neutralizinggas" || p.base_ability == "neutralizinggas")
+    });
+    battle.refresh_gas_exposure(u8::MAX);
     battle.update_speed();
     for player in Player::ALL {
         battle.refresh_observed_disables(Position { player, slot: 0 });

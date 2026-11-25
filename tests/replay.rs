@@ -2431,6 +2431,22 @@ fn dancer_copies_successful_moves_without_pp_or_recursive_copies() {
 }
 
 #[test]
+fn neutralizing_gas_suppresses_and_restarts_only_the_relevant_abilities() {
+    replay(include_str!(
+        "fixtures/custom-neutralizing-gas-suppresses-entry-until-leaving.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-ability-shield-protects-from-neutralizing-gas.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-neutralizing-gas-ends-only-when-the-last-holder-leaves.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-gastro-acid-ends-gas-and-restarts-intimidate.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

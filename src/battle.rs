@@ -24,6 +24,7 @@ mod damage;
 mod disable;
 mod field_effects;
 mod forme;
+mod gas;
 mod guards;
 mod hazards;
 pub(crate) mod hydration;
@@ -202,6 +203,7 @@ pub struct Battle {
     possible_victory_star: bool,
     possible_flower_gift: bool,
     possible_dancer: bool,
+    possible_neutralizing_gas: bool,
     unsupported_called_move: Option<(&'static str, &'static str)>,
     last_battle_move: Option<&'static Move>,
     last_battle_move_z: bool,
@@ -279,6 +281,9 @@ pub struct Pokemon {
     gem_boost: bool,
     electrified: bool,
     gastro_acid: bool,
+    gas_exposed: bool,
+    gas_ending: bool,
+    gluttony_ready: bool,
     lock_on: Option<target_effects::TargetTimer>,
     syrup_bomb: Option<target_effects::TargetTimer>,
     opportunist: boost_copy::PendingBoostCopy,
@@ -423,6 +428,9 @@ impl Pokemon {
     }
 
     fn damage_hp(&mut self, damage: u32) -> u32 {
+        if !self.gluttony_ready && self.active_ability() == "gluttony" {
+            self.gluttony_ready = true;
+        }
         let landed = damage.min(self.hp);
         self.hp -= landed;
         self.hurt_this_turn |= landed > 0;
@@ -564,6 +572,7 @@ impl Battle {
             possible_victory_star: false,
             possible_flower_gift: false,
             possible_dancer: false,
+            possible_neutralizing_gas: false,
             unsupported_called_move: None,
             last_battle_move: None,
             last_battle_move_z: false,
@@ -704,6 +713,7 @@ impl Battle {
         self.possible_victory_star |= party.iter().any(|p| p.ability == "victorystar");
         self.possible_flower_gift |= party.iter().any(|p| p.ability == "flowergift");
         self.possible_dancer |= party.iter().any(|p| p.ability == "dancer");
+        self.possible_neutralizing_gas |= party.iter().any(|p| p.ability == "neutralizinggas");
         let open_sheet = crate::input::pack_open_sheet(
             sets.iter()
                 .zip(&party)
@@ -1050,6 +1060,9 @@ impl Pokemon {
             gem_boost: false,
             electrified: false,
             gastro_acid: false,
+            gas_exposed: false,
+            gas_ending: false,
+            gluttony_ready: true,
             lock_on: None,
             syrup_bomb: None,
             opportunist: boost_copy::PendingBoostCopy::default(),
