@@ -1404,6 +1404,11 @@ fn natdex_legacy_moves_use_friendship_and_hidden_power_type_in_damage_and_reques
 }
 
 #[test]
+fn cheek_pouch_recovers_after_the_berry_heals() {
+    replay(include_str!("fixtures/bss-cheek-pouch.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

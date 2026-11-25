@@ -6067,6 +6067,7 @@ impl Pokemon {
                 | "unseenfist"
                 | "quickdraw"
                 | "poisontouch"
+                | "cheekpouch"
                 | "steelyspirit"
                 | "analytic"
                 | "galewings"

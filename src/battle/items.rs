@@ -213,6 +213,7 @@ impl Battle {
             let amount = mon.max_hp.get() / 4;
             self.consume(pos, "Sitrus Berry", true);
             self.item_heal(pos, amount, "Sitrus Berry");
+            self.cheek_pouch(pos);
             self.symbiosis_after_item(pos);
         }
         self.pinch_stat_berry(pos);
@@ -236,6 +237,7 @@ impl Battle {
         if berry == "Lum Berry" && self.mon(pos).confusion > 0 {
             self.cure_confusion(pos);
         }
+        self.cheek_pouch(pos);
         self.symbiosis_after_item(pos);
     }
 
@@ -256,13 +258,14 @@ impl Battle {
         }
         self.consume(pos, name, true);
         self.apply_stat_berry(pos, name, stat);
+        self.cheek_pouch(pos);
         self.symbiosis_after_item(pos);
     }
 
     fn apply_stat_berry(&mut self, pos: Position, name: &str, stat: BoostStat) {
         let amount = match self.event_ability(pos) {
             "contrary" => -1,
-            "ripen" => 2,
+            "ripen" | "simple" => 2,
             _ => 1,
         };
         let mon = self.mon_mut(pos);
@@ -332,6 +335,7 @@ impl Battle {
                     }
                 }
             }
+            self.cheek_pouch(source);
         }
         if self.event_ability(source) == "ripen" {
             self.mon_mut(source).ripen_pending = resistance_berry(&id).is_some();
@@ -540,6 +544,18 @@ impl Battle {
             };
         mon.hp = (mon.hp + amount).min(mon.max_hp.get());
         self.add_health_line_with("-heal", pos, false, &format!("|[from] item: {item}"));
+    }
+
+    pub(super) fn cheek_pouch(&mut self, pos: Position) {
+        if self.event_ability(pos) != "cheekpouch" {
+            return;
+        }
+        let mon = self.mon_mut(pos);
+        if mon.hp == 0 || mon.hp == mon.max_hp.get() || mon.heal_block > 0 {
+            return;
+        }
+        mon.hp = (mon.hp + (mon.max_hp.get() / 3).max(1)).min(mon.max_hp.get());
+        self.add_health_line_with("-heal", pos, false, "|[from] ability: Cheek Pouch");
     }
 
     pub(super) fn consume(&mut self, pos: Position, item: &str, eaten: bool) {

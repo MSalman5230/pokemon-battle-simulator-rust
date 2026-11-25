@@ -264,6 +264,7 @@ impl Battle {
                 Hook::Berry(name, true) if !self.foe_unnerve(target) => {
                     ripened = self.event_ability(target) == "ripen";
                     self.consume(target, name, true);
+                    self.cheek_pouch(target);
                     self.symbiosis_after_item(target);
                     if self.format.report_exact_hp {
                         self.add("|debug|-50% reduction");
