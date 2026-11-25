@@ -90,6 +90,11 @@ add('Fluffy doubles noncontact fire damage', 'flamethrower', fire, mon('Bewear',
 add('Fluffy’s two multipliers cancel for contact Fire moves', 'flamecharge', fire, mon('Bewear', 'Fluffy'));
 add('Punk Rock strengthens the user’s sound attack', 'hypervoice', mon('Toxtricity', 'Punk Rock'), water);
 add('Punk Rock softens incoming sound damage', 'hypervoice', water, mon('Toxtricity', 'Punk Rock'));
+add('Gyro Ball uses modified speed without reversing it', 'gyroball',
+    mon('Bronzong', 'Levitate', 'Iron Ball'), electric, {pseudo:{trickroom:{}}});
+add('Electro Ball uses a floored speed ratio', 'electroball', electric, mon('Snorlax', 'Immunity'));
+add('Terrains double the Tactical Terrain Pulse power without changing its type', 'terrainpulse',
+    mon('Clawitzer', 'Mega Launcher'), normal, {terrain:'mistyterrain'});
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));

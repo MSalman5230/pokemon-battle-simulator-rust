@@ -1133,6 +1133,11 @@ impl Battle {
                     | "coaching"
                     | "burningjealousy"
                     | "psychicnoise"
+                    | "gyroball"
+                    | "electroball"
+                    | "terrainpulse"
+                    | "upperhand"
+                    | "aquaring"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -1936,15 +1941,23 @@ impl Battle {
     }
 
     pub(super) fn field_speed(&mut self, pos: Position) -> i32 {
+        let stat = self.speed_stat(pos);
+        self.stat_rules
+            .truncation
+            .action_speed(stat, (self.trick_room > 0) ^ self.twisted_dimension)
+    }
+
+    pub(super) fn speed_stat(&mut self, pos: Position) -> u32 {
         self.sort_unaware_handlers();
-        self.stat_rules.truncation.action_speed(
-            self.mon(pos).current_speed(
-                self.effective_weather(),
-                self.terrain(),
-                self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0,
-            ),
-            (self.trick_room > 0) ^ self.twisted_dimension,
-        )
+        let stat = self.mon(pos).current_speed(
+            self.effective_weather(),
+            self.terrain(),
+            self.sides[pos.player.index()].as_ref().unwrap().tailwind != 0,
+        );
+        match self.stat_rules.truncation {
+            crate::mechanics::Truncation::Cartridge => stat.min(10_000),
+            crate::mechanics::Truncation::Unbounded => stat,
+        }
     }
 
     pub(super) fn move_priority(&self, pos: Position, data: &Move) -> i8 {
@@ -2055,6 +2068,7 @@ impl Battle {
             TrickRoom,
             Terrain,
             GrassyHeal,
+            AquaRing,
         }
         self.add("|");
         self.update_speed();
@@ -2156,6 +2170,9 @@ impl Battle {
             }
             if self.terrain() == Some(Terrain::Grassy) {
                 timers.push((pos, Effect::GrassyHeal, priority(5, 2)));
+            }
+            if mon.volatile_ids().contains(&"aquaring") {
+                timers.push((pos, Effect::AquaRing, priority(6, 2)));
             }
             if mon.ability == "speedboost" {
                 timers.push((pos, Effect::SpeedBoost, priority(28, 2)));
@@ -2409,6 +2426,7 @@ impl Battle {
                     unreachable!()
                 }
                 Effect::GrassyHeal => self.grassy_heal(pos),
+                Effect::AquaRing => self.aqua_ring_heal(pos),
                 Effect::Yawn => self.tick_yawn(pos),
                 Effect::LeechSeed => {
                     self.tick_leech_seed(pos);
@@ -2679,9 +2697,15 @@ impl Battle {
             ""
         };
         let weather_ball = move_data.name == "Weather Ball";
+        let terrain_pulse = if move_data.name == "Terrain Pulse" && self.grounded(source) {
+            self.terrain()
+        } else {
+            None
+        };
         let stacked_power = matches!(move_data.name.as_str(), "Stored Power" | "Power Trip");
         let power = match move_data.name.as_str() {
             "Weather Ball" if weather.is_some() => move_data.base_power * 2,
+            "Terrain Pulse" if terrain_pulse.is_some() => move_data.base_power * 2,
             "Stored Power" | "Power Trip" => {
                 move_data.base_power + self.mon(source).boosts.positive() * 20
             }
@@ -2701,6 +2725,8 @@ impl Battle {
             ("???", false)
         } else if weather_ball {
             (weather.map_or("Normal", Weather::ball_type), false)
+        } else if let Some(terrain) = terrain_pulse {
+            (terrain.element(), false)
         } else if move_data.name == "Aura Wheel"
             && self.mon(source).species.name == "Morpeko-Hangry"
         {
@@ -2899,6 +2925,9 @@ impl Battle {
                 .rposition(|line| line.public.starts_with("|move|"))
                 .unwrap_or(self.log.len() - 1)
         } else {
+            if terrain_pulse.is_some() && self.format.report_exact_hp {
+                self.add("|debug|BP doubled in Terrain");
+            }
             let base = self.log.len();
             self.add(format!(
                 "|move|{source_name}|{}|{target_name}{called_from}",
@@ -3466,12 +3495,18 @@ impl Battle {
             result.failed = true;
             return true;
         }
-        if matches!(move_data.name.as_str(), "Sucker Punch" | "Thunderclap") {
+        if matches!(
+            move_data.name.as_str(),
+            "Sucker Punch" | "Thunderclap" | "Upper Hand"
+        ) {
             let target = spread_targets[0];
+            let needs_priority = move_data.name == "Upper Hand";
             let pending_attack = self.mon(target).recharge == 0
                 && Self::queued_move(queue, target).is_some_and(|slot| {
                     slot != RECHARGE_SLOT
                         && self.move_data(target, slot).category != Category::Status
+                        && (!needs_priority
+                            || self.move_priority(target, self.move_data(target, slot)) > 0)
                 });
             if !pending_attack {
                 self.move_still(base);
@@ -3901,6 +3936,16 @@ impl Battle {
                         self.terrain_activate(target, Terrain::Misty);
                     } else {
                         succeeded = self.apply_confusion(target, false);
+                    }
+                }
+                if move_data.name == "Aqua Ring" {
+                    if self.mon(target).volatile_ids().contains(&"aquaring") {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    } else {
+                        self.mon_mut(target).track_volatile("aquaring");
+                        self.add(format!("|-start|{}|Aqua Ring", self.ident(target)));
+                        succeeded = true;
                     }
                 }
                 if move_data.name == "Belly Drum" {
@@ -5739,6 +5784,7 @@ impl Pokemon {
                 | "unseenfist"
                 | "quickdraw"
                 | "poisontouch"
+                | "steelyspirit"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

@@ -1336,6 +1336,18 @@ fn psychic_noise_blocks_healing_and_disables_moves_until_expiry_or_herb() {
 }
 
 #[test]
+fn speed_ratios_and_the_active_terrain_shape_move_power_without_leaking_turn_order() {
+    replay(include_str!("fixtures/bss-speed-power.json"));
+    replay(include_str!("fixtures/bss-terrain-pulse-aqua-ring.json"));
+}
+
+#[test]
+fn upper_hand_checks_priority_and_steely_spirit_boosts_allied_steel_attacks() {
+    replay(include_str!("fixtures/bss-upper-hand.json"));
+    replay(include_str!("fixtures/vgc-steely-spirit.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

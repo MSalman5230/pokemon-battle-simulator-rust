@@ -1,0 +1,924 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Bronzong\",\"moves\":[\"Trick Room\",\"Gyro Ball\"],\"gender\":\"N\",\"name\":\"Bronzong\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Iron Ball\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Jolteon\",\"moves\":[\"Electro Ball\",\"Recover\"],\"gender\":\"F\",\"name\":\"Jolteon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Bronzong, L50|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Bronzong, L50|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Bronzong, L50|",
+          "|poke|p2|Jolteon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bronzong",
+                "details": "Bronzong, L50",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "trickroom",
+                  "gyroball"
+                ],
+                "baseAbility": "",
+                "item": "ironball",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "electroball",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ironball",
+            "active": false,
+            "moves": [
+              {
+                "id": "trickroom",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "gyroball",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "electroball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Bronzong|Bronzong, L50|100/100",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Bronzong|Bronzong, L50|142/142",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Bronzong|Bronzong, L50|100/100",
+          "|switch|p2a: Jolteon|Jolteon, L50, F|140/140",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Trick Room",
+                  "id": "trickroom",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Gyro Ball",
+                  "id": "gyroball",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bronzong",
+                "details": "Bronzong, L50",
+                "condition": "142/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "trickroom",
+                  "gyroball"
+                ],
+                "baseAbility": "",
+                "item": "ironball",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electro Ball",
+                  "id": "electroball",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "electroball",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50",
+            "hp": 142,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ironball",
+            "active": true,
+            "moves": [
+              {
+                "id": "trickroom",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "gyroball",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electroball",
+                "pp": 12,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Jolteon|Electro Ball|p1a: Bronzong",
+          "|-damage|p1a: Bronzong|38/100",
+          "|move|p1a: Bronzong|Trick Room|p1a: Bronzong",
+          "|-fieldstart|move: Trick Room|[of] p1a: Bronzong",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Jolteon|Electro Ball|p1a: Bronzong",
+          "|-damage|p1a: Bronzong|55/142",
+          "|move|p1a: Bronzong|Trick Room|p1a: Bronzong",
+          "|-fieldstart|move: Trick Room|[of] p1a: Bronzong",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Jolteon|Electro Ball|p1a: Bronzong",
+          "|-damage|p1a: Bronzong|38/100",
+          "|move|p1a: Bronzong|Trick Room|p1a: Bronzong",
+          "|-fieldstart|move: Trick Room|[of] p1a: Bronzong",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Trick Room",
+                  "id": "trickroom",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Gyro Ball",
+                  "id": "gyroball",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bronzong",
+                "details": "Bronzong, L50",
+                "condition": "55/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "trickroom",
+                  "gyroball"
+                ],
+                "baseAbility": "",
+                "item": "ironball",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electro Ball",
+                  "id": "electroball",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "electroball",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50",
+            "hp": 55,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ironball",
+            "active": true,
+            "moves": [
+              {
+                "id": "trickroom",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "gyroball",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electroball",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Bronzong|Gyro Ball|p2a: Jolteon",
+          "|-resisted|p2a: Jolteon|1",
+          "|-damage|p2a: Jolteon|57/100",
+          "|move|p2a: Jolteon|Recover|p2a: Jolteon",
+          "|-heal|p2a: Jolteon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Bronzong|Gyro Ball|p2a: Jolteon",
+          "|-resisted|p2a: Jolteon|1",
+          "|-damage|p2a: Jolteon|57/100",
+          "|move|p2a: Jolteon|Recover|p2a: Jolteon",
+          "|-heal|p2a: Jolteon|100/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Bronzong|Gyro Ball|p2a: Jolteon",
+          "|-resisted|p2a: Jolteon|1",
+          "|-damage|p2a: Jolteon|80/140",
+          "|move|p2a: Jolteon|Recover|p2a: Jolteon",
+          "|-heal|p2a: Jolteon|140/140",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Trick Room",
+                  "id": "trickroom",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "all",
+                  "disabled": false
+                },
+                {
+                  "move": "Gyro Ball",
+                  "id": "gyroball",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Bronzong",
+                "details": "Bronzong, L50",
+                "condition": "55/142",
+                "active": true,
+                "stats": {
+                  "atk": 109,
+                  "def": 136,
+                  "spa": 99,
+                  "spd": 136,
+                  "spe": 53
+                },
+                "moves": [
+                  "trickroom",
+                  "gyroball"
+                ],
+                "baseAbility": "",
+                "item": "ironball",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Electro Ball",
+                  "id": "electroball",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Jolteon",
+                "details": "Jolteon, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 150
+                },
+                "moves": [
+                  "electroball",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Bronzong",
+            "species": "Bronzong",
+            "details": "Bronzong, L50",
+            "hp": 55,
+            "maxhp": 142,
+            "status": "",
+            "stats": {
+              "atk": 109,
+              "def": 136,
+              "spa": 99,
+              "spd": 136,
+              "spe": 53
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ironball",
+            "active": true,
+            "moves": [
+              {
+                "id": "trickroom",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "gyroball",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Jolteon",
+            "species": "Jolteon",
+            "details": "Jolteon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 150
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "electroball",
+                "pp": 11,
+                "maxpp": 12
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

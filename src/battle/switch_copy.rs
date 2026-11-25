@@ -24,6 +24,7 @@ impl Pokemon {
                 "protect" | "kingsshield" | "banefulbunker" | "spikyshield" | "burningbulwark"
                 | "obstruct" | "silktrap" => self.protection = source.protection,
                 "healblock" => self.heal_block = source.heal_block,
+                "aquaring" => {}
                 "roost" => self.roosted = source.roosted,
                 "followme" | "ragepowder" => self.attention = source.attention,
                 "flinch" => self.flinched = source.flinched,

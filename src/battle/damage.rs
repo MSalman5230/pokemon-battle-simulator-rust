@@ -40,6 +40,27 @@ impl Battle {
                 }
                 result as u16
             }
+            "Gyro Ball" | "Electro Ball" => {
+                let (first, second) = if data.name == "Gyro Ball" {
+                    (target, source)
+                } else {
+                    (source, target)
+                };
+                let numerator = self.speed_stat(first);
+                let denominator = self.speed_stat(second);
+                let result = if data.name == "Gyro Ball" {
+                    (25 * numerator)
+                        .checked_div(denominator)
+                        .map_or(1, |v| (v + 1).min(150))
+                } else {
+                    let index = numerator.checked_div(denominator).unwrap_or(0).min(4);
+                    [40, 60, 80, 120, 150][index as usize]
+                };
+                if self.format.report_exact_hp {
+                    self.add(format!("|debug|BP: {result}"));
+                }
+                result as u16
+            }
             "Rising Voltage"
                 if self.terrain() == Some(Terrain::Electric) && self.grounded(target) =>
             {
@@ -299,6 +320,24 @@ impl Battle {
             roll,
         } = args;
         let tr = self.stat_rules.truncation;
+        let mut spirit_handlers = [0; 2];
+        let mut spirit_count = 0;
+        for pos in self.positions().filter(|p| p.player == source.player) {
+            if self.event_ability(pos) == "steelyspirit" {
+                spirit_handlers[spirit_count] = self.mon(pos).speed;
+                spirit_count += 1;
+            }
+        }
+        speed_sort_by(
+            &mut spirit_handlers[..spirit_count],
+            &mut self.rng,
+            |a, b| b.cmp(a),
+        );
+        if move_type == "Steel" && self.format.report_exact_hp {
+            for _ in 0..spirit_count {
+                self.add("|debug|Steely Spirit boost");
+            }
+        }
         if solar_weak && self.format.report_exact_hp {
             self.add("|debug|weakened by weather");
         }
@@ -490,6 +529,11 @@ impl Battle {
         } else {
             4096
         };
+        if move_type == "Steel" {
+            for _ in 0..spirit_count {
+                power_modifier = chain(6144, power_modifier);
+            }
+        }
         if solar_weak {
             power_modifier = crate::mechanics::chain(2048, power_modifier);
         }

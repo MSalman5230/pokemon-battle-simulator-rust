@@ -11,7 +11,7 @@ pub enum Terrain {
 }
 
 impl Terrain {
-    fn mimicry_type(self) -> &'static str {
+    pub(super) fn element(self) -> &'static str {
         match self {
             Self::Electric => "Electric",
             Self::Grassy => "Grass",
@@ -107,7 +107,7 @@ impl Battle {
         if matches!(mon.species.base_species.as_str(), "Arceus" | "Silvally") {
             return;
         }
-        let terrain_type = self.terrain().map(Terrain::mimicry_type);
+        let terrain_type = self.terrain().map(Terrain::element);
         let base = mon.base_species.types.iter().map(String::as_str);
         if terrain_type.map_or_else(|| mon.types().eq(base), |ty| mon.types().eq([ty])) {
             return;

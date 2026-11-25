@@ -1031,6 +1031,22 @@ const psychicNoiseRosters = [
     [named('Espeon', ['Psychic Noise', 'Calm Mind'])],
     [{...named('Hitmontop', ['Recover', 'Tackle'], 'M'), item:'Sitrus Berry'}],
 ];
+const speedPowerRosters = [
+    [{...named('Bronzong', ['Trick Room', 'Gyro Ball'], 'N'), item:'Iron Ball'}],
+    [named('Jolteon', ['Electro Ball', 'Recover'])],
+];
+const terrainPulseRosters = [
+    [{...named('Clawitzer', ['Misty Terrain', 'Terrain Pulse']), ability:'Mega Launcher'}],
+    [named('Vaporeon', ['Aqua Ring', 'Tackle'])],
+];
+const upperHandRosters = [
+    [named('Hitmontop', ['Upper Hand'], 'M')],
+    [named('Jolteon', ['Quick Attack', 'Tackle'])],
+];
+const steelySpiritRosters = [
+    [{...named('Perrserker', ['Metal Claw']), ability:'Steely Spirit'}, named('Lucario', ['Flash Cannon'])],
+    [named('Vaporeon', ['Recover']), named('Umbreon', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1921,6 +1937,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         psychicNoiseRosters, 'bss-psychic-noise'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']],
         [psychicNoiseRosters[0], [{...psychicNoiseRosters[1][0], item:'Mental Herb'}]], 'bss-psychic-noise-herb'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2']],
+        speedPowerRosters, 'bss-speed-power'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 1']],
+        terrainPulseRosters, 'bss-terrain-pulse-aqua-ring'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        upperHandRosters, 'bss-upper-hand'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 2','move 1, move 1']],
+        steelySpiritRosters, 'vgc-steely-spirit'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

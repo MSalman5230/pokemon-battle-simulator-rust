@@ -41,6 +41,14 @@ impl ReplacementHeal {
 }
 
 impl Battle {
+    pub(super) fn aqua_ring_heal(&mut self, pos: Position) {
+        let mon = self.mon_mut(pos);
+        if mon.hp > 0 && mon.hp < mon.max_hp.get() && mon.heal_block == 0 {
+            mon.hp = (mon.hp + (mon.max_hp.get() / 16).max(1)).min(mon.max_hp.get());
+            self.add_health_line_with("-heal", pos, false, "|[from] Aqua Ring");
+        }
+    }
+
     pub(super) fn heal_pulse(&mut self, source: Position, target: Position) {
         let max_hp = self.mon(target).max_hp.get();
         let amount = if self.event_ability(source) == "megalauncher" {

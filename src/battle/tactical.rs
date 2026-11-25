@@ -368,6 +368,9 @@ impl Battle {
                     | "thief"
                     | "covet"
                     | "psychicnoise"
+                    | "gyroball"
+                    | "electroball"
+                    | "terrainpulse"
             )
         {
             return Err(unsupported(format!("move {move_id}")));
@@ -423,8 +426,11 @@ impl Battle {
             "grassknot" | "lowkick" | "heatcrash" | "heavyslam" => self
                 .weight_move_power(&data.name, ACTOR, TARGET)
                 .ok_or_else(|| unsupported(move_id))?,
-            "acrobatics" | "hardpress" | "risingvoltage" => {
+            "acrobatics" | "hardpress" | "risingvoltage" | "gyroball" | "electroball" => {
                 self.situational_base_power(ACTOR, TARGET, data, data.base_power)
+            }
+            "terrainpulse" if self.terrain().is_some() && self.grounded(ACTOR) => {
+                data.base_power * 2
             }
             _ => data.base_power,
         };
