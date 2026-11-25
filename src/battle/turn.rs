@@ -5,6 +5,7 @@ use crate::{
     dex::{Accuracy, Category},
     mechanics::{BoostStat, boosted_stat},
 };
+use serde_json::Value;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub(super) struct Position {
@@ -2924,6 +2925,16 @@ impl Battle {
                     self.ident(mut_pos)
                 ));
                 false
+            } else if source != mut_pos
+                && source.player == mut_pos.player
+                && move_data.category != Category::Status
+                && self.event_ability(mut_pos) == "telepathy"
+            {
+                self.add(format!(
+                    "|-activate|{}|ability: Telepathy",
+                    self.ident(mut_pos)
+                ));
+                false
             } else if move_data.category == Category::Status
                 && source != mut_pos
                 && self.event_ability(mut_pos) == "goodasgold"
@@ -2937,11 +2948,8 @@ impl Battle {
                 true
             }
         });
+        let ignores_type = self.move_ignores_immunity(source, move_data, move_type);
         spread_targets.retain(|&pos| {
-            let ignores_type = move_data
-                .ignore_immunity
-                .as_bool()
-                .unwrap_or(move_data.category == Category::Status);
             if !ignores_type
                 && move_type == "Ground"
                 && self.mon(pos).ability == "levitate"
@@ -2954,7 +2962,9 @@ impl Battle {
                 ));
                 false
             } else if (!ignores_type
-                && (self.effectiveness_of(move_data, move_type, pos).is_none()
+                && (self
+                    .effectiveness_of(move_data, move_type, pos, false)
+                    .is_none()
                     || (move_data.move_type == "Ground" && self.mon(pos).item == "airballoon")))
                 || (move_data.flags.contains_key("powder")
                     && source != pos
@@ -3062,8 +3072,10 @@ impl Battle {
                 self.move_still(base);
                 false
             });
-            let mut succeeded = false;
+            let mut any_success = false;
+            let mut hit_labels = Vec::new();
             for target in spread_targets {
+                let mut succeeded = false;
                 if matches!(move_data.name.as_str(), "Taunt" | "Encore" | "Disable")
                     && self.aroma_veil_blocks(target, true)
                 {
@@ -3316,8 +3328,19 @@ impl Battle {
                     succeeded |=
                         self.boost_from(target, source, boosts, BoostOrigin::from_move(move_data));
                 }
+                if succeeded {
+                    any_success = true;
+                    if spread {
+                        hit_labels.push(target.label());
+                    }
+                }
             }
-            if succeeded {
+            if spread {
+                self.log[base]
+                    .public
+                    .push_str(&format!("|[spread] {}", hit_labels.join(",")));
+            }
+            if any_success {
                 self.each_event();
                 self.each_event();
             }
@@ -3419,7 +3442,7 @@ impl Battle {
                     0
                 } else {
                     battle
-                        .effectiveness_of(move_data, move_type, target)
+                        .effectiveness_of(move_data, move_type, target, ignores_type)
                         .unwrap()
                 };
                 let mut power = power;
@@ -3621,7 +3644,25 @@ impl Battle {
                 self.add(format!("|-singlemove|{source_name}|Glaive Rush|[silent]"));
             }
             for &target in &spread_targets {
+                if move_data.secondaries.is_empty() {
+                    break;
+                }
+                let dust = self.event_ability(target) == "shielddust";
+                let cloak = self.mon(target).item == "covertcloak";
+                if self.format.report_exact_hp {
+                    if dust {
+                        self.add("|debug|Shield Dust prevent secondary");
+                    } else if self.mon(target).ability == "shielddust" {
+                        self.add("|debug|ModifySecondaries handler suppressed by Mold Breaker");
+                    }
+                    if cloak {
+                        self.add("|debug|Covert Cloak prevent secondary");
+                    }
+                }
                 for effect in &move_data.secondaries {
+                    if (dust || cloak) && effect.self_boosts.is_empty() {
+                        continue;
+                    }
                     let roll = self.rng.below(100);
                     if effect.chance.is_none_or(|chance| roll < u32::from(chance)) {
                         if shielded & target.mask() != 0 {
@@ -4050,7 +4091,24 @@ impl Battle {
         if move_data.name == "Struggle" {
             return Some(0);
         }
-        self.effectiveness_of(move_data, &move_data.move_type, target)
+        self.effectiveness_of(move_data, &move_data.move_type, target, false)
+    }
+
+    pub(super) fn move_ignores_immunity(
+        &self,
+        source: Position,
+        move_data: &Move,
+        move_type: &str,
+    ) -> bool {
+        self.event_ability(source) == "scrappy" && matches!(move_type, "Normal" | "Fighting")
+            || match &move_data.ignore_immunity {
+                Value::Bool(value) => *value,
+                Value::Object(types) => types
+                    .get(move_type)
+                    .and_then(Value::as_bool)
+                    .unwrap_or(false),
+                _ => move_data.category == Category::Status,
+            }
     }
 
     pub(super) fn effectiveness_of(
@@ -4058,6 +4116,7 @@ impl Battle {
         move_data: &Move,
         move_type: &str,
         target: Position,
+        ignores_immunity: bool,
     ) -> Option<i8> {
         let mut modifier = 0;
         for typing in self.mon(target).types() {
@@ -4076,7 +4135,7 @@ impl Battle {
             match case {
                 Some(1) => modifier += 1,
                 Some(2) => modifier -= 1,
-                Some(3) => return None,
+                Some(3) if !ignores_immunity => return None,
                 _ => {}
             }
         }
@@ -4218,6 +4277,9 @@ impl Pokemon {
                 | "insomnia"
                 | "leafguard"
                 | "earlybird"
+                | "scrappy"
+                | "shielddust"
+                | "telepathy"
                 | "immunity"
                 | "cutecharm"
                 | "flamebody"
@@ -4323,6 +4385,7 @@ impl Pokemon {
                 | "quickclaw"
                 | "lightball"
                 | "bindingband"
+                | "covertcloak"
                 | "gripclaw"
                 | "softsand"
                 | "magnet"

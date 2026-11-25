@@ -744,6 +744,21 @@ const earlyBirdRosters = [
     [{...named('Houndoom', ['Recover', 'Rest', 'Tackle']), ability:'Early Bird'}, named('Umbreon', ['Recover'])],
     [named('Jolteon', ['Tackle', 'Recover', 'Spore']), named('Vaporeon', ['Recover'])],
 ];
+const scrappyRosters = [
+    [{...named('Exploud', ['Tackle', 'Power-Up Punch']), ability:'Scrappy'}, named('Vaporeon', ['Recover'])],
+    [{...named('Arbok', ['Recover']), ability:'Intimidate'}, named('Froslass', ['Recover'])],
+];
+const secondaryProtectionRosters = [
+    [named('Umbreon', ['Snarl', 'Fiery Dance']), named('Espeon', ['Recover'])],
+    [{...named('Ribombee', ['Recover']), ability:'Shield Dust'},
+        {...named('Vaporeon', ['Recover']), item:'Covert Cloak'}],
+];
+const telepathyRosters = [
+    [named('Garchomp', ['Earthquake', 'Tail Whip']),
+        {...named('Gardevoir', ['Recover']), ability:'Telepathy'},
+        {...named('Haxorus', ['Earthquake']), ability:'Mold Breaker'}],
+    [named('Vaporeon', ['Recover']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1125,6 +1140,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 4','move 1'], ['move 1','move 1'], ['move 3','move 1']], yawnAbilityRosters, 'bss-yawn-abilities'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 3'], ['move 3','move 2'],
         ['move 3','move 1'], ['move 2','move 2'], ['move 3','move 2'], ['move 3','move 2']], earlyBirdRosters, 'bss-early-bird'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','switch 2'], ['move 2','move 1'], ['move 1','switch 2']],
+        scrappyRosters, 'bss-scrappy'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 1'], ['move 1','switch 2'],
+        ['move 2','move 1']], secondaryProtectionRosters, 'bss-secondary-protection'],
+    ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['move 2, move 1','move 1, move 1'], ['switch 3, move 1','move 1, move 1'],
+        ['move 1, move 1','move 1, move 1']], telepathyRosters, 'vgc-telepathy'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

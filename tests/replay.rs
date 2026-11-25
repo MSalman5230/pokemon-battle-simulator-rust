@@ -838,6 +838,13 @@ fn sleep_prevention_and_early_bird_follow_native_status_events() {
 }
 
 #[test]
+fn ability_hit_hooks_preserve_secondary_rng_and_ignore_only_matching_immunities() {
+    replay(include_str!("fixtures/bss-scrappy.json"));
+    replay(include_str!("fixtures/bss-secondary-protection.json"));
+    replay(include_str!("fixtures/vgc-telepathy.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

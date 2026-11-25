@@ -377,7 +377,8 @@ impl Battle {
         {
             return Ok(result);
         }
-        let Some(effect) = self.effectiveness_of(data, move_type, TARGET) else {
+        let ignores_type = self.move_ignores_immunity(ACTOR, data, move_type);
+        let Some(effect) = self.effectiveness_of(data, move_type, TARGET, ignores_type) else {
             return Ok(result);
         };
         result.accuracy = self.preview_accuracy(data, weather);

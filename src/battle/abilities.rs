@@ -760,6 +760,7 @@ impl Battle {
             "innerfocus" => Some(DropHook::IntimidateBlock("Inner Focus")),
             "oblivious" => Some(DropHook::IntimidateBlock("Oblivious")),
             "owntempo" => Some(DropHook::IntimidateBlock("Own Tempo")),
+            "scrappy" => Some(DropHook::IntimidateBlock("Scrappy")),
             _ => mon.stat_drop_protection().map(DropHook::Block),
         };
         let mut count = 0;
