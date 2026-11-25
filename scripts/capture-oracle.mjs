@@ -908,6 +908,18 @@ const risingVoltageRosters = [
     [named('Bellibolt', ['Electric Terrain', 'Rising Voltage'])],
     [named('Umbreon', ['Recover']), {...named('Rotom', ['Recover'], 'N'), ability:'Levitate'}],
 ];
+const contactSpeedRosters = [
+    [{...named('Mawile', ['Tackle']), ability:'Hyper Cutter'}],
+    [{...named('Goodra', ['Growl']), ability:'Gooey'}],
+];
+const stallRosters = [
+    [{...named('Sableye', ['Tackle', 'Quick Attack'], 'M'), ability:'Stall'}],
+    [named('Snorlax', ['Tackle'])],
+];
+const hydrationRosters = [
+    [{...named('Vaporeon', ['Rain Dance', 'Recover']), ability:'Hydration', item:'Leftovers'}],
+    [named('Umbreon', ['Toxic', 'Tackle'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1733,6 +1745,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','move 2'], ['move 2','move 2']], situationalPowerRosters, 'bss-situational-power'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'],
         ['move 2','switch 2']], risingVoltageRosters, 'bss-rising-voltage'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        contactSpeedRosters, 'bss-contact-stat-abilities'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        stallRosters, 'bss-stall-priority'],
+    ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 2']],
+        hydrationRosters, 'bss-hydration'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

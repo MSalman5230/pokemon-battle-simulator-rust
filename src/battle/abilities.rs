@@ -1082,6 +1082,7 @@ impl Battle {
             "keeneye" => Some(DropHook::ProtectStat(BoostStat::Accuracy, "Keen Eye")),
             "mindseye" => Some(DropHook::ProtectStat(BoostStat::Accuracy, "Mind's Eye")),
             "bigpecks" => Some(DropHook::ProtectStat(BoostStat::Def, "Big Pecks")),
+            "hypercutter" => Some(DropHook::ProtectStat(BoostStat::Atk, "Hyper Cutter")),
             "innerfocus" => Some(DropHook::IntimidateBlock("Inner Focus")),
             "oblivious" => Some(DropHook::IntimidateBlock("Oblivious")),
             "owntempo" => Some(DropHook::IntimidateBlock("Own Tempo")),
@@ -1263,6 +1264,31 @@ impl Battle {
             self.add(format!("|-activate|{}|ability: Shed Skin", self.ident(pos)));
             self.cure_status(pos, "[msg]");
         }
+    }
+
+    pub(super) fn hydration(&mut self, pos: Position) {
+        let mon = self.mon(pos);
+        if mon.hp != 0
+            && mon.status != Status::Healthy
+            && mon.effective_item() != "utilityumbrella"
+            && self.effective_weather() == Some(Weather::Rain)
+        {
+            if self.format.report_exact_hp {
+                self.add("|debug|hydration");
+            }
+            self.add(format!("|-activate|{}|ability: Hydration", self.ident(pos)));
+            self.cure_status(pos, "[msg]");
+        }
+    }
+
+    pub(super) fn contact_speed_drop(&mut self, holder: Position, attacker: Position, label: &str) {
+        self.add(format!("|-ability|{}|{label}", self.ident(holder)));
+        self.boost_from(
+            attacker,
+            holder,
+            &[(BoostStat::Spe, -1)],
+            BoostOrigin::Secondary,
+        );
     }
 
     pub(super) fn speed_boost(&mut self, pos: Position) {

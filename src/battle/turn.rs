@@ -566,14 +566,8 @@ impl Battle {
                         self.prioritize(&mut charge);
                         queue.push(charge);
                     }
-                    if self.phase == Phase::Move
-                        && matches!(action.kind, ActionKind::Move { .. })
-                        && let Some(actor) = action.actor
-                        && self.mon(actor).effective_item() == "quickclaw"
-                        && self.rng.chance(1, 5)
-                    {
-                        action.fractional_priority = 0.1;
-                        self.add(format!("|-activate|{}|item: Quick Claw", self.ident(actor)));
+                    if matches!(action.kind, ActionKind::Move { .. }) {
+                        self.assign_fractional_priority(&mut action);
                     }
                     if let ActionKind::Move {
                         move_slot,
@@ -1165,6 +1159,17 @@ impl Battle {
         }
     }
 
+    fn assign_fractional_priority(&mut self, action: &mut Action) {
+        let actor = action.actor.unwrap();
+        if self.event_ability(actor) == "stall" {
+            action.fractional_priority = -0.1;
+        }
+        if self.mon(actor).effective_item() == "quickclaw" && self.rng.chance(1, 5) {
+            action.fractional_priority = 0.1;
+            self.add(format!("|-activate|{}|item: Quick Claw", self.ident(actor)));
+        }
+    }
+
     fn random_target(&mut self, source: Position, kind: TargetKind) -> Option<Position> {
         match kind {
             TargetKind::User
@@ -1283,6 +1288,7 @@ impl Battle {
                 mega: false,
             },
         );
+        self.assign_fractional_priority(&mut action);
         self.prioritize(&mut action);
         self.insert_action(queue, action);
     }
@@ -1892,6 +1898,7 @@ impl Battle {
             StatusOrb,
             WhiteHerb,
             ShedSkin,
+            Hydration,
             Healer,
             Weather,
             SpeedBoost,
@@ -2084,6 +2091,9 @@ impl Battle {
             if mon.ability == "shedskin" {
                 timers.push((pos, Effect::ShedSkin, priority(5, 3)));
             }
+            if mon.ability == "hydration" {
+                timers.push((pos, Effect::Hydration, priority(5, 3)));
+            }
             if mon.ability == "healer" {
                 timers.push((pos, Effect::Healer, priority(5, 3)));
             }
@@ -2262,6 +2272,7 @@ impl Battle {
                 Effect::Taunt => self.tick_taunt(pos),
                 Effect::Encore => self.tick_encore(pos),
                 Effect::ShedSkin => self.shed_skin(pos),
+                Effect::Hydration => self.hydration(pos),
                 Effect::Healer => self.healer_residual(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Harvest => self.harvest_item(pos),
@@ -4550,6 +4561,8 @@ impl Battle {
                             self.contact_status(target, source, base)
                         }
                         "cutecharm" => self.cute_charm(target, source),
+                        "gooey" => self.contact_speed_drop(target, source, "Gooey"),
+                        "tanglinghair" => self.contact_speed_drop(target, source, "Tangling Hair"),
                         "mummy" | "lingeringaroma" => self.contact_ability(target, source),
                         "wanderingspirit" => {
                             self.skill_swap(source, target);
@@ -5303,6 +5316,11 @@ impl Pokemon {
                 | "pickup"
                 | "berserk"
                 | "angershell"
+                | "hypercutter"
+                | "gooey"
+                | "tanglinghair"
+                | "hydration"
+                | "stall"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

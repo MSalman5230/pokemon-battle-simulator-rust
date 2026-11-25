@@ -1233,6 +1233,13 @@ fn situational_attack_power_follows_held_items_current_hp_and_grounding() {
 }
 
 #[test]
+fn contact_stat_reactions_rain_status_cures_and_fractional_priority_follow_native_order() {
+    replay(include_str!("fixtures/bss-contact-stat-abilities.json"));
+    replay(include_str!("fixtures/bss-stall-priority.json"));
+    replay(include_str!("fixtures/bss-hydration.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

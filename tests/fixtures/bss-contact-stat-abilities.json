@@ -1,0 +1,837 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Mawile\",\"moves\":[\"Tackle\"],\"gender\":\"F\",\"name\":\"Mawile\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Hyper Cutter\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Goodra\",\"moves\":[\"Growl\"],\"gender\":\"F\",\"name\":\"Goodra\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Gooey\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Mawile, L50, F|",
+          "|poke|p2|Goodra, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Mawile, L50, F|",
+          "|poke|p2|Goodra, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Mawile, L50, F|",
+          "|poke|p2|Goodra, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Mawile",
+                "details": "Mawile, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 105,
+                  "spa": 75,
+                  "spd": 75,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "hypercutter",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hypercutter",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "growl"
+                ],
+                "baseAbility": "gooey",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "gooey",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Mawile",
+            "species": "Mawile",
+            "details": "Mawile, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 105,
+              "spa": 75,
+              "spd": 75,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hypercutter",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gooey",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Mawile|Mawile, L50, F|100/100",
+          "|switch|p2a: Goodra|Goodra, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Mawile|Mawile, L50, F|125/125",
+          "|switch|p2a: Goodra|Goodra, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Mawile|Mawile, L50, F|100/100",
+          "|switch|p2a: Goodra|Goodra, L50, F|165/165",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Mawile",
+                "details": "Mawile, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 105,
+                  "spa": 75,
+                  "spd": 75,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "hypercutter",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hypercutter",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "growl"
+                ],
+                "baseAbility": "gooey",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "gooey",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Mawile",
+            "species": "Mawile",
+            "details": "Mawile, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 105,
+              "spa": 75,
+              "spd": 75,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hypercutter",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gooey",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "growl",
+                "pp": 20,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Goodra|Growl|p1a: Mawile",
+          "|-fail|p1a: Mawile|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Mawile",
+          "|move|p1a: Mawile|Tackle|p2a: Goodra",
+          "|-damage|p2a: Goodra|87/100",
+          "|-ability|p2a: Goodra|Gooey",
+          "|-unboost|p1a: Mawile|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Goodra|Growl|p1a: Mawile",
+          "|-fail|p1a: Mawile|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Mawile",
+          "|move|p1a: Mawile|Tackle|p2a: Goodra",
+          "|-damage|p2a: Goodra|87/100",
+          "|-ability|p2a: Goodra|Gooey",
+          "|-unboost|p1a: Mawile|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Goodra|Growl|p1a: Mawile",
+          "|-fail|p1a: Mawile|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Mawile",
+          "|move|p1a: Mawile|Tackle|p2a: Goodra",
+          "|-damage|p2a: Goodra|144/165",
+          "|-ability|p2a: Goodra|Gooey",
+          "|-unboost|p1a: Mawile|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Mawile",
+                "details": "Mawile, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 105,
+                  "spa": 75,
+                  "spd": 75,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "hypercutter",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hypercutter",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "144/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "growl"
+                ],
+                "baseAbility": "gooey",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "gooey",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Mawile",
+            "species": "Mawile",
+            "details": "Mawile, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 105,
+              "spa": 75,
+              "spd": 75,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": -1,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hypercutter",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 144,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gooey",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "growl",
+                "pp": 19,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "25495,32001,50713,50540",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Goodra|Growl|p1a: Mawile",
+          "|-fail|p1a: Mawile|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Mawile",
+          "|move|p1a: Mawile|Tackle|p2a: Goodra",
+          "|-damage|p2a: Goodra|75/100",
+          "|-ability|p2a: Goodra|Gooey",
+          "|-unboost|p1a: Mawile|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Goodra|Growl|p1a: Mawile",
+          "|-fail|p1a: Mawile|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Mawile",
+          "|move|p1a: Mawile|Tackle|p2a: Goodra",
+          "|-damage|p2a: Goodra|75/100",
+          "|-ability|p2a: Goodra|Gooey",
+          "|-unboost|p1a: Mawile|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Goodra|Growl|p1a: Mawile",
+          "|-fail|p1a: Mawile|unboost|atk|[from] ability: Hyper Cutter|[of] p1a: Mawile",
+          "|move|p1a: Mawile|Tackle|p2a: Goodra",
+          "|-damage|p2a: Goodra|124/165",
+          "|-ability|p2a: Goodra|Gooey",
+          "|-unboost|p1a: Mawile|spe|1",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Mawile",
+                "details": "Mawile, L50, F",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 105,
+                  "def": 105,
+                  "spa": 75,
+                  "spd": 75,
+                  "spe": 70
+                },
+                "moves": [
+                  "tackle"
+                ],
+                "baseAbility": "hypercutter",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "hypercutter",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Growl",
+                  "id": "growl",
+                  "pp": 18,
+                  "maxpp": 20,
+                  "target": "allAdjacentFoes",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Goodra",
+                "details": "Goodra, L50, F",
+                "condition": "124/165",
+                "active": true,
+                "stats": {
+                  "atk": 120,
+                  "def": 90,
+                  "spa": 130,
+                  "spd": 170,
+                  "spe": 100
+                },
+                "moves": [
+                  "growl"
+                ],
+                "baseAbility": "gooey",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "gooey",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Mawile",
+            "species": "Mawile",
+            "details": "Mawile, L50, F",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 105,
+              "def": 105,
+              "spa": 75,
+              "spd": 75,
+              "spe": 70
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": -2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "hypercutter",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Goodra",
+            "species": "Goodra",
+            "details": "Goodra, L50, F",
+            "hp": 124,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 120,
+              "def": 90,
+              "spa": 130,
+              "spd": 170,
+              "spe": 100
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "gooey",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "growl",
+                "pp": 18,
+                "maxpp": 20
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
