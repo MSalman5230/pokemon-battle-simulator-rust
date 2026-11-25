@@ -136,8 +136,15 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn active_effects(&self, pos: Position) -> bool {
+        pos.slot < self.format.game_type.active_slots() && !self.mon(pos).fainted
+    }
+
     pub(super) fn crit_ratio(&self, source: Position, target: Position, data: &Move) -> u8 {
         let user = self.mon(source);
+        if !self.active_effects(source) {
+            return data.crit_ratio.unwrap_or(1);
+        }
         if user.ability == "merciless"
             && matches!(self.mon(target).status, Status::Poison | Status::Toxic(_))
         {
@@ -361,7 +368,7 @@ impl Battle {
     }
 
     pub(super) fn event_ability(&self, holder: Position) -> &str {
-        if self.ability_suppressed(holder) {
+        if !self.active_effects(holder) || self.ability_suppressed(holder) {
             ""
         } else {
             &self.mon(holder).ability

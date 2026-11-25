@@ -25,13 +25,14 @@ impl Battle {
     ) -> u32 {
         let user = self.mon(source);
         let defender = self.mon(target);
+        let source_active = self.active_effects(source);
         let mut hooks = [(0_i32, 0_u8, Hook::Fixed(4096, "")); 7];
         let mut count = 0;
         let mut add = |speed, suborder, hook| {
             hooks[count] = (speed, suborder, hook);
             count += 1;
         };
-        if user.ability == "sniper" {
+        if source_active && user.ability == "sniper" {
             add(
                 user.speed,
                 7,
@@ -42,7 +43,11 @@ impl Battle {
                 },
             );
         }
-        match user.item.as_str() {
+        match if source_active {
+            user.item.as_str()
+        } else {
+            ""
+        } {
             "lifeorb" => add(user.speed, 8, Hook::Fixed(5324, "")),
             "expertbelt" => add(
                 user.speed,
@@ -216,7 +221,10 @@ impl Battle {
         {
             self.add("|debug|Reckless boost");
         }
-        let stakeout = self.mon(source).ability == "stakeout" && self.mon(target).active_turns == 0;
+        let source_active = self.active_effects(source);
+        let stakeout = source_active
+            && self.mon(source).ability == "stakeout"
+            && self.mon(target).active_turns == 0;
         if stakeout && self.format.report_exact_hp {
             self.add("|debug|Stakeout boost");
         }
@@ -283,7 +291,11 @@ impl Battle {
         } else {
             def
         };
-        let mut attack_modifier = user.attack_modifier(move_data.category, move_type);
+        let mut attack_modifier = if source_active {
+            user.attack_modifier(move_data.category, move_type)
+        } else {
+            4096
+        };
         if move_data.category == Category::Special && self.plus_minus_boost(source) {
             attack_modifier = chain(6144, attack_modifier);
         }
@@ -309,13 +321,17 @@ impl Battle {
         }
         let atk = tr.modify(atk, attack_modifier);
         let stab = user.has_type(move_type);
-        let mut power_modifier = crate::mechanics::chain(
+        let mut power_modifier = if source_active {
             chain(
-                supreme_overlord,
-                user.ability_power_modifier(move_data, move_type, power, weather),
-            ),
-            user.item_power_modifier(move_type, move_data.category),
-        );
+                chain(
+                    supreme_overlord,
+                    user.ability_power_modifier(move_data, move_type, power, weather),
+                ),
+                user.item_power_modifier(move_type, move_data.category),
+            )
+        } else {
+            4096
+        };
         if solar_weak {
             power_modifier = crate::mechanics::chain(2048, power_modifier);
         }
@@ -345,7 +361,7 @@ impl Battle {
             critical: crit,
             stab: if !stab {
                 4096
-            } else if user.ability == "adaptability" {
+            } else if source_active && user.ability == "adaptability" {
                 8192
             } else {
                 6144

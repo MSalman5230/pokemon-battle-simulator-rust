@@ -9,6 +9,14 @@ pub(super) struct Wish {
     wisher: usize,
 }
 
+#[derive(Clone, Copy)]
+pub(super) struct FutureMove {
+    pub(super) ending_turn: u32,
+    pub(super) source_side: Player,
+    pub(super) roster_index: usize,
+    pub(super) data: &'static Move,
+}
+
 #[derive(Clone, Copy, PartialEq, Eq)]
 pub(super) enum ReplacementHeal {
     HealingWish,
@@ -105,12 +113,49 @@ impl Battle {
         }
     }
 
-    fn overflowed_turn(&self) -> u32 {
+    pub(super) fn overflowed_turn(&self) -> u32 {
         let previous = self.turn - 1;
         match self.stat_rules.truncation {
             crate::mechanics::Truncation::Cartridge => previous & 255,
             crate::mechanics::Truncation::Unbounded => previous,
         }
+    }
+
+    pub(super) fn schedule_future_move(
+        &mut self,
+        source: Position,
+        target: Position,
+        data: &'static Move,
+    ) -> bool {
+        let side = self.sides[target.player.index()].as_ref().unwrap();
+        if let Some(previous) = side.future_moves[target.slot] {
+            if previous.ending_turn >= 256 {
+                self.add(
+                    "|-hint|A previous future attack is stuck on this slot and will never resolve.",
+                );
+            }
+            return false;
+        }
+        let future = FutureMove {
+            ending_turn: self.turn + 1,
+            source_side: source.player,
+            roster_index: self.mon(source).roster_index,
+            data,
+        };
+        self.sides[target.player.index()]
+            .as_mut()
+            .unwrap()
+            .future_moves[target.slot] = Some(future);
+        if future.ending_turn >= 256 {
+            self.add("|-hint|In Gen 8+, Future attacks will never resolve when used on the 255th turn or later.");
+        }
+        let label = if data.name == "Doom Desire" {
+            "Doom Desire"
+        } else {
+            "move: Future Sight"
+        };
+        self.add(format!("|-start|{}|{label}", self.ident(source)));
+        true
     }
 
     pub(super) fn start_wish(&mut self, pos: Position) -> bool {

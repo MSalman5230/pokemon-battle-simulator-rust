@@ -53,6 +53,10 @@ enum MoveInvocation {
         data: &'static Move,
         target: Position,
     },
+    Future {
+        data: &'static Move,
+        target: Position,
+    },
 }
 
 impl Protection {
@@ -963,6 +967,8 @@ impl Battle {
                     | "defog"
                     | "pollenpuff"
                     | "curse"
+                    | "futuresight"
+                    | "doomdesire"
                     | "grassyglide"
                     | "encore"
                     | "tidyup"
@@ -1800,6 +1806,7 @@ impl Battle {
             Roost,
             Yawn,
             Wish,
+            FutureMove,
             LeechSeed,
             Curse,
             SaltCure,
@@ -1916,6 +1923,14 @@ impl Battle {
             if self.sides[pos.player.index()].as_ref().unwrap().wishes[pos.slot].is_some() {
                 timers.push((pos, Effect::Wish, priority(4, 3)));
             }
+            if self.sides[pos.player.index()]
+                .as_ref()
+                .unwrap()
+                .future_moves[pos.slot]
+                .is_some()
+            {
+                timers.push((pos, Effect::FutureMove, priority(3, 3)));
+            }
             if mon.seeded_from.is_some() {
                 timers.push((pos, Effect::LeechSeed, priority(8, 2)));
             }
@@ -2003,6 +2018,13 @@ impl Battle {
                 self.tick_wish(pos);
                 continue;
             }
+            if matches!(effect, Effect::FutureMove) {
+                self.tick_future_move(pos);
+                if self.check_win() {
+                    return;
+                }
+                continue;
+            }
             if matches!(effect, Effect::TrickRoom) {
                 self.trick_room -= 1;
                 if self.trick_room == 0 {
@@ -2040,6 +2062,7 @@ impl Battle {
                 | Effect::TrickRoom
                 | Effect::Terrain
                 | Effect::Wish
+                | Effect::FutureMove
                 | Effect::Tailwind => {
                     unreachable!()
                 }
@@ -2189,8 +2212,11 @@ impl Battle {
         let (slot, loc, forced_target, reflected) = match invocation {
             MoveInvocation::Choice { slot, loc } => (Some(slot), loc, None, false),
             MoveInvocation::Reflected { target, .. } => (None, 0, Some(target), true),
+            MoveInvocation::Future { target, .. } => (None, 0, Some(target), false),
         };
-        if !reflected && self.mon(source).glaive_drawback {
+        let delayed = matches!(invocation, MoveInvocation::Future { .. });
+        let own_action = !reflected && !delayed;
+        if own_action && self.mon(source).glaive_drawback {
             let mon = self.mon_mut(source);
             mon.glaive_drawback = false;
             mon.untrack_volatile("glaiverush");
@@ -2214,11 +2240,11 @@ impl Battle {
         }
         let move_data = match invocation {
             MoveInvocation::Choice { slot, .. } => self.move_data(source, slot),
-            MoveInvocation::Reflected { data, .. } => data,
+            MoveInvocation::Reflected { data, .. } | MoveInvocation::Future { data, .. } => data,
         };
         let struggle = slot == Some(STRUGGLE_SLOT);
         let charge_spec = ChargeSpec::for_move(&move_data.name);
-        let releasing_charge = !reflected && self.mon(source).charge.is_some();
+        let releasing_charge = own_action && self.mon(source).charge.is_some();
         let weather = self.effective_weather();
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
             && matches!(weather, Some(Weather::Rain | Weather::Sand | Weather::Snow));
@@ -2238,7 +2264,7 @@ impl Battle {
         } else {
             None
         };
-        let continuing = !reflected && (self.mon(source).rampage.is_some() || releasing_charge);
+        let continuing = own_action && (self.mon(source).rampage.is_some() || releasing_charge);
         let called_from = if reflected {
             "|[from] ability: Magic Bounce"
         } else if continuing {
@@ -2300,7 +2326,7 @@ impl Battle {
                 "|-prepare|{source_name}|Chilly Reception|[premajor]"
             ));
         }
-        if !reflected && !self.before_status_move(source, move_data) {
+        if own_action && !self.before_status_move(source, move_data) {
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
             return false;
@@ -2324,7 +2350,7 @@ impl Battle {
                 .mon(source)
                 .last_move_slot
                 .is_some_and(|last| self.mon(source).moves[last].move_data.name == move_data.name);
-        if !reflected && move_data.name != "Destiny Bond" {
+        if own_action && move_data.name != "Destiny Bond" {
             self.clear_destiny_bond(source, true);
         }
         let mut accuracy = match (move_data.name.as_str(), weather) {
@@ -2337,7 +2363,7 @@ impl Battle {
             }
             _ => move_data.accuracy,
         };
-        if !reflected
+        if own_action
             && matches!(self.mon(source).status, Status::Freeze(_))
             && move_data.flags.contains_key("defrost")
         {
@@ -2358,13 +2384,17 @@ impl Battle {
                 mon.track_volatile("choicelock");
             }
         }
-        if matches!(
-            self.mon(source).ability.as_str(),
-            "moldbreaker" | "teravolt" | "turboblaze"
-        ) {
+        if !delayed
+            && matches!(
+                self.mon(source).ability.as_str(),
+                "moldbreaker" | "teravolt" | "turboblaze"
+            )
+        {
             self.ability_breaker = Some(source);
         }
-        self.stance_change(source, move_data);
+        if !delayed {
+            self.stance_change(source, move_data);
+        }
         let expanded = move_data.name == "Expanding Force"
             && self.terrain() == Some(Terrain::Psychic)
             && self.grounded(source);
@@ -2436,12 +2466,21 @@ impl Battle {
         if weather_ball && self.format.report_exact_hp {
             self.add(format!("|debug|BP: {power}"));
         }
-        let base = self.log.len();
-        self.add(format!(
-            "|move|{source_name}|{}|{target_name}{called_from}",
-            move_data.name
-        ));
-        if self.slots() > 1
+        let base = if delayed {
+            self.log
+                .iter()
+                .rposition(|line| line.public.starts_with("|move|"))
+                .unwrap_or(self.log.len() - 1)
+        } else {
+            let base = self.log.len();
+            self.add(format!(
+                "|move|{source_name}|{}|{target_name}{called_from}",
+                move_data.name
+            ));
+            base
+        };
+        if !delayed
+            && self.slots() > 1
             && !move_data.tracks_target
             && let Some(target) = actual_target.filter(|_| {
                 kind.is_choosable()
@@ -2516,6 +2555,13 @@ impl Battle {
         {
             self.add(format!("|-fail|{source_name}|move: {}", move_data.name));
             self.move_still(base);
+            return true;
+        }
+        if !delayed && matches!(move_data.name.as_str(), "Future Sight" | "Doom Desire") {
+            if !self.schedule_future_move(source, spread_targets[0], move_data) {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+            }
             return true;
         }
         if let Some(effect) = super::support::ReplacementHeal::from_move(&move_data.name) {
@@ -2904,7 +2950,9 @@ impl Battle {
                 return true;
             }
         }
-        self.protean_prepare(source, move_type);
+        if !delayed {
+            self.protean_prepare(source, move_type);
+        }
         let spread = spread_targets.len() > 1;
         let priority = self.move_priority(source, move_data);
         spread_targets.retain(|&target| {
@@ -3046,7 +3094,7 @@ impl Battle {
                 true
             }
         });
-        let ignores_type = self.move_ignores_immunity(source, move_data, move_type);
+        let ignores_type = !delayed && self.move_ignores_immunity(source, move_data, move_type);
         spread_targets.retain(|&pos| {
             if !ignores_type
                 && move_type == "Ground"
@@ -3939,6 +3987,7 @@ impl Battle {
                 }
                 if self.mon(target).ability == "cursedbody"
                     && !struggle
+                    && !delayed
                     && self.mon(source).disabled_slot.is_none()
                     && self.rng.chance(3, 10)
                     && !self.aroma_veil_blocks(source, false)
@@ -4052,7 +4101,7 @@ impl Battle {
             };
             self.add(format!("|-hitcount|{ident}|{hits_landed}"));
         }
-        if fainted > 0 && !self.mon(source).fainted {
+        if fainted > 0 && self.active_effects(source) {
             self.boost_after_knockouts(source, fainted);
         }
         let recoil = if struggle && !hit_substitute {
@@ -4098,7 +4147,7 @@ impl Battle {
             self.mark_fainted(source);
         }
         let original_source_hp = self.mon(source).hp;
-        if self.mon(source).item == "lifeorb" && !self.mon(source).fainted {
+        if self.mon(source).item == "lifeorb" && self.active_effects(source) {
             self.indirect_damage(source, 10, "|[from] item: Life Orb");
             if self.mon(source).hp == 0 {
                 self.mark_fainted(source);
@@ -4125,6 +4174,50 @@ impl Battle {
                 .push_str(&format!("|[spread] {}", labels.join(",")));
         }
         true
+    }
+
+    fn tick_future_move(&mut self, target: Position) {
+        let turn = self.overflowed_turn();
+        let side = self.sides[target.player.index()].as_mut().unwrap();
+        let Some(future) = side.future_moves[target.slot].filter(|m| turn >= m.ending_turn) else {
+            return;
+        };
+        side.future_moves[target.slot] = None;
+        let party = self.party(future.source_side).unwrap();
+        let source = Position {
+            player: future.source_side,
+            slot: party
+                .iter()
+                .position(|p| p.roster_index == future.roster_index)
+                .unwrap(),
+        };
+        if self.mon(target).fainted || target == source {
+            let cause = if self.mon(target).fainted {
+                "fainted"
+            } else {
+                "the user"
+            };
+            self.add(format!(
+                "|-hint|{} did not hit because the target is {cause}.",
+                future.data.name
+            ));
+            return;
+        }
+        self.add(format!(
+            "|-end|{}|move: {}",
+            self.ident(target),
+            future.data.name
+        ));
+        let prior_breaker = self.ability_breaker.take();
+        self.run_move(
+            source,
+            MoveInvocation::Future {
+                data: future.data,
+                target,
+            },
+            &mut Vec::new(),
+        );
+        self.ability_breaker = prior_breaker;
     }
 
     fn note_consecutive_move(&mut self, forced: bool, data: &Move) {

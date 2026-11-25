@@ -848,6 +848,14 @@ const allyAbilitiesRosters = [
         {...named('Slowking-Galar', ['Recover']), ability:'Curious Medicine'}],
     [named('Vaporeon', ['Recover']), named('Umbreon', ['Recover'])],
 ];
+const futureSightRosters = [
+    [{...named('Slowbro', ['Future Sight', 'Recover']), item:'Choice Specs'}, named('Jolteon', ['Recover'])],
+    [named('Umbreon', ['Recover']), named('Vaporeon', ['Recover', 'Protect'])],
+];
+const doubleFutureRosters = [
+    [named('Espeon', ['Future Sight', 'Recover']), named('Metagross', ['Doom Desire', 'Recover'])],
+    [named('Vaporeon', ['Substitute', 'Recover']), named('Umbreon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1287,6 +1295,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1, move 1'],
         ['move 2 2, move 1','move 1, move 1'], ['move 2 2, switch 3','move 1, move 1']],
         allyAbilitiesRosters, 'vgc-plus-minus-curious-medicine'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 1','switch 2'],
+        ['switch 2','move 2'], ['switch 2','move 1'], ['move 1','switch 2'],
+        ['move 1','move 1'], ['move 1','move 1']], futureSightRosters, 'bss-future-sight'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 1, move 1 2','move 1, move 1'],
+        ['move 2, move 2','move 2, move 1'], ['move 2, move 2','move 2, move 1']],
+        doubleFutureRosters, 'vgc-delayed-attacks'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

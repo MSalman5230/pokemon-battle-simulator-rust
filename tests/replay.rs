@@ -910,6 +910,12 @@ fn plus_minus_and_curious_medicine_observe_the_live_partner() {
 }
 
 #[test]
+fn delayed_attacks_use_original_source_and_current_slot_occupant() {
+    replay(include_str!("fixtures/bss-future-sight.json"));
+    replay(include_str!("fixtures/vgc-delayed-attacks.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
