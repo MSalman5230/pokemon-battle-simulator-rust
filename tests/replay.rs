@@ -1847,6 +1847,18 @@ fn inherited_attacks_respect_weather_power_recoil_and_guard_callbacks() {
 }
 
 #[test]
+fn inherited_recovery_moves_preserve_healing_and_status_order() {
+    replay(include_str!("fixtures/natdex-shore-up-and-status.json"));
+    replay(include_str!(
+        "fixtures/natdex-purify-and-floral-healing.json"
+    ));
+    replay(include_str!("fixtures/custom-legacy-group-heals.json"));
+    replay(include_str!(
+        "fixtures/natdex-z-recover-under-heal-block.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

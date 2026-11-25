@@ -969,6 +969,13 @@ impl Battle {
                     | "psyblade"
                     | "hyperspacehole"
                     | "hyperspacefury"
+                    | "shoreup"
+                    | "floralhealing"
+                    | "junglehealing"
+                    | "lunarblessing"
+                    | "takeheart"
+                    | "purify"
+                    | "psychoshift"
                     | "round"
                     | "swift"
                     | "surf"
@@ -5247,9 +5254,11 @@ impl Battle {
             let mut any_success = false;
             let mut hit_labels = Vec::new();
             let life_dew = move_data.name == "Life Dew";
+            let group_recovery =
+                matches!(move_data.name.as_str(), "Jungle Healing" | "Lunar Blessing");
             let teeter_dance = move_data.name == "Teeter Dance";
             let memento = move_data.name == "Memento";
-            let list_all_targets = life_dew || teeter_dance;
+            let list_all_targets = life_dew || teeter_dance || group_recovery;
             let mut confusion_failed = false;
             for target in spread_targets {
                 if move_data.name == "Copycat" {
@@ -5335,6 +5344,43 @@ impl Battle {
                                 self.add("|debug|move failed because it did nothing");
                             }
                         }
+                    }
+                    "Take Heart" => {
+                        succeeded =
+                            self.boost(target, &[(BoostStat::Spa, 1), (BoostStat::Spd, 1)], true);
+                        if self.mon(target).status != Status::Healthy {
+                            self.cure_status(target, "[msg]");
+                            succeeded = true;
+                        }
+                        if !succeeded {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                            self.report_no_move_effect();
+                        }
+                    }
+                    "Psycho Shift" => {
+                        let status = self.mon(source).status.id();
+                        if status.is_empty() {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                            self.report_no_move_effect();
+                        } else if self.try_status(target, status, source, move_data, true, base) {
+                            self.cure_status(source, "[msg]");
+                            succeeded = true;
+                        } else {
+                            self.report_no_move_effect();
+                        }
+                    }
+                    "Purify" => {
+                        if self.mon(target).status == Status::Healthy {
+                            self.move_still(base);
+                            self.add(format!("|-fail|{source_name}"));
+                        } else {
+                            self.cure_status(target, "[msg]");
+                            let amount = self.mon(source).max_hp.get().div_ceil(2);
+                            self.restore_from_move(source, amount, z_powered);
+                        }
+                        succeeded = true;
                     }
                     _ => {}
                 }
@@ -5968,31 +6014,61 @@ impl Battle {
                 }
                 if matches!(
                     move_data.name.as_str(),
-                    "Moonlight" | "Morning Sun" | "Synthesis"
+                    "Moonlight" | "Morning Sun" | "Synthesis" | "Shore Up" | "Floral Healing"
                 ) {
-                    if mega_sun && weather != Some(Weather::Sun) {
+                    let weather_healing =
+                        !matches!(move_data.name.as_str(), "Shore Up" | "Floral Healing");
+                    if weather_healing && mega_sun && weather != Some(Weather::Sun) {
                         self.add(format!(
                             "|-activate|{}|ability: Mega Sol",
                             self.ident(target)
                         ));
                     }
-                    let fraction = match move_weather.map(Weather::ordinary) {
-                        Some(Weather::Sun) => 2732,
-                        None | Some(Weather::StrongWinds) => 2048,
-                        Some(_) => 1024,
-                    };
                     let tr = self.stat_rules.truncation;
-                    let mon = self.mon_mut(target);
-                    if mon.hp == mon.max_hp.get() || mon.heal_block > 0 {
+                    let max_hp = self.mon(target).max_hp.get();
+                    let amount = match move_data.name.as_str() {
+                        "Shore Up" => tr.modify(
+                            max_hp,
+                            if weather == Some(Weather::Sand) {
+                                2732
+                            } else {
+                                2048
+                            },
+                        ),
+                        "Floral Healing" if self.terrain() == Some(Terrain::Grassy) => {
+                            tr.modify(max_hp, 2732)
+                        }
+                        "Floral Healing" => max_hp.div_ceil(2),
+                        _ => tr.modify(
+                            max_hp,
+                            match move_weather.map(Weather::ordinary) {
+                                Some(Weather::Sun) => 2732,
+                                None | Some(Weather::StrongWinds) => 2048,
+                                Some(_) => 1024,
+                            },
+                        ),
+                    };
+                    if !self.restore_from_move(
+                        target,
+                        amount.max(u32::from(weather_healing)),
+                        z_powered,
+                    ) {
                         self.add(format!("|-fail|{}|heal", self.ident(target)));
-                    } else {
-                        mon.hp = (mon.hp + tr.modify(mon.max_hp.get(), fraction).max(1))
-                            .min(mon.max_hp.get());
-                        self.add_health_line("-heal", target, false);
                     }
                     // Weather-based recovery uses NOT_FAIL at full health.
                     // Update events still run and can have RNG-consuming ties.
                     succeeded = true;
+                }
+                if group_recovery {
+                    let amount = self
+                        .stat_rules
+                        .truncation
+                        .modify(self.mon(target).max_hp.get(), 1024);
+                    succeeded = self.restore_from_move(target, amount, z_powered);
+                    if self.mon(target).status != Status::Healthy {
+                        self.cure_status(target, "[msg]");
+                        succeeded = true;
+                    }
                 }
                 if let Some(status) = &move_data.status {
                     if self.try_status(target, status, source, move_data, true, base) {
@@ -6016,7 +6092,7 @@ impl Battle {
                         }
                         continue;
                     }
-                    if mon.heal_block > 0 {
+                    if mon.heal_block > 0 && !z_powered {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                         if self.format.report_exact_hp {
@@ -6099,6 +6175,11 @@ impl Battle {
                 if self.format.report_exact_hp {
                     self.add("|debug|move failed because it did nothing");
                 }
+            }
+            if group_recovery && !any_success {
+                self.move_still(base);
+                self.add(format!("|-fail|{source_name}"));
+                self.report_no_move_effect();
             }
             if spread {
                 if list_all_targets && !any_success {

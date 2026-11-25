@@ -51,6 +51,24 @@ impl ReplacementHeal {
 }
 
 impl Battle {
+    /// Move-based recovery respects the target's Heal Block, except when
+    /// the active move itself is a powered status Z-Move.
+    pub(super) fn restore_from_move(
+        &mut self,
+        pos: Position,
+        amount: u32,
+        z_powered: bool,
+    ) -> bool {
+        let mon = self.mon_mut(pos);
+        let max_hp = mon.max_hp.get();
+        if mon.hp == 0 || mon.hp >= max_hp || amount == 0 || (mon.heal_block > 0 && !z_powered) {
+            return false;
+        }
+        mon.hp = (mon.hp + amount).min(max_hp);
+        self.add_health_line_with("-heal", pos, false, "");
+        true
+    }
+
     pub(super) fn build_stockpile(&mut self, pos: Position) {
         let mon = self.mon(pos);
         let mut effect = mon.stockpile;

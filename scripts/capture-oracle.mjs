@@ -1603,6 +1603,23 @@ const legacyHyperspaceRosters = [
         {...named('Hoopa-Unbound', ['Hyperspace Fury']), ability:'Magician', name:'Unbound'}],
     [named('Vaporeon', ['Protect', 'Substitute', 'Recover'])],
 ];
+const legacyRecoveryRosters = [
+    [{...named('Smeargle', ['Sandstorm', 'Shore Up', 'Take Heart', 'Psycho Shift']), ability:'Own Tempo'}],
+    [named('Vaporeon', ['Water Gun', 'Will-O-Wisp', 'Recover'])],
+];
+const legacyPurifyRosters = [
+    [{...named('Smeargle', ['Tackle', 'Purify', 'Grassy Terrain', 'Floral Healing']), ability:'Own Tempo'}],
+    [{...named('Vaporeon', ['Tackle', 'Protect']), item:'Toxic Orb'}],
+];
+const legacyGroupHealingRosters = [
+    [{...named('Smeargle', ['Jungle Healing', 'Lunar Blessing', 'Protect']), ability:'Own Tempo'},
+        named('Glaceon', ['Tail Whip', 'Protect'])],
+    [named('Jolteon', ['Thunder Wave', 'Protect']), named('Vaporeon', ['Water Gun', 'Tail Whip'])],
+];
+const legacyZRecoveryRosters = [
+    [{...named('Smeargle', ['Tackle', 'Recover']), ability:'Own Tempo', item:'Normalium Z'}],
+    [named('Vaporeon', ['Psychic Noise', 'Tail Whip'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2898,6 +2915,16 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1','move 3']], legacyBlastRosters, 'natdex-chloroblast'],
     ['customgame', [['team 12','team 1'], ['move 1','move 2'], ['move 2','move 1'],
         ['switch 2','move 3'], ['move 1','move 1']], legacyHyperspaceRosters, 'custom-hyperspace'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'],
+        ['move 3','move 2'], ['move 4','move 3']], legacyRecoveryRosters, 'natdex-shore-up-and-status'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1'],
+        ['move 1','move 1'], ['move 3','move 2'], ['move 4','move 1']], legacyPurifyRosters, 'natdex-purify-and-floral-healing'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 3, move 1','move 1 2, move 1 2'],
+        ['move 1, move 1','move 2, move 1 2'], ['move 2, move 1','move 2, move 2'],
+        ['move 1, move 1','move 2, move 2']],
+        legacyGroupHealingRosters, 'custom-legacy-group-heals'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 2 zmove','move 2']],
+        legacyZRecoveryRosters, 'natdex-z-recover-under-heal-block'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
