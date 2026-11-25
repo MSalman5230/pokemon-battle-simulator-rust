@@ -2195,6 +2195,15 @@ impl Battle {
                 ));
                 self.cure_status(pos, "[msg]");
             }
+            if matches!(self.mon(pos).status, Status::Freeze(_))
+                && self.event_ability(pos) == "magmaarmor"
+            {
+                self.add(format!(
+                    "|-activate|{}|ability: Magma Armor",
+                    self.ident(pos)
+                ));
+                self.cure_status(pos, "[msg]");
+            }
             if let Status::Sleep(_) = self.mon(pos).status {
                 let label = match self.event_ability(pos) {
                     "insomnia" => Some("Insomnia"),
@@ -2269,6 +2278,7 @@ impl Battle {
             Octolock,
             Opportunist,
             MagnetRise,
+            Moody,
         }
         self.add("|");
         self.update_speed();
@@ -2428,6 +2438,7 @@ impl Battle {
                     "cudchew" => timers.push((pos, Effect::CudChew, priority(28, 2))),
                     "pickup" => timers.push((pos, Effect::Pickup, priority(28, 2))),
                     "opportunist" => timers.push((pos, Effect::Opportunist, priority(29, 7))),
+                    "moody" => timers.push((pos, Effect::Moody, priority(28, 2))),
                     _ => {}
                 }
             }
@@ -2744,6 +2755,7 @@ impl Battle {
                 Effect::CudChew => self.chew_berry(pos),
                 Effect::Pickup => self.pick_up_item(pos),
                 Effect::Opportunist => self.apply_pending_boost_copy(pos),
+                Effect::Moody => self.moody(pos),
                 Effect::MagnetRise => {
                     mon.magnet_rise = mon.magnet_rise.saturating_sub(1);
                     if mon.magnet_rise == 0 {
@@ -5800,6 +5812,9 @@ impl Battle {
                 if landed > 0 && self.event_ability(target) == "seedsower" {
                     self.set_terrain(target, Terrain::Grassy, Some("Seed Sower"));
                 }
+                if landed > 0 && self.event_ability(target) == "sandspit" {
+                    self.set_weather(target, Weather::Sand, Some("Sand Spit"));
+                }
                 if contact {
                     match self.event_ability(target) {
                         "flamebody" | "static" | "poisonpoint" | "effectspore" => {
@@ -6553,12 +6568,18 @@ impl Pokemon {
         {
             stat *= 2;
         }
-        match self.effective_item() {
-            "choicescarf" => stat = crate::mechanics::Truncation::Cartridge.modify(stat, 6144),
-            "ironball" => stat /= 2,
-            _ => {}
+        let quick_feet = self.ability == "quickfeet" && self.status != Status::Healthy;
+        let multiplier = match (self.effective_item(), quick_feet) {
+            ("choicescarf", true) => 9216,
+            ("ironball", true) => 3072,
+            (_, true) | ("choicescarf", false) => 6144,
+            ("ironball", false) => 2048,
+            _ => 4096,
+        };
+        if multiplier != 4096 {
+            stat = crate::mechanics::Truncation::Cartridge.modify(stat, multiplier);
         }
-        if self.status == Status::Paralysis {
+        if self.status == Status::Paralysis && !quick_feet {
             stat / 2
         } else {
             stat
@@ -6720,6 +6741,12 @@ impl Pokemon {
                 | "stench"
                 | "longreach"
                 | "opportunist"
+                | "moody"
+                | "quickfeet"
+                | "grasspelt"
+                | "marvelscale"
+                | "magmaarmor"
+                | "sandspit"
                 | "fairyaura"
                 | "darkaura"
                 | "aurabreak"

@@ -1220,6 +1220,30 @@ const teeterDanceRosters = [
         {...named('Golduck', ['Recover']), ability:'Own Tempo'}],
     [named('Umbreon', ['Protect', 'Recover']), named('Vaporeon', ['Recover'])],
 ];
+const marvelScaleRosters = [
+    [{...named('Milotic', ['Recover']), ability:'Marvel Scale', item:'Flame Orb'}],
+    [named('Vaporeon', ['Tackle'])],
+];
+const grassPeltRosters = [
+    [{...named('Gogoat', ['Grassy Terrain', 'Recover']), ability:'Grass Pelt'}],
+    [named('Vaporeon', ['Tackle'])],
+];
+const quickFeetRosters = [
+    [{...named('Ursaring', ['Tackle']), ability:'Quick Feet'}],
+    [named('Umbreon', ['Thunder Wave', 'Recover'])],
+];
+const sandSpitRosters = [
+    [{...named('Sandaconda', ['Recover']), ability:'Sand Spit', item:'Smooth Rock'}],
+    [named('Vaporeon', ['Water Gun', 'Recover'])],
+];
+const moodyRosters = [
+    [{...named('Glalie', ['Recover']), ability:'Moody'}],
+    [{...named('Espathra', ['Recover']), ability:'Opportunist'}],
+];
+const magmaArmorRosters = [
+    [{...named('Camerupt', ['Recover']), ability:'Magma Armor'}],
+    [named('Froslass', ['Ice Beam'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2317,6 +2341,16 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1, switch 3','move 1, move 1']], howlRosters, 'vgc-howl'],
     ['vgc2026regmc', [['team 12','team 12'], ['move 1, move 1','move 1, move 1']],
         teeterDanceRosters, 'vgc-teeter-dance'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        marvelScaleRosters, 'bss-marvel-scale'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],
+        grassPeltRosters, 'bss-grass-pelt'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        quickFeetRosters, 'bss-quick-feet'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
+        sandSpitRosters, 'bss-sand-spit'],
+    ['bssregmc', [['team 1','team 1'], ...Array(6).fill(['move 1','move 1'])], moodyRosters, 'bss-moody'],
+    ['bssregmc', [['team 1','team 1'], ...Array(3).fill(['move 1','move 1'])], magmaArmorRosters, 'bss-magma-armor', '1,2,3,13'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

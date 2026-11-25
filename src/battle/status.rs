@@ -350,8 +350,9 @@ impl Battle {
             return false;
         }
         if id == "frz"
-            && self.effective_weather() == Some(Weather::Sun)
-            && self.mon(pos).effective_item() != "utilityumbrella"
+            && ((self.effective_weather() == Some(Weather::Sun)
+                && self.mon(pos).effective_item() != "utilityumbrella")
+                || self.event_ability(pos) == "magmaarmor")
         {
             if self.format.report_exact_hp {
                 self.add("|debug|artificial status immunity");

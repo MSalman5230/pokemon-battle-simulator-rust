@@ -1659,6 +1659,40 @@ impl Battle {
         }
         self.note_foe_boost(pos, BoostStat::Spe, change);
     }
+
+    pub(super) fn moody(&mut self, pos: Position) {
+        if self.event_ability(pos) != "moody" {
+            return;
+        }
+        let boosts = self.mon(pos).boosts;
+        let stats = &BoostStat::ALL[..5];
+        let mut eligible = [BoostStat::Atk; 5];
+        let mut count = 0;
+        for &stat in stats {
+            if boosts.get(stat) != 6 {
+                eligible[count] = stat;
+                count += 1;
+            }
+        }
+        let raised = (count != 0).then(|| eligible[self.rng.below(count as u32) as usize]);
+        count = 0;
+        for &stat in stats {
+            if Some(stat) != raised && boosts.get(stat) != -6 {
+                eligible[count] = stat;
+                count += 1;
+            }
+        }
+        let lowered = (count != 0).then(|| eligible[self.rng.below(count as u32) as usize]);
+        let mut changes = [(BoostStat::Atk, 0); 2];
+        let mut count = 0;
+        for (stat, amount) in [(raised, 2), (lowered, -1)] {
+            if let Some(stat) = stat {
+                changes[count] = (stat, amount);
+                count += 1;
+            }
+        }
+        self.ability_boosts(pos, "Moody", &changes[..count], false);
+    }
 }
 
 pub(super) fn crash_move(name: &str) -> bool {

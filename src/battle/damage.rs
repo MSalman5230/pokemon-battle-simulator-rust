@@ -553,14 +553,14 @@ impl Battle {
         } else {
             self.effective_weather()
         };
-        let def = if (damage_weather == Some(Weather::Sand)
+        let defense_weather_modifier = if (damage_weather == Some(Weather::Sand)
             && !defense_uses_def
             && mon.has_type("Rock"))
             || (damage_weather == Some(Weather::Snow) && defense_uses_def && mon.has_type("Ice"))
         {
-            tr.modify(def, 6144)
+            6144
         } else {
-            def
+            4096
         };
         let mut attack_modifier = if source_active {
             user.attack_modifier(move_data.category, move_type)
@@ -578,11 +578,20 @@ impl Battle {
         if move_data.category == Category::Special && self.plus_minus_boost(source) {
             attack_modifier = chain(6144, attack_modifier);
         }
-        let def = if defense_uses_def && self.event_ability(target) == "furcoat" {
-            tr.modify(def, 8192)
+        let defense_ability_modifier = if defense_uses_def {
+            match self.event_ability(target) {
+                "furcoat" => 8192,
+                "marvelscale" if !matches!(mon.status, Status::Healthy | Status::Fainted) => 6144,
+                "grasspelt" if self.terrain() == Some(Terrain::Grassy) => 6144,
+                _ => 4096,
+            }
         } else {
-            def
+            4096
         };
+        let def = tr.modify(
+            def,
+            chain(defense_weather_modifier, defense_ability_modifier),
+        );
         if stakeout {
             attack_modifier = crate::mechanics::chain(8192, attack_modifier);
         }

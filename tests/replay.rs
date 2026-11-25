@@ -1511,6 +1511,32 @@ fn howl_and_teeter_dance_apply_to_their_doubles_targets() {
 }
 
 #[test]
+fn marvel_scale_and_grass_pelt_modify_physical_defense() {
+    replay(include_str!("fixtures/bss-marvel-scale.json"));
+    replay(include_str!("fixtures/bss-grass-pelt.json"));
+}
+
+#[test]
+fn quick_feet_keeps_full_speed_through_paralysis() {
+    replay(include_str!("fixtures/bss-quick-feet.json"));
+}
+
+#[test]
+fn sand_spit_starts_sandstorm_when_damaged() {
+    replay(include_str!("fixtures/bss-sand-spit.json"));
+}
+
+#[test]
+fn moody_applies_two_distinct_residual_stage_changes() {
+    replay(include_str!("fixtures/bss-moody.json"));
+}
+
+#[test]
+fn magma_armor_prevents_freeze() {
+    replay(include_str!("fixtures/bss-magma-armor.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
