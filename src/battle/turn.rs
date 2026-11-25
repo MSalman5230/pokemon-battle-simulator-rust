@@ -4460,6 +4460,9 @@ impl Battle {
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();
+        // Clearing volatiles restores the raw species speed, even though
+        // normal field-speed updates skip a fainted Pokémon.
+        mon.speed = mon.stats.spe as i32;
     }
 
     fn clear_destiny_bond(&mut self, pos: Position, notify_debug: bool) -> bool {

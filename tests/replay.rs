@@ -1023,6 +1023,11 @@ fn compound_eyes_orders_equal_speed_accuracy_handlers() {
 }
 
 #[test]
+fn fainted_cached_speed_is_reset_before_an_opposing_pivot_switch() {
+    replay(include_str!("fixtures/vgc-faint-before-pivot.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
