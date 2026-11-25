@@ -1,4 +1,4 @@
-//! Item-based permanent Champions Mega Evolution.
+//! Permanent Mega Evolution and the inherited Ultra Burst.
 
 use super::turn::Position;
 use super::*;
@@ -16,11 +16,36 @@ impl Battle {
         DEX.species(self.format.dex_mod, &to_id(target))
     }
 
+    fn ultra_species(&self, pos: Position) -> Option<&'static Species> {
+        let mon = self.mon(pos);
+        (mon.item == "ultranecroziumz"
+            && matches!(
+                mon.base_species.name.as_str(),
+                "Necrozma-Dawn-Wings" | "Necrozma-Dusk-Mane"
+            ))
+        .then(|| DEX.species(self.format.dex_mod, "necrozmaultra").unwrap())
+    }
+
+    pub(super) fn can_ultra_burst(&self, pos: Position) -> bool {
+        let side = self.sides[pos.player.index()].as_ref().unwrap();
+        !side.ultra_used && !self.mon(pos).hard_locked() && self.ultra_species(pos).is_some()
+    }
+
+    pub(super) fn validate_ultra_burst(&self, pos: Position) -> Result<(), BattleError> {
+        if !self.can_ultra_burst(pos) {
+            return Err(BattleError::Choice("this Pokémon cannot Ultra Burst"));
+        }
+        self.validate_permanent_form(self.ultra_species(pos).unwrap())
+    }
+
     pub(super) fn validate_mega(&self, pos: Position) -> Result<(), BattleError> {
         if !self.can_mega(pos) {
             return Err(BattleError::Choice("this Pokémon cannot Mega Evolve"));
         }
-        let species = self.mega_species(pos).unwrap();
+        self.validate_permanent_form(self.mega_species(pos).unwrap())
+    }
+
+    fn validate_permanent_form(&self, species: &'static Species) -> Result<(), BattleError> {
         if species.has_condition {
             return Err(BattleError::Unsupported(format!(
                 "Mega forme effects for {}",
@@ -38,7 +63,10 @@ impl Battle {
     }
 
     pub(super) fn mega_evolve(&mut self, pos: Position) {
-        let species = self.mega_species(pos).expect("validated Mega form");
+        let (species, burst) = self.mega_species(pos).map_or_else(
+            || (self.ultra_species(pos).expect("validated Ultra form"), true),
+            |species| (species, false),
+        );
         let rules = self.stat_rules;
         let mon = self.mon_mut(pos);
         // Forme change stores the new raw Speed. The queue applies Speed
@@ -63,13 +91,19 @@ impl Battle {
         if changed_hp {
             self.add_health_line_with("-heal", pos, false, "|[silent]");
         }
+        let event = if burst { "-burst" } else { "-mega" };
         self.add(format!(
-            "|-mega|{}|{}|{}",
+            "|{event}|{}|{}|{}",
             self.ident(pos),
             apparent_species,
             species.required_item.as_deref().unwrap_or("")
         ));
-        self.sides[pos.player.index()].as_mut().unwrap().mega_used = true;
+        let side = self.sides[pos.player.index()].as_mut().unwrap();
+        if burst {
+            side.ultra_used = true;
+        } else {
+            side.mega_used = true;
+        }
         self.end_ability(pos);
         let mon = self.mon_mut(pos);
         mon.ability = species

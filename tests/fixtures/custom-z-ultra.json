@@ -5,7 +5,7 @@
     {
       "lines": [
         ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
-        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Necrozma-Ultra\",\"moves\":[\"Photon Geyser\",\"Swords Dance\"],\"gender\":\"F\",\"name\":\"Necrozma-Ultra\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Neuroforce\",\"item\":\"Ultranecrozium Z\"}]}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Necrozma-Dusk-Mane\",\"moves\":[\"Photon Geyser\",\"Swords Dance\"],\"gender\":\"F\",\"name\":\"Necrozma-Dusk-Mane\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Prism Armor\",\"item\":\"Ultranecrozium Z\"}]}",
         ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Venusaur\",\"moves\":[\"Protect\",\"Growl\"],\"gender\":\"F\",\"name\":\"Venusaur\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
       ],
       "turn": 0,
@@ -23,7 +23,7 @@
           "|gen|9",
           "|tier|[Gen 9 Champions] Custom Game",
           "|clearpoke",
-          "|poke|p1|Necrozma-Ultra, L50, F|",
+          "|poke|p1|Necrozma-Dusk-Mane, L50, F|",
           "|poke|p2|Venusaur, L50, F|",
           "|teampreview"
         ],
@@ -34,7 +34,7 @@
           "|gen|9",
           "|tier|[Gen 9 Champions] Custom Game",
           "|clearpoke",
-          "|poke|p1|Necrozma-Ultra, L50, F|",
+          "|poke|p1|Necrozma-Dusk-Mane, L50, F|",
           "|poke|p2|Venusaur, L50, F|",
           "|teampreview"
         ],
@@ -45,7 +45,7 @@
           "|gen|9",
           "|tier|[Gen 9 Champions] Custom Game",
           "|clearpoke",
-          "|poke|p1|Necrozma-Ultra, L50, F|",
+          "|poke|p1|Necrozma-Dusk-Mane, L50, F|",
           "|poke|p2|Venusaur, L50, F|",
           "|teampreview"
         ]
@@ -59,24 +59,24 @@
             "pokemon": [
               {
                 "ident": "p1: Necrozma",
-                "details": "Necrozma-Ultra, L50, F",
+                "details": "Necrozma-Dusk-Mane, L50, F",
                 "condition": "172/172",
                 "active": true,
                 "stats": {
-                  "atk": 187,
-                  "def": 117,
-                  "spa": 187,
-                  "spd": 117,
-                  "spe": 149
+                  "atk": 177,
+                  "def": 147,
+                  "spa": 133,
+                  "spd": 129,
+                  "spe": 97
                 },
                 "moves": [
                   "photongeyser",
                   "swordsdance"
                 ],
-                "baseAbility": "neuroforce",
+                "baseAbility": "prismarmor",
                 "item": "ultranecroziumz",
                 "pokeball": "pokeball",
-                "ability": "neuroforce",
+                "ability": "prismarmor",
                 "commanding": false,
                 "reviving": false
               }
@@ -120,17 +120,17 @@
         [
           {
             "name": "Necrozma",
-            "species": "Necrozma-Ultra",
-            "details": "Necrozma-Ultra, L50, F",
+            "species": "Necrozma-Dusk-Mane",
+            "details": "Necrozma-Dusk-Mane, L50, F",
             "hp": 172,
             "maxhp": 172,
             "status": "",
             "stats": {
-              "atk": 187,
-              "def": 117,
-              "spa": 187,
-              "spd": 117,
-              "spe": 149
+              "atk": 177,
+              "def": 147,
+              "spa": 133,
+              "spd": 129,
+              "spe": 97
             },
             "boosts": {
               "atk": 0,
@@ -141,7 +141,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "neuroforce",
+            "ability": "prismarmor",
             "item": "ultranecroziumz",
             "active": false,
             "moves": [
@@ -219,7 +219,7 @@
           "|teamsize|p1|1",
           "|teamsize|p2|1",
           "|start",
-          "|switch|p1a: Necrozma|Necrozma-Ultra, L50, F|172/172",
+          "|switch|p1a: Necrozma|Necrozma-Dusk-Mane, L50, F|172/172",
           "|switch|p2a: Venusaur|Venusaur, L50, F|155/155",
           "|turn|1"
         ],
@@ -228,7 +228,7 @@
           "|teamsize|p1|1",
           "|teamsize|p2|1",
           "|start",
-          "|switch|p1a: Necrozma|Necrozma-Ultra, L50, F|172/172",
+          "|switch|p1a: Necrozma|Necrozma-Dusk-Mane, L50, F|172/172",
           "|switch|p2a: Venusaur|Venusaur, L50, F|155/155",
           "|turn|1"
         ],
@@ -237,7 +237,7 @@
           "|teamsize|p1|1",
           "|teamsize|p2|1",
           "|start",
-          "|switch|p1a: Necrozma|Necrozma-Ultra, L50, F|172/172",
+          "|switch|p1a: Necrozma|Necrozma-Dusk-Mane, L50, F|172/172",
           "|switch|p2a: Venusaur|Venusaur, L50, F|155/155",
           "|turn|1"
         ]
@@ -264,13 +264,7 @@
                   "disabled": false
                 }
               ],
-              "canZMove": [
-                {
-                  "move": "Light That Burns the Sky",
-                  "target": "normal"
-                },
-                null
-              ]
+              "canUltraBurst": true
             }
           ],
           "side": {
@@ -279,24 +273,24 @@
             "pokemon": [
               {
                 "ident": "p1: Necrozma",
-                "details": "Necrozma-Ultra, L50, F",
+                "details": "Necrozma-Dusk-Mane, L50, F",
                 "condition": "172/172",
                 "active": true,
                 "stats": {
-                  "atk": 187,
-                  "def": 117,
-                  "spa": 187,
-                  "spd": 117,
-                  "spe": 149
+                  "atk": 177,
+                  "def": 147,
+                  "spa": 133,
+                  "spd": 129,
+                  "spe": 97
                 },
                 "moves": [
                   "photongeyser",
                   "swordsdance"
                 ],
-                "baseAbility": "neuroforce",
+                "baseAbility": "prismarmor",
                 "item": "ultranecroziumz",
                 "pokeball": "pokeball",
-                "ability": "neuroforce",
+                "ability": "prismarmor",
                 "commanding": false,
                 "reviving": false
               }
@@ -361,17 +355,17 @@
         [
           {
             "name": "Necrozma",
-            "species": "Necrozma-Ultra",
-            "details": "Necrozma-Ultra, L50, F",
+            "species": "Necrozma-Dusk-Mane",
+            "details": "Necrozma-Dusk-Mane, L50, F",
             "hp": 172,
             "maxhp": 172,
             "status": "",
             "stats": {
-              "atk": 187,
-              "def": 117,
-              "spa": 187,
-              "spd": 117,
-              "spe": 149
+              "atk": 177,
+              "def": 147,
+              "spa": 133,
+              "spd": 129,
+              "spe": 97
             },
             "boosts": {
               "atk": 0,
@@ -382,7 +376,7 @@
               "accuracy": 0,
               "evasion": 0
             },
-            "ability": "neuroforce",
+            "ability": "prismarmor",
             "item": "ultranecroziumz",
             "active": true,
             "moves": [
@@ -444,7 +438,7 @@
     },
     {
       "lines": [
-        ">p1 move 2",
+        ">p1 move 2 ultra",
         ">p2 move 2"
       ],
       "turn": 2,
@@ -457,6 +451,8 @@
       "channels": [
         [
           "|",
+          "|detailschange|p1a: Necrozma|Necrozma-Ultra, L50, F",
+          "|-burst|p1a: Necrozma|Necrozma|Ultranecrozium Z",
           "|move|p1a: Necrozma|Swords Dance|p1a: Necrozma",
           "|-boost|p1a: Necrozma|atk|2",
           "|move|p2a: Venusaur|Growl|p1a: Necrozma",
@@ -467,6 +463,8 @@
         ],
         [
           "|",
+          "|detailschange|p1a: Necrozma|Necrozma-Ultra, L50, F",
+          "|-burst|p1a: Necrozma|Necrozma|Ultranecrozium Z",
           "|move|p1a: Necrozma|Swords Dance|p1a: Necrozma",
           "|-boost|p1a: Necrozma|atk|2",
           "|move|p2a: Venusaur|Growl|p1a: Necrozma",
@@ -477,6 +475,8 @@
         ],
         [
           "|",
+          "|detailschange|p1a: Necrozma|Necrozma-Ultra, L50, F",
+          "|-burst|p1a: Necrozma|Necrozma|Ultranecrozium Z",
           "|move|p1a: Necrozma|Swords Dance|p1a: Necrozma",
           "|-boost|p1a: Necrozma|atk|2",
           "|move|p2a: Venusaur|Growl|p1a: Necrozma",

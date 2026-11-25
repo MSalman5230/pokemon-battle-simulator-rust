@@ -1560,8 +1560,12 @@ const natDexZMoonrazeRosters = [
     [{...named('Clefable', ['Dazzling Gleam']), ability:'Magic Guard'}],
 ];
 const customZUltraRosters = [
-    [{...named('Necrozma-Ultra', ['Photon Geyser', 'Swords Dance']), item:'Ultranecrozium Z', ability:'Neuroforce'}],
+    [{...named('Necrozma-Dusk-Mane', ['Photon Geyser', 'Swords Dance']), item:'Ultranecrozium Z', ability:'Prism Armor'}],
     [named('Venusaur', ['Protect', 'Growl'])],
+];
+const customUltraAndMegaRosters = [
+    [customZUltraRosters[0][0], {...named('Charizard', ['Protect']), item:'Charizardite X', ability:'Blaze'}],
+    customZSoulblazeRosters[1],
 ];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
@@ -2836,8 +2840,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         natDexZSunrazeRosters, 'natdex-z-sunraze'],
     ['natdexdraft', [['team 1','team 1'], ['move 1 zmove','move 1']],
         natDexZMoonrazeRosters, 'natdex-z-moonraze'],
-    ['customgame', [['team 1','team 1'], ['move 2','move 2'], ['move 1 zmove','move 1']],
+    ['customgame', [['team 1','team 1'], ['move 2 ultra','move 2'], ['move 1 zmove','move 1']],
         customZUltraRosters, 'custom-z-ultra'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 2 ultra, move 1 mega','move 1, move 1']],
+        customUltraAndMegaRosters, 'custom-ultra-and-mega'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -363,6 +363,9 @@ impl Battle {
                         // It can advertise the form even though it cannot act.
                         request["canMegaEvo"] = json!(true);
                     }
+                    if self.can_ultra_burst(pos) {
+                        request["canUltraBurst"] = json!(true);
+                    }
                     if let Some(z_moves) = self.z_move_requests(pos) {
                         request["canZMove"] = json!(z_moves);
                     }
@@ -765,6 +768,7 @@ impl Battle {
         let mut switched = 0_u32;
         let mut auto = false;
         let mut mega = false;
+        let mut ultra = false;
         let mut z_move = false;
         for (slot, force_switch) in flags.into_iter().enumerate() {
             let actor = Position { player, slot };
@@ -858,6 +862,14 @@ impl Battle {
                         }
                         Some(SpecialChoice::Mega) => {
                             return Err(BattleError::Choice("only one Mega Evolution per side"));
+                        }
+                        Some(SpecialChoice::Ultra) if !ultra => {
+                            self.validate_ultra_burst(actor)?;
+                            ultra = true;
+                            true
+                        }
+                        Some(SpecialChoice::Ultra) => {
+                            return Err(BattleError::Choice("only one Ultra Burst per side"));
                         }
                         _ => return Err(BattleError::Unsupported("special move modifier".into())),
                     };

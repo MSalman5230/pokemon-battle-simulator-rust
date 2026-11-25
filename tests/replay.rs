@@ -1822,6 +1822,7 @@ fn legacy_signature_z_attacks_apply_their_inherited_damage_and_field_hooks() {
     replay(include_str!("fixtures/natdex-z-sunraze.json"));
     replay(include_str!("fixtures/natdex-z-moonraze.json"));
     replay(include_str!("fixtures/custom-z-ultra.json"));
+    replay(include_str!("fixtures/custom-ultra-and-mega.json"));
 }
 
 #[test]
