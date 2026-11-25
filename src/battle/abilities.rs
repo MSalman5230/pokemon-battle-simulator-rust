@@ -232,6 +232,7 @@ impl Battle {
     }
 
     pub(super) fn end_ability(&mut self, pos: Position) {
+        self.end_supreme_overlord(pos, false);
         if self.mon(pos).ability == "unburden" {
             self.mon_mut(pos).untrack_volatile("unburden");
         }
@@ -243,6 +244,71 @@ impl Battle {
             ));
         }
         self.weather_ability_changed(pos);
+    }
+
+    pub(super) fn start_supreme_overlord(&mut self, pos: Position) {
+        let fallen = self.sides[pos.player.index()]
+            .as_ref()
+            .unwrap()
+            .total_fainted
+            .min(5);
+        if fallen > 0 {
+            self.mon_mut(pos).fallen_allies = fallen;
+            let ident = self.ident(pos);
+            self.add(format!("|-activate|{ident}|ability: Supreme Overlord"));
+            self.add(format!("|-start|{ident}|fallen{fallen}|[silent]"));
+        }
+    }
+
+    pub(super) fn end_supreme_overlord(&mut self, pos: Position, leaving: bool) {
+        let fallen = std::mem::take(&mut self.mon_mut(pos).fallen_allies);
+        if fallen != 0 && !leaving {
+            self.add(format!("|-end|{}|fallen{fallen}|[silent]", self.ident(pos)));
+        }
+    }
+
+    pub(super) fn receive_fainted_ability(&mut self, fainted: Position) {
+        if self.format.game_type.active_slots() != 2 {
+            return;
+        }
+        let holder = Position {
+            slot: 1 - fainted.slot,
+            ..fainted
+        };
+        let recipient = self.mon(holder);
+        let label = match recipient.ability.as_str() {
+            "receiver" => "Receiver",
+            "powerofalchemy" => "Power of Alchemy",
+            _ => return,
+        };
+        if recipient.hp == 0 {
+            return;
+        }
+        let original = &self.mon(fainted).ability;
+        if original == "noability" {
+            return;
+        }
+        let effect = DEX.ability(original);
+        if effect.is_some_and(|a| a.no_receiver || a.cannot_suppress) {
+            return;
+        }
+        let holder_name = self.ident(holder);
+        let source_name = self.ident(fainted);
+        if self.mon(holder).item == "abilityshield" {
+            self.add(format!("|-ability|{source_name}|{label}"));
+            self.add(format!("|-block|{holder_name}|item: Ability Shield"));
+            return;
+        }
+        let id = original.clone();
+        self.end_ability(holder);
+        self.possible_unaware |= id == "unaware";
+        self.mon_mut(holder).ability = id;
+        self.reset_ability_order(holder);
+        let name = effect.map_or("", |a| a.name.as_str());
+        self.add(format!(
+            "|-ability|{holder_name}|{name}|{label}|[from] ability: {label}|[of] {source_name}"
+        ));
+        self.start_ability(holder);
     }
 
     pub(super) fn flash_fire(&mut self, target: Position) {

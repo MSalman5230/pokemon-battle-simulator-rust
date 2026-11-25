@@ -223,6 +223,7 @@ pub struct Pokemon {
     base_ability: String,
     ability_order: u32,
     pub pokeball: String,
+    fallen_allies: u8,
     pub moves: Vec<MoveSlot>,
     pub roster_index: usize,
     illusion: Option<usize>,
@@ -834,6 +835,7 @@ impl Pokemon {
             base_ability: ability.clone(),
             ability,
             ability_order: 0,
+            fallen_allies: 0,
             moves,
             pokeball: if pokeball.is_empty() {
                 "pokeball".into()

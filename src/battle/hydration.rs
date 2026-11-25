@@ -218,8 +218,16 @@ pub(crate) fn hydrate(mut input: WorldInput) -> Result<(BattleStream, Vec<Value>
         }
     }
     for (player, side) in Player::ALL.into_iter().zip(&input.sides) {
+        let fallen = battle.sides[player.index()]
+            .as_ref()
+            .unwrap()
+            .total_fainted
+            .min(5);
         let p = battle.mon_mut(Position { player, slot: 0 });
         side.restore_active(player, p, &input.sides, input.turn, &mut assumptions)?;
+        if p.ability == "supremeoverlord" {
+            p.fallen_allies = fallen;
+        }
     }
     battle.weather = match input.field.weather.as_str() {
         "" => None,

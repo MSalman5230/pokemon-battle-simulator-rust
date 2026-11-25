@@ -804,6 +804,18 @@ const hospitalityRosters = [
         {...named('Sinistcha', ['Pollen Puff']), ability:'Hospitality'}],
     [named('Jolteon', ['Shadow Ball', 'Recover']), named('Glaceon', ['Recover'])],
 ];
+const overlordRosters = [
+    [named('Magikarp', ['Explosion'], 'M'),
+        {...named('Kingambit', ['Water Gun', 'Recover']), ability:'Supreme Overlord'},
+        named('Vaporeon', ['Explosion'])],
+    [named('Dusclops', ['Recover']), named('Gengar', ['Recover'])],
+];
+const receiverRosters = [
+    [{...named('Passimian', ['Protect', 'Water Gun']), ability:'Receiver'},
+        {...named('Kingambit', ['Explosion']), ability:'Supreme Overlord'},
+        named('Vaporeon', ['Recover'])],
+    [named('Dusclops', ['Recover']), named('Gengar', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1217,6 +1229,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1 2, switch 3','move 1 1, move 1'], ['move 1 2, move 1 -1','move 2, move 1'],
         ['move 2, move 1 -1','move 2, move 1'], ['move 2, move 1 2','move 2, move 1']],
         hospitalityRosters, 'vgc-hospitality-pollen-puff'],
+    ['bssregmc', [['team 123','team 12'], ['move 1','move 1'], ['switch 2',null],
+        ['move 1','move 1'], ['switch 3','move 1'], ['move 1','move 1'], ['switch 3',null],
+        ['move 1','move 1']], overlordRosters, 'bss-supreme-overlord'],
+    ['vgc2026regmc', [['team 123','team 12'], ['move 1, move 1','move 1, move 1'],
+        ['pass, switch 3',null], ['move 2 1, move 1','move 1, move 1']],
+        receiverRosters, 'vgc-receiver'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

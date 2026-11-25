@@ -213,6 +213,13 @@ impl Battle {
         if stakeout && self.format.report_exact_hp {
             self.add("|debug|Stakeout boost");
         }
+        let fallen = self.mon(source).fallen_allies;
+        let supreme_overlord = [4096, 4506, 4915, 5325, 5734, 6144][usize::from(fallen)];
+        if fallen > 0 && self.format.report_exact_hp {
+            self.add(format!(
+                "|debug|Supreme Overlord boost: {supreme_overlord}/4096"
+            ));
+        }
         if move_data.ignore_defensive && self.format.report_exact_hp {
             self.add("|debug|Negating (sp)def boost/penalty.");
         }
@@ -293,7 +300,10 @@ impl Battle {
         let atk = tr.modify(atk, attack_modifier);
         let stab = user.has_type(move_type);
         let mut power_modifier = crate::mechanics::chain(
-            user.ability_power_modifier(move_data, move_type, power, weather),
+            chain(
+                supreme_overlord,
+                user.ability_power_modifier(move_data, move_type, power, weather),
+            ),
             user.item_power_modifier(move_type, move_data.category),
         );
         if solar_weak {

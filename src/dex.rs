@@ -223,6 +223,8 @@ pub struct Effect {
     pub breakable: bool,
     #[serde(default)]
     pub no_skill_swap: bool,
+    #[serde(default)]
+    pub no_receiver: bool,
 }
 
 #[derive(Debug, Deserialize)]

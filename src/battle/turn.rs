@@ -1285,6 +1285,7 @@ impl Battle {
         }
         if !returning && !self.mon(outgoing).fainted {
             self.switch_out_ability(outgoing);
+            self.end_supreme_overlord(outgoing, true);
             self.end_ability(outgoing);
         }
         let rules = self.stat_rules;
@@ -1650,6 +1651,9 @@ impl Battle {
         }
         if self.mon(pos).ability == "hospitality" {
             self.hospitality(pos);
+        }
+        if self.mon(pos).ability == "supremeoverlord" {
+            self.start_supreme_overlord(pos);
         }
         self.try_trace(pos);
     }
@@ -4041,6 +4045,8 @@ impl Battle {
         let side = self.sides[target.player.index()].as_mut().unwrap();
         side.total_fainted = (side.total_fainted + 1).min(100);
         self.add(format!("|faint|{}", self.ident(target)));
+        self.receive_fainted_ability(target);
+        self.end_supreme_overlord(target, false);
         self.weather_ability_changed(target);
         let rules = self.stat_rules;
         let mon = self.mon_mut(target);
@@ -4381,6 +4387,9 @@ impl Pokemon {
                 | "mimicry"
                 | "unburden"
                 | "hospitality"
+                | "supremeoverlord"
+                | "receiver"
+                | "powerofalchemy"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"

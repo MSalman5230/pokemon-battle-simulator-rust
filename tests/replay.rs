@@ -875,6 +875,12 @@ fn defog_and_ally_heals_keep_native_order_and_targeting() {
 }
 
 #[test]
+fn supreme_overlord_snapshots_faints_and_receiver_starts_inherited_ability() {
+    replay(include_str!("fixtures/bss-supreme-overlord.json"));
+    replay(include_str!("fixtures/vgc-receiver.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
