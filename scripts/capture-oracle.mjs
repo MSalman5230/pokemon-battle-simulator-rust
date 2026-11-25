@@ -2301,6 +2301,16 @@ const gastroGasRosters = [
     [{...named('Weezing', ['Tackle']), ability:'Neutralizing Gas'}],
     [{...named('Arbok', ['Gastro Acid', 'Recover']), ability:'Intimidate'}],
 ];
+const darkVoidRosters = [
+    [{...named('Darkrai', ['Dark Void', 'Recover']), ability:'Bad Dreams'},
+        named('Umbreon', ['Dark Void', 'Recover'])],
+    [{...named('Hatterene', ['Recover']), ability:'Magic Bounce'}, named('Vaporeon', ['Recover'])],
+];
+const starstormRosters = form => [
+    [{...named(form, ['Tera Starstorm']), ability: form === 'Terapagos' ? 'Tera Shift' : 'Teraform Zero'},
+        named('Umbreon', ['Recover'])],
+    [named('Gengar', ['Recover']), named('Snorlax', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3967,6 +3977,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 1, switch 4','move 1, move 1']], doubleGasRosters, 'custom-neutralizing-gas-ends-only-when-the-last-holder-leaves'],
     ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2']],
         gastroGasRosters, 'custom-gastro-acid-ends-gas-and-restarts-intimidate'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1, move 1']],
+        darkVoidRosters, 'custom-dark-void-requires-darkrai-except-when-reflected'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1']],
+        darkVoidRosters.map(team => [team[1]]), 'custom-dark-void-fails-without-darkrai'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1, move 1','move 1, move 1'],
+        ['move 1 2, move 1','move 1, move 1']], starstormRosters('Terapagos'), 'custom-tera-starstorm-is-normal-before-stellar'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1','move 1, move 1']],
+        starstormRosters('Terapagos-Stellar'), 'custom-stellar-tera-starstorm-hits-both-foes'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

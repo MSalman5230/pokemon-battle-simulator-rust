@@ -1141,6 +1141,7 @@ impl Battle {
                     | "thunderwave"
                     | "toxic"
                     | "hypnosis"
+                    | "darkvoid"
                     | "sleeppowder"
                     | "poisonjab"
                     | "sludgebomb"
@@ -1395,6 +1396,7 @@ impl Battle {
                     | "gyroball"
                     | "electroball"
                     | "terrainpulse"
+                    | "terastarstorm"
                     | "upperhand"
                     | "aquaring"
                     | "instruct"
@@ -4615,6 +4617,8 @@ impl Battle {
         let gift = typed_item
             .and_then(|item| item.natural_gift.as_ref())
             .filter(|_| move_data.name == "Natural Gift");
+        let stellar_starstorm = move_data.name == "Tera Starstorm"
+            && self.mon(source).species.name == "Terapagos-Stellar";
         let (mut move_type, converted) = if damaging_z || bide_strike.is_some() {
             (move_data.move_type.as_str(), false)
         } else if self.mon(source).ability == "normalize"
@@ -4633,6 +4637,8 @@ impl Battle {
             )
         {
             ("Normal", true)
+        } else if stellar_starstorm {
+            ("Stellar", false)
         } else if struggle {
             ("???", false)
         } else if weather_ball {
@@ -5047,7 +5053,7 @@ impl Battle {
         };
         let kind = if bide_strike.is_some() {
             TargetKind::Normal
-        } else if expanded {
+        } else if expanded || stellar_starstorm {
             // Both ModifyMove passes retarget a changed target kind.
             self.random_target(source, TargetKind::AllAdjacentFoes);
             target = self.random_target(source, TargetKind::AllAdjacentFoes);
@@ -5387,6 +5393,15 @@ impl Battle {
             self.add(
                 "|-hint|Only a Pokemon whose form is Morpeko or Morpeko-Hangry can use this move.",
             );
+            return true;
+        }
+        if move_data.name == "Dark Void"
+            && self.mon(source).species.base_species != "Darkrai"
+            && !reflected
+        {
+            self.add(format!("|-fail|{source_name}|move: Dark Void"));
+            self.add("|-hint|Only a Pokemon whose form is Darkrai can use this move.");
+            result.failed = true;
             return true;
         }
         if move_data.name == "Hyperspace Fury" && self.mon(source).species.name != "Hoopa-Unbound" {
@@ -6426,6 +6441,7 @@ impl Battle {
         let potential = spread_targets.len();
         let mut protected = 0;
         let mut bypassed = 0;
+        let mut spread_log = base;
         spread_targets.retain(|&mut_pos| {
             if bide_strike.is_some() {
                 return true;
@@ -6509,6 +6525,7 @@ impl Battle {
                 && !self.mon(mut_pos).semi_invulnerable()
                 && let Some((effect, prankster)) = reflector
             {
+                let start = self.log.len();
                 self.run_external_move(
                     mut_pos,
                     MoveInvocation::External {
@@ -6520,6 +6537,14 @@ impl Battle {
                     },
                     queue,
                 );
+                if spread
+                    && let Some(index) = self.log[start..]
+                        .iter()
+                        .rposition(|line| line.public.starts_with("|move|"))
+                {
+                    // Showdown's attrLastMove applies to the rebound, not the original.
+                    spread_log = start + index;
+                }
                 false
             } else if ohko && self.event_ability(mut_pos) == "sturdy" {
                 self.add(format!(
@@ -6842,7 +6867,7 @@ impl Battle {
             result.counts_as_success = false;
             result.failed = failed_hit || potential != 0;
             if spread {
-                self.log[base].public.push_str("|[spread] ");
+                self.log[spread_log].public.push_str("|[spread] ");
             }
             if matches!(
                 move_data.name.as_str(),
@@ -8101,7 +8126,7 @@ impl Battle {
                 if list_all_targets && !any_success {
                     hit_labels.clear();
                 }
-                self.log[base]
+                self.log[spread_log]
                     .public
                     .push_str(&format!("|[spread] {}", hit_labels.join(",")));
             }
@@ -9385,7 +9410,7 @@ impl Battle {
         }
         if spread {
             let labels: Vec<_> = spread_targets.into_iter().map(Position::label).collect();
-            self.log[base]
+            self.log[spread_log]
                 .public
                 .push_str(&format!("|[spread] {}", labels.join(",")));
         }
@@ -9992,6 +10017,8 @@ impl Pokemon {
     fn requested_target(&self, data: &Move) -> TargetKind {
         if data.name == "Curse" && !self.has_type("Ghost") {
             TargetKind::User
+        } else if data.name == "Tera Starstorm" && self.species.name == "Terapagos-Stellar" {
+            TargetKind::AllAdjacentFoes
         } else {
             data.target
         }

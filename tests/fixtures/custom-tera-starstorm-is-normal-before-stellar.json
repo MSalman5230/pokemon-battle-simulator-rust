@@ -1,0 +1,1397 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsdoublescustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsdoublescustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Terapagos\",\"moves\":[\"Tera Starstorm\"],\"gender\":\"F\",\"name\":\"Terapagos\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Tera Shift\"},{\"species\":\"Umbreon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Gengar\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Gengar\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Snorlax\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Snorlax\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Terapagos, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Gengar, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Terapagos, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Gengar, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|doubles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Doubles Custom Game",
+          "|clearpoke",
+          "|poke|p1|Terapagos, L50, F|",
+          "|poke|p1|Umbreon, L50, F|",
+          "|poke|p2|Gengar, L50, F|",
+          "|poke|p2|Snorlax, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Terapagos",
+                "details": "Terapagos, L50, F",
+                "condition": "165/165",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 105,
+                  "spa": 85,
+                  "spd": 105,
+                  "spe": 80
+                },
+                "moves": [
+                  "terastarstorm"
+                ],
+                "baseAbility": "terashift",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "terashift",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Terapagos",
+            "species": "Terapagos",
+            "details": "Terapagos, L50, F",
+            "hp": 165,
+            "maxhp": 165,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 105,
+              "spa": 85,
+              "spd": 105,
+              "spe": 80
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "terashift",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "terastarstorm",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Terapagos|Terapagos, L50, F|165/165",
+          "|switch|p1b: Umbreon|Umbreon, L50, F|170/170",
+          "|switch|p2a: Gengar|Gengar, L50, F|135/135",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|-activate|p1a: Terapagos|ability: Tera Shift",
+          "|detailschange|p1a: Terapagos|Terapagos-Terastal, L50, F",
+          "|-heal|p1a: Terapagos|170/170|[silent]",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Terapagos|Terapagos, L50, F|165/165",
+          "|switch|p1b: Umbreon|Umbreon, L50, F|170/170",
+          "|switch|p2a: Gengar|Gengar, L50, F|135/135",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|-activate|p1a: Terapagos|ability: Tera Shift",
+          "|detailschange|p1a: Terapagos|Terapagos-Terastal, L50, F",
+          "|-heal|p1a: Terapagos|170/170|[silent]",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Terapagos|Terapagos, L50, F|165/165",
+          "|switch|p1b: Umbreon|Umbreon, L50, F|170/170",
+          "|switch|p2a: Gengar|Gengar, L50, F|135/135",
+          "|switch|p2b: Snorlax|Snorlax, L50, F|235/235",
+          "|-activate|p1a: Terapagos|ability: Tera Shift",
+          "|detailschange|p1a: Terapagos|Terapagos-Terastal, L50, F",
+          "|-heal|p1a: Terapagos|170/170|[silent]",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tera Starstorm",
+                  "id": "terastarstorm",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Terapagos",
+                "details": "Terapagos-Terastal, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 130,
+                  "spa": 125,
+                  "spd": 130,
+                  "spe": 105
+                },
+                "moves": [
+                  "terastarstorm"
+                ],
+                "baseAbility": "terashell",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "terashell",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Terapagos",
+            "species": "Terapagos-Terastal",
+            "details": "Terapagos-Terastal, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 130,
+              "spa": 125,
+              "spd": 130,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "terashell",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "terastarstorm",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 1, move 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 2,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Gengar|Recover||[still]",
+          "|-fail|p2a: Gengar|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Terapagos|Tera Starstorm|p2a: Gengar",
+          "|-immune|p2a: Gengar",
+          "|move|p1b: Umbreon|Recover||[still]",
+          "|-fail|p1b: Umbreon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover||[still]",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Gengar|Recover||[still]",
+          "|-fail|p2a: Gengar|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Terapagos|Tera Starstorm|p2a: Gengar",
+          "|-immune|p2a: Gengar",
+          "|move|p1b: Umbreon|Recover||[still]",
+          "|-fail|p1b: Umbreon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover||[still]",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Gengar|Recover||[still]",
+          "|-fail|p2a: Gengar|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Terapagos|Tera Starstorm|p2a: Gengar",
+          "|-immune|p2a: Gengar",
+          "|move|p1b: Umbreon|Recover||[still]",
+          "|-fail|p1b: Umbreon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover||[still]",
+          "|-fail|p2b: Snorlax|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tera Starstorm",
+                  "id": "terastarstorm",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Terapagos",
+                "details": "Terapagos-Terastal, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 130,
+                  "spa": 125,
+                  "spd": 130,
+                  "spe": 105
+                },
+                "moves": [
+                  "terastarstorm"
+                ],
+                "baseAbility": "terashell",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "terashell",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Terapagos",
+            "species": "Terapagos-Terastal",
+            "details": "Terapagos-Terastal, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 130,
+              "spa": 125,
+              "spd": 130,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "terashell",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "terastarstorm",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1 2, move 1",
+        ">p2 move 1, move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Gengar|Recover||[still]",
+          "|-fail|p2a: Gengar|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Terapagos|Tera Starstorm|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|166/235",
+          "|move|p1b: Umbreon|Recover||[still]",
+          "|-fail|p1b: Umbreon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover|p2b: Snorlax",
+          "|-heal|p2b: Snorlax|235/235",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Gengar|Recover||[still]",
+          "|-fail|p2a: Gengar|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Terapagos|Tera Starstorm|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|166/235",
+          "|move|p1b: Umbreon|Recover||[still]",
+          "|-fail|p1b: Umbreon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover|p2b: Snorlax",
+          "|-heal|p2b: Snorlax|235/235",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p2a: Gengar|Recover||[still]",
+          "|-fail|p2a: Gengar|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Terapagos|Tera Starstorm|p2b: Snorlax",
+          "|-damage|p2b: Snorlax|166/235",
+          "|move|p1b: Umbreon|Recover||[still]",
+          "|-fail|p1b: Umbreon|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p2b: Snorlax|Recover|p2b: Snorlax",
+          "|-heal|p2b: Snorlax|235/235",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tera Starstorm",
+                  "id": "terastarstorm",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Terapagos",
+                "details": "Terapagos-Terastal, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 115,
+                  "def": 130,
+                  "spa": 125,
+                  "spd": 130,
+                  "spe": 105
+                },
+                "moves": [
+                  "terastarstorm"
+                ],
+                "baseAbility": "terashell",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "terashell",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            },
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Gengar",
+                "details": "Gengar, L50, F",
+                "condition": "135/135",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 95,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Snorlax",
+                "details": "Snorlax, L50, F",
+                "condition": "235/235",
+                "active": true,
+                "stats": {
+                  "atk": 130,
+                  "def": 85,
+                  "spa": 85,
+                  "spd": 130,
+                  "spe": 50
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Terapagos",
+            "species": "Terapagos-Terastal",
+            "details": "Terapagos-Terastal, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 115,
+              "def": 130,
+              "spa": 125,
+              "spd": 130,
+              "spe": 105
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "terashell",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "terastarstorm",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Gengar",
+            "species": "Gengar",
+            "details": "Gengar, L50, F",
+            "hp": 135,
+            "maxhp": 135,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 95,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Snorlax",
+            "species": "Snorlax",
+            "details": "Snorlax, L50, F",
+            "hp": 235,
+            "maxhp": 235,
+            "status": "",
+            "stats": {
+              "atk": 130,
+              "def": 85,
+              "spa": 85,
+              "spd": 130,
+              "spe": 50
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

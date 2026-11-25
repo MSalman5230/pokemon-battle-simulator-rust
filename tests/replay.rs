@@ -2447,6 +2447,26 @@ fn neutralizing_gas_suppresses_and_restarts_only_the_relevant_abilities() {
 }
 
 #[test]
+fn dark_void_requires_darkrai_but_can_be_reflected() {
+    replay(include_str!(
+        "fixtures/custom-dark-void-requires-darkrai-except-when-reflected.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-dark-void-fails-without-darkrai.json"
+    ));
+}
+
+#[test]
+fn tera_starstorm_only_changes_type_and_spreads_in_stellar_form() {
+    replay(include_str!(
+        "fixtures/custom-tera-starstorm-is-normal-before-stellar.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-stellar-tera-starstorm-hits-both-foes.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }
