@@ -22,7 +22,7 @@ const handlers = e => Object.keys(e).filter(k =>
 // is covered. An omitted handler or unrecognized nested effect is not inert.
 const genericMoveFields = new Set([
     'num', 'name', 'accuracy', 'basePower', 'category', 'pp', 'priority', 'flags',
-    'target', 'type', 'contestType', 'isNonstandard', 'zMove', 'maxMove', 'tags',
+    'target', 'type', 'contestType', 'isNonstandard', 'zMove', 'maxMove', 'isZ', 'tags',
     'noPPBoosts', 'critRatio', 'willCrit', 'alwaysHit', 'heal', 'boosts',
     'status', 'ignoreImmunity', 'self', 'recoil', 'drain', 'thawsTarget',
     'secondary', 'secondaries', 'multihit', 'multiaccuracy', 'selfBoost',

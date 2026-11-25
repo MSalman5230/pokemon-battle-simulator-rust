@@ -70,6 +70,7 @@ enum MoveInvocation {
         original_target: Option<(Player, u8)>,
         prankster: bool,
         round_followup: bool,
+        z_priority: Option<i8>,
     },
     Reflected {
         data: &'static Move,
@@ -100,6 +101,11 @@ struct MoveResult {
     ran_after_move: bool,
     failed: bool,
     counts_as_success: bool,
+}
+
+pub(super) enum BoostLabel<'a> {
+    Item(&'a str),
+    ZPower,
 }
 
 impl Protection {
@@ -227,6 +233,7 @@ pub(super) struct Action {
     fractional_priority: f64,
     prankster: bool,
     round_followup: bool,
+    z_move: bool,
 }
 
 const STRUGGLE_SLOT: usize = usize::MAX;
@@ -259,6 +266,7 @@ impl Action {
             fractional_priority: 0.0,
             prankster: false,
             round_followup: false,
+            z_move: false,
             priority: Priority {
                 order,
                 ..Priority::default()
@@ -605,6 +613,7 @@ impl Battle {
                 } else if let ActionKind::Move { move_slot, .. } = action.kind {
                     let pos = action.actor.unwrap();
                     if move_slot != STRUGGLE_SLOT
+                        && !action.z_move
                         && !self.mon(pos).hard_locked()
                         && self.actual_disabled(pos, move_slot)
                     {
@@ -646,6 +655,7 @@ impl Battle {
                         queue.push(mega);
                     }
                     if self.phase == Phase::Move
+                        && !action.z_move
                         && let ActionKind::Move {
                             move_slot, target, ..
                         } = action.kind
@@ -668,6 +678,7 @@ impl Battle {
                         queue.push(prep);
                     }
                     if self.phase == Phase::Move
+                        && !action.z_move
                         && let ActionKind::Move { move_slot, .. } = action.kind
                         && move_slot != RECHARGE_SLOT
                         && let Some(id) = match self
@@ -754,6 +765,7 @@ impl Battle {
         let mut switched = 0_u32;
         let mut auto = false;
         let mut mega = false;
+        let mut z_move = false;
         for (slot, force_switch) in flags.into_iter().enumerate() {
             let actor = Position { player, slot };
             let mon = self.mon(actor);
@@ -797,6 +809,7 @@ impl Battle {
                 actions.push(Action::new(Some(actor), ActionKind::Revive { party_slot }));
                 continue;
             }
+            let mut z_powered = false;
             let action = match choice {
                 SlotChoice::Auto if replace => {
                     if switched.count_ones() as usize == needed {
@@ -837,7 +850,7 @@ impl Battle {
                     special,
                 } if !replace => {
                     let wants_mega = match special {
-                        None => false,
+                        None | Some(SpecialChoice::ZMove) => false,
                         Some(SpecialChoice::Mega) if !mega => {
                             self.validate_mega(actor)?;
                             mega = true;
@@ -848,9 +861,24 @@ impl Battle {
                         }
                         _ => return Err(BattleError::Unsupported("special move modifier".into())),
                     };
-                    self.select_move(actor, selection, *target, wants_mega)?
+                    let (action, selected_z) = self.select_move(
+                        actor,
+                        selection,
+                        *target,
+                        wants_mega,
+                        *special == Some(SpecialChoice::ZMove),
+                    )?;
+                    if selected_z && z_move {
+                        return Err(BattleError::Choice("only one Z-Move per side"));
+                    }
+                    z_move |= selected_z;
+                    z_powered = selected_z;
+                    action
                 }
-                SlotChoice::Auto => self.select_move(actor, &MoveChoice::Auto, None, false)?,
+                SlotChoice::Auto => {
+                    self.select_move(actor, &MoveChoice::Auto, None, false, false)?
+                        .0
+                }
                 _ => return Err(BattleError::Choice("invalid action for current request")),
             };
             if let ActionKind::Switch { bench_slot, .. } = action {
@@ -859,7 +887,9 @@ impl Battle {
                 }
                 switched |= 1 << bench_slot;
             }
-            actions.push(Action::new(Some(actor), action));
+            let mut action = Action::new(Some(actor), action);
+            action.z_move = z_powered;
+            actions.push(action);
         }
         if choices.next().is_some() || (replace && switched.count_ones() as usize != needed) {
             return Err(BattleError::Choice(
@@ -1298,7 +1328,8 @@ impl Battle {
         selection: &MoveChoice,
         target: Option<i8>,
         mega: bool,
-    ) -> Result<ActionKind, BattleError> {
+        mut z_powered: bool,
+    ) -> Result<(ActionKind, bool), BattleError> {
         if let Some((move_slot, _, id)) = self.mon(actor).forced_move() {
             let valid = match selection {
                 MoveChoice::Auto => true,
@@ -1315,14 +1346,17 @@ impl Battle {
                         })
                 }
             };
-            if !valid || mega {
+            if !valid || mega || z_powered {
                 return Err(BattleError::Choice("only the forced move is available"));
             }
-            return Ok(ActionKind::Move {
-                move_slot,
-                target: self.mon(actor).charge.map_or(0, |state| state.target),
-                mega: false,
-            });
+            return Ok((
+                ActionKind::Move {
+                    move_slot,
+                    target: self.mon(actor).charge.map_or(0, |state| state.target),
+                    mega: false,
+                },
+                false,
+            ));
         }
         let moves = &self.mon(actor).moves;
         let visibly_available = self.any_move_in_request(actor);
@@ -1332,6 +1366,7 @@ impl Battle {
             .any(|(i, _)| !self.actual_disabled(actor, i));
         if !really_available {
             if mega
+                || z_powered
                 || target.is_some()
                 || !matches!(selection, MoveChoice::Auto | MoveChoice::Slot(_))
                     && !matches!(selection, MoveChoice::Name(name) if name == "struggle")
@@ -1344,11 +1379,14 @@ impl Battle {
             {
                 return Err(BattleError::Choice("only Struggle is available"));
             }
-            return Ok(ActionKind::Move {
-                move_slot: STRUGGLE_SLOT,
-                target: 0,
-                mega: false,
-            });
+            return Ok((
+                ActionKind::Move {
+                    move_slot: STRUGGLE_SLOT,
+                    target: 0,
+                    mega: false,
+                },
+                false,
+            ));
         }
         let move_slot = match selection {
             MoveChoice::Slot(n) => Some(n.get() - 1),
@@ -1358,7 +1396,13 @@ impl Battle {
                 } else {
                     name
                 };
-                moves.iter().position(|m| m.id == id)
+                moves.iter().position(|m| m.id == id).or_else(|| {
+                    let slot = (!mega)
+                        .then(|| self.z_named_base_slot(actor, name))
+                        .flatten();
+                    z_powered |= slot.is_some();
+                    slot
+                })
             }
             MoveChoice::Auto => moves
                 .iter()
@@ -1370,12 +1414,26 @@ impl Battle {
             .get(move_slot)
             .filter(|m| m.pp > 0)
             .ok_or(BattleError::Choice("invalid move slot or no PP remaining"))?;
-        // A projected generic move has only implemented data effects.
-        // The remaining moves must have explicit, audited special handling.
-        if !Self::move_supported(info) {
+        let z_data = if z_powered {
+            let data = self
+                .z_crystal(actor)
+                .and_then(|crystal| self.z_move_data(crystal, info.move_data))
+                .ok_or(BattleError::Choice("this move cannot be used as a Z-Move"))?;
+            if data.is_z_move && !data.generic {
+                return Err(BattleError::Unsupported(format!("Z-Move {}", data.name)));
+            }
+            Some(data)
+        } else {
+            None
+        };
+        // Signature and damaging Z-Moves replace the base move and its callbacks.
+        if z_data.is_none_or(|data| !data.is_z_move) && !Self::move_supported(info) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
-        let kind = self.mon(actor).requested_target(info.move_data);
+        let kind = z_data.map_or_else(
+            || self.mon(actor).requested_target(info.move_data),
+            |data| data.target,
+        );
         let target = target.unwrap_or(0);
         if kind.is_choosable() {
             if (target == 0 && self.slots() > 1 && !matches!(selection, MoveChoice::Auto))
@@ -1386,11 +1444,14 @@ impl Battle {
         } else if target != 0 {
             return Err(BattleError::Choice("cannot specify a target for this move"));
         }
-        Ok(ActionKind::Move {
-            move_slot,
-            target,
-            mega,
-        })
+        Ok((
+            ActionKind::Move {
+                move_slot,
+                target,
+                mega,
+            },
+            z_powered,
+        ))
     }
 
     fn move_data(&self, source: Position, slot: usize) -> &'static Move {
@@ -1419,6 +1480,13 @@ impl Battle {
                         .move_data
                         .get_or_insert_with(|| self.move_data(source, move_slot));
                     self.resolve_target(source, move_base_target(data, source, target), target);
+                    let data = if action.z_move {
+                        self.z_crystal(source)
+                            .and_then(|crystal| self.z_move_data(crystal, data))
+                            .unwrap_or(data)
+                    } else {
+                        data
+                    };
                     action.prankster = self.prankster_boosts(source, data);
                     action.priority.priority = f64::from(
                         self.base_move_priority(source, data) + i8::from(action.prankster),
@@ -1954,6 +2022,10 @@ impl Battle {
                             original_target: action.original_target,
                             prankster: action.prankster,
                             round_followup: action.round_followup,
+                            z_priority: action.z_move.then(|| {
+                                (action.priority.priority - action.fractional_priority).round()
+                                    as i8
+                            }),
                         },
                         &mut queue,
                     );
@@ -2265,8 +2337,8 @@ impl Battle {
                 }
             }
         }
-        self.apply_replacement_heals(source);
-        self.apply_replacement_heals(partner);
+        self.apply_ally_switch_heals(source);
+        self.apply_ally_switch_heals(partner);
     }
 
     pub(super) fn ordered_actives(
@@ -3298,17 +3370,17 @@ impl Battle {
             mon.untrack_volatile("mustrecharge");
             return true;
         }
-        let mut move_data = match invocation {
+        let base_data = match invocation {
             MoveInvocation::Choice { slot, .. }
             | MoveInvocation::SleepTalk { slot, .. }
             | MoveInvocation::Copycat { slot, .. } => self.move_data(source, slot),
             MoveInvocation::Reflected { data, .. } | MoveInvocation::Future { data, .. } => data,
         };
-        result.spends_charge =
-            own_action && move_data.name != "Charge" && move_data.move_type == "Electric";
-        let struggle = slot == Some(STRUGGLE_SLOT);
-        let charge_spec = ChargeSpec::for_move(&move_data.name);
-        let releasing_charge = own_action && self.mon(source).charge.is_some();
+        let z_priority = match invocation {
+            MoveInvocation::Choice { z_priority, .. } => z_priority,
+            _ => None,
+        };
+        let z_powered = z_priority.is_some();
         let weather = self.effective_weather();
         let mega_sun = !delayed && self.event_ability(source) == "megasol";
         let move_weather = if mega_sun {
@@ -3316,6 +3388,22 @@ impl Battle {
         } else {
             self.mon(source).personal_weather(weather)
         };
+        let z_weather = (z_powered && base_data.name == "Weather Ball")
+            .then(|| move_weather.map(Weather::ball_type))
+            .flatten();
+        let mut move_data = if z_powered {
+            self.z_active_move(source, base_data, z_weather)
+        } else {
+            base_data
+        };
+        let z_status = z_powered && move_data.category == Category::Status;
+        let z_animated = z_status && !move_data.is_z_move;
+        let damaging_z = z_powered && !z_status;
+        result.spends_charge =
+            own_action && move_data.name != "Charge" && move_data.move_type == "Electric";
+        let struggle = slot == Some(STRUGGLE_SLOT);
+        let charge_spec = ChargeSpec::for_move(&move_data.name);
+        let releasing_charge = own_action && self.mon(source).charge.is_some();
         let solar_weak = charge_spec.is_some_and(|spec| spec.weak_in_bad_weather)
             && matches!(
                 move_weather,
@@ -3348,7 +3436,9 @@ impl Battle {
                 ..
             }
         );
-        let called_from = if reflected {
+        let called_from = if z_weather.is_some() {
+            "|[from] move: Weather Ball"
+        } else if reflected {
             "|[from] ability: Magic Bounce"
         } else if sleep_talk.is_some() {
             "|[from] move: Sleep Talk"
@@ -3389,7 +3479,9 @@ impl Battle {
             "Spit Up" => u16::from(self.mon(source).stockpile.layers) * 100,
             _ => move_data.base_power,
         };
-        let (mut move_type, converted) = if struggle {
+        let (mut move_type, converted) = if damaging_z {
+            (move_data.move_type.as_str(), false)
+        } else if struggle {
             ("???", false)
         } else if weather_ball {
             (move_weather.map_or("Normal", Weather::ball_type), false)
@@ -3463,7 +3555,7 @@ impl Battle {
                 "|-prepare|{source_name}|Chilly Reception|[premajor]"
             ));
         }
-        if own_action && !self.before_status_move(source, move_data) {
+        if own_action && !self.before_status_move(source, move_data, z_powered) {
             self.mon_mut(source).clear_charge();
             self.clear_destiny_bond(source, false);
             return false;
@@ -3503,6 +3595,7 @@ impl Battle {
             return false;
         }
         if own_action
+            && !z_powered
             && !struggle
             && slot.is_some_and(|slot| self.mon(source).disabled_by_choice(slot))
         {
@@ -3559,13 +3652,19 @@ impl Battle {
                 mon.moves[slot].pp -= 1;
                 mon.used_moves |= 1 << slot;
             }
-            mon.last_move_slot = (slot != EXTRA_MOVE_SLOT).then_some(slot);
+            mon.last_move_slot = (!z_powered && slot != EXTRA_MOVE_SLOT).then_some(slot);
             mon.last_move_target = loc;
             if slot != EXTRA_MOVE_SLOT && mon.holds_choice_item() && mon.choice_lock.is_none() {
                 mon.choice_lock = Some(slot);
                 mon.track_volatile("choicelock");
             }
         }
+        let source_name = if z_powered {
+            self.spend_z_move(source);
+            self.ident(source)
+        } else {
+            source_name
+        };
         if !delayed
             && matches!(
                 self.mon(source).active_ability(),
@@ -3696,9 +3795,11 @@ impl Battle {
             self.add(format!("|debug|BP: {power}"));
         }
         let previous = self.last_battle_move;
+        let previous_z = self.last_battle_move_z;
         let history_known = self.history_known;
         if !delayed {
             self.last_battle_move = Some(move_data);
+            self.last_battle_move_z = z_powered || move_data.is_z_move;
             self.history_known = true;
             result.counts_as_success = true;
         }
@@ -3715,12 +3816,28 @@ impl Battle {
                 self.add("|debug|BP doubled in Terrain");
             }
             let base = self.log.len();
+            let prefix = if z_animated { "Z-" } else { "" };
+            let suffix = if z_animated {
+                format!("|[anim]{}{called_from}", move_data.name)
+            } else {
+                String::new()
+            };
+            let attributes = if z_animated {
+                suffix.as_str()
+            } else {
+                called_from
+            };
             self.add(format!(
-                "|move|{source_name}|{}|{target_name}{called_from}",
+                "|move|{source_name}|{prefix}{}|{target_name}{attributes}",
                 move_data.name
             ));
             base
         };
+        if damaging_z {
+            self.log[base].public.push_str("|[zeffect]");
+        } else if z_status {
+            self.apply_z_power(source, move_data);
+        }
         let mut redirected = false;
         if !delayed
             && !lost_counter_target
@@ -3737,11 +3854,13 @@ impl Battle {
             redirected = true;
             spread_targets.clear();
             spread_targets.push(redirect);
-            self.log[base].public = format!(
-                "|move|{source_name}|{}|{}{called_from}",
-                move_data.name,
-                self.ident(redirect)
-            );
+            let redirected_ident = self.ident(redirect);
+            let line = &mut self.log[base].public;
+            let target_start = line.match_indices('|').nth(3).unwrap().0 + 1;
+            let target_end = line[target_start..]
+                .find('|')
+                .map_or(line.len(), |end| target_start + end);
+            line.replace_range(target_start..target_end, &redirected_ident);
         }
         let mut smart_target = false;
         if darts
@@ -3825,7 +3944,11 @@ impl Battle {
             return true;
         }
         let priority = caller.map_or_else(
-            || self.base_move_priority(source, move_data) + i8::from(prankster),
+            || {
+                z_priority.unwrap_or_else(|| {
+                    self.base_move_priority(source, move_data) + i8::from(prankster)
+                })
+            },
             |(_, priority)| priority,
         );
         if !delayed
@@ -4645,10 +4768,13 @@ impl Battle {
         let mut protected = 0;
         let mut bypassed = 0;
         spread_targets.retain(|&mut_pos| {
-            if move_data.flags.contains_key("protect")
+            if (damaging_z || move_data.flags.contains_key("protect"))
                 && let Some(guard) = self.blocking_side_guard(mut_pos.player, kind, priority)
             {
-                if matches!(self.event_ability(source), "unseenfist" | "piercingdrill") && contact {
+                if damaging_z && !move_data.flags.contains_key("protect")
+                    || matches!(self.event_ability(source), "unseenfist" | "piercingdrill")
+                        && contact
+                {
                     bypassed |= mut_pos.mask();
                 } else {
                     protected += 1;
@@ -4674,10 +4800,14 @@ impl Battle {
                 }
             }
             if let Some(protect) = self.mon(mut_pos).protection
+                && protect != Protection::Endure
                 && (protect.blocks_status() || move_data.category != Category::Status)
-                && move_data.flags.contains_key("protect")
+                && (damaging_z || move_data.flags.contains_key("protect"))
             {
-                if matches!(self.event_ability(source), "unseenfist" | "piercingdrill") && contact {
+                if damaging_z && !move_data.flags.contains_key("protect")
+                    || matches!(self.event_ability(source), "unseenfist" | "piercingdrill")
+                        && contact
+                {
                     bypassed |= mut_pos.mask();
                 } else {
                     // Personal guards return NOT_FAIL.
@@ -5045,7 +5175,7 @@ impl Battle {
                         any_success = true;
                         continue;
                     };
-                    if called.flags.contains_key("failcopycat") {
+                    if previous_z || called.flags.contains_key("failcopycat") {
                         self.move_still(base);
                         self.add(format!("|-fail|{source_name}"));
                         result.failed = true;
@@ -5960,6 +6090,7 @@ impl Battle {
             && self.mon(source).transformed.is_none()
             && self.event_ability(source) == "battlebond";
         let parental = !delayed
+            && !z_powered
             && !spread
             && move_data.multihit.is_none()
             && beat_up.is_none()
@@ -6372,6 +6503,12 @@ impl Battle {
                 self.debug_suppressed_hook(target, "onHit");
             }
             for &(target, _) in &damage {
+                if damaging_z
+                    && contact
+                    && let Some(protection) = self.mon(target).protection
+                {
+                    self.protection_contact(protection, source, target, base);
+                }
                 if contact && self.mon(target).volatile_ids().contains(&"beakblast") {
                     self.try_status(source, "brn", target, move_data, false, base);
                 }
@@ -7165,16 +7302,16 @@ impl Battle {
         is_self: bool,
         invert: bool,
     ) -> bool {
-        self.apply_boosts_with_item(pos, boosts, is_self, invert, None, true)
+        self.apply_boosts_labeled(pos, boosts, is_self, invert, None, true)
     }
 
-    pub(super) fn apply_boosts_with_item(
+    pub(super) fn apply_boosts_labeled(
         &mut self,
         pos: Position,
         boosts: &[(BoostStat, i8)],
         is_self: bool,
         invert: bool,
-        item: Option<&str>,
+        label: Option<BoostLabel<'_>>,
         notify_copy: bool,
     ) -> bool {
         if self.mon(pos).hp == 0
@@ -7217,11 +7354,15 @@ impl Battle {
                     stat.id(),
                     changed.abs()
                 );
-                if changed != 0
-                    && let Some(item) = item
-                {
-                    line.push_str("|[from] item: ");
-                    line.push_str(item);
+                if changed != 0 {
+                    match label {
+                        Some(BoostLabel::Item(item)) => {
+                            line.push_str("|[from] item: ");
+                            line.push_str(item);
+                        }
+                        Some(BoostLabel::ZPower) => line.push_str("|[zeffect]"),
+                        None => {}
+                    }
                 }
                 self.add(line);
             }

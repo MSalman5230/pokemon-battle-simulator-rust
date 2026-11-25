@@ -1795,6 +1795,25 @@ fn national_dex_projects_both_generic_and_signature_crystal_requests() {
 }
 
 #[test]
+fn national_dex_z_attacks_replace_base_damage_even_through_protect() {
+    replay(include_str!(
+        "fixtures/natdex-z-damage-through-protect.json"
+    ));
+    replay(include_str!("fixtures/natdex-z-signature.json"));
+    replay(include_str!("fixtures/natdex-z-weather-ball.json"));
+    replay(include_str!("fixtures/custom-z-quick-guard.json"));
+}
+
+#[test]
+fn national_dex_z_status_effects_are_applied_before_the_base_move() {
+    replay(include_str!("fixtures/natdex-z-protect-under-taunt.json"));
+    replay(include_str!("fixtures/natdex-z-splash.json"));
+    replay(include_str!("fixtures/natdex-z-refresh.json"));
+    replay(include_str!("fixtures/natdex-z-replacement-heal.json"));
+    replay(include_str!("fixtures/natdex-z-evoboost.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

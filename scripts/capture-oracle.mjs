@@ -1504,6 +1504,36 @@ const natDexZCrystalRosters = [
     [{...named('Smeargle', ['Tackle', 'Protect', 'Water Gun']), ability:'Own Tempo', item:'Normalium Z'}],
     [{...named('Pikachu', ['Volt Tackle', 'Trick']), ability:'Static', item:'Pikanium Z'}],
 ];
+const natDexZProtectRosters = [
+    natDexZCrystalRosters[0],
+    [named('Vaporeon', ['Protect', 'Tail Whip', 'Taunt'])],
+];
+const natDexZStatusRosters = [
+    [{...named('Smeargle', ['Tackle', 'Splash', 'Refresh']), ability:'Own Tempo', item:'Normalium Z'}],
+    [named('Vaporeon', ['Water Gun', 'Toxic', 'Protect'])],
+];
+const natDexZSignatureRosters = [
+    [named('Vaporeon', ['Protect', 'Recover'])],
+    natDexZCrystalRosters[1],
+];
+const natDexZWeatherRosters = [
+    [{...named('Smeargle', ['Weather Ball', 'Sunny Day']), ability:'Own Tempo', item:'Normalium Z'}],
+    [named('Leafeon', ['Protect', 'Tail Whip'])],
+];
+const natDexZReplacementRosters = [
+    [{...named('Smeargle', ['Memento']), ability:'Own Tempo', item:'Darkinium Z'},
+        named('Eevee', ['Tackle'])],
+    [named('Vaporeon', ['Water Gun', 'Tail Whip'])],
+];
+const natDexZEeveeRosters = [
+    [{...named('Eevee', ['Last Resort', 'Tackle']), item:'Eevium Z'}],
+    [named('Vaporeon', ['Endure', 'Tail Whip'])],
+];
+const customZSideGuardRosters = [
+    [{...named('Smeargle', ['Quick Attack']), ability:'Own Tempo', item:'Normalium Z'},
+        named('Glaceon', ['Protect'])],
+    [named('Vaporeon', ['Quick Guard']), named('Jolteon', ['Tail Whip'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2747,6 +2777,24 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['switch 2','move 2'], ['move 1','move 1']], natDexDefenseItemRosters, 'natdex-defense-items'],
     ['natdexdraft', [['team 1','team 1'], ['move 1','move 1']], natDexJuiceRosters, 'natdex-berry-juice'],
     ['natdexdraft', [['team 1','team 1'], ['move 1','move 2']], natDexZCrystalRosters, 'natdex-z-crystal-requests'],
+    ['natdexdraft', [['team 1','team 1'], ['move Breakneck Blitz','move 1'], ['move 1','move 2']],
+        natDexZProtectRosters, 'natdex-z-damage-through-protect'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 2'], ['move 1','move 3'], ['move Z-Protect','move 2']],
+        natDexZProtectRosters, 'natdex-z-protect-under-taunt'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2 zmove','move 1'], ['move 1','move 3']],
+        natDexZStatusRosters, 'natdex-z-splash'],
+    ['natdexdraft', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 2'], ['move 3 zmove','move 3']],
+        natDexZStatusRosters, 'natdex-z-refresh'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1 zmove']],
+        natDexZSignatureRosters, 'natdex-z-signature'],
+    ['natdexdraft', [['team 1','team 1'], ['move 2','move 2'], ['move 1 zmove','move 1']],
+        natDexZWeatherRosters, 'natdex-z-weather-ball'],
+    ['natdexdraft', [['team 12','team 1'], ['switch 2','move 1'], ['switch 2','move 2'],
+        ['move 1 zmove','move 2'], ['switch 2',null]], natDexZReplacementRosters, 'natdex-z-replacement-heal'],
+    ['natdexdraft', [['team 1','team 1'], ['move Extreme Evoboost','move 2'], ['move 2','move 1']],
+        natDexZEeveeRosters, 'natdex-z-evoboost'],
+    ['doublescustomgame', [['team 12','team 12'], ['move 1 1 zmove, move 1','move 1, move 1']],
+        customZSideGuardRosters, 'custom-z-quick-guard'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

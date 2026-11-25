@@ -29,6 +29,7 @@ pub(super) struct FutureMove {
 pub(super) enum ReplacementHeal {
     HealingWish,
     LunarDance,
+    ZPower(&'static str),
 }
 
 impl ReplacementHeal {
@@ -44,6 +45,7 @@ impl ReplacementHeal {
         match self {
             Self::HealingWish => "Healing Wish",
             Self::LunarDance => "Lunar Dance",
+            Self::ZPower(name) => name,
         }
     }
 }
@@ -154,10 +156,21 @@ impl Battle {
             .replacement_heals[pos.slot];
         if !pending.contains(&effect) {
             pending.push(effect);
+            if matches!(effect, ReplacementHeal::ZPower(_)) {
+                self.add(format!("|-activate|{}|healreplacement", self.ident(pos)));
+            }
         }
     }
 
     pub(super) fn apply_replacement_heals(&mut self, pos: Position) {
+        self.run_replacement_heals(pos, true);
+    }
+
+    pub(super) fn apply_ally_switch_heals(&mut self, pos: Position) {
+        self.run_replacement_heals(pos, false);
+    }
+
+    fn run_replacement_heals(&mut self, pos: Position, entered: bool) {
         let pending = &mut self.sides[pos.player.index()]
             .as_mut()
             .unwrap()
@@ -168,6 +181,19 @@ impl Battle {
         let mut pending = std::mem::take(pending);
         pending.retain(|&effect| {
             let mon = self.mon_mut(pos);
+            if let ReplacementHeal::ZPower(name) = effect {
+                if !entered || mon.fainted || mon.hp == 0 {
+                    return true;
+                }
+                mon.hp = mon.max_hp.get();
+                self.add_health_line_with(
+                    "-heal",
+                    pos,
+                    false,
+                    &format!("|[from] move: {name}|[zeffect]"),
+                );
+                return false;
+            }
             if mon.fainted
                 || mon.hp == 0
                 || (mon.hp == mon.max_hp.get()

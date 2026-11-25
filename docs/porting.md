@@ -74,7 +74,11 @@ ordinary modern sets under Flat Rules, OU, UU, Doubles, Draft, 4v4 Doubles UU,
 and 4v4 Doubles Draft, including their corresponding team bans. It admits all
 128 rosters in the locked training corpus. NatDex Draft also checks ordinary
 sets, with National Dex transfer learnsets and a Champions fallback. Some
-origin, special form, and event constraints are still unsupported. Roster
+origin, special form, and event constraints are still unsupported. Focused
+National Dex and Custom Game replays cover the once-per-side Z-Crystal
+selection, generic damage and status Z effects, and signature moves such as
+Catastropika and Extreme Evoboost. Other inherited mechanics still need
+coverage. Roster
 Ranch Rumble generates ten-member rosters with a separate
 PRNG and supports native pick-four doubles setup. Seeded tests compare complete
 rosters and the final team PRNG state. Random Battle and Random Doubles Battle

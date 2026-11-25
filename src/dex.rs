@@ -344,6 +344,12 @@ impl Dex {
         self.lookup(&self.moves, dex_mod, Some(&self.regmb.moves), id)
     }
 
+    pub(crate) fn move_entries(&self, dex_mod: Mod) -> impl Iterator<Item = &Move> {
+        self.moves
+            .keys()
+            .filter_map(move |id| self.moves(dex_mod, id))
+    }
+
     pub fn item(&self, dex_mod: Mod, id: &str) -> Option<&Item> {
         self.lookup(&self.items, dex_mod, Some(&self.regmb.items), id)
     }

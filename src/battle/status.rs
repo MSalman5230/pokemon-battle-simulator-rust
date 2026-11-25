@@ -61,7 +61,12 @@ impl Status {
 }
 
 impl Battle {
-    pub(super) fn before_status_move(&mut self, pos: Position, data: &Move) -> bool {
+    pub(super) fn before_status_move(
+        &mut self,
+        pos: Position,
+        data: &Move,
+        z_powered: bool,
+    ) -> bool {
         let status = self.mon(pos).status;
         match status {
             Status::Sleep(turns) => {
@@ -102,7 +107,8 @@ impl Battle {
             ));
             return false;
         }
-        if let Some((slot, _)) = self.mon(pos).disabled_slot
+        if !z_powered
+            && let Some((slot, _)) = self.mon(pos).disabled_slot
             && self
                 .mon(pos)
                 .moves
@@ -112,11 +118,11 @@ impl Battle {
             self.add(format!("|cant|{}|Disable|{}", self.ident(pos), data.name));
             return false;
         }
-        if self.mon(pos).throat_chop > 0 && data.flags.contains_key("sound") {
+        if !z_powered && self.mon(pos).throat_chop > 0 && data.flags.contains_key("sound") {
             self.add(format!("|cant|{}|move: Throat Chop", self.ident(pos)));
             return false;
         }
-        if self.mon(pos).heal_block > 0 && data.flags.contains_key("heal") {
+        if !z_powered && self.mon(pos).heal_block > 0 && data.flags.contains_key("heal") {
             self.add(format!(
                 "|cant|{}|move: Heal Block|{}",
                 self.ident(pos),
@@ -124,7 +130,8 @@ impl Battle {
             ));
             return false;
         }
-        if self.mon(pos).taunt > 0
+        if !z_powered
+            && self.mon(pos).taunt > 0
             && data.category == crate::dex::Category::Status
             && data.name != "Me First"
         {
@@ -135,7 +142,7 @@ impl Battle {
             ));
             return false;
         }
-        if self.imprisoned_move(pos, &data.name) {
+        if !z_powered && self.imprisoned_move(pos, &data.name) {
             self.add(format!(
                 "|cant|{}|move: Imprison|{}",
                 self.ident(pos),

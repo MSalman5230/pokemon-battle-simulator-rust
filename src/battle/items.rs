@@ -1,7 +1,7 @@
 //! Held-item hooks for the currently supported damage and status pipeline.
 
 use super::terrain::Terrain;
-use super::turn::{Pivot, Position};
+use super::turn::{BoostLabel, Pivot, Position};
 use super::*;
 use crate::{
     dex::{FlingEffect, Item},
@@ -259,7 +259,14 @@ impl Battle {
             "contrary" => (1, true),
             _ => (1, false),
         };
-        self.apply_boosts_with_item(pos, &[(stat, amount)], false, invert, Some(name), true);
+        self.apply_boosts_labeled(
+            pos,
+            &[(stat, amount)],
+            false,
+            invert,
+            Some(BoostLabel::Item(name)),
+            true,
+        );
         self.symbiosis_after_item(pos);
     }
 

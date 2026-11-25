@@ -1,6 +1,10 @@
 //! Shared ability hooks used by move effects and held-item modifiers.
 
-use super::{boost_copy::PendingBoostCopy, turn::Position, *};
+use super::{
+    boost_copy::PendingBoostCopy,
+    turn::{BoostLabel, Position},
+    *,
+};
 
 pub(super) struct PostHit {
     pub contact: bool,
@@ -40,6 +44,7 @@ pub(super) enum BoostOrigin {
     Hazard,
     Octolock,
     SyrupBomb,
+    ZPower,
 }
 
 impl BoostOrigin {
@@ -1619,12 +1624,12 @@ impl Battle {
             } else {
                 0
             };
-            if self.apply_boosts_with_item(
+            if self.apply_boosts_labeled(
                 target,
                 &[(stat, amount)],
-                origin.quiet(),
+                origin.quiet() || origin == BoostOrigin::ZPower,
                 false,
-                None,
+                (origin == BoostOrigin::ZPower).then_some(BoostLabel::ZPower),
                 false,
             ) {
                 success = true;

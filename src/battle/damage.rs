@@ -815,12 +815,14 @@ impl Battle {
             contact,
         );
         if bypassed_protect {
-            let ability = if self.event_ability(source) == "piercingdrill" {
-                "Piercing Drill"
-            } else {
-                "Unseen Fist"
-            };
-            self.add(format!("|-ability|{}|{ability}", self.ident(source)));
+            if !move_data.is_z_move || move_data.flags.contains_key("protect") {
+                let ability = if self.event_ability(source) == "piercingdrill" {
+                    "Piercing Drill"
+                } else {
+                    "Unseen Fist"
+                };
+                self.add(format!("|-ability|{}|{ability}", self.ident(source)));
+            }
             self.add(format!("|-zbroken|{}", self.ident(target)));
         }
         hit_damage.roll_with_randomness(tr, randomness)

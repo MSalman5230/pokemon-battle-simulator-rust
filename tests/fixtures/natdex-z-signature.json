@@ -1,0 +1,966 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsnatdexdraft",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsnatdexdraft\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Protect\",\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Pikachu\",\"moves\":[\"Volt Tackle\",\"Trick\"],\"gender\":\"F\",\"name\":\"Pikachu\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Static\",\"item\":\"Pikanium Z\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Pikachu, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Pikachu, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] NatDex Draft",
+          "|rule|Endless Battle Clause: Forcing endless battles is banned",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Sleep Clause Mod: Limit one foe put to sleep",
+          "|rule|OHKO Clause: OHKO moves are banned",
+          "|rule|Evasion Clause: Evasion abilities, items, and moves are banned",
+          "|rule|Evasion Abilities Clause: Evasion abilities are banned",
+          "|rule|Evasion Items Clause: Evasion items are banned",
+          "|rule|Evasion Moves Clause: Evasion moves are banned",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p2|Pikachu, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Pikachu",
+                "details": "Pikachu, L50, F",
+                "condition": "110/110",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 60,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 110
+                },
+                "moves": [
+                  "volttackle",
+                  "trick"
+                ],
+                "baseAbility": "static",
+                "item": "pikaniumz",
+                "pokeball": "pokeball",
+                "ability": "static",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Pikachu",
+            "species": "Pikachu",
+            "details": "Pikachu, L50, F",
+            "hp": 110,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 60,
+              "spa": 70,
+              "spd": 70,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "static",
+            "item": "pikaniumz",
+            "active": false,
+            "moves": [
+              {
+                "id": "volttackle",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Pikachu|Pikachu, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2a: Pikachu|Pikachu, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Pikachu|Pikachu, L50, F|110/110",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Volt Tackle",
+                  "id": "volttackle",
+                  "pp": 16,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trick",
+                  "id": "trick",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Catastropika",
+                  "target": "normal"
+                },
+                null
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Pikachu",
+                "details": "Pikachu, L50, F",
+                "condition": "110/110",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 60,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 110
+                },
+                "moves": [
+                  "volttackle",
+                  "trick"
+                ],
+                "baseAbility": "static",
+                "item": "pikaniumz",
+                "pokeball": "pokeball",
+                "ability": "static",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Pikachu",
+            "species": "Pikachu",
+            "details": "Pikachu, L50, F",
+            "hp": 110,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 60,
+              "spa": 70,
+              "spd": 70,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "static",
+            "item": "pikaniumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "volttackle",
+                "pp": 16,
+                "maxpp": 16
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Pikachu|Volt Tackle|p1a: Vaporeon",
+          "|-supereffective|p1a: Vaporeon|1",
+          "|-damage|p1a: Vaporeon|34/100",
+          "|-damage|p2a: Pikachu|60/100|[from] Recoil",
+          "|move|p1a: Vaporeon|Recover|p1a: Vaporeon",
+          "|-heal|p1a: Vaporeon|84/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Pikachu|Volt Tackle|p1a: Vaporeon",
+          "|-supereffective|p1a: Vaporeon|1",
+          "|-damage|p1a: Vaporeon|71/205",
+          "|-damage|p2a: Pikachu|60/100|[from] Recoil",
+          "|move|p1a: Vaporeon|Recover|p1a: Vaporeon",
+          "|-heal|p1a: Vaporeon|174/205",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Pikachu|Volt Tackle|p1a: Vaporeon",
+          "|-supereffective|p1a: Vaporeon|1",
+          "|-damage|p1a: Vaporeon|34/100",
+          "|-damage|p2a: Pikachu|66/110|[from] Recoil",
+          "|move|p1a: Vaporeon|Recover|p1a: Vaporeon",
+          "|-heal|p1a: Vaporeon|84/100",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "174/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Volt Tackle",
+                  "id": "volttackle",
+                  "pp": 15,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trick",
+                  "id": "trick",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ],
+              "canZMove": [
+                {
+                  "move": "Catastropika",
+                  "target": "normal"
+                },
+                null
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Pikachu",
+                "details": "Pikachu, L50, F",
+                "condition": "66/110",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 60,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 110
+                },
+                "moves": [
+                  "volttackle",
+                  "trick"
+                ],
+                "baseAbility": "static",
+                "item": "pikaniumz",
+                "pokeball": "pokeball",
+                "ability": "static",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 174,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 8,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Pikachu",
+            "species": "Pikachu",
+            "details": "Pikachu, L50, F",
+            "hp": 66,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 60,
+              "spa": 70,
+              "spd": 70,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "static",
+            "item": "pikaniumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "volttackle",
+                "pp": 15,
+                "maxpp": 16
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1 zmove"
+      ],
+      "turn": 3,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vaporeon|Protect|p1a: Vaporeon",
+          "|-singleturn|p1a: Vaporeon|Protect",
+          "|-zpower|p2a: Pikachu",
+          "|move|p2a: Pikachu|Catastropika|p1a: Vaporeon|[zeffect]",
+          "|-supereffective|p1a: Vaporeon|1",
+          "|-zbroken|p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|55/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Protect|p1a: Vaporeon",
+          "|-singleturn|p1a: Vaporeon|Protect",
+          "|-zpower|p2a: Pikachu",
+          "|move|p2a: Pikachu|Catastropika|p1a: Vaporeon|[zeffect]",
+          "|-supereffective|p1a: Vaporeon|1",
+          "|-zbroken|p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|114/205",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Protect|p1a: Vaporeon",
+          "|-singleturn|p1a: Vaporeon|Protect",
+          "|-zpower|p2a: Pikachu",
+          "|move|p2a: Pikachu|Catastropika|p1a: Vaporeon|[zeffect]",
+          "|-supereffective|p1a: Vaporeon|1",
+          "|-zbroken|p1a: Vaporeon",
+          "|-damage|p1a: Vaporeon|55/100",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Protect",
+                  "id": "protect",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "114/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "protect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Volt Tackle",
+                  "id": "volttackle",
+                  "pp": 14,
+                  "maxpp": 16,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Trick",
+                  "id": "trick",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Pikachu",
+                "details": "Pikachu, L50, F",
+                "condition": "66/110",
+                "active": true,
+                "stats": {
+                  "atk": 75,
+                  "def": 60,
+                  "spa": 70,
+                  "spd": 70,
+                  "spe": 110
+                },
+                "moves": [
+                  "volttackle",
+                  "trick"
+                ],
+                "baseAbility": "static",
+                "item": "pikaniumz",
+                "pokeball": "pokeball",
+                "ability": "static",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 114,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "protect",
+                "pp": 7,
+                "maxpp": 8
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Pikachu",
+            "species": "Pikachu",
+            "details": "Pikachu, L50, F",
+            "hp": 66,
+            "maxhp": 110,
+            "status": "",
+            "stats": {
+              "atk": 75,
+              "def": 60,
+              "spa": 70,
+              "spd": 70,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "static",
+            "item": "pikaniumz",
+            "active": true,
+            "moves": [
+              {
+                "id": "volttackle",
+                "pp": 14,
+                "maxpp": 16
+              },
+              {
+                "id": "trick",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}
