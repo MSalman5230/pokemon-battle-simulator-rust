@@ -65,11 +65,10 @@ for that format are implemented.
 
 The experimental Poke-RL worker passes exact response replay on the curated
 BSS benchmark and the fixed 32-game default benchmark using the training
-corpus. The [recorded trace run](../benchmarks/verified-current-bss-result.json)
+corpus. The [latest trace run](../benchmarks/verified-expanded-bss-result.json)
 matched 673 step replies and 32 complete spectator traces without truncation.
-It measured a 4.51× release speedup with native validation enabled. A separate
-[160-game diagnostic replay](../benchmarks/verified-wide-bss-parity.json)
-matched all 2,856 step replies.
+It measured a 4.32× release speedup with native validation enabled. A separate
+160-game diagnostic replay in the same report matched all 2,856 step replies.
 This is a benchmark milestone, not general parity. Native validation covers
 ordinary modern sets under Flat Rules, OU, UU, Doubles, Draft, 4v4 Doubles UU,
 and 4v4 Doubles Draft, including their corresponding team bans. It admits all
