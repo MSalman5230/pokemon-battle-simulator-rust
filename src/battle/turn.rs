@@ -1633,6 +1633,9 @@ impl Battle {
         if self.mon(pos).ability == "frisk" {
             self.frisk(pos);
         }
+        if self.mon(pos).ability == "screencleaner" {
+            self.screen_cleaner(pos);
+        }
         self.try_trace(pos);
     }
 
@@ -1739,6 +1742,7 @@ impl Battle {
             Leftovers,
             WhiteHerb,
             ShedSkin,
+            Healer,
             Weather,
             SpeedBoost,
             Roost,
@@ -1889,6 +1893,9 @@ impl Battle {
             if mon.ability == "shedskin" {
                 timers.push((pos, Effect::ShedSkin, priority(5, 3)));
             }
+            if mon.ability == "healer" {
+                timers.push((pos, Effect::Healer, priority(5, 3)));
+            }
             if mon.protection.is_some() {
                 timers.push((pos, Effect::Protect, priority(0, 2)));
             }
@@ -1998,6 +2005,7 @@ impl Battle {
                 Effect::Taunt => self.tick_taunt(pos),
                 Effect::Encore => self.tick_encore(pos),
                 Effect::ShedSkin => self.shed_skin(pos),
+                Effect::Healer => self.healer_residual(pos),
                 Effect::SpeedBoost => self.speed_boost(pos),
                 Effect::Roost => {
                     mon.roosted = false;
@@ -3024,6 +3032,11 @@ impl Battle {
             });
             let mut succeeded = false;
             for target in spread_targets {
+                if matches!(move_data.name.as_str(), "Taunt" | "Encore" | "Disable")
+                    && self.aroma_veil_blocks(target, true)
+                {
+                    continue;
+                }
                 if move_data.name == "Focus Energy" {
                     if self.mon(target).volatile_ids().contains(&"focusenergy") {
                         self.move_still(base);
@@ -3689,6 +3702,7 @@ impl Battle {
                     && !struggle
                     && self.mon(source).disabled_slot.is_none()
                     && self.rng.chance(3, 10)
+                    && !self.aroma_veil_blocks(source, false)
                 {
                     self.disable_last_move(source, target, true);
                 }
@@ -4235,6 +4249,9 @@ impl Pokemon {
                 | "bulletproof"
                 | "steadfast"
                 | "surgesurfer"
+                | "aromaveil"
+                | "healer"
+                | "screencleaner"
         )
     }
 

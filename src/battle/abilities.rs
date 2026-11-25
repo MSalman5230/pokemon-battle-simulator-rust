@@ -628,6 +628,48 @@ impl Battle {
         }
     }
 
+    pub(super) fn aroma_veil_blocks(&mut self, target: Position, reveal: bool) -> bool {
+        let mut holders = [(target, 0); 2];
+        let mut count = 0;
+        for pos in self.positions().filter(|p| p.player == target.player) {
+            let mon = self.mon(pos);
+            if mon.hp > 0 && mon.ability == "aromaveil" {
+                holders[count] = (pos, mon.speed);
+                count += 1;
+            }
+        }
+        let holders = &mut holders[..count];
+        speed_sort_by(holders, &mut self.rng, |a, b| b.1.cmp(&a.1));
+        let Some(&(holder, _)) = holders.iter().find(|(p, _)| !self.ability_suppressed(*p)) else {
+            return false;
+        };
+        if reveal {
+            self.add(format!(
+                "|-block|{}|ability: Aroma Veil|[of] {}",
+                self.ident(target),
+                self.ident(holder)
+            ));
+        }
+        true
+    }
+
+    pub(super) fn healer_residual(&mut self, holder: Position) {
+        if self.format.game_type.active_slots() != 2 {
+            return;
+        }
+        let ally = Position {
+            slot: 1 - holder.slot,
+            ..holder
+        };
+        if self.mon(ally).hp != 0
+            && self.mon(ally).status != Status::Healthy
+            && self.rng.chance(1, 2)
+        {
+            self.add(format!("|-activate|{}|ability: Healer", self.ident(holder)));
+            self.cure_status(ally, "[msg]");
+        }
+    }
+
     pub(super) fn ability_heal(
         &mut self,
         pos: Position,

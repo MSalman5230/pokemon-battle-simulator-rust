@@ -1,0 +1,1844 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championsbssregmc",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championsbssregmc\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Vaporeon\",\"moves\":[\"Reflect\",\"Light Screen\",\"Recover\"],\"gender\":\"F\",\"name\":\"Vaporeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Mr. Mime\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Mr. Mime\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Screen Cleaner\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Umbreon\",\"moves\":[\"Light Screen\",\"Reflect\",\"Recover\"],\"gender\":\"F\",\"name\":\"Umbreon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"},{\"species\":\"Espeon\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Espeon\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Mr. Mime, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Espeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Mr. Mime, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Espeon, L50, F|",
+          "|teampreview|3"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] BSS Reg M-C",
+          "|rule|Species Clause: Limit one of each Pokemon",
+          "|rule|Item Clause: Limit 1 of each item",
+          "|clearpoke",
+          "|poke|p1|Vaporeon, L50, F|",
+          "|poke|p1|Mr. Mime, L50, F|",
+          "|poke|p2|Umbreon, L50, F|",
+          "|poke|p2|Espeon, L50, F|",
+          "|teampreview|3"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "reflect",
+                  "lightscreen",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Mr. Mime",
+                "details": "Mr. Mime, L50, F",
+                "condition": "115/115",
+                "active": false,
+                "stats": {
+                  "atk": 65,
+                  "def": 85,
+                  "spa": 120,
+                  "spd": 140,
+                  "spe": 110
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "screencleaner",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "screencleaner",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "maxChosenTeamSize": 3,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lightscreen",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "lightscreen",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Mr. Mime",
+            "species": "Mr. Mime",
+            "details": "Mr. Mime, L50, F",
+            "hp": 115,
+            "maxhp": 115,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 85,
+              "spa": 120,
+              "spd": 140,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "screencleaner",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "lightscreen",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 12",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "8769,17248,37115,18776",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|205/205",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|100/100",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|2",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Vaporeon|Vaporeon, L50, F|100/100",
+          "|switch|p2a: Umbreon|Umbreon, L50, F|170/170",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Light Screen",
+                  "id": "lightscreen",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "reflect",
+                  "lightscreen",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Mr. Mime",
+                "details": "Mr. Mime, L50, F",
+                "condition": "115/115",
+                "active": false,
+                "stats": {
+                  "atk": 65,
+                  "def": 85,
+                  "spa": 120,
+                  "spd": 140,
+                  "spe": 110
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "screencleaner",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "screencleaner",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Light Screen",
+                  "id": "lightscreen",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lightscreen",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "lightscreen",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Mr. Mime",
+            "species": "Mr. Mime",
+            "details": "Mr. Mime, L50, F",
+            "hp": 115,
+            "maxhp": 115,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 85,
+              "spa": 120,
+              "spd": 140,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "screencleaner",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lightscreen",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "7104,42574,9152,10809",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Umbreon|Light Screen|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Light Screen",
+          "|move|p1a: Vaporeon|Reflect|p1a: Vaporeon",
+          "|-sidestart|p1: player0|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Light Screen|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Light Screen",
+          "|move|p1a: Vaporeon|Reflect|p1a: Vaporeon",
+          "|-sidestart|p1: player0|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Umbreon|Light Screen|p2a: Umbreon",
+          "|-sidestart|p2: player1|move: Light Screen",
+          "|move|p1a: Vaporeon|Reflect|p1a: Vaporeon",
+          "|-sidestart|p1: player0|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Light Screen",
+                  "id": "lightscreen",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "reflect",
+                  "lightscreen",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Mr. Mime",
+                "details": "Mr. Mime, L50, F",
+                "condition": "115/115",
+                "active": false,
+                "stats": {
+                  "atk": 65,
+                  "def": 85,
+                  "spa": 120,
+                  "spd": 140,
+                  "spe": 110
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "screencleaner",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "screencleaner",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Light Screen",
+                  "id": "lightscreen",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lightscreen",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "reflect",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "lightscreen",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Mr. Mime",
+            "species": "Mr. Mime",
+            "details": "Mr. Mime, L50, F",
+            "hp": 115,
+            "maxhp": 115,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 85,
+              "spa": 120,
+              "spd": 140,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "screencleaner",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lightscreen",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "reflect",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 2"
+      ],
+      "turn": 3,
+      "seed": "1282,42014,22271,29224",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Vaporeon|Light Screen|p1a: Vaporeon",
+          "|-sidestart|p1: player0|move: Light Screen",
+          "|move|p2a: Umbreon|Reflect|p2a: Umbreon",
+          "|-sidestart|p2: player1|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Light Screen|p1a: Vaporeon",
+          "|-sidestart|p1: player0|move: Light Screen",
+          "|move|p2a: Umbreon|Reflect|p2a: Umbreon",
+          "|-sidestart|p2: player1|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Vaporeon|Light Screen|p1a: Vaporeon",
+          "|-sidestart|p1: player0|move: Light Screen",
+          "|move|p2a: Umbreon|Reflect|p2a: Umbreon",
+          "|-sidestart|p2: player1|Reflect",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Light Screen",
+                  "id": "lightscreen",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "reflect",
+                  "lightscreen",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Mr. Mime",
+                "details": "Mr. Mime, L50, F",
+                "condition": "115/115",
+                "active": false,
+                "stats": {
+                  "atk": 65,
+                  "def": 85,
+                  "spa": 120,
+                  "spd": 140,
+                  "spe": 110
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "screencleaner",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "screencleaner",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Light Screen",
+                  "id": "lightscreen",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lightscreen",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "reflect",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "lightscreen",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Mr. Mime",
+            "species": "Mr. Mime",
+            "details": "Mr. Mime, L50, F",
+            "hp": 115,
+            "maxhp": 115,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 85,
+              "spa": 120,
+              "spd": 140,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "screencleaner",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lightscreen",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "reflect",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 switch 2",
+        ">p2 move 3"
+      ],
+      "turn": 4,
+      "seed": "51344,43372,12990,60805",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p1a: Mr. Mime|Mr. Mime, L50, F|100/100",
+          "|-activate|p1a: Mr. Mime|ability: Screen Cleaner",
+          "|-sideend|p1: player0|Reflect",
+          "|-sideend|p2: player1|Reflect",
+          "|-sideend|p1: player0|move: Light Screen",
+          "|-sideend|p2: player1|move: Light Screen",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Mr. Mime|Mr. Mime, L50, F|115/115",
+          "|-activate|p1a: Mr. Mime|ability: Screen Cleaner",
+          "|-sideend|p1: player0|Reflect",
+          "|-sideend|p2: player1|Reflect",
+          "|-sideend|p1: player0|move: Light Screen",
+          "|-sideend|p2: player1|move: Light Screen",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ],
+        [
+          "|",
+          "|switch|p1a: Mr. Mime|Mr. Mime, L50, F|100/100",
+          "|-activate|p1a: Mr. Mime|ability: Screen Cleaner",
+          "|-sideend|p1: player0|Reflect",
+          "|-sideend|p2: player1|Reflect",
+          "|-sideend|p1: player0|move: Light Screen",
+          "|-sideend|p2: player1|move: Light Screen",
+          "|move|p2a: Umbreon|Recover||[still]",
+          "|-fail|p2a: Umbreon|heal",
+          "|",
+          "|upkeep",
+          "|turn|4"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Mr. Mime",
+                "details": "Mr. Mime, L50, F",
+                "condition": "115/115",
+                "active": true,
+                "stats": {
+                  "atk": 65,
+                  "def": 85,
+                  "spa": 120,
+                  "spd": 140,
+                  "spe": 110
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "screencleaner",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "screencleaner",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p1: Vaporeon",
+                "details": "Vaporeon, L50, F",
+                "condition": "205/205",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 130,
+                  "spd": 115,
+                  "spe": 85
+                },
+                "moves": [
+                  "reflect",
+                  "lightscreen",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Light Screen",
+                  "id": "lightscreen",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Reflect",
+                  "id": "reflect",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "allySide",
+                  "disabled": false
+                },
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Umbreon",
+                "details": "Umbreon, L50, F",
+                "condition": "170/170",
+                "active": true,
+                "stats": {
+                  "atk": 85,
+                  "def": 130,
+                  "spa": 80,
+                  "spd": 150,
+                  "spe": 85
+                },
+                "moves": [
+                  "lightscreen",
+                  "reflect",
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Espeon",
+                "details": "Espeon, L50, F",
+                "condition": "140/140",
+                "active": false,
+                "stats": {
+                  "atk": 85,
+                  "def": 80,
+                  "spa": 150,
+                  "spd": 115,
+                  "spe": 130
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Mr. Mime",
+            "species": "Mr. Mime",
+            "details": "Mr. Mime, L50, F",
+            "hp": 115,
+            "maxhp": 115,
+            "status": "",
+            "stats": {
+              "atk": 65,
+              "def": 85,
+              "spa": 120,
+              "spd": 140,
+              "spe": 110
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "screencleaner",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Vaporeon",
+            "species": "Vaporeon",
+            "details": "Vaporeon, L50, F",
+            "hp": 205,
+            "maxhp": 205,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 130,
+              "spd": 115,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "reflect",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "lightscreen",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Umbreon",
+            "species": "Umbreon",
+            "details": "Umbreon, L50, F",
+            "hp": 170,
+            "maxhp": 170,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 130,
+              "spa": 80,
+              "spd": 150,
+              "spe": 85
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "lightscreen",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "reflect",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Espeon",
+            "species": "Espeon",
+            "details": "Espeon, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 85,
+              "def": 80,
+              "spa": 150,
+              "spd": 115,
+              "spe": 130
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

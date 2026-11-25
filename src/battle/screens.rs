@@ -46,13 +46,35 @@ impl Screen {
 impl Battle {
     pub(super) fn break_screens(&mut self, player: Player) {
         for screen in Screen::ALL {
-            let turns = &mut self.sides[player.index()].as_mut().unwrap().screens[screen.index()];
-            if std::mem::take(turns) != 0 {
-                self.add(format!(
-                    "|-sideend|{}|{}",
-                    self.side_ident(player),
-                    screen.label()
-                ));
+            self.remove_screen(player, screen);
+        }
+    }
+
+    fn remove_screen(&mut self, player: Player, screen: Screen) {
+        let turns = &mut self.sides[player.index()].as_mut().unwrap().screens[screen.index()];
+        if std::mem::take(turns) != 0 {
+            self.add(format!(
+                "|-sideend|{}|{}",
+                self.side_ident(player),
+                screen.label()
+            ));
+        }
+    }
+
+    pub(super) fn screen_cleaner(&mut self, pos: Position) {
+        let mut announced = false;
+        for screen in Screen::ALL {
+            for player in [pos.player, pos.player.foe()] {
+                if self.has_screen(player, screen) {
+                    if !announced {
+                        self.add(format!(
+                            "|-activate|{}|ability: Screen Cleaner",
+                            self.ident(pos)
+                        ));
+                        announced = true;
+                    }
+                    self.remove_screen(player, screen);
+                }
             }
         }
     }

@@ -36,6 +36,9 @@ impl Battle {
         ) {
             return;
         }
+        if self.aroma_veil_blocks(attacker, false) {
+            return;
+        }
         let roster = self.mon(holder).roster_index;
         let mon = self.mon_mut(attacker);
         mon.attract = Some((holder.player, roster));

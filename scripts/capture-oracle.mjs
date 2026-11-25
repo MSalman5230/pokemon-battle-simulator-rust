@@ -691,6 +691,19 @@ const bindingRosters = [
 const bindingExpiryRosters = [
     [named('Toxapex', ['Infestation', 'Recover']), bindingRosters[0][1]], bindingRosters[1],
 ];
+const screenCleanRosters = [
+    [named('Vaporeon', ['Reflect', 'Light Screen', 'Recover']),
+        {...named('Mr. Mime', ['Recover']), ability:'Screen Cleaner'}],
+    [named('Umbreon', ['Light Screen', 'Reflect', 'Recover']), named('Espeon', ['Recover'])],
+];
+const aromaRosters = [
+    [named('Gardevoir', ['Taunt', 'Encore', 'Disable']), {...named('Haxorus', ['Recover', 'Taunt']), ability:'Mold Breaker'}],
+    [{...named('Alcremie', ['Recover']), ability:'Aroma Veil'}, named('Umbreon', ['Tackle', 'Recover'])],
+];
+const healerRosters = [
+    [named('Gardevoir', ['Will-O-Wisp']), named('Umbreon', ['Recover'])],
+    [{...named('Blissey', ['Recover']), ability:'Healer'}, named('Glaceon', ['Recover'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -1044,6 +1057,13 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         bindingRosters, 'bss-binding-move-removal'],
     ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ...Array(5).fill(['move 2','move 1'])],
         bindingExpiryRosters, 'bss-binding-move-expiry'],
+    ['bssregmc', [['team 12','team 12'], ['move 1','move 1'], ['move 2','move 2'], ['switch 2','move 3']],
+        screenCleanRosters, 'bss-screen-cleaner'],
+    ['vgc2026regmc', [['team 12','team 12'], ['move 1 2, move 1','move 1, move 1 1'],
+        ['move 2 1, move 1','move 1, move 1 1'], ['move 3 2, move 2 2','move 1, move 1 1']],
+        aromaRosters, 'vgc-aroma-veil'],
+    ['vgc2026regmc', [['team 12','team 12'], ...Array(4).fill(['move 1 2, move 1','move 1, move 1'])],
+        healerRosters, 'vgc-champions-healer'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

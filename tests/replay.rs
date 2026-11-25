@@ -805,3 +805,10 @@ fn binding_moves_pin_the_live_source_until_expiry_switch_or_removal() {
     replay(include_str!("fixtures/bss-binding-move-removal.json"));
     replay(include_str!("fixtures/bss-binding-move-expiry.json"));
 }
+
+#[test]
+fn side_and_ally_abilities_match_native_activation_order() {
+    replay(include_str!("fixtures/bss-screen-cleaner.json"));
+    replay(include_str!("fixtures/vgc-aroma-veil.json"));
+    replay(include_str!("fixtures/vgc-champions-healer.json"));
+}
