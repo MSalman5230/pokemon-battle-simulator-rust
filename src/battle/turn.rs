@@ -969,6 +969,7 @@ impl Battle {
                     | "curse"
                     | "futuresight"
                     | "doomdesire"
+                    | "belch"
                     | "grassyglide"
                     | "encore"
                     | "tidyup"
@@ -2576,6 +2577,11 @@ impl Battle {
                 self.mark_fainted(source);
                 self.each_event();
             }
+            return true;
+        }
+        if move_data.name == "Belch" && !self.mon(source).ate_berry {
+            self.move_still(base);
+            self.add(format!("|-fail|{source_name}"));
             return true;
         }
         let damp = self.damp_holder("TryMove", sacrifice || mind_blown);

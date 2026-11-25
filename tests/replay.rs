@@ -916,6 +916,11 @@ fn delayed_attacks_use_original_source_and_current_slot_occupant() {
 }
 
 #[test]
+fn champions_belch_is_selectable_but_fails_until_the_user_eats_a_berry() {
+    replay(include_str!("fixtures/bss-belch.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

@@ -312,7 +312,9 @@ impl Battle {
         let id = self.lose_held_item(pos);
         // Air Balloon runs AfterUseItem directly without recording lastItem.
         if !id.is_empty() && id != "airballoon" {
-            self.mon_mut(pos).last_item = id;
+            let mon = self.mon_mut(pos);
+            mon.last_item = id;
+            mon.ate_berry |= eaten;
         }
         let reason = if eaten { "|[eat]" } else { "" };
         self.add(format!("|-enditem|{}|{item}{reason}", self.ident(pos)));
