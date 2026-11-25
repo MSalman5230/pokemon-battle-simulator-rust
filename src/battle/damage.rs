@@ -333,7 +333,11 @@ impl Battle {
         {
             def_stage = 0;
         }
-        let atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });
+        let mut atk = boosted_stat(atk, if crit { atk_stage.max(0) } else { atk_stage });
+        if move_data.category == Category::Physical && self.event_ability(source) == "hustle" {
+            // Hustle directly modifies the stat before chained item effects.
+            atk = tr.modify(atk, 6144);
+        }
         let def = boosted_stat(def, if crit { def_stage.min(0) } else { def_stage });
         let damage_weather = self.effective_weather();
         let def = if (damage_weather == Some(Weather::Sand)

@@ -486,10 +486,19 @@ impl Battle {
             self.mon(ACTOR).boosts.get(BoostStat::Accuracy)
         };
         let stage = (aim - evasion).clamp(-6, 6);
-        let modifier = self.accuracy_modifier(ACTOR, self.weather_evasion(TARGET, weather).0);
-        let base = self.stat_rules.truncation.modify(u32::from(base), modifier);
-        let accuracy =
+        let modifier = self.accuracy_modifier(
+            ACTOR,
+            self.weather_evasion(TARGET, weather).0,
+            move_data.category,
+            self.mon(ACTOR).item == "zoomlens",
+        );
+        // The isolated Showdown calculation calls ModifyAccuracy after its
+        // stage relay and applies chained modifiers only to integer values.
+        let mut accuracy =
             f64::from(base) * (f64::from(3 + stage.max(0)) / f64::from(3 - stage.min(0)));
+        if modifier != 4096 && accuracy.fract() == 0.0 {
+            accuracy = f64::from(self.stat_rules.truncation.modify(accuracy as u32, modifier));
+        }
         (accuracy / 100.0).clamp(0.0, 1.0)
     }
 }

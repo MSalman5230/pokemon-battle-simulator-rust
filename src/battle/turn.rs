@@ -1230,6 +1230,12 @@ impl Battle {
         })
     }
 
+    fn zoom_lens_active(&self, source: Position, target: Position, queue: &[Action]) -> bool {
+        self.mon(source).item == "zoomlens"
+            && self.active_effects(source)
+            && Self::queued_move(queue, target).is_none()
+    }
+
     fn replace_queued_move(&mut self, queue: &mut Vec<Action>, actor: Position, move_slot: usize) {
         queue.retain(|q| q.actor != Some(actor) || matches!(q.kind, ActionKind::RunSwitch));
         self.mon_mut(actor).speed = self.field_speed(actor);
@@ -3349,8 +3355,9 @@ impl Battle {
                 return false;
             }
             let numeric_accuracy = matches!(accuracy, Accuracy::Percent(_));
+            let zoom = self.zoom_lens_active(source, pos, queue);
             if !ohko {
-                self.prepare_accuracy_modifiers(source, pos, numeric_accuracy);
+                self.prepare_accuracy_modifiers(source, pos, numeric_accuracy, zoom);
             }
             if numeric_accuracy && !ohko {
                 self.sort_unaware_handlers();
@@ -3374,7 +3381,7 @@ impl Battle {
                         };
                         base + u32::from(self.mon(source).level - self.mon(pos).level)
                     } else {
-                        self.accuracy(source, pos, move_data, accuracy)
+                        self.accuracy(source, pos, move_data, accuracy, zoom)
                     },
                     100,
                 )
@@ -3847,7 +3854,13 @@ impl Battle {
             if hit > 1
                 && (matches!(self.mon(source).status, Status::Sleep(_))
                     || (per_strike_accuracy
-                        && !self.next_strike_hits(source, spread_targets[0], move_data, accuracy)))
+                        && !self.next_strike_hits(
+                            source,
+                            spread_targets[0],
+                            move_data,
+                            accuracy,
+                            self.zoom_lens_active(source, spread_targets[0], queue),
+                        )))
             {
                 break;
             }
@@ -4692,8 +4705,20 @@ impl Battle {
         succeeded
     }
 
-    fn accuracy(&self, source: Position, target: Position, data: &Move, accuracy: u8) -> u32 {
-        let modifier = self.accuracy_modifier(source, self.active_weather_evasion(target).0);
+    fn accuracy(
+        &self,
+        source: Position,
+        target: Position,
+        data: &Move,
+        accuracy: u8,
+        zoom: bool,
+    ) -> u32 {
+        let modifier = self.accuracy_modifier(
+            source,
+            self.active_weather_evasion(target).0,
+            data.category,
+            zoom,
+        );
         let accuracy = if modifier != 4096 {
             self.stat_rules
                 .truncation
@@ -4977,6 +5002,7 @@ impl Pokemon {
                 | "analytic"
                 | "galewings"
                 | "rivalry"
+                | "hustle"
                 | "mindseye"
                 | "shielddust"
                 | "telepathy"
@@ -5087,6 +5113,7 @@ impl Pokemon {
                 | "bindingband"
                 | "covertcloak"
                 | "widelens"
+                | "zoomlens"
                 | "toxicorb"
                 | "flameorb"
                 | "gripclaw"

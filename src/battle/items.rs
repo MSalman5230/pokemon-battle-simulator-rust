@@ -34,14 +34,17 @@ impl Battle {
         source: Position,
         target: Position,
         numeric: bool,
+        zoom: bool,
     ) {
-        let compound = self.event_ability(source) == "compoundeyes";
-        if !compound && !self.format.report_exact_hp {
+        let ability = self.event_ability(source);
+        let compound = ability == "compoundeyes";
+        let active_handler = compound || ability == "hustle";
+        if !active_handler && !self.format.report_exact_hp {
             return;
         }
         let evasion_handler = matches!(self.event_ability(target), "snowcloak" | "sandveil");
         let mut evasion_first = true;
-        if compound && evasion_handler {
+        if active_handler && evasion_handler {
             let target_speed = self.mon(target).speed;
             let source_speed = self.mon(source).speed;
             evasion_first = if target_speed == source_speed {
@@ -66,15 +69,30 @@ impl Battle {
             if weather && !evasion_first {
                 self.add(evasion_debug);
             }
+            if zoom {
+                self.add("|debug|Zoom Lens boosting accuracy");
+            }
         }
     }
 
-    pub(super) fn accuracy_modifier(&self, source: Position, weather_evasion: bool) -> u32 {
+    pub(super) fn accuracy_modifier(
+        &self,
+        source: Position,
+        weather_evasion: bool,
+        category: crate::dex::Category,
+        zoom: bool,
+    ) -> u32 {
         let mut modifier = if weather_evasion { 3277 } else { 4096 };
-        if self.event_ability(source) == "compoundeyes" {
-            modifier = crate::mechanics::chain(modifier, 5325);
+        match self.event_ability(source) {
+            "compoundeyes" => modifier = crate::mechanics::chain(modifier, 5325),
+            "hustle" if category == crate::dex::Category::Physical => {
+                modifier = crate::mechanics::chain(modifier, 3277);
+            }
+            _ => {}
         }
-        if self.mon(source).item == "widelens" && self.active_effects(source) {
+        if zoom {
+            crate::mechanics::chain(modifier, 4915)
+        } else if self.mon(source).item == "widelens" && self.active_effects(source) {
             crate::mechanics::chain(modifier, 4505)
         } else {
             modifier

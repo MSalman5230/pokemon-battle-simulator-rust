@@ -1105,6 +1105,11 @@ fn perish_song_counts_down_and_batches_same_turn_faints() {
 }
 
 #[test]
+fn hustle_and_zoom_lens_use_move_category_and_the_targets_pending_action() {
+    replay(include_str!("fixtures/bss-hustle-zoom-lens.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

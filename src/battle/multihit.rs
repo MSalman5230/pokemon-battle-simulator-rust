@@ -42,6 +42,7 @@ impl Battle {
         target: Position,
         data: &Move,
         accuracy: Accuracy,
+        zoom: bool,
     ) -> bool {
         let Accuracy::Percent(base) = accuracy else {
             return true;
@@ -53,13 +54,10 @@ impl Battle {
         }
         let user = self.mon(source);
         let mon = self.mon(target);
-        if data.always_hit
+        let always_hits = data.always_hit
             || user.ability == "noguard"
             || mon.ability == "noguard"
-            || mon.glaive_drawback
-        {
-            return true;
-        }
+            || mon.glaive_drawback;
         let stage_factor = |stage: i8| {
             if stage > 0 {
                 (3 + i32::from(stage), 3)
@@ -84,9 +82,12 @@ impl Battle {
         let numerator = i32::from(base) * an * ed;
         let denominator = ad * en;
         let mut accuracy = numerator as f64 / denominator as f64;
-        self.prepare_accuracy_modifiers(source, target, true);
+        self.prepare_accuracy_modifiers(source, target, true, zoom);
+        if always_hits {
+            return true;
+        }
         let (weather_evasion, _) = self.active_weather_evasion(target);
-        let modifier = self.accuracy_modifier(source, weather_evasion);
+        let modifier = self.accuracy_modifier(source, weather_evasion, data.category, zoom);
         // The native event applies chained integer modifiers only when its
         // post-stage relay is an integer.
         if modifier != 4096 && accuracy.fract() == 0.0 {

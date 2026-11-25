@@ -61,6 +61,12 @@ add('supported Mega changes stats and can set weather', 'flamethrower',
     mon('Charizard', 'Blaze', 'Charizardite Y'), normal, {mega: true});
 add('stance change is applied during ModifyMove', 'shadowball',
     mon('Aegislash', 'Stance Change'), normal);
+add('Hustle directly modifies attack before Choice Band', 'tackle',
+    mon('Durant', 'Hustle', 'Choice Band'), normal);
+add('Zoom Lens sees no pending target action in isolated damage queries', 'rockslide',
+    mon('Durant', 'Hustle', 'Zoom Lens'), normal);
+add('fractional stat stage is applied before accuracy callbacks', 'rockslide',
+    mon('Durant', 'Hustle', 'Zoom Lens', {boosts:{accuracy:-1}}), normal);
 
 const expected = calculateMany(queries.map(q => q.input));
 const data = queries.map((q, i) => ({...q, expected: expected[i]}));
