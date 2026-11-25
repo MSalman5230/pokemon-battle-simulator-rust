@@ -78,6 +78,7 @@ impl Battle {
             .abilities
             .get("0")
             .map_or_else(String::new, |name| to_id(name));
+        self.reset_ability_order(pos);
         self.start_ability(pos);
     }
 }

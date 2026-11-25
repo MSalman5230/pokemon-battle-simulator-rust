@@ -226,3 +226,8 @@ fn champions_custom_game_reports_exact_hp_in_every_view() {
 fn champions_ou_preview_selects_the_full_team() {
     replay(include_str!("fixtures/ou.json"));
 }
+
+#[test]
+fn vgc_elemental_redirection_prefers_faster_holder_and_never_redirects_spread() {
+    replay(include_str!("fixtures/vgc-elemental-redirection.json"));
+}

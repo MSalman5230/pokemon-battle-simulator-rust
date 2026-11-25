@@ -72,6 +72,83 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn reset_ability_order(&mut self, pos: Position) {
+        self.ability_order += 1;
+        self.mon_mut(pos).ability_order = self.ability_order;
+    }
+
+    pub(super) fn redirect_elemental(
+        &mut self,
+        source: Position,
+        target: Position,
+        move_data: &Move,
+        move_type: &str,
+    ) -> Option<Position> {
+        use crate::choice::TargetKind;
+        let (ability, label) = match move_type {
+            "Electric" => ("lightningrod", "Lightning Rod"),
+            "Water" => ("stormdrain", "Storm Drain"),
+            _ => return None,
+        };
+        let geometry = match move_data.target {
+            TargetKind::RandomNormal | TargetKind::AdjacentFoe => TargetKind::Normal,
+            other => other,
+        };
+        let redirect = self
+            .positions()
+            .filter(|&candidate| {
+                let mon = self.mon(candidate);
+                mon.hp > 0
+                    && mon.ability == ability
+                    && geometry.valid_location(2, source.slot as u8, candidate.loc(source))
+            })
+            .min_by_key(|&candidate| {
+                let mon = self.mon(candidate);
+                (std::cmp::Reverse(mon.speed), mon.ability_order)
+            })?;
+        if redirect == target {
+            return None;
+        }
+        self.add(format!(
+            "|-activate|{}|ability: {label}",
+            self.ident(redirect)
+        ));
+        Some(redirect)
+    }
+
+    pub(super) fn absorb_elemental(
+        &mut self,
+        target: Position,
+        source: Position,
+        move_type: &str,
+    ) -> bool {
+        if target == source {
+            return false;
+        }
+        let (label, boost) = match (move_type, self.mon(target).ability.as_str()) {
+            ("Water", "waterabsorb") => ("Water Absorb", None),
+            ("Water", "stormdrain") => ("Storm Drain", Some((BoostStat::Spa, 1))),
+            ("Electric", "lightningrod") => ("Lightning Rod", Some((BoostStat::Spa, 1))),
+            ("Electric", "motordrive") => ("Motor Drive", Some((BoostStat::Spe, 1))),
+            ("Electric", "voltabsorb") => ("Volt Absorb", None),
+            ("Ground", "eartheater") => ("Earth Eater", None),
+            ("Fire", "wellbakedbody") => ("Well-Baked Body", Some((BoostStat::Def, 2))),
+            _ => return false,
+        };
+        let succeeded = if let Some((stat, stages)) = boost {
+            self.ability_boost(target, label, stat, stages, false)
+        } else {
+            self.ability_heal(target, 4, label, Some(source))
+        };
+        if !succeeded {
+            self.add(format!(
+                "|-immune|{}|[from] ability: {label}",
+                self.ident(target)
+            ));
+        }
+        true
+    }
+
     pub(super) fn foe_unnerve(&self, pos: Position) -> bool {
         let slots = self.format.game_type.active_slots();
         self.party(pos.player.foe()).unwrap()[..slots]
@@ -189,7 +266,7 @@ impl Battle {
         stat: BoostStat,
         amount: i8,
         quiet: bool,
-    ) {
+    ) -> bool {
         if self.mon(pos).hp == 0
             || !self
                 .party(pos.player.foe())
@@ -197,7 +274,7 @@ impl Battle {
                 .iter()
                 .any(|p| !p.fainted)
         {
-            return;
+            return false;
         }
         let change = self.mon_mut(pos).boosts.add(stat, amount);
         if change > 0 {
@@ -210,6 +287,7 @@ impl Battle {
         } else if quiet {
             self.add(format!("|-boost|{}|{}|0", self.ident(pos), stat.id()));
         }
+        change > 0
     }
 
     pub(super) fn speed_boost(&mut self, pos: Position) {

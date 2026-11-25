@@ -12,7 +12,7 @@ pub(super) struct Position {
 }
 
 impl Position {
-    fn loc(self, source: Self) -> i8 {
+    pub(super) fn loc(self, source: Self) -> i8 {
         (self.slot as i8 + 1) * if self.player == source.player { -1 } else { 1 }
     }
 
@@ -765,6 +765,7 @@ impl Battle {
     }
 
     fn insert_run_switch(&mut self, incoming: Position, queue: &mut Vec<Action>) {
+        self.reset_ability_order(incoming);
         let mut action = Action::new(Some(incoming), ActionKind::RunSwitch);
         self.mon_mut(incoming).speed = self.mon(incoming).current_speed(self.weather());
         self.prioritize(&mut action);
@@ -977,7 +978,7 @@ impl Battle {
         }
     }
 
-    fn positions(&self) -> impl Iterator<Item = Position> + use<> {
+    pub(super) fn positions(&self) -> impl Iterator<Item = Position> + use<> {
         let slots = self.slots();
         Player::ALL
             .into_iter()
@@ -1252,6 +1253,18 @@ impl Battle {
             "|move|{source_name}|{}|{target_name}",
             move_data.name
         ));
+        if self.slots() > 1
+            && let Some(target) = actual_target.filter(|_| move_data.target.is_choosable())
+            && let Some(redirect) = self.redirect_elemental(source, target, move_data, move_type)
+        {
+            spread_targets.clear();
+            spread_targets.push(redirect);
+            self.log[base].public = format!(
+                "|move|{source_name}|{}|{}",
+                move_data.name,
+                self.ident(redirect)
+            );
+        }
         if spread_targets.is_empty() {
             self.log[base].public.push_str("|[notarget]");
             self.add(format!("|-fail|{source_name}"));
@@ -1383,16 +1396,7 @@ impl Battle {
             if self.mon(mut_pos).protected && move_data.flags.contains_key("protect") {
                 self.add(format!("|-activate|{}|move: Protect", self.ident(mut_pos)));
                 false
-            } else if source != mut_pos
-                && move_type == "Water"
-                && self.mon(mut_pos).ability == "waterabsorb"
-            {
-                if !self.ability_heal(mut_pos, 4, "Water Absorb", Some(source)) {
-                    self.add(format!(
-                        "|-immune|{}|[from] ability: Water Absorb",
-                        self.ident(mut_pos)
-                    ));
-                }
+            } else if self.absorb_elemental(mut_pos, source, move_type) {
                 false
             } else if source != mut_pos
                 && move_data.flags.contains_key("sound")
@@ -2087,6 +2091,12 @@ impl Pokemon {
                 | "stamina"
                 | "icebody"
                 | "waterabsorb"
+                | "lightningrod"
+                | "stormdrain"
+                | "motordrive"
+                | "voltabsorb"
+                | "eartheater"
+                | "wellbakedbody"
                 | "soundproof"
                 | "auraguard"
                 | "sturdy"

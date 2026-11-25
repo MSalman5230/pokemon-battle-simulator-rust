@@ -115,6 +115,7 @@ pub struct Battle {
     winner: Option<Player>,
     last_faint: Option<Player>,
     weather: Option<(Weather, u8)>,
+    ability_order: u32,
     pending_actions: [Option<Vec<Action>>; 2],
     suspended: Vec<Action>,
     cant_undo: [bool; 2],
@@ -146,6 +147,7 @@ pub struct Pokemon {
     pub max_hp: NonZeroU32,
     pub item: String,
     pub ability: String,
+    ability_order: u32,
     pub pokeball: String,
     pub moves: Vec<MoveSlot>,
     pub roster_index: usize,
@@ -283,6 +285,7 @@ impl Battle {
             winner: None,
             last_faint: None,
             weather: None,
+            ability_order: 0,
             pending_actions: [None, None],
             suspended: Vec::new(),
             cant_undo: [false; 2],
@@ -656,6 +659,7 @@ impl Pokemon {
             max_hp,
             item,
             ability,
+            ability_order: 0,
             moves,
             pokeball: if pokeball.is_empty() {
                 "pokeball".into()

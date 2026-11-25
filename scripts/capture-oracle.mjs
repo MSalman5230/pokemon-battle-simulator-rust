@@ -182,6 +182,14 @@ const typeRosters = [
     [{...named('Sylveon', ['Hyper Voice', 'Tackle', 'Recover']), ability: 'Pixilate'},
         named('Vaporeon', ['Recover']), named('Umbreon', ['Tackle'])],
 ];
+const redirectRosters = [
+    [named('Jolteon', ['Thunderbolt', 'Water Gun', 'Surf']),
+        {...named('Raichu', ['Protect', 'Quick Attack']), ability: 'Lightning Rod'},
+        {...named('Gastrodon', ['Recover']), ability: 'Storm Drain'}],
+    [named('Umbreon', ['Recover', 'Thunder Wave']),
+        {...named('Rhydon', ['Recover']), ability: 'Lightning Rod'},
+        {...named('Vaporeon', ['Water Gun']), ability: 'Water Absorb'}],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -246,6 +254,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         typeRosters, 'bss-converted-types'],
     ['doublescustomgame', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1']]],
     ['ou', [['team 1324', 'team 2314'], ['move 2', 'move 1']]],
+    ['vgc2026regmc', [['team 123', 'team 123'], ['move 1 1, move 2 2', 'move 1, move 1'],
+        ['move 2 1, switch 3', 'move 2 1, switch 3'], ['move 3, move 1', 'move 1, move 1 1']],
+        redirectRosters, 'vgc-elemental-redirection'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
