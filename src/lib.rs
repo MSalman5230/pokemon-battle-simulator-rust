@@ -8,5 +8,6 @@ pub mod input;
 pub mod mechanics;
 pub mod order;
 pub mod rng;
+pub mod validation;
 
 pub mod adapter;

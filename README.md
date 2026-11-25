@@ -49,6 +49,7 @@ After setup, regenerate the checked-in fixtures and dex data with:
 ```sh
 source scripts/env.sh
 node scripts/export-champions-dex.mjs
+node scripts/export-champions-legality.mjs
 node scripts/capture-oracle.mjs
 ```
 
