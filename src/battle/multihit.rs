@@ -87,7 +87,7 @@ impl Battle {
             return true;
         }
         let (weather_evasion, _) = self.active_weather_evasion(target);
-        let modifier = self.accuracy_modifier(source, weather_evasion, data.category, zoom);
+        let modifier = self.accuracy_modifier(source, target, weather_evasion, data.category, zoom);
         // The native event applies chained integer modifiers only when its
         // post-stage relay is an integer.
         if modifier != 4096 && accuracy.fract() == 0.0 {

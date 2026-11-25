@@ -1030,6 +1030,9 @@ impl Battle {
                     | "acrobatics"
                     | "hardpress"
                     | "risingvoltage"
+                    | "confuseray"
+                    | "sweetkiss"
+                    | "supersonic"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -3637,6 +3640,26 @@ impl Battle {
                         succeeded = true;
                     }
                 }
+                if matches!(
+                    move_data.name.as_str(),
+                    "Confuse Ray" | "Sweet Kiss" | "Supersonic"
+                ) {
+                    if self.mon(target).confusion > 0 {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                    } else if self.event_ability(target) == "owntempo" {
+                        self.add(format!(
+                            "|-immune|{}|confusion|[from] ability: Own Tempo",
+                            self.ident(target)
+                        ));
+                    } else if self.status_blocked_by_terrain(target, "confusion")
+                        == Some(Terrain::Misty)
+                    {
+                        self.terrain_activate(target, Terrain::Misty);
+                    } else {
+                        succeeded = self.apply_confusion(target, false);
+                    }
+                }
                 if move_data.name == "Soak" {
                     let mon = self.mon(target);
                     if mon.types().eq(["Water"])
@@ -5019,6 +5042,7 @@ impl Battle {
     ) -> u32 {
         let modifier = self.accuracy_modifier(
             source,
+            target,
             self.active_weather_evasion(target).0,
             data.category,
             zoom,
@@ -5321,6 +5345,7 @@ impl Pokemon {
                 | "tanglinghair"
                 | "hydration"
                 | "stall"
+                | "tangledfeet"
                 | "analytic"
                 | "galewings"
                 | "rivalry"

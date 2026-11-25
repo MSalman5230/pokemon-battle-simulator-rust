@@ -80,6 +80,9 @@ impl Battle {
             if weather && !evasion_first {
                 self.add(evasion_debug);
             }
+            if self.tangled_feet(target) {
+                self.add("|debug|Tangled Feet - decreasing accuracy");
+            }
             if zoom {
                 self.add("|debug|Zoom Lens boosting accuracy");
             }
@@ -92,6 +95,7 @@ impl Battle {
     pub(super) fn accuracy_modifier(
         &self,
         source: Position,
+        target: Position,
         weather_evasion: bool,
         category: crate::dex::Category,
         zoom: bool,
@@ -104,6 +108,9 @@ impl Battle {
             }
             _ => {}
         }
+        if self.tangled_feet(target) {
+            modifier = crate::mechanics::chain(modifier, 2048);
+        }
         if zoom {
             crate::mechanics::chain(modifier, 4915)
         } else if self.mon(source).effective_item() == "widelens" && self.active_effects(source) {
@@ -111,6 +118,10 @@ impl Battle {
         } else {
             modifier
         }
+    }
+
+    fn tangled_feet(&self, target: Position) -> bool {
+        self.mon(target).confusion != 0 && self.event_ability(target) == "tangledfeet"
     }
 
     pub(super) fn on_switch_in_item(&mut self, pos: Position) {

@@ -920,6 +920,11 @@ const hydrationRosters = [
     [{...named('Vaporeon', ['Rain Dance', 'Recover']), ability:'Hydration', item:'Leftovers'}],
     [named('Umbreon', ['Toxic', 'Tackle'])],
 ];
+const confuseRayRosters = [
+    [named('Espeon', ['Confuse Ray', 'Tackle', 'Misty Terrain'])],
+    [{...named('Spinda', ['Recover']), ability:'Tangled Feet'},
+        {...named('Mudsdale', ['Recover']), ability:'Own Tempo'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1751,6 +1756,9 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         stallRosters, 'bss-stall-priority'],
     ['bssregmc', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 2']],
         hydrationRosters, 'bss-hydration'],
+    ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 1','move 1'],
+        ['move 3','move 1'], ['move 2','move 1'], ['move 1','switch 2']],
+        confuseRayRosters, 'bss-confusion-accuracy'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

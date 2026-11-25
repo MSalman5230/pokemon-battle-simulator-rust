@@ -500,6 +500,7 @@ impl Battle {
         let stage = (aim - evasion).clamp(-6, 6);
         let modifier = self.accuracy_modifier(
             ACTOR,
+            TARGET,
             self.weather_evasion(TARGET, weather).0,
             move_data.category,
             self.mon(ACTOR).effective_item() == "zoomlens",

@@ -1240,6 +1240,11 @@ fn contact_stat_reactions_rain_status_cures_and_fractional_priority_follow_nativ
 }
 
 #[test]
+fn confuse_ray_respects_existing_confusion_tangled_feet_and_own_tempo() {
+    replay(include_str!("fixtures/bss-confusion-accuracy.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"
