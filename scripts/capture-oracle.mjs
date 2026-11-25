@@ -1019,6 +1019,14 @@ const endureRosters = [
     [{...named('Snorlax', ['Endure']), item:'Focus Sash'}],
     [{...named('Annihilape', ['Close Combat']), item:'Choice Band', nature:'Adamant', evs:{atk:32}}],
 ];
+const quickDrawRosters = [
+    [{...named('Slowbro-Galar', ['Tackle', 'Recover']), ability:'Quick Draw', item:'Quick Claw'}],
+    [named('Vaporeon', ['Recover'])],
+];
+const poisonTouchRosters = [
+    [{...named('Sneasler', ['Tackle']), ability:'Poison Touch'}],
+    [named('Vaporeon', ['Recover'])],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1901,6 +1909,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['vgc2026regmc', [['team 12','team 12'], ['move 1 -2, move 1 1','move 1, move 1'],
         ['move 2, move 1 1','move 1, move 1']], coachingRosters, 'vgc-coaching-burning-jealousy'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1']], endureRosters, 'bss-endure'],
+    ['bssregmc', [['team 1','team 1'], ...Array(5).fill(['move 1','move 1']), ['move 2','move 1']],
+        quickDrawRosters, 'bss-quick-draw'],
+    ['bssregmc', [['team 1','team 1'], ...Array(5).fill(['move 1','move 1'])],
+        poisonTouchRosters, 'bss-poison-touch'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

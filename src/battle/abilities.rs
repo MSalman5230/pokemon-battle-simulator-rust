@@ -965,6 +965,15 @@ impl Battle {
         self.apply_contact_status(holder, attacker, "brn", "Spicy Spray", move_log);
     }
 
+    pub(super) fn poison_touch(&mut self, holder: Position, target: Position, move_log: usize) {
+        if self.event_ability(target) != "shielddust"
+            && self.mon(target).effective_item() != "covertcloak"
+            && self.rng.chance(3, 10)
+        {
+            self.apply_contact_status(holder, target, "psn", "Poison Touch", move_log);
+        }
+    }
+
     pub(super) fn innards_out(&mut self, holder: Position, attacker: Position, damage: u32) {
         if damage == 0 || self.mon(attacker).hp == 0 {
             return;

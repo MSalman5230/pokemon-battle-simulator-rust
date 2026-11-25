@@ -1324,6 +1324,12 @@ fn endure_caps_lethal_move_damage_before_focus_sash() {
 }
 
 #[test]
+fn quick_draw_and_poison_touch_consume_rng_only_for_eligible_actions() {
+    replay(include_str!("fixtures/bss-quick-draw.json"));
+    replay(include_str!("fixtures/bss-poison-touch.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

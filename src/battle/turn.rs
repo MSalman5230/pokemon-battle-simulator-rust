@@ -1266,7 +1266,22 @@ impl Battle {
         if self.event_ability(actor) == "stall" {
             action.fractional_priority = -0.1;
         }
-        if self.mon(actor).effective_item() == "quickclaw" && self.rng.chance(1, 5) {
+        if self.event_ability(actor) == "quickdraw"
+            && let ActionKind::Move { move_slot, .. } = action.kind
+            && move_slot != RECHARGE_SLOT
+            && self.move_data(actor, move_slot).category != Category::Status
+            && self.rng.chance(3, 10)
+        {
+            action.fractional_priority = 0.1;
+            self.add(format!(
+                "|-activate|{}|ability: Quick Draw",
+                self.ident(actor)
+            ));
+        }
+        if action.fractional_priority <= 0.0
+            && self.mon(actor).effective_item() == "quickclaw"
+            && self.rng.chance(1, 5)
+        {
             action.fractional_priority = 0.1;
             self.add(format!("|-activate|{}|item: Quick Claw", self.ident(actor)));
         }
@@ -4943,6 +4958,11 @@ impl Battle {
                 if self.mon(target).effective_item() == "airballoon" {
                     self.consume(target, "Air Balloon", false);
                 }
+                if move_data.flags.contains_key("contact")
+                    && self.event_ability(source) == "poisontouch"
+                {
+                    self.poison_touch(source, target, base);
+                }
             }
             if !sheer_force_removed
                 && matches!(move_data.name.as_str(), "Rapid Spin" | "Mortal Spin")
@@ -5682,6 +5702,8 @@ impl Pokemon {
                 | "forecast"
                 | "hungerswitch"
                 | "unseenfist"
+                | "quickdraw"
+                | "poisontouch"
                 | "analytic"
                 | "galewings"
                 | "rivalry"
