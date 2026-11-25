@@ -68,6 +68,7 @@ function inertHeldItem(item) {
     return !item.megaStone && !item.zMove && !item.zMoveType && !item.isPrimalOrb &&
         !item.isGem && !item.onPlate && !item.onDrive && !item.onMemory &&
         !item.boosts && !item.condition && item.onTakeItem !== false &&
+        item.onNegateImmunity !== false && item.id !== 'blunderpolicy' &&
         !Object.values(item).some(value => typeof value === 'function');
 }
 
@@ -135,6 +136,7 @@ const data = mod => {
                 inertHeldItem: inertHeldItem(e) || undefined,
                 zMove: e.zMove || undefined, unremovable: e.onTakeItem === false || undefined,
                 isPrimalOrb: e.isPrimalOrb || undefined,
+                gemType: e.isGem ? e.name.replace(/ Gem$/, '') : undefined,
                 plateType: plate ? e.onPlate : undefined,
                 plateBoost: plate && typeof e.onBasePower === 'function' || undefined,
                 driveType: e.onDrive || undefined,

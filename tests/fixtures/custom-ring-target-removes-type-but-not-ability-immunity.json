@@ -1,0 +1,1343 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Garchomp\",\"moves\":[\"Tackle\",\"Earthquake\"],\"gender\":\"F\",\"name\":\"Garchomp\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Rotom\",\"moves\":[\"Recover\"],\"gender\":\"N\",\"name\":\"Rotom\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"Levitate\",\"item\":\"Ring Target\"},{\"species\":\"Charizard\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Charizard\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Ring Target\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Garchomp, L50, F|",
+          "|poke|p2|Rotom, L50|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Garchomp, L50, F|",
+          "|poke|p2|Rotom, L50|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Garchomp, L50, F|",
+          "|poke|p2|Rotom, L50|",
+          "|poke|p2|Charizard, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "tackle",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "ringtarget",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ringtarget",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 12"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+          "|switch|p2a: Rotom|Rotom, L50|125/125",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+          "|switch|p2a: Rotom|Rotom, L50|125/125",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|2",
+          "|start",
+          "|switch|p1a: Garchomp|Garchomp, L50, F|183/183",
+          "|switch|p2a: Rotom|Rotom, L50|125/125",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 20,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "tackle",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 20,
+                "maxpp": 20
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "ringtarget",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ringtarget",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Garchomp|Tackle|p2a: Rotom",
+          "|-damage|p2a: Rotom|99/125",
+          "|move|p2a: Rotom|Recover|p2a: Rotom",
+          "|-heal|p2a: Rotom|125/125",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Garchomp|Tackle|p2a: Rotom",
+          "|-damage|p2a: Rotom|99/125",
+          "|move|p2a: Rotom|Recover|p2a: Rotom",
+          "|-heal|p2a: Rotom|125/125",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p1a: Garchomp|Tackle|p2a: Rotom",
+          "|-damage|p2a: Rotom|99/125",
+          "|move|p2a: Rotom|Recover|p2a: Rotom",
+          "|-heal|p2a: Rotom|125/125",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 12,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "tackle",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "earthquake",
+                "pp": 12,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "ringtarget",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ringtarget",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "43514,9542,40559,8561",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p1a: Garchomp|Earthquake|p2a: Rotom",
+          "|-immune|p2a: Rotom|[from] ability: Levitate",
+          "|move|p2a: Rotom|Recover||[still]",
+          "|-fail|p2a: Rotom|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Garchomp|Earthquake|p2a: Rotom",
+          "|-immune|p2a: Rotom|[from] ability: Levitate",
+          "|move|p2a: Rotom|Recover||[still]",
+          "|-fail|p2a: Rotom|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|move|p1a: Garchomp|Earthquake|p2a: Rotom",
+          "|-immune|p2a: Rotom|[from] ability: Levitate",
+          "|move|p2a: Rotom|Recover||[still]",
+          "|-fail|p2a: Rotom|heal",
+          "|debug|move failed because it did nothing",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Tackle",
+                  "id": "tackle",
+                  "pp": 19,
+                  "maxpp": 20,
+                  "target": "normal",
+                  "disabled": false
+                },
+                {
+                  "move": "Earthquake",
+                  "id": "earthquake",
+                  "pp": 11,
+                  "maxpp": 12,
+                  "target": "allAdjacent",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "tackle",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": true,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "153/153",
+                "active": false,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "earthquake",
+                "pp": 11,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "ringtarget",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 153,
+            "maxhp": 153,
+            "status": "",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ringtarget",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 2",
+        ">p2 switch 2"
+      ],
+      "turn": 3,
+      "seed": "37673,46633,62039,8266",
+      "requestState": "switch",
+      "waiting": [
+        true,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|move|p1a: Garchomp|Earthquake|p2a: Charizard",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|0 fnt",
+          "|faint|p2a: Charizard",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|move|p1a: Garchomp|Earthquake|p2a: Charizard",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|0 fnt",
+          "|faint|p2a: Charizard",
+          "|",
+          "|upkeep"
+        ],
+        [
+          "|",
+          "|switch|p2a: Charizard|Charizard, L50, F|153/153",
+          "|move|p1a: Garchomp|Earthquake|p2a: Charizard",
+          "|-supereffective|p2a: Charizard|1",
+          "|-damage|p2a: Charizard|0 fnt",
+          "|faint|p2a: Charizard",
+          "|",
+          "|upkeep"
+        ]
+      ],
+      "requests": [
+        {
+          "wait": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Garchomp",
+                "details": "Garchomp, L50, F",
+                "condition": "183/183",
+                "active": true,
+                "stats": {
+                  "atk": 150,
+                  "def": 115,
+                  "spa": 100,
+                  "spd": 105,
+                  "spe": 122
+                },
+                "moves": [
+                  "tackle",
+                  "earthquake"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "forceSwitch": [
+            true
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Charizard",
+                "details": "Charizard, L50, F",
+                "condition": "0 fnt",
+                "active": true,
+                "stats": {
+                  "atk": 104,
+                  "def": 98,
+                  "spa": 129,
+                  "spd": 105,
+                  "spe": 120
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              },
+              {
+                "ident": "p2: Rotom",
+                "details": "Rotom, L50",
+                "condition": "125/125",
+                "active": false,
+                "stats": {
+                  "atk": 70,
+                  "def": 97,
+                  "spa": 115,
+                  "spd": 97,
+                  "spe": 111
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "levitate",
+                "item": "ringtarget",
+                "pokeball": "pokeball",
+                "ability": "levitate",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          },
+          "noCancel": true
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Garchomp",
+            "species": "Garchomp",
+            "details": "Garchomp, L50, F",
+            "hp": 183,
+            "maxhp": 183,
+            "status": "",
+            "stats": {
+              "atk": 150,
+              "def": 115,
+              "spa": 100,
+              "spd": 105,
+              "spe": 122
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "tackle",
+                "pp": 19,
+                "maxpp": 20
+              },
+              {
+                "id": "earthquake",
+                "pp": 10,
+                "maxpp": 12
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Charizard",
+            "species": "Charizard",
+            "details": "Charizard, L50, F",
+            "hp": 0,
+            "maxhp": 153,
+            "status": "fnt",
+            "stats": {
+              "atk": 104,
+              "def": 98,
+              "spa": 129,
+              "spd": 105,
+              "spe": 120
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "ringtarget",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          },
+          {
+            "name": "Rotom",
+            "species": "Rotom",
+            "details": "Rotom, L50",
+            "hp": 125,
+            "maxhp": 125,
+            "status": "",
+            "stats": {
+              "atk": 70,
+              "def": 97,
+              "spa": 115,
+              "spd": 97,
+              "spe": 111
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "levitate",
+            "item": "ringtarget",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

@@ -305,6 +305,7 @@ pub struct Item {
     pub unremovable: bool,
     #[serde(default)]
     pub is_primal_orb: bool,
+    pub gem_type: Option<String>,
     pub plate_type: Option<String>,
     #[serde(default)]
     pub plate_boost: bool,

@@ -2236,6 +2236,19 @@ fn paradox_stat_boosts_transition_between_field_and_booster_energy() {
 }
 
 #[test]
+fn inherited_hidden_item_handlers_use_the_native_immunity_and_accuracy_stages() {
+    replay(include_str!(
+        "fixtures/custom-ring-target-removes-type-but-not-ability-immunity.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-fire-gem-triggers-on-the-matching-hit-only.json"
+    ));
+    replay(include_str!(
+        "fixtures/custom-blunder-policy-activates-after-accuracy-miss.json"
+    ));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

@@ -2068,6 +2068,19 @@ const quarkDriveBoosterRosters = [
         {...named('Iron Hands', ['Tackle'], 'N'), item:'Booster Energy', ability:'Quark Drive'}],
     [{...named('Espeon', ['Trick', 'Tackle']), item:'Leftovers'}, named('Venusaur', ['Recover'])],
 ];
+const ringTargetRosters = [
+    [named('Garchomp', ['Tackle', 'Earthquake'])],
+    [{...named('Rotom', ['Recover'], 'N'), item:'Ring Target', ability:'Levitate'},
+        {...named('Charizard', ['Recover']), item:'Ring Target'}],
+];
+const typedGemRosters = [
+    [{...named('Charizard', ['Ember', 'Tackle']), item:'Fire Gem'}],
+    [named('Snorlax', ['Recover'])],
+];
+const blunderPolicyRosters = [
+    [{...named('Golurk', ['Dynamic Punch'], 'N'), item:'Blunder Policy'}],
+    [named('Skarmory', ['Recover'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -3617,6 +3630,12 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
     ['doublescustomgame', [['team 12','team 12'], ['move 1, move 1 2','move 1 2, move 1'],
         ['move 1, move 1 2','move 2 2, move 1']],
         quarkDriveBoosterRosters, 'custom-quark-drive-field-then-protected-booster-energy'],
+    ['customgame', [['team 1','team 12'], ['move 1','move 1'], ['move 2','move 1'], ['move 2','switch 2']],
+        ringTargetRosters, 'custom-ring-target-removes-type-but-not-ability-immunity'],
+    ['customgame', [['team 1','team 1'], ['move 2','move 1'], ['move 1','move 1'], ['move 1','move 1']],
+        typedGemRosters, 'custom-fire-gem-triggers-on-the-matching-hit-only'],
+    ['customgame', [['team 1','team 1'], ['move 1','move 1'], ['move 1','move 1']],
+        blunderPolicyRosters, 'custom-blunder-policy-activates-after-accuracy-miss'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

@@ -1,0 +1,832 @@
+{
+  "revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "formatid": "gen9championscustomgame",
+  "checkpoints": [
+    {
+      "lines": [
+        ">start {\"formatid\":\"gen9championscustomgame\",\"seed\":\"1,2,3,4\",\"strictChoices\":true}",
+        ">player p1 {\"name\":\"player0\",\"team\":[{\"species\":\"Golurk\",\"moves\":[\"Dynamic Punch\"],\"gender\":\"N\",\"name\":\"Golurk\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\",\"item\":\"Blunder Policy\"}]}",
+        ">player p2 {\"name\":\"player1\",\"team\":[{\"species\":\"Skarmory\",\"moves\":[\"Recover\"],\"gender\":\"F\",\"name\":\"Skarmory\",\"level\":50,\"nature\":\"Hardy\",\"ability\":\"\"}]}"
+      ],
+      "turn": 0,
+      "seed": "1,2,3,4",
+      "requestState": "teampreview",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Golurk, L50|",
+          "|poke|p2|Skarmory, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Golurk, L50|",
+          "|poke|p2|Skarmory, L50, F|",
+          "|teampreview"
+        ],
+        [
+          "|gametype|singles",
+          "|player|p1|player0||",
+          "|player|p2|player1||",
+          "|gen|9",
+          "|tier|[Gen 9 Champions] Custom Game",
+          "|clearpoke",
+          "|poke|p1|Golurk, L50|",
+          "|poke|p2|Skarmory, L50, F|",
+          "|teampreview"
+        ]
+      ],
+      "requests": [
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Golurk",
+                "details": "Golurk, L50",
+                "condition": "164/164",
+                "active": true,
+                "stats": {
+                  "atk": 144,
+                  "def": 100,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 75
+                },
+                "moves": [
+                  "dynamicpunch"
+                ],
+                "baseAbility": "",
+                "item": "blunderpolicy",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "teamPreview": true,
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Skarmory",
+                "details": "Skarmory, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 160,
+                  "spa": 60,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Golurk",
+            "species": "Golurk",
+            "details": "Golurk, L50",
+            "hp": 164,
+            "maxhp": 164,
+            "status": "",
+            "stats": {
+              "atk": 144,
+              "def": 100,
+              "spa": 75,
+              "spd": 100,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "blunderpolicy",
+            "active": false,
+            "moves": [
+              {
+                "id": "dynamicpunch",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Skarmory",
+            "species": "Skarmory",
+            "details": "Skarmory, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 160,
+              "spa": 60,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": false,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 team 1",
+        ">p2 team 1"
+      ],
+      "turn": 1,
+      "seed": "1,2,3,4",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Golurk|Golurk, L50|164/164",
+          "|switch|p2a: Skarmory|Skarmory, L50, F|140/140",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Golurk|Golurk, L50|164/164",
+          "|switch|p2a: Skarmory|Skarmory, L50, F|140/140",
+          "|turn|1"
+        ],
+        [
+          "|",
+          "|teamsize|p1|1",
+          "|teamsize|p2|1",
+          "|start",
+          "|switch|p1a: Golurk|Golurk, L50|164/164",
+          "|switch|p2a: Skarmory|Skarmory, L50, F|140/140",
+          "|turn|1"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Golurk",
+                "details": "Golurk, L50",
+                "condition": "164/164",
+                "active": true,
+                "stats": {
+                  "atk": 144,
+                  "def": 100,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 75
+                },
+                "moves": [
+                  "dynamicpunch"
+                ],
+                "baseAbility": "",
+                "item": "blunderpolicy",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 8,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Skarmory",
+                "details": "Skarmory, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 160,
+                  "spa": 60,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Golurk",
+            "species": "Golurk",
+            "details": "Golurk, L50",
+            "hp": 164,
+            "maxhp": 164,
+            "status": "",
+            "stats": {
+              "atk": 144,
+              "def": 100,
+              "spa": 75,
+              "spd": 100,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "blunderpolicy",
+            "active": true,
+            "moves": [
+              {
+                "id": "dynamicpunch",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Skarmory",
+            "species": "Skarmory",
+            "details": "Skarmory, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 160,
+              "spa": 60,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 8,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 2,
+      "seed": "55250,62519,52978,42619",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|move|p2a: Skarmory|Recover||[still]",
+          "|-fail|p2a: Skarmory|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Golurk|Dynamic Punch|p2a: Skarmory",
+          "|-damage|p2a: Skarmory|104/140",
+          "|-start|p2a: Skarmory|confusion",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Skarmory|Recover||[still]",
+          "|-fail|p2a: Skarmory|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Golurk|Dynamic Punch|p2a: Skarmory",
+          "|-damage|p2a: Skarmory|104/140",
+          "|-start|p2a: Skarmory|confusion",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ],
+        [
+          "|",
+          "|move|p2a: Skarmory|Recover||[still]",
+          "|-fail|p2a: Skarmory|heal",
+          "|debug|move failed because it did nothing",
+          "|move|p1a: Golurk|Dynamic Punch|p2a: Skarmory",
+          "|-damage|p2a: Skarmory|104/140",
+          "|-start|p2a: Skarmory|confusion",
+          "|",
+          "|upkeep",
+          "|turn|2"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Golurk",
+                "details": "Golurk, L50",
+                "condition": "164/164",
+                "active": true,
+                "stats": {
+                  "atk": 144,
+                  "def": 100,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 75
+                },
+                "moves": [
+                  "dynamicpunch"
+                ],
+                "baseAbility": "",
+                "item": "blunderpolicy",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 7,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Skarmory",
+                "details": "Skarmory, L50, F",
+                "condition": "104/140",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 160,
+                  "spa": 60,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Golurk",
+            "species": "Golurk",
+            "details": "Golurk, L50",
+            "hp": 164,
+            "maxhp": 164,
+            "status": "",
+            "stats": {
+              "atk": 144,
+              "def": 100,
+              "spa": 75,
+              "spd": 100,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "blunderpolicy",
+            "active": true,
+            "moves": [
+              {
+                "id": "dynamicpunch",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Skarmory",
+            "species": "Skarmory",
+            "details": "Skarmory, L50, F",
+            "hp": 104,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 160,
+              "spa": 60,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 7,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    },
+    {
+      "lines": [
+        ">p1 move 1",
+        ">p2 move 1"
+      ],
+      "turn": 3,
+      "seed": "62891,40560,22227,62965",
+      "requestState": "move",
+      "waiting": [
+        false,
+        false
+      ],
+      "channels": [
+        [
+          "|",
+          "|-activate|p2a: Skarmory|confusion",
+          "|move|p2a: Skarmory|Recover|p2a: Skarmory",
+          "|-heal|p2a: Skarmory|140/140",
+          "|move|p1a: Golurk|Dynamic Punch|p2a: Skarmory|[miss]",
+          "|-miss|p1a: Golurk|p2a: Skarmory",
+          "|-enditem|p1a: Golurk|Blunder Policy",
+          "|-boost|p1a: Golurk|spe|2",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-activate|p2a: Skarmory|confusion",
+          "|move|p2a: Skarmory|Recover|p2a: Skarmory",
+          "|-heal|p2a: Skarmory|140/140",
+          "|move|p1a: Golurk|Dynamic Punch|p2a: Skarmory|[miss]",
+          "|-miss|p1a: Golurk|p2a: Skarmory",
+          "|-enditem|p1a: Golurk|Blunder Policy",
+          "|-boost|p1a: Golurk|spe|2",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ],
+        [
+          "|",
+          "|-activate|p2a: Skarmory|confusion",
+          "|move|p2a: Skarmory|Recover|p2a: Skarmory",
+          "|-heal|p2a: Skarmory|140/140",
+          "|move|p1a: Golurk|Dynamic Punch|p2a: Skarmory|[miss]",
+          "|-miss|p1a: Golurk|p2a: Skarmory",
+          "|-enditem|p1a: Golurk|Blunder Policy",
+          "|-boost|p1a: Golurk|spe|2",
+          "|",
+          "|upkeep",
+          "|turn|3"
+        ]
+      ],
+      "requests": [
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Dynamic Punch",
+                  "id": "dynamicpunch",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "normal",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player0",
+            "id": "p1",
+            "pokemon": [
+              {
+                "ident": "p1: Golurk",
+                "details": "Golurk, L50",
+                "condition": "164/164",
+                "active": true,
+                "stats": {
+                  "atk": 144,
+                  "def": 100,
+                  "spa": 75,
+                  "spd": 100,
+                  "spe": 75
+                },
+                "moves": [
+                  "dynamicpunch"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        },
+        {
+          "active": [
+            {
+              "moves": [
+                {
+                  "move": "Recover",
+                  "id": "recover",
+                  "pp": 6,
+                  "maxpp": 8,
+                  "target": "self",
+                  "disabled": false
+                }
+              ]
+            }
+          ],
+          "side": {
+            "name": "player1",
+            "id": "p2",
+            "pokemon": [
+              {
+                "ident": "p2: Skarmory",
+                "details": "Skarmory, L50, F",
+                "condition": "140/140",
+                "active": true,
+                "stats": {
+                  "atk": 100,
+                  "def": 160,
+                  "spa": 60,
+                  "spd": 90,
+                  "spe": 90
+                },
+                "moves": [
+                  "recover"
+                ],
+                "baseAbility": "",
+                "item": "",
+                "pokeball": "pokeball",
+                "ability": "",
+                "commanding": false,
+                "reviving": false
+              }
+            ]
+          }
+        }
+      ],
+      "teams": [
+        [
+          {
+            "name": "Golurk",
+            "species": "Golurk",
+            "details": "Golurk, L50",
+            "hp": 164,
+            "maxhp": 164,
+            "status": "",
+            "stats": {
+              "atk": 144,
+              "def": 100,
+              "spa": 75,
+              "spd": 100,
+              "spe": 75
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 2,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "dynamicpunch",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ],
+        [
+          {
+            "name": "Skarmory",
+            "species": "Skarmory",
+            "details": "Skarmory, L50, F",
+            "hp": 140,
+            "maxhp": 140,
+            "status": "",
+            "stats": {
+              "atk": 100,
+              "def": 160,
+              "spa": 60,
+              "spd": 90,
+              "spe": 90
+            },
+            "boosts": {
+              "atk": 0,
+              "def": 0,
+              "spa": 0,
+              "spd": 0,
+              "spe": 0,
+              "accuracy": 0,
+              "evasion": 0
+            },
+            "ability": "",
+            "item": "",
+            "active": true,
+            "moves": [
+              {
+                "id": "recover",
+                "pp": 6,
+                "maxpp": 8
+              }
+            ]
+          }
+        ]
+      ]
+    }
+  ]
+}

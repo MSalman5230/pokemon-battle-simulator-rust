@@ -664,18 +664,45 @@ impl Battle {
         }
     }
 
-    pub(super) fn consume_normal_gem(&mut self, source: Position, move_name: &str) {
-        if self.mon(source).effective_item() == "normalgem" {
-            self.consume_with_reason(
-                source,
-                "Normal Gem",
-                false,
-                &format!("|[from] gem|[move] {move_name}"),
-            );
-            self.symbiosis_after_item(source);
-            let mon = self.mon_mut(source);
-            mon.gem_boost = true;
-            mon.track_volatile("gem");
+    pub(super) fn consume_typed_gem(
+        &mut self,
+        source: Position,
+        move_name: &str,
+        move_type: &str,
+        pledge_combo: bool,
+    ) {
+        let Some(item) = DEX.item(self.format.dex_mod, &self.mon(source).item) else {
+            return;
+        };
+        if self.debug_ignored_item(source, "TryPrimaryHit") {
+            return;
+        }
+        if item.gem_type.as_deref() != Some(move_type)
+            || pledge_combo
+                && matches!(
+                    move_type,
+                    "Electric" | "Fire" | "Grass" | "Normal" | "Water"
+                )
+        {
+            return;
+        }
+        self.consume_with_reason(
+            source,
+            &item.effect.name,
+            false,
+            &format!("|[from] gem|[move] {move_name}"),
+        );
+        self.symbiosis_after_item(source);
+        let mon = self.mon_mut(source);
+        mon.gem_boost = true;
+        mon.track_volatile("gem");
+    }
+
+    pub(super) fn activate_blunder_policy(&mut self, pos: Position) {
+        if self.mon(pos).effective_item() == "blunderpolicy" && self.mon(pos).hp != 0 {
+            self.consume(pos, "Blunder Policy", false);
+            self.symbiosis_after_item(pos);
+            self.boost(pos, &[(BoostStat::Spe, 2)], false);
         }
     }
 

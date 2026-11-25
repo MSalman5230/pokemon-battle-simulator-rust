@@ -6320,6 +6320,9 @@ impl Battle {
         let ignores_type = !unannounced && self.move_ignores_immunity(source, move_data, move_type);
         let potential = spread_targets.len();
         spread_targets.retain(|&pos| {
+            let ring_target = !ignores_type
+                && self.mon(pos).item == "ringtarget"
+                && !self.debug_ignored_item(pos, "NegateImmunity");
             if move_data.name == "Captivate"
                 && !matches!(
                     (self.mon(source).gender, self.mon(pos).gender),
@@ -6330,7 +6333,7 @@ impl Battle {
                 false
             } else if !ignores_type
                 && move_type == "Ground"
-                && !self.mon(pos).has_type("Flying")
+                && (!self.mon(pos).has_type("Flying") || ring_target)
                 && let Some(label) = self.airborne_ability(pos)
             {
                 self.add(format!(
@@ -6342,7 +6345,7 @@ impl Battle {
                 && (self
                     .effectiveness_of(move_data, move_type, pos, false)
                     .is_none()
-                    || (move_type == "Ground" && !self.grounded(pos))))
+                    || (move_type == "Ground" && !self.grounded_ignoring_flying(pos, ring_target))))
                 || (move_data.flags.contains_key("powder")
                     && source != pos
                     && self.status_immune(pos, "powder"))
@@ -6464,12 +6467,18 @@ impl Battle {
             {
                 if smart_target {
                     smart_target = false;
+                    if !ohko {
+                        self.activate_blunder_policy(source);
+                    }
                     return false;
                 }
                 if !spread {
                     self.log[base].public.push_str("|[miss]");
                 }
                 self.add(format!("|-miss|{source_name}|{}", self.ident(pos)));
+                if !ohko {
+                    self.activate_blunder_policy(source);
+                }
                 false
             } else {
                 true
@@ -7897,12 +7906,15 @@ impl Battle {
                 spread_targets.as_slice()
             };
             if !delayed
-                && move_type == "Normal"
-                && self.mon(source).item == "normalgem"
-                && !move_data.flags.contains_key("pledgecombo")
+                && self.mon(source).item.ends_with("gem")
                 && strike_targets.iter().any(|&target| target != source)
             {
-                self.consume_normal_gem(source, &move_data.name);
+                self.consume_typed_gem(
+                    source,
+                    &move_data.name,
+                    move_type,
+                    pledge_combo.is_some() || move_data.flags.contains_key("pledgecombo"),
+                );
             }
             if darts {
                 let target = self.ident(strike_targets[0]);
@@ -9510,6 +9522,7 @@ impl Battle {
                 Some(2) => modifier -= 1,
                 Some(3)
                     if !(ignores_immunity
+                        || mon.effective_item() == "ringtarget"
                         || mon.exposed_immunity(typing, move_type)
                         || typing == "Flying"
                             && move_type == "Ground"
@@ -10064,6 +10077,8 @@ impl Pokemon {
                 | "micleberry"
                 | "mirrorherb"
                 | "boosterenergy"
+                | "blunderpolicy"
+                | "ringtarget"
                 | "stickybarb"
         ) && super::items::resistance_berry(&self.item).is_none()
             && DEX
@@ -10071,6 +10086,7 @@ impl Pokemon {
                 .is_none_or(|item| {
                     item.mega_stone.is_none()
                         && item.z_move.is_none()
+                        && item.gem_type.is_none()
                         && item.protected_form_base.is_none()
                         && !item.is_primal_orb
                         && !item.inert_held_item

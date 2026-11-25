@@ -128,6 +128,10 @@ impl Battle {
     }
 
     pub(super) fn grounded(&self, pos: Position) -> bool {
+        self.grounded_ignoring_flying(pos, false)
+    }
+
+    pub(super) fn grounded_ignoring_flying(&self, pos: Position, ignore_flying: bool) -> bool {
         let mon = self.mon(pos);
         if self.forces_grounded(pos) {
             return true;
@@ -136,7 +140,7 @@ impl Battle {
             "ironball" => true,
             "airballoon" => false,
             _ => {
-                !mon.has_type("Flying")
+                (ignore_flying || !mon.has_type("Flying"))
                     && mon.magnet_rise == 0
                     && !mon.under(super::field_effects::LegacyCondition::Telekinesis)
                     && self.airborne_ability(pos).is_none()
