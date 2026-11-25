@@ -3,8 +3,8 @@
 use crate::{
     choice::{Choice, SlotChoice, to_id},
     dex::{DEX, Format, Move, Species},
-    input::{Input, Player, PlayerOptions, Set, Start, Team},
-    mechanics::{Boosts, Stats, health, max_pp},
+    input::{Input, Player, PlayerOptions, Set, SetStats, Start, Team},
+    mechanics::{Boosts, Nature, Stats, health, max_pp},
     order::{Priority, speed_sort_by},
     rng::{Rng, Seed},
 };
@@ -12,6 +12,7 @@ use serde::Serialize;
 
 mod hazards;
 mod items;
+mod mega;
 use hazards::Hazard;
 mod status;
 mod turn;
@@ -108,12 +109,14 @@ pub struct Battle {
     last_faint: Option<Player>,
     weather: Option<(Weather, u8)>,
     pending_actions: [Option<Vec<Action>>; 2],
+    suspended: Vec<Action>,
 }
 
 struct Side {
     name: String,
     party: Vec<Pokemon>,
     hazards: Vec<(Hazard, u8)>,
+    mega_used: bool,
 }
 
 pub struct Pokemon {
@@ -121,6 +124,8 @@ pub struct Pokemon {
     pub species: &'static Species,
     pub details: String,
     pub level: u16,
+    points: SetStats,
+    nature: Nature,
     pub stats: Stats,
     pub boosts: Boosts,
     speed: u32,
@@ -136,6 +141,8 @@ pub struct Pokemon {
     protected: bool,
     stall: Option<(u16, u8)>,
     fainted: bool,
+    needs_replacement: bool,
+    pivot_move: Option<&'static str>,
 }
 
 pub struct MoveSlot {
@@ -242,6 +249,7 @@ impl Battle {
             last_faint: None,
             weather: None,
             pending_actions: [None, None],
+            suspended: Vec::new(),
         };
         battle.add(format!(
             "|gametype|{}",
@@ -363,6 +371,7 @@ impl Battle {
             name,
             party,
             hazards: Vec::new(),
+            mega_used: false,
         });
         self.rng = rng;
         if self.sides.iter().all(Option::is_some) {
@@ -589,6 +598,8 @@ impl Pokemon {
             species,
             details,
             level,
+            points: set.evs,
+            nature,
             stats,
             boosts: Boosts::default(),
             speed: stats.spe,
@@ -608,6 +619,8 @@ impl Pokemon {
             protected: false,
             stall: None,
             fainted: false,
+            needs_replacement: false,
+            pivot_move: None,
         })
     }
 }

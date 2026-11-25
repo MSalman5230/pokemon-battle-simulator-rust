@@ -1,6 +1,6 @@
 use super::*;
 use crate::{
-    choice::{MoveChoice, TargetKind},
+    choice::{MoveChoice, SpecialChoice, TargetKind},
     dex::{Accuracy, Category},
     mechanics::{BoostStat, Damage, boosted_stat},
 };
@@ -23,9 +23,18 @@ impl Position {
 
 #[derive(Debug, Copy, Clone)]
 enum ActionKind {
-    Move { move_slot: usize, target: i8 },
-    Switch { bench_slot: usize, immediate: bool },
+    Move {
+        move_slot: usize,
+        target: i8,
+        mega: bool,
+    },
+    Switch {
+        bench_slot: usize,
+        immediate: bool,
+        pivot: Option<&'static str>,
+    },
     RunSwitch,
+    MegaEvolve,
     BeforeTurn,
     Residual,
 }
@@ -48,6 +57,7 @@ impl Action {
             ActionKind::Switch {
                 immediate: false, ..
             } => 103,
+            ActionKind::MegaEvolve => 104,
             ActionKind::Move { .. } => 200,
             ActionKind::Residual => 300,
         };
@@ -98,7 +108,9 @@ impl Battle {
                             "target": m.move_data.target, "disabled": m.pp == 0,
                         })).collect()
                     };
-                    json!({"moves":moves})
+                    let mut request = json!({"moves":moves});
+                    if self.can_mega(Position { player, slot }) { request["canMegaEvo"] = json!(true); }
+                    request
                 }).collect::<Vec<_>>(),
                 "side": self.side_request(player).unwrap(),
             })),
@@ -184,7 +196,7 @@ impl Battle {
         let bench = party[self.slots()..].iter().any(|p| !p.fainted);
         party[..self.slots()]
             .iter()
-            .map(|p| bench && p.fainted)
+            .map(|p| bench && (p.needs_replacement || p.pivot_move.is_some()))
             .collect()
     }
 
@@ -223,9 +235,23 @@ impl Battle {
             let mut queue = Vec::new();
             for p in Player::ALL {
                 for mut action in self.pending_actions[p.index()].take().unwrap_or_default() {
+                    if let ActionKind::Switch {
+                        immediate: true, ..
+                    } = action.kind
+                    {
+                        let mon = self.mon_mut(action.actor.unwrap());
+                        mon.needs_replacement = false;
+                        mon.pivot_move = None;
+                    }
+                    if matches!(action.kind, ActionKind::Move { mega: true, .. }) {
+                        let mut mega = Action::new(action.actor, ActionKind::MegaEvolve);
+                        self.prioritize(&mut mega);
+                        queue.push(mega);
+                    }
                     if let ActionKind::Move {
                         move_slot,
                         target: 0,
+                        mega,
                     } = action.kind
                     {
                         let source = action.actor.unwrap();
@@ -233,7 +259,11 @@ impl Battle {
                         let target = self
                             .random_target(source, kind)
                             .map_or(0, |p| p.loc(source));
-                        action.kind = ActionKind::Move { move_slot, target };
+                        action.kind = ActionKind::Move {
+                            move_slot,
+                            target,
+                            mega,
+                        };
                     }
                     self.prioritize(&mut action);
                     queue.push(action);
@@ -246,6 +276,8 @@ impl Battle {
             if self.phase == Phase::Move {
                 queue.insert(0, Action::new(None, ActionKind::BeforeTurn));
                 queue.push(Action::new(None, ActionKind::Residual));
+            } else {
+                queue.append(&mut self.suspended);
             }
             self.run_queue(queue);
         }
@@ -273,6 +305,7 @@ impl Battle {
         let mut actions = Vec::new();
         let mut switched = 0_u32;
         let mut auto = false;
+        let mut mega = false;
         for (slot, force_switch) in flags.into_iter().enumerate() {
             let actor = Position { player, slot };
             let mon = self.mon(actor);
@@ -302,6 +335,7 @@ impl Battle {
                     ActionKind::Switch {
                         bench_slot,
                         immediate: true,
+                        pivot: mon.pivot_move,
                     }
                 }
                 SlotChoice::Switch(bench_slot) => {
@@ -320,6 +354,7 @@ impl Battle {
                     ActionKind::Switch {
                         bench_slot,
                         immediate: replace,
+                        pivot: mon.pivot_move,
                     }
                 }
                 SlotChoice::Pass if replace => continue,
@@ -328,12 +363,21 @@ impl Battle {
                     target,
                     special,
                 } if !replace => {
-                    if special.is_some() {
-                        return Err(BattleError::Unsupported("special move modifiers".into()));
-                    }
-                    self.select_move(actor, selection, *target)?
+                    let wants_mega = match special {
+                        None => false,
+                        Some(SpecialChoice::Mega) if !mega => {
+                            self.validate_mega(actor)?;
+                            mega = true;
+                            true
+                        }
+                        Some(SpecialChoice::Mega) => {
+                            return Err(BattleError::Choice("only one Mega Evolution per side"));
+                        }
+                        _ => return Err(BattleError::Unsupported("special move modifier".into())),
+                    };
+                    self.select_move(actor, selection, *target, wants_mega)?
                 }
-                SlotChoice::Auto => self.select_move(actor, &MoveChoice::Auto, None)?,
+                SlotChoice::Auto => self.select_move(actor, &MoveChoice::Auto, None, false)?,
                 _ => return Err(BattleError::Choice("invalid action for current request")),
             };
             if let ActionKind::Switch { bench_slot, .. } = action {
@@ -367,6 +411,7 @@ impl Battle {
         actor: Position,
         selection: &MoveChoice,
         target: Option<i8>,
+        mega: bool,
     ) -> Result<ActionKind, BattleError> {
         let moves = &self.mon(actor).moves;
         if moves.iter().all(|m| m.pp == 0) {
@@ -436,6 +481,9 @@ impl Battle {
                 | "spikes"
                 | "toxicspikes"
                 | "stickyweb"
+                | "uturn"
+                | "voltswitch"
+                | "flipturn"
         ) {
             return Err(BattleError::Unsupported(format!("move {}", info.id)));
         }
@@ -450,12 +498,19 @@ impl Battle {
         } else if target != 0 {
             return Err(BattleError::Choice("cannot specify a target for this move"));
         }
-        Ok(ActionKind::Move { move_slot, target })
+        Ok(ActionKind::Move {
+            move_slot,
+            target,
+            mega,
+        })
     }
 
     fn prioritize(&mut self, action: &mut Action) {
         if let Some(source) = action.actor {
-            if let ActionKind::Move { move_slot, target } = action.kind {
+            if let ActionKind::Move {
+                move_slot, target, ..
+            } = action.kind
+            {
                 let data = self.mon(source).moves[move_slot].move_data;
                 // ModifyPriority receives a resolved target even when no effects
                 // listen to it. In doubles this can consume a retarget draw.
@@ -548,6 +603,12 @@ impl Battle {
         while !queue.is_empty() {
             let action = queue.remove(0);
             match action.kind {
+                ActionKind::MegaEvolve => {
+                    let pos = action.actor.unwrap();
+                    if !self.mon(pos).fainted {
+                        self.mega_evolve(pos);
+                    }
+                }
                 ActionKind::BeforeTurn => {
                     self.ordered_actives(false);
                 }
@@ -572,17 +633,16 @@ impl Battle {
                             if self.mon(pos).hp == 0 {
                                 continue;
                             }
-                            if self.mon(pos).ability == "pressure" {
-                                self.add(format!("|-ability|{}|Pressure", self.ident(pos)));
-                            }
-                            self.switch_in_weather(pos);
+                            self.start_ability(pos);
                             self.on_switch_in_item(pos);
                         }
                     }
                 }
-                ActionKind::Switch { bench_slot, .. } => {
+                ActionKind::Switch {
+                    bench_slot, pivot, ..
+                } => {
                     let outgoing = action.actor.unwrap();
-                    if !self.mon(outgoing).fainted {
+                    if !self.mon(outgoing).fainted && pivot.is_none() {
                         self.each_event();
                     } // BeforeSwitchOut update
                     let party = &mut self.sides[outgoing.player.index()].as_mut().unwrap().party;
@@ -590,6 +650,8 @@ impl Battle {
                     party[outgoing.slot].stall = None;
                     party[outgoing.slot].boosts = Boosts::default();
                     party[outgoing.slot].flinched = false;
+                    party[outgoing.slot].needs_replacement = false;
+                    party[outgoing.slot].pivot_move = None;
                     if party[outgoing.slot].fainted {
                         party[outgoing.slot].status = Status::Healthy;
                     }
@@ -597,10 +659,21 @@ impl Battle {
                     if matches!(party[outgoing.slot].status, Status::Toxic(_)) {
                         party[outgoing.slot].status = Status::Toxic(0);
                     }
-                    self.add_health_line("switch", outgoing, true);
+                    if let Some(move_name) = pivot {
+                        self.add_health_line_with(
+                            "switch",
+                            outgoing,
+                            true,
+                            &format!("|[from] {move_name}"),
+                        );
+                    } else {
+                        self.add_health_line("switch", outgoing, true);
+                    }
                     self.insert_run_switch(outgoing, &mut queue);
                 }
-                ActionKind::Move { move_slot, target } => {
+                ActionKind::Move {
+                    move_slot, target, ..
+                } => {
                     let source = action.actor.unwrap();
                     if self.mon(source).fainted {
                         continue;
@@ -615,6 +688,20 @@ impl Battle {
             if self.phase == Phase::Ended || self.check_win() {
                 return;
             }
+            if queue.is_empty() {
+                for player in Player::ALL {
+                    if self.first_bench(player, 0).is_none() {
+                        continue;
+                    }
+                    for slot in 0..self.slots() {
+                        let mon = self.mon_mut(Position { player, slot });
+                        if mon.fainted {
+                            mon.status = Status::Fainted;
+                            mon.needs_replacement = true;
+                        }
+                    }
+                }
+            }
             if !queue.first().is_some_and(|q| {
                 matches!(
                     q.kind,
@@ -625,6 +712,25 @@ impl Battle {
                 )
             }) {
                 self.each_event();
+            }
+            let mut waiting = false;
+            for player in Player::ALL {
+                for (slot, required) in self.force_switch(player).into_iter().enumerate() {
+                    if !required {
+                        continue;
+                    }
+                    waiting = true;
+                    if self.mon(Position { player, slot }).pivot_move.is_some() {
+                        // BeforeSwitchOut marks this move-driven switch as having
+                        // already run its update, so it happens only once.
+                        self.each_event();
+                    }
+                }
+            }
+            if waiting {
+                self.suspended = queue;
+                self.phase = Phase::Replace;
+                return;
             }
             if queue
                 .first()
@@ -639,23 +745,16 @@ impl Battle {
                 });
             }
         }
-        if Player::ALL
-            .into_iter()
-            .any(|p| self.force_switch(p).contains(&true))
-        {
-            for player in Player::ALL {
-                for (slot, needed) in self.force_switch(player).into_iter().enumerate() {
-                    if needed {
-                        self.mon_mut(Position { player, slot }).status = Status::Fainted;
-                    }
-                }
-            }
-            self.phase = Phase::Replace;
-        } else {
-            self.turn += 1;
-            self.add(format!("|turn|{}", self.turn));
-            self.phase = Phase::Move;
+        self.turn += 1;
+        self.add(format!("|turn|{}", self.turn));
+        self.phase = Phase::Move;
+    }
+
+    pub(super) fn start_ability(&mut self, pos: Position) {
+        if self.mon(pos).ability == "pressure" {
+            self.add(format!("|-ability|{}|Pressure", self.ident(pos)));
         }
+        self.switch_in_weather(pos);
     }
 
     fn positions(&self) -> impl Iterator<Item = Position> + use<> {
@@ -1199,6 +1298,15 @@ impl Battle {
                 self.mark_fainted(source);
             }
         }
+        if !self.mon(source).fainted && self.first_bench(source.player, 0).is_some() {
+            let pivot = match move_data.name.as_str() {
+                "U-turn" => Some("U-turn"),
+                "Volt Switch" => Some("Volt Switch"),
+                "Flip Turn" => Some("Flip Turn"),
+                _ => None,
+            };
+            self.mon_mut(source).pivot_move = pivot;
+        }
         if spread {
             let labels: Vec<_> = spread_targets.into_iter().map(Position::label).collect();
             self.log[base]
@@ -1211,6 +1319,7 @@ impl Battle {
         self.last_faint = Some(target.player);
         let mon = self.mon_mut(target);
         mon.fainted = true;
+        mon.pivot_move = None;
         mon.stall = None;
         mon.protected = false;
         mon.flinched = false;
@@ -1309,9 +1418,9 @@ impl Pokemon {
             )
     }
 
-    pub(super) fn entry_error(&self) -> Option<BattleError> {
-        if !matches!(
-            self.ability.as_str(),
+    pub(super) fn supported_ability(ability: &str) -> bool {
+        matches!(
+            ability,
             "" | "blaze"
                 | "torrent"
                 | "overgrow"
@@ -1332,7 +1441,11 @@ impl Pokemon {
                 | "sandrush"
                 | "slushrush"
                 | "sandforce"
-        ) {
+        )
+    }
+
+    pub(super) fn entry_error(&self) -> Option<BattleError> {
+        if !Self::supported_ability(&self.ability) {
             return Some(BattleError::Unsupported(format!(
                 "ability {}",
                 self.ability
@@ -1358,7 +1471,10 @@ impl Pokemon {
                 | "smoothrock"
                 | "icyrock"
                 | "heavydutyboots"
-        ) {
+        ) && DEX
+            .item(crate::dex::Mod::Champions, &self.item)
+            .is_none_or(|item| item.mega_stone.is_none())
+        {
             return Some(BattleError::Unsupported(format!("item {}", self.item)));
         }
         if self.species.has_condition {

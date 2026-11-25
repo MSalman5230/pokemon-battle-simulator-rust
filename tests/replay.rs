@@ -131,3 +131,18 @@ fn vgc_replay_with_weather_setters_and_dynamic_speed() {
 fn bss_replay_with_ordered_entry_hazards_and_poison_absorption() {
     replay(include_str!("fixtures/bss-hazards.json"));
 }
+
+#[test]
+fn vgc_replay_resumes_turn_after_two_pivots() {
+    replay(include_str!("fixtures/vgc-pivots.json"));
+}
+
+#[test]
+fn vgc_replay_with_simultaneous_megas_and_permanent_formes() {
+    replay(include_str!("fixtures/vgc-megas.json"));
+}
+
+#[test]
+fn bss_replay_with_champions_mega_z_and_levitate() {
+    replay(include_str!("fixtures/bss-mega-z.json"));
+}

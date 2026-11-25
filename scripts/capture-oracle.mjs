@@ -119,6 +119,18 @@ const hazardRosters = [
     [named('Umbreon', ['Tackle', 'Recover']), named('Glaceon', ['Recover']),
         {...named('Gengar', ['Recover']), item: 'Heavy-Duty Boots'}],
 ];
+const pivotRosters = [
+    [named('Flareon', ['U-turn', 'Quick Attack']), named('Vaporeon', ['Flip Turn', 'Surf']),
+        named('Jolteon', ['Volt Switch']), named('Glaceon', ['Ice Shard'])],
+    rosters[1],
+];
+const megaRosters = [
+    [{...named('Charizard', ['Flamethrower', 'Protect']), ability: 'Blaze', item: 'Charizardite Y'},
+        {...named('Garchomp', ['Tackle', 'Earthquake']), ability: 'Rough Skin', item: 'Garchompite Z'},
+        {...named('Vaporeon', ['Surf', 'Protect']), ability: 'Torrent'}, named('Glaceon', ['Snowscape'])],
+    [{...named('Tyranitar', ['Rock Slide', 'Protect', 'Earthquake']), ability: 'Sand Stream', item: 'Tyranitarite'},
+        {...named('Umbreon', ['Tackle']), item: 'Leftovers'}, named('Espeon', ['Swift']), named('Leafeon', ['Tackle'])],
+];
 for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of [
     ['bssregmc', [['team 132', 'team 231'], ['move 2', 'move 1'], ['switch 2', 'move 1']]],
     ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 1'],
@@ -148,6 +160,14 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         ['move 3', 'move 2'], ['move 3', 'move 2'], ['move 4', 'move 2'],
         ['move 1', 'switch 2'], ['move 4', 'switch 3'], ['move 2', 'switch 2']],
         hazardRosters, 'bss-hazards'],
+    ['vgc2026regmc', [['team 1234', 'team 2134'], ['move 1 2, move 2', 'move 2, move 1 2'],
+        ['switch 3', null], ['move 1 2, move 1 1', 'switch 3, move 1 1'],
+        ['switch 3', null], ['pass, switch 4', null]], pivotRosters, 'vgc-pivots'],
+    ['vgc2026regmc', [['team 1234', 'team 1234'], ['move 2 mega, move 1 2', 'move 2 mega, move 1 1'],
+        ['switch 3, move 1 2', 'move 2, move 1 1'], ['switch 3, move 1 2', 'move 2, move 1 1']],
+        megaRosters, 'vgc-megas'],
+    ['bssregmc', [['team 213', 'team 123'], ['move 1 mega', 'move 3'], ['move 2', 'move 2']],
+        megaRosters, 'bss-mega-z'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {
@@ -177,7 +197,7 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
             requests: battle.sides.map(s => s.activeRequest),
             teams: battle.sides.map(s => s.pokemon.map(p => ({
                 name: p.name, species: p.species.name, details: p.details, hp: p.hp, maxhp: p.maxhp, status: p.status,
-                stats: p.storedStats, boosts: {...p.boosts}, ability: p.ability, item: p.item, active: p.isActive,
+                stats: {...p.storedStats}, boosts: {...p.boosts}, ability: p.ability, item: p.item, active: p.isActive,
                 moves: p.moveSlots.map(m => ({id: m.id, pp: m.pp, maxpp: m.maxpp})),
             }))),
         });
