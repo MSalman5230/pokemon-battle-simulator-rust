@@ -21,7 +21,9 @@ impl Pokemon {
                 "throatchop" => self.throat_chop = source.throat_chop,
                 "confusion" => self.confusion = source.confusion,
                 "stall" => self.stall = source.stall,
-                "protect" | "kingsshield" => self.protection = source.protection,
+                "protect" | "kingsshield" | "banefulbunker" | "spikyshield" | "burningbulwark"
+                | "obstruct" | "silktrap" => self.protection = source.protection,
+                "healblock" => self.heal_block = source.heal_block,
                 "roost" => self.roosted = source.roosted,
                 "followme" | "ragepowder" => self.attention = source.attention,
                 "flinch" => self.flinched = source.flinched,

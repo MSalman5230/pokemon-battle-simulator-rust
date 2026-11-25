@@ -1137,7 +1137,7 @@ impl Battle {
         source: Option<Position>,
     ) -> bool {
         let mon = self.mon_mut(pos);
-        if mon.hp == 0 || mon.hp == mon.max_hp.get() {
+        if mon.hp == 0 || mon.hp == mon.max_hp.get() || mon.heal_block > 0 {
             return false;
         }
         mon.hp = (mon.hp + (mon.max_hp.get() / divisor).max(1)).min(mon.max_hp.get());

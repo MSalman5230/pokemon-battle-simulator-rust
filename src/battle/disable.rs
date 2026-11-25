@@ -45,8 +45,9 @@ impl Battle {
             + usize::from(mon.throat_chop > 0)
             + usize::from(mon.taunt > 0)
             + usize::from(mon.encore.is_some())
+            + usize::from(mon.heal_block > 0)
             + usize::from(mon.disabled_slot.is_some());
-        let mut handlers = [mon.speed; 7];
+        let mut handlers = [mon.speed; 8];
         let mut count = own_handlers;
         for foe in self.foe_imprison(pos) {
             handlers[count] = foe.speed;
@@ -77,6 +78,7 @@ impl Battle {
     pub(super) fn visible_disable(&self, pos: Position, slot: usize) -> bool {
         let mon = self.mon(pos);
         mon.disabled_by_choice(slot)
+            || (mon.heal_block > 0 && mon.moves[slot].move_data.flags.contains_key("heal"))
             || (mon.throat_chop > 0 && mon.moves[slot].move_data.flags.contains_key("sound"))
             || mon
                 .disabled_slot
@@ -160,6 +162,25 @@ impl Pokemon {
 }
 
 impl Battle {
+    pub(super) fn start_heal_block(&mut self, target: Position, duration: u8) -> bool {
+        let mon = self.mon(target);
+        if mon.hp == 0 || mon.heal_block > 0 || self.aroma_veil_blocks(target, true) {
+            return false;
+        }
+        let mon = self.mon_mut(target);
+        mon.heal_block = duration;
+        mon.track_volatile("healblock");
+        self.add(format!("|-start|{}|move: Heal Block", self.ident(target)));
+        true
+    }
+
+    pub(super) fn end_heal_block(&mut self, target: Position) {
+        let mon = self.mon_mut(target);
+        mon.heal_block = 0;
+        mon.untrack_volatile("healblock");
+        self.add(format!("|-end|{}|move: Heal Block", self.ident(target)));
+    }
+
     pub(super) fn taunt(&mut self, target: Position, will_move: bool) -> bool {
         let mon = self.mon_mut(target);
         if mon.taunt > 0 {
@@ -221,13 +242,14 @@ impl Battle {
 
     pub(super) fn mental_herb(&mut self, target: Position) {
         let mon = self.mon(target);
-        let (attract, taunt, encore, disabled) = (
+        let (attract, taunt, encore, disabled, heal_block) = (
             mon.attract.is_some(),
             mon.taunt > 0,
             mon.encore.is_some(),
             mon.disabled_slot.is_some(),
+            mon.heal_block > 0,
         );
-        if !(attract || taunt || encore || disabled) {
+        if !(attract || taunt || encore || disabled || heal_block) {
             return;
         }
         self.consume(target, "Mental Herb", false);
@@ -250,6 +272,9 @@ impl Battle {
         }
         if disabled {
             self.end_disable(target);
+        }
+        if heal_block {
+            self.end_heal_block(target);
         }
     }
 

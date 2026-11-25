@@ -206,6 +206,7 @@ impl Battle {
         }
         if mon.effective_item() == "sitrusberry"
             && mon.hp * 2 <= mon.max_hp.get()
+            && mon.heal_block == 0
             && (!matches!(self.event_ability(pos), "berserk" | "angershell")
                 || !mon.half_hp_berry_deferred)
         {
@@ -520,6 +521,9 @@ impl Battle {
     }
 
     pub(super) fn item_heal(&mut self, pos: Position, amount: u32, item: &str) {
+        if self.mon(pos).heal_block > 0 {
+            return;
+        }
         let ripen = self.event_ability(pos) == "ripen";
         if ripen && item == "Leftovers" {
             self.add(format!("|-activate|{}|ability: Ripen", self.ident(pos)));

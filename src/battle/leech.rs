@@ -16,6 +16,9 @@ impl Battle {
         amount: u32,
         kind: DrainKind,
     ) {
+        if self.mon(recipient).heal_block > 0 {
+            return;
+        }
         if self.event_ability(donor) == "liquidooze" {
             if self.format.report_exact_hp {
                 let effect = match kind {

@@ -49,7 +49,7 @@ impl Battle {
             max_hp.div_ceil(2)
         };
         let mon = self.mon_mut(target);
-        if mon.hp == max_hp {
+        if mon.hp == max_hp || mon.heal_block > 0 {
             self.add(format!("|-fail|{}|heal", self.ident(target)));
         } else {
             mon.hp = (mon.hp + amount).min(max_hp);
@@ -206,7 +206,7 @@ impl Battle {
         };
         side.wishes[pos.slot] = None;
         let mon = &mut side.party[pos.slot];
-        if wish.hp == 0 || mon.hp == 0 || mon.hp == mon.max_hp.get() {
+        if wish.hp == 0 || mon.hp == 0 || mon.hp == mon.max_hp.get() || mon.heal_block > 0 {
             return;
         }
         mon.hp = mon.hp.saturating_add(wish.hp).min(mon.max_hp.get());

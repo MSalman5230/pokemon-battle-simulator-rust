@@ -106,6 +106,14 @@ impl Battle {
             self.add(format!("|cant|{}|move: Throat Chop", self.ident(pos)));
             return false;
         }
+        if self.mon(pos).heal_block > 0 && data.flags.contains_key("heal") {
+            self.add(format!(
+                "|cant|{}|move: Heal Block|{}",
+                self.ident(pos),
+                data.name
+            ));
+            return false;
+        }
         if self.mon(pos).taunt > 0
             && data.category == crate::dex::Category::Status
             && data.name != "Me First"

@@ -1132,6 +1132,7 @@ impl Battle {
                     | "temperflare"
                     | "coaching"
                     | "burningjealousy"
+                    | "psychicnoise"
                     | "bugbite"
                     | "pluck"
                     | "beatup"
@@ -1529,6 +1530,7 @@ impl Battle {
         party[outgoing.slot].move_failed_last_turn = false;
         party[outgoing.slot].last_foe_hit = None;
         party[outgoing.slot].attackers_this_turn = [0; 2];
+        party[outgoing.slot].heal_block = 0;
         party[outgoing.slot].counter = None;
         party[outgoing.slot].acted = false;
         if !party[outgoing.slot].fainted {
@@ -2043,6 +2045,7 @@ impl Battle {
             PartialTrap,
             PerishSong,
             ThroatChop,
+            HealBlock,
             Taunt,
             Encore,
             Disable,
@@ -2175,6 +2178,9 @@ impl Battle {
             }
             if mon.throat_chop != 0 {
                 timers.push((pos, Effect::ThroatChop, priority(22, 2)));
+            }
+            if mon.heal_block > 0 {
+                timers.push((pos, Effect::HealBlock, priority(20, 2)));
             }
             if mon.encore.is_some() {
                 timers.push((pos, Effect::Encore, priority(16, 2)));
@@ -2358,6 +2364,12 @@ impl Battle {
                     if mon.throat_chop == 0 {
                         mon.untrack_volatile("throatchop");
                         self.add(format!("|-end|{}|Throat Chop|[silent]", self.ident(pos)));
+                    }
+                }
+                Effect::HealBlock => {
+                    mon.heal_block = mon.heal_block.saturating_sub(1);
+                    if mon.heal_block == 0 {
+                        self.end_heal_block(pos);
                     }
                 }
                 Effect::FocusPunch => {
@@ -4251,6 +4263,14 @@ impl Battle {
                         self.add(format!("|-fail|{}|heal", self.ident(target)));
                         continue;
                     }
+                    if mon.heal_block > 0 {
+                        self.move_still(base);
+                        self.add(format!("|-fail|{source_name}"));
+                        if self.format.report_exact_hp {
+                            self.add("|debug|heal interrupted");
+                        }
+                        continue;
+                    }
                     let amount =
                         (mon.max_hp.get() * u32::from(num) + u32::from(den) / 2) / u32::from(den);
                     mon.hp = (mon.hp + amount).min(mon.max_hp.get());
@@ -4315,10 +4335,21 @@ impl Battle {
 
         if move_data.name == "Pollen Puff" && spread_targets[0].player == source.player {
             let target = spread_targets[0];
+            if self.mon(source).heal_block > 0 {
+                self.move_still(base);
+                self.add(format!("|cant|{source_name}|move: Heal Block|Pollen Puff"));
+                result.failed = true;
+                return true;
+            }
             let mon = self.mon_mut(target);
             if mon.hp < mon.max_hp.get() {
-                mon.hp = (mon.hp + (mon.max_hp.get() / 2).max(1)).min(mon.max_hp.get());
-                self.add_health_line("-heal", target, false);
+                if mon.heal_block > 0 {
+                    self.move_still(base);
+                    self.add(format!("|cant|{source_name}|move: Heal Block|Pollen Puff"));
+                } else {
+                    mon.hp = (mon.hp + (mon.max_hp.get() / 2).max(1)).min(mon.max_hp.get());
+                    self.add_health_line("-heal", target, false);
+                }
             }
             self.each_event();
             self.each_event();
@@ -4826,6 +4857,9 @@ impl Battle {
                         if effect.volatile_status.as_deref() == Some("confusion") {
                             self.apply_confusion(target, false);
                         }
+                        if effect.volatile_status.as_deref() == Some("healblock") {
+                            self.start_heal_block(target, 2);
+                        }
                         if effect.volatile_status.as_deref() == Some("saltcure") {
                             self.start_salt_cure(target);
                         }
@@ -5299,6 +5333,7 @@ impl Battle {
         mon.move_failed_last_turn = false;
         mon.last_foe_hit = None;
         mon.attackers_this_turn = [0; 2];
+        mon.heal_block = 0;
         mon.counter = None;
         mon.times_attacked = 0;
         mon.boosts = Boosts::default();

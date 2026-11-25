@@ -106,7 +106,7 @@ impl Battle {
         if let Some([num, den]) = move_data.drain {
             let restored = (dealt * u32::from(num)).div_ceil(u32::from(den));
             let mon = self.mon_mut(source);
-            if restored > 0 && mon.hp > 0 && mon.hp < mon.max_hp.get() {
+            if restored > 0 && mon.hp > 0 && mon.hp < mon.max_hp.get() && mon.heal_block == 0 {
                 mon.hp = (mon.hp + restored).min(mon.max_hp.get());
                 self.add_health_line_with(
                     "-heal",

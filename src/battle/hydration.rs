@@ -448,6 +448,10 @@ impl WorldSide {
                     mon.taunt = remaining(3);
                     mon.track_volatile("taunt");
                 }
+                "healblock" => {
+                    mon.heal_block = remaining(2);
+                    mon.track_volatile("healblock");
+                }
                 "encore" => {
                     mon.encore = Some((move_slot(mon)?, remaining(3)));
                     mon.track_volatile("encore");

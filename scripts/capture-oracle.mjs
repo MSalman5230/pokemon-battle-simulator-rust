@@ -1027,6 +1027,10 @@ const poisonTouchRosters = [
     [{...named('Sneasler', ['Tackle']), ability:'Poison Touch'}],
     [named('Vaporeon', ['Recover'])],
 ];
+const psychicNoiseRosters = [
+    [named('Espeon', ['Psychic Noise', 'Calm Mind'])],
+    [{...named('Hitmontop', ['Recover', 'Tackle'], 'M'), item:'Sitrus Berry'}],
+];
 const faintedItemSpeedRosters = [
     [named('Flareon', ['Healing Wish']), named('Vaporeon', ['Recover']), named('Glaceon', ['Recover'])],
     [{...named('Clefable', ['Healing Wish']), item:'Choice Scarf'},
@@ -1913,6 +1917,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         quickDrawRosters, 'bss-quick-draw'],
     ['bssregmc', [['team 1','team 1'], ...Array(5).fill(['move 1','move 1'])],
         poisonTouchRosters, 'bss-poison-touch'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 2'], ['move 2','move 1']],
+        psychicNoiseRosters, 'bss-psychic-noise'],
+    ['bssregmc', [['team 1','team 1'], ['move 1','move 1']],
+        [psychicNoiseRosters[0], [{...psychicNoiseRosters[1][0], item:'Mental Herb'}]], 'bss-psychic-noise-herb'],
 ]) {
     const formatid = 'gen9champions' + suffix;
     if (players === competitiveRosters) {

@@ -97,6 +97,7 @@ fn safe_ignored_volatile(id: &str) -> bool {
             | "taunt"
             | "encore"
             | "disable"
+            | "healblock"
             | "leechseed"
             | "yawn"
             | "partiallytrapped"
@@ -366,6 +367,7 @@ impl Battle {
                     | "risingvoltage"
                     | "thief"
                     | "covet"
+                    | "psychicnoise"
             )
         {
             return Err(unsupported(format!("move {move_id}")));

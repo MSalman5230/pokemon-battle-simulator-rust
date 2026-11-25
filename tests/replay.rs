@@ -1330,6 +1330,12 @@ fn quick_draw_and_poison_touch_consume_rng_only_for_eligible_actions() {
 }
 
 #[test]
+fn psychic_noise_blocks_healing_and_disables_moves_until_expiry_or_herb() {
+    replay(include_str!("fixtures/bss-psychic-noise.json"));
+    replay(include_str!("fixtures/bss-psychic-noise-herb.json"));
+}
+
+#[test]
 fn baton_pass_transfers_boosts_and_copyable_volatiles_but_not_status_or_salt_cure() {
     replay(include_str!(
         "fixtures/bss-baton-pass-boosts-and-shield.json"

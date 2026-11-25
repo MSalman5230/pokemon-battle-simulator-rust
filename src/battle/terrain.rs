@@ -153,7 +153,7 @@ impl Battle {
             return;
         }
         let mon = self.mon_mut(pos);
-        if mon.hp > 0 && mon.hp < mon.max_hp.get() {
+        if mon.hp > 0 && mon.hp < mon.max_hp.get() && mon.heal_block == 0 {
             mon.hp = (mon.hp + (mon.max_hp.get() / 16).max(1)).min(mon.max_hp.get());
             self.add_health_line_with("-heal", pos, false, "|[from] Grassy Terrain");
         }
