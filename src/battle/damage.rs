@@ -118,7 +118,7 @@ impl Battle {
         let user = self.mon(source);
         let defender = self.mon(target);
         let source_active = self.active_effects(source);
-        let mut hooks = [(0_i32, 0_u8, Hook::Fixed(4096, "")); 11];
+        let mut hooks = [(0_i32, 0_u8, Hook::Fixed(4096, "")); 12];
         let mut count = 0;
         let mut add = |speed, suborder, hook| {
             hooks[count] = (speed, suborder, hook);
@@ -152,6 +152,9 @@ impl Battle {
             add(0, 4, Hook::Screens);
         }
         if defender.glaive_drawback {
+            add(defender.speed, 2, Hook::Fixed(8192, ""));
+        }
+        if defender.trampled_by(data) {
             add(defender.speed, 2, Hook::Fixed(8192, ""));
         }
         if let Some(modifier) = defender

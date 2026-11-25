@@ -678,6 +678,12 @@ impl WorldSide {
                 "focusenergy" => mon.track_volatile("focusenergy"),
                 "ingrain" => mon.track_volatile("ingrain"),
                 "saltcure" => mon.track_volatile("saltcure"),
+                "minimize" => mon.track_volatile("minimize"),
+                "smackdown" => mon.track_volatile("smackdown"),
+                "magnetrise" if e.remaining.is_some_and(|n| n > 0 && n <= 5) => {
+                    mon.magnet_rise = e.remaining.unwrap();
+                    mon.track_volatile("magnetrise");
+                }
                 "imprison" => {
                     mon.imprisoned = true;
                     mon.track_volatile("imprison");

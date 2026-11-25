@@ -1537,6 +1537,16 @@ fn magma_armor_prevents_freeze() {
 }
 
 #[test]
+fn memento_faints_the_user_only_after_a_hit() {
+    replay(include_str!("fixtures/bss-memento.json"));
+}
+
+#[test]
+fn minimize_keeps_its_separate_trampling_drawback_when_boosts_are_capped() {
+    replay(include_str!("fixtures/bss-minimize.json"));
+}
+
+#[test]
 fn rattled_responds_to_intimidate_and_a_dark_attack() {
     replay(include_str!("fixtures/bss-rattled.json"));
 }

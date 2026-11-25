@@ -1244,6 +1244,14 @@ const magmaArmorRosters = [
     [{...named('Camerupt', ['Recover']), ability:'Magma Armor'}],
     [named('Froslass', ['Ice Beam'])],
 ];
+const mementoRosters = [
+    [named('Whimsicott', ['Memento']), named('Umbreon', ['Recover'])],
+    [{...named('Metagross', ['Protect', 'Recover'], 'N'), ability:'Clear Body'}],
+];
+const minimizeRosters = [
+    [named('Clefable', ['Minimize', 'Recover'])],
+    [named('Blissey', ['Recover', 'Body Slam'])],
+];
 const poisonBarbFlingRosters = [
     [{...named('Pinsir', ['Fling', 'Recycle']), item:'Poison Barb', ability:'Mold Breaker'}],
     [named('Vaporeon', ['Recover']), {...named('Umbreon', ['Recover']), item:'Covert Cloak'}],
@@ -2351,6 +2359,10 @@ for (const [suffix, play, players = rosters, label = suffix, seed = seeds[1]] of
         sandSpitRosters, 'bss-sand-spit'],
     ['bssregmc', [['team 1','team 1'], ...Array(6).fill(['move 1','move 1'])], moodyRosters, 'bss-moody'],
     ['bssregmc', [['team 1','team 1'], ...Array(3).fill(['move 1','move 1'])], magmaArmorRosters, 'bss-magma-armor', '1,2,3,13'],
+    ['bssregmc', [['team 12','team 1'], ['move 1','move 1'], ['move 1','move 2'],
+        ['switch 2',null]], mementoRosters, 'bss-memento'],
+    ['bssregmc', [['team 1','team 1'], ...Array(3).fill(['move 1','move 1']),
+        ['move 1','move 2'], ['move 2','move 2']], minimizeRosters, 'bss-minimize'],
     ['bssregmc', [['team 1','team 12'], ['move 1','move 1'], ['move 2','switch 2'],
         ['move 1','move 1']], poisonBarbFlingRosters, 'bss-fling-poison-barb'],
     ['bssregmc', [['team 1','team 1'], ['move 1','move 1'], ['move 2','move 1']],

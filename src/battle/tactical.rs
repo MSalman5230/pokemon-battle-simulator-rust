@@ -513,9 +513,10 @@ impl Battle {
         let Accuracy::Percent(base) = weather_adjusted else {
             return 1.0;
         };
-        if [ACTOR, TARGET]
-            .into_iter()
-            .any(|p| self.event_ability(p) == "noguard")
+        if self.mon(TARGET).trampled_by(move_data)
+            || [ACTOR, TARGET]
+                .into_iter()
+                .any(|p| self.event_ability(p) == "noguard")
         {
             return 1.0;
         }

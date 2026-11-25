@@ -1128,6 +1128,8 @@ impl Battle {
                     | "spiderweb"
                     | "howl"
                     | "teeterdance"
+                    | "memento"
+                    | "minimize"
                     | "safeguard"
                     | "acupressure"
                     | "magneticflux"
@@ -4392,6 +4394,7 @@ impl Battle {
                 && self.mon(source).ability != "noguard"
                 && self.mon(pos).ability != "noguard"
                 && !self.mon(pos).glaive_drawback
+                && !self.mon(pos).trampled_by(move_data)
                 && !self.rng.chance(
                     if ohko && !self.mon(pos).semi_invulnerable() {
                         let base = if sheer_cold && !self.mon(source).has_type("Ice") {
@@ -4499,6 +4502,7 @@ impl Battle {
             let mut hit_labels = Vec::new();
             let life_dew = move_data.name == "Life Dew";
             let teeter_dance = move_data.name == "Teeter Dance";
+            let memento = move_data.name == "Memento";
             let list_all_targets = life_dew || teeter_dance;
             let mut confusion_failed = false;
             for target in spread_targets {
@@ -5076,6 +5080,16 @@ impl Battle {
                     succeeded |=
                         self.boost_from(target, source, boosts, BoostOrigin::from_move(move_data));
                 }
+                if memento {
+                    self.mon_mut(source).hp = 0;
+                    succeeded = true;
+                }
+                if move_data.name == "Minimize"
+                    && !self.mon(target).volatile_ids().contains(&"minimize")
+                {
+                    self.mon_mut(target).track_volatile("minimize");
+                    succeeded = true;
+                }
                 if move_data.name == "No Retreat" {
                     let mon = self.mon_mut(target);
                     if !mon.volatile_ids().contains(&"trapped") {
@@ -5125,7 +5139,7 @@ impl Battle {
             }
             if any_success {
                 self.each_event();
-                if curse && self.mon(source).hp == 0 {
+                if (curse || memento) && self.mon(source).hp == 0 {
                     self.mark_fainted(source);
                 }
                 self.each_event();
@@ -6518,6 +6532,10 @@ fn move_base_target(data: &Move, source: Position, loc: i8) -> TargetKind {
 }
 
 impl Pokemon {
+    pub(super) fn trampled_by(&self, data: &Move) -> bool {
+        self.volatile_ids().contains(&"minimize") && data.flags.contains_key("minimize")
+    }
+
     fn requested_target(&self, data: &Move) -> TargetKind {
         if data.name == "Curse" && !self.has_type("Ghost") {
             TargetKind::User
