@@ -90,7 +90,8 @@ node benchmarks/throughput.mjs --trace-parity --delta-observations -- \
 
 This opt-in mode sends a complete training snapshot on `new`, then sends
 only changed view fields, changed roster slots, and new history entries.
-The two critic views are rebuilt from the player views. The benchmark
+Original team sets are sent only with the snapshot. The two critic views
+are rebuilt from the player views. The benchmark
 includes this reconstruction in its timing and compares the same complete
 decoded replies and spectator logs against Showdown. It does not change
 the requests, legal actions, or battle mechanics.
@@ -104,6 +105,26 @@ the resulting observations as read-only. On an error, both ends discard
 their saved bases, so the next observation for each game is a full
 snapshot. A sequence gap without a reset is an error, not a partial
 observation. The default and stateless compact modes are still available.
+
+The [delta release run](verified-delta-bss-result.json) measured 6,488.8
+steps/s against Showdown's 343.9 across seven replays (18.87×). The
+workload hash, all 673 decoded step replies, and all 32 spectator traces
+matched. A separate 160-game diagnostic matched another 2,856 steps.
+
+To separately measure JSON decoding and delta reconstruction with Python,
+capture the same workload and replay it through actual worker subprocesses:
+
+```sh
+mkdir -p benchmarks/results
+node benchmarks/throughput.mjs --capture-replay benchmarks/results/full-workload.jsonl
+python3 benchmarks/throughput-python.py benchmarks/results/full-workload.jsonl
+```
+
+The Python replay also compared every decoded reply before timing. With
+Python 3.13.5 it measured 5,045.0 steps/s against Showdown's 312.8 (16.13×)
+across five replays. Delta step replies took 2.72 MB per replay versus
+31.02 MB in full Rust JSON. Both figures are in the delta report. This
+measures the transport only, without model inference or training.
 
 ## Parity and earlier runs
 

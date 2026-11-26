@@ -71,7 +71,10 @@ It measured a 4.24× release speedup with native validation enabled. A separate
 160-game diagnostic replay in the same report matched all 2,856 step replies.
 The [compact transport run](../benchmarks/verified-compact-bss-result.json)
 repeated these checks with an opt-in decoder and reached 8.67× on the same
-workload. Both speedups apply to this benchmark, not all formats or builds.
+workload. The [delta transport run](../benchmarks/verified-delta-bss-result.json)
+reached 18.87× on an identical workload while preserving decoded replies
+and spectator traces. These speedups apply to this benchmark, not all
+formats or builds.
 The Rust validator handles Flat Rules, OU, UU, Doubles, Draft, 4v4 Doubles UU, and 4v4
 Doubles Draft, including their team bans. It admits all 128 rosters in the
 locked training corpus. NatDex Draft also checks National Dex transfer
