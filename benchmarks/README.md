@@ -59,7 +59,13 @@ steps/s for Showdown and 1,460 for Rust across five replays (4.37×). The
 [previous trace run](verified-trace-bss-result.json) measured 4.45× on the
 same workload hash.
 
-The [latest BSS trace milestone](verified-primal-bss-result.json) at
+The [release verification](verified-champions-release-bss-result.json) at
+`b136918` matched all 32 traces, all 673 timed step replies, and another 2,856
+step replies in a separate 160-game diagnostic. The release worker ran at
+1,445.0 steps/s versus 340.9 steps/s for Showdown on the same workload
+(4.24× as fast).
+
+The [Primal mechanics trace milestone](verified-primal-bss-result.json) at
 `dd60eb4` matched all 32 traces, 673 timed step replies, and another 2,856
 steps in the separate 160-game diagnostic. Showdown ran at 338.6 steps/s and
 Rust at 1,437.7 steps/s on the same workload (4.25×).
@@ -138,6 +144,25 @@ keyed by format ID with an array of Showdown teams under each format. Each
 team is an array of Showdown sets. The capture validates the rosters against
 the pinned oracle and uses a separate seed to select two distinct rosters
 per game. This does not replace native Rust team validation.
+
+To reproduce the reactive-mechanics NatDex sample in the
+[release replay report](verified-champions-release-native-parity.json), run:
+
+```sh
+node scripts/capture-wide-native.mjs .tools/wide-native-reactive-72.jsonl \
+  --teams benchmarks/native-reactive-rosters.json --games 72 --first-game 217 \
+  --max-turns 250 --special-actions
+CHAMPIONS_NATIVE_CORPUS=.tools/wide-native-reactive-72.jsonl \
+  cargo test --locked --test replay wide_native -- --ignored --nocapture
+```
+
+The damage calculator is verified separately against the locked Poke-RL move
+pool and does not contribute to the throughput figure.
+
+```sh
+node scripts/capture-tactics.mjs .tools/tactics-training.json
+cargo test --locked --test tactics -- --include-ignored
+```
 
 To derive those pools from a Poke-RL training manifest for every submitted
 format, run `node scripts/prepare-native-rosters.mjs INPUT.json OUTPUT.json`

@@ -63,26 +63,27 @@ form changes, weather, hazards, screens, status, and selected move, item,
 and ability effects. Passing a preview fixture does not imply that all rules
 for that format are implemented.
 
-The experimental Poke-RL worker passes exact response replay on the curated
+The Poke-RL worker passes exact response replay on the curated
 BSS benchmark and the fixed 32-game default benchmark using the training
-corpus. The [latest trace run](../benchmarks/verified-reactive-items-bss-result.json)
+corpus. The [release trace run](../benchmarks/verified-champions-release-bss-result.json)
 matched 673 step replies and 32 complete spectator traces without truncation.
-It measured a 4.32× release speedup with native validation enabled. A separate
+It measured a 4.24× release speedup with native validation enabled. A separate
 160-game diagnostic replay in the same report matched all 2,856 step replies.
-This is a benchmark milestone, not general parity. Native validation covers
-ordinary modern sets under Flat Rules, OU, UU, Doubles, Draft, 4v4 Doubles UU,
-and 4v4 Doubles Draft, including their corresponding team bans. It admits all
-128 rosters in the locked training corpus. NatDex Draft also checks ordinary
-sets, with National Dex transfer learnsets and a Champions fallback. Some
-origin, special form, and event constraints are still unsupported. Focused
+The speedup applies to this benchmark, not all formats or builds. The Rust
+validator handles Flat Rules, OU, UU, Doubles, Draft, 4v4 Doubles UU, and 4v4
+Doubles Draft, including their team bans. It admits all 128 rosters in the
+locked training corpus. NatDex Draft also checks National Dex transfer
+learnsets and Champions-only sources. Focused legality fixtures cover held
+equipment, starting forms, event and Pokémon GO origins, restricted move
+sources, and low-level evolutions. Focused
 National Dex and Custom Game replays cover the once-per-side Z-Crystal
 selection, generic damage and status Z effects, and signature effects such as
 Guardian of Alola's fixed damage and Genesis Supernova's terrain. Ultra Burst,
 move-based Mega Rayquaza, and Primal Reversion also have seeded fixtures,
-including strong weather ending when its source leaves. Other inherited mechanics
-still need coverage. Roster Ranch Rumble generates ten-member rosters with a
-separate PRNG and supports native pick-four doubles setup. Seeded tests compare complete
-rosters and the final team PRNG state. Random Battle and Random Doubles Battle
+including strong weather ending when its source leaves. Roster Ranch Rumble
+generates ten-member rosters with a separate PRNG and supports native
+pick-four doubles setup. Seeded tests compare complete rosters and the final
+team PRNG state. Random Battle and Random Doubles Battle
 generate teams, skip preview, and retain level-based stats and Illusion.
 Continue testing more rosters, seeds, and formats and record focused native
 fixtures for gaps.
@@ -124,15 +125,27 @@ uses six native-validated legacy rosters. It matched all 3,609 checkpoints,
 including 79 Z-Move uses, 46 Primal Reversions, 16 Ultra Bursts, and 32 Mega
 Evolutions. All games finished naturally.
 
+Another 72 NatDex games exercised form changes, reactive held items, and
+inherited abilities. All finished naturally and matched 3,028 checkpoints.
+The [release replay report](../benchmarks/verified-champions-release-native-parity.json)
+combines the five rechecked samples. It records 41,111 exact checkpoint
+comparisons from 1,540 replays across all 18 pinned Champions formats,
+including the repeated BSS and VGC controls.
+
 The Poke-RL adapter compares terminal spectator traces, excluding wall-clock
 markers. Its hypothetical damage calculator runs in an isolated battle and
 reuses the native damage formula. Tests compare each enumerated damage roll,
-accuracy, speed, and survival flags. Unsupported preparation, multihit, and
-other conditional cases do not fall back to heuristic damage estimates.
+accuracy, speed, and survival flag. The calculator preserves Poke-RL's
+reliability annotations for correlated multihit estimates, partial
+observations, and preparation or party-dependent results. It does not read a
+live battle or synthesize unobserved state.
+The training-move sweep matched 546 calculator queries across all 273 moves
+in the locked training roster pool.
 
 The public-belief lookahead endpoint restores an isolated battle from each
 hypothetical world. It pairs candidates on the same opponent replies and
-rollout seeds and follows interrupted turns through switches. Replays compare
+rollout seeds and follows interrupted turns through switches, including
+simultaneous public replacement decisions. Replays compare
 public and critic observations and reconstruction assumptions. Unported world
 effects are reported per world rather than borrowed from a live game.
 The benchmark rejects any mismatch before timing the adapter.

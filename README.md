@@ -1,16 +1,20 @@
 # Pokémon Battle Simulator (Rust)
 
-A headless Rust port of Pokémon Showdown's Gen 9 Champions singles and
-doubles for Poke-RL, in progress. The Rust core accepts native Showdown input
-and replays seeded singles and doubles battles across a growing set of rules
-and mechanics. The experimental Poke-RL worker matched all 673 step replies
-and all 32 spectator traces in the default BSS Reg M-C benchmark and ran
-4.37× faster in release mode. That result covers the fixed workload. The worker validates
-ordinary BSS rosters in Rust, without a reference manifest. Unsupported
-mechanics and unimplemented legality constraints return errors. Random
-Battle, Random Doubles Battle, and Roster Ranch Rumble generate teams in Rust.
-Full battle parity is not complete. The worker implements tactics metadata
-and tested subsets of public-state damage queries and one-turn lookahead.
+A headless Rust port of the pinned Pokémon Showdown Gen 9 Champions singles
+and doubles simulator. The Rust core uses Showdown's native battle inputs,
+validates submitted competitive rosters, and generates Random Battle, Random
+Doubles Battle, and Roster Ranch Rumble teams. The separate Poke-RL worker
+uses the existing singles training protocol, including validation, traces,
+tactical damage queries, and one-turn public-belief lookahead. Neither
+requires Node.js or Showdown at runtime.
+
+On the locked BSS Reg M-C workload, the release worker processed 1,445
+steps/s versus Showdown's 341 steps/s (4.24× as fast), with all 673 step
+replies and 32 full spectator traces matching. Native replay also matched
+41,111 checkpoints across 1,540 seeded replays covering 18 formats. The
+samples are not exhaustive over possible sets and seeds.
+[Throughput report](benchmarks/verified-champions-release-bss-result.json) ·
+[Native replay report](benchmarks/verified-champions-release-native-parity.json)
 
 ## Local setup
 

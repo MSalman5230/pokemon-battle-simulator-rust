@@ -1,0 +1,54 @@
+{
+  "rust_revision": "b1369185e1afefbab1ab599a88ef8c1c5e85ced9",
+  "showdown_revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+  "exact_replays": 1540,
+  "exact_checkpoints": 41111,
+  "formats": 18,
+  "samples": [
+    {
+      "id": "1088",
+      "description": "Random singles, Random doubles, Ranch, BSS Reg M-C, and VGC Reg M-C",
+      "exact_replays": 1088,
+      "exact_checkpoints": 28752,
+      "finished_naturally": 1088,
+      "corpus_sha256": "830ff9f8cb5a231d7165bebb1581b5de0f6d9b497d7892eb7bfad7508650808a"
+    },
+    {
+      "id": "all-formats",
+      "description": "All 15 submitted-roster formats, including repeated BSS and VGC controls",
+      "exact_replays": 180,
+      "exact_checkpoints": 4595,
+      "finished_naturally": 180,
+      "corpus_sha256": "35fb12eabc6c6cffea8438b99ae7c685fe286c9f28916b0a28d5097a44006a49"
+    },
+    {
+      "id": "legacy-72",
+      "description": "NatDex Z-Moves, Primal Reversion, Ultra Burst, and Mega Evolution",
+      "exact_replays": 72,
+      "exact_checkpoints": 3609,
+      "finished_naturally": 72,
+      "corpus_sha256": "1e9541bc1afa1bb0f68802a19358e3748f7f10431291962df317a8bc9db84e0e"
+    },
+    {
+      "id": "metronome-128",
+      "description": "Metronome against Recover, capped at seven turns",
+      "exact_replays": 128,
+      "exact_checkpoints": 1127,
+      "finished_naturally": 11,
+      "corpus_sha256": "8e44dff26d69c78824ba0c138e00414c10ad959e172340226dc7cdcdc81aa671"
+    },
+    {
+      "id": "reactive-72",
+      "description": "NatDex form changes, reactive items, and inherited abilities",
+      "exact_replays": 72,
+      "exact_checkpoints": 3028,
+      "finished_naturally": 72,
+      "corpus_sha256": "478041199bf8f45f950b3093df346fd6c1b995f94c2bdd2ccc3c4978dedb1616",
+      "manifest": "benchmarks/native-reactive-rosters.json",
+      "first_game": 217,
+      "max_turns": 250,
+      "special_actions": true
+    }
+  ],
+  "note": "Counts are replay comparisons, including 24 BSS/VGC controls repeated in the all-format sample. The captures do not exhaust every possible seed, set, or order of actions."
+}
