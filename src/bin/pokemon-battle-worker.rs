@@ -1,7 +1,7 @@
 //! Experimental Poke-RL JSON-lines worker.
 
 use pokemon_battle_simulator::{
-    adapter::{FORMAT, Game, lookahead, tactics},
+    adapter::{FORMAT, Game, ObservationDelta, lookahead, tactics},
     dex::DEX,
     rng::Seed,
     validation::TeamValidator,
@@ -15,19 +15,34 @@ use std::{
 };
 
 struct Worker {
-    games: HashMap<String, Game>,
+    games: HashMap<String, LiveGame>,
     verified: Option<Value>,
-    compact: bool,
+    observations: Observations,
+}
+
+#[derive(Clone, Copy, Default, PartialEq, Eq)]
+enum Observations {
+    #[default]
+    Full,
+    Compact,
+    Delta,
+}
+
+struct LiveGame {
+    game: Game,
+    delta: Option<Box<ObservationDelta>>,
 }
 
 impl Worker {
     fn new() -> Result<Self, String> {
         let mut args = env::args_os().skip(1);
         let mut verified = None;
-        let mut compact = false;
+        let mut observations = Observations::Full;
         while let Some(option) = args.next() {
-            if option == "--compact-observations" && !compact {
-                compact = true;
+            if option == "--compact-observations" && observations == Observations::Full {
+                observations = Observations::Compact;
+            } else if option == "--delta-observations" && observations == Observations::Full {
+                observations = Observations::Delta;
             } else if option == "--verified-teams" && verified.is_none() {
                 let path = args.next().ok_or("--verified-teams requires a file")?;
                 let data = fs::read(path).map_err(|e| e.to_string())?;
@@ -51,7 +66,7 @@ impl Worker {
                 verified = Some(manifest);
             } else {
                 return Err(
-                    "usage: pokemon-battle-worker [--verified-teams FILE] [--compact-observations]"
+                    "usage: pokemon-battle-worker [--verified-teams FILE] [--compact-observations | --delta-observations]"
                         .into(),
                 );
             }
@@ -59,7 +74,7 @@ impl Worker {
         Ok(Self {
             games: HashMap::new(),
             verified,
-            compact,
+            observations,
         })
     }
 }
@@ -68,13 +83,29 @@ fn encode(out: &mut Vec<u8>, value: impl Serialize) -> Result<(), String> {
     serde_json::to_writer(out, &value).map_err(|e| e.to_string())
 }
 
-fn encode_game(out: &mut Vec<u8>, game: &Game, compact: bool) -> Result<(), String> {
-    game.result()
-        .write_json(out, compact)
+impl LiveGame {
+    fn encode(&mut self, out: &mut Vec<u8>, key: &str, mode: Observations) -> Result<(), String> {
+        let result = self.game.result();
+        if let Some(delta) = &mut self.delta {
+            delta.write_json(out, key, &result)
+        } else {
+            result.write_json(out, mode == Observations::Compact)
+        }
         .map_err(|e| e.to_string())
+    }
 }
 
 impl Worker {
+    fn discard_observations(&mut self) {
+        if self.observations == Observations::Delta {
+            for game in self.games.values_mut() {
+                if let Some(delta) = &mut game.delta {
+                    **delta = ObservationDelta::default();
+                }
+            }
+        }
+    }
+
     fn dispatch(&mut self, query: &Value, out: &mut Vec<u8>) -> Result<(), String> {
         let op = query["op"].as_str().ok_or("missing operation")?;
         if op == "ping" {
@@ -155,24 +186,42 @@ impl Worker {
                 } else {
                     Game::new(teams, seed, max_turns, training)?
                 };
-                encode_game(out, &game, self.compact)?;
-                self.games.insert(key.into(), game);
+                let mut live = LiveGame {
+                    game,
+                    delta: (training && self.observations == Observations::Delta)
+                        .then(Box::<ObservationDelta>::default),
+                };
+                live.encode(out, key, self.observations)?;
+                self.games.insert(key.into(), live);
                 Ok(())
             }
             "step" => {
                 let actions: [Option<usize>; 2] =
                     Deserialize::deserialize(&query["actions"]).map_err(|e| e.to_string())?;
                 let game = self.games.get_mut(key).ok_or("game does not exist")?;
-                game.step(actions)?;
-                encode_game(out, game, self.compact)
+                game.game.step(actions)?;
+                game.encode(out, key, self.observations)
             }
             "trace" => encode(
                 out,
-                self.games.get(key).ok_or("game does not exist")?.trace(),
+                self.games
+                    .get(key)
+                    .ok_or("game does not exist")?
+                    .game
+                    .trace(),
             ),
             "close" => {
                 self.games.remove(key);
-                encode(out, true)
+                if self.observations == Observations::Delta {
+                    #[derive(Serialize)]
+                    struct Closed<'a> {
+                        #[serde(rename = "$battle_closed")]
+                        key: &'a str,
+                    }
+                    encode(out, Closed { key })
+                } else {
+                    encode(out, true)
+                }
             }
             _ => unreachable!(),
         }
@@ -216,13 +265,17 @@ fn main() -> io::Result<()> {
                 serde_json::to_writer(&mut out, &query["id"])?;
                 out.extend_from_slice(b",\"result\":");
                 if let Err(error) = worker.dispatch(&query, &mut out) {
+                    worker.discard_observations();
                     out.clear();
                     serde_json::to_writer(&mut out, &json!({"id":query["id"],"error":error}))?;
                 } else {
                     out.push(b'}');
                 }
             }
-            Err(e) => serde_json::to_writer(&mut out, &json!({"error":e.to_string()}))?,
+            Err(e) => {
+                worker.discard_observations();
+                serde_json::to_writer(&mut out, &json!({"error":e.to_string()}))?;
+            }
         }
         out.push(b'\n');
         stdout.write_all(&out)?;

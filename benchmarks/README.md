@@ -79,6 +79,32 @@ share nested data. Requests, public-only games, and non-game replies are
 unchanged. No prior snapshots or client-side battle state are needed to
 decode a reply.
 
+## Delta training observations
+
+```sh
+source scripts/env.sh
+cargo build --locked --release
+node benchmarks/throughput.mjs --trace-parity --delta-observations -- \
+  ./target/release/pokemon-battle-worker --delta-observations
+```
+
+This opt-in mode sends a complete training snapshot on `new`, then sends
+only changed view fields, changed roster slots, and new history entries.
+The two critic views are rebuilt from the player views. The benchmark
+includes this reconstruction in its timing and compares the same complete
+decoded replies and spectator logs against Showdown. It does not change
+the requests, legal actions, or battle mechanics.
+
+For Poke-RL, instantiate one `DeltaDecoder()` from
+[`adapters/poke_rl_observations.py`](../adapters/poke_rl_observations.py) per
+worker subprocess. Launch the worker with `--delta-observations` and replace
+`json.loads(line)` with `decoder.decode_reply(line)` in the reply reader.
+Decode replies in order, including errors and `close` replies, and treat
+the resulting observations as read-only. On an error, both ends discard
+their saved bases, so the next observation for each game is a full
+snapshot. A sequence gap without a reset is an error, not a partial
+observation. The default and stateless compact modes are still available.
+
 ## Parity and earlier runs
 
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,

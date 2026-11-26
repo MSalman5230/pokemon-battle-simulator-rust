@@ -103,6 +103,8 @@ pub(super) struct PublicState {
     pub pseudo: Map<String, Value>,
     pub mega: [bool; 2],
     pub history: VecDeque<Value>,
+    // Includes the events that have aged out of the observation window.
+    pub history_count: usize,
     pub faints: [Vec<Value>; 2],
     last_attacker: Option<usize>,
     stints: [Option<Stint>; 2],
@@ -245,6 +247,7 @@ impl PublicState {
             terrain_since: fields.terrain_since,
             pseudo: fields.pseudo,
             mega: fields.mega,
+            history_count: fields.history.len(),
             history: fields.history,
             faints: fields.faints,
             ..Self::default()
@@ -494,6 +497,7 @@ impl PublicState {
                     self.history.push_back(json!({
                     "turn":turn,"side":side,"move":move_id,"actor":index,"species":species,"order":order
                 }));
+                    self.history_count += 1;
                 }
             }
             "-damage" | "-heal" | "-sethp" => {

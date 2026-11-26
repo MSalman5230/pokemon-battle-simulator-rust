@@ -8,6 +8,7 @@ import {join} from 'node:path';
 import {createInterface} from 'node:readline';
 import {fileURLToPath} from 'node:url';
 import {parseArgs} from 'node:util';
+import {DeltaDecoder} from '../adapters/poke_rl_delta.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const oracle = join(root, '.tools/poke-rl-simulator');
@@ -30,6 +31,7 @@ function options(args) {
             'capture-replay': {type: 'string'},
             'trace-parity': {type: 'boolean'},
             'compact-observations': {type: 'boolean'},
+            'delta-observations': {type: 'boolean'},
             ...Object.fromEntries(Object.entries(defaults).map(
                 ([name, value]) => [name, {type: 'string', default: String(value)}],
             )),
@@ -39,14 +41,17 @@ function options(args) {
         console.log('Usage: node benchmarks/throughput.mjs [--games 32] [--batch-size 16] ' +
             '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] ' +
             '[--debug-parity | --diagnose-parity | --capture-replay FILE] [--trace-parity] ' +
-            '[--compact-observations] [-- CANDIDATE [ARGS...]]');
+            '[--compact-observations | --delta-observations] [-- CANDIDATE [ARGS...]]');
         return null;
     }
     assert(split < 0 || candidate.length, 'Pass a worker command after --');
     const diagnose = !!values['diagnose-parity'];
     const traceParity = !!values['trace-parity'];
     const compact = !!values['compact-observations'];
-    assert(!compact || candidate.length, '--compact-observations requires a compact candidate worker');
+    const delta = !!values['delta-observations'];
+    assert(!(delta && compact), 'Choose only one observation encoding');
+    assert(!(delta || compact) || candidate.length, 'Observation decoding requires a candidate worker');
+    const encoding = delta ? 'battle-delta-v1' : compact ? compactEncoding : undefined;
     assert(!diagnose || (candidate.length && !values['capture-replay']), '--diagnose-parity requires a candidate worker');
     assert(!traceParity || (candidate.length && !diagnose && !values['capture-replay']),
         '--trace-parity requires a candidate worker and the batched replay');
@@ -59,7 +64,7 @@ function options(args) {
     assert(settings['batch-size'] <= settings.games, '--batch-size must not exceed --games');
     assert(settings.seed <= 0xffffffff, '--seed must fit in an unsigned 32-bit integer');
     return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity'],
-        capturePath: values['capture-replay'], diagnose, traceParity, compact};
+        capturePath: values['capture-replay'], diagnose, traceParity, encoding};
 }
 
 function expandObservations(result) {
@@ -91,7 +96,8 @@ function expandObservations(result) {
     return result;
 }
 
-function openWorker([command, ...args], compact = false) {
+function openWorker([command, ...args], encoding) {
+    const delta = encoding === 'battle-delta-v1' ? new DeltaDecoder() : undefined;
     const child = spawn(command, args, {cwd: root, stdio: ['pipe', 'pipe', 'inherit']});
     const lines = createInterface({input: child.stdout, crlfDelay: Infinity});
     const replies = lines[Symbol.asyncIterator]();
@@ -118,13 +124,17 @@ function openWorker([command, ...args], compact = false) {
                 assert(!done, `Worker exited before replying to request ${id}`);
                 const reply = JSON.parse(value);
                 assert.equal(reply.id, id, 'Mismatched worker reply ID');
-                if (reply.error != null) throw new Error(`Worker error for request ${id}: ${reply.error}`);
+                if (reply.error != null) {
+                    delta?.clear();
+                    throw new Error(`Worker error for request ${id}: ${reply.error}`);
+                }
                 assert(Object.hasOwn(reply, 'result'), `Missing result for request ${id}`);
                 if (steps) {
                     assert(Array.isArray(reply.result) && reply.result.length === steps,
                         `Expected ${steps} battle steps in reply ${id}`);
                 }
-                return compact ? expandObservations(reply.result) : reply.result;
+                if (delta) return delta.expand(reply.result);
+                return encoding === compactEncoding ? expandObservations(reply.result) : reply.result;
             } finally {
                 clearTimeout(timer);
             }
@@ -333,7 +343,7 @@ function median(values) {
 async function main() {
     const config = options(process.argv.slice(2));
     if (!config) return;
-    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose, traceParity, compact} = config;
+    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose, traceParity, encoding} = config;
     const lock = readFileSync(join(oracle, 'package-lock.json'));
     const teamsFile = readFileSync(teamsPath ?? join(oracle, 'teams_train.json'));
     const workerPath = join(oracle, 'worker.cjs');
@@ -363,7 +373,7 @@ async function main() {
         return;
     }
     if (diagnose) {
-        const worker = openWorker(candidate, compact);
+        const worker = openWorker(candidate, encoding);
         try {
             await diagnoseParity(worker, workload);
         } finally {
@@ -372,7 +382,7 @@ async function main() {
         return;
     }
     const backends = [{name: 'showdown', worker: openWorker(reference), samples: []}];
-    if (candidate.length) backends.push({name: 'candidate', worker: openWorker(candidate, compact), samples: []});
+    if (candidate.length) backends.push({name: 'candidate', worker: openWorker(candidate, encoding), samples: []});
     try {
         for (const backend of backends) await warmAndVerify(backend.worker, workload.frames, backend.name);
         for (let i = 0; i < settings.repeats; i++) {
@@ -414,7 +424,7 @@ async function main() {
         results,
         ...(candidate.length && {
             candidate_command: candidate,
-            ...(compact && {candidate_observations: compactEncoding}),
+            ...(encoding && {candidate_observations: encoding}),
             speedup: results.candidate.median_iterations_per_second / results.showdown.median_iterations_per_second,
         }),
     }, null, 2));

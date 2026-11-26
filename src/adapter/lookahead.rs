@@ -1,7 +1,7 @@
 //! One-turn search over caller-supplied public-belief worlds.
 //! This interface has no game handle and cannot read stored battles.
 
-use super::{Game, OriginalSet, PublicState, wire};
+use super::{Game, Legal, OriginalSet, PublicState, wire};
 use crate::{
     battle::hydration::{WorldInput, hydrate},
     input::Player,
@@ -161,14 +161,12 @@ impl Search {
         }
         let labels: Vec<_> = replies
             .iter()
-            .map(|r| {
-                if r.public["kind"] == "move" {
-                    format!("move:{}", r.public["move"].as_str().unwrap())
-                } else {
-                    format!("switch:{}", r.public["slot"].as_u64().unwrap())
-                }
+            .map(|r| match r {
+                Legal::Move { name, .. } => Ok(format!("move:{name}")),
+                Legal::Switch { slot, .. } => Ok(format!("switch:{slot}")),
+                Legal::Preview { .. } => Err("Unsupported team preview reply"),
             })
-            .collect();
+            .collect::<Result<_, _>>()?;
         let weights: Vec<_> = labels
             .iter()
             .map(|label| {
@@ -184,7 +182,7 @@ impl Search {
         if self
             .candidates
             .iter()
-            .any(|a| !legal.iter().any(|choice| choice.id == *a))
+            .any(|a| !legal.iter().any(|choice| choice.id() == *a))
         {
             return Err("Public and hydrated legal choices disagree".into());
         }
@@ -201,7 +199,7 @@ impl Search {
                 if let Some(seed) = seed {
                     branch.stream.reseed_rollout(seed);
                 }
-                branch.step([Some(action), Some(replies[selected].id)])?;
+                branch.step([Some(action), Some(replies[selected].id())])?;
                 let mut continuations = 0;
                 while !branch.ended() && branch.battle().turn() <= observed.turn {
                     continuations += 1;
@@ -215,15 +213,15 @@ impl Search {
                         // legal entry when their fractions tie.
                         let mut strongest = -1.0;
                         for action in branch.legal(player).iter() {
-                            if action.public["kind"] != "switch" {
+                            let Legal::Switch { party_slot, .. } = action else {
                                 return Err("Unsupported interrupted move request".into());
-                            }
-                            let slot = action.public["party_slot"].as_u64().unwrap() as usize;
+                            };
+                            let slot = *party_slot;
                             let hp =
                                 f64::from(party[slot].hp) / f64::from(party[slot].max_hp.get());
                             if hp > strongest {
                                 strongest = hp;
-                                picks[i] = Some(action.id);
+                                picks[i] = Some(action.id());
                             }
                         }
                     }

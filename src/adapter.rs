@@ -5,7 +5,7 @@ pub mod lookahead;
 mod public;
 pub mod tactics;
 mod wire;
-pub use wire::GameResult;
+pub use wire::{GameResult, ObservationDelta};
 
 use crate::{
     battle::{Battle, BattleStream, Phase},
@@ -17,6 +17,7 @@ use crate::{
     validation::TeamValidator,
 };
 use public::{PublicState, fresh_mon};
+use serde::Serialize;
 use serde_json::{Value, json, value::RawValue};
 use std::{
     borrow::Cow,
@@ -35,7 +36,7 @@ const STATS: [BoostStat; 7] = [
     BoostStat::Evasion,
 ];
 
-static PREVIEW: LazyLock<Vec<Legal>> = LazyLock::new(|| {
+static PREVIEW: LazyLock<Vec<Legal<'static>>> = LazyLock::new(|| {
     let mut out = Vec::new();
     for a in 0..6 {
         for b in 0..6 {
@@ -43,11 +44,11 @@ static PREVIEW: LazyLock<Vec<Legal>> = LazyLock::new(|| {
                 if a != b && a != c && b != c {
                     let id = 14 + out.len();
                     let choice = format!("team {},{},{}", a + 1, b + 1, c + 1);
-                    out.push(Legal::new(
+                    out.push(Legal::Preview {
                         id,
-                        choice.clone(),
-                        json!({"id":id,"kind":"preview","picks":[a,b,c],"choice":choice}),
-                    ));
+                        input: choice,
+                        picks: [a, b, c],
+                    });
                 }
             }
         }
@@ -55,18 +56,60 @@ static PREVIEW: LazyLock<Vec<Legal>> = LazyLock::new(|| {
     out
 });
 
-#[derive(Clone)]
-struct Legal {
-    id: usize,
-    input: String,
-    public: Value,
+#[derive(Clone, Serialize)]
+#[serde(tag = "kind", rename_all = "lowercase")]
+enum Legal<'a> {
+    Preview {
+        id: usize,
+        picks: [usize; 3],
+        #[serde(rename = "choice")]
+        input: String,
+    },
+    Move {
+        id: usize,
+        slot: usize,
+        #[serde(rename = "move")]
+        name: &'a str,
+        mega: bool,
+        #[serde(rename = "choice")]
+        input: Cow<'static, str>,
+    },
+    Switch {
+        id: usize,
+        slot: usize,
+        party_slot: usize,
+        revive: bool,
+        species: &'a str,
+        #[serde(rename = "choice")]
+        input: Cow<'static, str>,
+    },
 }
 
-impl Legal {
-    fn new(id: usize, input: String, public: Value) -> Self {
-        Self { id, input, public }
+impl Legal<'_> {
+    fn id(&self) -> usize {
+        match self {
+            Self::Preview { id, .. } | Self::Move { id, .. } | Self::Switch { id, .. } => *id,
+        }
+    }
+
+    fn choice(&self) -> Result<crate::choice::Choice, String> {
+        let input = match self {
+            Self::Preview { input, .. } => input.as_str(),
+            Self::Move { input, .. } | Self::Switch { input, .. } => input.as_ref(),
+        };
+        input
+            .parse::<crate::choice::Choice>()
+            .map_err(|e| e.to_string())
     }
 }
+
+const MOVE_CHOICES: [[&str; 4]; 2] = [
+    ["move 1", "move 2", "move 3", "move 4"],
+    ["move 1 mega", "move 2 mega", "move 3 mega", "move 4 mega"],
+];
+const SWITCH_CHOICES: [&str; 6] = [
+    "switch 1", "switch 2", "switch 3", "switch 4", "switch 5", "switch 6",
+];
 
 #[derive(Clone)]
 pub struct Game {
@@ -86,7 +129,7 @@ struct OriginalSet {
     ability: String,
     moves: Vec<Value>,
     wire_set: OnceLock<Box<RawValue>>,
-    wire_unselected: OnceLock<Box<RawValue>>,
+    wire_unselected: [OnceLock<Box<RawValue>>; 2],
 }
 
 impl OriginalSet {
@@ -109,7 +152,7 @@ impl OriginalSet {
                 })
                 .collect(),
             wire_set: OnceLock::new(),
-            wire_unselected: OnceLock::new(),
+            wire_unselected: Default::default(),
         }
     }
 }
@@ -211,7 +254,7 @@ impl Game {
         Ok(())
     }
 
-    fn legal(&self, player: Player) -> Cow<'static, [Legal]> {
+    fn legal(&self, player: Player) -> Cow<'_, [Legal<'_>]> {
         let battle = self.battle();
         if battle.waiting(player) || self.truncated {
             return Cow::Borrowed(&[]);
@@ -224,15 +267,29 @@ impl Game {
         let mut out = Vec::with_capacity(10);
         if battle.phase() == Phase::Move {
             let mega = battle.can_mega_in_slot(player, 0);
-            let mut add = |slot: usize, name: &str| {
+            let mut add = |slot: usize, name| {
                 for evolve in [false, true] {
                     if evolve && !mega {
                         continue;
                     }
                     let id = slot + if evolve { 4 } else { 0 };
-                    let choice = format!("move {}{}", slot + 1, if evolve { " mega" } else { "" });
-                    out.push(Legal::new(id, choice.clone(),
-                        json!({"id":id,"kind":"move","slot":slot,"move":name,"mega":evolve,"choice":choice})));
+                    let input = MOVE_CHOICES[usize::from(evolve)].get(slot).map_or_else(
+                        || {
+                            Cow::Owned(format!(
+                                "move {}{}",
+                                slot + 1,
+                                if evolve { " mega" } else { "" }
+                            ))
+                        },
+                        |&choice| Cow::Borrowed(choice),
+                    );
+                    out.push(Legal::Move {
+                        id,
+                        input,
+                        slot,
+                        name,
+                        mega: evolve,
+                    });
                 }
             };
             if let Some(move_id) = battle.forced_move_id(player, 0) {
@@ -262,14 +319,19 @@ impl Game {
             }
             let slot = mon.roster_index;
             let id = slot + 8;
-            let choice = format!("switch {}", party_slot + 1);
+            let input = SWITCH_CHOICES.get(party_slot).map_or_else(
+                || Cow::Owned(format!("switch {}", party_slot + 1)),
+                |&choice| Cow::Borrowed(choice),
+            );
             let species = mon.details.split(',').next().unwrap();
-            out.push(Legal::new(
+            out.push(Legal::Switch {
                 id,
-                choice.clone(),
-                json!({ "id":id,"kind":"switch","slot":slot,
-                "party_slot":party_slot,"revive":revive,"species":species,"choice":choice }),
-            ));
+                input,
+                slot,
+                party_slot,
+                revive,
+                species,
+            });
         }
         out.into()
     }
@@ -292,18 +354,18 @@ impl Game {
                     .and_then(|id| id.checked_sub(14))
                     .and_then(|i| PREVIEW.get(i))
                     .ok_or_else(|| format!("illegal preview action for player {index}"))?;
-                choices[index] = Some(choice.input.clone());
+                choices[index] = Some(choice.choice()?);
                 continue;
             }
             let legal = self.legal(player);
             if !legal.is_empty() {
                 let choice = legal
                     .iter()
-                    .find(|choice| Some(choice.id) == actions[index])
+                    .find(|choice| Some(choice.id()) == actions[index])
                     .ok_or_else(|| {
                         format!("illegal action for player {index}: {:?}", actions[index])
                     })?;
-                choices[index] = Some(choice.input.clone());
+                choices[index] = Some(choice.choice()?);
             }
         }
         if choices.iter().all(Option::is_none) && !self.ended() && !self.truncated {
@@ -311,12 +373,7 @@ impl Game {
         }
         for (player, choice) in Player::ALL.into_iter().zip(choices) {
             if let Some(choice) = choice {
-                let result = self.stream.apply(Input::Choose(
-                    player,
-                    choice
-                        .parse::<crate::choice::Choice>()
-                        .map_err(|e| e.to_string())?,
-                ));
+                let result = self.stream.apply(Input::Choose(player, choice));
                 match result {
                     Err(crate::battle::BattleError::Unavailable(_)) | Ok(()) => {}
                     Err(err) => return Err(err.to_string()),
