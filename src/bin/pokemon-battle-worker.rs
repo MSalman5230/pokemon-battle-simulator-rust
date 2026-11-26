@@ -6,7 +6,7 @@ use pokemon_battle_simulator::{
     rng::Seed,
     validation::TeamValidator,
 };
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 use serde_json::{Value, json};
 use std::{
     collections::HashMap,
@@ -17,18 +17,19 @@ use std::{
 struct Worker {
     games: HashMap<String, Game>,
     verified: Option<Value>,
+    compact: bool,
 }
 
 impl Worker {
     fn new() -> Result<Self, String> {
         let mut args = env::args_os().skip(1);
-        let verified = match args.next() {
-            None => None,
-            Some(option) if option == "--verified-teams" => {
+        let mut verified = None;
+        let mut compact = false;
+        while let Some(option) = args.next() {
+            if option == "--compact-observations" && !compact {
+                compact = true;
+            } else if option == "--verified-teams" && verified.is_none() {
                 let path = args.next().ok_or("--verified-teams requires a file")?;
-                if args.next().is_some() {
-                    return Err("unexpected worker arguments".into());
-                }
                 let data = fs::read(path).map_err(|e| e.to_string())?;
                 let manifest: Value = serde_json::from_slice(&data).map_err(|e| e.to_string())?;
                 if manifest["revision"] != DEX.revision || manifest["format"] != FORMAT {
@@ -47,19 +48,30 @@ impl Worker {
                 }) {
                     return Err("invalid verified team manifest".into());
                 }
-                Some(manifest)
+                verified = Some(manifest);
+            } else {
+                return Err(
+                    "usage: pokemon-battle-worker [--verified-teams FILE] [--compact-observations]"
+                        .into(),
+                );
             }
-            _ => return Err("usage: pokemon-battle-worker [--verified-teams FILE]".into()),
-        };
+        }
         Ok(Self {
             games: HashMap::new(),
             verified,
+            compact,
         })
     }
 }
 
 fn encode(out: &mut Vec<u8>, value: impl Serialize) -> Result<(), String> {
     serde_json::to_writer(out, &value).map_err(|e| e.to_string())
+}
+
+fn encode_game(out: &mut Vec<u8>, game: &Game, compact: bool) -> Result<(), String> {
+    game.result()
+        .write_json(out, compact)
+        .map_err(|e| e.to_string())
 }
 
 impl Worker {
@@ -143,16 +155,16 @@ impl Worker {
                 } else {
                     Game::new(teams, seed, max_turns, training)?
                 };
-                encode(out, game.result())?;
+                encode_game(out, &game, self.compact)?;
                 self.games.insert(key.into(), game);
                 Ok(())
             }
             "step" => {
                 let actions: [Option<usize>; 2] =
-                    serde_json::from_value(query["actions"].clone()).map_err(|e| e.to_string())?;
+                    Deserialize::deserialize(&query["actions"]).map_err(|e| e.to_string())?;
                 let game = self.games.get_mut(key).ok_or("game does not exist")?;
                 game.step(actions)?;
-                encode(out, game.result())
+                encode_game(out, game, self.compact)
             }
             "trace" => encode(
                 out,

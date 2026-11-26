@@ -17,8 +17,11 @@ use crate::{
     validation::TeamValidator,
 };
 use public::{PublicState, fresh_mon};
-use serde_json::{Value, json};
-use std::sync::{Arc, LazyLock};
+use serde_json::{Value, json, value::RawValue};
+use std::{
+    borrow::Cow,
+    sync::{Arc, LazyLock, OnceLock},
+};
 
 pub const FORMAT: &str = "gen9championsbssregmc";
 
@@ -82,6 +85,8 @@ struct OriginalSet {
     item: String,
     ability: String,
     moves: Vec<Value>,
+    wire_set: OnceLock<Box<RawValue>>,
+    wire_unselected: OnceLock<Box<RawValue>>,
 }
 
 impl OriginalSet {
@@ -103,6 +108,8 @@ impl OriginalSet {
                     json!({"id":to_id(&data.name),"pp":pp,"maxpp":pp,"disabled":false})
                 })
                 .collect(),
+            wire_set: OnceLock::new(),
+            wire_unselected: OnceLock::new(),
         }
     }
 }
@@ -204,13 +211,13 @@ impl Game {
         Ok(())
     }
 
-    fn legal(&self, player: Player) -> Vec<Legal> {
+    fn legal(&self, player: Player) -> Cow<'static, [Legal]> {
         let battle = self.battle();
         if battle.waiting(player) || self.truncated {
-            return Vec::new();
+            return Cow::Borrowed(&[]);
         }
         if battle.phase() == Phase::Preview {
-            return PREVIEW.to_vec();
+            return Cow::Borrowed(&PREVIEW);
         }
         let party = battle.party(player).unwrap();
         let active = &party[0];
@@ -246,7 +253,7 @@ impl Game {
             }
         }
         if battle.phase() == Phase::Move && battle.trapped_in_request(player, 0) {
-            return out;
+            return out.into();
         }
         let revive = battle.is_reviving(player, 0);
         for (party_slot, mon) in party.iter().enumerate().skip(1) {
@@ -264,7 +271,7 @@ impl Game {
                 "party_slot":party_slot,"revive":revive,"species":species,"choice":choice }),
             ));
         }
-        out
+        out.into()
     }
 
     pub fn result(&self) -> GameResult<'_> {
@@ -291,12 +298,12 @@ impl Game {
             let legal = self.legal(player);
             if !legal.is_empty() {
                 let choice = legal
-                    .into_iter()
+                    .iter()
                     .find(|choice| Some(choice.id) == actions[index])
                     .ok_or_else(|| {
                         format!("illegal action for player {index}: {:?}", actions[index])
                     })?;
-                choices[index] = Some(choice.input);
+                choices[index] = Some(choice.input.clone());
             }
         }
         if choices.iter().all(Option::is_none) && !self.ended() && !self.truncated {

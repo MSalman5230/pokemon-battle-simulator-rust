@@ -14,6 +14,7 @@ const oracle = join(root, '.tools/poke-rl-simulator');
 const revision = '29f2d9969159fd23f8bb96e177a70072fe573b0e';
 const format = 'gen9championsbssregmc';
 const timeoutMs = 60_000;
+const compactEncoding = 'shared-rosters-v1';
 
 function options(args) {
     const split = args.indexOf('--');
@@ -28,6 +29,7 @@ function options(args) {
             'diagnose-parity': {type: 'boolean'},
             'capture-replay': {type: 'string'},
             'trace-parity': {type: 'boolean'},
+            'compact-observations': {type: 'boolean'},
             ...Object.fromEntries(Object.entries(defaults).map(
                 ([name, value]) => [name, {type: 'string', default: String(value)}],
             )),
@@ -36,12 +38,15 @@ function options(args) {
     if (values.help) {
         console.log('Usage: node benchmarks/throughput.mjs [--games 32] [--batch-size 16] ' +
             '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] ' +
-            '[--debug-parity | --diagnose-parity | --capture-replay FILE] [--trace-parity] [-- CANDIDATE [ARGS...]]');
+            '[--debug-parity | --diagnose-parity | --capture-replay FILE] [--trace-parity] ' +
+            '[--compact-observations] [-- CANDIDATE [ARGS...]]');
         return null;
     }
     assert(split < 0 || candidate.length, 'Pass a worker command after --');
     const diagnose = !!values['diagnose-parity'];
     const traceParity = !!values['trace-parity'];
+    const compact = !!values['compact-observations'];
+    assert(!compact || candidate.length, '--compact-observations requires a compact candidate worker');
     assert(!diagnose || (candidate.length && !values['capture-replay']), '--diagnose-parity requires a candidate worker');
     assert(!traceParity || (candidate.length && !diagnose && !values['capture-replay']),
         '--trace-parity requires a candidate worker and the batched replay');
@@ -54,10 +59,39 @@ function options(args) {
     assert(settings['batch-size'] <= settings.games, '--batch-size must not exceed --games');
     assert(settings.seed <= 0xffffffff, '--seed must fit in an unsigned 32-bit integer');
     return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity'],
-        capturePath: values['capture-replay'], diagnose, traceParity};
+        capturePath: values['capture-replay'], diagnose, traceParity, compact};
 }
 
-function openWorker([command, ...args]) {
+function expandObservations(result) {
+    function expandMon(mon) {
+        if (!Array.isArray(mon)) return mon;
+        const [species, types] = mon;
+        return {
+            base_species: species, species, hp: 1, status: '', boosts: {},
+            moves: [], item: null, ability: null, seen: false, active: false,
+            fainted: false, types, volatiles: {}, last_move: null, times_attacked: 0,
+            entry_turn: 0, moves_this_stint: [], pp_used: {}, first_native_move: null,
+            status_progress: {}, identity_uncertain: false,
+        };
+    }
+    function expand(game) {
+        if (!game?.training) return;
+        assert.equal(game.training.critic_views, compactEncoding,
+            'Expected compact training observations from the candidate worker');
+        const [p1, p2] = game.views;
+        p1.opponent = p1.opponent.map(expandMon);
+        p2.opponent = p2.opponent.map(expandMon);
+        game.training.critic_views = [
+            {...p1, opponent: p2.own},
+            {...p2, opponent: p1.own},
+        ];
+    }
+    if (Array.isArray(result)) result.forEach(expand);
+    else expand(result);
+    return result;
+}
+
+function openWorker([command, ...args], compact = false) {
     const child = spawn(command, args, {cwd: root, stdio: ['pipe', 'pipe', 'inherit']});
     const lines = createInterface({input: child.stdout, crlfDelay: Infinity});
     const replies = lines[Symbol.asyncIterator]();
@@ -90,7 +124,7 @@ function openWorker([command, ...args]) {
                     assert(Array.isArray(reply.result) && reply.result.length === steps,
                         `Expected ${steps} battle steps in reply ${id}`);
                 }
-                return reply.result;
+                return compact ? expandObservations(reply.result) : reply.result;
             } finally {
                 clearTimeout(timer);
             }
@@ -299,7 +333,7 @@ function median(values) {
 async function main() {
     const config = options(process.argv.slice(2));
     if (!config) return;
-    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose, traceParity} = config;
+    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose, traceParity, compact} = config;
     const lock = readFileSync(join(oracle, 'package-lock.json'));
     const teamsFile = readFileSync(teamsPath ?? join(oracle, 'teams_train.json'));
     const workerPath = join(oracle, 'worker.cjs');
@@ -329,7 +363,7 @@ async function main() {
         return;
     }
     if (diagnose) {
-        const worker = openWorker(candidate);
+        const worker = openWorker(candidate, compact);
         try {
             await diagnoseParity(worker, workload);
         } finally {
@@ -338,7 +372,7 @@ async function main() {
         return;
     }
     const backends = [{name: 'showdown', worker: openWorker(reference), samples: []}];
-    if (candidate.length) backends.push({name: 'candidate', worker: openWorker(candidate), samples: []});
+    if (candidate.length) backends.push({name: 'candidate', worker: openWorker(candidate, compact), samples: []});
     try {
         for (const backend of backends) await warmAndVerify(backend.worker, workload.frames, backend.name);
         for (let i = 0; i < settings.repeats; i++) {
@@ -380,6 +414,7 @@ async function main() {
         results,
         ...(candidate.length && {
             candidate_command: candidate,
+            ...(compact && {candidate_observations: compactEncoding}),
             speedup: results.candidate.median_iterations_per_second / results.showdown.median_iterations_per_second,
         }),
     }, null, 2));

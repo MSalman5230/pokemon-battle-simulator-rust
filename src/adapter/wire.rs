@@ -2,15 +2,16 @@
 //! deep copy of either player's JSON tree.
 
 use super::*;
-use crate::battle::Pokemon;
+use crate::{adapter::public::PublicMon, battle::Pokemon};
 use serde::{
     Serialize, Serializer,
     ser::{SerializeMap, SerializeSeq},
 };
+use serde_json::value::{RawValue, to_raw_value};
 
 pub struct GameResult<'a> {
     pub(super) game: &'a Game,
-    pub(super) legal: [Vec<Legal>; 2],
+    pub(super) legal: [Cow<'static, [Legal]>; 2],
 }
 
 #[derive(Serialize)]
@@ -18,13 +19,84 @@ struct Training<'a> {
     critic_views: [WireView<'a>; 2],
 }
 
+const SHARED_CRITIC_VIEWS: &str = "shared-rosters-v1";
+
+struct JsonResult<'a, 'game> {
+    result: &'a GameResult<'game>,
+    encoding: Encoding<'a>,
+}
+
+impl Serialize for JsonResult<'_, '_> {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        self.result.serialize_result(serializer, self.encoding)
+    }
+}
+
+#[derive(Clone, Copy)]
+enum Encoding<'a> {
+    Generic,
+    Json,
+    SharedCritic,
+    CachedOwn(&'a [Box<RawValue>; 2]),
+}
+
+impl Encoding<'_> {
+    fn json(self) -> bool {
+        !matches!(self, Self::Generic)
+    }
+}
+
+impl GameResult<'_> {
+    /// Serialize worker replies directly to JSON, reusing unchanged public
+    /// projections and encoding each private roster at most once per reply.
+    /// Compact training replies let an opt-in decoder reconstruct the critic.
+    pub fn write_json(&self, out: &mut Vec<u8>, compact: bool) -> serde_json::Result<()> {
+        let roster = |player| {
+            to_raw_value(&OwnRoster {
+                game: self.game,
+                player,
+                json: true,
+            })
+        };
+        let own = if self.game.training && !compact {
+            Some([roster(Player::P1)?, roster(Player::P2)?])
+        } else {
+            None
+        };
+        serde_json::to_writer(
+            out,
+            &JsonResult {
+                result: self,
+                encoding: if self.game.training && compact {
+                    Encoding::SharedCritic
+                } else if let Some(own) = &own {
+                    Encoding::CachedOwn(own)
+                } else {
+                    Encoding::Json
+                },
+            },
+        )
+    }
+}
+
 impl Serialize for GameResult<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        self.serialize_result(serializer, Encoding::Generic)
+    }
+}
+
+impl GameResult<'_> {
+    fn serialize_result<S: Serializer>(
+        &self,
+        serializer: S,
+        encoding: Encoding<'_>,
+    ) -> Result<S::Ok, S::Error> {
         let view = |player: Player, critic| WireView {
             game: self.game,
             player,
             critic,
             legal: &self.legal[player.index()],
+            encoding,
         };
         let game = self.game;
         let mut map = serializer.serialize_map(Some(if game.training { 5 } else { 4 }))?;
@@ -32,7 +104,18 @@ impl Serialize for GameResult<'_> {
         map.serialize_entry("ended", &game.ended())?;
         map.serialize_entry("truncated", &game.truncated)?;
         map.serialize_entry("winner", &game.battle().winner().map(Player::index))?;
-        if game.training {
+        if matches!(encoding, Encoding::SharedCritic) {
+            #[derive(Serialize)]
+            struct SharedCritic {
+                critic_views: &'static str,
+            }
+            map.serialize_entry(
+                "training",
+                &SharedCritic {
+                    critic_views: SHARED_CRITIC_VIEWS,
+                },
+            )?;
+        } else if game.training {
             map.serialize_entry(
                 "training",
                 &Training {
@@ -49,6 +132,7 @@ struct WireView<'a> {
     player: Player,
     critic: bool,
     legal: &'a [Legal],
+    encoding: Encoding<'a>,
 }
 
 pub(super) fn search_views(game: &Game) -> serde_json::Result<[Value; 2]> {
@@ -59,6 +143,7 @@ pub(super) fn search_views(game: &Game) -> serde_json::Result<[Value; 2]> {
             player: Player::P1,
             critic,
             legal: &legal,
+            encoding: Encoding::Generic,
         })
     };
     Ok([view(false)?, view(true)?])
@@ -85,17 +170,24 @@ impl Serialize for WireView<'_> {
             }
         };
         map.serialize_entry("phase", phase)?;
-        map.serialize_entry("own", &OwnRoster { game, player })?;
-        if self.critic {
-            map.serialize_entry(
-                "opponent",
-                &OwnRoster {
-                    game,
-                    player: player.foe(),
-                },
-            )?;
+        let roster = |player| OwnRoster {
+            game,
+            player,
+            json: self.encoding.json(),
+        };
+        if let Encoding::CachedOwn(own) = self.encoding {
+            map.serialize_entry("own", &own[index])?;
         } else {
-            map.serialize_entry("opponent", &OppRoster(&public.teams[foe]))?;
+            map.serialize_entry("own", &roster(player))?;
+        }
+        if self.critic {
+            if let Encoding::CachedOwn(own) = self.encoding {
+                map.serialize_entry("opponent", &own[foe])?;
+            } else {
+                map.serialize_entry("opponent", &roster(player.foe()))?;
+            }
+        } else {
+            map.serialize_entry("opponent", &OppRoster(&public.teams[foe], self.encoding))?;
         }
         map.serialize_entry("legal", &LegalList(self.legal))?;
         map.serialize_entry("weather", &public.weather)?;
@@ -143,6 +235,7 @@ impl Serialize for LegalList<'_> {
 struct OwnRoster<'a> {
     game: &'a Game,
     player: Player,
+    json: bool,
 }
 
 impl Serialize for OwnRoster<'_> {
@@ -156,26 +249,34 @@ impl Serialize for OwnRoster<'_> {
         for (slot, set) in sets.iter().enumerate() {
             let original = &self.game.originals[index][slot];
             let species = set["species"].as_str().unwrap();
-            let visible = public
-                .iter()
-                .find(|m| m["base_species"] == species)
-                .unwrap_or(&original.fresh);
+            let visible = public.iter().find(|m| m["base_species"] == species);
             let actual = party
                 .iter()
                 .enumerate()
                 .find(|(_, p)| p.roster_index == slot);
-            seq.serialize_element(&OwnMon {
+            let mon = OwnMon {
                 battle,
                 player: self.player,
                 party_slot: actual.map(|(i, _)| i),
-                visible,
+                visible: visible.map_or(&original.fresh, |mon| &**mon),
                 actual: actual.map(|(_, p)| p),
                 slot,
                 set,
                 original,
                 active: battle.turn() > 0 && actual.is_some_and(|(i, _)| i == 0),
                 selected: (battle.phase() != Phase::Preview).then_some(actual.is_some()),
-            })?;
+                json: self.json,
+            };
+            // Never cache a decoy or hydrated observation as a fresh slot.
+            if self.json && mon.selected == Some(false) && visible.is_none_or(PublicMon::is_fresh) {
+                seq.serialize_element(
+                    original
+                        .wire_unselected
+                        .get_or_init(|| to_raw_value(&mon).unwrap()),
+                )?;
+            } else {
+                seq.serialize_element(&mon)?;
+            }
         }
         seq.end()
     }
@@ -192,6 +293,7 @@ struct OwnMon<'a> {
     original: &'a OriginalSet,
     active: bool,
     selected: Option<bool>,
+    json: bool,
 }
 
 #[derive(Serialize)]
@@ -310,20 +412,36 @@ impl Serialize for OwnMon<'_> {
             map.serialize_entry("moves", &self.original.moves)?;
         }
         map.serialize_entry("index", &self.slot)?;
-        map.serialize_entry("set", self.set)?;
+        if self.json {
+            map.serialize_entry(
+                "set",
+                self.original
+                    .wire_set
+                    .get_or_init(|| to_raw_value(self.set).unwrap()),
+            )?;
+        } else {
+            map.serialize_entry("set", self.set)?;
+        }
         map.serialize_entry("selected", &self.selected)?;
         map.end()
     }
 }
 
-struct OppRoster<'a>(&'a [Value]);
+struct OppRoster<'a>(&'a [PublicMon], Encoding<'a>);
 struct OppMon<'a>(&'a Value);
 
 impl Serialize for OppRoster<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         let mut seq = serializer.serialize_seq(Some(self.0.len()))?;
         for v in self.0 {
-            seq.serialize_element(&OppMon(v))?;
+            if matches!(self.1, Encoding::SharedCritic) && v.is_fresh() {
+                // This template uses only data already exposed by the preview log.
+                seq.serialize_element(&(&v["species"], &v["types"]))?;
+            } else if self.1.json() {
+                seq.serialize_element(v.encoded(|mon| to_raw_value(&OppMon(mon)).unwrap()))?;
+            } else {
+                seq.serialize_element(&OppMon(v))?;
+            }
         }
         seq.end()
     }

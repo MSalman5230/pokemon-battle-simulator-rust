@@ -214,7 +214,7 @@ impl Search {
                         // Revive choices all have zero HP; keep the first
                         // legal entry when their fractions tie.
                         let mut strongest = -1.0;
-                        for action in branch.legal(player) {
+                        for action in branch.legal(player).iter() {
                             if action.public["kind"] != "switch" {
                                 return Err("Unsupported interrupted move request".into());
                             }

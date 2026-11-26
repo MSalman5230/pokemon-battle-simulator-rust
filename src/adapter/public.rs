@@ -6,8 +6,64 @@ use crate::{
     dex::{DEX, Mod},
 };
 use serde::Deserialize;
-use serde_json::{Map, Value, json};
-use std::collections::VecDeque;
+use serde_json::{Map, Value, json, value::RawValue};
+use std::{
+    collections::VecDeque,
+    ops::{Deref, DerefMut},
+    sync::{Arc, OnceLock},
+};
+
+/// Public state can outlive many replies unchanged (most notably the bench).
+/// Cache its JSON projection, with invalidation on every mutable access.
+#[derive(Clone)]
+pub(super) struct PublicMon {
+    value: Value,
+    fresh: bool,
+    wire: OnceLock<Arc<RawValue>>,
+}
+
+impl From<Value> for PublicMon {
+    fn from(value: Value) -> Self {
+        Self {
+            value,
+            fresh: false,
+            wire: OnceLock::new(),
+        }
+    }
+}
+
+impl Deref for PublicMon {
+    type Target = Value;
+
+    fn deref(&self) -> &Value {
+        &self.value
+    }
+}
+
+impl DerefMut for PublicMon {
+    fn deref_mut(&mut self) -> &mut Value {
+        self.fresh = false;
+        self.wire.take();
+        &mut self.value
+    }
+}
+
+impl PublicMon {
+    pub(super) fn is_fresh(&self) -> bool {
+        self.fresh
+    }
+
+    fn preview(species: &str) -> Self {
+        Self {
+            fresh: true,
+            ..fresh_mon(species).into()
+        }
+    }
+
+    pub(super) fn encoded(&self, make: impl FnOnce(&Value) -> Box<RawValue>) -> &RawValue {
+        self.wire.get_or_init(|| make(&self.value).into())
+    }
+}
 
 type Key = (usize, usize);
 
@@ -37,7 +93,7 @@ impl Stint {
 #[derive(Clone, Default)]
 pub(super) struct PublicState {
     pub turn: u32,
-    pub teams: [Vec<Value>; 2],
+    pub teams: [Vec<PublicMon>; 2],
     active: [Option<usize>; 2],
     pub conditions: [Map<String, Value>; 2],
     pub weather: String,
@@ -180,7 +236,7 @@ impl PublicState {
         }
         Ok(Self {
             active: std::array::from_fn(|i| teams[i].iter().position(|m| m["active"] == true)),
-            teams,
+            teams: teams.map(|team| team.into_iter().map(PublicMon::from).collect()),
             turn: fields.turn,
             conditions: fields.conditions,
             weather: fields.weather,
@@ -355,7 +411,7 @@ impl PublicState {
         match get(1) {
             "poke" => {
                 if let Some(team) = team {
-                    self.teams[team].push(fresh_mon(species(get(3))));
+                    self.teams[team].push(PublicMon::preview(species(get(3))));
                 }
             }
             "switch" | "drag" | "replace" => self.switch_mon(
@@ -369,9 +425,20 @@ impl PublicState {
                 self.turn = get(2).parse().map_err(|_| "wrong turn number")?;
                 self.last_attacker = None;
                 for mon in self.teams.iter_mut().flatten() {
-                    mon["volatiles"].as_object_mut().unwrap().retain(|_, v| {
+                    let current = |v: &Value| {
                         v["single"] != true || v["turn"].as_u64().unwrap() >= u64::from(self.turn)
-                    });
+                    };
+                    if mon["volatiles"]
+                        .as_object()
+                        .unwrap()
+                        .values()
+                        .any(|v| !current(v))
+                    {
+                        mon["volatiles"]
+                            .as_object_mut()
+                            .unwrap()
+                            .retain(|_, v| current(v));
+                    }
                 }
             }
             "move" => {

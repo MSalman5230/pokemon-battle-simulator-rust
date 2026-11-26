@@ -47,6 +47,32 @@ receive byte-identical lines. A full untimed replay checks replies before
 timing, accepting differences only in JSON object-key order. If there is
 a mismatch, the harness fails without reporting a speedup.
 
+## Compact training observations
+
+```sh
+source scripts/env.sh
+cargo build --locked --release
+node benchmarks/throughput.mjs --trace-parity --compact-observations -- \
+  ./target/release/pokemon-battle-worker --compact-observations
+```
+
+Both workers still receive byte-identical requests on the default workload.
+The compact candidate sends the two player views once. The benchmark
+reconstructs the two critic views and expands unrevealed public roster slots
+before checking equality. Timed runs include that decoding. The default
+worker still returns full JSON observations without requiring a new decoder.
+
+For a Python client such as Poke-RL, launch the Rust worker with
+`--compact-observations` and replace `json.loads(line)` in the reply reader
+with `decode_reply(line)` from
+[`adapters/poke_rl_observations.py`](../adapters/poke_rl_observations.py).
+Treat decoded observations as read-only because the player and critic views
+share nested data. Requests, public-only games, and non-game replies are
+unchanged. No prior snapshots or client-side battle state are needed to
+decode a reply.
+
+## Parity and earlier runs
+
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,
 seed, turn cap, and repeat options.
 

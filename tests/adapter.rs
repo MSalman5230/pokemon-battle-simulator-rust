@@ -69,6 +69,63 @@ fn invalid_joint_choice_does_not_advance_and_turn_cap_keeps_native_phase() {
 }
 
 #[test]
+fn optimized_json_matches_the_regular_result_through_battle_transitions() {
+    for training in [false, true] {
+        let mut game = game(training, 30);
+        let mut action_index = 0;
+        loop {
+            let result = game.result();
+            let regular = serde_json::to_vec(&result).unwrap();
+            let mut optimized = Vec::new();
+            result.write_json(&mut optimized, false).unwrap();
+            assert_eq!(regular, optimized);
+
+            let mut compact = Vec::new();
+            result.write_json(&mut compact, true).unwrap();
+            if !training {
+                assert_eq!(regular, compact);
+            }
+            let expected: Value = serde_json::from_slice(&regular).unwrap();
+            let reduced: Value = serde_json::from_slice(&compact).unwrap();
+            if training {
+                assert_eq!(reduced["training"]["critic_views"], "shared-rosters-v1");
+                for side in 0..2 {
+                    assert_eq!(
+                        reduced["views"][side]["own"],
+                        expected["views"][side]["own"]
+                    );
+                    for (mon, original) in reduced["views"][side]["opponent"]
+                        .as_array()
+                        .unwrap()
+                        .iter()
+                        .zip(expected["views"][side]["opponent"].as_array().unwrap())
+                    {
+                        if mon.is_array() {
+                            assert_eq!(mon[0], original["base_species"]);
+                            assert_eq!(mon[1], original["types"]);
+                            assert_eq!(original["seen"], false);
+                            assert!(original["item"].is_null() && original["ability"].is_null());
+                        } else {
+                            assert_eq!(mon, original);
+                        }
+                    }
+                }
+            }
+            if expected["ended"] == true || expected["truncated"] == true {
+                break;
+            }
+            let actions = [0, 1].map(|side| {
+                let legal = expected["views"][side]["legal"].as_array().unwrap();
+                (!legal.is_empty())
+                    .then(|| legal[action_index % legal.len()]["id"].as_u64().unwrap() as usize)
+            });
+            game.step(actions).unwrap();
+            action_index += 1;
+        }
+    }
+}
+
+#[test]
 fn revival_legal_actions_use_original_roster_slot_and_exclude_living_bench() {
     let mut game = Game::new_prevalidated(
         [
