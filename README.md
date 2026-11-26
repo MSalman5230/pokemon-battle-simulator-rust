@@ -8,12 +8,14 @@ uses the existing singles training protocol, including validation, traces,
 tactical damage queries, and one-turn public-belief lookahead. Neither
 requires Node.js or Showdown at runtime.
 
-On the locked BSS Reg M-C workload, the release worker processed 1,445
-steps/s versus Showdown's 341 steps/s (4.24× as fast), with all 673 step
-replies and 32 full spectator traces matching. Native replay also matched
-41,111 checkpoints across 1,540 seeded replays covering 18 formats. The
-samples are not exhaustive over possible sets and seeds.
-[Throughput report](benchmarks/verified-champions-release-bss-result.json) ·
+On the locked BSS Reg M-C workload, the release worker with opt-in compact
+observations processed 2,980 steps/s versus Showdown's 344 (8.67× as fast).
+The default full-JSON worker processed 1,686 steps/s (4.92× as fast).
+Both matched all 673 step replies and 32 full spectator traces. Native
+replay also matched 41,111 checkpoints across 1,540 seeded replays covering
+18 formats. The samples are not exhaustive over possible sets and seeds.
+[Compact throughput report](benchmarks/verified-compact-bss-result.json) ·
+[Full JSON throughput report](benchmarks/verified-cached-bss-result.json) ·
 [Native replay report](benchmarks/verified-champions-release-native-parity.json)
 
 ## Local setup
@@ -82,5 +84,6 @@ node benchmarks/throughput.mjs
 
 The benchmark measures batched battle steps per second through Poke-RL's
 current singles worker. It checks exact replay parity before measuring
-the Rust worker. See the
+the Rust worker. The benchmark guide shows how to reproduce the compact
+result and enable compact observations in a Python client. See the
 [benchmark guide](benchmarks/README.md) and the [porting plan](docs/porting.md).

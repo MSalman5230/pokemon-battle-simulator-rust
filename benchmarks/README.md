@@ -62,6 +62,14 @@ reconstructs the two critic views and expands unrevealed public roster slots
 before checking equality. Timed runs include that decoding. The default
 worker still returns full JSON observations without requiring a new decoder.
 
+At Rust commit `9c9c585`, the [compact release run](verified-compact-bss-result.json)
+measured 2,980.2 steps/s against Showdown's 343.7 across seven replays (8.67×).
+The [full JSON run](verified-cached-bss-result.json) measured 1,685.9 steps/s
+against 342.5 (4.92×). Both runs used the same workload hash as the original
+release benchmark and matched all 673 step replies and 32 complete traces.
+Compact step replies used 63% fewer bytes than full Rust replies. A separate
+160-game compact diagnostic matched another 2,856 steps.
+
 For a Python client such as Poke-RL, launch the Rust worker with
 `--compact-observations` and replace `json.loads(line)` in the reply reader
 with `decode_reply(line)` from
