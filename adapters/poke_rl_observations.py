@@ -1,6 +1,7 @@
 """Decode compact or delta replies from pokemon-battle-worker."""
 
 import json
+from itertools import permutations
 
 
 def _expand_opponent(mon):
@@ -58,6 +59,7 @@ class DeltaDecoder:
 
     def __init__(self):
         self._games = {}
+        self._fragments = None
 
     def decode_reply(self, line):
         reply = json.loads(line)
@@ -65,8 +67,33 @@ class DeltaDecoder:
             # A batch may have advanced several games before an error
             # discarded the whole response. Both ends drop their bases.
             self._games.clear()
+            self._fragments = None
             return reply
+        if "part" in reply:
+            if self._fragments is None:
+                self._fragments = reply["id"], {}
+            key, rows = self._fragments
+            if key != reply["id"]:
+                raise ValueError("Mismatched streamed reply ID")
+            offset, part = reply["part"]
+            for index, entry in enumerate(part, offset):
+                if index in rows:
+                    raise ValueError("Repeated streamed batch result")
+                rows[index] = self._expand(entry)
+            return None
         result = reply.get("result")
+        if isinstance(result, dict) and "$battle_stream" in result:
+            if self._fragments is None:
+                raise ValueError("Missing streamed batch")
+            key, rows = self._fragments
+            self._fragments = None
+            count = result["$battle_stream"]
+            if key != reply["id"] or len(rows) != count or any(i not in rows for i in range(count)):
+                raise ValueError("Missing streamed batch result")
+            reply["result"] = [rows[i] for i in range(count)]
+            return reply
+        if self._fragments is not None:
+            raise ValueError("Missing streamed batch completion")
         if isinstance(result, list):
             reply["result"] = [self._expand(entry) for entry in result]
         else:
@@ -79,19 +106,21 @@ class DeltaDecoder:
         if "$battle_closed" in value:
             self._games.pop(value["$battle_closed"], None)
             return True
-        if "$battle_delta_v1" not in value:
+        packed = "$battle_delta_v2" in value
+        delta = value.get("$battle_delta_v2" if packed else "$battle_delta_v1")
+        if delta is None:
             return value
-        key, sequence, patches, (ended, truncated, winner), *seed = value["$battle_delta_v1"]
+        key, sequence, patches, (ended, truncated, winner), *seed = delta
         if sequence == 0:
             (initial_sets,) = seed
-            p1 = _expand_view(patches[0], None, initial_sets[0])
-            p2 = _expand_view(patches[1], None, initial_sets[1])
+            p1 = _expand_view(patches[0], None, initial_sets[0], packed)
+            p2 = _expand_view(patches[1], None, initial_sets[1], packed)
         else:
             base = self._games.get(key)
             if base is None or base[0] != sequence - 1:
                 raise ValueError(f"Missing observation base for game {key} at sequence {sequence}")
-            p1 = _expand_view(patches[0], base[1][0])
-            p2 = _expand_view(patches[1], base[1][1])
+            p1 = _expand_view(patches[0], base[1][0], packed=packed)
+            p2 = _expand_view(patches[1], base[1][1], packed=packed)
         views = [p1, p2]
         self._games[key] = sequence, views
         return {
@@ -101,35 +130,86 @@ class DeltaDecoder:
 
 
 def _patch_slots(changes, previous, own=False, initial_sets=None):
-    if previous is None:
-        current = changes[1::2]
-        if own:
-            for mon, original in zip(current, initial_sets):
-                mon["set"] = original
-        return current
-    if not changes:
+    if not changes and previous is not None:
         return previous
-    current = previous.copy()
+    current = [None] * (len(changes) // 2) if previous is None else previous.copy()
     for i in range(0, len(changes), 2):
         index = changes[i]
         mon = changes[i + 1]
+        base = None if previous is None else previous[index]
+        if isinstance(mon, list):
+            present, changed = mon[:2]
+            pos = 2
+            patch = {}
+            while present:
+                bit = present & -present
+                present ^= bit
+                key = _COLUMNS[bit.bit_length() - 1]
+                if changed & bit:
+                    value = mon[pos]
+                    if own and key == "moves" and value and isinstance(value[0], list):
+                        value = [
+                            dict(id=id_, pp=pp, maxpp=maxpp, disabled=disabled)
+                            for id_, pp, maxpp, disabled in value
+                        ]
+                    patch[key] = value
+                    pos += 1
+                else:
+                    patch[key] = base[key]
+            mon = patch
         if own:
-            mon["set"] = previous[index]["set"]
+            mon["set"] = initial_sets[index] if base is None else base["set"]
         current[index] = mon
     return current
 
 
-def _expand_view(patch, previous, initial_sets=None):
+_COLUMNS = (
+    "base_species", "species", "hp", "status", "boosts", "moves", "item", "ability",
+    "seen", "active", "fainted", "types", "volatiles", "last_move", "times_attacked",
+    "entry_turn", "moves_this_stint", "pp_used", "first_native_move", "status_progress",
+    "identity_uncertain", "nickname", "status_since", "current_hp", "max_hp", "stats",
+    "volatile_ids", "index", "selected", "set",
+)
+
+
+def _history(history):
+    fields = ("turn", "side", "move", "actor", "species", "order")
+    return [dict(zip(fields, row)) if isinstance(row, list) else row for row in history[1:]]
+
+
+_PREVIEW = [
+    {"id": id_, "kind": "preview", "picks": [a, b, c], "choice": f"team {a + 1},{b + 1},{c + 1}"}
+    for id_, (a, b, c) in enumerate(permutations(range(6), 3), 14)
+]
+
+
+def _legal(rows):
+    if rows == 1:
+        return _PREVIEW
+    result = []
+    for id_, slot, name, extra, *rest in rows:
+        if rest:
+            result.append(dict(id=id_, kind="switch", slot=slot, species=name,
+                               party_slot=extra, revive=rest[0], choice=f"switch {extra + 1}"))
+        else:
+            choice = f"move {slot + 1}{' mega' if extra else ''}"
+            result.append(dict(id=id_, kind="move", slot=slot, move=name, mega=extra, choice=choice))
+    return result
+
+
+def _expand_view(patch, previous, initial_sets=None, packed=False):
     fields, own, opponent, history = patch
+    if packed and "legal" in fields:
+        fields["legal"] = _legal(fields["legal"])
     if previous is None:
         return {
             **fields, "own": _patch_slots(own, None, True, initial_sets),
             "opponent": _patch_slots(opponent, None),
-            "history": history[1:] if history else [],
+            "history": _history(history) if history else [],
         }
     return {
         **previous, **fields,
         "own": _patch_slots(own, previous["own"], True),
         "opponent": _patch_slots(opponent, previous["opponent"]),
-        "history": previous["history"][history[0]:] + history[1:] if history else previous["history"],
+        "history": previous["history"][history[0]:] + _history(history) if history else previous["history"],
     }

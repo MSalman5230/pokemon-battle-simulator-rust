@@ -5,7 +5,6 @@ import {createHash} from 'node:crypto';
 import {readFileSync, writeFileSync} from 'node:fs';
 import {arch, availableParallelism, cpus, platform} from 'node:os';
 import {join} from 'node:path';
-import {createInterface} from 'node:readline';
 import {fileURLToPath} from 'node:url';
 import {parseArgs} from 'node:util';
 import {DeltaDecoder} from '../adapters/poke_rl_delta.mjs';
@@ -32,6 +31,7 @@ function options(args) {
             'trace-parity': {type: 'boolean'},
             'compact-observations': {type: 'boolean'},
             'delta-observations': {type: 'boolean'},
+            'packed-delta-observations': {type: 'boolean'},
             ...Object.fromEntries(Object.entries(defaults).map(
                 ([name, value]) => [name, {type: 'string', default: String(value)}],
             )),
@@ -41,17 +41,18 @@ function options(args) {
         console.log('Usage: node benchmarks/throughput.mjs [--games 32] [--batch-size 16] ' +
             '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] ' +
             '[--debug-parity | --diagnose-parity | --capture-replay FILE] [--trace-parity] ' +
-            '[--compact-observations | --delta-observations] [-- CANDIDATE [ARGS...]]');
+            '[--compact-observations | --delta-observations | --packed-delta-observations] [-- CANDIDATE [ARGS...]]');
         return null;
     }
     assert(split < 0 || candidate.length, 'Pass a worker command after --');
     const diagnose = !!values['diagnose-parity'];
     const traceParity = !!values['trace-parity'];
     const compact = !!values['compact-observations'];
-    const delta = !!values['delta-observations'];
+    const packed = !!values['packed-delta-observations'];
+    const delta = !!values['delta-observations'] || packed;
     assert(!(delta && compact), 'Choose only one observation encoding');
     assert(!(delta || compact) || candidate.length, 'Observation decoding requires a candidate worker');
-    const encoding = delta ? 'battle-delta-v1' : compact ? compactEncoding : undefined;
+    const encoding = packed ? 'battle-delta-v2' : delta ? 'battle-delta-v1' : compact ? compactEncoding : undefined;
     assert(!diagnose || (candidate.length && !values['capture-replay']), '--diagnose-parity requires a candidate worker');
     assert(!traceParity || (candidate.length && !diagnose && !values['capture-replay']),
         '--trace-parity requires a candidate worker and the batched replay');
@@ -97,50 +98,87 @@ function expandObservations(result) {
 }
 
 function openWorker([command, ...args], encoding) {
-    const delta = encoding === 'battle-delta-v1' ? new DeltaDecoder() : undefined;
+    const delta = encoding?.startsWith('battle-delta-') ? new DeltaDecoder() : undefined;
     const child = spawn(command, args, {cwd: root, stdio: ['pipe', 'pipe', 'inherit']});
-    const lines = createInterface({input: child.stdout, crlfDelay: Infinity});
-    const replies = lines[Symbol.asyncIterator]();
-    let failure;
+    let failure, pending, line = '';
+    let timer;
     function onError(error) {
-        failure = error;
-        lines.close();
+        failure ??= error;
+        if (pending) {
+            clearTimeout(timer);
+            pending.reject(failure);
+            pending = undefined;
+        }
     }
     child.on('error', onError);
     child.stdin.on('error', onError);
-    return {
-        async exchange({id, wire, steps}) {
-            if (failure) throw failure;
-            let timer;
-            try {
-                child.stdin.write(wire);
-                const {done, value} = await Promise.race([
-                    replies.next(),
-                    new Promise((_, reject) => {
-                        timer = setTimeout(() => reject(new Error(`Worker timed out at request ${id}`)), timeoutMs);
-                    }),
-                ]);
-                if (failure) throw failure;
-                assert(!done, `Worker exited before replying to request ${id}`);
-                const reply = JSON.parse(value);
-                assert.equal(reply.id, id, 'Mismatched worker reply ID');
-                if (reply.error != null) {
-                    delta?.clear();
-                    throw new Error(`Worker error for request ${id}: ${reply.error}`);
-                }
-                assert(Object.hasOwn(reply, 'result'), `Missing result for request ${id}`);
-                if (steps) {
-                    assert(Array.isArray(reply.result) && reply.result.length === steps,
-                        `Expected ${steps} battle steps in reply ${id}`);
-                }
-                if (delta) return delta.expand(reply.result);
-                return encoding === compactEncoding ? expandObservations(reply.result) : reply.result;
-            } finally {
-                clearTimeout(timer);
+    child.stdout.on('error', onError);
+    child.stdout.on('end', () => onError(new Error('Worker exited')));
+    child.stdout.setEncoding('utf8');
+    function consume(line) {
+        if (!pending) {
+            onError(new Error('Worker sent an unsolicited reply'));
+            return;
+        }
+        const {resolve, reject, id, steps, parts} = pending;
+        const expand = delta ? value => delta.expand(value) :
+            encoding === compactEncoding ? expandObservations : value => value;
+        try {
+            const reply = JSON.parse(line);
+            assert.equal(reply.id, id, 'Mismatched worker reply ID');
+            if (reply.error != null) {
+                delta?.clear();
+                throw new Error(`Worker error for request ${id}: ${reply.error}`);
             }
+            if (reply.part) {
+                const [index, part] = reply.part;
+                const entries = expand(part);
+                for (let i = 0; i < entries.length; i++) {
+                    assert(!(index + i in parts), 'Repeated streamed batch result');
+                    parts[index + i] = entries[i];
+                }
+                return;
+            }
+            assert(Object.hasOwn(reply, 'result'), `Missing result for request ${id}`);
+            let result;
+            if (reply.result?.$battle_stream !== undefined) {
+                assert.equal(parts.length, reply.result.$battle_stream);
+                for (let i = 0; i < parts.length; i++) assert(i in parts, 'Missing streamed batch result');
+                result = parts;
+            } else {
+                result = expand(reply.result);
+            }
+            if (steps) {
+                assert(Array.isArray(result) && result.length === steps,
+                    `Expected ${steps} battle steps in reply ${id}`);
+            }
+            pending = undefined;
+            clearTimeout(timer);
+            resolve(result);
+        } catch (error) {
+            pending = undefined;
+            clearTimeout(timer);
+            reject(error);
+        }
+    }
+    child.stdout.on('data', chunk => {
+        let start = 0;
+        for (let newline; (newline = chunk.indexOf('\n', start)) !== -1; start = newline + 1) {
+            consume(line + chunk.slice(start, newline));
+            line = '';
+        }
+        line += chunk.slice(start);
+    });
+    return {
+        exchange({id, wire, steps}) {
+            if (failure) return Promise.reject(failure);
+            return new Promise((resolve, reject) => {
+                pending = {resolve, reject, id, steps, parts: []};
+                timer = setTimeout(() => onError(new Error(`Worker timed out at request ${id}`)), timeoutMs);
+                child.stdin.write(wire);
+            });
         },
         close() {
-            lines.close();
             child.stdin.end();
             if (child.exitCode === null && child.signalCode === null) child.kill();
         },

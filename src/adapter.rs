@@ -16,7 +16,7 @@ use crate::{
     rng::Seed,
     validation::TeamValidator,
 };
-use public::{PublicState, fresh_mon};
+use public::{PublicLog, PublicState, fresh_mon};
 use serde::Serialize;
 use serde_json::{Value, json, value::RawValue};
 use std::{
@@ -124,7 +124,7 @@ pub struct Game {
 }
 
 struct OriginalSet {
-    fresh: Value,
+    fresh: public::PublicMon,
     item: String,
     ability: String,
     moves: Vec<Value>,
@@ -243,8 +243,14 @@ impl Game {
     fn sync(&mut self) -> Result<(), String> {
         let battle = self.stream.battle().unwrap();
         for line in &battle.log()[self.log_pos..] {
-            for player in Player::ALL {
-                self.public[player.index()].feed(line.view(Some(player)))?;
+            let p1 = line.view(Some(Player::P1));
+            let p2 = line.view(Some(Player::P2));
+            let common = PublicLog::new(p1);
+            self.public[0].feed_log(&common)?;
+            if std::ptr::eq(p1, p2) {
+                self.public[1].feed_log(&common)?;
+            } else {
+                self.public[1].feed_log(&PublicLog::new(p2))?;
             }
         }
         self.log_pos = battle.log().len();

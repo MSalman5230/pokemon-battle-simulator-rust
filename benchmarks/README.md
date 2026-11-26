@@ -126,6 +126,31 @@ across five replays. Delta step replies took 2.72 MB per replay versus
 31.02 MB in full Rust JSON. Both figures are in the delta report. This
 measures the transport only, without model inference or training.
 
+## Packed deltas and independent steps
+
+```sh
+source scripts/env.sh
+cargo build --locked --release
+node benchmarks/throughput.mjs --trace-parity --packed-delta-observations -- \
+  ./target/release/pokemon-battle-worker --packed-delta-observations --parallel-steps 4
+```
+
+Packed deltas encode changes to individual Pokémon fields and reuse the
+same hidden and public battle data. The JavaScript benchmark and Python
+`DeltaDecoder` reconstruct the same complete observations as full JSON.
+`--parallel-steps` only schedules batches that step distinct live games.
+It preserves per-game order and RNG state and reports results in request
+order. Mixed batches and repeated game IDs use the normal sequential path.
+A parallel batch is not transactional on error. Independent games may have
+reached their next states when the worker reports an error and discards
+delta bases. Restart failed rollouts if a batch returns an error.
+
+The optional `--stream-steps` flag can deliver parts of a parallel batch
+before its completion marker. A Python reply reader must keep reading when
+`DeltaDecoder.decode_reply` returns `None`. Decoded observations are still
+available only after the complete response. The benchmark supports both
+framing modes.
+
 ## Parity and earlier runs
 
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,

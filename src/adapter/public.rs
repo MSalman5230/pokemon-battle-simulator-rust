@@ -9,46 +9,122 @@ use serde::Deserialize;
 use serde_json::{Map, Value, json, value::RawValue};
 use std::{
     collections::VecDeque,
-    ops::{Deref, DerefMut},
+    ops::{Index, IndexMut},
     sync::{Arc, OnceLock},
 };
 
-/// Public state can outlive many replies unchanged (most notably the bench).
-/// Cache its JSON projection, with invalidation on every mutable access.
-#[derive(Clone)]
+// Native protocol fields are accessed by name constantly while applying a log
+// line. Keep these fields in indexed storage, not in a hashed JSON object.
+// Extra lookahead hydration fields and absent keys retain their JSON behavior.
+pub(super) const MON_FIELDS: [&str; 23] = [
+    "base_species",
+    "species",
+    "hp",
+    "status",
+    "boosts",
+    "moves",
+    "item",
+    "ability",
+    "seen",
+    "active",
+    "fainted",
+    "types",
+    "volatiles",
+    "last_move",
+    "times_attacked",
+    "entry_turn",
+    "moves_this_stint",
+    "pp_used",
+    "first_native_move",
+    "status_progress",
+    "identity_uncertain",
+    "nickname",
+    "status_since",
+];
+
+pub(super) fn field_index(name: &str) -> Option<usize> {
+    match name {
+        "base_species" => Some(0),
+        "species" => Some(1),
+        "hp" => Some(2),
+        "status" => Some(3),
+        "boosts" => Some(4),
+        "moves" => Some(5),
+        "item" => Some(6),
+        "ability" => Some(7),
+        "seen" => Some(8),
+        "active" => Some(9),
+        "fainted" => Some(10),
+        "types" => Some(11),
+        "volatiles" => Some(12),
+        "last_move" => Some(13),
+        "times_attacked" => Some(14),
+        "entry_turn" => Some(15),
+        "moves_this_stint" => Some(16),
+        "pp_used" => Some(17),
+        "first_native_move" => Some(18),
+        "status_progress" => Some(19),
+        "identity_uncertain" => Some(20),
+        "nickname" => Some(21),
+        "status_since" => Some(22),
+        _ => None,
+    }
+}
+
+#[derive(Clone, Default)]
 pub(super) struct PublicMon {
-    value: Value,
+    fields: [Option<Value>; MON_FIELDS.len()],
+    extra: Map<String, Value>,
     fresh: bool,
+    pub(super) revision: usize,
     wire: OnceLock<Arc<RawValue>>,
 }
 
 impl From<Value> for PublicMon {
     fn from(value: Value) -> Self {
-        Self {
-            value,
-            fresh: false,
-            wire: OnceLock::new(),
+        let mut mon = Self::default();
+        if let Value::Object(object) = value {
+            for (key, value) in object {
+                if let Some(index) = field_index(&key) {
+                    mon.fields[index] = Some(value);
+                } else {
+                    mon.extra.insert(key, value);
+                }
+            }
+        }
+        mon
+    }
+}
+
+impl Index<&str> for PublicMon {
+    type Output = Value;
+
+    fn index(&self, name: &str) -> &Value {
+        match field_index(name) {
+            Some(index) => self.fields[index].as_ref(),
+            None => self.extra.get(name),
+        }
+        .unwrap_or(&Value::Null)
+    }
+}
+
+impl IndexMut<&str> for PublicMon {
+    fn index_mut(&mut self, name: &str) -> &mut Value {
+        self.invalidate();
+        match field_index(name) {
+            Some(index) => self.fields[index].get_or_insert(Value::Null),
+            None => self.extra.entry(name.to_owned()).or_insert(Value::Null),
         }
     }
 }
 
-impl Deref for PublicMon {
-    type Target = Value;
-
-    fn deref(&self) -> &Value {
-        &self.value
-    }
-}
-
-impl DerefMut for PublicMon {
-    fn deref_mut(&mut self) -> &mut Value {
-        self.fresh = false;
-        self.wire.take();
-        &mut self.value
-    }
-}
-
 impl PublicMon {
+    fn invalidate(&mut self) {
+        self.fresh = false;
+        self.revision += 1;
+        self.wire.take();
+    }
+
     pub(super) fn is_fresh(&self) -> bool {
         self.fresh
     }
@@ -56,12 +132,78 @@ impl PublicMon {
     fn preview(species: &str) -> Self {
         Self {
             fresh: true,
-            ..fresh_mon(species).into()
+            ..fresh_mon(species)
         }
     }
 
-    pub(super) fn encoded(&self, make: impl FnOnce(&Value) -> Box<RawValue>) -> &RawValue {
-        self.wire.get_or_init(|| make(&self.value).into())
+    pub(super) fn iter(&self) -> impl Iterator<Item = (&str, &Value)> {
+        MON_FIELDS
+            .into_iter()
+            .zip(&self.fields)
+            .filter_map(|(key, value)| value.as_ref().map(|value| (key, value)))
+            .chain(self.extra.iter().map(|(key, value)| (key.as_str(), value)))
+    }
+
+    pub(super) fn encoded(&self, make: impl FnOnce(&Self) -> Box<RawValue>) -> &RawValue {
+        self.wire.get_or_init(|| make(self).into())
+    }
+}
+
+/// Parse each shared log line once. Most protocol lines fit on the stack.
+pub(super) struct PublicLog<'a> {
+    short: [&'a str; 12],
+    long: Vec<&'a str>,
+    len: usize,
+}
+
+impl<'a> PublicLog<'a> {
+    pub(super) fn new(line: &'a str) -> Self {
+        let mut log = Self {
+            short: [""; 12],
+            long: Vec::new(),
+            len: 0,
+        };
+        let mut segments = line.split('|');
+        for part in segments.by_ref().take(log.short.len()) {
+            log.short[log.len] = part;
+            log.len += 1;
+        }
+        if let Some(part) = segments.next() {
+            log.long.extend_from_slice(&log.short);
+            log.long.push(part);
+            log.long.extend(segments);
+        }
+        log
+    }
+
+    fn parts(&self) -> &[&'a str] {
+        if self.long.is_empty() {
+            &self.short[..self.len]
+        } else {
+            &self.long
+        }
+    }
+}
+
+#[derive(Clone)]
+pub(super) enum HistoryEntry {
+    Move {
+        turn: u32,
+        side: usize,
+        move_id: String,
+        actor: usize,
+        species: Value,
+        order: usize,
+    },
+    Hydrated(Value),
+}
+
+impl HistoryEntry {
+    fn is_turn(&self, number: u32) -> bool {
+        match self {
+            Self::Move { turn, .. } => *turn == number,
+            Self::Hydrated(value) => value["turn"] == number,
+        }
     }
 }
 
@@ -69,7 +211,7 @@ type Key = (usize, usize);
 
 #[derive(Clone)]
 struct Stint {
-    previous: Value,
+    previous: PublicMon,
     moves: Vec<String>,
     pp_used: Map<String, Value>,
     first_native_move: Option<Value>,
@@ -78,7 +220,7 @@ struct Stint {
 }
 
 impl Stint {
-    fn new(previous: &Value) -> Self {
+    fn new(previous: &PublicMon) -> Self {
         Self {
             previous: previous.clone(),
             moves: Vec::new(),
@@ -102,7 +244,7 @@ pub(super) struct PublicState {
     pub terrain_since: Option<u32>,
     pub pseudo: Map<String, Value>,
     pub mega: [bool; 2],
-    pub history: VecDeque<Value>,
+    pub history: VecDeque<HistoryEntry>,
     // Includes the events that have aged out of the observation window.
     pub history_count: usize,
     pub faints: [Vec<Value>; 2],
@@ -145,7 +287,7 @@ fn has_illusion(name: &str) -> bool {
         .is_some_and(|s| s.abilities.values().any(|a| a == "Illusion"))
 }
 
-pub(super) fn fresh_mon(species: &str) -> Value {
+pub(super) fn fresh_mon(species: &str) -> PublicMon {
     json!({
         "base_species": species, "species": species, "hp": 1.0, "status": "", "boosts": {},
         "moves": [], "item": null, "ability": null, "seen": false, "active": false,
@@ -153,9 +295,10 @@ pub(super) fn fresh_mon(species: &str) -> Value {
         "times_attacked": 0, "entry_turn": 0, "moves_this_stint": [], "pp_used": {},
         "first_native_move": null, "status_progress": {}, "identity_uncertain": false
     })
+    .into()
 }
 
-fn hp(mon: &mut Value, condition: &str) {
+fn hp(mon: &mut PublicMon, condition: &str) {
     if condition.is_empty() {
         return;
     }
@@ -248,7 +391,11 @@ impl PublicState {
             pseudo: fields.pseudo,
             mega: fields.mega,
             history_count: fields.history.len(),
-            history: fields.history,
+            history: fields
+                .history
+                .into_iter()
+                .map(HistoryEntry::Hydrated)
+                .collect(),
             faints: fields.faints,
             ..Self::default()
         })
@@ -346,7 +493,8 @@ impl PublicState {
                 target["first_native_move"] = first.clone();
             } else {
                 // The locked worker assigns undefined here and omits the field.
-                target.as_object_mut().unwrap().remove("first_native_move");
+                target.invalidate();
+                target.fields[field_index("first_native_move").unwrap()] = None;
             }
         }
         if let Some(stint) = stint {
@@ -363,10 +511,9 @@ impl PublicState {
             let decoy = &mut self.teams[team][old];
             // The reference restores with Object.assign. Fields discovered
             // this stint that were absent from the snapshot are not deleted.
-            decoy
-                .as_object_mut()
-                .unwrap()
-                .extend(stint.previous.as_object().unwrap().clone());
+            for (key, value) in stint.previous.iter() {
+                decoy[key] = value.clone();
+            }
             decoy["active"] = json!(false);
         }
     }
@@ -395,16 +542,21 @@ impl PublicState {
             .map(|index| (side, index))
     }
 
-    fn mon(&self, (side, index): Key) -> &Value {
+    fn mon(&self, (side, index): Key) -> &PublicMon {
         &self.teams[side][index]
     }
 
-    fn mon_mut(&mut self, (side, index): Key) -> &mut Value {
+    fn mon_mut(&mut self, (side, index): Key) -> &mut PublicMon {
         &mut self.teams[side][index]
     }
 
-    pub fn feed(&mut self, line: &str) -> Result<(), String> {
-        let parts: Vec<_> = line.split('|').collect();
+    #[cfg(test)]
+    fn feed(&mut self, line: &str) -> Result<(), String> {
+        self.feed_log(&PublicLog::new(line))
+    }
+
+    pub fn feed_log(&mut self, log: &PublicLog<'_>) -> Result<(), String> {
+        let parts = log.parts();
         let get = |i: usize| parts.get(i).copied().unwrap_or("");
         let ident = get(2);
         let team = side(ident);
@@ -490,13 +642,18 @@ impl PublicState {
                             .get_or_insert_with(|| json!({"turn":turn, "without_mega":!mega}));
                     }
                     self.last_attacker = Some(side);
-                    let order = self.history.iter().filter(|h| h["turn"] == turn).count();
+                    let order = self.history.iter().filter(|h| h.is_turn(turn)).count();
                     if self.history.len() >= 12 {
                         self.history.pop_front();
                     }
-                    self.history.push_back(json!({
-                    "turn":turn,"side":side,"move":move_id,"actor":index,"species":species,"order":order
-                }));
+                    self.history.push_back(HistoryEntry::Move {
+                        turn,
+                        side,
+                        move_id,
+                        actor: index,
+                        species,
+                        order,
+                    });
                     self.history_count += 1;
                 }
             }

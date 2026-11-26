@@ -5,7 +5,10 @@ mod delta;
 pub use delta::ObservationDelta;
 
 use super::*;
-use crate::{adapter::public::PublicMon, battle::Pokemon};
+use crate::{
+    adapter::public::{HistoryEntry, PublicMon},
+    battle::Pokemon,
+};
 use serde::{
     Serialize, Serializer,
     ser::{SerializeMap, SerializeSeq},
@@ -179,7 +182,7 @@ impl Serialize for WireView<'_> {
         } else {
             map.serialize_entry("opponent", &OppRoster(&public.teams[foe], self.encoding))?;
         }
-        self.details(&mut MapFields(&mut map))?;
+        self.details(&mut MapFields(&mut map), false)?;
         map.serialize_entry(
             "history",
             &History {
@@ -194,22 +197,14 @@ impl Serialize for WireView<'_> {
 
 trait ViewFields {
     type Error;
-    fn field(
-        &mut self,
-        name: &'static str,
-        value: &(impl Serialize + ?Sized),
-    ) -> Result<(), Self::Error>;
+    fn field(&mut self, name: &str, value: &(impl Serialize + ?Sized)) -> Result<(), Self::Error>;
 }
 
 struct MapFields<'a, M>(&'a mut M);
 
 impl<M: SerializeMap> ViewFields for MapFields<'_, M> {
     type Error = M::Error;
-    fn field(
-        &mut self,
-        name: &'static str,
-        value: &(impl Serialize + ?Sized),
-    ) -> Result<(), Self::Error> {
+    fn field(&mut self, name: &str, value: &(impl Serialize + ?Sized)) -> Result<(), Self::Error> {
         self.0.serialize_entry(name, value)
     }
 }
@@ -237,13 +232,17 @@ impl WireView<'_> {
         Ok(())
     }
 
-    fn details<F: ViewFields>(&self, fields: &mut F) -> Result<(), F::Error> {
+    fn details<F: ViewFields>(&self, fields: &mut F, packed: bool) -> Result<(), F::Error> {
         let game = self.game;
         let player = self.player;
         let index = player.index();
         let foe = player.foe().index();
         let public = &game.public[index];
-        fields.field("legal", &LegalList(self.legal))?;
+        if packed {
+            fields.field("legal", &PackedLegalList(self.legal))?;
+        } else {
+            fields.field("legal", &LegalList(self.legal))?;
+        }
         fields.field("weather", &public.weather)?;
         fields.field("terrain", &public.terrain)?;
         fields.field("pseudo", &public.pseudo)?;
@@ -277,6 +276,37 @@ impl WireView<'_> {
 }
 
 struct LegalList<'a>(&'a [Legal<'a>]);
+struct PackedLegalList<'a>(&'a [Legal<'a>]);
+
+impl Serialize for PackedLegalList<'_> {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        if matches!(self.0.first(), Some(Legal::Preview { .. })) {
+            return serializer.serialize_u8(1);
+        }
+        let mut seq = serializer.serialize_seq(Some(self.0.len()))?;
+        for action in self.0 {
+            match action {
+                Legal::Move {
+                    id,
+                    slot,
+                    name,
+                    mega,
+                    ..
+                } => seq.serialize_element(&(id, slot, name, mega))?,
+                Legal::Switch {
+                    id,
+                    slot,
+                    species,
+                    party_slot,
+                    revive,
+                    ..
+                } => seq.serialize_element(&(id, slot, species, party_slot, revive))?,
+                Legal::Preview { .. } => unreachable!("preview list has no other kinds"),
+            }
+        }
+        seq.end()
+    }
+}
 
 impl Serialize for LegalList<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
@@ -313,7 +343,7 @@ impl<'a> OwnRoster<'a> {
                 battle,
                 player: self.player,
                 party_slot: actual.map(|(i, _)| i),
-                visible: visible.map_or(&original.fresh, |mon| &**mon),
+                visible: visible.unwrap_or(&original.fresh),
                 actual: actual.map(|(_, p)| p),
                 slot,
                 set,
@@ -346,7 +376,7 @@ struct OwnMon<'a> {
     battle: &'a Battle,
     player: Player,
     party_slot: Option<usize>,
-    visible: &'a Value,
+    visible: &'a PublicMon,
     actual: Option<&'a Pokemon>,
     slot: usize,
     set: &'a Value,
@@ -403,20 +433,26 @@ struct Moves<'a> {
     player: Player,
     party_slot: usize,
     slots: &'a [crate::battle::MoveSlot],
+    packed: bool,
 }
 
 impl Serialize for Moves<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         let mut seq = serializer.serialize_seq(Some(self.slots.len()))?;
         for (slot, m) in self.slots.iter().enumerate() {
-            seq.serialize_element(&SlotView {
+            let view = SlotView {
                 id: &m.id,
                 pp: m.pp,
                 maxpp: m.max_pp,
                 disabled: self
                     .battle
                     .actual_move_disabled(self.player, self.party_slot, slot),
-            })?;
+            };
+            if self.packed {
+                seq.serialize_element(&(view.id, view.pp, view.maxpp, view.disabled))?;
+            } else {
+                seq.serialize_element(&view)?;
+            }
         }
         seq.end()
     }
@@ -425,11 +461,18 @@ impl Serialize for Moves<'_> {
 impl Serialize for OwnMon<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         let mut map = serializer.serialize_map(None)?;
-        for (key, value) in self.visible.as_object().unwrap() {
-            if matches!(key.as_str(), "moves" | "item" | "ability")
+        self.fields(&mut MapFields(&mut map), false)?;
+        map.end()
+    }
+}
+
+impl OwnMon<'_> {
+    fn fields<F: ViewFields>(&self, fields: &mut F, packed: bool) -> Result<(), F::Error> {
+        for (key, value) in self.visible.iter() {
+            if matches!(key, "moves" | "item" | "ability")
                 || self.actual.is_some()
                     && matches!(
-                        key.as_str(),
+                        key,
                         "species"
                             | "hp"
                             | "status"
@@ -443,14 +486,14 @@ impl Serialize for OwnMon<'_> {
             {
                 continue;
             }
-            map.serialize_entry(key, value)?;
+            fields.field(key, value)?;
         }
         if let Some(p) = self.actual {
-            map.serialize_entry("species", &p.species.name)?;
-            map.serialize_entry("hp", &(f64::from(p.hp) / f64::from(p.max_hp.get())))?;
-            map.serialize_entry("current_hp", &p.hp)?;
-            map.serialize_entry("max_hp", &p.max_hp.get())?;
-            map.serialize_entry(
+            fields.field("species", &p.species.name)?;
+            fields.field("hp", &(f64::from(p.hp) / f64::from(p.max_hp.get())))?;
+            fields.field("current_hp", &p.hp)?;
+            fields.field("max_hp", &p.max_hp.get())?;
+            fields.field(
                 "stats",
                 &BattleStats {
                     atk: p.stats.atk,
@@ -460,50 +503,51 @@ impl Serialize for OwnMon<'_> {
                     spe: p.stats.spe,
                 },
             )?;
-            map.serialize_entry("status", p.status.id())?;
-            map.serialize_entry("boosts", &BoostTable(p))?;
-            map.serialize_entry("types", &p.types().collect::<Vec<_>>())?;
-            map.serialize_entry("active", &self.active)?;
-            map.serialize_entry("fainted", &(p.hp == 0))?;
-            map.serialize_entry("identity_uncertain", &false)?;
-            map.serialize_entry("times_attacked", &p.times_attacked)?;
-            map.serialize_entry("volatile_ids", p.volatile_ids())?;
-            map.serialize_entry(
+            fields.field("status", p.status.id())?;
+            fields.field("boosts", &BoostTable(p))?;
+            fields.field("types", &p.types().collect::<Vec<_>>())?;
+            fields.field("active", &self.active)?;
+            fields.field("fainted", &(p.hp == 0))?;
+            fields.field("identity_uncertain", &false)?;
+            fields.field("times_attacked", &p.times_attacked)?;
+            fields.field("volatile_ids", p.volatile_ids())?;
+            fields.field(
                 "moves",
                 &Moves {
                     battle: self.battle,
                     player: self.player,
                     party_slot: self.party_slot.unwrap(),
                     slots: &p.moves,
+                    packed,
                 },
             )?;
-            map.serialize_entry("item", &p.item)?;
-            map.serialize_entry("ability", &p.ability)?;
+            fields.field("item", &p.item)?;
+            fields.field("ability", &p.ability)?;
         } else {
-            map.serialize_entry("item", &self.original.item)?;
-            map.serialize_entry("ability", &self.original.ability)?;
-            map.serialize_entry("moves", &self.original.moves)?;
+            fields.field("item", &self.original.item)?;
+            fields.field("ability", &self.original.ability)?;
+            fields.field("moves", &self.original.moves)?;
         }
-        map.serialize_entry("index", &self.slot)?;
+        fields.field("index", &self.slot)?;
         if self.include_set {
             if self.json {
-                map.serialize_entry(
+                fields.field(
                     "set",
                     self.original
                         .wire_set
                         .get_or_init(|| to_raw_value(self.set).unwrap()),
                 )?;
             } else {
-                map.serialize_entry("set", self.set)?;
+                fields.field("set", self.set)?;
             }
         }
-        map.serialize_entry("selected", &self.selected)?;
-        map.end()
+        fields.field("selected", &self.selected)?;
+        Ok(())
     }
 }
 
 struct OppRoster<'a>(&'a [PublicMon], Encoding<'a>);
-struct OppMon<'a>(&'a Value);
+struct OppMon<'a>(&'a PublicMon);
 
 impl Serialize for OppRoster<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
@@ -524,10 +568,8 @@ impl Serialize for OppRoster<'_> {
 
 impl Serialize for OppMon<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        let mon = self.0.as_object().unwrap();
-        let mut map = serializer
-            .serialize_map(Some(mon.len() - usize::from(mon.contains_key("nickname"))))?;
-        for (key, value) in mon {
+        let mut map = serializer.serialize_map(None)?;
+        for (key, value) in self.0.iter() {
             if key != "nickname" {
                 map.serialize_entry(key, value)?;
             }
@@ -541,7 +583,7 @@ struct History<'a> {
     viewer: usize,
 }
 
-struct HistoryLine<'a>(&'a Value, usize);
+struct HistoryLine<'a>(&'a HistoryEntry, usize);
 
 impl Serialize for History<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
@@ -556,7 +598,28 @@ impl Serialize for History<'_> {
 
 impl Serialize for HistoryLine<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
-        let h = self.0.as_object().unwrap();
+        if let HistoryEntry::Move {
+            turn,
+            side,
+            move_id,
+            actor,
+            species,
+            order,
+        } = self.0
+        {
+            let mut map = serializer.serialize_map(Some(6))?;
+            map.serialize_entry("turn", turn)?;
+            map.serialize_entry("side", &usize::from(*side != self.1))?;
+            map.serialize_entry("move", move_id)?;
+            map.serialize_entry("actor", actor)?;
+            map.serialize_entry("species", species)?;
+            map.serialize_entry("order", order)?;
+            return map.end();
+        }
+        let HistoryEntry::Hydrated(h) = self.0 else {
+            unreachable!()
+        };
+        let h = h.as_object().unwrap();
         let mut map = serializer.serialize_map(Some(h.len()))?;
         for (key, value) in h {
             if key == "side" {

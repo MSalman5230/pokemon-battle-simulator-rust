@@ -39,3 +39,29 @@ test('close, missing sequences, and resets cannot use a stale base', () => {
     decoder.clear();
     assert.throws(() => decoder.expand(frame('slot', 1, unchanged, unchanged)), /Missing observation base/);
 });
+
+test('packed slot updates preserve old snapshots and distinguish absent from null', () => {
+    const decoder = new DeltaDecoder();
+    const slot = (present, changed, ...values) => ({present, changed, values});
+    const row = ({present, changed, values}) => [present, changed, ...values];
+    const base = frame('packed', 0, [
+        {turn: 1, legal: 1},
+        [0, row(slot(7, 7, 'Espeon', 'Espeon', 1))],
+        [0, row(slot(3, 3, 'Umbreon', 'Umbreon'))],
+        [0, [1, 0, 'tackle', 0, 'Espeon', 0]],
+    ], [{turn: 1, legal: []}, [], [], null]);
+    const first = decoder.expand({$battle_delta_v2: base.$battle_delta_v1});
+    const next = frame('packed', 1, [
+        {turn: 2, legal: [[0, 0, 'tackle', false]]},
+        [0, row(slot(5, 4, null))],
+        [], [1, [2, 0, 'tackle', 0, 'Espeon', 0]],
+    ], unchanged);
+    const second = decoder.expand({$battle_delta_v2: next.$battle_delta_v1});
+    assert.equal(first.views[0].own[0].hp, 1);
+    assert.equal(first.views[0].own[0].species, 'Espeon');
+    assert.equal(first.views[0].legal.length, 120);
+    assert.equal(second.views[0].own[0].hp, null);
+    assert(!Object.hasOwn(second.views[0].own[0], 'species'));
+    assert.equal(second.views[0].legal[0].choice, 'move 1');
+    assert.deepEqual(second.views[0].history, [{turn: 2, side: 0, move: 'tackle', actor: 0, species: 'Espeon', order: 0}]);
+});
