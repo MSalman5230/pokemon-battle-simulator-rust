@@ -25,7 +25,7 @@ impl Battle {
             max_hp / 4
         };
         let name = if shed_tail { "Shed Tail" } else { "Substitute" };
-        let ident = self.ident(pos);
+        let ident = self.ident(pos).to_string();
         if mon.substitute_hp != 0 || mon.hp <= cost || max_hp == 1 {
             let weak = if mon.substitute_hp == 0 {
                 "|[weak]"
@@ -75,7 +75,7 @@ impl Battle {
         if !intact {
             mon.untrack_volatile("substitute");
         }
-        let ident = self.ident(target);
+        let ident = self.ident(target).to_string();
         if intact {
             self.add(format!("|-activate|{ident}|move: Substitute|[damage]"));
         } else {

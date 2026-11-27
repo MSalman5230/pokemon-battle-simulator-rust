@@ -15,11 +15,26 @@ use crate::{
     mechanics::{BoostStat, boosted_stat},
 };
 use serde_json::Value;
+use std::fmt;
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub(super) struct Position {
     pub(super) player: Player,
     pub(super) slot: usize,
+}
+
+pub(super) struct Ident<'a>(Position, &'a str);
+
+impl fmt::Display for Ident<'_> {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let Self(position, name) = *self;
+        write!(
+            f,
+            "{}{}: {name}",
+            position.player.id(),
+            char::from(b'a' + position.slot as u8)
+        )
+    }
 }
 
 impl Position {
@@ -447,8 +462,10 @@ impl Battle {
             Phase::Replace => {
                 let flags = self.force_switch(player);
                 if flags.iter().any(|x| *x) {
-                    let mut request =
-                        json!({"forceSwitch": flags, "side": self.side_request(player).unwrap()});
+                    let mut request = json!({
+                        "forceSwitch": &flags[..self.slots()],
+                        "side": self.side_request(player).unwrap(),
+                    });
                     if !self.force_switch(player.foe()).contains(&true) {
                         request["noCancel"] = json!(true);
                     }
@@ -472,11 +489,11 @@ impl Battle {
         &mut self.sides[position.player.index()].as_mut().unwrap().party[position.slot]
     }
 
-    pub(super) fn ident(&self, position: Position) -> String {
+    pub(super) fn ident(&self, position: Position) -> Ident<'_> {
         let display = self
             .disguise(position)
             .unwrap_or_else(|| self.mon(position));
-        format!("{}: {}", position.label(), display.name)
+        Ident(position, &display.name)
     }
 
     pub(super) fn move_still(&mut self, index: usize) {
@@ -539,15 +556,14 @@ impl Battle {
         details: bool,
         suffix: &str,
     ) {
-        let head = self.ident(target);
-        self.add_health_with_ident(event, target, &head, details, suffix);
+        self.add_health_with_ident(event, target, None, details, suffix);
     }
 
     fn add_health_with_ident(
         &mut self,
         event: &str,
         target: Position,
-        ident: &str,
+        ident: Option<&str>,
         details: bool,
         suffix: &str,
     ) {
@@ -558,7 +574,10 @@ impl Battle {
             mon.status.id(),
             self.format.report_exact_hp,
         );
-        let mut head = format!("|{event}|{ident}|");
+        let mut head = match ident {
+            Some(ident) => format!("|{event}|{ident}|"),
+            None => format!("|{event}|{}|", self.ident(target)),
+        };
         if details {
             head.push_str(&self.displayed_details(target));
             head.push('|');
@@ -599,13 +618,16 @@ impl Battle {
         self.run_queue(queue)
     }
 
-    fn force_switch(&self, player: Player) -> Vec<bool> {
+    fn force_switch(&self, player: Player) -> [bool; 2] {
         let party = self.party(player).unwrap();
-        let bench = party[self.slots()..].iter().any(|p| !p.fainted);
-        party[..self.slots()]
-            .iter()
-            .map(|p| p.reviving || bench && (p.needs_replacement || p.pivot_move.is_some()))
-            .collect()
+        let (active, bench) = party.split_at(self.slots());
+        let has_replacement = bench.iter().any(|p| !p.fainted);
+        let mut flags = [false; 2];
+        for (flag, p) in flags.iter_mut().zip(active) {
+            *flag =
+                p.reviving || has_replacement && (p.needs_replacement || p.pivot_move.is_some());
+        }
+        flags
     }
 
     pub(super) fn emergency_exit(&mut self, pos: Position, original_hp: u32) {
@@ -854,7 +876,7 @@ impl Battle {
         let mut mega = false;
         let mut ultra = false;
         let mut z_move = false;
-        for (slot, force_switch) in flags.into_iter().enumerate() {
+        for (slot, force_switch) in flags.into_iter().take(count).enumerate() {
             let actor = Position { player, slot };
             let mon = self.mon(actor);
             let needs_action = if replace {
@@ -2314,7 +2336,7 @@ impl Battle {
                     self.add_health_with_ident(
                         "-heal",
                         target,
-                        &ident,
+                        Some(&ident),
                         false,
                         "|[from] move: Revival Blessing",
                     );
@@ -2412,7 +2434,12 @@ impl Battle {
             }
             let mut waiting = false;
             for player in Player::ALL.into_iter().filter(|_| !replacements_pending) {
-                for (slot, required) in self.force_switch(player).into_iter().enumerate() {
+                for (slot, required) in self
+                    .force_switch(player)
+                    .into_iter()
+                    .take(self.slots())
+                    .enumerate()
+                {
                     if !required {
                         continue;
                     }
@@ -2640,7 +2667,7 @@ impl Battle {
         }
         self.switch_in_weather(pos);
         if self.mon(pos).ability == "orichalcumpulse" {
-            let ident = self.ident(pos);
+            let ident = self.ident(pos).to_string();
             if self.set_weather(pos, Weather::Sun, Some("Orichalcum Pulse")) {
                 self.add(format!("|-activate|{ident}|Orichalcum Pulse|[source]"));
             } else if self.effective_weather() == Some(Weather::Sun) {
@@ -4712,7 +4739,7 @@ impl Battle {
                 mon.converted_move_type(base)
             }
         };
-        let source_name = self.ident(source);
+        let source_name = self.ident(source).to_string();
         let darts = move_data.name == "Dragon Darts";
         let curse = move_data.name == "Curse";
         let base_target = move_base_target(move_data, source, loc);
@@ -4941,7 +4968,7 @@ impl Battle {
         }
         let source_name = if z_powered {
             self.spend_z_move(source);
-            self.ident(source)
+            self.ident(source).to_string()
         } else {
             source_name
         };
@@ -5068,7 +5095,8 @@ impl Battle {
             TargetKind::AllAdjacentFoes
         } else if curse {
             if self.format.report_exact_hp {
-                let recipient = target.map_or_else(|| "null".into(), |pos| self.ident(pos));
+                let recipient =
+                    target.map_or_else(|| "null".into(), |pos| self.ident(pos).to_string());
                 self.add(format!(
                     "|debug|Curse onModifyMove triggered|{source_name}|{recipient}"
                 ));
@@ -5136,7 +5164,7 @@ impl Battle {
                 if self.mon(pos).fainted {
                     format!("{}: {}", pos.player.id(), self.mon(pos).name)
                 } else {
-                    self.ident(pos)
+                    self.ident(pos).to_string()
                 }
             },
         );
@@ -5211,7 +5239,7 @@ impl Battle {
             redirected = true;
             spread_targets.clear();
             spread_targets.push(redirect);
-            let redirected_ident = self.ident(redirect);
+            let redirected_ident = self.ident(redirect).to_string();
             let line = &mut self.log[base].public;
             let target_start = line.match_indices('|').nth(3).unwrap().0 + 1;
             let target_end = line[target_start..]
@@ -8300,7 +8328,7 @@ impl Battle {
                 );
             }
             if darts {
-                let target = self.ident(strike_targets[0]);
+                let target = self.ident(strike_targets[0]).to_string();
                 if hit == 1 {
                     self.log[base].public =
                         format!("|move|{source_name}|Dragon Darts|{target}{called_from}");
@@ -9292,7 +9320,7 @@ impl Battle {
             let ident = if self.mon(target).fainted {
                 format!("{}: {}", target.player.id(), self.mon(target).name)
             } else {
-                self.ident(target)
+                self.ident(target).to_string()
             };
             self.add(format!("|-hitcount|{ident}|{hits_landed}"));
         }
@@ -9964,7 +9992,7 @@ impl Battle {
                 modifier += 1;
                 continue;
             }
-            let types = &DEX.type_data(&to_id(typing)).unwrap().damage_taken;
+            let types = &DEX.type_data_named(typing).unwrap().damage_taken;
             match types.get(move_type) {
                 Some(1)
                     if typing == "Flying"

@@ -243,7 +243,7 @@ impl Battle {
         if !mon.base_types().eq(mon.unrevealed_types.iter()) {
             let types = mon.base_types().collect::<Vec<_>>().join("/");
             let added = mon.added_type;
-            let name = self.ident(pos);
+            let name = self.ident(pos).to_string();
             self.add(format!("|-start|{name}|typechange|{types}|[silent]"));
             if let Some(added) = added {
                 self.add(format!("|-start|{name}|typeadd|{added}|[silent]"));

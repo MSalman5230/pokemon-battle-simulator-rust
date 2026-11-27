@@ -82,6 +82,7 @@ impl Battle {
                 player: room.side,
                 slot,
             })
+            .to_string()
         } else {
             format!("{}: {}", room.side.id(), party[slot].name)
         };

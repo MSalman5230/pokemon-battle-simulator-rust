@@ -92,8 +92,8 @@ impl Battle {
             return;
         }
         let stages = &stages[..count];
-        let source_name = self.ident(source);
-        let target_name = self.ident(target);
+        let source_name = self.ident(source).to_string();
+        let target_name = self.ident(target).to_string();
         self.move_still(move_log);
         self.add(format!(
             "|-clearpositiveboost|{target_name}|{source_name}|move: Spectral Thief"

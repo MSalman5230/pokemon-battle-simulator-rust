@@ -135,6 +135,12 @@ fn independent_batches_preserve_order_and_defer_illegal_actions_to_serial_execut
         ]}),
         json!({"id":4,"op":"trace","game":"a"}),
         json!({"id":5,"op":"trace","game":"b"}),
+        json!({"id":6,"op":"batch","requests":[
+            {"op":"step","game":"b","actions":[0,0]},
+        ]}),
+        json!({"id":7,"op":"batch","requests":[
+            {"op":"step","game":"b","actions":[999,999]},
+        ]}),
     ];
     let serial = replay(&[], requests.clone());
     assert!(
@@ -143,5 +149,7 @@ fn independent_batches_preserve_order_and_defer_illegal_actions_to_serial_execut
             .unwrap()
             .contains("illegal action")
     );
+    assert!(serial[6]["result"].is_array());
+    assert!(serial[7]["error"].is_string());
     assert_eq!(replay(&["--parallel-steps", "2"], requests), serial);
 }

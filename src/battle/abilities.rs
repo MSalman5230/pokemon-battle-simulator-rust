@@ -279,7 +279,7 @@ impl Battle {
                 }
                 let mut stage = 0;
                 for ty in self.mon(holder).types().filter(|&ty| ty != "???") {
-                    let chart = &DEX.type_data(&to_id(ty)).unwrap().damage_taken;
+                    let chart = &DEX.type_data_named(ty).unwrap().damage_taken;
                     match chart.get(&data.move_type) {
                         Some(3) => return false,
                         Some(1) => stage += 1,
@@ -660,7 +660,7 @@ impl Battle {
             .min(5);
         if fallen > 0 {
             self.mon_mut(pos).fallen_allies = fallen;
-            let ident = self.ident(pos);
+            let ident = self.ident(pos).to_string();
             self.add(format!("|-activate|{ident}|ability: Supreme Overlord"));
             self.add(format!("|-start|{ident}|fallen{fallen}|[silent]"));
         }
@@ -698,8 +698,8 @@ impl Battle {
         if effect.is_some_and(|a| a.no_receiver || a.cannot_suppress) {
             return;
         }
-        let holder_name = self.ident(holder);
-        let source_name = self.ident(fainted);
+        let holder_name = self.ident(holder).to_string();
+        let source_name = self.ident(fainted).to_string();
         if self.mon(holder).effective_item() == "abilityshield" {
             self.add(format!("|-ability|{source_name}|{label}"));
             self.add(format!("|-block|{holder_name}|item: Ability Shield"));
@@ -733,7 +733,7 @@ impl Battle {
     }
 
     pub(super) fn frisk(&mut self, pos: Position) {
-        let holder = self.ident(pos);
+        let holder = self.ident(pos).to_string();
         for target in self
             .positions()
             .filter(|target| target.player != pos.player)
@@ -1061,8 +1061,8 @@ impl Battle {
         let a = std::mem::take(&mut self.mon_mut(source).ability);
         let b = std::mem::replace(&mut self.mon_mut(target).ability, a);
         self.mon_mut(source).ability = b;
-        let target_name = self.ident(target);
-        let source_name = self.ident(source);
+        let target_name = self.ident(target).to_string();
+        let source_name = self.ident(source).to_string();
         if target.player == source.player {
             self.add(format!(
                 "|-activate|{source_name}|Skill Swap|||[of] {target_name}"
@@ -1891,7 +1891,7 @@ impl Battle {
                     }
                 }
                 if removed != 0 && origin.reveal_protection() {
-                    let ident = self.ident(target);
+                    let ident = self.ident(target).to_string();
                     self.add(format!(
                         "|-fail|{ident}|unboost|[from] item: Clear Amulet|[of] {ident}"
                     ));
@@ -1962,13 +1962,13 @@ impl Battle {
                         DropHook::FlowerVeil => self.log_flower_veil(target, holder),
                         DropHook::Block(ability) => self.fail_stat_drop(target, ability),
                         DropHook::IntimidateBlock(ability) => {
-                            let ident = self.ident(target);
+                            let ident = self.ident(target).to_string();
                             self.add(format!(
                                 "|-fail|{ident}|unboost|atk|[from] ability: {ability}|[of] {ident}"
                             ));
                         }
                         DropHook::ProtectStat(stat, ability) => {
-                            let ident = self.ident(target);
+                            let ident = self.ident(target).to_string();
                             self.add(format!(
                                 "|-fail|{ident}|unboost|{}|[from] ability: {ability}|[of] {ident}",
                                 stat.id()
@@ -2123,7 +2123,7 @@ impl Battle {
     }
 
     fn fail_stat_drop(&mut self, pos: Position, ability: &str) {
-        let ident = self.ident(pos);
+        let ident = self.ident(pos).to_string();
         self.add(format!(
             "|-fail|{ident}|unboost|[from] ability: {ability}|[of] {ident}"
         ));

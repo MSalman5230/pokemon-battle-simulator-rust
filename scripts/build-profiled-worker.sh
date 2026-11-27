@@ -27,5 +27,10 @@ for run in {1..8}; do
         --packed-delta-observations --parallel-steps 4 < "$workload" > /dev/null
 done
 "$profdata" merge "$raw"/train-*.profraw -o "$profile_dir/worker.profdata"
-RUSTFLAGS="-C target-cpu=native -C profile-use=$profile_dir/worker.profdata" cargo build --release --locked
+export RUSTFLAGS="-C target-cpu=native -C profile-use=$profile_dir/worker.profdata"
+if [[ ${BATTLE_BOLT_RELOCATIONS:-0} == 1 ]]; then
+    cargo rustc --release --locked --bin pokemon-battle-worker -- -C link-arg=-Wl,--emit-relocs
+else
+    cargo build --release --locked
+fi
 printf '%s\n' "$worker"

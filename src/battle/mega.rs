@@ -139,7 +139,7 @@ impl Battle {
             self.add_health_line_with("-heal", pos, false, "|[silent]");
         }
         let item = species.required_item.as_deref().unwrap_or("");
-        let ident = self.ident(pos);
+        let ident = self.ident(pos).to_string();
         match method {
             PermanentEvolution::Primal => self.add(format!("|-primal|{ident}|{item}")),
             PermanentEvolution::Ultra => {

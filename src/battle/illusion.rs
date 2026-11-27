@@ -54,7 +54,7 @@ impl Battle {
         if self.format.report_exact_hp {
             self.add("|debug|illusion cleared");
         }
-        let ident = self.ident(pos);
+        let ident = self.ident(pos).to_string();
         self.add(format!("|replace|{ident}|{}", self.mon(pos).details));
         self.add(format!("|-end|{ident}|Illusion"));
         const HINT: &str =

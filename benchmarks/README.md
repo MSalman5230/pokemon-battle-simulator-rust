@@ -213,6 +213,27 @@ observations took 15.0 ms. These diagnostics are not speedup measurements
 or universal bounds. They show why a faster serializer on its own would
 not close the remaining gap.
 
+### Optional x86-64 post-link tuning
+
+On Linux x86-64, [the BOLT build helper](../scripts/build-bolt-worker.sh)
+records branch counts on the same separate 80-game training workload as the
+Rust PGO build. LLVM BOLT uses those counts to put frequently executed blocks
+and functions near one another. The timed workload is not profiled or embedded.
+No kernel performance-counter access is required.
+
+The run used Debian LLVM BOLT 22.1.8. If using a locally extracted package,
+point `LD_LIBRARY_PATH` at its dependency directory when building, not when
+running the benchmark.
+
+```sh
+source scripts/env.sh
+worker="$(scripts/build-bolt-worker.sh /path/to/llvm-bolt /path/to/libbolt_rt_instr.a)"
+allocator="$PWD/.tools/mimalloc/usr/lib/x86_64-linux-gnu/libmimalloc.so.3.0"
+node benchmarks/throughput.mjs --warmup 5 --repeats 9 --trace-parity \
+  --packed-delta-observations -- env "LD_PRELOAD=$allocator" \
+  "$worker" --packed-delta-observations --parallel-steps 4
+```
+
 ## Parity and earlier runs
 
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,

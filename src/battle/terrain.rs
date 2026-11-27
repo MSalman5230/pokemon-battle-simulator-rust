@@ -121,7 +121,7 @@ impl Battle {
         if let Some(form) = &mut mon.transformed {
             form.uses_base_types = terrain_type.is_none();
         }
-        let ident = self.ident(pos);
+        let ident = self.ident(pos).to_string();
         if let Some(ty) = terrain_type {
             self.add(format!(
                 "|-start|{ident}|typechange|{ty}|[from] ability: Mimicry"

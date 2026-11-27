@@ -216,7 +216,7 @@ impl Battle {
 
     pub(super) fn charge_electric(&mut self, pos: Position, triggered_by: Option<(&str, &str)>) {
         self.mon_mut(pos).track_volatile("charge");
-        let ident = self.ident(pos);
+        let ident = self.ident(pos).to_string();
         if let Some((move_name, ability)) = triggered_by {
             self.add(format!(
                 "|-start|{ident}|Charge|{move_name}|[from] ability: {ability}"

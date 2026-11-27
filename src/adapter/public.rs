@@ -189,7 +189,16 @@ impl<'a> PublicLog<'a> {
             long: Vec::new(),
             len: 0,
         };
-        let mut segments = line.split('|');
+        let mut start = 0;
+        // memchr uses the best supported native implementation, including
+        // AVX2 on x86 when available. An ASCII byte is always a UTF-8 boundary.
+        let mut segments = memchr::memchr_iter(b'|', line.as_bytes())
+            .chain(std::iter::once(line.len()))
+            .scan(&mut start, |start, end| {
+                let part = &line[**start..end];
+                **start = end + 1;
+                Some(part)
+            });
         for part in segments.by_ref().take(log.short.len()) {
             log.short[log.len] = part;
             log.len += 1;
@@ -988,6 +997,16 @@ impl PublicState {
 #[cfg(test)]
 mod tests {
     use super::PublicState;
+
+    #[test]
+    fn byte_delimiters_keep_unicode_empty_and_overflow_fields() {
+        for text in ["", "|", "||", "é|火||alpha", "|a|b|c|d|e|f|g|h|i|j|k|火|ö|"] {
+            assert_eq!(
+                super::PublicLog::new(text).parts(),
+                text.split('|').collect::<Vec<_>>()
+            );
+        }
+    }
 
     #[test]
     fn split_health_preserves_the_exact_fraction_at_color_boundaries() {

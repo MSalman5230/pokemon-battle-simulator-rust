@@ -28,22 +28,23 @@ export class DeltaDecoder {
         }
         const packed = shared || !!value.$battle_delta_v2;
         const refs = shared ? initialRefs ?? previous?.refs : undefined;
+        const state = previous?.state ?? [[[], []], [[], []]];
         let p1, p2;
         if (shared) {
-            const public1 = slots(patches[0][2], previous?.views[0].opponent);
-            const public2 = slots(patches[1][2], previous?.views[1].opponent);
+            const public1 = slots(patches[0][2], previous?.views[0].opponent, state[0][1]);
+            const public2 = slots(patches[1][2], previous?.views[1].opponent, state[1][1]);
             const own1 = sharedOwn(patches[0][1], previous?.views[0].own, initialSets?.[0],
-                refs[0], public2, previous?.views[1].opponent);
+                refs[0], public2, previous?.views[1].opponent, state[0][0], state[1][1]);
             const own2 = sharedOwn(patches[1][1], previous?.views[1].own, initialSets?.[1],
-                refs[1], public1, previous?.views[0].opponent);
-            p1 = expandView(patches[0], previous?.views[0], initialSets?.[0], true, own1, public1);
-            p2 = expandView(patches[1], previous?.views[1], initialSets?.[1], true, own2, public2);
+                refs[1], public1, previous?.views[0].opponent, state[1][0], state[0][1]);
+            p1 = expandView(patches[0], previous?.views[0], initialSets?.[0], true, state[0], own1, public1);
+            p2 = expandView(patches[1], previous?.views[1], initialSets?.[1], true, state[1], own2, public2);
         } else {
-            p1 = expandView(patches[0], previous?.views[0], initialSets?.[0], packed);
-            p2 = expandView(patches[1], previous?.views[1], initialSets?.[1], packed);
+            p1 = expandView(patches[0], previous?.views[0], initialSets?.[0], packed, state[0]);
+            p2 = expandView(patches[1], previous?.views[1], initialSets?.[1], packed, state[1]);
         }
         const views = [p1, p2];
-        this.#games.set(key, {sequence, views, refs});
+        this.#games.set(key, {sequence, views, refs, state});
         const critic = (view, opponent) => packed
             ? packedView(view, empty, view.own, opponent, view.history)
             : {...view, opponent};
@@ -64,13 +65,11 @@ const columns = [
     'volatile_ids', 'index', 'selected', 'move2', 'move3', 'move4',
 ];
 const shapes = [new Map(), new Map()];
-const monData = new WeakMap();
 const shapeBase = 2 ** 29;
 
-function unpackMon(row, previous, own, set, base) {
-    // The column buffer is internal. Only the object materialized below is
-    // shared with a caller, so we can reuse this buffer without mutating views.
-    const values = previous ? monData.get(previous) : new Array(columns.length);
+function unpackMon(row, values, own, set, base, baseMask) {
+    // Each game/side/slot has a reusable column buffer. It is never exposed
+    // in the materialized observation, which remains unchanged across replies.
     const mask = row ? row[0] : values[33];
     let changed = row ? row[1] : 0;
     const movesMask = 0xe0000020;
@@ -103,7 +102,7 @@ function unpackMon(row, previous, own, set, base) {
     const objectMask = mask & 0x1fffffff;
     // Public rows only use the first 23 columns, so the two masks
     // together fit exactly in a JavaScript integer (29 + 23 bits).
-    const publicOnly = base ? (monData.get(base)[33] & ~objectMask & 0x7fffff) : 0;
+    const publicOnly = baseMask & ~objectMask & 0x7fffff;
     const key = objectMask + shapeBase * publicOnly;
     let make = table.get(key);
     if (!make) {
@@ -116,12 +115,10 @@ function unpackMon(row, previous, own, set, base) {
         make = new Function('a', 'set', 'b', `return {${fields.join(',')}}`);
         table.set(key, make);
     }
-    const mon = make(values, set, base);
-    monData.set(mon, values);
-    return mon;
+    return make(values, set, base);
 }
 
-function sharedOwn(changes, previous, sets, refs, publicSlots, previousPublic) {
+function sharedOwn(changes, previous, sets, refs, publicSlots, previousPublic, state, publicState) {
     let slots = previous ?? new Array(refs.length);
     let change = 0;
     for (let i = 0; i < refs.length; ++i) {
@@ -134,12 +131,13 @@ function sharedOwn(changes, previous, sets, refs, publicSlots, previousPublic) {
         }
         if (!row && (ref === null || base === previousPublic?.[ref])) continue;
         if (slots === previous) slots = previous.slice();
-        slots[i] = unpackMon(row, previous?.[i], true, sets ? sets[i] : previous[i].set, base);
+        slots[i] = unpackMon(row, state[i] ??= new Array(columns.length), true,
+            sets ? sets[i] : previous[i].set, base, ref === null ? 0 : publicState[ref][33]);
     }
     return slots;
 }
 
-function slots(changes, previous, own = false, initialSets) {
+function slots(changes, previous, state, own = false, initialSets) {
     if (changes.length === 0 && previous) return previous;
     const current = previous?.slice() ?? [];
     for (let i = 0; i < changes.length; i += 2) {
@@ -147,7 +145,7 @@ function slots(changes, previous, own = false, initialSets) {
         const value = changes[i + 1];
         const set = own ? (initialSets ? initialSets[index] : previous[index].set) : undefined;
         const packed = Array.isArray(value);
-        const mon = packed ? unpackMon(value, previous?.[index], own, set) : value;
+        const mon = packed ? unpackMon(value, state[index] ??= new Array(columns.length), own, set, undefined, 0) : value;
         if (own && !packed) mon.set = set;
         current[index] = mon;
     }
@@ -204,10 +202,10 @@ function packedView(base, patch, own, opponent, history) {
     };
 }
 
-function expandView([fields, own, opponent, history], previous, initialSets, packed, sharedOwnSlots, sharedPublicSlots) {
+function expandView([fields, own, opponent, history], previous, initialSets, packed, state, sharedOwnSlots, sharedPublicSlots) {
     if (packed && fields.legal !== undefined) fields.legal = unpackLegal(fields.legal);
-    const ownSlots = sharedOwnSlots ?? slots(own, previous?.own, true, initialSets);
-    const opponentSlots = sharedPublicSlots ?? slots(opponent, previous?.opponent);
+    const ownSlots = sharedOwnSlots ?? slots(own, previous?.own, state[0], true, initialSets);
+    const opponentSlots = sharedPublicSlots ?? slots(opponent, previous?.opponent, state[1]);
     const past = previous?.history ?? [];
     let current = past;
     if (history) {

@@ -409,6 +409,7 @@ struct MonFields {
     offsets: [(usize, usize); MON_FIELD_COUNT],
     mask: u32,
     cached: u32,
+    from_previous: u32,
     versions: [usize; MON_FIELD_COUNT],
 }
 
@@ -431,13 +432,13 @@ impl ViewFields for ReuseColumns<'_> {
             return self.field(name, value);
         };
         let flag = 1 << column;
-        let start = self.0.bytes.len();
         if self.1.cached & flag != 0 && self.1.versions[column] == version {
-            self.0.bytes.extend_from_slice(self.1.value(column));
+            self.0.from_previous |= flag;
         } else {
+            let start = self.0.bytes.len();
             serde_json::to_writer(&mut self.0.bytes, value)?;
+            self.0.offsets[column] = (start, self.0.bytes.len());
         }
-        self.0.offsets[column] = (start, self.0.bytes.len());
         self.0.mask |= flag;
         self.0.cached |= flag;
         self.0.versions[column] = version;
@@ -474,6 +475,7 @@ impl MonFields {
         self.bytes.clear();
         self.mask = 0;
         self.cached = 0;
+        self.from_previous = 0;
     }
 
     fn value(&self, column: usize) -> &[u8] {
@@ -489,7 +491,7 @@ impl MonFields {
         previous: &mut Self,
     ) -> Result {
         let mut changed = self.mask & !previous.mask;
-        let mut old_columns = self.mask & previous.mask;
+        let mut old_columns = self.mask & previous.mask & !self.from_previous;
         while old_columns != 0 {
             let column = old_columns.trailing_zeros() as usize;
             let bit = 1 << column;
@@ -514,6 +516,15 @@ impl MonFields {
             out.extend_from_slice(self.value(column));
         }
         out.push(b']');
+        // Reused bytes only need to be copied when saving a changed row. A
+        // row with no changes retains its entire previous buffer.
+        while self.from_previous != 0 {
+            let column = self.from_previous.trailing_zeros() as usize;
+            self.from_previous ^= 1 << column;
+            let start = self.bytes.len();
+            self.bytes.extend_from_slice(previous.value(column));
+            self.offsets[column] = (start, self.bytes.len());
+        }
         std::mem::swap(self, previous);
         Ok(())
     }

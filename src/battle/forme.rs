@@ -186,7 +186,7 @@ impl Battle {
         mon.base_species = species;
         let end = mon.details.find(',').unwrap_or(mon.details.len());
         mon.details.replace_range(..end, &species.name);
-        let ident = self.ident(pos);
+        let ident = self.ident(pos).to_string();
         self.add(format!(
             "|detailschange|{ident}|{}",
             self.displayed_details(pos)

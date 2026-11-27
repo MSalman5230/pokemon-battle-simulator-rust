@@ -10,8 +10,10 @@ use std::sync::LazyLock;
 type Table<T> = HashMap<String, T>;
 
 pub static DEX: LazyLock<Dex> = LazyLock::new(|| {
-    serde_json::from_str(include_str!("../data/champions.json"))
-        .expect("checked-in Champions dex must deserialize")
+    let mut dex: Dex = serde_json::from_str(include_str!("../data/champions.json"))
+        .expect("checked-in Champions dex must deserialize");
+    dex.type_by_name = TYPE_IDS.map(|id| dex.types.get(id).cloned());
+    dex
 });
 
 pub(crate) fn physical_shell_side_arm(dex_mod: Mod) -> &'static Move {
@@ -49,6 +51,8 @@ pub struct Dex {
     items: Table<Item>,
     natures: Table<Nature>,
     types: Table<TypeData>,
+    #[serde(skip)]
+    type_by_name: [Option<TypeData>; TYPE_IDS.len()],
     aliases: Table<String>,
     regmb: Override,
     #[serde(rename = "metronomeMoves")]
@@ -182,6 +186,96 @@ pub enum HitCount {
     Range([u8; 2]),
 }
 
+/// The known dex flags are immutable after construction, except for the
+/// synthetic contact variants. Keep the complete map for unknown flags and
+/// callers inspecting metadata, but use an indexed bit for battle checks.
+#[derive(Debug, Clone)]
+pub struct MoveFlags {
+    entries: Table<u8>,
+    known: u64,
+}
+
+fn flag_bit(key: &str) -> u64 {
+    match key {
+        "allyanim" => 1_u64 << 0,
+        "bite" => 1_u64 << 1,
+        "bullet" => 1_u64 << 2,
+        "bypasssub" => 1_u64 << 3,
+        "cantusetwice" => 1_u64 << 4,
+        "charge" => 1_u64 << 5,
+        "contact" => 1_u64 << 6,
+        "dance" => 1_u64 << 7,
+        "defrost" => 1_u64 << 8,
+        "distance" => 1_u64 << 9,
+        "failcopycat" => 1_u64 << 10,
+        "failencore" => 1_u64 << 11,
+        "failinstruct" => 1_u64 << 12,
+        "failmefirst" => 1_u64 << 13,
+        "failmimic" => 1_u64 << 14,
+        "futuremove" => 1_u64 << 15,
+        "gravity" => 1_u64 << 16,
+        "heal" => 1_u64 << 17,
+        "metronome" => 1_u64 << 18,
+        "minimize" => 1_u64 << 19,
+        "mirror" => 1_u64 << 20,
+        "mustpressure" => 1_u64 << 21,
+        "noassist" => 1_u64 << 22,
+        "nonsky" => 1_u64 << 23,
+        "noparentalbond" => 1_u64 << 24,
+        "nosketch" => 1_u64 << 25,
+        "nosleeptalk" => 1_u64 << 26,
+        "pledgecombo" => 1_u64 << 27,
+        "powder" => 1_u64 << 28,
+        "protect" => 1_u64 << 29,
+        "pulse" => 1_u64 << 30,
+        "punch" => 1_u64 << 31,
+        "recharge" => 1_u64 << 32,
+        "reflectable" => 1_u64 << 33,
+        "slicing" => 1_u64 << 34,
+        "snatch" => 1_u64 << 35,
+        "sound" => 1_u64 << 36,
+        "wind" => 1_u64 << 37,
+        _ => 0,
+    }
+}
+
+impl<'de> Deserialize<'de> for MoveFlags {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let entries = Table::deserialize(deserializer)?;
+        let known = entries.keys().fold(0, |bits, key| bits | flag_bit(key));
+        Ok(Self { entries, known })
+    }
+}
+
+impl MoveFlags {
+    #[inline]
+    pub fn contains_key(&self, key: &str) -> bool {
+        let bit = flag_bit(key);
+        if bit != 0 {
+            self.known & bit != 0
+        } else {
+            self.entries.contains_key(key)
+        }
+    }
+
+    pub fn insert(&mut self, key: String, value: u8) -> Option<u8> {
+        self.known |= flag_bit(&key);
+        self.entries.insert(key, value)
+    }
+
+    pub fn remove(&mut self, key: &str) -> Option<u8> {
+        self.known &= !flag_bit(key);
+        self.entries.remove(key)
+    }
+}
+
+impl std::ops::Deref for MoveFlags {
+    type Target = Table<u8>;
+    fn deref(&self) -> &Self::Target {
+        &self.entries
+    }
+}
+
 #[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Move {
@@ -200,7 +294,7 @@ pub struct Move {
     #[serde(default, rename = "multiaccuracy")]
     pub multi_accuracy: bool,
     pub crit_ratio: Option<u8>,
-    pub flags: Table<u8>,
+    pub flags: MoveFlags,
     pub is_nonstandard: Option<String>,
     pub handlers: Vec<String>,
     pub secondary: bool,
@@ -362,11 +456,81 @@ pub enum FlingEffect {
     WhiteHerb,
 }
 
-#[derive(Debug, Deserialize)]
+// A dense type table avoids allocating normalized type IDs and hashing
+// the same chart keys repeatedly during effectiveness and immunity checks.
+const TYPE_IDS: [&str; 19] = [
+    "normal", "fire", "water", "electric", "grass", "ice", "fighting", "poison", "ground",
+    "flying", "psychic", "bug", "rock", "ghost", "dragon", "dark", "steel", "fairy", "stellar",
+];
+
+#[inline]
+fn type_slot(name: &str) -> Option<usize> {
+    match name {
+        "Normal" => Some(0),
+        "Fire" => Some(1),
+        "Water" => Some(2),
+        "Electric" => Some(3),
+        "Grass" => Some(4),
+        "Ice" => Some(5),
+        "Fighting" => Some(6),
+        "Poison" => Some(7),
+        "Ground" => Some(8),
+        "Flying" => Some(9),
+        "Psychic" => Some(10),
+        "Bug" => Some(11),
+        "Rock" => Some(12),
+        "Ghost" => Some(13),
+        "Dragon" => Some(14),
+        "Dark" => Some(15),
+        "Steel" => Some(16),
+        "Fairy" => Some(17),
+        "Stellar" => Some(18),
+        _ => None,
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct DamageChart {
+    entries: Table<u8>,
+    types: [Option<u8>; TYPE_IDS.len()],
+}
+
+impl<'de> Deserialize<'de> for DamageChart {
+    fn deserialize<D: serde::Deserializer<'de>>(deserializer: D) -> Result<Self, D::Error> {
+        let entries: Table<u8> = Table::deserialize(deserializer)?;
+        let mut types = [None; TYPE_IDS.len()];
+        for (name, &effect) in &entries {
+            if let Some(index) = type_slot(name) {
+                types[index] = Some(effect);
+            }
+        }
+        Ok(Self { entries, types })
+    }
+}
+
+impl DamageChart {
+    #[inline]
+    pub fn get(&self, name: &str) -> Option<&u8> {
+        if let Some(index) = type_slot(name) {
+            self.types[index].as_ref()
+        } else {
+            self.entries.get(name)
+        }
+    }
+}
+
+impl std::ops::Deref for DamageChart {
+    type Target = Table<u8>;
+    fn deref(&self) -> &Self::Target {
+        &self.entries
+    }
+}
+
+#[derive(Debug, Clone, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TypeData {
     /// Showdown codes: 1 weak, 2 resists, 3 immune, 0 neutral.
-    pub damage_taken: Table<u8>,
+    pub damage_taken: DamageChart,
 }
 
 impl Dex {
@@ -423,6 +587,17 @@ impl Dex {
         self.types.get(id)
     }
 
+    #[inline]
+    pub(crate) fn type_data_named(&self, name: &str) -> Option<&TypeData> {
+        if let Some(index) = type_slot(name) {
+            self.type_by_name[index]
+                .as_ref()
+                .or_else(|| self.type_data(TYPE_IDS[index]))
+        } else {
+            self.type_data(&to_id(name))
+        }
+    }
+
     fn lookup<'a, T>(
         &self,
         base: &'a Table<T>,
@@ -439,5 +614,63 @@ impl Dex {
             base.get(key)
         };
         lookup(id).or_else(|| self.aliases.get(id).and_then(|alias| lookup(alias)))
+    }
+}
+
+#[cfg(test)]
+mod fast_lookup_tests {
+    use super::*;
+
+    #[test]
+    fn move_flag_bits_match_the_complete_dex_and_insertions() {
+        for effect in DEX.moves.values().chain(DEX.regmb.moves.values()) {
+            for key in [
+                "contact",
+                "sound",
+                "protect",
+                "heal",
+                "failcopycat",
+                "future_flag",
+            ] {
+                assert_eq!(
+                    effect.flags.contains_key(key),
+                    effect.flags.entries.contains_key(key)
+                );
+            }
+            for key in effect.flags.entries.keys() {
+                assert!(effect.flags.contains_key(key));
+            }
+        }
+        let mut flags: MoveFlags = serde_json::from_str(r#"{"contact":0,"unlisted":2}"#).unwrap();
+        assert!(flags.contains_key("contact"));
+        assert_eq!(flags.remove("contact"), Some(0));
+        assert!(!flags.contains_key("contact"));
+        assert_eq!(flags.insert("sound".into(), 1), None);
+        assert!(flags.contains_key("sound") && flags.contains_key("unlisted"));
+    }
+
+    #[test]
+    fn dense_type_values_match_raw_maps_including_missing_and_special_keys() {
+        for chart in DEX.types.values() {
+            for key in chart
+                .damage_taken
+                .entries
+                .keys()
+                .map(String::as_str)
+                .chain(["Stellar", "electric", "Paralysis", "unlisted"])
+            {
+                assert_eq!(
+                    chart.damage_taken.get(key),
+                    chart.damage_taken.entries.get(key)
+                );
+            }
+        }
+        for name in ["Fire", "Electric", "Stellar", "???", " FIrE ", "ghost"] {
+            let actual = DEX.type_data_named(name).map(|ty| &ty.damage_taken.entries);
+            let expected = DEX
+                .type_data(&to_id(name))
+                .map(|ty| &ty.damage_taken.entries);
+            assert_eq!(actual, expected);
+        }
     }
 }

@@ -339,7 +339,7 @@ impl Battle {
                 .mon(pos)
                 .types()
                 .filter(|ty| *ty != "???")
-                .any(|ty| DEX.type_data(&to_id(ty)).unwrap().damage_taken.get(kind) == Some(&3))
+                .any(|ty| DEX.type_data_named(ty).unwrap().damage_taken.get(kind) == Some(&3))
             {
                 self.add("|debug|natural status immunity");
             } else {

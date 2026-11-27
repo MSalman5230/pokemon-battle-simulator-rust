@@ -149,7 +149,7 @@ impl Battle {
             from_item,
         });
         mon.track_volatile(kind.id());
-        let ident = self.ident(pos);
+        let ident = self.ident(pos).to_string();
         let label = kind.label();
         let reason = if from_item { "|[fromitem]" } else { "" };
         self.add(format!("|-activate|{ident}|ability: {label}{reason}"));

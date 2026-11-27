@@ -280,7 +280,7 @@ fn effectiveness(attacking_type: &str, species: &Species) -> i8 {
         .iter()
         .map(|ty| {
             match DEX
-                .type_data(&to_id(ty))
+                .type_data_named(ty)
                 .unwrap()
                 .damage_taken
                 .get(attacking_type)

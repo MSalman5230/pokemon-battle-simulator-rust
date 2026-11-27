@@ -172,7 +172,23 @@ impl Worker {
         out: &mut Vec<u8>,
     ) -> Option<Result<(), String>> {
         let pool = self.pool.as_ref()?;
-        if requests.len() < 2 {
+        if let [request] = requests {
+            if request.op != "step" {
+                return None;
+            }
+            let key = request.game.as_ref();
+            let live = self.games.get_mut(key)?;
+            if !live.plan.as_ref()?.accepts(request.actions) {
+                return None;
+            }
+            out.push(b'[');
+            let result = live
+                .step(request.actions)
+                .and_then(|()| live.encode(out, key, self.observations));
+            out.push(b']');
+            return Some(result);
+        }
+        if requests.is_empty() {
             return None;
         }
         for (index, request) in requests.iter().enumerate() {

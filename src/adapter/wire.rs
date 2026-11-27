@@ -440,6 +440,18 @@ struct BattleStats {
 
 struct BoostTable<'a>(&'a Pokemon);
 
+struct Types<'a>(&'a Pokemon);
+
+impl Serialize for Types<'_> {
+    fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
+        let mut seq = serializer.serialize_seq(None)?;
+        for name in self.0.types() {
+            seq.serialize_element(name)?;
+        }
+        seq.end()
+    }
+}
+
 impl Serialize for BoostTable<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         let mut map = serializer.serialize_map(Some(STATS.len()))?;
@@ -558,7 +570,11 @@ impl OwnMon<'_> {
             )?;
             fields.field("status", p.status.id())?;
             fields.field("boosts", &BoostTable(p))?;
-            fields.field("types", &p.types().collect::<Vec<_>>())?;
+            if packed {
+                fields.field("types", &Types(p))?;
+            } else {
+                fields.field("types", &p.types().collect::<Vec<_>>())?;
+            }
             fields.field("active", &self.active)?;
             fields.field("fainted", &(p.hp == 0))?;
             fields.field("identity_uncertain", &false)?;

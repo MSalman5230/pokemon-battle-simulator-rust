@@ -414,7 +414,7 @@ impl Battle {
         }
         let ripen = self.event_ability(holder) == "ripen";
         if self.eat_effect_berry(holder, id, true) {
-            let who = self.ident(holder);
+            let who = self.ident(holder).to_string();
             self.indirect_damage(
                 attacker,
                 if ripen { 4 } else { 8 },
@@ -1085,7 +1085,7 @@ impl Battle {
             let target_name = if victim.fainted {
                 format!("{}: {}", target.player.id(), victim.name)
             } else {
-                self.ident(target)
+                self.ident(target).to_string()
             };
             let id = self.lose_held_item(target);
             self.mon_mut(user).item = id;
@@ -1185,8 +1185,8 @@ impl Battle {
         }
         self.mon_mut(recipient).item = self.lose_held_item(donor);
         self.on_gained_item(recipient);
-        let recipient = self.ident(recipient);
-        let donor = self.ident(donor);
+        let recipient = self.ident(recipient).to_string();
+        let donor = self.ident(donor).to_string();
         let kind = if ability { "ability" } else { "move" };
         let name = &item.effect.name;
         if show_loss {

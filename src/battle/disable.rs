@@ -330,7 +330,7 @@ impl Battle {
             let mon = self.mon_mut(target);
             mon.attract = None;
             mon.untrack_volatile("attract");
-            let ident = self.ident(target);
+            let ident = self.ident(target).to_string();
             self.add(format!("|-end|{ident}|Attract|[silent]"));
             self.add(format!(
                 "|-end|{ident}|move: Attract|[from] item: Mental Herb"

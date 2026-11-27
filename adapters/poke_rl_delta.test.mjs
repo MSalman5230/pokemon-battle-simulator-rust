@@ -102,3 +102,18 @@ test('shared public rows refresh owned snapshots without revealing exact HP', ()
     assert.equal(updated.views[1].opponent[0].hp, 0.51);
     assert.equal(updated.training.critic_views[1].opponent[0].hp, 0.516);
 });
+
+test('shared and separate packed projections start fresh column state', () => {
+    const decoder = new DeltaDecoder();
+    const view = (hp, species) => [{turn: 1}, [0, [4, 4, hp]], [0, [2, 2, species]], null];
+    const seed = (a, b) => frame('slot', 0, view(a, 'Espeon'), view(b, 'Umbreon')).$battle_delta_v1;
+    const shared = (a, b) => ({$battle_delta_v3: [...seed(a, b), [[0], [0]]]});
+    const before = decoder.expand(shared(0.25, 0.75));
+    const separate = decoder.expand({$battle_delta_v2: seed(0.5, 1)});
+    const after = decoder.expand(shared(0.125, 0.25));
+    assert.equal(before.views[0].own[0].species, 'Umbreon');
+    assert.deepEqual(separate.views[0].own[0], {hp: 0.5, set: {item: 'Luca berry'}});
+    assert.equal(after.views[0].own[0].species, 'Umbreon');
+    assert.equal(after.views[0].own[0].hp, 0.125);
+    assert.equal(before.views[0].own[0].hp, 0.25);
+});

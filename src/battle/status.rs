@@ -269,7 +269,7 @@ impl Battle {
         let status = self.mon(pos).status;
         if self.mon(pos).hp != 0 && status != Status::Healthy {
             let ident = if self.active_effects(pos) {
-                self.ident(pos)
+                self.ident(pos).to_string()
             } else {
                 format!("{}: {}", pos.player.id(), self.mon(pos).name)
             };
@@ -370,7 +370,7 @@ impl Battle {
         (matches!(key, "powder" | "sandstorm" | "hail")
             && (mon.effective_item() == "safetygoggles" || self.event_ability(pos) == "overcoat"))
             || mon.types().filter(|ty| *ty != "???").any(|typing| {
-                DEX.type_data(&to_id(typing)).unwrap().damage_taken.get(key) == Some(&3)
+                DEX.type_data_named(typing).unwrap().damage_taken.get(key) == Some(&3)
             })
     }
 
@@ -609,7 +609,7 @@ impl Battle {
                 continue;
             }
             if reveal {
-                let target = self.ident(pos);
+                let target = self.ident(pos).to_string();
                 if holder == pos {
                     self.add(format!("|-immune|{target}|[from] ability: Pastel Veil"));
                 } else {

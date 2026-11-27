@@ -3,7 +3,7 @@
 use super::MoveFacts;
 use crate::generation::type_booster;
 use crate::{
-    choice::{TargetKind, to_id},
+    choice::TargetKind,
     dex::{Accuracy, Category, DEX, HitCount, Move, Species},
     input::SetStats,
     mechanics::{Nature, Stat},
@@ -144,7 +144,7 @@ fn weakness(species: &Species, ability: &str, typing: &str) -> i8 {
     }
     let mut sum = 0;
     for ty in &species.types {
-        let chart = &DEX.type_data(&to_id(ty)).unwrap().damage_taken;
+        let chart = &DEX.type_data_named(ty).unwrap().damage_taken;
         match chart.get(typing) {
             Some(3) => return 0,
             Some(1) => sum += 1,

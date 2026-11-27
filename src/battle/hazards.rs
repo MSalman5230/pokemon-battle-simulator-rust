@@ -69,7 +69,7 @@ impl Battle {
             self.end_safeguard(target.player);
         }
         self.clear_mist(target.player);
-        let ident = self.ident(source);
+        let ident = self.ident(source).to_string();
         for player in [target.player, source.player] {
             for hazard in [
                 Hazard::Spikes,
@@ -95,7 +95,7 @@ impl Battle {
     }
 
     pub(super) fn clear_spinning_hazards(&mut self, pos: Position, move_name: &str) {
-        let source = self.ident(pos);
+        let source = self.ident(pos).to_string();
         let suffix = format!("|[from] move: {move_name}|[of] {source}");
         let alive = self.mon(pos).hp != 0;
         if alive && self.mon_mut(pos).seeded_from.take().is_some() {
