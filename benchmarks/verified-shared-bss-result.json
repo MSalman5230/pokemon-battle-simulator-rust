@@ -1,0 +1,341 @@
+{
+  "rust_revision": "f98028649430f097f97448328b3d16c504238135",
+  "branch_base": "7f8cf3269c81b20ab732101cd29484a9893024bb",
+  "workload": "poke-rl-bss-reg-mc-jsonl-v1",
+  "measured_at_utc": "2026-11-27T00:34:11.450Z",
+  "machine": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i5-6300HQ CPU @ 2.30GHz",
+    "available_cpus": 4
+  },
+  "node": "v24.22.3",
+  "reference": {
+    "format": "gen9championsbssregmc",
+    "showdown_revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+    "showdown_integrity": "sha512-TrXfFPLPea5r5kOXV74g9WdyYfoTYVtDhnItEm+9FHsWtuPG5HYdpdxUFdBhGfptoDbosgZ8vGtnhjenaayXvw==",
+    "poke_rl_revision": "5fc4cb182277fc401b4aac83e841ebe4004f7946",
+    "poke_rl_dirty": true,
+    "worker_sha256": "39248ef7699d687850cfcf4469e357dcb2c2353c295599097876677d932677b5",
+    "lock_sha256": "549baebeed16b3aab43e8c871ecc2899f8e4a006e3db1c9c383b29baf2b10aed",
+    "teams_sha256": "d66e2e68b18aa64bfd72dc146591e205f70b932e8398d554fcfa45a092a2518c"
+  },
+  "settings": {
+    "games": 32,
+    "batch-size": 16,
+    "max-turns": 200,
+    "repeats": 9,
+    "seed": 1731,
+    "warmup": 5,
+    "training": true
+  },
+  "workload_sha256": "3cf9a772a7abaa763cc746d293289b352d5e6018d3ccd26fc82f7d7abab5d337",
+  "iterations_per_replay": 673,
+  "ended_per_replay": 32,
+  "truncated_per_replay": 0,
+  "verified_traces": 32,
+  "results": {
+    "showdown": {
+      "median_iterations_per_second": 347.9926980997225,
+      "median_games_per_second_including_truncations": 15.266408064050513,
+      "samples": [
+        {
+          "step_seconds": 1.9339486250000046,
+          "workload_seconds": 2.094317192000006,
+          "iterations_per_second": 347.9926980997225,
+          "games_per_second_including_truncations": 15.27944292404009
+        },
+        {
+          "step_seconds": 1.9699826989999782,
+          "workload_seconds": 2.1272652369999707,
+          "iterations_per_second": 341.627365733534,
+          "games_per_second_including_truncations": 15.042788009420399
+        },
+        {
+          "step_seconds": 1.9829103019999783,
+          "workload_seconds": 2.158688306999975,
+          "iterations_per_second": 339.4001227999104,
+          "games_per_second_including_truncations": 14.823816804044222
+        },
+        {
+          "step_seconds": 1.9149058139999797,
+          "workload_seconds": 2.0730030749999897,
+          "iterations_per_second": 351.45331696194177,
+          "games_per_second_including_truncations": 15.436542466296226
+        },
+        {
+          "step_seconds": 1.9096085650000205,
+          "workload_seconds": 2.063554555000017,
+          "iterations_per_second": 352.4282475136431,
+          "games_per_second_including_truncations": 15.507222681592605
+        },
+        {
+          "step_seconds": 1.9311201960000253,
+          "workload_seconds": 2.0961053750000245,
+          "iterations_per_second": 348.50238809267324,
+          "games_per_second_including_truncations": 15.266408064050513
+        },
+        {
+          "step_seconds": 1.9597101979999934,
+          "workload_seconds": 2.130936440999991,
+          "iterations_per_second": 343.41812411183986,
+          "games_per_second_including_truncations": 15.016872105759882
+        },
+        {
+          "step_seconds": 1.9014573790000067,
+          "workload_seconds": 2.0558975059999867,
+          "iterations_per_second": 353.9390403554229,
+          "games_per_second_including_truncations": 15.564978266966294
+        },
+        {
+          "step_seconds": 1.9365596239999867,
+          "workload_seconds": 2.0999608099999967,
+          "iterations_per_second": 347.52351110672777,
+          "games_per_second_including_truncations": 15.238379615284368
+        }
+      ]
+    },
+    "candidate": {
+      "median_iterations_per_second": 20551.84356752797,
+      "median_games_per_second_including_truncations": 571.6076581488303,
+      "samples": [
+        {
+          "step_seconds": 0.03405928100003803,
+          "workload_seconds": 0.056831623000041874,
+          "iterations_per_second": 19759.66550789045,
+          "games_per_second_including_truncations": 563.0667982150786
+        },
+        {
+          "step_seconds": 0.0348476749999827,
+          "workload_seconds": 0.05852020399997491,
+          "iterations_per_second": 19312.62272161153,
+          "games_per_second_including_truncations": 546.81969324669
+        },
+        {
+          "step_seconds": 0.03218735399999059,
+          "workload_seconds": 0.05505755099999442,
+          "iterations_per_second": 20908.832704924946,
+          "games_per_second_including_truncations": 581.2100142268087
+        },
+        {
+          "step_seconds": 0.03175078100002429,
+          "workload_seconds": 0.05403423200001634,
+          "iterations_per_second": 21196.32899737128,
+          "games_per_second_including_truncations": 592.2171707740812
+        },
+        {
+          "step_seconds": 0.032746454000036465,
+          "workload_seconds": 0.0559824550000485,
+          "iterations_per_second": 20551.84356752797,
+          "games_per_second_including_truncations": 571.6076581488303
+        },
+        {
+          "step_seconds": 0.03698840700000801,
+          "workload_seconds": 0.05916901899999721,
+          "iterations_per_second": 18194.890090829114,
+          "games_per_second_including_truncations": 540.8235684962347
+        },
+        {
+          "step_seconds": 0.032307977999989815,
+          "workload_seconds": 0.05551197500000853,
+          "iterations_per_second": 20830.768177451777,
+          "games_per_second_including_truncations": 576.452197926575
+        },
+        {
+          "step_seconds": 0.038689840999999434,
+          "workload_seconds": 0.06196678699997574,
+          "iterations_per_second": 17394.747112039306,
+          "games_per_second_including_truncations": 516.4056674426662
+        },
+        {
+          "step_seconds": 0.0318812000000471,
+          "workload_seconds": 0.05513125600004423,
+          "iterations_per_second": 21109.61946222243,
+          "games_per_second_including_truncations": 580.4329943067926
+        }
+      ]
+    }
+  },
+  "candidate_command": [
+    "env",
+    "LD_PRELOAD=/home/masood/t3/pokemon-battle-simulator-rust/.tools/perf50-alloc/usr/lib/x86_64-linux-gnu/libmimalloc.so.3.0",
+    "/home/masood/t3/pokemon-battle-simulator-rust/.tools/profiled-worker/target/release/pokemon-battle-worker",
+    "--packed-delta-observations",
+    "--parallel-steps",
+    "4"
+  ],
+  "candidate_observations": "battle-delta-v3",
+  "speedup": 59.058260934080096,
+  "verified_target_200x": false,
+  "candidate_build": {
+    "lto": "fat",
+    "target_cpu": "native",
+    "profile_guided": {
+      "seed": 50221,
+      "games": 80
+    },
+    "worker_binary_sha256": "66c803836e57e6791d9a98fe6dddb02ec5d8e53bdd5e01f1f17a4be4e81050f8",
+    "battle_threads": 4,
+    "allocator": {
+      "package": "libmimalloc3",
+      "version": "3.0.1+ds-2.1"
+    }
+  },
+  "additional_parity": {
+    "seed": 20261125,
+    "workload_sha256": "3ad35bd94003c6d0a4d31f74bf98c0621c6edcb3caf9fb297b056130dedab27a",
+    "step_replies": 2856,
+    "spectator_traces": 160,
+    "python_decoded_frames_against_full_rust": 124,
+    "native_replay_cases": 1088,
+    "colored_revival_snapshot_reset_test": true
+  },
+  "diagnostics_not_simulator_throughput": {
+    "budget_ms_at_200x": 9.669743125000023,
+    "response_replay": {
+      "method": "Framed precomputed v3 packets. Includes delivery and full decoding, excludes battle simulation and reply encoding.",
+      "median_step_ms": {
+        "json": 17.092192000000978,
+        "binary": 19.55728100000033
+      }
+    },
+    "simulation_without_observations": {
+      "method": "Native release development diagnostic using the same actions and logging, with null observations. Includes minimal request handling.",
+      "median_step_ms": 14.975098499999902
+    }
+  },
+  "confirmation": {
+    "measured_at_utc": "2026-11-27T00:47:14.064Z",
+    "candidate_command": [
+      "env",
+      "LD_PRELOAD=/home/masood/t3/pokemon-battle-simulator-rust/.tools/perf50-alloc/usr/lib/x86_64-linux-gnu/libmimalloc.so.3.0",
+      ".tools/perf200-overlay-worker",
+      "--packed-delta-observations",
+      "--parallel-steps",
+      "4"
+    ],
+    "results": {
+      "showdown": {
+        "median_iterations_per_second": 350.7960476319116,
+        "median_games_per_second_including_truncations": 15.43480322044922,
+        "samples": [
+          {
+            "step_seconds": 1.9332929560000012,
+            "workload_seconds": 2.095031808,
+            "iterations_per_second": 348.11071850819883,
+            "games_per_second_including_truncations": 15.274231101316055
+          },
+          {
+            "step_seconds": 1.9461141940000088,
+            "workload_seconds": 2.1046411510000107,
+            "iterations_per_second": 345.8173225779355,
+            "games_per_second_including_truncations": 15.204492217020153
+          },
+          {
+            "step_seconds": 1.916245489000001,
+            "workload_seconds": 2.070222912000012,
+            "iterations_per_second": 351.2076108532458,
+            "games_per_second_including_truncations": 15.457272651419585
+          },
+          {
+            "step_seconds": 1.935304798000001,
+            "workload_seconds": 2.0973804019999953,
+            "iterations_per_second": 347.748840748753,
+            "games_per_second_including_truncations": 15.257127400201613
+          },
+          {
+            "step_seconds": 1.900774297000029,
+            "workload_seconds": 2.0561656850000256,
+            "iterations_per_second": 354.06623556631024,
+            "games_per_second_including_truncations": 15.562948177495533
+          },
+          {
+            "step_seconds": 1.9130005810000001,
+            "workload_seconds": 2.073613988000001,
+            "iterations_per_second": 351.803343231708,
+            "games_per_second_including_truncations": 15.431994664958822
+          },
+          {
+            "step_seconds": 1.9225354590000279,
+            "workload_seconds": 2.0732366680000123,
+            "iterations_per_second": 350.05856295105673,
+            "games_per_second_including_truncations": 15.43480322044922
+          },
+          {
+            "step_seconds": 1.9028566399999909,
+            "workload_seconds": 2.0591820199999855,
+            "iterations_per_second": 353.6787721433409,
+            "games_per_second_including_truncations": 15.540151229564554
+          },
+          {
+            "step_seconds": 1.9184936789999847,
+            "workload_seconds": 2.0707026179999737,
+            "iterations_per_second": 350.7960476319116,
+            "games_per_second_including_truncations": 15.453691767148962
+          }
+        ]
+      },
+      "candidate": {
+        "median_iterations_per_second": 18990.07453986112,
+        "median_games_per_second_including_truncations": 541.7017129338915,
+        "samples": [
+          {
+            "step_seconds": 0.03763747299999159,
+            "workload_seconds": 0.06742011499999354,
+            "iterations_per_second": 17881.115451086487,
+            "games_per_second_including_truncations": 474.6357967500214
+          },
+          {
+            "step_seconds": 0.03724543199998152,
+            "workload_seconds": 0.06076722699997481,
+            "iterations_per_second": 18069.329951665855,
+            "games_per_second_including_truncations": 526.5996422712076
+          },
+          {
+            "step_seconds": 0.04127189499999804,
+            "workload_seconds": 0.0636581169999954,
+            "iterations_per_second": 16306.496224610766,
+            "games_per_second_including_truncations": 502.68530563042435
+          },
+          {
+            "step_seconds": 0.035439565999982735,
+            "workload_seconds": 0.05907310099996903,
+            "iterations_per_second": 18990.07453986112,
+            "games_per_second_including_truncations": 541.7017129338915
+          },
+          {
+            "step_seconds": 0.03312667299999157,
+            "workload_seconds": 0.05614747699999498,
+            "iterations_per_second": 20315.95506135407,
+            "games_per_second_including_truncations": 569.9276567672464
+          },
+          {
+            "step_seconds": 0.03433211400001528,
+            "workload_seconds": 0.05662163500000679,
+            "iterations_per_second": 19602.6379266858,
+            "games_per_second_including_truncations": 565.1549977318062
+          },
+          {
+            "step_seconds": 0.03336969999998837,
+            "workload_seconds": 0.0566357900000221,
+            "iterations_per_second": 20167.99671559033,
+            "games_per_second_including_truncations": 565.0137483733787
+          },
+          {
+            "step_seconds": 0.033645793000017875,
+            "workload_seconds": 0.05770405400000891,
+            "iterations_per_second": 20002.500758405142,
+            "games_per_second_including_truncations": 554.5537580426335
+          },
+          {
+            "step_seconds": 0.04306330899996101,
+            "workload_seconds": 0.06659274599998753,
+            "iterations_per_second": 15628.153424081029,
+            "games_per_second_including_truncations": 480.5328195957859
+          }
+        ]
+      }
+    },
+    "speedup": 54.1342317510581
+  }
+}

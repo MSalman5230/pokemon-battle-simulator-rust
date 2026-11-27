@@ -9,13 +9,14 @@ tactical damage queries, and one-turn public-belief lookahead. Neither
 requires Node.js or Showdown at runtime.
 
 On the locked BSS Reg M-C workload, the CPU-profiled release with opt-in
-packed observations, four worker threads, and mimalloc processed 18,267
-steps/s versus Showdown's 353 (51.73× as fast). All 673 decoded step replies
+packed observations, four worker threads, and mimalloc processed 20,552
+steps/s versus Showdown's 348 (59.06× as fast). All 673 decoded step replies
 and 32 full spectator traces matched. Full JSON, stateless compact, and
 the original delta mode remain available. Native replay has matched 41,111
 checkpoints across 1,540 seeded replays covering 18 formats. The samples
 are not exhaustive over possible sets and seeds.
-[Packed throughput report](benchmarks/verified-packed-bss-result.json) ·
+[Shared-projection throughput report](benchmarks/verified-shared-bss-result.json) ·
+[50× baseline](benchmarks/verified-packed-bss-result.json) ·
 [Delta throughput report](benchmarks/verified-delta-bss-result.json) ·
 [Compact throughput report](benchmarks/verified-compact-bss-result.json) ·
 [Full JSON throughput report](benchmarks/verified-cached-bss-result.json) ·

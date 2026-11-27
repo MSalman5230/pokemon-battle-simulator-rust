@@ -130,7 +130,9 @@ fn revival_legal_actions_use_original_roster_slot_and_exclude_living_bench() {
     let mut game = Game::new_prevalidated(
         [
             vec![
-                json!({"species":"Electrode","moves":["Explosion"]}),
+                // Even maximum HP puts the revived public health exactly at
+                // the colored 50% boundary.
+                json!({"species":"Electrode","moves":["Explosion"],"evs":{"hp":1}}),
                 json!({"species":"Pawmot","moves":["Revival Blessing","Tackle"]}),
                 json!({"species":"Vaporeon","moves":["Recover"]}),
                 json!({"species":"Umbreon","moves":["Recover"]}),
@@ -159,6 +161,13 @@ fn revival_legal_actions_use_original_roster_slot_and_exclude_living_bench() {
     }
     let snapshot = to_value(game.result()).unwrap();
     assert_eq!(snapshot["views"][0]["phase"], "switch");
+    let mut delta = pokemon_battle_simulator::adapter::ObservationDelta::default();
+    let mut bytes = Vec::new();
+    delta
+        .write_packed_json(&mut bytes, "battle", &game.result())
+        .unwrap();
+    let shared: Value = serde_json::from_slice(&bytes).unwrap();
+    assert_eq!(shared["$battle_delta_v3"][1], 0);
     assert_eq!(
         snapshot["views"][0]["legal"],
         json!([
@@ -168,6 +177,15 @@ fn revival_legal_actions_use_original_roster_slot_and_exclude_living_bench() {
     game.step([Some(8), None]).unwrap();
     let snapshot = to_value(game.result()).unwrap();
     assert_eq!(snapshot["views"][0]["phase"], "move");
+    assert_eq!(snapshot["views"][0]["own"][0]["hp"], 0.5);
+    assert_eq!(snapshot["views"][0]["own"][0]["fainted"], false);
+    assert_eq!(snapshot["views"][1]["opponent"][0]["fainted"], true);
+    bytes.clear();
+    delta
+        .write_packed_json(&mut bytes, "battle", &game.result())
+        .unwrap();
+    let separated: Value = serde_json::from_slice(&bytes).unwrap();
+    assert_eq!(separated["$battle_delta_v2"][1], 0);
     assert!(
         snapshot["views"][0]["legal"]
             .as_array()

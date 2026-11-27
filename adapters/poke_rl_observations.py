@@ -51,7 +51,7 @@ def decode_reply(line):
 
 
 class DeltaDecoder:
-    """Decode one persistent worker's --delta-observations replies in order.
+    """Decode one persistent worker's delta or packed-delta replies in order.
 
     Create a new decoder when starting a new worker. Treat all observations as
     read-only, including their nested data, which is shared across replies.

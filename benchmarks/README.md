@@ -138,6 +138,12 @@ node benchmarks/throughput.mjs --trace-parity --packed-delta-observations -- \
 Packed deltas encode changes to individual Pokémon fields and reuse the
 same hidden and public battle data. The JavaScript benchmark and Python
 `DeltaDecoder` reconstruct the same complete observations as full JSON.
+The shared-projection mode applies public log events once, tracks the
+owner's exact HP separately, and sends each public roster entry once
+for both views. If a split health event also changes the owner's faint
+flag independently of the public flag, the adapter rebuilds the two
+separate projections and emits a fresh snapshot. This preserves the
+reference behavior at rounded HP color boundaries.
 `--parallel-steps` only schedules batches that step distinct live games.
 It preserves per-game order and RNG state and reports results in request
 order. Mixed batches and repeated game IDs use the normal sequential path.
@@ -194,6 +200,18 @@ the original workload hash and passed full observation and spectator-trace
 parity before timing. A wider replay matched 2,856 step replies and all
 160 spectator traces. This is simulator throughput including observation
 decoding, not an end-to-end training rate.
+
+The [shared-projection run](verified-shared-bss-result.json) used the same
+workload and build recipe and reached 20,551.8 steps/s versus 348.0 for
+Showdown (59.06×). An independent repeat measured 54.13×. It matched every
+reply and trace in both the default and 160-game replays. The 200× target
+is still open. On this host it
+would require the entire 673-step timed replay to finish in about 9.7 ms.
+Replaying precomputed framed JSON replies with no battle work took
+17.1 ms. A separate diagnostic that ran the battles and returned no
+observations took 15.0 ms. These diagnostics are not speedup measurements
+or universal bounds. They show why a faster serializer on its own would
+not close the remaining gap.
 
 ## Parity and earlier runs
 

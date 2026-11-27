@@ -75,6 +75,8 @@ workload. The [delta transport run](../benchmarks/verified-delta-bss-result.json
 reached 18.87× on an identical workload while preserving decoded replies
 and spectator traces. The [packed parallel run](../benchmarks/verified-packed-bss-result.json)
 reached 51.73× on that same workload with a CPU-profiled build and mimalloc.
+The [shared-projection run](../benchmarks/verified-shared-bss-result.json)
+reached 59.06× while retaining exact decoded replies and spectator traces.
 These speedups apply to this benchmark, not all formats or builds.
 The Rust validator handles Flat Rules, OU, UU, Doubles, Draft, 4v4 Doubles UU, and 4v4
 Doubles Draft, including their team bans. It admits all 128 rosters in the
