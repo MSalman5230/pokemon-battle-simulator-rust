@@ -234,6 +234,23 @@ node benchmarks/throughput.mjs --warmup 5 --repeats 9 --trace-parity \
   "$worker" --packed-delta-observations --parallel-steps 4
 ```
 
+The [verified post-link run](verified-bolt-bss-result.json) reached 22,204.5
+steps/s against Showdown's 352.2 (63.04×). A fresh run reached 22,524.5
+steps/s (63.82×). The original replay hash and every decoded reply and
+spectator trace matched. Verification also passed on 2,856 steps and
+160 traces from a separate BSS replay and on 1,088 native battle cases.
+The Python replay reproduced the original 673 decoded step results and
+ran at 7,885.3 steps/s against 309.4 with the Python client.
+
+The 200× target still requires about 9.6 ms per timed replay on this host.
+The supported worker took about 30.3 ms. A profiled in-process Node
+prototype reached 70.08× on the same replay, but it is a different
+interface and is not part of the subprocess result. An experimental
+binary value stream with per-connection string interning took 9.8 ms
+versus 16.9 ms for framed JSON in a transport-and-decoding diagnostic
+using precomputed replies. That diagnostic excludes all simulation and
+encoding.
+
 ## Parity and earlier runs
 
 Run `node benchmarks/throughput.mjs --help` for game count, batch size,
