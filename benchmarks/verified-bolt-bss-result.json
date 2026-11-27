@@ -409,6 +409,24 @@
           8.801078999999618
         ]
       }
+    },
+    "live_binary_transcode": {
+      "description": "Live simulator with a framed, interned binary reply. The prototype first encodes JSON and then transcodes it, so it is not a direct typed encoder. Built with native CPU tuning and fat LTO, without PGO or BOLT.",
+      "measured_at_utc": "2026-11-27T01:24:25.082Z",
+      "settings": {
+        "games": 32,
+        "batch-size": 16,
+        "max-turns": 200,
+        "repeats": 7,
+        "seed": 1731,
+        "warmup": 5,
+        "training": true
+      },
+      "steps": 673,
+      "verified_traces": 32,
+      "showdown_steps_per_second": 347.04709364704695,
+      "candidate_steps_per_second": 19568.317678286385,
+      "speedup": 56.385193930445965
     }
   }
 }

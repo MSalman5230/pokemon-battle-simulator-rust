@@ -249,7 +249,9 @@ interface and is not part of the subprocess result. An experimental
 binary value stream with per-connection string interning took 9.8 ms
 versus 16.9 ms for framed JSON in a transport-and-decoding diagnostic
 using precomputed replies. That diagnostic excludes all simulation and
-encoding.
+encoding. A live prototype passed the same parity checks but reached
+56.39× with a native release build. It generated JSON first and then
+converted it to binary. It was not kept as a worker option.
 
 ## Parity and earlier runs
 
