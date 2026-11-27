@@ -82,3 +82,23 @@ test('packed move columns carry independent PP updates and allow removals', () =
     assert.deepEqual(second.views[0].own[0].moves.map(m => m.pp), [20, 9, 5]);
     assert.equal(second.views[0].own[0].moves[1].disabled, true);
 });
+
+test('shared public rows refresh owned snapshots without revealing exact HP', () => {
+    const decoder = new DeltaDecoder();
+    const pulse = (sequence, patches, ...seed) => ({
+        $battle_delta_v3: ['shared', sequence, patches, [false, false, null], ...seed],
+    });
+    const player = (own, opponent) => [{turn: 1, legal: []}, own, opponent, null];
+    const first = decoder.expand(pulse(0, [
+        player([0, [4, 4, 0.516]], [0, [3, 3, 'Umbreon', 'Umbreon']]),
+        player([0, [4, 4, 0.9]], [0, [263, 263, 'Espeon', 'Espeon', 0.51, false]]),
+    ], [[{}], [{}]], [[0], [0]]));
+    const updated = decoder.expand(pulse(1, [
+        unchanged, [{}, [], [0, [263, 256, true]], null],
+    ]));
+    assert.equal(first.views[0].own[0].seen, false);
+    assert.equal(updated.views[0].own[0].seen, true);
+    assert.equal(updated.views[0].own[0].hp, 0.516);
+    assert.equal(updated.views[1].opponent[0].hp, 0.51);
+    assert.equal(updated.training.critic_views[1].opponent[0].hp, 0.516);
+});

@@ -18,18 +18,32 @@ export class DeltaDecoder {
             this.#games.delete(value.$battle_closed);
             return true;
         }
-        const delta = value?.$battle_delta_v2 ?? value?.$battle_delta_v1;
+        const shared = !!value?.$battle_delta_v3;
+        const delta = value?.$battle_delta_v3 ?? value?.$battle_delta_v2 ?? value?.$battle_delta_v1;
         if (!delta) return value;
-        const [key, sequence, patches, [ended, truncated, winner], initialSets] = delta;
+        const [key, sequence, patches, [ended, truncated, winner], initialSets, initialRefs] = delta;
         const previous = sequence === 0 ? undefined : this.#games.get(key);
         if (sequence !== 0 && previous?.sequence !== sequence - 1) {
             throw new Error(`Missing observation base for game ${key} at sequence ${sequence}`);
         }
-        const packed = !!value.$battle_delta_v2;
-        const p1 = expandView(patches[0], previous?.views[0], initialSets?.[0], packed);
-        const p2 = expandView(patches[1], previous?.views[1], initialSets?.[1], packed);
+        const packed = shared || !!value.$battle_delta_v2;
+        const refs = shared ? initialRefs ?? previous?.refs : undefined;
+        let p1, p2;
+        if (shared) {
+            const public1 = slots(patches[0][2], previous?.views[0].opponent);
+            const public2 = slots(patches[1][2], previous?.views[1].opponent);
+            const own1 = sharedOwn(patches[0][1], previous?.views[0].own, initialSets?.[0],
+                refs[0], public2, previous?.views[1].opponent);
+            const own2 = sharedOwn(patches[1][1], previous?.views[1].own, initialSets?.[1],
+                refs[1], public1, previous?.views[0].opponent);
+            p1 = expandView(patches[0], previous?.views[0], initialSets?.[0], true, own1, public1);
+            p2 = expandView(patches[1], previous?.views[1], initialSets?.[1], true, own2, public2);
+        } else {
+            p1 = expandView(patches[0], previous?.views[0], initialSets?.[0], packed);
+            p2 = expandView(patches[1], previous?.views[1], initialSets?.[1], packed);
+        }
         const views = [p1, p2];
-        this.#games.set(key, {sequence, views});
+        this.#games.set(key, {sequence, views, refs});
         const critic = (view, opponent) => packed
             ? packedView(view, empty, view.own, opponent, view.history)
             : {...view, opponent};
@@ -51,13 +65,14 @@ const columns = [
 ];
 const shapes = [new Map(), new Map()];
 const monData = new WeakMap();
+const shapeBase = 2 ** 29;
 
-function unpackMon(row, previous, own, set) {
-    const mask = row[0];
-    let changed = row[1];
+function unpackMon(row, previous, own, set, base) {
     // The column buffer is internal. Only the object materialized below is
     // shared with a caller, so we can reuse this buffer without mutating views.
     const values = previous ? monData.get(previous) : new Array(columns.length);
+    const mask = row ? row[0] : values[33];
+    let changed = row ? row[1] : 0;
     const movesMask = 0xe0000020;
     const refreshMoves = own && ((changed & movesMask) || ((values[33] ^ mask) & movesMask));
     for (let i = 2; changed !== 0; ++i) {
@@ -86,19 +101,42 @@ function unpackMon(row, previous, own, set) {
     values[33] = mask;
     const table = shapes[+own];
     const objectMask = mask & 0x1fffffff;
-    let make = table.get(objectMask);
+    // Public rows only use the first 23 columns, so the two masks
+    // together fit exactly in a JavaScript integer (29 + 23 bits).
+    const publicOnly = base ? (monData.get(base)[33] & ~objectMask & 0x7fffff) : 0;
+    const key = objectMask + shapeBase * publicOnly;
+    let make = table.get(key);
     if (!make) {
         const fields = [];
         for (let i = 0; i < 29; ++i) {
             if (mask & (1 << i)) fields.push(`${columns[i]}:a[${own && i === 5 ? 32 : i}]`);
+            else if (publicOnly & (1 << i)) fields.push(`${columns[i]}:b.${columns[i]}`);
         }
         if (own) fields.push('set:set');
-        make = new Function('a', 'set', `return {${fields.join(',')}}`);
-        table.set(objectMask, make);
+        make = new Function('a', 'set', 'b', `return {${fields.join(',')}}`);
+        table.set(key, make);
     }
-    const mon = make(values, set);
+    const mon = make(values, set, base);
     monData.set(mon, values);
     return mon;
+}
+
+function sharedOwn(changes, previous, sets, refs, publicSlots, previousPublic) {
+    let slots = previous ?? new Array(refs.length);
+    let change = 0;
+    for (let i = 0; i < refs.length; ++i) {
+        const ref = refs[i];
+        const base = ref === null ? undefined : publicSlots[ref];
+        let row;
+        if (changes[change] === i) {
+            row = changes[change + 1];
+            change += 2;
+        }
+        if (!row && (ref === null || base === previousPublic?.[ref])) continue;
+        if (slots === previous) slots = previous.slice();
+        slots[i] = unpackMon(row, previous?.[i], true, sets ? sets[i] : previous[i].set, base);
+    }
+    return slots;
 }
 
 function slots(changes, previous, own = false, initialSets) {
@@ -166,10 +204,10 @@ function packedView(base, patch, own, opponent, history) {
     };
 }
 
-function expandView([fields, own, opponent, history], previous, initialSets, packed) {
+function expandView([fields, own, opponent, history], previous, initialSets, packed, sharedOwnSlots, sharedPublicSlots) {
     if (packed && fields.legal !== undefined) fields.legal = unpackLegal(fields.legal);
-    const ownSlots = slots(own, previous?.own, true, initialSets);
-    const opponentSlots = slots(opponent, previous?.opponent);
+    const ownSlots = sharedOwnSlots ?? slots(own, previous?.own, true, initialSets);
+    const opponentSlots = sharedPublicSlots ?? slots(opponent, previous?.opponent);
     const past = previous?.history ?? [];
     let current = past;
     if (history) {

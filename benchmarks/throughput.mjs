@@ -53,7 +53,7 @@ function options(args) {
     const delta = !!values['delta-observations'] || packed;
     assert(!(delta && compact), 'Choose only one observation encoding');
     assert(!(delta || compact) || candidate.length, 'Observation decoding requires a candidate worker');
-    const encoding = packed ? 'battle-delta-v2' : delta ? 'battle-delta-v1' : compact ? compactEncoding : undefined;
+    const encoding = packed ? 'battle-delta-v3' : delta ? 'battle-delta-v1' : compact ? compactEncoding : undefined;
     assert(!diagnose || (candidate.length && !values['capture-replay']), '--diagnose-parity requires a candidate worker');
     assert(!traceParity || (candidate.length && !diagnose && !values['capture-replay']),
         '--trace-parity requires a candidate worker and the batched replay');

@@ -106,23 +106,48 @@ class DeltaDecoder:
         if "$battle_closed" in value:
             self._games.pop(value["$battle_closed"], None)
             return True
-        packed = "$battle_delta_v2" in value
-        delta = value.get("$battle_delta_v2" if packed else "$battle_delta_v1")
+        shared = "$battle_delta_v3" in value
+        packed = shared or "$battle_delta_v2" in value
+        delta = value.get("$battle_delta_v3" if shared else
+                          "$battle_delta_v2" if packed else "$battle_delta_v1")
         if delta is None:
             return value
         key, sequence, patches, (ended, truncated, winner), *seed = delta
-        if sequence == 0:
-            (initial_sets,) = seed
-            p1 = _expand_view(patches[0], None, initial_sets[0], packed)
-            p2 = _expand_view(patches[1], None, initial_sets[1], packed)
-        else:
+        base = None
+        if sequence != 0:
             base = self._games.get(key)
             if base is None or base[0] != sequence - 1:
                 raise ValueError(f"Missing observation base for game {key} at sequence {sequence}")
-            p1 = _expand_view(patches[0], base[1][0], packed=packed)
-            p2 = _expand_view(patches[1], base[1][1], packed=packed)
+        sets = seed[0] if seed else (None, None)
+        previous = base[1] if base else (None, None)
+        refs = shadows = None
+        if shared:
+            refs = base[2] if base else seed[1]
+            previous_own = base[3] if base else (None, None)
+            public = [
+                _patch_slots(patch[2], view["opponent"] if view else None)
+                for patch, view in zip(patches, previous)
+            ]
+            shadows = [
+                _patch_slots(patch[1], shadow, True, original)
+                for patch, shadow, original in zip(patches, previous_own, sets)
+            ]
+            owns = [
+                [{**foe[ref], **slot} if ref is not None else slot
+                 for ref, slot in zip(indexes, shadow)]
+                for indexes, shadow, foe in zip(refs, shadows, reversed(public))
+            ]
+            p1, p2 = [
+                _expand_view(patch, view, packed=True, own_slots=own, opponent_slots=opp)
+                for patch, view, own, opp in zip(patches, previous, owns, public)
+            ]
+        else:
+            p1, p2 = [
+                _expand_view(patch, view, original, packed)
+                for patch, view, original in zip(patches, previous, sets)
+            ]
         views = [p1, p2]
-        self._games[key] = sequence, views
+        self._games[key] = sequence, views, refs, shadows
         return {
             "views": views, "ended": ended, "truncated": truncated, "winner": winner,
             "training": {"critic_views": [{**p1, "opponent": p2["own"]}, {**p2, "opponent": p1["own"]}]},
@@ -214,19 +239,17 @@ def _legal(rows):
     return result
 
 
-def _expand_view(patch, previous, initial_sets=None, packed=False):
+def _expand_view(patch, previous, initial_sets=None, packed=False, own_slots=None, opponent_slots=None):
     fields, own, opponent, history = patch
     if packed and "legal" in fields:
         fields["legal"] = _legal(fields["legal"])
-    if previous is None:
-        return {
-            **fields, "own": _patch_slots(own, None, True, initial_sets),
-            "opponent": _patch_slots(opponent, None),
-            "history": _history(history) if history else [],
-        }
+    if own_slots is None:
+        own_slots = _patch_slots(own, previous["own"] if previous else None, True, initial_sets)
+    if opponent_slots is None:
+        opponent_slots = _patch_slots(opponent, previous["opponent"] if previous else None)
+    past = previous["history"] if previous else []
     return {
-        **previous, **fields,
-        "own": _patch_slots(own, previous["own"], True),
-        "opponent": _patch_slots(opponent, previous["opponent"]),
-        "history": previous["history"][history[0]:] + _history(history) if history else previous["history"],
+        **(previous or {}), **fields,
+        "own": own_slots, "opponent": opponent_slots,
+        "history": past[history[0]:] + _history(history) if history else past,
     }

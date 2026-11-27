@@ -14,6 +14,7 @@ pub struct ObservationDelta {
     views: [ViewDelta; 2],
     scratch: Vec<u8>,
     mon_scratch: MonFields,
+    shared_projection: Option<bool>,
 }
 
 #[derive(Default)]
@@ -57,7 +58,20 @@ impl ObservationDelta {
     ) -> Result {
         let game = result.game;
         debug_assert!(game.training);
-        out.extend_from_slice(if packed {
+        let shared = matches!(game.public, Projections::Shared(_));
+        if self
+            .shared_projection
+            .is_some_and(|was_shared| was_shared != shared)
+        {
+            // A rebuilt viewer projection uses a new set of mutation
+            // revisions. Never compare those revisions with the old bases.
+            *self = Self::default();
+        }
+        self.shared_projection = Some(shared);
+        let reuse_public = packed && shared;
+        out.extend_from_slice(if reuse_public {
+            b"{\"$battle_delta_v3\":["
+        } else if packed {
             b"{\"$battle_delta_v2\":["
         } else {
             b"{\"$battle_delta_v1\":["
@@ -74,6 +88,7 @@ impl ObservationDelta {
                 out,
                 &mut self.scratch,
                 packed.then_some(&mut self.mon_scratch),
+                reuse_public,
                 WireView {
                     game,
                     player,
@@ -97,6 +112,20 @@ impl ObservationDelta {
             // with the snapshot and reuse them across subsequent own-slot updates.
             out.push(b',');
             serde_json::to_writer(&mut *out, game.teams.as_ref())?;
+            if reuse_public {
+                let refs = Player::ALL.map(|player| {
+                    OwnRoster {
+                        game,
+                        player,
+                        json: true,
+                    }
+                    .slots()
+                    .map(|mon| mon.public_slot)
+                    .collect::<Vec<_>>()
+                });
+                out.push(b',');
+                serde_json::to_writer(&mut *out, &refs)?;
+            }
         }
         out.extend_from_slice(b"]}");
         self.sequence += 1;
@@ -110,6 +139,7 @@ impl ViewDelta {
         out: &mut Vec<u8>,
         scratch: &mut Vec<u8>,
         mut packed: Option<&mut MonFields>,
+        reuse_public: bool,
         view: WireView<'_>,
     ) -> Result {
         out.extend_from_slice(b"[{");
@@ -140,7 +170,11 @@ impl ViewDelta {
                 }
                 *previous = BenchState::capture(&mon);
                 temp.clear();
-                mon.fields(temp, true)?;
+                mon.fields(
+                    &mut ReuseColumns(temp, &self.packed_own[mon.slot]),
+                    true,
+                    reuse_public,
+                )?;
                 temp.emit(out, &mut comma, mon.slot, &mut self.packed_own[mon.slot])?;
                 continue;
             }
@@ -155,7 +189,7 @@ impl ViewDelta {
         }
         out.extend_from_slice(b"],[");
         let index = view.player.index();
-        let public = &view.game.public[index];
+        let public = view.game.public.view(view.player);
         let mut comma = false;
         for (slot, (mon, previous)) in public.teams[view.player.foe().index()]
             .iter()
@@ -167,9 +201,10 @@ impl ViewDelta {
                     continue;
                 }
                 temp.clear();
-                for (key, value) in mon.iter() {
+                let mut columns = ReuseColumns(temp, &self.packed_opp[slot]);
+                for (key, value, revision) in mon.revisions() {
                     if key != "nickname" {
-                        temp.field(key, value)?;
+                        columns.visible_field(key, value, revision)?;
                     }
                 }
                 temp.emit(out, &mut comma, slot, &mut self.packed_opp[slot])?;
@@ -373,6 +408,41 @@ struct MonFields {
     bytes: Vec<u8>,
     offsets: [(usize, usize); MON_FIELD_COUNT],
     mask: u32,
+    cached: u32,
+    versions: [usize; MON_FIELD_COUNT],
+}
+
+struct ReuseColumns<'a>(&'a mut MonFields, &'a MonFields);
+
+impl ViewFields for ReuseColumns<'_> {
+    type Error = Error;
+
+    fn field(&mut self, name: &str, value: &(impl Serialize + ?Sized)) -> Result {
+        self.0.field(name, value)
+    }
+
+    fn visible_field(
+        &mut self,
+        name: &str,
+        value: &Value,
+        revision: Option<(usize, usize)>,
+    ) -> Result {
+        let Some((column, version)) = revision else {
+            return self.field(name, value);
+        };
+        let flag = 1 << column;
+        let start = self.0.bytes.len();
+        if self.1.cached & flag != 0 && self.1.versions[column] == version {
+            self.0.bytes.extend_from_slice(self.1.value(column));
+        } else {
+            serde_json::to_writer(&mut self.0.bytes, value)?;
+        }
+        self.0.offsets[column] = (start, self.0.bytes.len());
+        self.0.mask |= flag;
+        self.0.cached |= flag;
+        self.0.versions[column] = version;
+        Ok(())
+    }
 }
 
 impl ViewFields for MonFields {
@@ -403,6 +473,7 @@ impl MonFields {
     fn clear(&mut self) {
         self.bytes.clear();
         self.mask = 0;
+        self.cached = 0;
     }
 
     fn value(&self, column: usize) -> &[u8] {

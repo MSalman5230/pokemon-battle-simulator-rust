@@ -178,7 +178,7 @@ impl Serialize for WireView<'_> {
         let (game, player) = (self.game, self.player);
         let index = player.index();
         let foe = player.foe().index();
-        let public = &game.public[index];
+        let public = game.public.view(player);
         let mut map = serializer.serialize_map(Some(19))?;
         self.header(&mut MapFields(&mut map))?;
         let roster = |player| OwnRoster {
@@ -216,6 +216,15 @@ impl Serialize for WireView<'_> {
 trait ViewFields {
     type Error;
     fn field(&mut self, name: &str, value: &(impl Serialize + ?Sized)) -> Result<(), Self::Error>;
+    fn visible_field(
+        &mut self,
+        name: &str,
+        value: &Value,
+        revision: Option<(usize, usize)>,
+    ) -> Result<(), Self::Error> {
+        let _ = revision;
+        self.field(name, value)
+    }
 }
 
 struct MapFields<'a, M>(&'a mut M);
@@ -232,7 +241,7 @@ impl WireView<'_> {
         let game = self.game;
         let player = self.player;
         let index = player.index();
-        let public = &game.public[index];
+        let public = game.public.view(player);
         fields.field("format", FORMAT)?;
         fields.field("turn", &public.turn)?;
         fields.field("side", &index)?;
@@ -255,7 +264,7 @@ impl WireView<'_> {
         let player = self.player;
         let index = player.index();
         let foe = player.foe().index();
-        let public = &game.public[index];
+        let public = game.public.view(player);
         if packed {
             fields.field("legal", &PackedLegalList(self.legal))?;
         } else {
@@ -285,7 +294,7 @@ impl WireView<'_> {
         let player = self.player;
         let index = player.index();
         let foe = player.foe().index();
-        let public = &game.public[index];
+        let public = game.public.view(player);
         fields.field("faints", &[&public.faints[index], &public.faints[foe]])?;
         fields.field("ended", &game.ended())?;
         fields.field("truncated", &game.truncated)?;
@@ -348,11 +357,12 @@ impl<'a> OwnRoster<'a> {
         let battle = self.game.battle();
         let sets = &self.game.teams[index];
         let party = battle.party(self.player).unwrap();
-        let public = &self.game.public[index].teams[index];
+        let public = &self.game.public.view(self.player).teams[index];
         sets.iter().enumerate().map(move |(slot, set)| {
             let original = &self.game.originals[index][slot];
             let species = set["species"].as_str().unwrap();
-            let visible = public.iter().find(|m| m["base_species"] == species);
+            let public_slot = public.iter().position(|m| m["base_species"] == species);
+            let visible = public_slot.map(|i| &public[i]);
             let actual = party
                 .iter()
                 .enumerate()
@@ -362,6 +372,7 @@ impl<'a> OwnRoster<'a> {
                 player: self.player,
                 party_slot: actual.map(|(i, _)| i),
                 visible: visible.unwrap_or(&original.fresh),
+                public_slot,
                 actual: actual.map(|(_, p)| p),
                 slot,
                 set,
@@ -395,6 +406,7 @@ struct OwnMon<'a> {
     player: Player,
     party_slot: Option<usize>,
     visible: &'a PublicMon,
+    public_slot: Option<usize>,
     actual: Option<&'a Pokemon>,
     slot: usize,
     set: &'a Value,
@@ -482,14 +494,24 @@ impl Serialize for Moves<'_> {
 impl Serialize for OwnMon<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         let mut map = serializer.serialize_map(None)?;
-        self.fields(&mut MapFields(&mut map), false)?;
+        self.fields(&mut MapFields(&mut map), false, false)?;
         map.end()
     }
 }
 
 impl OwnMon<'_> {
-    fn fields<F: ViewFields>(&self, fields: &mut F, packed: bool) -> Result<(), F::Error> {
-        for (key, value) in self.visible.iter() {
+    fn fields<F: ViewFields>(
+        &self,
+        fields: &mut F,
+        packed: bool,
+        reuse_public: bool,
+    ) -> Result<(), F::Error> {
+        for (key, value, revision) in self.visible.revisions() {
+            if reuse_public && self.public_slot.is_some() && !matches!(key, "hp" | "nickname") {
+                // The opponent projection already has every other
+                // visible field, including fields replaced below.
+                continue;
+            }
             if matches!(key, "moves" | "item" | "ability")
                 || self.actual.is_some()
                     && matches!(
@@ -507,7 +529,17 @@ impl OwnMon<'_> {
             {
                 continue;
             }
-            fields.field(key, value)?;
+            fields.visible_field(
+                key,
+                if key == "hp" {
+                    self.visible.own_hp()
+                } else {
+                    value
+                },
+                // The owner's HP can change even when the displayed
+                // fraction is ignored at a public color boundary.
+                if key == "hp" { None } else { revision },
+            )?;
         }
         if let Some(p) = self.actual {
             fields.field("species", &p.species.name)?;

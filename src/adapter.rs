@@ -164,11 +164,32 @@ const SWITCH_CHOICES: [&str; 6] = [
 ];
 
 #[derive(Clone)]
+enum Projections {
+    Shared(Box<PublicState>),
+    Split(Box<[PublicState; 2]>),
+}
+
+impl Default for Projections {
+    fn default() -> Self {
+        Self::Shared(Box::default())
+    }
+}
+
+impl Projections {
+    fn view(&self, player: Player) -> &PublicState {
+        match self {
+            Self::Shared(state) => state,
+            Self::Split(states) => &states[player.index()],
+        }
+    }
+}
+
+#[derive(Clone)]
 pub struct Game {
     stream: BattleStream,
     teams: Arc<[Vec<Value>; 2]>,
     originals: Arc<[Vec<OriginalSet>; 2]>,
-    public: [PublicState; 2],
+    public: Projections,
     log_pos: usize,
     max_turns: u32,
     training: bool,
@@ -294,16 +315,28 @@ impl Game {
 
     fn sync(&mut self) -> Result<(), String> {
         let battle = self.stream.battle().unwrap();
-        for line in &battle.log()[self.log_pos..] {
-            let p1 = line.view(Some(Player::P1));
-            let p2 = line.view(Some(Player::P2));
-            let common = PublicLog::new(p1);
-            self.public[0].feed_log(&common)?;
-            if std::ptr::eq(p1, p2) {
-                self.public[1].feed_log(&common)?;
-            } else {
-                self.public[1].feed_log(&PublicLog::new(p2))?;
+        let feed_split = |states: &mut [PublicState; 2], log: &[crate::battle::LogLine]| {
+            for line in log {
+                for player in Player::ALL {
+                    states[player.index()]
+                        .feed_log(&PublicLog::new(line.view(Some(player))), None)?;
+                }
             }
+            Ok::<(), String>(())
+        };
+        match &mut self.public {
+            Projections::Shared(state) => {
+                for line in &battle.log()[self.log_pos..] {
+                    state.feed_log(&PublicLog::new(line.view(None)), line.private_health())?;
+                    if state.needs_split {
+                        let mut states = Box::<[PublicState; 2]>::default();
+                        feed_split(&mut states, battle.log())?;
+                        self.public = Projections::Split(states);
+                        break;
+                    }
+                }
+            }
+            Projections::Split(states) => feed_split(states, &battle.log()[self.log_pos..])?,
         }
         self.log_pos = battle.log().len();
         if battle.turn() > self.max_turns && battle.phase() != Phase::Ended {

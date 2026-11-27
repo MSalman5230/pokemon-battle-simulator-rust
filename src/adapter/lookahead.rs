@@ -1,7 +1,7 @@
 //! One-turn search over caller-supplied public-belief worlds.
 //! This interface has no game handle and cannot read stored battles.
 
-use super::{Game, Legal, OriginalSet, PublicState, wire};
+use super::{Game, Legal, OriginalSet, Projections, PublicState, wire};
 use crate::{
     battle::hydration::{WorldInput, hydrate},
     input::Player,
@@ -149,7 +149,7 @@ impl Search {
             stream,
             teams: Arc::new(data.teams),
             originals: Arc::new(originals),
-            public: [observed.clone(), observed.clone()],
+            public: Projections::Split(Box::new([observed.clone(), observed.clone()])),
             log_pos: 0,
             max_turns: 200,
             training: true,

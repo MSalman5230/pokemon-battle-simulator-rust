@@ -565,7 +565,11 @@ impl Battle {
         }
         self.log.push(LogLine {
             public: format!("{head}{}{suffix}", condition.shared),
-            secret: Some((target.player, format!("{head}{}{suffix}", condition.secret))),
+            secret: Some((
+                target.player,
+                format!("{head}{}{suffix}", condition.secret),
+                head.len()..head.len() + condition.secret.len(),
+            )),
         });
     }
 

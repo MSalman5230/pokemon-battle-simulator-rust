@@ -146,15 +146,23 @@ impl BattleStream {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LogLine {
     public: String,
-    secret: Option<(Player, String)>,
+    secret: Option<(Player, String, std::ops::Range<usize>)>,
 }
 
 impl LogLine {
     pub fn view(&self, viewer: Option<Player>) -> &str {
         self.secret
             .as_ref()
-            .filter(|(owner, _)| Some(*owner) == viewer)
-            .map_or(&self.public, |(_, line)| line)
+            .filter(|(owner, _, _)| Some(*owner) == viewer)
+            .map_or(&self.public, |(_, line, _)| line)
+    }
+
+    /// The only split event in the native log differs in its health condition.
+    /// Both protocol strings remain available for replay and native clients.
+    pub(crate) fn private_health(&self) -> Option<&str> {
+        self.secret
+            .as_ref()
+            .map(|(_, line, range)| &line[range.clone()])
     }
 }
 

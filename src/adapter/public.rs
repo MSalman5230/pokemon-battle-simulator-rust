@@ -74,8 +74,10 @@ pub(super) fn field_index(name: &str) -> Option<usize> {
 #[derive(Clone, Default)]
 pub(super) struct PublicMon {
     fields: [Option<Value>; MON_FIELDS.len()],
+    field_revision: [usize; MON_FIELDS.len()],
     extra: Map<String, Value>,
     fresh: bool,
+    private_hp: Option<Value>,
     pub(super) revision: usize,
     wire: OnceLock<Arc<RawValue>>,
 }
@@ -112,7 +114,10 @@ impl IndexMut<&str> for PublicMon {
     fn index_mut(&mut self, name: &str) -> &mut Value {
         self.invalidate();
         match field_index(name) {
-            Some(index) => self.fields[index].get_or_insert(Value::Null),
+            Some(index) => {
+                self.field_revision[index] = self.revision;
+                self.fields[index].get_or_insert(Value::Null)
+            }
             None => self.extra.entry(name.to_owned()).or_insert(Value::Null),
         }
     }
@@ -123,6 +128,27 @@ impl PublicMon {
         self.fresh = false;
         self.revision += 1;
         self.wire.take();
+    }
+
+    pub(super) fn own_hp(&self) -> &Value {
+        self.private_hp.as_ref().unwrap_or(&self["hp"])
+    }
+
+    pub(super) fn revisions(&self) -> impl Iterator<Item = (&str, &Value, Option<(usize, usize)>)> {
+        MON_FIELDS
+            .into_iter()
+            .zip(&self.fields)
+            .enumerate()
+            .filter_map(|(column, (key, value))| {
+                value
+                    .as_ref()
+                    .map(|value| (key, value, Some((column, self.field_revision[column]))))
+            })
+            .chain(
+                self.extra
+                    .iter()
+                    .map(|(key, value)| (key.as_str(), value, None)),
+            )
     }
 
     pub(super) fn is_fresh(&self) -> bool {
@@ -235,6 +261,7 @@ impl Stint {
 #[derive(Clone, Default)]
 pub(super) struct PublicState {
     pub turn: u32,
+    pub(super) needs_split: bool,
     pub teams: [Vec<PublicMon>; 2],
     active: [Option<usize>; 2],
     pub conditions: [Map<String, Value>; 2],
@@ -298,26 +325,49 @@ pub(super) fn fresh_mon(species: &str) -> PublicMon {
     .into()
 }
 
-fn hp(mon: &mut PublicMon, condition: &str) {
+fn fraction(value: &str) -> Option<f64> {
+    let (hp, max) = value.split_once('/')?;
+    let (hp, max) = (hp.parse::<f64>().ok()?, max.parse::<f64>().ok()?);
+    (max != 0.0).then_some(hp / max)
+}
+
+fn hp(mon: &mut PublicMon, condition: &str, private_condition: Option<&str>) -> bool {
     if condition.is_empty() {
-        return;
+        return false;
     }
-    let (fraction, status) = condition.split_once(' ').unwrap_or((condition, ""));
-    if fraction == "0" || status == "fnt" {
+    let (display, status) = condition.split_once(' ').unwrap_or((condition, ""));
+    if display == "0" || status == "fnt" {
         mon["hp"] = json!(0.0);
+        mon.private_hp = None;
         mon["fainted"] = json!(true);
-        return;
+        return false;
     }
-    // The locked worker uses Number on both pieces. A color suffix on 20%
-    // or 50% leaves the previous public fraction intact.
-    if let Some((hp, max)) = fraction.split_once('/')
-        && let (Ok(hp), Ok(max)) = (hp.parse::<f64>(), max.parse::<f64>())
-        && max != 0.0
-    {
-        mon["hp"] = json!(hp / max);
+    // The reference leaves the previous public fraction intact at the color
+    // boundaries. The owner's exact fraction can still change on that line.
+    let shared = fraction(display);
+    let mut needs_split = false;
+    if let Some(hidden) = private_condition {
+        let hidden = hidden
+            .split_once(' ')
+            .map_or(hidden, |(display, _)| display);
+        let exact = fraction(hidden);
+        // A rounded, colored revival can leave the old public faint flag
+        // visible while the exact update clears the owner's faint flag. In
+        // that case use independent projections for the rest of the battle.
+        needs_split =
+            shared.is_none() && exact.is_some_and(|hp| (mon["fainted"] == true) != (hp == 0.0));
+        let next = exact.map_or_else(|| mon.own_hp().clone(), |hp| json!(hp));
+        mon.invalidate();
+        mon.private_hp = Some(next);
+    } else if shared.is_some() {
+        mon.private_hp = None;
+    }
+    if let Some(hp) = shared {
+        mon["hp"] = json!(hp);
         mon["fainted"] = json!(hp == 0.0);
     }
     mon["status"] = json!(status);
+    needs_split
 }
 
 fn inc(value: &mut Value) {
@@ -407,6 +457,7 @@ impl PublicState {
         ident: &str,
         name: &str,
         condition: &str,
+        private_condition: Option<&str>,
         replace: bool,
     ) -> Result<(), String> {
         let new_base = DEX
@@ -460,7 +511,7 @@ impl PublicState {
         mon["types"] = json!(types(name));
         mon["entry_turn"] = json!(self.turn);
         mon["identity_uncertain"] = json!(uncertain);
-        hp(mon, condition);
+        self.needs_split |= hp(mon, condition, private_condition);
         self.last_attacker = None;
         Ok(())
     }
@@ -479,6 +530,7 @@ impl PublicState {
         ] {
             target[field] = old_state[field].clone();
         }
+        target.private_hp = old_state.private_hp.clone();
         let stint = self.stints[team].as_ref();
         let moves = stint.map_or(&[][..], |s| s.moves.as_slice());
         let known = target["moves"].as_array_mut().unwrap();
@@ -514,6 +566,7 @@ impl PublicState {
             for (key, value) in stint.previous.iter() {
                 decoy[key] = value.clone();
             }
+            decoy.private_hp = stint.previous.private_hp.clone();
             decoy["active"] = json!(false);
         }
     }
@@ -552,10 +605,14 @@ impl PublicState {
 
     #[cfg(test)]
     fn feed(&mut self, line: &str) -> Result<(), String> {
-        self.feed_log(&PublicLog::new(line))
+        self.feed_log(&PublicLog::new(line), None)
     }
 
-    pub fn feed_log(&mut self, log: &PublicLog<'_>) -> Result<(), String> {
+    pub fn feed_log(
+        &mut self,
+        log: &PublicLog<'_>,
+        private_condition: Option<&str>,
+    ) -> Result<(), String> {
         let parts = log.parts();
         let get = |i: usize| parts.get(i).copied().unwrap_or("");
         let ident = get(2);
@@ -574,6 +631,7 @@ impl PublicState {
                 ident,
                 species(get(3)),
                 get(4),
+                private_condition,
                 get(1) == "replace",
             )?,
             "turn" => {
@@ -661,7 +719,7 @@ impl PublicState {
                 if let Some(key) = key {
                     let was_attacked = self.last_attacker.is_some_and(|attacker| attacker != key.0);
                     let mon = self.mon_mut(key);
-                    hp(mon, get(3));
+                    let needs_split = hp(mon, get(3), private_condition);
                     if get(1) == "-damage" {
                         if mon["status"] == "tox" && parts.contains(&"[from] psn") {
                             let stage = mon["status_progress"]["toxicStage"].as_u64().unwrap_or(0);
@@ -671,17 +729,19 @@ impl PublicState {
                             inc(&mut mon["times_attacked"]);
                         }
                     }
+                    self.needs_split |= needs_split;
                 }
                 if get(1) == "-sethp"
                     && let Some(key) = self.mon_key(get(4))
                 {
-                    hp(self.mon_mut(key), get(5));
+                    hp(self.mon_mut(key), get(5), None);
                 }
             }
             "faint" => {
                 if let Some(key) = key {
                     let mon = self.mon_mut(key);
                     mon["hp"] = json!(0);
+                    mon.private_hp = None;
                     mon["fainted"] = json!(true);
                     let species = mon["base_species"].clone();
                     self.faints[key.0].push(json!({"species":species,"turn":turn}));
@@ -928,6 +988,27 @@ impl PublicState {
 #[cfg(test)]
 mod tests {
     use super::PublicState;
+
+    #[test]
+    fn split_health_preserves_the_exact_fraction_at_color_boundaries() {
+        let mut state = PublicState::default();
+        state.feed("|poke|p1|Espeon, L50|").unwrap();
+        state
+            .feed("|switch|p1a: unit0|Espeon, L50|100/100")
+            .unwrap();
+        let feed = |state: &mut PublicState, line, private| {
+            state
+                .feed_log(&super::PublicLog::new(line), Some(private))
+                .unwrap();
+        };
+        feed(&mut state, "|-damage|p1a: unit0|50/100g", "76/150");
+        assert_eq!(state.teams[0][0]["hp"], 1.0);
+        assert_eq!(*state.teams[0][0].own_hp(), 76.0 / 150.0);
+        assert!(!state.needs_split);
+        state.feed("|faint|p1a: unit0").unwrap();
+        feed(&mut state, "|-heal|p1a: unit0|50/100y", "75/150");
+        assert!(state.needs_split);
+    }
 
     #[test]
     fn haze_clears_the_observed_boosts_on_both_sides() {
