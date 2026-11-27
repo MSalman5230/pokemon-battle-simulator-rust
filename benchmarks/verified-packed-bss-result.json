@@ -1,0 +1,331 @@
+{
+  "rust_revision": "3f9dc0e5f2e970d6a59edf3d96db5cea5c769dd5",
+  "workload": "poke-rl-bss-reg-mc-jsonl-v1",
+  "measured_at_utc": "2026-11-27T00:11:15.684Z",
+  "machine": {
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i5-6300HQ CPU @ 2.30GHz",
+    "available_cpus": 4
+  },
+  "node": "v24.22.3",
+  "reference": {
+    "format": "gen9championsbssregmc",
+    "showdown_revision": "29f2d9969159fd23f8bb96e177a70072fe573b0e",
+    "showdown_integrity": "sha512-TrXfFPLPea5r5kOXV74g9WdyYfoTYVtDhnItEm+9FHsWtuPG5HYdpdxUFdBhGfptoDbosgZ8vGtnhjenaayXvw==",
+    "poke_rl_revision": "5fc4cb182277fc401b4aac83e841ebe4004f7946",
+    "poke_rl_dirty": true,
+    "worker_sha256": "39248ef7699d687850cfcf4469e357dcb2c2353c295599097876677d932677b5",
+    "lock_sha256": "549baebeed16b3aab43e8c871ecc2899f8e4a006e3db1c9c383b29baf2b10aed",
+    "teams_sha256": "d66e2e68b18aa64bfd72dc146591e205f70b932e8398d554fcfa45a092a2518c"
+  },
+  "settings": {
+    "games": 32,
+    "batch-size": 16,
+    "max-turns": 200,
+    "repeats": 9,
+    "seed": 1731,
+    "warmup": 5,
+    "training": true
+  },
+  "workload_sha256": "3cf9a772a7abaa763cc746d293289b352d5e6018d3ccd26fc82f7d7abab5d337",
+  "iterations_per_replay": 673,
+  "ended_per_replay": 32,
+  "truncated_per_replay": 0,
+  "verified_traces": 32,
+  "results": {
+    "showdown": {
+      "median_iterations_per_second": 353.10869023325887,
+      "median_games_per_second_including_truncations": 15.49772878435797,
+      "samples": [
+        {
+          "step_seconds": 1.905928737000002,
+          "workload_seconds": 2.0703144340000073,
+          "iterations_per_second": 353.10869023325887,
+          "games_per_second_including_truncations": 15.45658933468069
+        },
+        {
+          "step_seconds": 1.906159971000001,
+          "workload_seconds": 2.064818686999992,
+          "iterations_per_second": 353.0658550378297,
+          "games_per_second_including_truncations": 15.49772878435797
+        },
+        {
+          "step_seconds": 1.9204297470000238,
+          "workload_seconds": 2.0731690430000307,
+          "iterations_per_second": 350.44239501669813,
+          "games_per_second_including_truncations": 15.435306690521292
+        },
+        {
+          "step_seconds": 1.8662059079999962,
+          "workload_seconds": 2.027632117999994,
+          "iterations_per_second": 360.6247290907201,
+          "games_per_second_including_truncations": 15.781955570699878
+        },
+        {
+          "step_seconds": 1.9251874669999962,
+          "workload_seconds": 2.077354636999993,
+          "iterations_per_second": 349.57634595904074,
+          "games_per_second_including_truncations": 15.40420659527481
+        },
+        {
+          "step_seconds": 1.874664740000033,
+          "workload_seconds": 2.0408460890000386,
+          "iterations_per_second": 358.9975240052726,
+          "games_per_second_including_truncations": 15.679771332329702
+        },
+        {
+          "step_seconds": 1.893887063000002,
+          "workload_seconds": 2.043381274000021,
+          "iterations_per_second": 355.35381868755036,
+          "games_per_second_including_truncations": 15.660317732754004
+        },
+        {
+          "step_seconds": 1.9030993489999746,
+          "workload_seconds": 2.058659646999964,
+          "iterations_per_second": 353.6336662369427,
+          "games_per_second_including_truncations": 15.544094453220008
+        },
+        {
+          "step_seconds": 1.9893951540000416,
+          "workload_seconds": 2.1460860940000495,
+          "iterations_per_second": 338.2937767023363,
+          "games_per_second_including_truncations": 14.91086498787931
+        }
+      ]
+    },
+    "candidate": {
+      "median_iterations_per_second": 18267.47866558645,
+      "median_games_per_second_including_truncations": 525.4326564375895,
+      "samples": [
+        {
+          "step_seconds": 0.0380613200000189,
+          "workload_seconds": 0.06192320500002461,
+          "iterations_per_second": 17681.993162603554,
+          "games_per_second_including_truncations": 516.7691174897566
+        },
+        {
+          "step_seconds": 0.04146486199999345,
+          "workload_seconds": 0.06622361699999602,
+          "iterations_per_second": 16230.60990773601,
+          "games_per_second_including_truncations": 483.2112990747988
+        },
+        {
+          "step_seconds": 0.03592139099998894,
+          "workload_seconds": 0.06090219100000104,
+          "iterations_per_second": 18735.354652613736,
+          "games_per_second_including_truncations": 525.4326564375895
+        },
+        {
+          "step_seconds": 0.03788915500000803,
+          "workload_seconds": 0.06264720600000874,
+          "iterations_per_second": 17762.338590022853,
+          "games_per_second_including_truncations": 510.7969220526058
+        },
+        {
+          "step_seconds": 0.036077357999984086,
+          "workload_seconds": 0.060655601999984356,
+          "iterations_per_second": 18654.35933530102,
+          "games_per_second_including_truncations": 527.5687478958374
+        },
+        {
+          "step_seconds": 0.04166294700000435,
+          "workload_seconds": 0.06583238200000414,
+          "iterations_per_second": 16153.442050077008,
+          "games_per_second_including_truncations": 486.0829735736736
+        },
+        {
+          "step_seconds": 0.036427979999985836,
+          "workload_seconds": 0.06028042500000447,
+          "iterations_per_second": 18474.809747898777,
+          "games_per_second_including_truncations": 530.8522625711021
+        },
+        {
+          "step_seconds": 0.03523057099997823,
+          "workload_seconds": 0.05962070600000152,
+          "iterations_per_second": 19102.7275714724,
+          "games_per_second_including_truncations": 536.7262843214098
+        },
+        {
+          "step_seconds": 0.036841428000014276,
+          "workload_seconds": 0.060791553000024576,
+          "iterations_per_second": 18267.47866558645,
+          "games_per_second_including_truncations": 526.3889211711216
+        }
+      ]
+    }
+  },
+  "candidate_command": [
+    "env",
+    "LD_PRELOAD=/home/masood/t3/pokemon-battle-simulator-rust/.tools/perf50-alloc/usr/lib/x86_64-linux-gnu/libmimalloc.so.3.0",
+    ".tools/profiled-worker/target/release/pokemon-battle-worker",
+    "--packed-delta-observations",
+    "--parallel-steps",
+    "4"
+  ],
+  "candidate_observations": "battle-delta-v2",
+  "speedup": 51.73330243874541,
+  "candidate_build": {
+    "lto": "fat",
+    "target_cpu": "native",
+    "profile_guided": {
+      "seed": 50221,
+      "games": 80,
+      "workload_sha256": "aeffdae8f9a2b4e891c9de63185d4e70366039321ae1db685dae10f12406f424"
+    },
+    "worker_binary_sha256": "211409ac713e49418cacd43e10494338b474b2b1e8efb93c3266cbbed8d53a83",
+    "allocator": {
+      "package": "libmimalloc3",
+      "version": "3.0.1+ds-2.1",
+      "binary_sha256": "abd5c496e7c699ae3baa53f99497d56b28ffadf255269524d17d898cb18befce"
+    },
+    "battle_threads": 4
+  },
+  "confirmation": {
+    "measured_at_utc": "2026-11-27T00:12:12.737Z",
+    "settings": {
+      "games": 32,
+      "batch-size": 16,
+      "max-turns": 200,
+      "repeats": 9,
+      "seed": 1731,
+      "warmup": 5,
+      "training": true
+    },
+    "workload_sha256": "3cf9a772a7abaa763cc746d293289b352d5e6018d3ccd26fc82f7d7abab5d337",
+    "results": {
+      "showdown": {
+        "median_iterations_per_second": 351.34009383681786,
+        "median_games_per_second_including_truncations": 15.446706682270799,
+        "samples": [
+          {
+            "step_seconds": 1.9260116470000104,
+            "workload_seconds": 2.091372416000002,
+            "iterations_per_second": 349.4267550501456,
+            "games_per_second_including_truncations": 15.300957282971055
+          },
+          {
+            "step_seconds": 1.9262314300000034,
+            "workload_seconds": 2.081985116,
+            "iterations_per_second": 349.3868854585136,
+            "games_per_second_including_truncations": 15.369946573623825
+          },
+          {
+            "step_seconds": 1.926614930000018,
+            "workload_seconds": 2.0802032330000113,
+            "iterations_per_second": 349.3173386754528,
+            "games_per_second_including_truncations": 15.383112328813418
+          },
+          {
+            "step_seconds": 1.9146994869999654,
+            "workload_seconds": 2.069307898999963,
+            "iterations_per_second": 351.491189384756,
+            "games_per_second_including_truncations": 15.464107596295689
+          },
+          {
+            "step_seconds": 1.9155229130000153,
+            "workload_seconds": 2.0716390010000323,
+            "iterations_per_second": 351.34009383681786,
+            "games_per_second_including_truncations": 15.446706682270799
+          },
+          {
+            "step_seconds": 1.9348992649999672,
+            "workload_seconds": 2.1014838349999736,
+            "iterations_per_second": 347.82172497233927,
+            "games_per_second_including_truncations": 15.227335783908327
+          },
+          {
+            "step_seconds": 1.9008621719999936,
+            "workload_seconds": 2.0545209339999855,
+            "iterations_per_second": 354.04986743036847,
+            "games_per_second_including_truncations": 15.575407127976348
+          },
+          {
+            "step_seconds": 1.9023903419999624,
+            "workload_seconds": 2.050302865999962,
+            "iterations_per_second": 353.7654629241244,
+            "games_per_second_including_truncations": 15.607450260473174
+          },
+          {
+            "step_seconds": 1.888672089000007,
+            "workload_seconds": 2.0398230169999954,
+            "iterations_per_second": 356.3350165016377,
+            "games_per_second_including_truncations": 15.687635512154865
+          }
+        ]
+      },
+      "candidate": {
+        "median_iterations_per_second": 17834.930116093034,
+        "median_games_per_second_including_truncations": 516.7171063299559,
+        "samples": [
+          {
+            "step_seconds": 0.03773493899999812,
+            "workload_seconds": 0.06192943799999921,
+            "iterations_per_second": 17834.930116093034,
+            "games_per_second_including_truncations": 516.7171063299559
+          },
+          {
+            "step_seconds": 0.040006893000008856,
+            "workload_seconds": 0.06541676299999745,
+            "iterations_per_second": 16822.101131418804,
+            "games_per_second_including_truncations": 489.1712541631149
+          },
+          {
+            "step_seconds": 0.03696984099999099,
+            "workload_seconds": 0.060680334000000585,
+            "iterations_per_second": 18204.027439559828,
+            "games_per_second_including_truncations": 527.3537222125325
+          },
+          {
+            "step_seconds": 0.035814487999992706,
+            "workload_seconds": 0.06040043299999161,
+            "iterations_per_second": 18791.277987839363,
+            "games_per_second_including_truncations": 529.797526451581
+          },
+          {
+            "step_seconds": 0.03809880199998588,
+            "workload_seconds": 0.0627767489999751,
+            "iterations_per_second": 17664.597432755218,
+            "games_per_second_including_truncations": 509.7428667421547
+          },
+          {
+            "step_seconds": 0.043232912000006764,
+            "workload_seconds": 0.06823031200001424,
+            "iterations_per_second": 15566.844074715456,
+            "games_per_second_including_truncations": 468.99976069277426
+          },
+          {
+            "step_seconds": 0.03667337099998986,
+            "workload_seconds": 0.06006529200002114,
+            "iterations_per_second": 18351.19002286935,
+            "games_per_second_including_truncations": 532.7535908755548
+          },
+          {
+            "step_seconds": 0.03835954099997616,
+            "workload_seconds": 0.06290895099998306,
+            "iterations_per_second": 17544.526927483785,
+            "games_per_second_including_truncations": 508.6716515112232
+          },
+          {
+            "step_seconds": 0.03528626000000076,
+            "workload_seconds": 0.05892906900001981,
+            "iterations_per_second": 19072.5795252879,
+            "games_per_second_including_truncations": 543.0257179184223
+          }
+        ]
+      }
+    },
+    "speedup": 50.762581410297514
+  },
+  "additional_parity": {
+    "wide_bss": {
+      "seed": 20261125,
+      "workload_sha256": "3ad35bd94003c6d0a4d31f74bf98c0621c6edcb3caf9fb297b056130dedab27a",
+      "step_replies": 2856,
+      "spectator_traces": 160
+    },
+    "python_decoded_frames_against_full_rust": 124,
+    "native_replay_cases": 1088
+  },
+  "packed_step_reply_bytes": 722008
+}

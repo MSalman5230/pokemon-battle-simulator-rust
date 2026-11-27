@@ -153,9 +153,9 @@ available only after the complete response. The benchmark supports both
 framing modes.
 
 For a local CPU-tuned release build, use the profiling helper. It records
-80 games under seed 50221 for compiler training, then uses a separate
-default-workload replay for throughput and parity. It does not cache
-simulator responses or embed the replay in the binary.
+80 games under seed 50221 for compiler training. The default benchmark
+workload is not used to build the binary. The worker does not cache
+simulator responses or embed either replay.
 
 ```sh
 source scripts/env.sh
@@ -166,6 +166,34 @@ node benchmarks/throughput.mjs --warmup 3 --repeats 9 --trace-parity \
 
 The helper only builds the worker. The second command warms both backends
 equally after verifying parity, then measures complete decoded replies.
+
+The [50× run](verified-packed-bss-result.json) also used mimalloc for the
+Rust worker. On the measured Debian amd64 host the allocator was
+`libmimalloc3` version `3.0.1+ds-2.1`. The commands below stage the same
+package locally, without changing the system allocator or the Showdown
+reference process.
+
+```sh
+mkdir -p .tools/mimalloc
+(
+  cd .tools/mimalloc
+  apt-get download libmimalloc3=3.0.1+ds-2.1
+  dpkg-deb -x ./libmimalloc3_3.0.1+ds-2.1_amd64.deb .
+)
+source scripts/env.sh
+worker="$(scripts/build-profiled-worker.sh)"
+allocator="$PWD/.tools/mimalloc/usr/lib/x86_64-linux-gnu/libmimalloc.so.3.0"
+node benchmarks/throughput.mjs --warmup 5 --repeats 9 --trace-parity \
+  --packed-delta-observations -- env "LD_PRELOAD=$allocator" \
+  "$worker" --packed-delta-observations --parallel-steps 4
+```
+
+This run measured 18,267.5 steps/s against Showdown's 353.1 (51.73×).
+A repeat confirmed 17,834.9 steps/s against 351.3 (50.76×). Both used
+the original workload hash and passed full observation and spectator-trace
+parity before timing. A wider replay matched 2,856 step replies and all
+160 spectator traces. This is simulator throughput including observation
+decoding, not an end-to-end training rate.
 
 ## Parity and earlier runs
 

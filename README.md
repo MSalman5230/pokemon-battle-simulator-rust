@@ -8,13 +8,14 @@ uses the existing singles training protocol, including validation, traces,
 tactical damage queries, and one-turn public-belief lookahead. Neither
 requires Node.js or Showdown at runtime.
 
-On the locked BSS Reg M-C workload, the release worker with opt-in delta
-observations processed 6,489 steps/s versus Showdown's 344 (18.87× as fast).
-All 673 decoded step replies and 32 full spectator traces matched, as did
-2,856 steps in a separate 160-game replay. Full JSON and stateless compact
-observations remain available. Native replay has matched 41,111 checkpoints
-across 1,540 seeded replays covering 18 formats. The samples are not
-exhaustive over possible sets and seeds.
+On the locked BSS Reg M-C workload, the CPU-profiled release with opt-in
+packed observations, four worker threads, and mimalloc processed 18,267
+steps/s versus Showdown's 353 (51.73× as fast). All 673 decoded step replies
+and 32 full spectator traces matched. Full JSON, stateless compact, and
+the original delta mode remain available. Native replay has matched 41,111
+checkpoints across 1,540 seeded replays covering 18 formats. The samples
+are not exhaustive over possible sets and seeds.
+[Packed throughput report](benchmarks/verified-packed-bss-result.json) ·
 [Delta throughput report](benchmarks/verified-delta-bss-result.json) ·
 [Compact throughput report](benchmarks/verified-compact-bss-result.json) ·
 [Full JSON throughput report](benchmarks/verified-cached-bss-result.json) ·
@@ -86,6 +87,6 @@ node benchmarks/throughput.mjs
 
 The benchmark measures batched battle steps per second through Poke-RL's
 current singles worker. It checks exact replay parity before measuring
-the Rust worker. The benchmark guide shows how to reproduce the delta
+the Rust worker. The benchmark guide shows how to reproduce the packed
 result and enable delta observations in a Python client. See the
 [benchmark guide](benchmarks/README.md) and the [porting plan](docs/porting.md).
