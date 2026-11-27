@@ -32,6 +32,7 @@ function options(args) {
             'compact-observations': {type: 'boolean'},
             'delta-observations': {type: 'boolean'},
             'packed-delta-observations': {type: 'boolean'},
+            warmup: {type: 'string', default: '0'},
             ...Object.fromEntries(Object.entries(defaults).map(
                 ([name, value]) => [name, {type: 'string', default: String(value)}],
             )),
@@ -41,7 +42,7 @@ function options(args) {
         console.log('Usage: node benchmarks/throughput.mjs [--games 32] [--batch-size 16] ' +
             '[--max-turns 200] [--repeats 5] [--seed 1731] [--teams-file FILE] ' +
             '[--debug-parity | --diagnose-parity | --capture-replay FILE] [--trace-parity] ' +
-            '[--compact-observations | --delta-observations | --packed-delta-observations] [-- CANDIDATE [ARGS...]]');
+            '[--compact-observations | --delta-observations | --packed-delta-observations] [--warmup REPLAYS] [-- CANDIDATE [ARGS...]]');
         return null;
     }
     assert(split < 0 || candidate.length, 'Pass a worker command after --');
@@ -64,8 +65,10 @@ function options(args) {
     }
     assert(settings['batch-size'] <= settings.games, '--batch-size must not exceed --games');
     assert(settings.seed <= 0xffffffff, '--seed must fit in an unsigned 32-bit integer');
+    const warmup = Number(values.warmup);
+    assert(Number.isSafeInteger(warmup) && warmup >= 0, '--warmup must be a nonnegative integer');
     return {settings, candidate, teamsPath: values['teams-file'], debugParity: values['debug-parity'],
-        capturePath: values['capture-replay'], diagnose, traceParity, encoding};
+        capturePath: values['capture-replay'], diagnose, traceParity, encoding, warmup};
 }
 
 function expandObservations(result) {
@@ -381,7 +384,7 @@ function median(values) {
 async function main() {
     const config = options(process.argv.slice(2));
     if (!config) return;
-    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose, traceParity, encoding} = config;
+    const {settings, candidate, teamsPath, debugParity, capturePath, diagnose, traceParity, encoding, warmup} = config;
     const lock = readFileSync(join(oracle, 'package-lock.json'));
     const teamsFile = readFileSync(teamsPath ?? join(oracle, 'teams_train.json'));
     const workerPath = join(oracle, 'worker.cjs');
@@ -423,6 +426,9 @@ async function main() {
     if (candidate.length) backends.push({name: 'candidate', worker: openWorker(candidate, encoding), samples: []});
     try {
         for (const backend of backends) await warmAndVerify(backend.worker, workload.frames, backend.name);
+        for (let i = 0; i < warmup; i++) {
+            for (const backend of backends) await timeReplay(backend.worker, workload, settings.games);
+        }
         for (let i = 0; i < settings.repeats; i++) {
             // Alternate order so the same backend does not always run first.
             for (const backend of (i % 2 ? [...backends].reverse() : backends)) {
@@ -452,7 +458,7 @@ async function main() {
             lock_sha256: sha256(lock),
             teams_sha256: sha256(teamsFile),
         },
-        settings: {...settings, training: true},
+        settings: {...settings, ...(warmup && {warmup}), training: true},
         ...(teamsPath && {teams_file: teamsPath}),
         workload_sha256: sha256(workload.frames.map(entry => entry.wire).join('')),
         iterations_per_replay: workload.iterations,

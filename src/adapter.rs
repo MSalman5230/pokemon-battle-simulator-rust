@@ -9,7 +9,7 @@ pub use wire::{GameResult, ObservationDelta};
 
 use crate::{
     battle::{Battle, BattleStream, Phase},
-    choice::to_id,
+    choice::{Choice, MoveChoice, SlotChoice, SpecialChoice, to_id},
     dex::{DEX, Mod},
     input::{Input, Player, PlayerOptions, Start, Team},
     mechanics::{BoostStat, max_pp},
@@ -21,6 +21,7 @@ use serde::Serialize;
 use serde_json::{Value, json, value::RawValue};
 use std::{
     borrow::Cow,
+    num::NonZeroUsize,
     sync::{Arc, LazyLock, OnceLock},
 };
 
@@ -93,13 +94,64 @@ impl Legal<'_> {
     }
 
     fn choice(&self) -> Result<crate::choice::Choice, String> {
-        let input = match self {
-            Self::Preview { input, .. } => input.as_str(),
-            Self::Move { input, .. } | Self::Switch { input, .. } => input.as_ref(),
+        if let Some(token) = self.token() {
+            return Ok(token.choice());
+        }
+        let Self::Preview { input, .. } = self else {
+            unreachable!()
         };
-        input
-            .parse::<crate::choice::Choice>()
-            .map_err(|e| e.to_string())
+        input.parse::<Choice>().map_err(|e| e.to_string())
+    }
+
+    fn token(&self) -> Option<ActionToken> {
+        match *self {
+            Self::Preview { .. } => None,
+            Self::Move { slot, mega, .. } => Some(ActionToken::Move { slot, mega }),
+            Self::Switch { party_slot, .. } => Some(ActionToken::Switch(party_slot)),
+        }
+    }
+}
+
+#[derive(Clone, Copy)]
+enum ActionToken {
+    Move { slot: usize, mega: bool },
+    Switch(usize),
+}
+
+impl ActionToken {
+    fn choice(self) -> Choice {
+        let action = match self {
+            Self::Move { slot, mega } => SlotChoice::Move {
+                selection: MoveChoice::Slot(NonZeroUsize::new(slot + 1).unwrap()),
+                target: None,
+                special: mega.then_some(SpecialChoice::Mega),
+            },
+            Self::Switch(slot) => SlotChoice::Switch(NonZeroUsize::new(slot + 1)),
+        };
+        Choice::Actions(vec![action])
+    }
+}
+
+enum RequestActions {
+    Wait,
+    Preview,
+    Normal(Vec<(usize, ActionToken)>),
+}
+
+/// The exact legal actions of a result, for the next request on that game.
+/// Discard it after stepping or replacing the game.
+pub struct ActionPlan([RequestActions; 2], bool);
+
+impl ActionPlan {
+    pub fn accepts(&self, actions: [Option<usize>; 2]) -> bool {
+        self.1
+            && self.0.iter().zip(actions).all(|(list, action)| match list {
+                RequestActions::Wait => true,
+                RequestActions::Preview => {
+                    action.is_some_and(|id| (14..14 + PREVIEW.len()).contains(&id))
+                }
+                RequestActions::Normal(rows) => rows.iter().any(|(id, _)| Some(*id) == action),
+            })
     }
 }
 
@@ -300,18 +352,16 @@ impl Game {
             };
             if let Some(move_id) = battle.forced_move_id(player, 0) {
                 add(0, move_id);
-            } else if active
-                .moves
-                .iter()
-                .enumerate()
-                .all(|(i, _)| battle.move_disabled_in_request(player, 0, i))
-            {
-                add(0, "struggle");
             } else {
+                let mut found = false;
                 for (slot, m) in active.moves.iter().enumerate() {
                     if !battle.move_disabled_in_request(player, 0, slot) {
+                        found = true;
                         add(slot, &m.id);
                     }
+                }
+                if !found {
+                    add(0, "struggle");
                 }
             }
         }
@@ -374,6 +424,39 @@ impl Game {
                 choices[index] = Some(choice.choice()?);
             }
         }
+        self.advance(choices)
+    }
+
+    /// Step using a plan from this game's immediately preceding observation.
+    pub fn step_planned(
+        &mut self,
+        plan: ActionPlan,
+        actions: [Option<usize>; 2],
+    ) -> Result<(), String> {
+        let mut choices = [None, None];
+        for (index, (list, action)) in plan.0.into_iter().zip(actions).enumerate() {
+            choices[index] = match list {
+                RequestActions::Wait => None,
+                RequestActions::Preview => Some(
+                    action
+                        .and_then(|id| id.checked_sub(14))
+                        .and_then(|i| PREVIEW.get(i))
+                        .ok_or_else(|| format!("illegal preview action for player {index}"))?
+                        .choice()?,
+                ),
+                RequestActions::Normal(rows) => Some(
+                    rows.iter()
+                        .find(|(id, _)| Some(*id) == action)
+                        .ok_or_else(|| format!("illegal action for player {index}: {action:?}"))?
+                        .1
+                        .choice(),
+                ),
+            };
+        }
+        self.advance(choices)
+    }
+
+    fn advance(&mut self, choices: [Option<Choice>; 2]) -> Result<(), String> {
         if choices.iter().all(Option::is_none) && !self.ended() && !self.truncated {
             return Err("no actionable request in nonterminal battle".into());
         }

@@ -141,6 +141,7 @@ same hidden and public battle data. The JavaScript benchmark and Python
 `--parallel-steps` only schedules batches that step distinct live games.
 It preserves per-game order and RNG state and reports results in request
 order. Mixed batches and repeated game IDs use the normal sequential path.
+A failed legal-action preflight also takes the sequential path.
 A parallel batch is not transactional on error. Independent games may have
 reached their next states when the worker reports an error and discards
 delta bases. Restart failed rollouts if a batch returns an error.
@@ -150,6 +151,21 @@ before its completion marker. A Python reply reader must keep reading when
 `DeltaDecoder.decode_reply` returns `None`. Decoded observations are still
 available only after the complete response. The benchmark supports both
 framing modes.
+
+For a local CPU-tuned release build, use the profiling helper. It records
+80 games under seed 50221 for compiler training, then uses a separate
+default-workload replay for throughput and parity. It does not cache
+simulator responses or embed the replay in the binary.
+
+```sh
+source scripts/env.sh
+worker="$(scripts/build-profiled-worker.sh)"
+node benchmarks/throughput.mjs --warmup 3 --repeats 9 --trace-parity \
+  --packed-delta-observations -- "$worker" --packed-delta-observations --parallel-steps 4
+```
+
+The helper only builds the worker. The second command warms both backends
+equally after verifying parity, then measures complete decoded replies.
 
 ## Parity and earlier runs
 

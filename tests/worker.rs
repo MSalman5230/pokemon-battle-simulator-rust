@@ -116,3 +116,32 @@ fn delta_worker_resends_full_observations_after_partial_batch_failure() {
     assert!(responses[5]["result"]["views"].is_array());
     assert!(responses[5]["result"][marker].is_null());
 }
+
+#[test]
+fn independent_batches_preserve_order_and_defer_illegal_actions_to_serial_execution() {
+    let corpus: Value =
+        serde_json::from_str(include_str!("../benchmarks/verified-bss-corpus.json")).unwrap();
+    let teams = [0, 1].map(|i| corpus["teams"][i]["team"].clone());
+    let requests = [
+        json!({"id":0,"op":"new","game":"a","teams":teams,"seed":[1,2,3,4],"training":true}),
+        json!({"id":1,"op":"new","game":"b","teams":teams,"seed":[4,3,2,1],"training":true}),
+        json!({"id":2,"op":"batch","requests":[
+            {"op":"step","game":"b","actions":[14,14]},
+            {"op":"step","game":"a","actions":[15,15]},
+        ]}),
+        json!({"id":3,"op":"batch","requests":[
+            {"op":"step","game":"a","actions":[0,0]},
+            {"op":"step","game":"b","actions":[999,999]},
+        ]}),
+        json!({"id":4,"op":"trace","game":"a"}),
+        json!({"id":5,"op":"trace","game":"b"}),
+    ];
+    let serial = replay(&[], requests.clone());
+    assert!(
+        serial[3]["error"]
+            .as_str()
+            .unwrap()
+            .contains("illegal action")
+    );
+    assert_eq!(replay(&["--parallel-steps", "2"], requests), serial);
+}

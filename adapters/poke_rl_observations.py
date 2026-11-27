@@ -141,21 +141,37 @@ def _patch_slots(changes, previous, own=False, initial_sets=None):
             present, changed = mon[:2]
             pos = 2
             patch = {}
+            split_moves = bool(present & (7 << 29))
+            moves = []
             while present:
                 bit = present & -present
                 present ^= bit
                 key = _COLUMNS[bit.bit_length() - 1]
                 if changed & bit:
                     value = mon[pos]
+                    pos += 1
+                    if own and (key in _EXTRA_MOVES or (
+                        key == "moves" and value and isinstance(value[0], str)
+                    )):
+                        move, pp, maxpp, disabled = value
+                        moves.append(dict(id=move, pp=pp, maxpp=maxpp, disabled=disabled))
+                        continue
                     if own and key == "moves" and value and isinstance(value[0], list):
                         value = [
                             dict(id=id_, pp=pp, maxpp=maxpp, disabled=disabled)
                             for id_, pp, maxpp, disabled in value
                         ]
                     patch[key] = value
-                    pos += 1
+                elif own and key in _EXTRA_MOVES:
+                    moves.append(base["moves"][_EXTRA_MOVES.index(key) + 1])
+                elif own and key == "moves" and (split_moves or (
+                    base is not None and "current_hp" in base and 1 <= len(base["moves"]) <= 4
+                )):
+                    moves.append(base["moves"][0])
                 else:
                     patch[key] = base[key]
+            if moves:
+                patch["moves"] = moves
             mon = patch
         if own:
             mon["set"] = initial_sets[index] if base is None else base["set"]
@@ -168,8 +184,9 @@ _COLUMNS = (
     "seen", "active", "fainted", "types", "volatiles", "last_move", "times_attacked",
     "entry_turn", "moves_this_stint", "pp_used", "first_native_move", "status_progress",
     "identity_uncertain", "nickname", "status_since", "current_hp", "max_hp", "stats",
-    "volatile_ids", "index", "selected", "set",
+    "volatile_ids", "index", "selected", "move2", "move3", "move4",
 )
+_EXTRA_MOVES = _COLUMNS[29:]
 
 
 def _history(history):

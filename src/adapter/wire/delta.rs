@@ -355,14 +355,16 @@ impl ViewFields for DeltaFields<'_> {
     }
 }
 
-const EXTRA_FIELDS: [&str; 7] = [
+const EXTRA_FIELDS: [&str; 9] = [
     "current_hp",
     "max_hp",
     "stats",
     "volatile_ids",
     "index",
     "selected",
-    "set",
+    "move2",
+    "move3",
+    "move4",
 ];
 const MON_FIELD_COUNT: usize = public::MON_FIELDS.len() + EXTRA_FIELDS.len();
 

@@ -211,10 +211,13 @@ fn parse_move(mut data: &str) -> Result<SlotChoice, ChoiceError> {
 
 /// Showdown IDs consist of lower-case ASCII letters and ASCII digits.
 pub fn to_id(name: &str) -> String {
-    name.bytes()
-        .filter(u8::is_ascii_alphanumeric)
-        .map(|c| char::from(c.to_ascii_lowercase()))
-        .collect()
+    let mut id = String::with_capacity(name.len());
+    for byte in name.bytes() {
+        if byte.is_ascii_alphanumeric() {
+            id.push(char::from(byte.to_ascii_lowercase()));
+        }
+    }
+    id
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq, serde::Deserialize, serde::Serialize)]

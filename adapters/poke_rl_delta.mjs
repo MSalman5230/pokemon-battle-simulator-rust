@@ -45,7 +45,7 @@ const columns = [
     'seen', 'active', 'fainted', 'types', 'volatiles', 'last_move', 'times_attacked',
     'entry_turn', 'moves_this_stint', 'pp_used', 'first_native_move', 'status_progress',
     'identity_uncertain', 'nickname', 'status_since', 'current_hp', 'max_hp', 'stats',
-    'volatile_ids', 'index', 'selected', 'set',
+    'volatile_ids', 'index', 'selected', 'move2', 'move3', 'move4',
 ];
 const shapes = [new Map(), new Map()];
 const monData = new WeakMap();
@@ -56,21 +56,38 @@ function unpackMon(row, previous, own, set) {
     // The column buffer is internal. Only the object materialized below is
     // shared with a caller, so we can reuse this buffer without mutating views.
     const values = previous ? monData.get(previous) : new Array(columns.length);
+    const movesMask = 0xe0000020;
+    const refreshMoves = own && ((changed & movesMask) || ((values[33] ^ mask) & movesMask));
     for (let i = 2; changed !== 0; ++i) {
         const bit = changed & -changed;
         const column = 31 - Math.clz32(bit);
         const value = row[i];
-        values[column] = own && column === 5 && Array.isArray(value?.[0])
-            ? value.map(([id, pp, maxpp, disabled]) => ({id, pp, maxpp, disabled}))
-            : value;
+        if (own && (column >= 29 || (column === 5 && typeof value?.[0] === 'string'))) {
+            const [id, pp, maxpp, disabled] = value;
+            values[column] = {id, pp, maxpp, disabled};
+        } else if (own && column === 5 && Array.isArray(value?.[0])) {
+            values[column] = value.map(([id, pp, maxpp, disabled]) => ({id, pp, maxpp, disabled}));
+        } else {
+            values[column] = value;
+        }
         changed ^= bit;
     }
+    if (refreshMoves) {
+        if (Array.isArray(values[5])) {
+            values[32] = values[5];
+        } else {
+            const moves = [values[5]];
+            for (let i = 29; i < 32; ++i) if (mask & (1 << i)) moves.push(values[i]);
+            values[32] = moves;
+        }
+    }
+    values[33] = mask;
     const table = shapes[+own];
     let make = table.get(mask);
     if (!make) {
         const fields = [];
-        for (let i = 0; i < columns.length; ++i) {
-            if (mask & (1 << i)) fields.push(`${columns[i]}:a[${i}]`);
+        for (let i = 0; i < 29; ++i) {
+            if (mask & (1 << i)) fields.push(`${columns[i]}:a[${own && i === 5 ? 32 : i}]`);
         }
         if (own) fields.push('set:set');
         make = new Function('a', 'set', `return {${fields.join(',')}}`);

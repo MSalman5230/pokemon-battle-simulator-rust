@@ -65,3 +65,20 @@ test('packed slot updates preserve old snapshots and distinguish absent from nul
     assert.equal(second.views[0].legal[0].choice, 'move 1');
     assert.deepEqual(second.views[0].history, [{turn: 2, side: 0, move: 'tackle', actor: 0, species: 'Espeon', order: 0}]);
 });
+
+test('packed move columns carry independent PP updates and allow removals', () => {
+    const decoder = new DeltaDecoder();
+    const start = frame('moves', 0,
+        [{turn: 1, legal: []}, [0, [0xe0000020, 0xe0000020,
+            ['tackle', 20, 20, false], ['protect', 10, 10, false],
+            ['rest', 5, 5, false], ['growl', 20, 20, false]]], [], null],
+        [{turn: 1, legal: []}, [], [], null]);
+    const first = decoder.expand({$battle_delta_v2: start.$battle_delta_v1});
+    const next = frame('moves', 1,
+        [{turn: 2}, [0, [0x60000020, 0x20000000, ['protect', 9, 10, true]]], [], null],
+        unchanged);
+    const second = decoder.expand({$battle_delta_v2: next.$battle_delta_v1});
+    assert.deepEqual(first.views[0].own[0].moves.map(m => m.pp), [20, 10, 5, 20]);
+    assert.deepEqual(second.views[0].own[0].moves.map(m => m.pp), [20, 9, 5]);
+    assert.equal(second.views[0].own[0].moves[1].disabled, true);
+});

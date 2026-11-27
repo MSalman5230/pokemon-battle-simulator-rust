@@ -1,7 +1,7 @@
 //! Experimental Poke-RL JSON-lines worker.
 
 use pokemon_battle_simulator::{
-    adapter::{FORMAT, Game, ObservationDelta, lookahead, tactics},
+    adapter::{ActionPlan, FORMAT, Game, ObservationDelta, lookahead, tactics},
     dex::DEX,
     rng::Seed,
     validation::TeamValidator,
@@ -37,6 +37,7 @@ struct LiveGame {
     game: Game,
     delta: Option<Box<ObservationDelta>>,
     reply: Vec<u8>,
+    plan: Option<ActionPlan>,
 }
 
 #[derive(Deserialize)]
@@ -139,8 +140,17 @@ fn encode(out: &mut Vec<u8>, value: impl Serialize) -> Result<(), String> {
 }
 
 impl LiveGame {
+    fn step(&mut self, actions: [Option<usize>; 2]) -> Result<(), String> {
+        if let Some(plan) = self.plan.take() {
+            self.game.step_planned(plan, actions)
+        } else {
+            self.game.step(actions)
+        }
+    }
+
     fn encode(&mut self, out: &mut Vec<u8>, key: &str, mode: Observations) -> Result<(), String> {
         let result = self.game.result();
+        self.plan = Some(result.action_plan());
         if let Some(delta) = &mut self.delta {
             if mode == Observations::PackedDelta {
                 delta.write_packed_json(out, key, &result)
@@ -170,7 +180,11 @@ impl Worker {
                 || requests[..index]
                     .iter()
                     .any(|seen| seen.game == request.game)
-                || !self.games.contains_key(request.game.as_ref())
+                || !self
+                    .games
+                    .get(request.game.as_ref())
+                    .and_then(|live| live.plan.as_ref())
+                    .is_some_and(|plan| plan.accepts(request.actions))
             {
                 return None;
             }
@@ -209,7 +223,6 @@ impl Worker {
                         let mut reply = std::mem::take(&mut live.reply);
                         reply.clear();
                         *error = live
-                            .game
                             .step(*actions)
                             .and_then(|()| live.encode(&mut reply, key, mode))
                             .err();
@@ -391,6 +404,7 @@ impl Worker {
                     delta: (training && self.observations.delta())
                         .then(Box::<ObservationDelta>::default),
                     reply: Vec::new(),
+                    plan: None,
                 };
                 live.encode(out, key, self.observations)?;
                 self.games.insert(key.into(), Box::new(live));
@@ -400,7 +414,7 @@ impl Worker {
                 let actions: [Option<usize>; 2] =
                     Deserialize::deserialize(&query["actions"]).map_err(|e| e.to_string())?;
                 let game = self.games.get_mut(key).ok_or("game does not exist")?;
-                game.game.step(actions)?;
+                game.step(actions)?;
                 game.encode(out, key, self.observations)
             }
             "trace" => encode(

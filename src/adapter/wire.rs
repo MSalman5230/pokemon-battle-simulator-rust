@@ -53,6 +53,24 @@ impl Encoding<'_> {
 }
 
 impl GameResult<'_> {
+    pub fn action_plan(&self) -> ActionPlan {
+        let lists = self.legal.each_ref().map(|rows| match rows.first() {
+            None => RequestActions::Wait,
+            Some(Legal::Preview { .. }) => RequestActions::Preview,
+            _ => RequestActions::Normal(
+                rows.iter()
+                    .map(|action| (action.id(), action.token().unwrap()))
+                    .collect(),
+            ),
+        });
+        let available = self.game.ended()
+            || self.game.truncated
+            || lists
+                .iter()
+                .any(|list| !matches!(list, RequestActions::Wait));
+        ActionPlan(lists, available)
+    }
+
     /// Serialize worker replies directly to JSON, reusing unchanged public
     /// projections and encoding each private roster at most once per reply.
     /// Compact training replies let an opt-in decoder reconstruct the critic.
@@ -433,26 +451,29 @@ struct Moves<'a> {
     player: Player,
     party_slot: usize,
     slots: &'a [crate::battle::MoveSlot],
-    packed: bool,
+}
+
+const PACKED_MOVE_COLUMNS: [&str; 4] = ["moves", "move2", "move3", "move4"];
+
+impl Moves<'_> {
+    fn slot(&self, slot: usize) -> SlotView<'_> {
+        let m = &self.slots[slot];
+        SlotView {
+            id: &m.id,
+            pp: m.pp,
+            maxpp: m.max_pp,
+            disabled: self
+                .battle
+                .actual_move_disabled(self.player, self.party_slot, slot),
+        }
+    }
 }
 
 impl Serialize for Moves<'_> {
     fn serialize<S: Serializer>(&self, serializer: S) -> Result<S::Ok, S::Error> {
         let mut seq = serializer.serialize_seq(Some(self.slots.len()))?;
-        for (slot, m) in self.slots.iter().enumerate() {
-            let view = SlotView {
-                id: &m.id,
-                pp: m.pp,
-                maxpp: m.max_pp,
-                disabled: self
-                    .battle
-                    .actual_move_disabled(self.player, self.party_slot, slot),
-            };
-            if self.packed {
-                seq.serialize_element(&(view.id, view.pp, view.maxpp, view.disabled))?;
-            } else {
-                seq.serialize_element(&view)?;
-            }
+        for slot in 0..self.slots.len() {
+            seq.serialize_element(&self.slot(slot))?;
         }
         seq.end()
     }
@@ -511,16 +532,20 @@ impl OwnMon<'_> {
             fields.field("identity_uncertain", &false)?;
             fields.field("times_attacked", &p.times_attacked)?;
             fields.field("volatile_ids", p.volatile_ids())?;
-            fields.field(
-                "moves",
-                &Moves {
-                    battle: self.battle,
-                    player: self.player,
-                    party_slot: self.party_slot.unwrap(),
-                    slots: &p.moves,
-                    packed,
-                },
-            )?;
+            let moves = Moves {
+                battle: self.battle,
+                player: self.player,
+                party_slot: self.party_slot.unwrap(),
+                slots: &p.moves,
+            };
+            if packed && (1..=PACKED_MOVE_COLUMNS.len()).contains(&p.moves.len()) {
+                for (i, column) in PACKED_MOVE_COLUMNS[..p.moves.len()].iter().enumerate() {
+                    let row = moves.slot(i);
+                    fields.field(column, &(row.id, row.pp, row.maxpp, row.disabled))?;
+                }
+            } else {
+                fields.field("moves", &moves)?;
+            }
             fields.field("item", &p.item)?;
             fields.field("ability", &p.ability)?;
         } else {
