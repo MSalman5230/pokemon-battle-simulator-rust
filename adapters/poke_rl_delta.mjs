@@ -8,7 +8,9 @@ export class DeltaDecoder {
     }
 
     expand(result) {
-        return Array.isArray(result) ? result.map(game => this.#expand(game)) : this.#expand(result);
+        if (!Array.isArray(result)) return this.#expand(result);
+        for (let i = 0; i < result.length; i++) result[i] = this.#expand(result[i]);
+        return result;
     }
 
     #expand(value) {
@@ -83,7 +85,8 @@ function unpackMon(row, previous, own, set) {
     }
     values[33] = mask;
     const table = shapes[+own];
-    let make = table.get(mask);
+    const objectMask = mask & 0x1fffffff;
+    let make = table.get(objectMask);
     if (!make) {
         const fields = [];
         for (let i = 0; i < 29; ++i) {
@@ -91,7 +94,7 @@ function unpackMon(row, previous, own, set) {
         }
         if (own) fields.push('set:set');
         make = new Function('a', 'set', `return {${fields.join(',')}}`);
-        table.set(mask, make);
+        table.set(objectMask, make);
     }
     const mon = make(values, set);
     monData.set(mon, values);
@@ -114,6 +117,9 @@ function slots(changes, previous, own = false, initialSets) {
 }
 
 let preview;
+const moveChoices = ['move 1', 'move 2', 'move 3', 'move 4'];
+const megaChoices = moveChoices.map(choice => `${choice} mega`);
+const switchChoices = ['switch 1', 'switch 2', 'switch 3', 'switch 4', 'switch 5', 'switch 6'];
 const previewLegal = () => {
     const rows = [];
     for (let a = 0; a < 6; ++a) for (let b = 0; b < 6; ++b) for (let c = 0; c < 6; ++c) {
@@ -126,9 +132,15 @@ const previewLegal = () => {
 };
 function unpackLegal(rows) {
     if (rows === 1) return preview ??= previewLegal();
-    return rows.map(([id, slot, name, extra, revive]) => revive === undefined
-        ? {id, kind: 'move', slot, move: name, mega: extra, choice: `move ${slot + 1}${extra ? ' mega' : ''}`}
-        : {id, kind: 'switch', slot, species: name, party_slot: extra, revive, choice: `switch ${extra + 1}`});
+    for (let i = 0; i < rows.length; i++) {
+        const [id, slot, name, extra, revive] = rows[i];
+        rows[i] = revive === undefined
+            ? {id, kind: 'move', slot, move: name, mega: extra,
+                choice: (extra ? megaChoices : moveChoices)[slot] ?? `move ${slot + 1}${extra ? ' mega' : ''}`}
+            : {id, kind: 'switch', slot, species: name, party_slot: extra, revive,
+                choice: switchChoices[extra] ?? `switch ${extra + 1}`};
+    }
+    return rows;
 }
 
 const empty = {};

@@ -102,6 +102,8 @@ function expandObservations(result) {
 
 function openWorker([command, ...args], encoding) {
     const delta = encoding?.startsWith('battle-delta-') ? new DeltaDecoder() : undefined;
+    const expand = delta ? value => delta.expand(value) :
+        encoding === compactEncoding ? expandObservations : value => value;
     const child = spawn(command, args, {cwd: root, stdio: ['pipe', 'pipe', 'inherit']});
     let failure, pending, line = '';
     let timer;
@@ -123,9 +125,7 @@ function openWorker([command, ...args], encoding) {
             onError(new Error('Worker sent an unsolicited reply'));
             return;
         }
-        const {resolve, reject, id, steps, parts} = pending;
-        const expand = delta ? value => delta.expand(value) :
-            encoding === compactEncoding ? expandObservations : value => value;
+        const {resolve, reject, id, steps} = pending;
         try {
             const reply = JSON.parse(line);
             assert.equal(reply.id, id, 'Mismatched worker reply ID');
@@ -134,6 +134,7 @@ function openWorker([command, ...args], encoding) {
                 throw new Error(`Worker error for request ${id}: ${reply.error}`);
             }
             if (reply.part) {
+                const parts = pending.parts ??= [];
                 const [index, part] = reply.part;
                 const entries = expand(part);
                 for (let i = 0; i < entries.length; i++) {
@@ -145,6 +146,7 @@ function openWorker([command, ...args], encoding) {
             assert(Object.hasOwn(reply, 'result'), `Missing result for request ${id}`);
             let result;
             if (reply.result?.$battle_stream !== undefined) {
+                const parts = pending.parts ?? [];
                 assert.equal(parts.length, reply.result.$battle_stream);
                 for (let i = 0; i < parts.length; i++) assert(i in parts, 'Missing streamed batch result');
                 result = parts;
@@ -176,7 +178,7 @@ function openWorker([command, ...args], encoding) {
         exchange({id, wire, steps}) {
             if (failure) return Promise.reject(failure);
             return new Promise((resolve, reject) => {
-                pending = {resolve, reject, id, steps, parts: []};
+                pending = {resolve, reject, id, steps};
                 timer = setTimeout(() => onError(new Error(`Worker timed out at request ${id}`)), timeoutMs);
                 child.stdin.write(wire);
             });
